@@ -103,6 +103,7 @@
 
   function initSliders() {
     all('.w-slider').forEach(function (slider) {
+      if (slider.classList.contains('feature-slider')) return;
       var slides = all('.w-slide:not(.is-clone)', slider);
       if (slides.length < 2) return;
       var index = Math.max(0, slides.findIndex(function (slide) {
@@ -132,20 +133,7 @@
   }
 
   function initFeatureSliders() {
-    all('.feature-slider').forEach(function (slider) {
-      function removeClones() {
-        all('.w-slide.is-clone', slider).forEach(function (clone) {
-          clone.remove();
-        });
-      }
-
-      removeClones();
-
-      if ('MutationObserver' in window) {
-        var observer = new MutationObserver(removeClones);
-        observer.observe(slider, { childList: true, subtree: true });
-      }
-    });
+    // Feature sliders keep the original Webflow behavior and styling.
   }
 
   function initMarquees() {

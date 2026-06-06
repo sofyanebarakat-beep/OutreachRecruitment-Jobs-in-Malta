@@ -129,54 +129,7 @@ html.or-enhanced .w-slide.or-slide-active {
   pointer-events: auto;
 }
 
-html.or-enhanced .feature-slider {
-  height: auto !important;
-}
-
-html.or-enhanced .feature-slider .w-slider-mask,
-html.or-enhanced .feature-slider-mask {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  height: auto !important;
-  overflow: visible !important;
-}
-
-html.or-enhanced .feature-slider .w-slide {
-  display: block !important;
-  height: auto !important;
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  position: relative !important;
-  transform: none !important;
-  width: auto !important;
-}
-
-html.or-enhanced .feature-slider .w-slide.is-clone {
-  display: none !important;
-}
-
-html.or-enhanced .feature-slider .feature-slide-card {
-  height: 100%;
-}
-
-html.or-enhanced .feature-slider :is(.w-slider-arrow-left, .w-slider-arrow-right, .w-slider-nav) {
-  display: none !important;
-}
-
-@media (max-width: 991px) {
-  html.or-enhanced .feature-slider .w-slider-mask,
-  html.or-enhanced .feature-slider-mask {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 767px) {
-  html.or-enhanced .feature-slider .w-slider-mask,
-  html.or-enhanced .feature-slider-mask {
-    grid-template-columns: 1fr;
-  }
-
   html.or-enhanced .section.blue-bottom .testimonial-grid .hidden-on-mobile {
     display: block !important;
   }
@@ -1438,19 +1391,27 @@ body.opening-jobs-page {
 /* home-test: gradient only on padding-top-large sections inside .frame
    (leaves "Latest articles" and "Questions?" standalone sections untouched) */
 body.home-test-page .frame .section.padding-top-large {
-  --_🖍️-colors---surface--surface-1: #3979FD;
-  --_🖍️-colors---surface--surface-2: #1a4fd6;
+  --_🖍️-colors---surface--surface-1: #020408;
+  --_🖍️-colors---surface--surface-2: #020408;
   background-color: #020408 !important;
-  background-image: linear-gradient(135deg, #3979FD 0%, #0d1533 40%, #020408 100%) !important;
+  background-image: none !important;
   color: #ffffff;
 }
 
-/* home-test: preview section (Growing companies / Founders…) → same blue-to-black gradient */
-body.home-test-page .frame .section.preview {
-  --_🖍️-colors---surface--surface-1: #3979FD;
-  --_🖍️-colors---surface--surface-2: #1a4fd6;
+/* home-test: jobs roles header above preview */
+body.home-test-page .or-jobs-roles-header {
   background-color: #020408 !important;
-  background-image: linear-gradient(135deg, #3979FD 0%, #0d1533 40%, #020408 100%) !important;
+  background-image: none !important;
+  color: #ffffff;
+  padding-bottom: 0 !important;
+}
+
+/* home-test: preview section (Growing companies / Founders…) → same solid background */
+body.home-test-page .frame .section.preview {
+  --_🖍️-colors---surface--surface-1: #020408;
+  --_🖍️-colors---surface--surface-2: #020408;
+  background-color: #020408 !important;
+  background-image: none !important;
   color: #ffffff;
 }
 
@@ -1615,6 +1576,12 @@ body.home-test-page .service-spotlight {
   cursor: pointer;
   opacity: 0.45;
   transition: opacity 220ms ease;
+}
+
+.frame .preview-list .heading-h3 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.5px !important;
 }
 
 .frame .preview-item.is-active,
