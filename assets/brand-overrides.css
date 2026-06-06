@@ -1711,3 +1711,19 @@ body.home-test-page .service-spotlight {
     grid-template-columns: 1fr;
   }
 }
+
+.outreach-intro-section {
+  background: #ECEAE1 !important;
+  background-image: none !important;
+  color: #262626 !important;
+}
+
+.outreach-intro-section .heading-h1,
+.outreach-intro-section .gsap_split_line,
+.outreach-intro-section em {
+  color: #262626 !important;
+}
+
+.outreach-intro-section .heading-highlight {
+  color: #442DFA !important;
+}
