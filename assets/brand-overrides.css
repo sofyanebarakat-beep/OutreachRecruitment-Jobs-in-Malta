@@ -452,6 +452,21 @@ html.or-enhanced :is(.case-study-compact-card, .testimonial-slide-card, .feature
   object-position: center center !important;
 }
 
+.navigation-dropdown.compact {
+  display: none !important;
+}
+
+/* Hide Home from Resources featured items */
+.nav-featured-item[href="/"] {
+  display: none !important;
+}
+
+/* Hide Register CV (Convert) and Blog Article (CMS) from Resources nav-list */
+.navigation .nav-item[href="/book-a-call"],
+.navigation .nav-item[href*="invisible-architecture"] {
+  display: none !important;
+}
+
 body.home-test-page .navigation,
 body.home-test-page .section.hero-full-screen .heading-h1,
 body.home-test-page .section.hero-full-screen .buttons,
