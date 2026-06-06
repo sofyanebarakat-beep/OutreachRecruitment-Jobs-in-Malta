@@ -1713,6 +1713,8 @@ body.home-test-page .service-spotlight {
 }
 
 .outreach-intro-section {
+  --_🖍️-colors---surface--surface-1: #ECEAE1;
+  --_🖍️-colors---surface--surface-2: #ECEAE1;
   background: #ECEAE1 !important;
   background-image: none !important;
   color: #262626 !important;
