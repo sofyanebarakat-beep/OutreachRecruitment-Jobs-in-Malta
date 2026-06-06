@@ -41,6 +41,20 @@
   }
 
   function initNav() {
+    var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+    all('.navigation-link, .nav-item, .nav-logo-link').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href || href.charAt(0) !== '/') return;
+      var linkPath = href.replace(/\/$/, '') || '/';
+      var isCurrent = linkPath === currentPath;
+      link.classList.toggle('w--current', isCurrent);
+      if (isCurrent) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+
     all('.w-nav').forEach(function (nav) {
       var button = nav.querySelector('.w-nav-button');
       var menu = nav.querySelector('.w-nav-menu');

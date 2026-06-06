@@ -448,8 +448,8 @@ html.or-enhanced :is(.case-study-compact-card, .testimonial-slide-card, .feature
 }
 
 .nav-logo {
-  width: 132px !important;
-  height: 54px !important;
+  width: 156px !important;
+  height: 64px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -468,6 +468,9 @@ html.or-enhanced :is(.case-study-compact-card, .testimonial-slide-card, .feature
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  width: 156px !important;
+  min-width: 156px !important;
+  height: 64px !important;
 }
 
 .footer-logo {
@@ -491,6 +494,8 @@ html.or-enhanced :is(.case-study-compact-card, .testimonial-slide-card, .feature
 .nav-logo img,
 .footer-logo img,
 .logo.w-embed img {
+  width: 100% !important;
+  height: 100% !important;
   object-position: center center !important;
 }
 
@@ -1466,10 +1471,20 @@ body.home-test-page .service-spotlight {
 }
 
 @media (max-width: 767px) {
-  .nav-logo,
+  .nav-logo {
+    width: 132px !important;
+    height: 54px !important;
+  }
+
+  .navigation .nav-logo-link {
+    width: 132px !important;
+    min-width: 132px !important;
+    height: 54px !important;
+  }
+
   .footer-logo {
-    width: 112px !important;
-    height: 46px !important;
+    width: 132px !important;
+    height: 54px !important;
   }
 
   .logo.w-embed {
