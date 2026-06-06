@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog/how-decision-clarity-removes-more-friction-than-motivation-ever-will</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog/how-structure-quietly-builds-trust-inside-a-team-long-before-anyone-talks-about-culture</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog/why-most-teams-dont-have-a-performance-problem-but-a-structure-problem</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/blog/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/book-a-call</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/careers</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>/clients-a</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients-b</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients-c</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/evermind</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/haldenmiller</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/hollow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/modulabs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/nerdstack</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/clients/nothing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/contact-a</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/contact-b</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/contact-c</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/employers</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/home-c</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/ai-research-scientist</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/barista</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/people-connector</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/product-designer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/project-manager</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/service</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+</urlset>
