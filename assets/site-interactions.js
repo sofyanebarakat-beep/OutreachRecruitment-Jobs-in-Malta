@@ -199,12 +199,24 @@
     function show(nextIndex) {
       index = (nextIndex + slides.length) % slides.length;
       slides.forEach(function (slide, slideIndex) {
-        slide.classList.toggle('is-active', slideIndex === index);
+        var isActive = slideIndex === index;
+        slide.classList.toggle('is-active', isActive);
+        var video = slide.querySelector('video');
+        if (!video) return;
+        if (isActive) {
+          try {
+            video.currentTime = 0;
+            var play = video.play();
+            if (play && typeof play.catch === 'function') play.catch(function () {});
+          } catch (error) {}
+        } else {
+          video.pause();
+        }
       });
     }
 
     show(index);
-    window.setInterval(function () { show(index + 1); }, 4500);
+    window.setInterval(function () { show(index + 1); }, 14000);
   }
 
   function initTabs() {

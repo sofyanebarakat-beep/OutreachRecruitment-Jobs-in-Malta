@@ -639,6 +639,24 @@ body.home-test-page .home-test-slide .hero-header .tag {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.46);
 }
 
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] {
+  background-color: #442DFA !important;
+  border-color: #442DFA !important;
+  color: #ffffff !important;
+}
+
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] .button-label,
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] .icon,
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] svg {
+  color: #ffffff !important;
+}
+
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] .button-circle.small.accent,
+body.home-test-page .home-test-slide .button-primary[href="/book-a-call"] .icon-button {
+  background-color: #ffffff !important;
+  color: #442DFA !important;
+}
+
 body.home-test-page .home-test-slide::after {
   content: "";
   position: absolute;
@@ -1716,8 +1734,30 @@ body.home-test-page .service-spotlight {
   --_🖍️-colors---surface--surface-1: #ECEAE1;
   --_🖍️-colors---surface--surface-2: #ECEAE1;
   background: #ECEAE1 !important;
+  background-color: #ECEAE1 !important;
   background-image: none !important;
   color: #262626 !important;
+}
+
+body.home-test-page .frame .section.padding-top-large.outreach-intro-section {
+  --_🖍️-colors---surface--surface-1: #ECEAE1;
+  --_🖍️-colors---surface--surface-2: #ECEAE1;
+  background: #ECEAE1 !important;
+  background-color: #ECEAE1 !important;
+  background-image: none !important;
+  color: #262626 !important;
+}
+
+body.home-test-page .frame .section.padding-top-large.outreach-intro-section::before,
+body.home-test-page .frame .section.padding-top-large.outreach-intro-section::after {
+  background: #ECEAE1 !important;
+  background-color: #ECEAE1 !important;
+  background-image: none !important;
+}
+
+.outreach-intro-section .text.center {
+  max-width: 88rem !important;
+  width: 100%;
 }
 
 .outreach-intro-section .heading-h1,
@@ -1728,4 +1768,12 @@ body.home-test-page .service-spotlight {
 
 .outreach-intro-section .heading-highlight {
   color: #442DFA !important;
+}
+
+.partner-logo .or-partner-logo-img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
