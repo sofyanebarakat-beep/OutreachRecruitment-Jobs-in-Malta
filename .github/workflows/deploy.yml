@@ -1,9 +1,11 @@
-name: Deploy to GoDaddy
-
+name: Deploy WordPress to GoDaddy via rsync
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      deployment_dest:
+        description: 'Target server directory, leave blank for root directory'
+        required: false
+        default: ''
 
 jobs:
   deploy:
@@ -11,21 +13,12 @@ jobs:
 
     steps:
       - name: Checkout Repository Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Load SSH key
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Synchronize Files with GoDaddy WordPress Hosting Server
+        uses: godaddy-wordpress/gd-wordpress-deployer@v1
         with:
-          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
-
-      - name: Add GoDaddy host to known_hosts
-        run: ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
-
-      - name: Deploy via rsync
-        run: |
-          rsync -avz --delete \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='server.py' \
-            ./ \
-            git_deployer_3c80d102ac_133350@87o.9a0.myftpupload.com:/
+          remote_host: "87o.9a0.myftpupload.com"
+          ssh_user: "git_deployer_a9301152b3_133350"
+          ssh_private_key: ${{secrets.PRIVATE_KEY}}
+          deployment_dest: ${{ github.event.inputs.deployment_dest }}
