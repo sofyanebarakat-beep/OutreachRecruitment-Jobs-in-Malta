@@ -4,11 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-    inputs:
-      deployment_dest:
-        description: 'Target server directory, leave blank for root directory'
-        required: false
-        default: ''
 
 jobs:
   deploy:
@@ -18,11 +13,40 @@ jobs:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      - name: Synchronize Files with GoDaddy Hosting Server
-        uses: godaddy-wordpress/gd-wordpress-deployer@v1
-        with:
-          remote_host: "87o.9a0.myftpupload.com"
-          ssh_user: "git_deployer_3c80d102ac_133350"
-          ssh_private_key: ${{secrets.PRIVATE_KEY}}
-          deployment_dest: ${{ github.event.inputs.deployment_dest }}
-          enable_health_check: "no"
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          # Try base64-decode first, fall back to raw key
+          if echo "${{ secrets.PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key 2>/dev/null && \
+             grep -q "BEGIN" ~/.ssh/deploy_key; then
+            echo "Key decoded from base64"
+          else
+            echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/deploy_key
+            echo "Key used as raw PEM"
+          fi
+          chmod 600 ~/.ssh/deploy_key
+          echo "Key fingerprint:"
+          ssh-keygen -lf ~/.ssh/deploy_key || echo "Could not read key fingerprint"
+
+      - name: Test SSH connection
+        run: |
+          ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts 2>&1 || true
+          echo "Testing SSH connection..."
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=no \
+              -o ConnectTimeout=15 \
+              -o BatchMode=yes \
+              git_deployer_3c80d102ac_133350@87o.9a0.myftpupload.com \
+              "echo 'SSH connection successful'" \
+          && echo "SSH OK" || echo "SSH FAILED - check PRIVATE_KEY secret in repo settings"
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='server.py' \
+            --exclude='*.sh' \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            ./ \
+            git_deployer_3c80d102ac_133350@87o.9a0.myftpupload.com:/
