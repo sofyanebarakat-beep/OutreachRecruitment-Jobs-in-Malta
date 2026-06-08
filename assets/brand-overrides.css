@@ -3691,3 +3691,6 @@ body.job-apply-open .job-mobile-apply-cta {
 
 /* Hide © 108™ powered by Webflow */
 .footer-meta .text-small.faint { display: none !important; }
+
+/* Hide "Register CV (Convert)" from Resources submenu only */
+.dropdown-content.pages .nav-item[href="/book-a-call"] { display: none !important; }
