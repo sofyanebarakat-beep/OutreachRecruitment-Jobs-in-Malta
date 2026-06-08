@@ -23,6 +23,6 @@ jobs:
         with:
           remote_host: "87o.9a0.myftpupload.com"
           ssh_user: "git_deployer_a9301152b3_133350"
-          ssh_private_key: ${{secrets.PRIVATE_KEY}}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           deployment_dest: ${{ github.event.inputs.deployment_dest }}
           enable_health_check: "no"
