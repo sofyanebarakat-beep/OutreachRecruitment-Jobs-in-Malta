@@ -3,6 +3,12 @@
   --_🖍️-colors---ink--ink-1: #2C2D2D !important;
 }
 
+/* Preview section image switcher */
+.preview-media-item { opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.4s ease; pointer-events: none; }
+.preview-media-item.is-active { opacity: 1; pointer-events: auto; }
+.preview-item { opacity: 0.4; transition: opacity 0.2s ease; }
+.preview-item.is-active { opacity: 1; }
+
 /* Blue accent circle button (arrow icon) */
 .button-circle.small.accent {
   background-color: #442DFA !important;
@@ -12,6 +18,21 @@
 /* "Everything is designed to be easy" section background */
 #or-easy-section,
 #or-easy-section .section {
+  --_🖍️-colors---surface--surface-1: #2C2D2D !important;
+  background-color: #2C2D2D !important;
+}
+
+/* "HR & Admin / Preview" section background */
+#or-preview-section,
+#or-preview-section .section {
+  --_🖍️-colors---surface--surface-1: #2C2D2D !important;
+  background-color: #2C2D2D !important;
+}
+
+/* "Our services" section background — change colour on the line below */
+#or-services-section,
+#or-services-section .section,
+#or-services-section > * {
   --_🖍️-colors---surface--surface-1: #2C2D2D !important;
   background-color: #2C2D2D !important;
 }
