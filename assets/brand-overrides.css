@@ -510,8 +510,7 @@ html.or-enhanced .employer-partner-network [data-gsap-scroll] {
   display: none !important;
 }
 
-/* Hide Register CV (Convert) and Blog Article (CMS) from Resources nav-list */
-.navigation .nav-item[href="/book-a-call"],
+/* Hide Blog Article (CMS) from Resources nav-list */
 .navigation .nav-item[href*="invisible-architecture"] {
   display: none !important;
 }
@@ -3689,3 +3688,6 @@ body.job-apply-open .job-mobile-apply-cta {
     justify-content: center;
   }
 }
+
+/* Hide © 108™ powered by Webflow */
+.footer-meta .text-small.faint { display: none !important; }
