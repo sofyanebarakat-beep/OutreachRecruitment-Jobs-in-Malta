@@ -13,32 +13,13 @@ jobs:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          # Try base64-decode first, fall back to raw key
-          if echo "${{ secrets.PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key 2>/dev/null && \
-             grep -q "BEGIN" ~/.ssh/deploy_key; then
-            echo "Key decoded from base64"
-          else
-            echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/deploy_key
-            echo "Key used as raw PEM"
-          fi
-          chmod 600 ~/.ssh/deploy_key
-          echo "Key fingerprint:"
-          ssh-keygen -lf ~/.ssh/deploy_key || echo "Could not read key fingerprint"
+      - name: Load SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
 
-      - name: Test SSH connection
-        run: |
-          ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts 2>&1 || true
-          echo "Testing SSH connection..."
-          ssh -i ~/.ssh/deploy_key \
-              -o StrictHostKeyChecking=no \
-              -o ConnectTimeout=15 \
-              -o BatchMode=yes \
-              git_deployer_3c80d102ac_133350@87o.9a0.myftpupload.com \
-              "echo 'SSH connection successful'" \
-          && echo "SSH OK" || echo "SSH FAILED - check PRIVATE_KEY secret in repo settings"
+      - name: Add GoDaddy host to known_hosts
+        run: ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
 
       - name: Deploy via rsync
         run: |
@@ -46,7 +27,5 @@ jobs:
             --exclude='.git' \
             --exclude='.github' \
             --exclude='server.py' \
-            --exclude='*.sh' \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
             ./ \
             git_deployer_3c80d102ac_133350@87o.9a0.myftpupload.com:/
