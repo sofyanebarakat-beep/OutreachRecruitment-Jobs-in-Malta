@@ -25,10 +25,6 @@
   <url><loc>/contact-c</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>/employers</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>/home-c</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>/jobs/ai-research-scientist</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>/jobs/barista</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>/jobs/people-connector</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>/jobs/product-designer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>/jobs/project-manager</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>/jobs/shop-assistant</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>/service</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

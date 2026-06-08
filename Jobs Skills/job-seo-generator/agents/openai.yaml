@@ -1,0 +1,3 @@
+display_name: Job SEO Generator
+short_description: Generate Google Jobs SEO packages.
+default_prompt: Generate a complete SEO and Google Jobs package for this job title and description.

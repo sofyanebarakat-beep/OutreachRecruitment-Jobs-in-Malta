@@ -410,6 +410,16 @@ html.or-enhanced :is(.case-study-compact-card, .testimonial-slide-card, .feature
   color: #ffffff !important;
 }
 
+html.or-enhanced .employer-partner-network [data-gsap-scroll="stagger"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html.or-enhanced .employer-partner-network [data-gsap-scroll] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .employer-challenge-section {
   background-color: #262626 !important;
   background-image: none !important;
@@ -762,6 +772,20 @@ body.home-test-page .home-test-seo .section-content {
 
 .outreach-apply-frame.tall {
   min-height: 1500px;
+}
+
+.outreach-support-embed {
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.outreach-support-frame {
+  display: block;
+  width: 100%;
+  min-height: 860px;
+  border: 0;
+  background: #ffffff;
 }
 
 html {
@@ -2738,7 +2762,9 @@ body.opening-jobs-page .main {
   aspect-ratio: 1920 / 495;
   overflow: hidden;
   border-radius: 12px;
-  background: #020408;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.58) 56%, rgba(2, 4, 8, 0.18)),
+    url("https://scontent-mrs2-1.xx.fbcdn.net/v/t1.6435-9/103984053_3434778379918334_2906080953060815031_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x768&ctp=s1024x768&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=it9vR5gwYK4Q7kNvwGWKo--&_nc_oc=AdpjfLzeMsad_RzCtTuIJpBhs_4L_ZucIwqzfWGGkqH8z_L6oo_tRWvftAkoYuBlJ2SD26S4mNDE_S3OvTg6Qdou&_nc_zt=23&_nc_ht=scontent-mrs2-1.xx&_nc_gid=ECLX3yqk66sxk4KNi3nC9g&_nc_ss=7b2a8&oh=00_Af9spx3imGr-4zok9By2mpC3fpBrApDMmg_AFkRBkLZsNw&oe=6A4E237A") center / contain no-repeat #020408;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3608,3 +3634,58 @@ body.opening-jobs-page .opening-board-count {
 }
 .ts-control input::placeholder { color: #aaa !important; }
 .ts-dropdown-content { max-height: 260px; }
+
+.candidates-connect-section,
+.candidates-connect-section h1,
+.candidates-connect-section h2,
+.candidates-connect-section h3,
+.candidates-connect-section h4,
+.candidates-connect-section h5,
+.candidates-connect-section h6,
+.candidates-connect-section p,
+.candidates-connect-section div,
+.candidates-connect-section span {
+  color: #000000 !important;
+}
+
+.candidates-connect-section .tag {
+  color: #ffffff !important;
+}
+
+.job-mobile-apply-cta {
+  display: none;
+}
+
+body.job-apply-open .job-mobile-apply-cta {
+  display: none !important;
+}
+
+.job-inline-apply-header {
+  background: #ffffff !important;
+}
+
+@media (max-width: 767px) {
+  body:has(.job-mobile-apply-cta) {
+    padding-bottom: 96px;
+  }
+
+  .job-mobile-apply-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(44, 45, 45, 0.12);
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(14px);
+  }
+
+  .job-mobile-apply-cta .button-primary {
+    width: min(100%, 420px);
+    justify-content: center;
+  }
+}
