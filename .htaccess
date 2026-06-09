@@ -4,11 +4,11 @@ DirectoryIndex index.html index.php
     RewriteEngine On
     RewriteBase /
 
-    # Serve real files and directories directly (assets, CSS, JS, images)
+    # Serve real files and directories directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Route everything else through our index.php router
-    RewriteRule ^ index.php [L]
+    # Route everything else through our static site router
+    RewriteRule ^ site-router.php [L]
 </IfModule>
