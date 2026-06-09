@@ -60,6 +60,18 @@ JOBS = [
         "keywords":        "welder welding fabrication metal engineering maintenance mig tig arc hospitality hotel",
         "featured":        True,
     },
+    {
+        "slug":            "server-spanish-speaker",
+        "title":           "Server (Spanish Speaker)",
+        "category":        "Hospitality",
+        "location":        "Valletta, Malta",
+        "location_slug":   "valletta, malta",
+        "employment_type": "Subcontracting",
+        "work_mode":       "On-Site",
+        "date":            "2026-06-09",
+        "keywords":        "server waiter waitress spanish hospitality restaurant food beverage valletta malta",
+        "featured":        True,
+    },
     # ── Add new jobs below ────────────────────────────────────────────────────
     # {
     #     "slug":            "job-slug",          # must match jobs/JOB-SLUG.html
