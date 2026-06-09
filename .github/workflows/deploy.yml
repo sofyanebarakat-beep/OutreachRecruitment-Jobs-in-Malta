@@ -21,7 +21,7 @@ jobs:
       - name: Deploy via rsync
         run: |
           ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
-          rsync -avz --delete \
+          rsync -avz --ignore-errors \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='server.py' \
