@@ -195,6 +195,12 @@ def update_jobs_page(all_jobs: list[dict]) -> None:
         rf'\g<1>{n} {role_word} available\2', html, count=1,
     )
 
+    # Open positions animated tag
+    html = re.sub(
+        r'(<span id="or-open-pos-num">)\+\d+ Open Positions(</span>)',
+        rf'\g<1>+{n} Open Positions\2', html, count=1,
+    )
+
     # Tab counts
     html = re.sub(r'(data-opening-tab="featured"[^>]*>Featured <span>)\d+(</span>)',
                   rf'\g<1>{featured}\2', html, count=1)
