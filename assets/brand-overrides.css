@@ -3693,5 +3693,6 @@ body.job-apply-open .job-mobile-apply-cta {
 /* Hide "Register CV (Convert)" from Resources submenu only */
 .dropdown-content.pages .nav-item[href="/book-a-call"] { display: none !important; }
 
-/* Hide 108 branding bar */
-._108-bar-wrapper.main { display: none !important; }
+/* Hide 108 branding bars */
+._108-bar-wrapper.main,
+._108-bar-wrapper.next { display: none !important; }
