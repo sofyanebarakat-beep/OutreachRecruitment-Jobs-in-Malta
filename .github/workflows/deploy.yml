@@ -18,21 +18,23 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Diagnose server
-        run: |
-          ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
-          echo "=== Home + /html/ structure ==="
-          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "pwd && ls -la && echo '--- /html/ ---' && ls -la /html/ | head -40"
-          echo "=== Verify router files ==="
-          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la /html/index.html /html/site-router.php /html/.user.ini /html/.htaccess 2>&1"
-
       - name: Deploy via rsync
         run: |
+          ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
           rsync -avz --ignore-errors --no-implied-dirs \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='server.py' \
             ./ \
-            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/ || \
-          CODE=$?; if [ $CODE -ne 23 ]; then exit $CODE; fi; \
-          echo "Deployment complete (some protected server files skipped)"
+            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/
+          EXIT=$?
+          if [ $EXIT -ne 0 ] && [ $EXIT -ne 23 ]; then
+            echo "rsync failed with exit code $EXIT"
+            exit $EXIT
+          fi
+          echo "Deployment complete (exit $EXIT)"
+
+      - name: Verify key files on server
+        run: |
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com \
+            "ls -la /html/index.html /html/wp-config.php /html/site-router.php /html/.user.ini 2>&1 || true"
