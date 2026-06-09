@@ -205,7 +205,14 @@ def generate_job_page(job: dict) -> str:
         rf"\g<1>{html_esc(title)}\2", html, count=1
     )
 
-    # ── 7. h1 text + aria-label ───────────────────────────────────────────────
+    # ── 7a. h1 without aria-label (hero section) ─────────────────────────────
+    html = re.sub(
+        r'<h1 class="heading-h1">([^<]*)<',
+        f'<h1 class="heading-h1">{html_esc(title)}<',
+        html, count=1
+    )
+
+    # ── 7b. h1 with aria-label (CTA section) ─────────────────────────────────
     html = re.sub(
         r'<h1 class="heading-h1" aria-label="[^"]*">[^<]*<',
         f'<h1 class="heading-h1" aria-label="{html_esc(title)}">{html_esc(title)}<',
@@ -234,6 +241,12 @@ def generate_job_page(job: dict) -> str:
     html = re.sub(
         r'(<span class="tag green-tag">)[^<]*(</span>)',
         rf"\g<1>{html_esc(work_mode)}\2", html, count=1
+    )
+
+    # ── 11b. Intro teaser (heading-h5 inside cms-article/stack) ─────────────
+    html = re.sub(
+        r'(class="stack gap-07"[^>]*><div class="heading-h5">)[^<]*(</div>)',
+        rf"\g<1>{html_esc(title)} — {loc_esc}\2", html, count=1
     )
 
     # ── 12. Content sections ─────────────────────────────────────────────────
@@ -278,10 +291,10 @@ def generate_job_page(job: dict) -> str:
         rf"\g<1>{html_esc(title)}\2", html, count=1
     )
 
-    # ── 14. "vacancy in CITY" text ────────────────────────────────────────────
+    # ── 14. "TITLE vacancy in CITY" text ─────────────────────────────────────
     html = re.sub(
-        r"(vacancy in )[^,<]+",
-        rf"\g<1>{html_esc(city)}", html, count=1
+        r"[^>]+vacancy in [^,<]+",
+        f"{html_esc(title)} vacancy in {html_esc(city)}", html, count=1
     )
 
     # ── 15. JobPosting JSON-LD schema ─────────────────────────────────────────
@@ -297,6 +310,8 @@ def generate_job_page(job: dict) -> str:
     )
     schema_desc = f"{title} role in {city}, Malta. {category}. Apply through Outreach Recruitment Agency."
     html = re.sub(r'"description":\s*"[^"]*"', f'"description": "{schema_desc}"', html, count=1)
+    exp_req = f"Previous experience as a {title} or in a similar role."
+    html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
 
     # ── 16. Breadcrumb schema ─────────────────────────────────────────────────
     html = re.sub(
