@@ -3443,8 +3443,6 @@ body.opening-jobs-page .opening-board-count {
   .or-prog-col--course { grid-column: 1 / -1; }
   .or-prog-col--action { grid-column: 1 / -1; }
   .or-prog-label { display: block; }
-}  .or-prog-label { display: block; }
-}  .or-prog-label { display: block; }
 }
 
 /* ── English programs section ────────────────────────────────────────── */
@@ -3694,3 +3692,6 @@ body.job-apply-open .job-mobile-apply-cta {
 
 /* Hide "Register CV (Convert)" from Resources submenu only */
 .dropdown-content.pages .nav-item[href="/book-a-call"] { display: none !important; }
+
+/* Hide 108 branding bar */
+._108-bar-wrapper.main { display: none !important; }
