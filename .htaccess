@@ -1,20 +1,14 @@
-# Serve index.html before index.php (bypass WordPress)
 DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    # Serve existing files and directories directly
+    # Serve real files and directories directly (assets, CSS, JS, images)
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Extensionless URLs: try .html first
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
-    RewriteRule ^(.+)$ $1.html [L]
-
-    # Extensionless URLs: try /index.html for directories
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
-    RewriteRule ^(.+)$ $1/index.html [L]
+    # Route everything else through our index.php router
+    RewriteRule ^ index.php [L]
 </IfModule>
