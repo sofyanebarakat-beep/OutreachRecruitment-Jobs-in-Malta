@@ -26,13 +26,13 @@ jobs:
             --exclude='.github' \
             --exclude='server.py' \
             ./ \
-            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/
-          EXIT=$?
-          if [ $EXIT -ne 0 ] && [ $EXIT -ne 23 ]; then
+            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/ || EXIT=$?
+          EXIT=${EXIT:-0}
+          if [ "$EXIT" -ne 0 ] && [ "$EXIT" -ne 23 ]; then
             echo "rsync failed with exit code $EXIT"
-            exit $EXIT
+            exit "$EXIT"
           fi
-          echo "Deployment complete (exit $EXIT)"
+          echo "Deployment complete (exit $EXIT — 23 = protected server files skipped, expected)"
 
       - name: Verify key files on server
         run: |
