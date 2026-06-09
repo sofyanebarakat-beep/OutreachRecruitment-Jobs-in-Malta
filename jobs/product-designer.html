@@ -232,17 +232,21 @@
  * data-marquee="right" → animates right
  */
 
-gsap.to('[data-marquee="left"]', {
-  x: "-50%",
-  duration: 20,
-  repeat: -1,
-  ease: "none"
-});
+if (document.querySelector('[data-marquee="left"]')) {
+  gsap.to('[data-marquee="left"]', {
+    x: "-50%",
+    duration: 20,
+    repeat: -1,
+    ease: "none"
+  });
+}
 
-gsap.fromTo('[data-marquee="right"]',
-  { x: "-50%" },
-  { x: "0%", duration: 20, repeat: -1, ease: "none" }
-);
+if (document.querySelector('[data-marquee="right"]')) {
+  gsap.fromTo('[data-marquee="right"]',
+    { x: "-50%" },
+    { x: "0%", duration: 20, repeat: -1, ease: "none" }
+  );
+}
 </script>
 <script>
   /**
