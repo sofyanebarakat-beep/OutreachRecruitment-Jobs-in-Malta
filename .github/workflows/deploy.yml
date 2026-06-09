@@ -1,5 +1,8 @@
-name: Deploy WordPress to GoDaddy via rsync
+name: Deploy to GoDaddy
+
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       deployment_dest:
@@ -13,12 +16,13 @@ jobs:
 
     steps:
       - name: Checkout Repository Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Synchronize Files with GoDaddy WordPress Hosting Server
+      - name: Synchronize Files with GoDaddy Hosting Server
         uses: godaddy-wordpress/gd-wordpress-deployer@v1
         with:
           remote_host: "87o.9a0.myftpupload.com"
           ssh_user: "git_deployer_3284395a1c_133350"
-          ssh_private_key: ${{secrets.PRIVATE_KEY}}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           deployment_dest: ${{ github.event.inputs.deployment_dest }}
+          enable_health_check: "no"
