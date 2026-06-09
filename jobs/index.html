@@ -298,9 +298,10 @@ banner.style.cssText = "padding:2.5rem 3rem;justify-content:space-between;gap:2r
         && (!loc || card.getAttribute('data-location').indexOf(loc) !== -1);
     });
 
-    var totalPages = Math.max(1, Math.ceil(matched.length / pageSize));
+    var featuredCap = activeTab === 'featured' ? 15 : Infinity;
+    var totalPages = Math.max(1, Math.ceil(Math.min(matched.length, featuredCap) / pageSize));
     if (currentPage > totalPages) currentPage = totalPages;
-    var last = currentPage * pageSize;
+    var last = Math.min(currentPage * pageSize, featuredCap);
 
     cards.forEach(function (card) {
       card.hidden = matched.indexOf(card) === -1 || matched.indexOf(card) >= last;
@@ -353,7 +354,7 @@ banner.style.cssText = "padding:2.5rem 3rem;justify-content:space-between;gap:2r
     if (!pagination) return;
     var shown = Math.min(currentPage * pageSize, totalJobs);
     var allShown = shown >= totalJobs;
-    pagination.hidden = totalJobs <= pageSize || allShown;
+    pagination.hidden = activeTab === 'featured' || totalJobs <= pageSize || allShown;
     if (pageNumbers) pageNumbers.textContent = 'Showing ' + shown + ' of ' + totalJobs + ' jobs';
   }
 
