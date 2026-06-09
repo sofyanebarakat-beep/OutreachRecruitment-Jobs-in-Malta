@@ -157,11 +157,31 @@ def update_jobs_page(all_jobs: list[dict]) -> None:
     # Job cards (newest first)
     jobs_sorted = sorted(all_jobs, key=lambda j: j["date"], reverse=True)
     cards_html = "".join(jobs_page_card(j) for j in jobs_sorted)
-    html = re.sub(
-        r'(<div class="opening-jobs-grid" id="opening-jobs-grid">)(.*?)(</div>)',
-        lambda m: m.group(1) + cards_html + m.group(3),
-        html, count=1, flags=re.S,
-    )
+
+    # Replace grid contents using div-depth matching (regex fails — first </div>
+    # is inside a card, not the grid's own closing tag)
+    GRID_OPEN = '<div class="opening-jobs-grid" id="opening-jobs-grid">'
+    start_idx = html.find(GRID_OPEN)
+    if start_idx >= 0:
+        content_start = start_idx + len(GRID_OPEN)
+        depth, i = 1, content_start
+        end_idx = content_start
+        while i < len(html) and depth > 0:
+            next_open  = html.find("<div",  i)
+            next_close = html.find("</div>", i)
+            if next_close < 0:
+                break
+            if 0 <= next_open < next_close:
+                depth += 1
+                i = next_open + 4
+            else:
+                depth -= 1
+                if depth == 0:
+                    end_idx = next_close
+                i = next_close + 6
+        html = html[:content_start] + cards_html + html[end_idx:]
+    else:
+        print("  WARNING: opening-jobs-grid div not found")
 
     # Counters
     word = "job" if n == 1 else "jobs"
