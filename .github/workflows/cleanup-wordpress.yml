@@ -1,0 +1,45 @@
+name: Remove WordPress Files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Remove WordPress files from server
+        run: |
+          ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
+
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com << 'ENDSSH'
+            echo "=== Removing WordPress folders ==="
+            rm -rf /html/wp-admin    && echo "DELETED: wp-admin/"    || echo "SKIPPED (protected): wp-admin/"
+            rm -rf /html/wp-includes && echo "DELETED: wp-includes/" || echo "SKIPPED (protected): wp-includes/"
+            rm -rf /html/wp-content  && echo "DELETED: wp-content/"  || echo "SKIPPED (protected): wp-content/"
+
+            echo "=== Removing WordPress PHP files ==="
+            rm -f /html/wp-login.php          && echo "DELETED: wp-login.php"          || echo "SKIPPED: wp-login.php"
+            rm -f /html/wp-blog-header.php     && echo "DELETED: wp-blog-header.php"    || echo "SKIPPED: wp-blog-header.php"
+            rm -f /html/wp-settings.php        && echo "DELETED: wp-settings.php"       || echo "SKIPPED: wp-settings.php"
+            rm -f /html/wp-cron.php            && echo "DELETED: wp-cron.php"           || echo "SKIPPED: wp-cron.php"
+            rm -f /html/wp-load.php            && echo "DELETED: wp-load.php"           || echo "SKIPPED: wp-load.php"
+            rm -f /html/wp-mail.php            && echo "DELETED: wp-mail.php"           || echo "SKIPPED: wp-mail.php"
+            rm -f /html/wp-comments-post.php   && echo "DELETED: wp-comments-post.php"  || echo "SKIPPED: wp-comments-post.php"
+            rm -f /html/wp-activate.php        && echo "DELETED: wp-activate.php"       || echo "SKIPPED: wp-activate.php"
+            rm -f /html/wp-signup.php          && echo "DELETED: wp-signup.php"         || echo "SKIPPED: wp-signup.php"
+            rm -f /html/wp-trackback.php       && echo "DELETED: wp-trackback.php"      || echo "SKIPPED: wp-trackback.php"
+            rm -f /html/wp-config.php          && echo "DELETED: wp-config.php"         || echo "SKIPPED: wp-config.php"
+            rm -f /html/wp-config-sample.php   && echo "DELETED: wp-config-sample.php"  || echo "SKIPPED: wp-config-sample.php"
+            rm -f /html/xmlrpc.php             && echo "DELETED: xmlrpc.php"            || echo "SKIPPED: xmlrpc.php"
+            rm -f /html/readme.html            && echo "DELETED: readme.html"           || echo "SKIPPED: readme.html"
+            rm -f /html/license.txt            && echo "DELETED: license.txt"           || echo "SKIPPED: license.txt"
+            rm -f /html/index.php              && echo "DELETED: index.php"             || echo "SKIPPED: index.php"
+
+            echo "=== Done. Remaining WordPress files (if any) ==="
+            ls /html/wp-*.php /html/xmlrpc.php /html/readme.html /html/license.txt 2>/dev/null || echo "All listed files removed successfully"
+          ENDSSH
