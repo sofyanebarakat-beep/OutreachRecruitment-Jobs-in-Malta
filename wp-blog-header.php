@@ -1,4 +1,9 @@
 <?php
+// No-cache headers — prevent CDN from caching pages
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $path = rtrim($path, '/');
 $path = str_replace('..', '', $path);
