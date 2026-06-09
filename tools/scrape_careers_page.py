@@ -325,13 +325,33 @@ def parse_job_page(uuid: str) -> dict | None:
     # and \n• bullet items — perfect for section extraction
     desc_text = ld.get("description", "")
     if not desc_text:
-        # Fallback to HTML body parsing
-        h1_end = re.search(r'</h1>', html, re.I)
-        body_html = html[h1_end.end():] if h1_end else html
-        desc_text = strip_tags(body_html)
+        # Fallback: find the description div used by careers-page.com
+        # (class contains "description" — e.g. "text-heading-color mt-4 font-paragraph description")
+        m_div = re.search(
+            r'<div[^>]+class="[^"]*\bdescription\b[^"]*"[^>]*>(.*?)</div\s*>',
+            html, re.S | re.I
+        )
+        if m_div:
+            desc_text = strip_tags(m_div.group(1))
+        else:
+            # Last resort: text between job title area and footer
+            # Skip nav by finding first real paragraph
+            m_p = re.search(r'<p[^>]*>(.{30,}?)</p>', html, re.S | re.I)
+            if m_p:
+                # Take from first meaningful paragraph to end of main content
+                main_end = html.find('<footer', m_p.start())
+                body_html = html[m_p.start(): main_end if main_end > 0 else m_p.start() + 8000]
+                desc_text = strip_tags(body_html)
+            else:
+                desc_text = ""
     else:
         # JSON-LD description itself contains HTML — strip it
         desc_text = strip_tags(desc_text)
+
+    # Sanity-check: if desc_text still starts with bullet noise or script content, clear it
+    clean_check = desc_text.lstrip("• \n\t")
+    if clean_check.startswith("window.") or clean_check.startswith(":root") or len(clean_check) < 30:
+        desc_text = ""
 
     # ── Extract sections ──────────────────────────────────────────────────────
     about = extract_about(desc_text)
