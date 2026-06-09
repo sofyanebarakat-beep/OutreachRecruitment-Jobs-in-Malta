@@ -81,12 +81,18 @@ def homepage_row(job: dict, num: int) -> str:
 
 
 def jobs_page_card(job: dict) -> str:
-    cat = job["category"]
+    cat   = job["category"]
+    title = escape(job["title"])
+    # data-title includes both title words and keywords so search works on both
+    search_data = escape(
+        (job["title"] + " " + job.get("keywords", "")).lower().strip(),
+        quote=True
+    )
     return (
         f'<article class="opening-job-card" data-opening-job '
         f'data-featured="{"true" if job.get("featured") else "false"}" '
         f'data-latest="true" '
-        f'data-title="{escape(job["keywords"], quote=True)}" '
+        f'data-title="{search_data}" '
         f'data-category="{escape(cat, quote=True)}" '
         f'data-location="{escape(job["location_slug"], quote=True)}" '
         f'data-date="{job["date"]}">'
@@ -94,9 +100,8 @@ def jobs_page_card(job: dict) -> str:
         '<div class="opening-card-day">New</div>'
         '<img class="opening-job-logo" src="/assets/job-card-logo.jpg" '
         'alt="Outreach Recruitment job logo"/>'
-        f'<h3 class="heading-h5">{job["category_html"]}</h3>'
-        '<div class="opening-job-company">Outreach Recruitment</div>'
-        f'<div class="opening-job-location">{job["location_html"]}</div>'
+        f'<h3 class="heading-h5">{title}</h3>'
+        f'<div class="opening-job-company">{job["location_html"]}</div>'
         '<div class="opening-job-meta">'
         f'<span>{escape(job["employment_type"])}</span>'
         f'<span>{escape(cat)}</span>'
