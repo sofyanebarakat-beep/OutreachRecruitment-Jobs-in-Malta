@@ -18,9 +18,18 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy via rsync
+      - name: Check server structure
         run: |
           ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
+          echo "=== Home directory ==="
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "pwd && ls -la"
+          echo "=== /html/ directory ==="
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la /html/ | head -30" || echo "/html/ not accessible"
+          echo "=== Check index files ==="
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la ~/index.html ~/index.php 2>/dev/null || echo 'not in home dir'"
+
+      - name: Deploy via rsync
+        run: |
           rsync -avz --ignore-errors --no-implied-dirs \
             --exclude='.git' \
             --exclude='.github' \
