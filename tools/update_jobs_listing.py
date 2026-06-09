@@ -48,6 +48,18 @@ JOBS = [
         "keywords":        "plumber plumbing engineering maintenance hospitality hotel facilities",
         "featured":        True,
     },
+    {
+        "slug":            "welder",
+        "title":           "Welder",
+        "category":        "Engineering &amp; Maintenance",
+        "location":        "Mellieħa, Malta",
+        "location_slug":   "mellieha, malta",
+        "employment_type": "Full-Time",
+        "work_mode":       "On-Site",
+        "date":            "2026-06-09",
+        "keywords":        "welder welding fabrication metal engineering maintenance mig tig arc hospitality hotel",
+        "featured":        True,
+    },
     # ── Add new jobs below ────────────────────────────────────────────────────
     # {
     #     "slug":            "job-slug",          # must match jobs/JOB-SLUG.html
