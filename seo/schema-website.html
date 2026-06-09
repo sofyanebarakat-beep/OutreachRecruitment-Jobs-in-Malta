@@ -1,0 +1,26 @@
+<!-- ============================================================
+  Website Schema — paste inside <head> of homepage (index.html)
+  Enables Google Sitelinks Search Box if applicable
+  ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://outreachrecruitment.net/#website",
+  "url": "https://outreachrecruitment.net",
+  "name": "Outreach Recruitment",
+  "description": "Malta's leading recruitment agency — jobs in Malta and Europe for EU candidates.",
+  "publisher": {
+    "@id": "https://outreachrecruitment.net/#organization"
+  },
+  "inLanguage": "en",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://outreachrecruitment.net/jobs?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

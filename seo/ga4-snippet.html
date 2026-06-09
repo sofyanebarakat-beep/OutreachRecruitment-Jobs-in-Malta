@@ -1,0 +1,64 @@
+<!-- ============================================================
+  Google Analytics 4 — GA4 Implementation
+
+  SETUP:
+  1. Go to analytics.google.com → Admin → Create Property
+  2. Replace G-XXXXXXXXXX with your real Measurement ID
+  3. Paste both snippets into every page's <head>, BEFORE </head>
+  4. Also paste the noscript tag right after <body> opens
+  ============================================================ -->
+
+<!-- GA4 async loader — paste inside <head> -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    // Recommended settings for a recruitment site
+    'send_page_view': true,
+    'anonymize_ip': true,            // GDPR
+    'allow_google_signals': false,   // GDPR — enable if you want remarketing
+    'allow_ad_personalization_signals': false  // GDPR
+  });
+
+  // ── Custom Events — call these from your contact/apply forms ──
+
+  // Track "Apply Now" button clicks
+  // gtag('event', 'apply_click', {
+  //   'event_category': 'Jobs',
+  //   'event_label': 'JOB_TITLE',
+  //   'value': 1
+  // });
+
+  // Track "Contact Us" form submissions
+  // gtag('event', 'contact_form_submit', {
+  //   'event_category': 'Lead',
+  //   'event_label': 'Contact Page',
+  //   'value': 1
+  // });
+
+  // Track "Partner with Us" CTA clicks
+  // gtag('event', 'employer_cta_click', {
+  //   'event_category': 'Employer Lead',
+  //   'event_label': 'Partner CTA',
+  //   'value': 1
+  // });
+</script>
+
+<!-- ============================================================
+  Google Tag Manager alternative (recommended for advanced setups)
+  Replace GA4 snippet above with GTM if you use Tag Manager
+  ============================================================ -->
+<!--
+  GTM HEAD — paste as high in <head> as possible:
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+  GTM BODY — paste immediately after <body>:
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+-->

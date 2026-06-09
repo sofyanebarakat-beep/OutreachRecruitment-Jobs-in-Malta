@@ -1,0 +1,153 @@
+<!-- ============================================================
+  JobPosting Schema — Google Jobs compatible
+  Paste inside <head> of EACH individual job page.
+  Replace ALL_CAPS_VARS with real values.
+
+  Google Jobs requirements:
+  - title, description, datePosted, validThrough required
+  - hiringOrganization required
+  - jobLocation OR jobLocationType (remote) required
+  - baseSalary strongly recommended (improves ranking)
+  - All text must match visible page content exactly
+  ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+
+  "title": "JOB_TITLE",
+  "description": "FULL_JOB_DESCRIPTION_HTML_OR_PLAIN_TEXT",
+
+  "datePosted": "YYYY-MM-DD",
+  "validThrough": "YYYY-MM-DD",
+
+  "employmentType": "EMPLOYMENT_TYPE",
+  /* Valid values: FULL_TIME | PART_TIME | CONTRACTOR | TEMPORARY |
+     INTERN | VOLUNTEER | PER_DIEM | OTHER                          */
+
+  "url": "https://outreachrecruitment.net/jobs/JOB_SLUG",
+
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "Outreach Recruitment",
+    "sameAs": "https://outreachrecruitment.net",
+    "logo": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"
+  },
+
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "STREET_ADDRESS_OR_OMIT",
+      "addressLocality": "CITY",
+      "addressRegion": "REGION_OR_OMIT",
+      "postalCode": "POSTAL_CODE_OR_OMIT",
+      "addressCountry": "MT"
+    }
+  },
+
+  /* For remote roles — replace jobLocation block above with this:
+  "jobLocationType": "TELECOMMUTE",
+  "applicantLocationRequirements": {
+    "@type": "Country",
+    "name": "Malta"
+  },
+  */
+
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "EUR",
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": MIN_SALARY,
+      "maxValue": MAX_SALARY,
+      "unitText": "MONTH"
+      /* unitText options: HOUR | DAY | WEEK | MONTH | YEAR */
+    }
+  },
+
+  "industry": "JOB_INDUSTRY",
+  "occupationalCategory": "JOB_CATEGORY",
+
+  "skills": "COMMA_SEPARATED_SKILLS",
+
+  "educationRequirements": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "EDUCATION_LEVEL"
+  },
+
+  "experienceRequirements": {
+    "@type": "OccupationalExperienceRequirements",
+    "monthsOfExperience": MONTHS_EXPERIENCE
+  },
+
+  "jobBenefits": "BENEFITS_TEXT",
+
+  "responsibilities": "RESPONSIBILITIES_TEXT",
+
+  "qualifications": "QUALIFICATIONS_TEXT",
+
+  "directApply": true,
+
+  "applicationContact": {
+    "@type": "ContactPoint",
+    "email": "hr@outreachrecruitment.net",
+    "contactType": "Human Resources"
+  },
+
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "Outreach Recruitment",
+    "value": "JOB_INTERNAL_ID"
+  }
+}
+</script>
+
+<!-- ============================================================
+  REAL EXAMPLE — Barista role in Malta
+  ============================================================ -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Barista",
+  "description": "We are looking for an experienced and passionate Barista to join a team in Malta. You will prepare high-quality coffee and beverages, provide excellent customer service, and maintain cleanliness in the work area.\n\nResponsibilities:\n- Prepare and serve coffee, teas, and other beverages\n- Maintain equipment and cleanliness standards\n- Assist with stock management\n\nRequirements:\n- Previous barista experience preferred\n- Fluent English\n- EU/EEA passport or valid Malta work permit\n\nBenefits:\n- Competitive salary\n- Accommodation support available\n- Visa assistance for eligible candidates",
+  "datePosted": "2026-05-19",
+  "validThrough": "2026-09-30",
+  "employmentType": "FULL_TIME",
+  "url": "https://outreachrecruitment.net/jobs/barista",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "Outreach Recruitment",
+    "sameAs": "https://outreachrecruitment.net",
+    "logo": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Malta",
+      "addressCountry": "MT"
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "EUR",
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": 1200,
+      "maxValue": 1600,
+      "unitText": "MONTH"
+    }
+  },
+  "industry": "Food and Beverage",
+  "directApply": true,
+  "applicationContact": {
+    "@type": "ContactPoint",
+    "email": "hr@outreachrecruitment.net",
+    "contactType": "Human Resources"
+  }
+}
+</script>
+-->
