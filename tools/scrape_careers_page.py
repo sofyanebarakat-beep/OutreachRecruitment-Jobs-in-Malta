@@ -271,12 +271,14 @@ def parse_job_page(uuid: str) -> dict | None:
     ld = parse_jsonld(html)
 
     # ── Title ─────────────────────────────────────────────────────────────────
-    title = ld.get("title", "").strip()
+    from html import unescape as _unescape
+    title = _unescape(ld.get("title", "").strip())
     if not title:
         m = re.search(r"<title>([^<]+)</title>", html, re.I)
         if m:
             raw = m.group(1).strip()
             title = re.sub(r"\s*[\|—–-]\s*(Outreach Recruitment.*|careers-page\.com.*)", "", raw, flags=re.I).strip()
+        title = _unescape(title)
     if not title:
         return None
 
