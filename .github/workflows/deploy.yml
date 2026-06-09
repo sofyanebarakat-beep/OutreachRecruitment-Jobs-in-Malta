@@ -23,12 +23,8 @@ jobs:
           ssh-keyscan -H 87o.9a0.myftpupload.com >> ~/.ssh/known_hosts
           echo "=== Home + /html/ structure ==="
           ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "pwd && ls -la && echo '--- /html/ ---' && ls -la /html/ | head -40"
-          echo "=== Verify our key files exist ==="
-          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la /html/index.html /html/wp-blog-header.php /html/.htaccess 2>&1"
-          echo "=== Test PHP execution locally (bypasses CDN) ==="
-          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "curl -s -o /dev/null -w '%{http_code}' http://localhost/ -H 'Host: outreachrecruitment.net' 2>/dev/null || echo 'curl failed'"
-          echo "=== Check if symlink points to /html/ ==="
-          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la ~/html 2>/dev/null && readlink -f ~/html 2>/dev/null || echo 'no ~/html symlink'"
+          echo "=== Verify router files ==="
+          ssh git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com "ls -la /html/index.html /html/site-router.php /html/.user.ini /html/.htaccess 2>&1"
 
       - name: Deploy via rsync
         run: |
