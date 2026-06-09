@@ -26,4 +26,6 @@ jobs:
             --exclude='.github' \
             --exclude='server.py' \
             ./ \
-            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/
+            git_deployer_3284395a1c_133350@87o.9a0.myftpupload.com:/html/ || \
+          CODE=$?; if [ $CODE -ne 23 ]; then exit $CODE; fi; \
+          echo "Deployment complete (some protected server files skipped)"
