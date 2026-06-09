@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "shop-assistant",
+    "title": "Shop Assistant",
+    "category": "Retail",
+    "location": "Safi & Tarxien, Malta",
+    "location_slug": "safi tarxien, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-06-08",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8e07b6eb-c9c4-4c3a-8c1d-e3e5c8f7a234/apply",
+    "keywords": "shop assistant retail supermarket convenience customer service",
+    "featured": true
+  },
+  {
+    "slug": "plumber",
+    "title": "Plumber",
+    "category": "Engineering & Maintenance",
+    "location": "Mellieħa, Malta",
+    "location_slug": "mellieha, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-06-09",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/42b8f29a-855b-494c-916c-10b71e9d162d/apply",
+    "keywords": "plumber plumbing engineering maintenance hospitality hotel facilities",
+    "featured": true
+  },
+  {
+    "slug": "welder",
+    "title": "Welder",
+    "category": "Engineering & Maintenance",
+    "location": "Mellieħa, Malta",
+    "location_slug": "mellieha, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-06-09",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1d27aeab-ef4d-4800-b734-ef6c2b516f03/apply",
+    "keywords": "welder welding fabrication metal engineering maintenance mig tig arc hospitality hotel",
+    "featured": true
+  },
+  {
+    "slug": "server-spanish-speaker",
+    "title": "Server (Spanish Speaker)",
+    "category": "Hospitality",
+    "location": "Valletta, Malta",
+    "location_slug": "valletta, malta",
+    "employment_type": "Subcontracting",
+    "work_mode": "On-Site",
+    "date": "2026-06-09",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3cec7018-e57f-4346-96be-05a05a8316e2/apply",
+    "keywords": "server waiter waitress spanish hospitality restaurant food beverage valletta malta",
+    "featured": true
+  }
+]

@@ -1,93 +1,56 @@
 """
 update_jobs_listing.py
 ======================
-Single source of truth for all live job postings.
+Regenerates index.html (homepage) and jobs/index.html (job board)
+from tools/jobs_registry.json.
 
 HOW TO USE
 ----------
-1. Add a new job to the JOBS list below.
-2. Run:  python3 tools/update_jobs_listing.py
-3. Commit and push — both index.html and jobs/index.html update automatically.
+- To add jobs in bulk:  python3 tools/add_jobs_from_csv.py your_file.csv
+  (that script updates the registry AND calls this script automatically)
 
-REMOVING A FILLED JOB
----------------------
-Delete its entry from JOBS, then run the script again.
+- To remove a filled job:
+  1. Delete its entry from tools/jobs_registry.json
+  2. Run: python3 tools/update_jobs_listing.py
+  3. Commit and push
+
+HOMEPAGE_LIMIT
+--------------
+Set how many jobs appear on the homepage scroll-track.
+The jobs page always shows every job.
 """
 from __future__ import annotations
+import json
 import re
+from html import escape
 from pathlib import Path
 from datetime import date
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT     = Path(__file__).resolve().parents[1]
+REGISTRY = ROOT / "tools" / "jobs_registry.json"
 
-# ──────────────────────────────────────────────────────────────────────────────
-# JOB DEFINITIONS  ←  Edit this list only
-# ──────────────────────────────────────────────────────────────────────────────
-JOBS = [
-    {
-        "slug":            "shop-assistant",
-        "title":           "Shop Assistant",
-        "category":        "Retail",
-        "location":        "Safi &amp; Tarxien, Malta",
-        "location_slug":   "safi tarxien, malta",
-        "employment_type": "Full-Time",
-        "work_mode":       "On-Site",
-        "date":            "2026-06-08",
-        "keywords":        "shop assistant retail supermarket convenience customer service",
-        "featured":        True,
-    },
-    {
-        "slug":            "plumber",
-        "title":           "Plumber",
-        "category":        "Engineering &amp; Maintenance",
-        "location":        "Mellieħa, Malta",
-        "location_slug":   "mellieha, malta",
-        "employment_type": "Full-Time",
-        "work_mode":       "On-Site",
-        "date":            "2026-06-09",
-        "keywords":        "plumber plumbing engineering maintenance hospitality hotel facilities",
-        "featured":        True,
-    },
-    {
-        "slug":            "welder",
-        "title":           "Welder",
-        "category":        "Engineering &amp; Maintenance",
-        "location":        "Mellieħa, Malta",
-        "location_slug":   "mellieha, malta",
-        "employment_type": "Full-Time",
-        "work_mode":       "On-Site",
-        "date":            "2026-06-09",
-        "keywords":        "welder welding fabrication metal engineering maintenance mig tig arc hospitality hotel",
-        "featured":        True,
-    },
-    {
-        "slug":            "server-spanish-speaker",
-        "title":           "Server (Spanish Speaker)",
-        "category":        "Hospitality",
-        "location":        "Valletta, Malta",
-        "location_slug":   "valletta, malta",
-        "employment_type": "Subcontracting",
-        "work_mode":       "On-Site",
-        "date":            "2026-06-09",
-        "keywords":        "server waiter waitress spanish hospitality restaurant food beverage valletta malta",
-        "featured":        True,
-    },
-    # ── Add new jobs below ────────────────────────────────────────────────────
-    # {
-    #     "slug":            "job-slug",          # must match jobs/JOB-SLUG.html
-    #     "title":           "Job Title",
-    #     "category":        "Category",          # e.g. Hospitality, IT, Finance
-    #     "location":        "City, Malta",
-    #     "location_slug":   "city malta",        # lowercase, spaces only
-    #     "employment_type": "Full-Time",          # Full-Time | Part-Time | Contract
-    #     "work_mode":       "On-Site",            # On-Site | Remote | Hybrid
-    #     "date":            "YYYY-MM-DD",
-    #     "keywords":        "search keywords here",
-    #     "featured":        True,
-    # },
-]
-# ──────────────────────────────────────────────────────────────────────────────
+# How many recent jobs to show on the homepage (0 = show all)
+HOMEPAGE_LIMIT = 10
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Load registry
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_jobs() -> list[dict]:
+    if not REGISTRY.exists():
+        raise FileNotFoundError(f"Registry not found: {REGISTRY}")
+    jobs = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    # Ensure category has HTML-escaped version for display
+    for j in jobs:
+        j.setdefault("category_html", escape(j["category"], quote=False))
+        j.setdefault("location_html", escape(j["location"], quote=False))
+    return jobs
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HTML builders
+# ─────────────────────────────────────────────────────────────────────────────
 
 ARROW_SVG = (
     '<svg fill="none" height="100%" viewBox="0 0 24 24" width="100%" '
@@ -95,174 +58,161 @@ ARROW_SVG = (
     'stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" '
     'stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg>'
 )
-
 BUTTON_CIRCLE = (
     '<div class="button-circle w-variant-e60b93da-b1c9-73e7-16f0-c65a304e3ef0" '
     'data-wf--button-secondary-circle--variant="small">'
     '<div class="icon w-variant-e60b93da-b1c9-73e7-16f0-c65a304e3ef0 w-embed">'
-    + ARROW_SVG +
-    '</div></div>'
+    + ARROW_SVG + '</div></div>'
 )
 
 
-def ordinal(n: int) -> str:
-    return str(n).zfill(2)
-
-
-def homepage_job_row(job: dict, num: int) -> str:
-    """Single row for the or-scroll-track on index.html."""
+def homepage_row(job: dict, num: int) -> str:
     return (
         '<div class="w-dyn-item" role="listitem">'
         f'<a class="job-offer w-inline-block" href="/jobs/{job["slug"]}">'
         '<div class="w-layout-hflex row gap-04">'
-        f'<span class="or-num">{ordinal(num)}</span>'
-        f'<div class="text-large strong">{job["title"]}</div>'
-        f'<div class="tag darker or-tag">{job["category"]}</div>'
+        f'<span class="or-num">{str(num).zfill(2)}</span>'
+        f'<div class="text-large strong">{job["category_html"]}</div>'
+        f'<div class="tag darker or-tag">{job["category_html"]}</div>'
         '<span class="tag or-new">New</span>'
-        f'<div class="text-large muted">{job["location"]}</div>'
-        '</div>'
-        + BUTTON_CIRCLE +
-        '</a></div>'
+        f'<div class="text-large muted">{job["location_html"]}</div>'
+        '</div>' + BUTTON_CIRCLE + '</a></div>'
     )
 
 
 def jobs_page_card(job: dict) -> str:
-    """Full card for opening-jobs-grid on jobs/index.html."""
-    cat_plain = job["category"].replace("&amp;", "&")
+    cat = job["category"]
     return (
         f'<article class="opening-job-card" data-opening-job '
-        f'data-featured="{"true" if job["featured"] else "false"}" '
+        f'data-featured="{"true" if job.get("featured") else "false"}" '
         f'data-latest="true" '
-        f'data-title="{job["keywords"]}" '
-        f'data-category="{cat_plain}" '
-        f'data-location="{job["location_slug"]}" '
+        f'data-title="{escape(job["keywords"], quote=True)}" '
+        f'data-category="{escape(cat, quote=True)}" '
+        f'data-location="{escape(job["location_slug"], quote=True)}" '
         f'data-date="{job["date"]}">'
         f'<a class="opening-job-link" href="/jobs/{job["slug"]}/">'
         '<div class="opening-card-day">New</div>'
         '<img class="opening-job-logo" src="/assets/job-card-logo.jpg" '
         'alt="Outreach Recruitment job logo"/>'
-        f'<h3 class="heading-h5">{job["title"]}</h3>'
+        f'<h3 class="heading-h5">{job["category_html"]}</h3>'
         '<div class="opening-job-company">Outreach Recruitment</div>'
-        f'<div class="opening-job-location">{job["location"]}</div>'
+        f'<div class="opening-job-location">{job["location_html"]}</div>'
         '<div class="opening-job-meta">'
-        f'<span>{job["employment_type"]}</span>'
-        f'<span>{cat_plain}</span>'
-        '</div>'
-        '</a></article>'
+        f'<span>{escape(job["employment_type"])}</span>'
+        f'<span>{escape(cat)}</span>'
+        '</div></a></article>'
     )
 
 
-def update_homepage(jobs: list[dict]) -> None:
+# ─────────────────────────────────────────────────────────────────────────────
+# Page updaters
+# ─────────────────────────────────────────────────────────────────────────────
+
+def update_homepage(all_jobs: list[dict]) -> None:
     path = ROOT / "index.html"
     html = path.read_text(encoding="utf-8")
-    n = len(jobs)
 
-    # ── 1. Replace the scroll-track job list ─────────────────────────────────
-    track_content = "".join(homepage_job_row(j, i + 1) for i, j in enumerate(jobs))
+    # Most recent first; limit for homepage
+    jobs = sorted(all_jobs, key=lambda j: j["date"], reverse=True)
+    display = jobs[:HOMEPAGE_LIMIT] if HOMEPAGE_LIMIT else jobs
+    n_display = len(display)
+    n_total   = len(all_jobs)
+
+    # Scroll track
+    track_html = "".join(homepage_row(j, i + 1) for i, j in enumerate(display))
     html = re.sub(
         r'(<div class="or-scroll-track" role="list">)(.*?)(</div></div></div>)',
-        lambda m: m.group(1) + track_content + m.group(3),
+        lambda m: m.group(1) + track_html + m.group(3),
         html, count=1, flags=re.S,
     )
 
-    # ── 2. Update counter number ──────────────────────────────────────────────
+    # Counter number (show total, not limited)
     html = re.sub(
         r'(<span class="heading-h4 or-counter-num">)\d+(</span>)',
-        rf'\g<1>{n}\2',
-        html, count=1,
+        rf'\g<1>{n_total}\2', html, count=1,
     )
 
-    # ── 3. Update counter label (singular / plural) ───────────────────────────
-    label = "open position now" if n == 1 else "open positions now"
+    # Counter label
+    label = "open position now" if n_total == 1 else "open positions now"
     html = re.sub(
         r'(<span class="text-small muted">)open positions? now(</span>)',
-        rf'\g<1>{label}\2',
-        html, count=1,
+        rf'\g<1>{label}\2', html, count=1,
     )
 
     path.write_text(html, encoding="utf-8")
-    print(f"  index.html — {n} job(s) updated")
+    print(f"  index.html — {n_total} total, showing {n_display} on homepage")
 
 
-def update_jobs_page(jobs: list[dict]) -> None:
+def update_jobs_page(all_jobs: list[dict]) -> None:
     path = ROOT / "jobs" / "index.html"
     html = path.read_text(encoding="utf-8")
-    n = len(jobs)
-    featured = sum(1 for j in jobs if j.get("featured"))
+    n        = len(all_jobs)
+    featured = sum(1 for j in all_jobs if j.get("featured"))
 
-    # ── 1. Replace job cards ──────────────────────────────────────────────────
-    cards_html = "".join(jobs_page_card(j) for j in jobs)
+    # Job cards (newest first)
+    jobs_sorted = sorted(all_jobs, key=lambda j: j["date"], reverse=True)
+    cards_html = "".join(jobs_page_card(j) for j in jobs_sorted)
     html = re.sub(
         r'(<div class="opening-jobs-grid" id="opening-jobs-grid">)(.*?)(</div>)',
         lambda m: m.group(1) + cards_html + m.group(3),
         html, count=1, flags=re.S,
     )
 
-    # ── 2. Update results summary ──────────────────────────────────────────────
+    # Counters
     word = "job" if n == 1 else "jobs"
     html = re.sub(
         r'(<div class="opening-results-summary"[^>]*>)Showing \d+ jobs?(</div>)',
-        rf'\g<1>Showing {n} {word}\2',
-        html, count=1,
+        rf'\g<1>Showing {n} {word}\2', html, count=1,
     )
-
-    # ── 3. Update board count ──────────────────────────────────────────────────
     role_word = "role" if n == 1 else "roles"
     html = re.sub(
         r'(<div class="opening-board-count">)\d+ roles? available(</div>)',
-        rf'\g<1>{n} {role_word} available\2',
-        html, count=1,
+        rf'\g<1>{n} {role_word} available\2', html, count=1,
     )
 
-    # ── 4. Update tab counts ───────────────────────────────────────────────────
-    html = re.sub(
-        r'(data-opening-tab="featured"[^>]*>Featured <span>)\d+(</span>)',
-        rf'\g<1>{featured}\2', html, count=1,
-    )
-    html = re.sub(
-        r'(data-opening-tab="latest"[^>]*>Latest <span>)\d+(</span>)',
-        rf'\g<1>{n}\2', html, count=1,
-    )
-    html = re.sub(
-        r'(data-opening-tab="all"[^>]*>Open positions <span>)\d+(</span>)',
-        rf'\g<1>{n}\2', html, count=1,
-    )
+    # Tab counts
+    html = re.sub(r'(data-opening-tab="featured"[^>]*>Featured <span>)\d+(</span>)',
+                  rf'\g<1>{featured}\2', html, count=1)
+    html = re.sub(r'(data-opening-tab="latest"[^>]*>Latest <span>)\d+(</span>)',
+                  rf'\g<1>{n}\2', html, count=1)
+    html = re.sub(r'(data-opening-tab="all"[^>]*>Open positions <span>)\d+(</span>)',
+                  rf'\g<1>{n}\2', html, count=1)
 
-    # ── 5. Rebuild category filter options ────────────────────────────────────
-    cats = sorted({j["category"].replace("&amp;", "&") for j in jobs})
-    options = '<option value="">Choose...</option>' + "".join(
-        f'<option value="{c}">{c}</option>' for c in cats
+    # Category filter
+    cats = sorted({j["category"] for j in all_jobs})
+    cat_opts = '<option value="">Choose...</option>' + "".join(
+        f'<option value="{escape(c, quote=True)}">{escape(c)}</option>' for c in cats
     )
     html = re.sub(
         r'(<select class="text-field opening-filter-input" id="opening-category">).*?(</select>)',
-        rf'\g<1>{options}\2',
-        html, count=1, flags=re.S,
+        rf'\g<1>{cat_opts}\2', html, count=1, flags=re.S,
     )
 
-    # ── 6. Rebuild location filter options ────────────────────────────────────
-    locs = sorted({j["location_slug"].split(",")[0].strip().title() for j in jobs})
-    loc_options = '<option value="">Choose...</option>' + "".join(
-        f'<option value="{l.lower()}">{l}, Malta</option>' for l in locs
+    # Location filter — unique cities
+    cities = sorted({j["location_slug"].split(",")[0].strip().title() for j in all_jobs})
+    loc_opts = '<option value="">Choose...</option>' + "".join(
+        f'<option value="{c.lower()}">{c}, Malta</option>' for c in cities
     )
     html = re.sub(
         r'(<select class="text-field opening-filter-input" id="opening-location">).*?(</select>)',
-        rf'\g<1>{loc_options}\2',
-        html, count=1, flags=re.S,
+        rf'\g<1>{loc_opts}\2', html, count=1, flags=re.S,
     )
 
     path.write_text(html, encoding="utf-8")
-    print(f"  jobs/index.html — {n} job(s), {featured} featured updated")
+    print(f"  jobs/index.html — {n} job(s), {featured} featured, {len(cats)} categories")
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Entry point
+# ─────────────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    jobs = load_jobs()
     today = date.today().isoformat()
-    print(f"Updating job listings ({today}) — {len(JOBS)} job(s):")
-    for j in JOBS:
-        print(f"  • {j['title']} — {j['location'].replace('&amp;', '&')} [{j['category'].replace('&amp;', '&')}]")
-    print()
-    update_homepage(JOBS)
-    update_jobs_page(JOBS)
-    print("\nDone. Run: git add -A && git commit -m 'Update job listings'")
+    print(f"Updating listings ({today}) — {len(jobs)} job(s) in registry")
+    update_homepage(jobs)
+    update_jobs_page(jobs)
+    print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
 
 
 if __name__ == "__main__":
