@@ -207,8 +207,9 @@ def generate_job_page(job: dict) -> str:
 
     # ── 7. h1 text + aria-label ───────────────────────────────────────────────
     html = re.sub(
-        r'(<h1 class="heading-h1" aria-label=")[^"]*(">[^<]*)(<)',
-        rf"\g<1>{html_esc(title)}\2{html_esc(title)}\3", html, count=1
+        r'<h1 class="heading-h1" aria-label="[^"]*">[^<]*<',
+        f'<h1 class="heading-h1" aria-label="{html_esc(title)}">{html_esc(title)}<',
+        html, count=1
     )
 
     # ── 8. Location caption ───────────────────────────────────────────────────
