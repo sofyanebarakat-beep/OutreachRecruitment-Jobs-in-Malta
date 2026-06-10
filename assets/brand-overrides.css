@@ -3263,19 +3263,26 @@ body.opening-jobs-page .opening-board-count {
 }
 .opening-job-card--centered .opening-job-link {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-  padding: 1.6rem 1.4rem;
+  text-align: left;
+  padding: 1.4rem 1.8rem;
   color: #0f172a;
   min-height: 0;
-  gap: 0.6rem;
+  gap: 1.2rem;
 }
 .opening-job-card--centered .opening-job-logo {
   width: 3rem;
   height: 3rem;
+  flex-shrink: 0;
   border-radius: 10px;
-  margin-bottom: 0.2rem;
+}
+.opening-job-card--centered .opening-job-link > *:not(.opening-job-logo):not(.opening-card-day) {
+  flex: 1;
+}
+.opening-job-card--centered .opening-card-day {
+  order: -1;
+  flex-shrink: 0;
 }
 .opening-job-card--centered .opening-card-day {
   font-size: 0.72rem;
@@ -3305,7 +3312,7 @@ body.opening-jobs-page .opening-board-count {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 0.2rem;
 }
 .opening-job-card--centered .opening-job-meta span {
