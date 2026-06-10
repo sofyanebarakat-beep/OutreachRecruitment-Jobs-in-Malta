@@ -3674,3 +3674,83 @@ body.job-apply-open .job-mobile-apply-cta {
 /* Hide 108 branding bars */
 ._108-bar-wrapper.main,
 ._108-bar-wrapper.next { display: none !important; }
+
+/* Centered job card — horizontal row layout */
+.opening-job-card--centered .opening-job-link {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "logo title badge"
+    "logo loc   meta";
+  align-items: center;
+  column-gap: 0.9rem;
+  row-gap: 0.15rem;
+  min-height: 0;
+  padding: 0.85rem 1.1rem;
+  border-radius: 14px;
+}
+
+.opening-job-card--centered .opening-job-logo {
+  grid-area: logo;
+  grid-row: 1 / 3;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  object-fit: contain;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  background: #f8f8f8;
+  padding: 0.2rem;
+}
+
+.opening-job-card--centered .opening-card-day {
+  grid-area: badge;
+  align-self: center;
+  padding: 0.26rem 0.52rem;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #166534;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.opening-job-card--centered .opening-job-link .heading-h5 {
+  grid-area: title;
+  margin: 0;
+  color: #111111;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.opening-job-card--centered .opening-job-company {
+  grid-area: loc;
+  color: #666666;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.opening-job-card--centered .opening-job-meta {
+  grid-area: meta;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.opening-job-card--centered .opening-job-meta span {
+  padding: 0.26rem 0.48rem;
+  border-radius: 999px;
+  color: #444444;
+  background: #f0f0f0;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.opening-job-card--centered .opening-job-meta span:last-child {
+  color: #444444;
+  background: #f0f0f0;
+}
