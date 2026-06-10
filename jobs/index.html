@@ -282,6 +282,7 @@
   var results = document.getElementById('opening-jobs-results');
   var hasInteracted = false;
   var showSuggestions = null;
+  var updateJumpBtn = null;
 
   function applyInitialQuery() {
     if (!window.URLSearchParams) return;
@@ -387,7 +388,22 @@ banner.style.cssText = "padding:2.5rem 3rem;justify-content:space-between;gap:2r
 
   function updateFilterUi(totalJobs, cat, loc) {
     var hasFilters = Boolean(cat || loc);
-    if (resultsSummary) resultsSummary.textContent = 'Showing ' + totalJobs + ' job' + (totalJobs === 1 ? '' : 's');
+    if (resultsSummary) {
+      resultsSummary.textContent = 'Showing ' + totalJobs + ' job' + (totalJobs === 1 ? '' : 's');
+      resultsSummary.classList.remove('is-updating');
+      void resultsSummary.offsetWidth;
+      resultsSummary.classList.add('is-updating');
+      resultsSummary.addEventListener('animationend', function () { resultsSummary.classList.remove('is-updating'); }, { once: true });
+    }
+    var boardCount = document.querySelector('.opening-board-count');
+    if (boardCount) {
+      boardCount.textContent = totalJobs + ' role' + (totalJobs === 1 ? '' : 's') + ' available';
+      boardCount.classList.remove('is-updating');
+      void boardCount.offsetWidth;
+      boardCount.classList.add('is-updating');
+      boardCount.addEventListener('animationend', function () { boardCount.classList.remove('is-updating'); }, { once: true });
+    }
+    if (updateJumpBtn) updateJumpBtn(totalJobs);
     if (filterToggle) filterToggle.classList.toggle('is-filtering', hasFilters);
     if (!activeFilters) return;
     activeFilters.innerHTML = '';
@@ -610,6 +626,77 @@ banner.style.cssText = "padding:2.5rem 3rem;justify-content:space-between;gap:2r
       box.hidden = false;
     };
   }
+  function initStickyFilter() {
+    var filter = document.getElementById('opening-jobs-filter');
+    if (!filter || !window.IntersectionObserver) return;
+    var sentinel = document.createElement('div');
+    sentinel.id = 'opening-filter-sentinel';
+    filter.parentNode.insertBefore(sentinel, filter);
+    var ghost = document.createElement('div');
+    ghost.id = 'opening-filter-ghost';
+    ghost.hidden = true;
+    filter.parentNode.insertBefore(ghost, filter.nextSibling);
+    var isSticky = false;
+    var obs = new IntersectionObserver(function (entries) {
+      var shouldStick = !entries[0].isIntersecting;
+      if (shouldStick === isSticky) return;
+      isSticky = shouldStick;
+      filter.classList.toggle('is-sticky', isSticky);
+      if (isSticky) {
+        ghost.style.height = filter.getBoundingClientRect().height + 'px';
+        ghost.hidden = false;
+      } else {
+        ghost.hidden = true;
+      }
+    }, { threshold: 0 });
+    obs.observe(sentinel);
+  }
+
+  function initJumpButton() {
+    var btn = document.createElement('button');
+    btn.id = 'or-jump-btn';
+    btn.setAttribute('hidden', '');
+    btn.setAttribute('aria-label', 'Jump to job results');
+    btn.innerHTML = '<svg width="15" height="15" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="or-jump-label">See jobs</span>';
+    document.body.appendChild(btn);
+
+    function hideBtn() {
+      if (btn.hidden) return;
+      btn.classList.add('is-leaving');
+      setTimeout(function () { btn.hidden = true; btn.classList.remove('is-leaving'); }, 220);
+    }
+
+    btn.addEventListener('click', function () {
+      var grid = document.getElementById('opening-jobs-grid');
+      if (!grid) return;
+      var top = grid.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      hideBtn();
+    });
+
+    if (window.IntersectionObserver) {
+      var grid = document.getElementById('opening-jobs-grid');
+      if (grid) {
+        var gridObs = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) hideBtn();
+        }, { threshold: 0.1 });
+        gridObs.observe(grid);
+      }
+    }
+
+    return function (count) {
+      var label = document.getElementById('or-jump-label');
+      if (label) label.textContent = 'See ' + count + ' job' + (count === 1 ? '' : 's');
+      if (!hasInteracted) return;
+      var grid = document.getElementById('opening-jobs-grid');
+      if (!grid) return;
+      var gridTop = grid.getBoundingClientRect().top;
+      if (gridTop > window.innerHeight * 0.7) {
+        btn.hidden = false;
+      }
+    };
+  }
+
   applyInitialQuery();
   tabs.forEach(function (item) {
     item.classList.toggle('is-active', item.getAttribute('data-opening-tab') === activeTab);
@@ -618,6 +705,8 @@ banner.style.cssText = "padding:2.5rem 3rem;justify-content:space-between;gap:2r
   initFlags();
   initBookmarks();
   showSuggestions = initAutocomplete();
+  initStickyFilter();
+  updateJumpBtn = initJumpButton();
   applyFilters();
   // Update open positions tag from actual tab count
   (function() {
