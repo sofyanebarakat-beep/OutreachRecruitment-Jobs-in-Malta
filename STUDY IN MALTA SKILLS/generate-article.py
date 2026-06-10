@@ -28,6 +28,85 @@ Your task is to create a fully optimized, publication-ready article (+4000 words
 
 ---
 
+## MANDATORY LINKS & CTAs (MUST APPEAR IN EVERY ARTICLE)
+
+These four links are NON-NEGOTIABLE. Embed them naturally in the article body at the positions specified below. Do not skip any of them.
+
+| Link | URL | Minimum Appearances | Placement |
+|---|---|---|---|
+| Apply Now CTA Button | https://apply.outreachstudy.eu/ | 3× | After Introduction / Mid-article / Before Conclusion |
+| Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | 2× | Programs section + Conclusion |
+| Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | 2× | Introduction + Internal Links section |
+| Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | 2× | Mid-article + Conclusion |
+| Malta Study Guide | https://outreachrecruitment.net/malta-study-guide/ | 2× | Mid-article callout + Internal Links section |
+
+### Apply Now CTA Button HTML (use verbatim at each placement)
+
+```html
+<div class="cta-box" style="background:#1a56db;padding:24px;border-radius:8px;text-align:center;margin:32px 0;">
+  <p style="color:#fff;font-size:18px;font-weight:600;margin-bottom:12px;">Ready to Study in Malta?</p>
+  <a href="https://apply.outreachstudy.eu/" target="_blank" rel="noopener"
+     style="background:#fff;color:#1a56db;padding:12px 28px;border-radius:6px;font-weight:700;text-decoration:none;display:inline-block;">
+    Apply Now →
+  </a>
+</div>
+```
+
+### Free Webinar CTA HTML (use verbatim at each placement)
+
+```html
+<div class="webinar-box" style="background:#f0fdf4;border-left:4px solid #16a34a;padding:20px;border-radius:6px;margin:32px 0;">
+  <p style="font-weight:700;margin-bottom:6px;">Free Study in Malta Webinar</p>
+  <p style="margin-bottom:12px;">Join our free webinar and get expert answers about studying in Malta, visa requirements, and available programs.</p>
+  <a href="https://outreachrecruitment.net/webinar-study-in-malta.html" target="_blank" rel="noopener"
+     style="background:#16a34a;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-block;">
+    Register for the Free Webinar →
+  </a>
+</div>
+```
+
+### Programs CTA HTML (use verbatim at each placement)
+
+```html
+<div class="programs-box" style="background:#faf5ff;border:1px solid #a855f7;padding:20px;border-radius:6px;margin:32px 0;">
+  <p style="font-weight:700;margin-bottom:6px;">Explore Study Programs in Malta</p>
+  <p style="margin-bottom:12px;">Browse bachelor's, master's, and English language programs available to international students.</p>
+  <a href="https://outreachrecruitment.net/study-in-malta#programs-table" target="_blank" rel="noopener"
+     style="background:#a855f7;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-block;">
+    Browse All Programs →
+  </a>
+</div>
+```
+
+### Malta Study Guide CTA HTML (use verbatim at each placement)
+
+```html
+<div class="guide-box" style="background:#fff7ed;border-left:4px solid #ea580c;padding:20px;border-radius:6px;margin:32px 0;">
+  <p style="font-weight:700;margin-bottom:6px;">Malta Study Guide — Everything You Need to Know</p>
+  <p style="margin-bottom:12px;">Access our complete Malta Study Guide: visa steps, universities, costs, scholarships, accommodation, and more — all in one place.</p>
+  <a href="https://outreachrecruitment.net/malta-study-guide/" target="_blank" rel="noopener"
+     style="background:#ea580c;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-block;">
+    Read the Full Malta Study Guide →
+  </a>
+</div>
+```
+
+### Mandatory CTA Placement Checklist (verify before finishing)
+
+- Apply Now CTA after Introduction ✓
+- Apply Now CTA mid-article ✓
+- Apply Now CTA before Conclusion ✓
+- Browse Programs CTA in programs section ✓
+- Browse Programs CTA in Conclusion ✓
+- Study in Malta link in Introduction ✓
+- Study in Malta link in Internal Links section ✓
+- Free Webinar CTA mid-article ✓
+- Free Webinar CTA in Conclusion ✓
+- Malta Study Guide CTA mid-article ✓
+- Malta Study Guide link in Internal Links section ✓
+
+---
+
 ## TRADITIONAL SEO REQUIREMENTS
 
 Perform comprehensive keyword research and include:
@@ -198,13 +277,13 @@ Provide the final output in this exact order:
 4. SEO Title Options (5)
 5. Meta Descriptions (5)
 6. URL Slug
-7. Full Article (4000+ words)
+7. Full Article (4000+ words) — all 5 mandatory CTAs embedded at correct positions
 8. Featured Snippet
 9. FAQ Section
 10. People Also Ask
 11. Voice Search Questions
 12. Entity Map
-13. Internal Link Opportunities
+13. Internal Link Opportunities — include the 5 mandatory links with anchor texts
 14. External Link Opportunities
 15. Content Cluster Map
 16. Local SEO Strategy

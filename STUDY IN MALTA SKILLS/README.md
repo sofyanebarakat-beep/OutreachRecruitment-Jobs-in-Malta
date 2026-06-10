@@ -95,6 +95,24 @@ Open `SKILL-TEMPLATE.md`, fill in the three `[INSERT ...]` placeholders, and pas
 
 ---
 
+---
+
+## Mandatory Links in Every Article
+
+These 4 links are hardwired into the skill. Every generated article must include them.
+
+| Link | URL | Min. Appearances | Anchor Text |
+|---|---|---|---|
+| Apply Now CTA | https://apply.outreachstudy.eu/ | 3× | "Apply Now", "Start Your Application", "Apply to Study in Malta" |
+| Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | 2× | "browse available programs", "view all study programs in Malta" |
+| Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | 2× | "Study in Malta", "complete guide to studying in Malta" |
+| Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | 2× | "free webinar", "join our free Study in Malta webinar" |
+| Malta Study Guide | https://outreachrecruitment.net/malta-study-guide/ | 2× | "Malta Study Guide", "full Malta study guide", "read our complete Malta study guide" |
+
+Each link has a styled HTML CTA block defined in `SKILL-TEMPLATE.md` for use inside article HTML files.
+
+---
+
 ## Contact / Business Details
 
 - **Business:** Outreach Recruitment

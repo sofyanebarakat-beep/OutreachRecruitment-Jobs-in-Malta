@@ -42,6 +42,7 @@ These four links are mandatory. They must appear naturally inside the article bo
 | Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | **2 times minimum** — in the section about programs/courses and in the Conclusion. Anchor text: "browse available programs", "view all study programs in Malta" |
 | Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | **2 times minimum** — in Introduction and in Internal Links section. Anchor text: "Study in Malta", "complete guide to studying in Malta" |
 | Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | **2 times minimum** — mid-article and in Conclusion. Anchor text: "free webinar", "join our free Study in Malta webinar", "register for the webinar" |
+| Malta Study Guide | https://outreachrecruitment.net/malta-study-guide/ | **2 times minimum** — mid-article (in a "further reading" or "related resources" callout) and in Internal Links section. Anchor text: "Malta Study Guide", "full Malta study guide", "read our complete Malta study guide" |
 
 ### CTA Button HTML Template (use in article body)
 
@@ -371,13 +372,13 @@ Provide the final output in this exact order:
 4. SEO Title Options (5)
 5. Meta Descriptions (5)
 6. URL Slug
-7. Full Article (4000+ words)
+7. Full Article (4000+ words) — **must include all 5 mandatory CTAs/links at the correct positions**
 8. Featured Snippet
 9. FAQ Section
 10. People Also Ask
 11. Voice Search Questions
 12. Entity Map
-13. Internal Link Opportunities
+13. Internal Link Opportunities — **must list the 5 mandatory links with suggested anchor texts**
 14. External Link Opportunities
 15. Content Cluster Map
 16. Local SEO Strategy
@@ -386,6 +387,33 @@ Provide the final output in this exact order:
 19. AI Optimization Recommendations
 20. GEO Recommendations
 21. CTR Optimization Recommendations
+
+### Malta Study Guide CTA HTML Template (use in article body)
+
+```html
+<div class="guide-box" style="background:#fff7ed;border-left:4px solid #ea580c;padding:20px;border-radius:6px;margin:32px 0;">
+  <p style="font-weight:700;margin-bottom:6px;">Malta Study Guide — Everything You Need to Know</p>
+  <p style="margin-bottom:12px;">Access our complete Malta Study Guide: visa steps, universities, costs, scholarships, accommodation, and more — all in one place.</p>
+  <a href="https://outreachrecruitment.net/malta-study-guide/" target="_blank" rel="noopener"
+     style="background:#ea580c;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-block;">
+    Read the Full Malta Study Guide →
+  </a>
+</div>
+```
+
+### Mandatory CTA Placement Checklist (verify before finishing)
+
+- [ ] Apply Now CTA button appears after Introduction
+- [ ] Apply Now CTA button appears mid-article (after a key section)
+- [ ] Apply Now CTA button appears before Conclusion
+- [ ] Browse Programs link appears in the programs/courses section
+- [ ] Browse Programs link appears in the Conclusion
+- [ ] Study in Malta internal link appears in Introduction
+- [ ] Study in Malta internal link appears in Internal Links section
+- [ ] Free Webinar link appears mid-article
+- [ ] Free Webinar link appears in Conclusion
+- [ ] Malta Study Guide link appears mid-article
+- [ ] Malta Study Guide link appears in Internal Links section
 
 The article must be comprehensive, factually accurate, authoritative, and optimized for both traditional search engines and AI search engines.
 
