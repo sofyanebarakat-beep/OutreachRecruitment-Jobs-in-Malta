@@ -3675,6 +3675,11 @@ body.job-apply-open .job-mobile-apply-cta {
 ._108-bar-wrapper.main,
 ._108-bar-wrapper.next { display: none !important; }
 
+/* Hide navigation promo on mobile */
+@media (max-width: 767px) {
+  .navigation-promo { display: none !important; }
+}
+
 /* Centered job card — white card, 2-col grid (insurance page) */
 .opening-jobs-centered-grid {
   grid-template-columns: repeat(2, 1fr) !important;
