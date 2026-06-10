@@ -3786,37 +3786,13 @@ body.job-apply-open .job-mobile-apply-cta {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Insurance dark frame — replaces .frame class so Webflow's #1c2623 rule never fires */
-.or-ins-frame {
-  margin: var(--_🖥️-grid---grid--frame-padding);
-  border-radius: var(--_⭕-global-radius---general--radius-large);
-  overflow: clip;
-  background-color: #232f2b;
-  --_🖍️-colors---surface--surface-1: #232f2b;
-  --_🖍️-colors---surface--surface-2: #232f2b;
-  --_🖍️-colors---surface--surface-3: #232f2b;
-  --_🖍️-colors---ink--ink-1: #eceae1;
-  --_🖍️-colors---ink--ink-2: #eceae1a3;
-  --_🖍️-colors---ink--ink-3: #eceae152;
-  --_🖍️-colors---ink--ink-4: #eceae114;
-  --_🖍️-colors---accent--accent-blue-wash: #bccad1;
-  --_🖍️-colors---accent--accent-blue: #4f6e80;
-  --_🖍️-colors---accent--accent-yellow: #e3f21a;
-  --_🖍️-colors---accent--accent-pink: #ebc9c9;
-  --_🖍️-colors---overlay--overlay-1: #1c262300;
-  --_🖍️-colors---overlay--overlay-2: #1c262352;
-  --_🖍️-colors---overlay--overlay-3: #1c2623a3;
-  --_🖍️-colors---button--secondary--default--button-secondary-fill: var(--_🖍️-colors---ink--ink-4);
-  --_🖍️-colors---button--secondary--default--button-secondary-ink: var(--_🖍️-colors---ink--ink-1);
-  --_🖍️-colors---button--secondary--hover--button-secondary-hover-fill: var(--_🖍️-colors---ink--ink-1);
-  --_🖍️-colors---button--secondary--hover--button-secondary-hover-ink: var(--_🖍️-colors---surface--surface-1);
-  --_🖍️-colors---button--primary--default--button-primary-fill: var(--_🖍️-colors---ink--ink-1);
-  --_🖍️-colors---button--primary--default--button-primary-ink: var(--_🖍️-colors---surface--surface-1);
-  --_🖍️-colors---button--primary--hover--button-primary-hover-fill: var(--_🖍️-colors---ink--ink-1);
-  --_🖍️-colors---button--primary--hover--button-primary-hover-ink: var(--_🖍️-colors---surface--surface-1);
-  --_🖍️-colors---input--input-border: transparent;
-  --_🖍️-colors---input--input-fill: var(--_🖍️-colors---surface--surface-3);
-  --_🖍️-colors---input--input-ink: var(--_🖍️-colors---ink--ink-1);
-  --_🖍️-colors---input--input-placeholder: var(--_🖍️-colors---ink--ink-2);
-  --_🖍️-colors---input--input-label: var(--_🖍️-colors---ink--ink-2);
+/* Insurance dark frame — same pattern as #or-services-section */
+#insurance-dark-frame,
+#insurance-dark-frame .section,
+#insurance-dark-frame > * {
+  --_🖍️-colors---surface--surface-1: #232f2b !important;
+  --_🖍️-colors---surface--surface-2: #232f2b !important;
+  --_🖍️-colors---surface--surface-3: #232f2b !important;
+  background-color: #232f2b !important;
+  background-image: none !important;
 }
