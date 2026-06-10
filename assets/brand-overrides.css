@@ -3257,6 +3257,66 @@ body.opening-jobs-page .opening-board-count {
   pointer-events: none;
 }
 
+/* ── Centered job card variant (used on landing pages) ─────────────── */
+.opening-job-card--centered {
+  position: relative;
+}
+.opening-job-card--centered .opening-job-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.6rem 1.4rem;
+  color: #0f172a;
+  min-height: 0;
+  gap: 0.6rem;
+}
+.opening-job-card--centered .opening-job-logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10px;
+  margin-bottom: 0.2rem;
+}
+.opening-job-card--centered .opening-card-day {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #442dfa;
+  background: #edf4ff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  line-height: 1;
+  align-self: center;
+}
+.opening-job-card--centered .heading-h5 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.3;
+  margin: 0;
+}
+.opening-job-card--centered .opening-job-company {
+  font-size: 0.88rem;
+  color: #475569;
+  font-weight: 500;
+}
+.opening-job-card--centered .opening-job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.2rem;
+}
+.opening-job-card--centered .opening-job-meta span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #334155;
+}
+
 /* ── Programs table ─────────────────────────────────────────────────── */
 .or-prog-filters {
   display: flex;
