@@ -3675,82 +3675,99 @@ body.job-apply-open .job-mobile-apply-cta {
 ._108-bar-wrapper.main,
 ._108-bar-wrapper.next { display: none !important; }
 
-/* Centered job card — horizontal row layout */
+/* Centered job card — divider list style (dark bg, insurance page) */
+.opening-jobs-centered-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  column-gap: 2.5rem !important;
+}
+
+@media (max-width: 767px) {
+  .opening-jobs-centered-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 .opening-job-card--centered .opening-job-link {
   display: grid;
-  grid-template-columns: 2.6rem 1fr auto;
+  grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "logo title badge"
-    "logo loc   meta";
+    "title  meta  arrow"
+    "loc    meta  arrow";
   align-items: center;
-  column-gap: 0.9rem;
-  row-gap: 0.15rem;
+  column-gap: 1.2rem;
+  row-gap: 0.2rem;
   min-height: 0;
-  padding: 0.85rem 1.1rem;
-  border-radius: 14px;
+  padding: 1.15rem 0.25rem;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  color: #ffffff;
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
-.opening-job-card--centered .opening-job-logo {
-  grid-area: logo;
-  grid-row: 1 / 3;
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 10px;
-  object-fit: contain;
-  border: 1px solid rgba(15, 23, 42, 0.09);
-  background: #f8f8f8;
-  padding: 0.2rem;
+.opening-job-card--centered .opening-job-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom-color: rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+  transform: none;
 }
 
+.opening-job-card--centered .opening-job-logo,
 .opening-job-card--centered .opening-card-day {
-  grid-area: badge;
-  align-self: center;
-  padding: 0.26rem 0.52rem;
-  border-radius: 999px;
-  background: #ecfdf5;
-  color: #166534;
-  font-size: 0.68rem;
-  font-weight: 800;
-  line-height: 1;
+  display: none;
 }
 
 .opening-job-card--centered .opening-job-link .heading-h5 {
   grid-area: title;
   margin: 0;
-  color: #111111;
-  font-size: 0.95rem;
+  color: #ffffff;
+  font-size: 1.05rem;
   line-height: 1.2;
   text-align: left;
 }
 
 .opening-job-card--centered .opening-job-company {
   grid-area: loc;
-  color: #666666;
-  font-size: 0.82rem;
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  font-weight: 400;
   text-align: left;
 }
 
 .opening-job-card--centered .opening-job-meta {
   grid-area: meta;
+  grid-row: 1 / 3;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin: 0;
 }
 
-.opening-job-card--centered .opening-job-meta span {
-  padding: 0.26rem 0.48rem;
+.opening-job-card--centered .opening-job-meta span,
+.opening-job-card--centered .opening-job-meta span:last-child {
+  padding: 0.32rem 0.62rem;
   border-radius: 999px;
-  color: #444444;
-  background: #f0f0f0;
-  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.73rem;
   font-weight: 700;
 }
 
-.opening-job-card--centered .opening-job-meta span:last-child {
-  color: #444444;
-  background: #f0f0f0;
+.opening-job-card--centered .opening-job-link::after {
+  content: '→';
+  grid-area: arrow;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.28);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.opening-job-card--centered .opening-job-link:hover::after {
+  transform: translateX(4px);
+  color: rgba(255, 255, 255, 0.9);
 }
