@@ -3771,3 +3771,15 @@ body.job-apply-open .job-mobile-apply-cta {
   transform: translateX(4px);
   color: rgba(255, 255, 255, 0.9);
 }
+
+/* Insurance page dark frame — force #232f2b regardless of Webflow CDN overrides */
+.frame[style*="232f2b"],
+.frame[style*="232f2b"] > .section,
+.frame[style*="232f2b"] > .section.padding-top-large,
+.frame[style*="232f2b"] > .section.marquee-text {
+  --_🖍️-colors---surface--surface-1: #232f2b !important;
+  --_🖍️-colors---surface--surface-2: #232f2b !important;
+  --_🖍️-colors---surface--surface-3: #232f2b !important;
+  background-color: #232f2b !important;
+  background-image: none !important;
+}
