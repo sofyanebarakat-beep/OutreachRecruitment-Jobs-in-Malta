@@ -1652,6 +1652,36 @@ body.home-test-page .service-spotlight {
 }
 }
 
+/* dark frame text & card overrides */
+.frame[style*="#232f2b"] .tag,
+.frame[style*="#232f2b"] .heading-h3,
+.frame[style*="#232f2b"] .heading-h2,
+.frame[style*="#232f2b"] .text-medium,
+.frame[style*="#232f2b"] .statement-item,
+.frame[style*="#232f2b"] .marquee-text {
+  color: #f0ede6;
+}
+.frame[style*="#232f2b"] em {
+  color: #a8d5b0;
+}
+.frame[style*="#232f2b"] .opening-job-card--centered .opening-job-link {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: #f0ede6;
+}
+.frame[style*="#232f2b"] .opening-job-card--centered .heading-h5,
+.frame[style*="#232f2b"] .opening-job-card--centered .opening-job-company {
+  color: #f0ede6;
+}
+.frame[style*="#232f2b"] .opening-job-card--centered .opening-job-meta span {
+  background: rgba(255,255,255,0.12);
+  color: #d4eed8;
+}
+.frame[style*="#232f2b"] .opening-card-day {
+  background: rgba(168,213,176,0.18);
+  color: #a8d5b0;
+}
+
 .frame .preview-item {
   cursor: pointer;
   opacity: 0.45;
