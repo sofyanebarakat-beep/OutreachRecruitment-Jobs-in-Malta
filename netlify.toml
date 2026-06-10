@@ -2,16 +2,6 @@
   publish = "."
 
 [[redirects]]
-  from = "/job_listing-sitemap.xml"
-  to = "/sitemaps/sitemap-jobs.xml"
-  status = 301
-
-[[redirects]]
-  from = "/job_listing_type-sitemap.xml"
-  to = "/sitemap_index.xml"
-  status = 301
-
-[[redirects]]
   from = "/*"
   to = "/:splat.html"
   status = 200
