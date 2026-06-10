@@ -294,9 +294,18 @@
   }
 
   function nudgeToResults() {
-    if (!hasInteracted || !results) return;
+    if (!hasInteracted) return;
+    // Scroll to the card grid, not the page wrapper (#opening-jobs-results wraps everything)
+    var grid = document.getElementById('opening-jobs-grid');
+    if (!grid) return;
+    var rect = grid.getBoundingClientRect();
+    var navOffset = 90; // nav height + breathing room
+    // Only scroll if the grid is above the viewport top (user scrolled past it)
+    // or more than 60% down the viewport (grid is below the fold)
+    var alreadyVisible = rect.top >= navOffset && rect.top <= window.innerHeight * 0.55;
+    if (alreadyVisible) return;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var top = results.getBoundingClientRect().top + window.pageYOffset - 84;
+    var top = rect.top + window.pageYOffset - navOffset;
     window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 
