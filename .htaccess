@@ -4,6 +4,10 @@ DirectoryIndex index.html index.php
     RewriteEngine On
     RewriteBase /
 
+    # Redirect .html extension to clean URL (301 permanent)
+    RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?]
+    RewriteRule ^ /%1 [R=301,L]
+
     # Serve real files and directories directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
