@@ -397,27 +397,291 @@ Required CSS:
 
 ---
 
-## DESKTOP STICKY TABLE OF CONTENTS
+## DESKTOP STICKY CLICKABLE TABLE OF CONTENTS
 
-For articles over 2,000 words, use a CSS-only sticky ToC on desktop. On mobile, keep the ToC inline.
+For articles over 2,000 words, use a CSS-only sticky ToC on desktop. On mobile, keep the ToC inline above the article content. Every ToC item must be clickable and must move the reader directly to the matching section through a real `#anchor` link.
+
+### Layout rules
+
+- Desktop: ToC stays sticky on the left while the reader scrolls the article
+- Mobile/tablet: ToC appears inline before the first main section
+- The ToC must sit outside the main article body column, not inside a content card
+- Add one compact CTA banner directly under the sticky ToC
+- Keep article text in a readable column: 680-760px max width
+- Do not let the sticky ToC cover the header, footer, or article text
+- Add `scroll-margin-top: 110px` to article headings so anchor jumps do not hide headings under the fixed nav
 
 ```html
-<aside class="toc-sidebar" aria-label="Article table of contents">
-  <nav aria-label="Table of Contents">
-    <ol>
-      <li><a href="#section-id">[Section]</a></li>
-    </ol>
-  </nav>
-</aside>
+<div class="article-layout">
+  <aside class="toc-sidebar" aria-label="Article table of contents">
+    <nav aria-label="Table of Contents">
+      <h2 class="toc-title">Table of Contents</h2>
+      <ol>
+        <li><a href="#why-malta">Why Malta?</a></li>
+        <li><a href="#student-visa">Student Visa Requirements</a></li>
+        <li><a href="#cost-of-living">Cost of Living</a></li>
+      </ol>
+    </nav>
+
+    <aside class="toc-cta" aria-label="Study in Malta consultation">
+      <p><strong>Need help choosing a programme?</strong></p>
+      <a href="https://apply.outreachstudy.eu/" aria-label="Apply for free study in Malta guidance">Apply Now</a>
+    </aside>
+  </aside>
+
+  <div class="article-body">
+    <!-- Main article sections go here -->
+  </div>
+</div>
 ```
 
 ```html
 <style>
+html { scroll-behavior:smooth; }
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5 { scroll-margin-top:110px; }
+
 @media (min-width: 1024px) {
-  .article-layout { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:32px; align-items:start; }
-  .toc-sidebar { position:sticky; top:96px; max-height:calc(100vh - 120px); overflow:auto; }
+  .article-layout {
+    display:grid;
+    grid-template-columns:260px minmax(0, 740px);
+    gap:40px;
+    align-items:start;
+    justify-content:center;
+  }
+  .toc-sidebar {
+    position:sticky;
+    top:96px;
+    max-height:calc(100vh - 120px);
+    overflow:auto;
+  }
+  .toc-sidebar nav {
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:16px;
+    background:#fff;
+  }
+  .toc-title {
+    font-size:16px;
+    margin:0 0 12px;
+  }
+  .toc-sidebar a {
+    display:block;
+    padding:7px 0;
+    color:#1a56db;
+    text-decoration:none;
+  }
+  .toc-sidebar a:hover,
+  .toc-sidebar a:focus {
+    text-decoration:underline;
+  }
+  .toc-cta {
+    margin-top:16px;
+    border-radius:8px;
+    padding:16px;
+    background:#1a56db;
+    color:#fff;
+  }
+  .toc-cta a {
+    display:inline-block;
+    margin-top:8px;
+    background:#fff;
+    color:#1a56db;
+    padding:10px 14px;
+    border-radius:6px;
+    font-weight:700;
+    text-decoration:none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .article-layout { display:block; }
+  .toc-sidebar {
+    margin:24px 0;
+  }
+  .toc-sidebar nav {
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:16px;
+    background:#fff;
+  }
+  .toc-cta {
+    margin-top:12px;
+    border-radius:8px;
+    padding:16px;
+    background:#1a56db;
+    color:#fff;
+  }
 }
 </style>
+```
+
+### Clickable ToC checklist
+
+- [ ] Every ToC link uses `href="#section-id"`
+- [ ] Every linked heading has the exact matching `id="section-id"`
+- [ ] ToC click moves directly to the section in desktop and mobile
+- [ ] Heading anchor position is visible after click because `scroll-margin-top` is set
+- [ ] Sticky ToC stays on the left on desktop
+- [ ] CTA banner appears under the ToC and links to `https://apply.outreachstudy.eu/`
+
+---
+
+## ARTICLE DESIGN & READING SPACING
+
+Use spacing to make the article feel calm and easy to read. The reader should never feel that a heading, paragraph, CTA, or list is squeezed into the next element.
+
+### Required spacing rules
+
+- Add extra space between the title/header area and the first body text: `margin-top: 32px`
+- Every major section should have `margin-top: 48px`
+- Every heading should have `margin-bottom: 14px`
+- Paragraphs should have `margin-bottom: 18px`
+- CTA boxes should have `margin: 32px 0`
+- Before the final conclusion text, add at least `margin-top: 40px`
+- After the final paragraph, add `margin-bottom: 40px` before citations, related links, or footer content
+
+```html
+<style>
+.article-body {
+  max-width:740px;
+  margin:32px auto 0;
+  line-height:1.75;
+}
+.article-body section {
+  margin-top:48px;
+}
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5 {
+  margin-top:0;
+  margin-bottom:14px;
+}
+.article-body p {
+  margin-bottom:18px;
+}
+.article-body .cta-box {
+  margin:32px 0;
+}
+.article-body #conclusion {
+  margin-top:40px;
+}
+.article-body #conclusion + p,
+.article-body .final-paragraph {
+  margin-bottom:40px;
+}
+</style>
+```
+
+---
+
+## NEXT SKILLS TO ADD
+
+Use these when improving the Study in Malta content system further.
+
+### 1. SERP Screenshot Review Skill
+
+Before writing or updating an article, search the target keyword and review the current top results. Record:
+
+- Top 5 ranking page titles
+- Content formats used: guide, list, calculator, video, FAQ, official page
+- Missing angle Outreach can own
+- SERP features visible: AI Overview, PAA, video, image pack, FAQ, local pack
+
+Output:
+
+```text
+SERP Review
+Keyword: [keyword]
+Top formats: [formats]
+SERP features: [features]
+Best opportunity: [angle]
+Risk: [why it may be hard]
+Decision: [write/update/target long-tail first]
+```
+
+### 2. Visual Asset Brief Skill
+
+Every article must include a short image brief for the hero image and 2-3 supporting visuals. This helps create consistent images from free tools.
+
+```text
+Image Brief
+Hero image concept: [clear visual idea]
+Style: realistic, bright, professional, Malta education theme
+Must include: students, laptop/books, Malta street/coast/campus signal
+Avoid: fake flags, unreadable text inside image, dark stock-photo look
+Size: 1200x630 for OG/hero, 1600x900 for article image
+Alt text: [descriptive alt]
+Caption: [human-readable caption]
+File name: [keyword-rich-file-name.webp]
+```
+
+### 3. Free Image Generation Workflow
+
+Use this workflow when you need article images without paid tools.
+
+Recommended free/low-cost tools:
+
+- **Canva Free**: good for hero banners, diagrams, social carousels, and resizing
+- **Microsoft Designer / Bing Image Creator**: good for AI-generated education visuals
+- **Adobe Express Free**: good for quick branded social graphics
+- **Pexels / Unsplash**: good for real photography, but avoid generic stock images
+- **Squoosh.app**: compress and convert images to WebP
+- **TinyPNG**: compress PNG/JPG before WebP conversion if needed
+
+Required image process:
+
+1. Generate or select the image.
+2. Remove fake text/logos if AI generated.
+3. Resize to the required dimensions.
+4. Export as WebP.
+5. Compress.
+6. Add `width`, `height`, `alt`, `<figure>`, and `<figcaption>`.
+7. Use `fetchpriority="high"` only for the hero image.
+
+Prompt template:
+
+```text
+Create a realistic bright editorial photo for an article about studying in Malta in 2026. Show international students with laptops and notebooks in a Mediterranean campus or Valletta-inspired setting. Professional education website style, natural daylight, clean composition, no text, no logos, no fake documents, no flags as the main subject.
+```
+
+### 4. Conversion Path Skill
+
+Every article should map CTAs to reader intent.
+
+- Early CTA: soft action, such as free checklist or consultation
+- Middle CTA: programme browsing or webinar
+- Final CTA: apply now
+- Sidebar CTA: sticky desktop support prompt
+
+Output:
+
+```text
+CTA Map
+Reader stage: awareness / comparison / ready to apply
+Top CTA: [text + URL]
+Middle CTA: [text + URL]
+Final CTA: [text + URL]
+Sidebar CTA: [text + URL]
+```
+
+### 5. Content Refresh Skill
+
+Every article update must identify what changed and why.
+
+Output:
+
+```text
+Refresh Notes
+Updated sections: [list]
+Old data removed: [list]
+New sources added: [list]
+Schema updated: yes/no
+Revision history entry: [exact text]
+Next review date: [YYYY-MM-DD]
 ```
 
 ---
@@ -2136,7 +2400,9 @@ Required sections:
 - Position Zero paragraph
 - Key Takeaways
 - Trust bar
-- Sticky/anchor ToC
+- Clickable anchor ToC
+- Desktop sticky left ToC
+- CTA banner under sticky ToC
 - Main H2/H3 outline
 - EU vs non-EU tabs if applicable
 - At least 3 statistics with primary sources
@@ -2154,6 +2420,10 @@ Schema required:
 
 Delivery checks:
 - 375px mobile fold passes
+- ToC links click and jump to the correct sections
+- Desktop sticky ToC stays on the left while scrolling
+- Sidebar CTA appears under sticky ToC
+- Article spacing is checked between title, headings, body text, and final paragraph
 - Tables scroll horizontally on mobile
 - JSON-LD validates
 - All links verified
@@ -2194,6 +2464,9 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] Breadcrumb shows: Home → Malta Study Guide → [Article Title]
 - [ ] Semantic HTML5 skeleton used (`<article>`, `<section>`, `<aside>`, `<nav>`, `<main>`)
 - [ ] Every H2/H3 has a unique `id` attribute matching ToC `#anchor` links
+- [ ] Every ToC item is clickable and jumps to the matching section
+- [ ] Desktop article layout uses sticky left ToC for articles over 2,000 words
+- [ ] Sticky ToC has a compact CTA banner underneath
 - [ ] Skip-to-content link is first element in `<body>`
 
 **Head tags**
@@ -2210,6 +2483,7 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] Author box appears above introduction — links to `/about` + LinkedIn
 - [ ] Every H2/H3 starts with a self-contained 40–60 word summary sentence
 - [ ] Article byline shows author + published date + reading time
+- [ ] Article spacing rules applied: title-to-body, heading-to-text, section spacing, and final paragraph spacing
 - [ ] EU vs non-EU CSS-only tabs included when the topic differs by audience
 - [ ] Testimonials block included (2× — after first section + near conclusion)
 - [ ] Multilingual blocks included — Arabic (`dir="rtl"`) + French
@@ -2235,6 +2509,8 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 
 **Media & performance**
 - [ ] All `<img>` tags have explicit `width` and `height`
+- [ ] Visual Asset Brief completed for hero image and supporting visuals
+- [ ] Free image workflow used when no owned image exists: Canva Free / Microsoft Designer / Adobe Express / Pexels / Unsplash, then WebP compression
 - [ ] Every non-decorative image uses `<figure>` and `<figcaption>`
 - [ ] Below-fold images use `loading="lazy"`
 - [ ] Hero image uses `fetchpriority="high"`
