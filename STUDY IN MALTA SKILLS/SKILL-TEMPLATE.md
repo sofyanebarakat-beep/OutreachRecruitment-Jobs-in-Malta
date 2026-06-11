@@ -2433,7 +2433,7 @@ Delivery checks:
 
 ## IMAGE GENERATION SKILL
 
-Every article gets **7 real photographs** fetched automatically from Unsplash / Pexels. No AI-generated images — real photography only.
+Every article gets **7 real photographs** fetched automatically from Unsplash / Pexels. No AI-generated images — real photography only. All in-article section images are rendered **full viewport width** using the `figure-full` CSS breakout class.
 
 ### Script
 
@@ -2543,20 +2543,84 @@ General pattern — one query per major article section:
 
 ---
 
+### Full-Width Image Skill
+
+All 6 section images in the article body must break out of the narrow article container and span the **full viewport width**. This is done with the `figure-full` CSS class defined in `assets/brand-overrides.css`.
+
+**Required HTML for every section figure:**
+
+```html
+<!-- Photo: [Photographer] on [Source] — [photo_url] -->
+<figure class="figure-full" itemscope itemtype="https://schema.org/ImageObject">
+  <img src="/images/[slug]/[slug]-section-N.webp"
+       alt="[descriptive alt text — max 120 chars] | Outreach Recruitment"
+       width="[w]" height="[h]"
+       loading="lazy" decoding="async"
+       sizes="(max-width: 600px) 100vw, [w]px"
+       itemprop="contentUrl" />
+  <figcaption itemprop="caption" style="font-size:13px;color:#6b7280;margin-top:8px;">
+    [Caption sentence]. Photo: [Photographer] / [Source].
+  </figcaption>
+</figure>
+```
+
+**CSS in `assets/brand-overrides.css`** (already present — do not duplicate):
+
+```css
+.cms-article figure.figure-full {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 56px;
+  margin-bottom: 56px;
+  max-width: 100vw;
+}
+.cms-article figure.figure-full img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: cover;
+  border-radius: 0;
+}
+.cms-article figure.figure-full figcaption {
+  text-align: center;
+  max-width: 780px;
+  margin: 10px auto 0;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+```
+
+**Rules:**
+- `figure-full` class → **always required** on section images (never use inline margin styles instead)
+- Parent container must **not** have `overflow: hidden` (Webflow `.container.tight` does not — safe to use)
+- Hero image (`class="media-fill"`) uses its own CSS — do **not** add `figure-full` to the hero
+- On mobile (≤767px) `max-height` reduces to 280px to avoid tall images stacking poorly
+
+---
+
 ### Image Checklist (per article)
 
 - [ ] Script run: `python3 generate-article-images.py --auto --slug "[slug]" --topic "[title]"`
 - [ ] 7 WebP files confirmed in `/images/[slug]/`
+- [ ] Hero at exact 16:9 ratio (e.g. 1200×675) to match `cms-featured-media` CSS `aspect-ratio: 16/9`
 - [ ] Hero srcset 800w variant confirmed (`[slug]-hero-800w.webp`)
 - [ ] `image-tags.html` generated and reviewed
 - [ ] All 7 `<figure>` blocks embedded at correct section positions
+- [ ] All 6 section figures use `class="figure-full"` (full viewport width)
 - [ ] Hero `<img>` uses `fetchpriority="high"` (not `loading="lazy"`)
-- [ ] All 6 section images use `loading="lazy"`
+- [ ] All 6 section images use `loading="lazy"` and `decoding="async"`
 - [ ] All `<img>` have explicit `width` and `height`
-- [ ] All `<img>` have descriptive `alt` text (max 120 chars, ends with `— Outreach Recruitment`)
-- [ ] All images wrapped in `<figure>` + `<figcaption>`
+- [ ] All `<img>` have descriptive `alt` text (max 120 chars, ends with `| Outreach Recruitment`)
+- [ ] All images wrapped in `<figure class="figure-full">` + `<figcaption>`
+- [ ] All figures have `itemscope itemtype="https://schema.org/ImageObject"`
+- [ ] All images have `itemprop="contentUrl"`, figcaptions have `itemprop="caption"`
 - [ ] Attribution HTML comments present above each `<figure>`
 - [ ] OG / Twitter `og:image` meta tags updated to hero WebP URL
+- [ ] `og:image:width` = 1200, `og:image:height` = 675
 - [ ] `image-manifest.json` saved in `/images/[slug]/`
 - [ ] Images are **real photographs** (Unsplash or Pexels) — never AI-generated
 
@@ -2641,11 +2705,13 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 **Images (IMAGE GENERATION SKILL)**
 - [ ] `generate-article-images.py` run with `--auto --slug "[slug]" --topic "[title]"`
 - [ ] 7 WebP files confirmed in `/images/[slug]/`
-- [ ] Hero srcset 800w variant confirmed
+- [ ] Hero at exact 16:9 ratio (1200×675), srcset 800w variant confirmed
 - [ ] All 7 `<figure>` blocks embedded at correct H2 section positions
-- [ ] Hero uses `fetchpriority="high"`, all others `loading="lazy"`
-- [ ] OG + Twitter `og:image` meta tags point to hero WebP
+- [ ] All 6 section figures use `class="figure-full"` (full viewport width breakout)
+- [ ] Hero uses `fetchpriority="high"`, all others `loading="lazy"` + `decoding="async"`
+- [ ] OG + Twitter `og:image` meta tags point to hero WebP (`og:image:height` = 675)
 - [ ] Attribution HTML comments above every `<figure>`
+- [ ] All section figures have `itemscope itemtype="https://schema.org/ImageObject"`
 - [ ] Images are real photographs (Unsplash / Pexels) — no AI images
 
 **Media & performance**
