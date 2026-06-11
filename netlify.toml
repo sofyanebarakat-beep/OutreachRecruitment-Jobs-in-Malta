@@ -21,6 +21,67 @@
   status = 200
   force = true
 
+# ── Malta Study Guide articles — trailing slash + missing-prefix fixes ─────
+[[redirects]]
+  from = "/malta-study-guide/:slug/"
+  to = "/malta-study-guide/:slug.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/student-accommodation-in-malta"
+  to = "/malta-study-guide/student-accommodation-in-malta"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/student-accommodation-in-malta/"
+  to = "/malta-study-guide/student-accommodation-in-malta"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cost-of-living-in-malta-as-a-student"
+  to = "/malta-study-guide/cost-of-living-in-malta-as-a-student"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/english-language-courses-in-malta"
+  to = "/malta-study-guide/english-language-courses-in-malta"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/healthcare-for-students-in-malta"
+  to = "/malta-study-guide/healthcare-for-students-in-malta"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/is-malta-good-to-study"
+  to = "/malta-study-guide/is-malta-good-to-study"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/malta-student-visa-complete-guide"
+  to = "/malta-study-guide/malta-student-visa-complete-guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/malta-student-visa-requirements"
+  to = "/malta-study-guide/malta-student-visa-requirements"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/working-while-studying-in-malta"
+  to = "/malta-study-guide/working-while-studying-in-malta"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/faqs"
   to = "/faqs.html"
