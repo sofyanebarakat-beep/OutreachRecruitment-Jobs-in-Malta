@@ -2408,9 +2408,6 @@ body.opening-jobs-page .main{
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 1.5rem !important;
-    background:
-      linear-gradient(to bottom, rgba(8, 8, 28, 0.97) 0%, rgba(8, 8, 28, 0.88) 100%),
-      url('/assets/jobs-malta-hr-admin.png') center / cover no-repeat !important;
   }
   .opening-ad-banner > div:first-child {
     max-width: 100% !important;
@@ -3287,6 +3284,18 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
 }
 .outreach-apply-frame.tall {
   min-height: 1500px;
+}
+
+/* Desktop: expand the apply section to near-full width */
+@media (min-width: 992px) {
+  .section.outreach-apply.standalone .w-container {
+    max-width: 1400px !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  .outreach-apply-frame-wrap {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 991px) {
