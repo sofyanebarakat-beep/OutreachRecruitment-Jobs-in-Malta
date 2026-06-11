@@ -13,3 +13,5 @@ outreachrecruitmentjobs-*.json
 __pycache__/
 *.py[cod]
 .pytest_cache/
+STUDY IN MALTA SKILLS/image-api-keys.json
+images/image-log.json
