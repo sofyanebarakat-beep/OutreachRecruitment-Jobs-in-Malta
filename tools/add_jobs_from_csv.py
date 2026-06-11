@@ -22,6 +22,11 @@ employer_name    Real employer name if public; leave blank to use Outreach Recru
 confidential_employer true | false; set true if the employer must be hidden in schema
 street_address   Optional exact worksite street address
 postal_code      Optional worksite postal code
+base_salary      Optional actual base salary from employer, numeric only
+salary_min       Optional actual minimum salary, numeric only
+salary_max       Optional actual maximum salary, numeric only
+salary_currency  Salary currency, default EUR
+salary_unit      HOUR | DAY | WEEK | MONTH | YEAR, default YEAR
 employment_type  Full-Time | Part-Time | Subcontracting  (default: Full-Time)
 work_mode        On-Site | Remote | Hybrid  (default: On-Site)
 apply_url        Full apply link from careers-page.com
@@ -409,6 +414,11 @@ def parse_csv(csv_path: Path) -> list[dict]:
                 "address_locality": row.get("address_locality", "").strip(),
                 "address_region":  row.get("address_region", "").strip(),
                 "address_country": row.get("address_country", "").strip(),
+                "base_salary":     row.get("base_salary", "").strip(),
+                "salary_min":      row.get("salary_min", "").strip(),
+                "salary_max":      row.get("salary_max", "").strip(),
+                "salary_currency": row.get("salary_currency", "").strip(),
+                "salary_unit":     row.get("salary_unit", "").strip(),
                 "employment_type": row.get("employment_type", "Full-Time").strip() or "Full-Time",
                 "work_mode":       row.get("work_mode", "On-Site").strip() or "On-Site",
                 "apply_url":       row.get("apply_url", "").strip(),

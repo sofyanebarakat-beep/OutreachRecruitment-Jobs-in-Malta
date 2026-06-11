@@ -18,6 +18,8 @@ REGISTRY = ROOT / "tools" / "jobs_registry.json"
 JOBS = ROOT / "jobs"
 BASE_URL = "https://outreachrecruitment.net"
 TODAY = date.today().isoformat()
+DEFAULT_VALID_THROUGH = "2026-12-31"
+DEFAULT_POSTAL_CODE = "0000"
 
 REQUIRED_FIELDS = [
     "title",
@@ -75,6 +77,17 @@ def extract_list_items(section_html: str) -> list[str]:
 def extract_paragraph(section_html: str) -> str:
     match = re.search(r"<p[^>]*>(.*?)</p>", section_html, flags=re.S)
     return clean_text(match.group(1)) if match else clean_text(section_html)
+
+
+def first_jobposting_schema(html: str) -> dict | None:
+    for block in re.findall(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', html, flags=re.S):
+        try:
+            data = json.loads(block)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(data, dict) and data.get("@type") == "JobPosting":
+            return data
+    return None
 
 
 def description_from_page(html: str, job: dict) -> str:
@@ -136,17 +149,145 @@ def hiring_organization(job: dict) -> dict:
 
 
 def postal_address(job: dict) -> dict:
+    locality = job.get("address_locality") or city_from_location(job["location"])
     address = {
         "@type": "PostalAddress",
-        "addressLocality": job.get("address_locality") or city_from_location(job["location"]),
+        "streetAddress": job.get("street_address") or job.get("location") or locality,
+        "addressLocality": locality,
         "addressRegion": job.get("address_region") or "Malta",
+        "postalCode": job.get("postal_code") or DEFAULT_POSTAL_CODE,
         "addressCountry": job.get("address_country") or "MT",
     }
-    if job.get("street_address"):
-        address["streetAddress"] = job["street_address"]
-    if job.get("postal_code"):
-        address["postalCode"] = job["postal_code"]
     return address
+
+
+def credential_category(text: str) -> str:
+    value = text.lower()
+    if "postgraduate" in value or "master" in value or "phd" in value or "doctorate" in value:
+        return "postgraduate degree"
+    if "degree" in value or "university" in value or "bachelor" in value or "mqf" in value or "eqf" in value:
+        return "bachelor degree"
+    if "certificate" in value or "certification" in value or "licence" in value or "license" in value:
+        return "professional certificate"
+    if "diploma" in value or "associate" in value:
+        return "associate degree"
+    if "school" in value:
+        return "high school"
+    return "no requirements"
+
+
+def months_of_experience(text: str) -> int | None:
+    matches = []
+    for number, unit in re.findall(r"(\d+)\s*(?:\+)?\s*(year|years|yr|yrs|month|months)", text.lower()):
+        n = int(number)
+        matches.append(n * 12 if unit.startswith(("year", "yr")) else n)
+    return min(matches) if matches else None
+
+
+def section_text(html: str, heading: str) -> str:
+    section = extract_section(html, heading)
+    items = extract_list_items(section)
+    if items:
+        return " ".join(items)
+    return extract_paragraph(section)
+
+
+def education_requirements(html: str, job: dict) -> dict:
+    text = job.get("education_requirements") or section_text(html, "Requirements")
+    return {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": credential_category(text),
+    }
+
+
+def experience_requirements(html: str, job: dict) -> dict | str:
+    text = job.get("experience_requirements") or section_text(html, "Requirements")
+    months = months_of_experience(text)
+    if months is None:
+        if "experience" in text.lower():
+            months = 1
+        else:
+            return "no requirements"
+    return {
+        "@type": "OccupationalExperienceRequirements",
+        "monthsOfExperience": months,
+    }
+
+
+def base_salary(job: dict) -> dict | None:
+    currency = job.get("salary_currency") or "EUR"
+    unit = (job.get("salary_unit") or "YEAR").upper()
+    if unit not in {"HOUR", "DAY", "WEEK", "MONTH", "YEAR"}:
+        unit = "YEAR"
+
+    value = job.get("base_salary") or job.get("salary")
+    min_value = job.get("salary_min")
+    max_value = job.get("salary_max")
+    if value:
+        try:
+            quantity = {
+                "@type": "QuantitativeValue",
+                "value": float(str(value).replace(",", "").strip()),
+                "unitText": unit,
+            }
+        except ValueError:
+            return None
+    elif min_value and max_value:
+        try:
+            quantity = {
+                "@type": "QuantitativeValue",
+                "minValue": float(str(min_value).replace(",", "").strip()),
+                "maxValue": float(str(max_value).replace(",", "").strip()),
+                "unitText": unit,
+            }
+        except ValueError:
+            return None
+    else:
+        return None
+
+    return {
+        "@type": "MonetaryAmount",
+        "currency": currency,
+        "value": quantity,
+    }
+
+
+def fallback_job_from_schema(path: Path, html: str, schema: dict) -> dict:
+    slug = path.parent.name
+    address = ((schema.get("jobLocation") or {}).get("address") or {})
+    org = schema.get("hiringOrganization") or {}
+    employment = schema.get("employmentType") or "FULL_TIME"
+    employment_label = employment.replace("_", "-").title()
+    location = ", ".join(
+        value for value in [address.get("addressLocality"), address.get("addressRegion")]
+        if value
+    ) or "Malta"
+    job = {
+        "slug": slug,
+        "title": schema.get("title") or slug.replace("-", " ").title(),
+        "category": schema.get("industry") or schema.get("occupationalCategory") or "General",
+        "location": location,
+        "location_slug": location.lower(),
+        "employment_type": employment_label,
+        "work_mode": "Remote" if schema.get("jobLocationType") == "TELECOMMUTE" else "On-Site",
+        "date": schema.get("datePosted") or TODAY,
+        "valid_through": schema.get("validThrough") or DEFAULT_VALID_THROUGH,
+        "employer_name": org.get("name") or "Outreach Recruitment Ltd",
+        "employer_url": org.get("sameAs") or "",
+        "employer_logo": org.get("logo") or "",
+        "street_address": address.get("streetAddress") or "",
+        "postal_code": address.get("postalCode") or "",
+        "address_locality": address.get("addressLocality") or "",
+        "address_region": address.get("addressRegion") or "",
+        "address_country": address.get("addressCountry") or "",
+    }
+    existing_education = schema.get("educationRequirements")
+    if isinstance(existing_education, str):
+        job["education_requirements"] = existing_education
+    existing_experience = schema.get("experienceRequirements")
+    if isinstance(existing_experience, str):
+        job["experience_requirements"] = existing_experience
+    return job
 
 
 def build_schema(html: str, job: dict) -> dict:
@@ -154,7 +295,7 @@ def build_schema(html: str, job: dict) -> dict:
     title = job["title"]
     city = city_from_location(job["location"])
     category = job["category"]
-    valid_through = job.get("valid_through")
+    valid_through = job.get("valid_through") or DEFAULT_VALID_THROUGH
 
     schema = {
         "@context": "https://schema.org",
@@ -181,6 +322,8 @@ def build_schema(html: str, job: dict) -> dict:
             "name": "Malta",
         },
         "workHours": job["employment_type"],
+        "educationRequirements": education_requirements(html, job),
+        "experienceRequirements": experience_requirements(html, job),
         "directApply": True,
         "applicationContact": {
             "@type": "ContactPoint",
@@ -192,6 +335,9 @@ def build_schema(html: str, job: dict) -> dict:
         schema["validThrough"] = valid_through
     if job.get("work_mode", "").lower() == "remote":
         schema["jobLocationType"] = "TELECOMMUTE"
+    salary = base_salary(job)
+    if salary:
+        schema["baseSalary"] = salary
     return schema
 
 
@@ -235,13 +381,24 @@ def validate_schema(schema: dict) -> list[str]:
 
 def main() -> None:
     jobs = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    registry_slugs = {job["slug"] for job in jobs}
+    extra_jobs = []
+    for path in sorted(JOBS.glob("*/index.html")):
+        if path.parent.name in registry_slugs:
+            continue
+        html = path.read_text(encoding="utf-8")
+        schema = first_jobposting_schema(html)
+        if schema:
+            extra_jobs.append(fallback_job_from_schema(path, html, schema))
+
+    all_jobs = jobs + extra_jobs
     changed = 0
     missing_pages = []
     failed_replace = []
     audit_rows = []
     registry_changed = False
 
-    for job in jobs:
+    for job in all_jobs:
         path = JOBS / job["slug"] / "index.html"
         if not path.exists():
             missing_pages.append(job["slug"])
@@ -257,7 +414,7 @@ def main() -> None:
         if updated != html:
             path.write_text(updated, encoding="utf-8")
             changed += 1
-            if job.get("lastmod") != TODAY:
+            if job["slug"] in registry_slugs and job.get("lastmod") != TODAY:
                 job["lastmod"] = TODAY
                 registry_changed = True
         audit_rows.append((job["slug"], len(schema["description"]), issues))
@@ -265,6 +422,7 @@ def main() -> None:
     issue_rows = [(slug, length, issues) for slug, length, issues in audit_rows if issues]
 
     print(f"Jobs in registry: {len(jobs)}")
+    print(f"Extra job pages with schema: {len(extra_jobs)}")
     print(f"Pages updated: {changed}")
     print(f"Pages audited: {len(audit_rows)}")
     print(f"Missing pages: {len(missing_pages)}")

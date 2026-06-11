@@ -1,0 +1,15 @@
+# Local secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*service-account*.json
+*google*credentials*.json
+*indexing*api*.json
+mapoutreachrecruitment-*.json
+outreachrecruitmentjobs-*.json
+
+# Python/cache noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
