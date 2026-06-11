@@ -672,7 +672,7 @@ Every article HTML file must follow this skeleton exactly:
 
 Include:
 
-- Author Name: Sofyane Barakat
+- Author Name: Outreach Recruitment Agency
 - Author Bio
 - Author Credentials (Recruitment & International Education Specialist, Malta)
 - Expert Review Section
@@ -695,7 +695,7 @@ Every article must link the author name to the Outreach Recruitment team page an
 <div class="author-box" style="display:flex;align-items:flex-start;gap:16px;background:#f9fafb;border-radius:8px;padding:20px;margin:32px 0;">
   <div>
     <p style="font-weight:700;margin-bottom:4px;">
-      <a href="https://outreachrecruitment.net/about" rel="author" style="color:#111827;text-decoration:none;">Sofyane Barakat</a>
+      <a href="https://outreachrecruitment.net/about" rel="author" style="color:#111827;text-decoration:none;">Outreach Recruitment Agency</a>
     </p>
     <p style="font-size:13px;color:#6b7280;margin-bottom:8px;">Recruitment & International Education Specialist, Malta</p>
     <p style="font-size:14px;color:#374151;margin-bottom:8px;">[2–3 sentence author bio linking experience to this specific topic]</p>
@@ -712,7 +712,7 @@ Every article must link the author name to the Outreach Recruitment team page an
 - [ ] Author name links to `/about` page with `rel="author"`
 - [ ] LinkedIn company page linked
 - [ ] Author bio is specific to the article topic (not generic)
-- [ ] `Person` schema includes `sameAs` with LinkedIn URL
+- [ ] Author schema uses `Organization` for Outreach Recruitment Agency and includes `sameAs` with LinkedIn URL
 - [ ] Author box appears above the article introduction
 
 ---
@@ -1078,7 +1078,7 @@ Generate JSON-LD schema for:
 5. BlogPosting Schema
 6. FAQPage Schema
 7. BreadcrumbList Schema
-8. Person Schema
+8. Author Organization Schema
 9. EducationalOrganization Schema
 10. Course Schema
 11. VideoObject Schema
@@ -1489,7 +1489,7 @@ Google rewards content that stays current. Every article must include freshness 
 
 ```html
 <p style="color:#6b7280;font-size:14px;margin-bottom:24px;">
-  By <strong>Sofyane Barakat</strong> · Published [DATE] · <strong>Updated [DATE]</strong> · [X] min read
+  By <strong>Outreach Recruitment Agency</strong> · Published [DATE] · <strong>Updated [DATE]</strong> · [X] min read
 </p>
 ```
 
@@ -1797,7 +1797,7 @@ Include in every article `<head>`:
 <!-- Article metadata -->
 <meta property="article:published_time" content="[ISO 8601 DATE]" />
 <meta property="article:modified_time" content="[ISO 8601 DATE]" />
-<meta property="article:author" content="Sofyane Barakat" />
+<meta property="article:author" content="Outreach Recruitment Agency" />
 <meta property="article:section" content="Study in Malta" />
 ```
 
@@ -1811,7 +1811,7 @@ Add these fields in the article header or frontmatter:
 <meta name="date" content="[YYYY-MM-DD]" />
 <meta name="last-modified" content="[YYYY-MM-DD]" />
 <meta name="reading-time" content="[X] min read" />
-<meta name="author" content="Sofyane Barakat" />
+<meta name="author" content="Outreach Recruitment Agency" />
 <meta name="category" content="Study in Malta" />
 ```
 
@@ -1819,7 +1819,7 @@ Display visibly in the article byline:
 
 ```html
 <p style="color:#6b7280;font-size:14px;margin-bottom:24px;">
-  By <strong>Sofyane Barakat</strong> · [YYYY-MM-DD] · [X] min read
+  By <strong>Outreach Recruitment Agency</strong> · [YYYY-MM-DD] · [X] min read
 </p>
 ```
 
@@ -1901,15 +1901,15 @@ Include a "Cite this article" block at the bottom of every article, before the f
   <p style="font-weight:700;margin-bottom:12px;">Cite this article</p>
 
   <p style="margin-bottom:8px;"><strong>APA:</strong><br>
-  Barakat, S. ([YEAR]). <em>[Article Title]</em>. Outreach Recruitment.
+  Outreach Recruitment Agency. ([YEAR]). <em>[Article Title]</em>. Outreach Recruitment.
   Retrieved from <a href="https://outreachrecruitment.net/[slug]" style="color:#1a56db;">https://outreachrecruitment.net/[slug]</a></p>
 
   <p style="margin-bottom:8px;"><strong>MLA:</strong><br>
-  Barakat, Sofyane. "[Article Title]." <em>Outreach Recruitment</em>, [DAY MON. YEAR],
+  Outreach Recruitment Agency. "[Article Title]." <em>Outreach Recruitment</em>, [DAY MON. YEAR],
   outreachrecruitment.net/[slug].</p>
 
   <p style="margin-bottom:0;"><strong>Chicago:</strong><br>
-  Barakat, Sofyane. "[Article Title]." Outreach Recruitment. [MONTH DAY, YEAR].
+  Outreach Recruitment Agency. "[Article Title]." Outreach Recruitment. [MONTH DAY, YEAR].
   https://outreachrecruitment.net/[slug].</p>
 </div>
 ```
