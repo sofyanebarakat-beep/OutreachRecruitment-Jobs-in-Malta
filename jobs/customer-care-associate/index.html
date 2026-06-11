@@ -410,5 +410,12 @@ if (document.querySelector('[data-marquee="right"]')) {
   document.querySelectorAll("[data-job-description-trigger]").forEach(function (trigger) {
     trigger.addEventListener("click", showDescription);
   });
+  window.addEventListener('message', function(e) {
+    if (!e.origin.includes('careers-page.com')) return;
+    var d = e.data;
+    var h = (typeof d === 'object' && d !== null) ? (d.height || d.frameHeight || d.size) : null;
+    if (!h && typeof d === 'string') { try { var p = JSON.parse(d); h = p.height || p.frameHeight; } catch(_){} }
+    if (h && !isNaN(h)) { var fr = applyPanel.querySelector('iframe.outreach-apply-frame'); if (fr) { fr.style.minHeight = Number(h) + 'px'; } }
+  });
 })();
 </script></body></html>

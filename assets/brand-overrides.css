@@ -763,14 +763,14 @@ body.home-test-page .home-test-seo .section-content {
 .outreach-apply-frame {
   display: block;
   width: 100%;
-  min-height: 980px;
+  min-height: 1100px;
   border: 0;
   background: #ffffff;
   overflow: hidden;
 }
 
 .outreach-apply-frame.tall {
-  min-height: 1500px;
+  min-height: 1700px;
 }
 
 .outreach-support-embed {
@@ -1588,11 +1588,11 @@ body.home-test-page .service-spotlight {
   }
 
   .outreach-apply-frame {
-    min-height: 1120px;
+    min-height: 1300px;
   }
 
   .outreach-apply-frame.tall {
-    min-height: 1650px;
+    min-height: 1900px;
   }
 
   .opening-jobs-hero {
@@ -3969,16 +3969,11 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   visibility: visible !important;
 }
 
-/* ── Apply panel iframe — reduce mobile min-height ──────────────────────── */
-/*
- * Default was 1650px on mobile, forcing a massive layout shift when the
- * apply panel opens.  600px renders the form above the fold; the iframe
- * auto-expands via the postMessage resize handler.
- */
+/* ── Apply panel iframe — mobile min-height ─────────────────────────────── */
 @media (max-width: 767px) {
   .outreach-apply-frame,
   .outreach-apply-frame.tall {
-    min-height: 620px !important;
+    min-height: 950px !important;
   }
 }
 
