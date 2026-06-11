@@ -2048,6 +2048,10 @@ Every Study in Malta article must show **3 levels**: Home → Malta Study Guide 
 
 - The article's **canonical URL** is `https://outreachrecruitment.net/[slug]` (root level)
 - The article **appears as a card** in the Malta Study Guide blog index at `/malta-study-guide`
+- Add the article card to **both** Malta Study Guide source files:
+  - `malta-study-guide.html`
+  - `malta-study-guide/index.html`
+- Do not update only one Malta Study Guide file. GitHub Pages may serve `malta-study-guide.html`, while directory-based hosting may serve `malta-study-guide/index.html`.
 - The breadcrumb always shows: **Home → Malta Study Guide → [Article Title]**
 - Every article must include a "Back to Malta Study Guide" link in the header and footer
 
