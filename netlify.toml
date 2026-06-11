@@ -1,6 +1,26 @@
 [build]
   publish = "."
 
+# ── Blog articles — redirect old /blog/* URLs to root ──────────────────────
+[[redirects]]
+  from = "/blog/:slug/"
+  to = "/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/:slug"
+  status = 301
+  force = true
+
+# ── Study in Malta Complete Guide — handle trailing slash ──────────────────
+[[redirects]]
+  from = "/study-in-malta-complete-guide/"
+  to = "/study-in-malta-complete-guide"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/faqs"
   to = "/faqs.html"
