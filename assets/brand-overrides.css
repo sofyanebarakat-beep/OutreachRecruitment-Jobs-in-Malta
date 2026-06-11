@@ -3228,3 +3228,32 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
     content-visibility: hidden;
   }
 }
+
+/* ── Apply iframe — desktop base, tall mobile & tablet heights ───────────── */
+.outreach-apply-frame {
+  display: block;
+  width: 100%;
+  min-height: 980px;
+  border: 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+.outreach-apply-frame.tall {
+  min-height: 1500px;
+}
+
+@media (max-width: 991px) {
+  .outreach-apply-frame {
+    min-height: 1500px !important;
+  }
+  .outreach-apply-frame.tall {
+    min-height: 2000px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .outreach-apply-frame,
+  .outreach-apply-frame.tall {
+    min-height: 1400px !important;
+  }
+}
