@@ -44,6 +44,23 @@
   status = 301
   force = true
 
+# ── Study in Malta from India — clean root article URL ─────────────────────
+[[redirects]]
+  from = "/study-in-malta-from-india"
+  to = "/study-in-malta-from-india/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/study-in-malta-from-india/"
+  to = "/study-in-malta-from-india/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/study-in-malta-from-india.html"
+  to = "/study-in-malta-from-india"
+  status = 301
+  force = true
+
 # ── Malta Study Guide — redirect old /malta-study-guide/* to root slug ─────
 [[redirects]]
   from = "/malta-study-guide/:slug/"

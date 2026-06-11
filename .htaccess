@@ -10,6 +10,7 @@ DirectoryIndex index.html index.php
 
     # Serve new Study in Malta article clean URL directly
     RewriteRule ^study-in-malta-from-morocco/?$ study-in-malta-from-morocco/index.html [L]
+    RewriteRule ^study-in-malta-from-india/?$ study-in-malta-from-india/index.html [L]
 
     # Serve real files and directories directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]

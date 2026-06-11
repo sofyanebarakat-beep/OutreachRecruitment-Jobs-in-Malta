@@ -4242,4 +4242,5 @@ If Stage 1 articles have > 75% bounce rate, the next-step links or CTAs are not 
 
 | Date | Title | Direct URL | Primary keyword | Status | Notes |
 |---|---|---|---|---|---|
+| 2026-06-11 | Study in Malta from India: 2026 Guide for Indian Students | `https://outreachrecruitment.net/study-in-malta-from-india` | study in Malta from India | Published | Root-level slug; country-specific India variant covering visa, IELTS/English proof, travel, costs, scholarships, and Indian student community. |
 | 2026-06-11 | Study in Malta from Morocco: 2026 Guide for Moroccan Students | `https://outreachrecruitment.net/study-in-malta-from-morocco` | study in Malta from Morocco | Published | Root-level slug, not `/blog/`; differentiated from broad `study in Malta` and application guide pages. |
