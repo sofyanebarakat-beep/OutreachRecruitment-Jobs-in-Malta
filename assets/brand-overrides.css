@@ -2378,6 +2378,14 @@ body.opening-jobs-page .main{
   font-size: 0.72rem;
 }
 
+/* ── Ad banner ─────────────────────────────────────────────────────────────── */
+.opening-ad-banner {
+  display: flex;
+  grid-column: 1 / -1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 /* ── Ad banner: mobile responsive fix ─────────────────────────────────────── */
 @media (max-width: 767px) {
   
@@ -3229,7 +3237,30 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   }
 }
 
-/* ── Apply iframe — full-width on mobile & tablet, with tall heights ─────── */
+/* ── Apply panel header — "Apply Now" label above job title ─────────────── */
+.job-inline-apply-header .text.center::before {
+  content: "Apply Now";
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #442DFA;
+  margin-bottom: 0.6rem;
+}
+
+/* ── Apply iframe — full-width on ALL devices + tall on mobile & tablet ──── */
+.section.outreach-apply.standalone .w-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+.outreach-apply-frame-wrap {
+  border-radius: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  width: 100% !important;
+}
 .outreach-apply-frame {
   display: block;
   width: 100%;
@@ -3242,19 +3273,7 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   min-height: 1500px;
 }
 
-/* Tablet: full-width card + taller iframe */
 @media (max-width: 991px) {
-  .section.outreach-apply.standalone .w-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    max-width: 100% !important;
-  }
-  .outreach-apply-frame-wrap {
-    border-radius: 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-    width: 100% !important;
-  }
   .outreach-apply-frame {
     min-height: 1500px !important;
   }
@@ -3263,7 +3282,6 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   }
 }
 
-/* Mobile: full-width card + taller iframe */
 @media (max-width: 767px) {
   .outreach-apply-frame,
   .outreach-apply-frame.tall {
