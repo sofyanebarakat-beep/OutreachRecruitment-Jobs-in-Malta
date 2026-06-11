@@ -2378,23 +2378,62 @@ body.opening-jobs-page .main{
   font-size: 0.72rem;
 }
 
-/* ── Ad banner ─────────────────────────────────────────────────────────────── */
 .opening-ad-banner {
-  display: flex;
   grid-column: 1 / -1;
-  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 1920 / 495;
   overflow: hidden;
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 8, 0.88), rgba(2, 4, 8, 0.58) 56%, rgba(2, 4, 8, 0.18)),
+    url("https://scontent-mrs2-1.xx.fbcdn.net/v/t1.6435-9/103984053_3434778379918334_2906080953060815031_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x768&ctp=s1024x768&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=it9vR5gwYK4Q7kNvwGWKo--&_nc_oc=AdpjfLzeMsad_RzCtTuIJpBhs_4L_ZucIwqzfWGGkqH8z_L6oo_tRWvftAkoYuBlJ2SD26S4mNDE_S3OvTg6Qdou&_nc_zt=23&_nc_ht=scontent-mrs2-1.xx&_nc_gid=ECLX3yqk66sxk4KNi3nC9g&_nc_ss=7b2a8&oh=00_Af9spx3imGr-4zok9By2mpC3fpBrApDMmg_AFkRBkLZsNw&oe=6A4E237A") center / contain no-repeat #020408;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opening-ad-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 /* ── Ad banner: mobile responsive fix ─────────────────────────────────────── */
 @media (max-width: 767px) {
-  
-  
-  
-  .opening-ad-banner .button-primary{
+  .opening-ad-banner {
+    aspect-ratio: unset !important;
+    padding: 1.75rem 1.25rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    background:
+      linear-gradient(to bottom, rgba(8, 8, 28, 0.97) 0%, rgba(8, 8, 28, 0.88) 100%),
+      url('/assets/jobs-malta-hr-admin.png') center / cover no-repeat !important;
+  }
+  .opening-ad-banner > div:first-child {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .opening-ad-banner > div:last-child {
+    flex-shrink: unset !important;
+    width: 100% !important;
+  }
+  .opening-ad-banner .button-primary {
     width: 100% !important;
     justify-content: center !important;
     box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .opening-ad-banner {
+    padding: 1.5rem 1rem !important;
+    border-radius: 8px !important;
+  }
+  .opening-ad-banner h3 {
+    font-size: 1.3rem !important;
   }
 }
 
