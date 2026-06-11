@@ -2759,6 +2759,663 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] Google Rich Results Test checked
 - [ ] Schema warnings explained if caused by unavailable optional data
 
+---
+
+## PAA DOMINATION SKILL
+
+People Also Ask boxes appear in 75%+ of "study in Malta" searches. Owning 3–5 PAA slots per article multiplies SERP real estate without needing a #1 ranking — and PAA answers are now directly ingested by Google AI Overviews.
+
+### When to run
+
+Run this skill **before writing** the article, immediately after the Competitor Gap Analysis. PAA questions define which H3 sections to include and how to format their opening answers.
+
+### Step 1 — Extract PAA questions
+
+For the primary keyword, identify the 10–15 most common PAA questions. Sources to check:
+
+- Google search → "People Also Ask" box (expand all questions)
+- AlsoAsked.com (free tier — map the full PAA tree)
+- AnswerThePublic (question variations)
+- Semrush / Ahrefs "Questions" filter for the keyword
+
+Record every question in the PAA Map table (Step 3).
+
+### Step 2 — Classify each question by snippet format
+
+Google serves PAA answers in four formats. Identify which format each question is currently being answered in:
+
+| PAA Answer Format | Trigger signal | How to match it |
+|---|---|---|
+| **Paragraph** | "What is / Why / Who / Can I" questions | 40–60 word prose block — no list, no bold, no links |
+| **Numbered list** | "How to / Steps to / Process for" questions | `<ol>` with 4–7 items, max 10 words per item |
+| **Bullet list** | "What are the / Types of / Examples of" questions | `<ul>` with 4–7 items, descriptive noun phrases |
+| **Table** | "How much / Compare / Vs / Requirements" questions | `<table>` — 2–4 columns, caption, scoped `<th>` |
+
+### Step 3 — Build the PAA Map
+
+Output this table as part of the **SEO Research section** before the article:
+
+| # | PAA Question (verbatim) | Target H3 `id` | Answer format | Priority |
+|---|---|---|---|---|
+| 1 | [Question exactly as Google shows it] | `#[h3-id]` | Paragraph / List / Table | High / Medium |
+| 2 | | | | |
+
+**Priority rules:**
+- **High** — question appears in the main PAA box (first 4 results), directly related to primary keyword
+- **Medium** — question appears after expansion, or is a secondary keyword question
+- Skip questions already answered in a competitor's featured snippet with a 5-star source (.edu, .gov)
+
+### Step 4 — Write the PAA-optimised H3 section
+
+Every High-priority PAA question must become an H3 in the article. Use this exact template:
+
+```html
+<h3 id="[h3-id]" style="scroll-margin-top:110px;">[PAA question verbatim — unchanged]</h3>
+
+<p>[40–60 word direct answer — first sentence answers the question directly.
+Second sentence adds the single most important qualifying detail.
+No inline links. No bold. No lists. Plain prose only.
+This paragraph is what Google lifts verbatim into the PAA box.]</p>
+
+<p>[Expanded answer — 150–250 words. Add context, examples, data, and links here.]</p>
+```
+
+**PAA answer writing rules:**
+- The 40–60 word paragraph must stand alone — assume the reader has zero prior context
+- Start with a direct answer, not a preamble ("Yes, international students can…" not "When it comes to…")
+- Include the question's subject noun in the first sentence ("Malta student visa", "tuition fees in Malta")
+- Never start with "I", "We", or "Outreach"
+- Maximum sentence length: 25 words
+
+### Step 5 — Map PAA questions to ToC
+
+Every High-priority PAA H3 must appear in the Table of Contents with its exact question text as the anchor label:
+
+```html
+<li><a href="#[h3-id]">[PAA question verbatim]</a></li>
+```
+
+### PAA Domination Checklist (verify per article)
+
+- [ ] PAA Map table completed and included in SEO Research section
+- [ ] Every High-priority PAA question has a matching H3 in the article
+- [ ] H3 text matches the PAA question verbatim (no rewording)
+- [ ] Each H3 opens with a 40–60 word plain-prose answer paragraph
+- [ ] Answer paragraph contains no links, no bold, no lists
+- [ ] Answer format (paragraph / list / table) matches the format Google currently shows for that question
+- [ ] All PAA H3s appear in the Table of Contents
+- [ ] H3 `id` values are unique and slug-formatted (lowercase, hyphens only)
+
+### PAA Map output example (for "study in Malta" primary keyword)
+
+| # | PAA Question | Target H3 `id` | Format | Priority |
+|---|---|---|---|---|
+| 1 | Can I study in Malta as an international student? | `#international-students-malta` | Paragraph | High |
+| 2 | How much does it cost to study in Malta? | `#cost-of-studying-malta` | Table | High |
+| 3 | Do I need a visa to study in Malta? | `#visa-to-study-malta` | Paragraph | High |
+| 4 | Is Malta a good place to study? | `#is-malta-good-to-study` | Paragraph | High |
+| 5 | Can I work while studying in Malta? | `#work-while-studying-malta` | Paragraph | High |
+| 6 | What universities are in Malta? | `#universities-in-malta` | Bullet list | Medium |
+| 7 | How long does a Malta student visa take? | `#malta-student-visa-processing-time` | Paragraph | Medium |
+
+---
+
+## FEATURED SNIPPET FORMAT-MATCHING SKILL
+
+Google shows different featured snippet formats depending on the keyword — paragraph for "what is" queries, numbered list for "how to" queries, table for comparison queries. Using the wrong format is the single most common reason an article fails to win the snippet even with the correct content.
+
+### When to run
+
+Run this skill **before writing**, alongside the PAA Domination Skill. It sets the format rules for the Position Zero block and all H2 section openers.
+
+### Step 1 — Identify the current snippet type
+
+For the primary keyword and each major secondary keyword, check whether Google is currently showing a featured snippet. Record the format:
+
+```
+Snippet Audit
+Primary keyword: [keyword]
+Current snippet shown: YES / NO
+Snippet type: Paragraph / Numbered list / Bullet list / Table / Accordion / None
+Current snippet source: [domain]
+Source authority: High (.gov/.edu/major media) / Medium (agency/blog) / Low (thin content)
+Opportunity: Steal / Reinforce / Claim (no snippet exists)
+```
+
+**Opportunity classification:**
+- **Steal** — a snippet exists but the source is Medium or Low authority. Your deeper article can displace it.
+- **Reinforce** — a snippet exists from a High authority source. Match format and target PAA boxes instead.
+- **Claim** — no snippet exists. A well-formatted 40–50 word block will claim it within weeks of indexing.
+
+### Step 2 — Match your content format to the snippet type
+
+| Current SERP snippet type | Position Zero block format | H2/H3 section opener format |
+|---|---|---|
+| **Paragraph snippet** | 40–50 word prose block — no lists, no links, no bold | Same — plain prose opening paragraph |
+| **Numbered list snippet** | `<ol>` with 4–7 items immediately after H2 — max 10 words each | Open H2 with `<ol>` before prose expansion |
+| **Bullet list snippet** | `<ul>` with 4–7 items — noun phrases, parallel structure | Open H2 with `<ul>` before prose expansion |
+| **Table snippet** | `<table>` with 2–4 columns, clear caption, immediately after H2 | Open H2 with table before prose |
+| **Accordion / FAQ snippet** | `<details>`/`<summary>` — question as summary, answer ≤ 50 words | FAQ section at end of article |
+| **No snippet (opportunity)** | 40–50 word prose block — plant the claim | Standard section structure |
+
+### Step 3 — Apply format rules per section
+
+For every H2 section that targets a snippet-eligible keyword, output a format instruction:
+
+```
+Section Format Instructions
+H2: [Section heading]
+Target keyword: [keyword]
+Snippet opportunity: Steal / Claim / Reinforce
+Required format: Paragraph / List / Table / Accordion
+Opening element: [exact HTML element to use first after the H2]
+Word count of opening element: [40–50 for prose / N items for list]
+```
+
+### Step 4 — Position Zero block variants
+
+Generate 3 variants of the Position Zero block for the primary keyword — one for each most likely format. The writer picks the one that matches the current SERP:
+
+**Variant A — Paragraph (use when SERP shows paragraph snippet):**
+```
+[40–50 word prose block. First sentence: direct answer to the primary keyword question.
+Second sentence: most important qualifying detail. No links, no bold, no lists.]
+```
+
+**Variant B — Numbered list (use when SERP shows "steps" or numbered list snippet):**
+```html
+<p>Malta offers international students [X main reasons / steps / requirements]:</p>
+<ol>
+  <li>[Item 1 — max 10 words]</li>
+  <li>[Item 2 — max 10 words]</li>
+  <li>[Item 3 — max 10 words]</li>
+  <li>[Item 4 — max 10 words]</li>
+</ol>
+```
+
+**Variant C — Table (use when SERP shows comparison or data table snippet):**
+```html
+<p>[1 sentence direct answer]. Key figures:</p>
+<table>
+  <caption>[Descriptive caption]</caption>
+  <thead><tr><th scope="col">Category</th><th scope="col">Value</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">[Row 1]</th><td>[Value]</td></tr>
+    <tr><th scope="row">[Row 2]</th><td>[Value]</td></tr>
+  </tbody>
+</table>
+```
+
+### Featured Snippet Format-Matching Checklist
+
+- [ ] Snippet Audit completed for primary keyword — type and opportunity recorded
+- [ ] Position Zero block uses the format matching the current SERP snippet type
+- [ ] Every H2 that targets a snippet-eligible keyword opens with the correct format element
+- [ ] Paragraph snippets: 40–50 words, no links, no bold, no lists
+- [ ] List snippets: 4–7 items, max 10 words each, parallel structure
+- [ ] Table snippets: caption present, `<thead>` + scoped `<th>`, `<tbody>` with `<th scope="row">`
+- [ ] No section uses a format that contradicts the current SERP snippet format for that keyword
+- [ ] 3 Position Zero block variants generated; correct one selected based on SERP
+
+---
+
+## E-E-A-T ENTITY BUILDING SKILL
+
+Google's AI Overviews and knowledge graph only cite sources it can **verify as real entities**. Without a confirmed entity presence — Knowledge Panel, Wikidata entry, consistent NAP across authoritative directories — Outreach Recruitment gets filtered out of AI-generated answers even when the content is excellent. This skill builds the off-page entity layer that makes the content trustworthy to AI systems.
+
+### When to run
+
+Run this skill **once for the site** (not per article), then maintain it quarterly. Per-article actions are the schema sections at the bottom of this skill.
+
+### Part 1 — Knowledge Panel & Entity Confirmation
+
+**Step 1 — Search for existing Knowledge Panel**
+
+Search Google for `Outreach Recruitment Agency Malta`. Record:
+
+```
+Entity Status Check
+Search: "Outreach Recruitment Agency Malta"
+Knowledge Panel shown: YES / NO
+Panel type: Organization / Local Business / Person / None
+Panel data correct: YES / PARTIAL / NO
+Missing fields: [list]
+Action: Claim / Correct / Create
+```
+
+**Step 2 — Claim or create the Knowledge Panel**
+
+- If a panel exists: claim it via "Claim this knowledge panel" link in Google Search
+- If no panel: seed it by completing all steps below (the panel will appear within 2–6 months)
+
+**Step 3 — Wikidata entity stub**
+
+Create a minimal Wikidata item for Outreach Recruitment Agency:
+
+```
+Wikidata Q-item requirements:
+- Label (en): Outreach Recruitment Agency
+- Description: Maltese recruitment and international student advisory agency
+- Properties to add:
+  P31 (instance of): Q4830453 (business)
+  P17 (country): Q233 (Malta)
+  P856 (official website): https://outreachrecruitment.net/
+  P2002 (Twitter): OutreachRecrt
+  P2003 (Instagram): outreachrecruitment_agency
+  P4264 (LinkedIn): outreach-recruitment-agency
+  P571 (inception): [founding year]
+```
+
+Once the Q-item exists, add it to every article's Organization schema via `sameAs`:
+
+```json
+"sameAs": [
+  "https://www.linkedin.com/company/outreach-recruitment-agency/",
+  "https://www.wikidata.org/wiki/Q[ITEM-NUMBER]",
+  "https://www.facebook.com/outreachrecruit/",
+  "https://twitter.com/OutreachRecrt"
+]
+```
+
+### Part 2 — NAP Consistency (Name, Address, Phone)
+
+Google cross-references business data across directories to confirm entity legitimacy. Every listing must use the **exact same** name, address, and phone format.
+
+**Canonical NAP:**
+```
+Name:    Outreach Recruitment Agency
+Address: [Malta address — be consistent, use the exact same format everywhere]
+Phone:   [International format: +356 XXXX XXXX]
+Website: https://outreachrecruitment.net/
+```
+
+**Priority citation directories to claim:**
+
+| Directory | Priority | URL |
+|---|---|---|
+| Google Business Profile | Critical | business.google.com |
+| Bing Places for Business | High | bingplaces.com |
+| Malta Chamber of Commerce | High | maltachamber.org.mt |
+| MFHEA Partner Directory | High | mfhea.mt |
+| LinkedIn Company Page | High | linkedin.com/company |
+| Facebook Business | Medium | facebook.com |
+| Trustpilot | Medium | trustpilot.com |
+| Glassdoor | Medium | glassdoor.com |
+| Erasmus+ partner directory | High (if applicable) | erasmus.ec.europa.eu |
+
+For each directory, record:
+
+```
+Citation Audit
+Directory: [name]
+Status: Listed / Not listed / Incorrect data
+NAP match: ✅ / ❌
+Action: Create / Update / Verify
+```
+
+### Part 3 — Google Business Profile Optimisation
+
+This is the fastest way to trigger a Knowledge Panel for a local business.
+
+**Required fields:**
+- Business name: `Outreach Recruitment Agency` (exact match — no keywords in name)
+- Primary category: `Educational Consultant`
+- Secondary categories: `Recruiter`, `Employment Agency`
+- Description: 750-char description including "study in Malta", "international student visa", "EU-accredited programmes"
+- Website: `https://outreachrecruitment.net/`
+- Phone: consistent with canonical NAP
+- Address: consistent with canonical NAP
+- Hours: set to actual opening hours
+- Photos: minimum 10 photos (logo, office, team, Malta imagery)
+- Posts: publish a Google Business Post for every new article (title + 1 sentence + article URL)
+
+### Part 4 — Per-Article Author Schema
+
+Every article must include the full author Organization schema with `sameAs` pointing to all verified profiles:
+
+```json
+{
+  "@type": "Organization",
+  "@id": "https://outreachrecruitment.net/#organization",
+  "name": "Outreach Recruitment Agency",
+  "url": "https://outreachrecruitment.net/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/outreach-recruitment-agency/",
+    "https://www.facebook.com/outreachrecruit/",
+    "https://twitter.com/OutreachRecrt",
+    "https://www.instagram.com/outreachrecruitment_agency",
+    "https://www.youtube.com/@outreachrecruitmentagency",
+    "https://www.wikidata.org/wiki/Q[ITEM-NUMBER]"
+  ]
+}
+```
+
+### Part 5 — EducationalOrganization + LocalBusiness on Homepage
+
+Add this schema to the homepage `<head>` (not just articles):
+
+```json
+{
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://outreachrecruitment.net/#organization",
+  "name": "Outreach Recruitment Agency",
+  "description": "Maltese recruitment agency specialising in international student placement and EU study programmes.",
+  "url": "https://outreachrecruitment.net/",
+  "telephone": "+356-XXXX-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Street]",
+    "addressLocality": "Malta",
+    "addressCountry": "MT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": [LAT],
+    "longitude": [LNG]
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "Free consultation",
+  "hasMap": "https://maps.google.com/?q=Outreach+Recruitment+Agency+Malta"
+}
+```
+
+### E-E-A-T Entity Building Checklist
+
+**One-time setup:**
+- [ ] Google Knowledge Panel search performed — status recorded
+- [ ] Google Business Profile claimed and fully completed
+- [ ] Wikidata Q-item created with P31, P17, P856, P2002, P2003, P4264, P571
+- [ ] All `sameAs` URLs added to Organization schema on homepage and in SKILL-TEMPLATE defaults
+- [ ] EducationalOrganization + LocalBusiness schema added to homepage
+- [ ] NAP canonical format defined and documented
+- [ ] All 9 priority citation directories checked — missing ones created
+
+**Per-article:**
+- [ ] Author Organization schema includes full `sameAs` array
+- [ ] Author box HTML links to `/about` with `rel="author"`
+- [ ] Author box links to LinkedIn company page
+- [ ] Google Business Profile Post published for this article
+
+**Quarterly review:**
+- [ ] NAP consistency re-checked across all citation directories
+- [ ] Google Business Profile photos refreshed (minimum 3 new photos/quarter)
+- [ ] New citation opportunities identified (new directories, university partner lists)
+- [ ] Wikidata item updated with any new properties or corrections
+
+---
+
+## INTERNAL LINK SPRINT SKILL
+
+A new article has zero internal PageRank on publish day. Google deprioritises crawling and ranking pages with no inbound internal links. This skill runs within 24 hours of every article going live, seeding PageRank from established pages immediately.
+
+### When to run
+
+Run this skill **within 24 hours of every article going live**. It is a post-publish action, not a pre-writing action.
+
+### Step 1 — Identify the 5 best source pages
+
+The best source pages are those that:
+1. Are already indexed and ranking (check GSC for impressions > 0)
+2. Are topically related to the new article
+3. Have existing H2/H3 sections that naturally mention the new article's topic
+4. Have not already linked to the new article
+
+Priority source pages for every Study in Malta article:
+
+| Source Page | Why it's a strong source |
+|---|---|
+| `/study-in-malta-complete-guide.html` | Highest authority Study in Malta page — strong PageRank donor |
+| `/study-in-malta` (pillar) | Pillar page — every cluster article should receive a link from here |
+| `/malta-study-guide/` (index) | Blog index — add new article card here |
+| Most topically related published article | Passes topical relevance + PageRank together |
+| Homepage (if article is a priority page) | Highest PageRank on site — use sparingly |
+
+### Step 2 — Find the best placement in each source page
+
+For each source page, identify the section where the new article's topic is mentioned or relevant. The link must be **contextual** — placed inside a sentence that naturally references the topic, not appended as a "see also" link.
+
+**Good placement (contextual):**
+```
+"…students applying for a student visa in Malta must submit proof of funds…"
+→ anchor "Malta student visa" → https://outreachrecruitment.net/malta-student-visa-complete-guide
+```
+
+**Bad placement (non-contextual):**
+```
+"…See also: Malta Student Visa Complete Guide…"
+```
+
+### Step 3 — Generate the Internal Link Sprint output
+
+Output one edit instruction per source page, ready to apply immediately:
+
+```
+Internal Link Sprint — [New Article Title]
+Slug: https://outreachrecruitment.net/[slug]
+Run within: 24 hours of publish
+
+---
+
+SOURCE PAGE 1: [file path]
+Section: H2 "[Section heading]" (approx. line [N])
+Find text:  "[exact sentence containing the anchor opportunity]"
+Replace with: "[same sentence with anchor inserted — use varied anchor text]"
+Anchor text: "[anchor text]"
+Anchor URL: https://outreachrecruitment.net/[slug]
+
+---
+
+SOURCE PAGE 2: [file path]
+Section: H2 "[Section heading]"
+Find text:  "[exact sentence]"
+Replace with: "[sentence with anchor]"
+Anchor text: "[anchor text — must be different from Page 1 anchor]"
+Anchor URL: https://outreachrecruitment.net/[slug]
+
+---
+
+[Repeat for pages 3, 4, 5]
+```
+
+### Step 4 — Anchor text diversity rule
+
+No two source pages may use the same anchor text pointing to the new article. Vary naturally:
+
+| Occurrence | Anchor text style | Example |
+|---|---|---|
+| 1st link | Exact match primary keyword | "Malta student visa" |
+| 2nd link | Partial match | "student visa requirements" |
+| 3rd link | Descriptive phrase | "how to apply for a Maltese student permit" |
+| 4th link | Branded | "our Malta student visa guide" |
+| 5th link | Generic + topic | "read more about Malta visa requirements" |
+
+### Step 5 — Update the blog index card
+
+Add the new article's Blog Card HTML to `/malta-study-guide/` immediately after the Sprint. Use the Blog Card template from the BLOG INDEX section of this skill.
+
+### Internal Link Sprint Checklist
+
+- [ ] Sprint run within 24 hours of article going live
+- [ ] 5 source pages identified and confirmed as indexed in GSC
+- [ ] Each source page has a contextual anchor (not "see also")
+- [ ] No two anchors pointing to the new article use the same text
+- [ ] `/malta-study-guide/` blog index updated with new article card
+- [ ] `/study-in-malta-complete-guide.html` updated with link to new article
+- [ ] Pillar page `/study-in-malta` updated with link to new article
+- [ ] Sprint edit instructions saved in the Published Articles Log
+
+---
+
+## CONTENT DECAY RESCUE SKILL
+
+Articles that ranked position 3–8 and slipped to position 10–20 are the highest ROI recovery target on the site. They already have domain authority, crawl budget, and backlinks — they just need a content refresh to recapture lost ground. A rescue takes 2–4 hours and typically recovers positions within 4–8 weeks.
+
+### Trigger conditions
+
+Run this skill when **any** of these signals appear in Google Search Console:
+
+| Signal | Threshold |
+|---|---|
+| Average position drop | ≥ 5 positions over any 60-day window |
+| CTR drop | ≥ 20% relative drop (e.g. 4.5% → 3.5%) over 60 days |
+| Impressions drop | ≥ 30% drop while position stays stable (SERP feature lost) |
+| "Crawled, not indexed" status | Article was indexed, now is not |
+| Rich result disappeared | FAQ / HowTo / Breadcrumb no longer appearing in GSC Enhancements |
+
+### Step 1 — Diagnose the decay type
+
+Identify which of the following caused the drop before writing a single word:
+
+```
+Decay Diagnosis
+Article: [title + URL]
+GSC check date: [date]
+Position 60 days ago: [N]
+Position today: [N]
+Drop magnitude: [N] places
+
+Cause hypothesis:
+[ ] A — New competitor page appeared and is now outranking (check top 5 results)
+[ ] B — Existing competitor updated their article (check their dateModified)
+[ ] C — Primary keyword intent shifted (SERP now shows different content type)
+[ ] D — Article data is outdated (fees, dates, visa rules changed)
+[ ] E — Google reduced trust in article (E-E-A-T signal — check if rich results dropped)
+[ ] F — Technical issue (check GSC Coverage, CWV, mobile usability)
+
+Primary cause: [A / B / C / D / E / F]
+```
+
+**Different causes require different fixes:**
+
+| Cause | Fix |
+|---|---|
+| A — New competitor | Run Competitor Gap Analysis against the new #1 page. Add missing sections. |
+| B — Competitor updated | Identify what they added. Add the same + go deeper. Update `dateModified`. |
+| C — Intent shift | Rewrite H1 + intro to match new intent. May need new structure. |
+| D — Outdated data | Update all stale statistics, fees, dates. Add "What's new" banner. |
+| E — E-E-A-T issue | Add more author signals, testimonials, data sources, citations. Run Entity Building Skill. |
+| F — Technical | Fix CWV, mobile issues, schema errors. Resubmit to GSC. |
+
+### Step 2 — Competitor gap re-analysis
+
+Compare the article against the current #1–3 ranking pages. For each section in their articles not covered in yours, mark it as a gap:
+
+| Topic / Section | Current #1 | Current #2 | Current #3 | Our Article | Action |
+|---|---|---|---|---|---|
+| [Section name] | ✅ | ✅ | ✅ | ❌ | **Add** |
+| [Section name] | ✅ | ❌ | ❌ | ✅ | OK |
+| [Section name] | ✅ | ✅ | ❌ | partial | **Expand** |
+
+**Rule:** Any section present in 2 or more top-ranking pages but missing or thin in your article must be added before the refresh is complete.
+
+### Step 3 — Freshness audit
+
+Check every data point in the article against current sources:
+
+```
+Freshness Audit
+Article: [title]
+Audit date: [YYYY-MM-DD]
+
+| Data point | Article says | Current correct value | Source | Action |
+|---|---|---|---|---|
+| Tuition fee range | €5,000–€10,000 | €5,500–€12,000 | MFHEA 2026 | Update |
+| Visa application fee | €27.50 | €30.00 | Identity Malta 2026 | Update |
+| Minimum wage | €8.24/hr | €8.92/hr | Malta Labour Dept 2026 | Update |
+| [stat] | | | | |
+```
+
+Any data point that is wrong or older than 18 months must be updated with a current source.
+
+### Step 4 — Topical depth score re-run
+
+Re-score every H2 section using the 5Ws+H framework. Sections scoring ≤ 3/6 must be expanded:
+
+| H2 Section | Who | What | When | Where | Why | How | Score /6 | Action |
+|---|---|---|---|---|---|---|---|---|
+| [Section] | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ | [n]/6 | Expand / OK |
+
+### Step 5 — Generate the rescue edit instructions
+
+Output exact, copy-paste-ready edit instructions for every change:
+
+```
+Rescue Edit Instructions — [Article Title]
+File: [file path]
+
+EDIT 1 — Update outdated stat
+Find:    "€8.24 per hour"
+Replace: "€8.92 per hour (Malta national minimum wage, 2026)"
+
+EDIT 2 — Add missing section
+After H2 id="[id]", insert:
+[full HTML block for the new section]
+
+EDIT 3 — Expand thin section
+H2 id="[id]" — current word count: ~[N] words (score 2/6)
+Add after existing paragraph:
+[HTML for expanded content]
+
+EDIT 4 — Update dateModified in schema
+Find:    "dateModified": "[old date]"
+Replace: "dateModified": "[YYYY-MM-DD]T08:00:00Z"
+```
+
+### Step 6 — Post-rescue actions
+
+After applying all edits:
+
+```html
+<!-- Add "What's new" banner immediately after the byline -->
+<div style="background:#fef9c3;border-left:4px solid #ca8a04;padding:12px 16px;border-radius:4px;margin-bottom:24px;font-size:14px;">
+  <strong>Updated [MONTH YEAR]:</strong> [1-sentence summary of the most significant change — e.g. "Tuition fee figures updated to reflect MFHEA 2026 rates. Student visa fee corrected to €30.00."]
+</div>
+```
+
+Update the Revision History section:
+
+```html
+<li><time datetime="[YYYY-MM-DD]">[Month YYYY]</time> — [Specific update description].</li>
+```
+
+### Content Decay Rescue Checklist
+
+**Diagnosis:**
+- [ ] GSC decay signals confirmed (position, CTR, impressions recorded)
+- [ ] Decay cause classified (A–F)
+- [ ] Competitor gap re-analysis completed against current #1–3 pages
+
+**Content fixes:**
+- [ ] All missing competitor sections added (score ≥ 4/6 required)
+- [ ] All outdated data points corrected with current sources
+- [ ] All H2 sections re-scored — none below 4/6
+- [ ] PAA Skill re-run — new PAA questions since original publish added
+- [ ] Featured Snippet format re-checked — format still matches current SERP
+
+**Freshness signals:**
+- [ ] `dateModified` updated in JSON-LD Article schema
+- [ ] Byline "Updated [DATE]" changed
+- [ ] "What's new" banner added
+- [ ] Revision History section updated
+- [ ] `<meta name="last-modified">` updated in `<head>`
+
+**Re-submission:**
+- [ ] GSC URL Inspection → Request Indexing submitted
+- [ ] Sitemap `<lastmod>` updated
+- [ ] LinkedIn post published about the update (mention what changed + link)
+- [ ] Internal Link Sprint re-run — check if 2+ new published articles can now link to this one
+
 **Bottom of article**
 - [ ] Related Articles section (3 articles + link to blog index)
 - [ ] "Cite this article" block (APA, MLA, Chicago)
