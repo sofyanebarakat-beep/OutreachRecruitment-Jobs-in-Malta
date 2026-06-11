@@ -3229,7 +3229,7 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   }
 }
 
-/* ── Apply iframe — desktop base, tall mobile & tablet heights ───────────── */
+/* ── Apply iframe — full-width on mobile & tablet, with tall heights ─────── */
 .outreach-apply-frame {
   display: block;
   width: 100%;
@@ -3242,7 +3242,19 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   min-height: 1500px;
 }
 
+/* Tablet: full-width card + taller iframe */
 @media (max-width: 991px) {
+  .section.outreach-apply.standalone .w-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+  .outreach-apply-frame-wrap {
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    width: 100% !important;
+  }
   .outreach-apply-frame {
     min-height: 1500px !important;
   }
@@ -3251,6 +3263,7 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   }
 }
 
+/* Mobile: full-width card + taller iframe */
 @media (max-width: 767px) {
   .outreach-apply-frame,
   .outreach-apply-frame.tall {
