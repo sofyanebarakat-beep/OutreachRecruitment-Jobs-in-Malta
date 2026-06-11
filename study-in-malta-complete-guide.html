@@ -95,6 +95,217 @@
 <link rel="alternate" hreflang="fr" href="https://outreachrecruitment.net/fr/study-in-malta-complete-guide" />
 <link rel="alternate" hreflang="x-default" href="https://outreachrecruitment.net/study-in-malta-complete-guide" />
 <link rel="preload" as="image" href="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp" />
+<style>
+/* ── Blog sidebar TOC layout ── */
+.blog-layout-container { max-width: 1280px !important; }
+
+.blog-layout-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  /* stretch (default) so aside height = article height → sticky stops at article end */
+}
+
+/* ── Sidebar ── */
+.blog-toc-sidebar { display: none; overflow: hidden; }
+
+.blog-toc-sticky {
+  position: sticky;
+  top: 104px;
+}
+
+/* ── Reading progress ── */
+.blog-progress-wrap {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.blog-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.blog-progress-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #94a3b8;
+}
+
+.blog-progress-pct {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a56db;
+  min-width: 30px;
+  text-align: right;
+}
+
+.blog-progress-track {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.blog-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1a56db, #3b82f6);
+  border-radius: 2px;
+  transition: width 0.15s ease;
+}
+
+/* ── TOC box ── */
+.blog-toc {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px 18px;
+  margin-bottom: 12px;
+}
+
+.blog-toc-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #94a3b8;
+  margin: 0 0 12px;
+}
+
+.blog-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-toc-list li { margin-bottom: 2px; }
+
+.blog-toc-list a {
+  font-size: 13px;
+  color: #475569;
+  text-decoration: none;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border-left: 2px solid transparent;
+  line-height: 1.35;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.blog-toc-list a:hover {
+  background: #eff6ff;
+  color: #1a56db;
+  border-left-color: #bfdbfe;
+}
+
+.blog-toc-list a.is-active {
+  background: #eff6ff;
+  color: #1a56db;
+  border-left-color: #1a56db;
+  font-weight: 600;
+}
+
+/* ── Sidebar CTA ── */
+.blog-toc-cta {
+  background: linear-gradient(145deg, #1e40af, #1a56db);
+  border-radius: 10px;
+  padding: 20px 18px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.blog-toc-cta-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.blog-toc-social-proof {
+  font-size: 12px;
+  color: rgba(255,255,255,0.95);
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
+
+.blog-toc-cta-sub {
+  font-size: 12px;
+  opacity: 0.82;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.blog-toc-cta-btn {
+  display: block;
+  background: #fff;
+  color: #1a56db;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: opacity 0.12s;
+}
+
+.blog-toc-cta-btn:hover { opacity: 0.88; }
+
+.blog-toc-cta-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin: 10px 0;
+}
+
+.blog-toc-cta-secondary {
+  display: block;
+  font-size: 12px;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.12s;
+}
+
+.blog-toc-cta-secondary:hover { color: #fff; text-decoration: underline; }
+
+/* ── Back to top ── */
+.blog-back-to-top {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.blog-back-to-top:hover {
+  color: #1a56db;
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+/* ── Responsive ── */
+@media (min-width: 1024px) {
+  .blog-toc-sidebar { display: block; }
+  .blog-toc-inline  { display: none !important; }
+}
+
+@media (max-width: 1023px) {
+  .blog-layout-grid { display: block; }
+}
+</style>
 </head><body><a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#1a56db;color:#fff;padding:8px 16px;z-index:9999;border-radius:0 0 4px 0;text-decoration:none;font-weight:600;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a><div class="navigation w-nav" data-animation="default" data-collapse="medium" data-doc-height="1" data-duration="500" data-easing="ease-in-out-quart" data-easing2="ease-in-out-quart" data-w-id="a06a40ad-d853-40d9-7f6f-fa045595057d" role="banner"><div class="w-layout-blockcontainer container w-container"><div class="navigation-content"><div class="menu-button w-nav-button" data-nav="menu-button" id="w-node-a06a40ad-d853-40d9-7f6f-fa0455950582-5595057d"><div class="button-circle small"><div class="menu-open"><div class="icon small w-embed"><svg fill="none" height="100%" style="" viewbox="0 0 12 12" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M2 6L10 6M2 9H10M2 3L10 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
 </svg></div></div><div class="menu-close"><div class="icon-close w-embed"><svg fill="currentColor" height="100%" viewbox="0 0 100 100" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +358,7 @@
 <path d="M7.5013 2.5L5.0013 2.5C4.54106 2.5 4.16797 2.8731 4.16797 3.33333L4.16797 16.6667C4.16797 17.1269 4.54106 17.5 5.0013 17.5H7.5013C7.96154 17.5 8.33463 17.1269 8.33463 16.6667L8.33463 3.33333C8.33463 2.8731 7.96154 2.5 7.5013 2.5Z" fill="currentColor"></path>
 </svg></div></span><span class="pause-state" hidden=""><div class="icon small w-embed"><svg fill="none" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.16797 4.16667C4.16788 3.87342 4.24517 3.58533 4.39204 3.3315C4.5389 3.07767 4.75014 2.86708 5.00443 2.721C5.25871 2.57492 5.54704 2.49853 5.84029 2.49952C6.13355 2.50052 6.42135 2.57887 6.67464 2.72667L16.6721 8.55834C16.9244 8.70474 17.1339 8.91479 17.2796 9.16751C17.4253 9.42022 17.5021 9.70675 17.5023 9.99845C17.5026 10.2902 17.4263 10.5768 17.281 10.8298C17.1358 11.0828 16.9267 11.2932 16.6746 11.44L6.67464 17.2733C6.42135 17.4211 6.13355 17.4995 5.84029 17.5005C5.54704 17.5015 5.25871 17.4251 5.00443 17.279C4.75014 17.1329 4.5389 16.9223 4.39204 16.6685C4.24517 16.4147 4.16788 16.1266 4.16797 15.8333L4.16797 4.16667Z" fill="currentColor"></path>
-</svg></div></span></button></div></div><div class="promo-overlay"></div></div><div class="promo-content dropdown"><div class="w-layout-hflex promo-bottom"><div class="heading-h5">Make it yours</div><a class="button-secondary w-variant-99b8bfb9-5755-d34a-f573-cb67a83f3440 w-inline-block" data-wf--button-secondary--variant="small" href="https://108.supply"><div class="button-label" data-figma-id="12018:4671">Learn more</div></a></div></div></div><div class="navigation-footer"><div class="text-small faint">Design by <span class="small-link">Outreach Marketing</span></div></div></nav><div class="navigation-right" id="w-node-a06a40ad-d853-40d9-7f6f-fa0455950616-5595057d"><a class="button-primary animated w-inline-block" href="/contact-us"><div class="button-label">Contact us</div><div class="button-rail"><div class="button-circle small accent"><div class="icon small w-embed"><svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div><div class="icon-button"><div class="icon small w-embed"><svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></a></div></div></div><div class="navigation-overlay"></div></div><main id="main-content" class="main" role="main"><article itemscope itemtype="https://schema.org/Article"><section class="section page-header" aria-label="Article header"><div class="w-layout-blockcontainer container w-container"><div class="w-layout-vflex section-content"><div class="w-layout-vflex text center" data-gsap-scroll="text"><div class="tag darker">Study in Malta</div><h1 class="heading-h1">Guide to Study in Malta 2026: Complete Guide for International Students</h1><div class="caption blue-caption">11 June 2026 &mdash; Outreach Recruitment Agency &middot; 22 min read</div></div><div class="cms-featured-media" data-gsap-scroll="fade"><!-- Photo: Pang Yuhao on Unsplash — https://unsplash.com/photos/people-throwing-hats-on-air-_kd5cxwZOK4 --><img alt="Students celebrating graduation by throwing caps — Study in Malta 2026 | Outreach Recruitment" class="media-fill" src="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp" srcset="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero-800w.webp 800w, /images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp 1200w" sizes="(max-width: 900px) 100vw, 1200px" width="1200" height="675" fetchpriority="high" decoding="async" itemprop="image"/></div></div></div></section><section class="section padding-top-extra-small" aria-labelledby="why-malta"><div class="w-layout-blockcontainer container tight w-container"><div class="w-layout-vflex section-content"><div class="cms-article"><div class="stack gap-07" data-gsap-scroll="stagger"><div class="w-richtext" data-gsap-scroll="stagger">
+</svg></div></span></button></div></div><div class="promo-overlay"></div></div><div class="promo-content dropdown"><div class="w-layout-hflex promo-bottom"><div class="heading-h5">Make it yours</div><a class="button-secondary w-variant-99b8bfb9-5755-d34a-f573-cb67a83f3440 w-inline-block" data-wf--button-secondary--variant="small" href="https://108.supply"><div class="button-label" data-figma-id="12018:4671">Learn more</div></a></div></div></div><div class="navigation-footer"><div class="text-small faint">Design by <span class="small-link">Outreach Marketing</span></div></div></nav><div class="navigation-right" id="w-node-a06a40ad-d853-40d9-7f6f-fa0455950616-5595057d"><a class="button-primary animated w-inline-block" href="/contact-us"><div class="button-label">Contact us</div><div class="button-rail"><div class="button-circle small accent"><div class="icon small w-embed"><svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div><div class="icon-button"><div class="icon small w-embed"><svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></a></div></div></div><div class="navigation-overlay"></div></div><main id="main-content" class="main" role="main"><article itemscope itemtype="https://schema.org/Article"><section class="section page-header" aria-label="Article header"><div class="w-layout-blockcontainer container w-container"><div class="w-layout-vflex section-content"><div class="w-layout-vflex text center" data-gsap-scroll="text"><div class="tag darker">Study in Malta</div><h1 class="heading-h1">Guide to Study in Malta 2026: Complete Guide for International Students</h1><div class="caption blue-caption">11 June 2026 &mdash; Outreach Recruitment Agency &middot; 22 min read</div></div><div class="cms-featured-media" data-gsap-scroll="fade"><!-- Photo: Pang Yuhao on Unsplash — https://unsplash.com/photos/people-throwing-hats-on-air-_kd5cxwZOK4 --><img alt="Students celebrating graduation by throwing caps — Study in Malta 2026 | Outreach Recruitment" class="media-fill" src="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp" srcset="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero-800w.webp 800w, /images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp 1200w" sizes="(max-width: 900px) 100vw, 1200px" width="1200" height="675" fetchpriority="high" decoding="async" itemprop="image"/></div></div></div></section><section class="section padding-top-extra-small" aria-labelledby="why-malta"><div class="w-layout-blockcontainer container blog-layout-container w-container"><div class="blog-layout-grid"><aside class="blog-toc-sidebar" aria-label="Table of contents"><div class="blog-toc-sticky"><div class="blog-progress-wrap" aria-label="Reading progress"><div class="blog-progress-header"><span class="blog-progress-label">Reading progress</span><span class="blog-progress-pct" id="blog-progress-pct">0%</span></div><div class="blog-progress-track"><div class="blog-progress-bar" id="blog-progress-bar"></div></div></div><nav class="blog-toc" aria-label="In this guide"><p class="blog-toc-title">In this guide</p><ol class="blog-toc-list"><li><a href="#why-malta">Why Malta in 2026?</a></li><li><a href="#higher-education">Malta&rsquo;s Higher Education System</a></li><li><a href="#universities">Top Universities &amp; Colleges</a></li><li><a href="#programmes">Study Programmes Available</a></li><li><a href="#student-visa">Malta Student Visa 2026</a></li><li><a href="#residence-permit">Student Residence Permit</a></li><li><a href="#cost">Cost of Studying in Malta</a></li><li><a href="#scholarships">Scholarships Available</a></li><li><a href="#accommodation">Student Accommodation</a></li><li><a href="#work">Working While Studying</a></li><li><a href="#post-study">Post-Study Work</a></li><li><a href="#english-courses">English Language Courses</a></li><li><a href="#student-life">Student Life in Malta</a></li><li><a href="#how-to-apply">How to Apply &mdash; Step-by-Step</a></li><li><a href="#mistakes">Common Mistakes to Avoid</a></li><li><a href="#comparison">Malta vs Other EU Destinations</a></li><li><a href="#faq">FAQs</a></li><li><a href="#conclusion">Key Takeaways</a></li></ol></nav><div class="blog-toc-cta"><p class="blog-toc-cta-title">Ready to Study in Malta?</p><p class="blog-toc-social-proof">&#9733;&#9733;&#9733;&#9733;&#9733; 500+ students placed</p><p class="blog-toc-cta-sub">Free guidance from our Malta education specialists.</p><a href="https://apply.outreachstudy.eu/" target="_blank" rel="noopener noreferrer" class="blog-toc-cta-btn">Apply Now &rarr;</a><hr class="blog-toc-cta-divider"/><a href="https://outreachrecruitment.net/webinar-study-in-malta.html" class="blog-toc-cta-secondary">Join Free Webinar &rarr;</a></div><a href="#main-content" class="blog-back-to-top">&#8593; Back to top</a></div></aside><div class="w-layout-vflex section-content"><div class="cms-article"><div class="stack gap-07" data-gsap-scroll="stagger"><div class="w-richtext" data-gsap-scroll="stagger">
 <!--
 CONTENT FRESHNESS
 Published:       2026-06-11
@@ -176,7 +387,7 @@ COMPETITOR GAP: HowTo schema, FAQ accordion, testimonials+schema, multilingual b
 
 <p>Studying in Malta gives international students access to EU-recognised degrees taught in English at some of the Mediterranean&rsquo;s most affordable institutions. Students can enrol in bachelor&rsquo;s, master&rsquo;s, or language programmes and apply for a student residence permit valid for the duration of their course.</p>
 
-<nav aria-label="Table of Contents">
+<nav aria-label="Table of Contents" class="blog-toc-inline">
 <h5>Table of Contents</h5>
 <ol>
 <li><a href="#why-malta">Why Malta in 2026?</a></li>
@@ -665,7 +876,7 @@ COMPETITOR GAP: HowTo schema, FAQ accordion, testimonials+schema, multilingual b
 </div>
 
 <p style="margin-top:40px;"><a href="https://outreachrecruitment.net/malta-study-guide" style="color:#1a56db;text-decoration:underline;">&larr; Back to Malta Study Guide</a></p>
-</div></div></div></div></div></section></article><div class="w-layout-vflex buttons" style="justify-content:center;padding:40px 0;"><a class="button-secondary w-inline-block" data-wf--button-secondary--variant="large" href="/blog/" aria-label="Browse all articles on Outreach Recruitment"><div class="button-label">All articles</div></a></div></main><section class="section cta"><div class="w-layout-blockcontainer container w-container"><div class="w-layout-vflex cta-content"><div class="w-layout-vflex text center narrow" data-gsap-scroll="text"><h2 class="heading-h2">For teams preparing for <em>growth</em>, not hype</h2></div><div class="w-layout-vflex buttons" data-gsap-scroll="fade"><a class="button-primary animated w-inline-block" href="https://108.supply/website/people-work?utm_source=people-work&amp;utm_medium=template&amp;utm_campaign=get-template" target="_blank"><div class="button-label" data-figma-id="12018:4671">Contact us</div><div class="button-rail"><div class="button-circle small accent"><div class="icon small w-embed"><svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+</div></div></div></div></div></div></section></article><div class="w-layout-vflex buttons" style="justify-content:center;padding:40px 0;"><a class="button-secondary w-inline-block" data-wf--button-secondary--variant="large" href="/blog/" aria-label="Browse all articles on Outreach Recruitment"><div class="button-label">All articles</div></a></div></main><section class="section cta"><div class="w-layout-blockcontainer container w-container"><div class="w-layout-vflex cta-content"><div class="w-layout-vflex text center narrow" data-gsap-scroll="text"><h2 class="heading-h2">For teams preparing for <em>growth</em>, not hype</h2></div><div class="w-layout-vflex buttons" data-gsap-scroll="fade"><a class="button-primary animated w-inline-block" href="https://108.supply/website/people-work?utm_source=people-work&amp;utm_medium=template&amp;utm_campaign=get-template" target="_blank"><div class="button-label" data-figma-id="12018:4671">Contact us</div><div class="button-rail"><div class="button-circle small accent"><div class="icon small w-embed"><svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path>
 </svg></div></div></div><div class="icon-button"><div class="icon small w-embed"><svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-strk)"></path>
@@ -879,4 +1090,82 @@ gsap.fromTo('[data-marquee="right"]',
       }, 120);
     });
   });
+</script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── 1. Reading progress bar ── */
+  var progressBar = document.getElementById('blog-progress-bar');
+  var progressPct = document.getElementById('blog-progress-pct');
+  var article     = document.querySelector('.cms-article');
+
+  function updateProgress() {
+    if (!progressBar || !article) return;
+    var rect     = article.getBoundingClientRect();
+    var total    = article.offsetHeight - window.innerHeight;
+    var scrolled = Math.max(0, -rect.top);
+    var pct      = total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0;
+    progressBar.style.width = pct + '%';
+    if (progressPct) progressPct.textContent = pct + '%';
+  }
+
+  /* ── 2. Active TOC link via IntersectionObserver ── */
+  var tocLinks = document.querySelectorAll('.blog-toc-list a');
+
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var headings = Array.from(
+      document.querySelectorAll('h5[id], h4[id], h3[id], section[id]')
+    );
+
+    var tocObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          tocLinks.forEach(function (a) {
+            a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-100px 0px -65% 0px', threshold: 0 });
+
+    headings.forEach(function (h) { tocObserver.observe(h); });
+  }
+
+  /* ── 3. Smooth scroll via Lenis (fallback to native) ── */
+  function smoothScrollTo(target) {
+    if (!target) return;
+    if (window.lenis) {
+      window.lenis.scrollTo(target, { offset: -110, duration: 1.2 });
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  tocLinks.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var dest = document.querySelector(a.getAttribute('href'));
+      if (!dest) return;
+      e.preventDefault();
+      smoothScrollTo(dest);
+    });
+  });
+
+  /* Back to top */
+  var backToTop = document.querySelector('.blog-back-to-top');
+  if (backToTop) {
+    backToTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  /* ── Wire up scroll events ── */
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
 </script></body></html>
