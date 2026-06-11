@@ -4202,3 +4202,11 @@ If Stage 1 articles have > 75% bounce rate, the next-step links or CTAs are not 
 - [ ] Dead End Audit re-run — any articles now missing next-step links?
 - [ ] CTA click rates checked per stage — any stage underperforming targets?
 - [ ] Stage 1 bounce rate checked — if > 75%, rewrite next-step blocks
+
+---
+
+## Published Articles Log
+
+| Date | Title | Slug | Primary keyword | Status | Notes |
+|---|---|---|---|---|---|
+| 2026-06-11 | Study in Malta from Morocco: 2026 Guide for Moroccan Students | `/blog/study-in-malta-from-morocco` | study in Malta from Morocco | Published | Long-tail Morocco-specific article; differentiated from broad `study in Malta` and application guide pages. |
