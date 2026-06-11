@@ -113,6 +113,40 @@ Each link has a styled HTML CTA block defined in `SKILL-TEMPLATE.md` for use ins
 
 ---
 
+## URL Routing Rules — Always Apply These
+
+### Study in Malta articles → `/malta-study-guide/[slug]`
+
+All articles about studying in Malta (visa, universities, costs, accommodation, scholarships, English courses, student life, post-study work) must:
+
+- **Live at:** `outreachrecruitment.net/malta-study-guide/[slug]`
+- **File saved to:** `malta-study-guide/[slug].html` (project root subfolder)
+- **Canonical:** `<link rel="canonical" href="https://outreachrecruitment.net/malta-study-guide/[slug]" />`
+- **Never use** `/blog/[slug]` or just `/[slug]` for Study in Malta content
+
+| Correct ✅ | Wrong ❌ |
+|---|---|
+| `/malta-study-guide/student-accommodation-in-malta` | `/blog/student-accommodation-in-malta` |
+| `/malta-study-guide/malta-student-visa-complete-guide` | `/student-accommodation-in-malta` |
+
+---
+
+### General blog articles → `/[slug]` (root, no `/blog/` prefix)
+
+All general blog posts (career advice, recruitment tips, team structure, etc.) must:
+
+- **Live at:** `outreachrecruitment.net/[slug]`
+- **File saved to:** `[slug].html` (project root)
+- **Canonical:** `<link rel="canonical" href="https://outreachrecruitment.net/[slug]" />`
+- **Never use** `/blog/[slug]` — the `/blog/` prefix is deprecated and causes 404 errors
+
+| Correct ✅ | Wrong ❌ |
+|---|---|
+| `/why-malta-is-becoming-europes-top-destination` | `/blog/why-malta-is-becoming-europes-top-destination` |
+| `/how-decision-clarity-removes-friction` | `/blog/how-decision-clarity-removes-friction` |
+
+---
+
 ## Contact / Business Details
 
 - **Business:** Outreach Recruitment
