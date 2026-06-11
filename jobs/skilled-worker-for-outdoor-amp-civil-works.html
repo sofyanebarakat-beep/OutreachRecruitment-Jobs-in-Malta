@@ -422,4 +422,4 @@ if (document.querySelector('[data-marquee="right"]')) {
     if (h && !isNaN(h)) { var fr = applyPanel.querySelector('iframe.outreach-apply-frame'); if (fr) { fr.style.minHeight = Number(h) + 'px'; } }
   });
 })();
-</script></body></html>
+</script><script>(function(){var bar=document.querySelector(".job-mobile-apply-cta");var panel=document.getElementById("job-apply-panel");if(!bar||!panel)return;new MutationObserver(function(){bar.classList.toggle("is-hidden",!panel.hidden);}).observe(panel,{attributes:true,attributeFilter:["hidden"]});})();</script></body></html>
