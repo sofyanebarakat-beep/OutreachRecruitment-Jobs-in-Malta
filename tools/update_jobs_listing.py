@@ -28,6 +28,10 @@ from datetime import date
 
 ROOT     = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "tools" / "jobs_registry.json"
+SITEMAP_JOBS = ROOT / "sitemaps" / "sitemap-jobs.xml"
+SITEMAP_INDEX = ROOT / "sitemap_index.xml"
+SITEMAP_LEGACY = ROOT / "sitemap.xml"
+BASE_URL = "https://outreachrecruitment.net"
 
 # How many recent jobs to show on the homepage (0 = show all)
 HOMEPAGE_LIMIT = 10
@@ -233,6 +237,62 @@ def update_jobs_page(all_jobs: list[dict]) -> None:
     print(f"  jobs/index.html — {n} job(s), {featured} featured, {len(cats)} categories")
 
 
+def update_jobs_sitemap(all_jobs: list[dict], today: str) -> None:
+    jobs_sorted = sorted(all_jobs, key=lambda j: (j["date"], j["slug"]), reverse=True)
+    entries = [
+        '  <url>\n'
+        f'    <loc>{BASE_URL}/jobs</loc>\n'
+        f'    <lastmod>{today}</lastmod>\n'
+        '    <changefreq>daily</changefreq>\n'
+        '    <priority>0.9</priority>\n'
+        '  </url>\n'
+    ]
+
+    for job in jobs_sorted:
+        entries.append(
+            '  <url>\n'
+            f'    <loc>{BASE_URL}/jobs/{job["slug"]}</loc>\n'
+            f'    <lastmod>{job["date"]}</lastmod>\n'
+            '    <changefreq>weekly</changefreq>\n'
+            '    <priority>0.8</priority>\n'
+            '  </url>\n'
+        )
+
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n'
+        '  <!-- Job listing index -->\n'
+        + "".join(entries)
+        + '\n</urlset>\n'
+    )
+    SITEMAP_JOBS.write_text(xml, encoding="utf-8")
+    print(f"  sitemaps/sitemap-jobs.xml — {len(all_jobs) + 1} URL(s)")
+
+
+def update_sitemap_indexes(today: str) -> None:
+    if SITEMAP_INDEX.exists():
+        xml = SITEMAP_INDEX.read_text(encoding="utf-8")
+        xml = re.sub(
+            r'(<loc>https://outreachrecruitment\.net/sitemaps/sitemap-jobs\.xml</loc>\s*<lastmod>)\d{4}-\d{2}-\d{2}(</lastmod>)',
+            rf'\g<1>{today}\2',
+            xml,
+            count=1,
+        )
+        SITEMAP_INDEX.write_text(xml, encoding="utf-8")
+        print("  sitemap_index.xml — jobs sitemap lastmod refreshed")
+
+    if SITEMAP_LEGACY.exists():
+        xml = SITEMAP_LEGACY.read_text(encoding="utf-8")
+        xml = re.sub(
+            r'(<lastmod>)\d{4}-\d{2}-\d{2}(</lastmod>)',
+            rf'\g<1>{today}\2',
+            xml,
+            count=1,
+        )
+        SITEMAP_LEGACY.write_text(xml, encoding="utf-8")
+        print("  sitemap.xml — compatibility lastmod refreshed")
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
@@ -243,6 +303,8 @@ def main() -> None:
     print(f"Updating listings ({today}) — {len(jobs)} job(s) in registry")
     update_homepage(jobs)
     update_jobs_page(jobs)
+    update_jobs_sitemap(jobs, today)
+    update_sitemap_indexes(today)
     print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
 
 
