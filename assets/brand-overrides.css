@@ -3237,30 +3237,7 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
   }
 }
 
-/* ── Apply panel header — "Apply Now" label above job title ─────────────── */
-.job-inline-apply-header .text.center::before {
-  content: "Apply Now";
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #442DFA;
-  margin-bottom: 0.6rem;
-}
-
-/* ── Apply iframe — full-width on ALL devices + tall on mobile & tablet ──── */
-.section.outreach-apply.standalone .w-container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  max-width: 100% !important;
-}
-.outreach-apply-frame-wrap {
-  border-radius: 0 !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  width: 100% !important;
-}
+/* ── Apply iframe — desktop base, full-width on mobile & tablet ──────────── */
 .outreach-apply-frame {
   display: block;
   width: 100%;
@@ -3274,6 +3251,17 @@ html[lang].w-mod-js:not(.w-mod-ix3) :is(
 }
 
 @media (max-width: 991px) {
+  .section.outreach-apply.standalone .w-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+  .outreach-apply-frame-wrap {
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    width: 100% !important;
+  }
   .outreach-apply-frame {
     min-height: 1500px !important;
   }
