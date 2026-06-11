@@ -69,6 +69,28 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Sector landing pages -->
+  <url>
+    <loc>https://outreachrecruitment.net/jobs-in-malta-top-15-opening-jobs</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://outreachrecruitment.net/insurance-jobs-in-malta</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://outreachrecruitment.net/hospitality-jobs-in-malta</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Legal -->
   <url>
     <loc>https://outreachrecruitment.net/legal</loc>
