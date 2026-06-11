@@ -1983,6 +1983,24 @@ https://outreachrecruitment.net/[slug]
 <meta property="og:url" content="https://outreachrecruitment.net/[slug]" />
 ```
 
+### Article HTML Template / Visual Format
+
+Every root-level Study in Malta article must use the same exported Webflow article shell and visual structure as:
+
+`https://outreachrecruitment.net/why-malta-is-becoming-europes-top-destination-for-international-students`
+
+Use that article as the structural template:
+
+- Keep the full Webflow navigation, footer, scripts, CSS links, and article classes
+- Use `<section class="section page-header">` for the category tag, H1, date, and featured image
+- Use `<div class="cms-article"><div class="stack gap-07" data-gsap-scroll="stagger"><div class="w-richtext" data-gsap-scroll="stagger">` for the article body
+- Generate and save **5 to 7 original article images** for every new post: 1 featured image plus 4 to 6 in-article images
+- Place generated in-article images throughout the article body, not only in the page header
+- Use descriptive filenames, meaningful alt text, and Webflow-friendly `<figure class="figure-full">` blocks for article images
+- Keep the same "Read more" section style after the article body
+- Replace only article-specific metadata, JSON-LD, slug, H1, date, image, alt text, body copy, CTAs, internal links, and related-card links
+- Do not create lightweight custom article shells, landing pages, or pages under `/blog/`
+
 ### What NOT to use
 
 | Wrong ❌ | Why |
@@ -4207,6 +4225,6 @@ If Stage 1 articles have > 75% bounce rate, the next-step links or CTAs are not 
 
 ## Published Articles Log
 
-| Date | Title | Slug | Primary keyword | Status | Notes |
+| Date | Title | Direct URL | Primary keyword | Status | Notes |
 |---|---|---|---|---|---|
-| 2026-06-11 | Study in Malta from Morocco: 2026 Guide for Moroccan Students | `/blog/study-in-malta-from-morocco` | study in Malta from Morocco | Published | Long-tail Morocco-specific article; differentiated from broad `study in Malta` and application guide pages. |
+| 2026-06-11 | Study in Malta from Morocco: 2026 Guide for Moroccan Students | `https://outreachrecruitment.net/study-in-malta-from-morocco` | study in Malta from Morocco | Published | Root-level slug, not `/blog/`; differentiated from broad `study in Malta` and application guide pages. |
