@@ -18,6 +18,10 @@ title            Job title exactly as it should appear on the page
 slug             URL slug e.g. "software-engineer"  (auto-generated if blank)
 category         e.g. Hospitality / IT / Engineering & Maintenance / Retail / Finance
 location         Display text  e.g. "Valletta, Malta"
+employer_name    Real employer name if public; leave blank to use Outreach Recruitment
+confidential_employer true | false; set true if the employer must be hidden in schema
+street_address   Optional exact worksite street address
+postal_code      Optional worksite postal code
 employment_type  Full-Time | Part-Time | Subcontracting  (default: Full-Time)
 work_mode        On-Site | Remote | Hybrid  (default: On-Site)
 apply_url        Full apply link from careers-page.com
@@ -396,6 +400,15 @@ def parse_csv(csv_path: Path) -> list[dict]:
                 "category":        row.get("category", "").strip() or "General",
                 "location":        row.get("location", "Malta").strip(),
                 "location_slug":   row.get("location", "malta").lower().strip(),
+                "employer_name":   row.get("employer_name", "").strip(),
+                "confidential_employer": row.get("confidential_employer", "").strip(),
+                "employer_url":    row.get("employer_url", "").strip(),
+                "employer_logo":   row.get("employer_logo", "").strip(),
+                "street_address":  row.get("street_address", "").strip(),
+                "postal_code":     row.get("postal_code", "").strip(),
+                "address_locality": row.get("address_locality", "").strip(),
+                "address_region":  row.get("address_region", "").strip(),
+                "address_country": row.get("address_country", "").strip(),
                 "employment_type": row.get("employment_type", "Full-Time").strip() or "Full-Time",
                 "work_mode":       row.get("work_mode", "On-Site").strip() or "On-Site",
                 "apply_url":       row.get("apply_url", "").strip(),

@@ -52,6 +52,14 @@ def load_jobs() -> list[dict]:
     return jobs
 
 
+def active_jobs(jobs: list[dict], today: str) -> list[dict]:
+    return [
+        job for job in jobs
+        if job.get("status", "active").lower() != "expired"
+        and job.get("valid_through", "9999-12-31") >= today
+    ]
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # HTML builders
 # ─────────────────────────────────────────────────────────────────────────────
@@ -252,7 +260,7 @@ def update_jobs_sitemap(all_jobs: list[dict], today: str) -> None:
         entries.append(
             '  <url>\n'
             f'    <loc>{BASE_URL}/jobs/{job["slug"]}</loc>\n'
-            f'    <lastmod>{job["date"]}</lastmod>\n'
+            f'    <lastmod>{job.get("lastmod", job["date"])}</lastmod>\n'
             '    <changefreq>weekly</changefreq>\n'
             '    <priority>0.8</priority>\n'
             '  </url>\n'
@@ -300,10 +308,12 @@ def update_sitemap_indexes(today: str) -> None:
 def main() -> None:
     jobs = load_jobs()
     today = date.today().isoformat()
-    print(f"Updating listings ({today}) — {len(jobs)} job(s) in registry")
-    update_homepage(jobs)
-    update_jobs_page(jobs)
-    update_jobs_sitemap(jobs, today)
+    current_jobs = active_jobs(jobs, today)
+    expired_count = len(jobs) - len(current_jobs)
+    print(f"Updating listings ({today}) — {len(current_jobs)} active job(s), {expired_count} expired/hidden")
+    update_homepage(current_jobs)
+    update_jobs_page(current_jobs)
+    update_jobs_sitemap(current_jobs, today)
     update_sitemap_indexes(today)
     print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
 
