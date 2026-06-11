@@ -3429,3 +3429,776 @@ Update the Revision History section:
 - [ ] Search Console KPI review dates noted (2 weeks / 6 weeks / 3 months)
 - [ ] Content Repurposing Pack generated: LinkedIn carousel, YouTube script, newsletter, WhatsApp/Telegram message, Twitter/X thread
 - [ ] Human Writer Content Brief generated when requested or when handing work to a team member
+
+---
+
+## BACKLINK ACQUISITION SKILL
+
+Off-page links remain a primary ranking signal. The rest of this template optimises everything on-page — but without external links pointing to the article, Google has no third-party confirmation that the content is trustworthy or authoritative. This skill identifies link-worthy assets inside each article and generates ready-to-send outreach emails to acquire links from relevant, high-authority sources.
+
+### When to run
+
+Run this skill **after every article is published and indexed** (confirm indexing in GSC first). Outreach sent to a non-indexed page is wasted. Target: begin outreach within 1 week of confirmed indexing.
+
+### Step 1 — Identify link-worthy assets in the article
+
+Scan the article for elements that other sites have a reason to link to. At least 2 assets must be identified before outreach begins.
+
+**Asset types and their link-bait value:**
+
+| Asset type | Link-bait value | Example in a Study in Malta article |
+|---|---|---|
+| Original comparison table | High — aggregates data others don't have | "Annual tuition fees: Malta vs. UK vs. Ireland vs. Netherlands" |
+| Local statistics or data | High — hard to find, often cited | "Malta national minimum wage: €8.92/hr (2026)" |
+| Step-by-step process | Medium — useful reference for linking sites | "How to apply for a Malta student residence permit — 5 steps" |
+| FAQ section (5+ questions) | Medium — PAA source, student forums link to it | "Frequently asked questions about studying in Malta" |
+| Original quote or expert insight | Medium — if attributed to a named person | Quote from Outreach advisor on visa processing times |
+| Free resource / checklist | High — downloadable or copyable | "Malta Student Visa Document Checklist" |
+
+**Output — Asset Inventory:**
+```
+Link Asset Inventory — [Article Title]
+URL: https://outreachrecruitment.net/[slug]
+
+Asset 1: [Name of asset]
+  Type: [Table / Data / Process / FAQ / Quote / Resource]
+  Why it earns links: [1 sentence — what is unique or useful about it]
+  Target anchor text: "[anchor text prospects should use]"
+
+Asset 2: [Name of asset]
+  Type: [...]
+  Why it earns links: [...]
+  Target anchor text: "[...]"
+```
+
+### Step 2 — Identify link prospects
+
+For each article, identify 10–20 link prospects. These are pages that:
+- Currently cover the same topic but lack the specific asset you have
+- Already link to similar content (check competitor backlink profiles)
+- Are in a position where linking to you adds value to their readers
+
+**Priority prospect categories for Study in Malta articles:**
+
+| Prospect category | Authority | How to find them |
+|---|---|---|
+| Malta university "international students" pages | High | Search `site:.edu.mt international students` |
+| MFHEA and Malta government student resources | High | mfhea.mt, education.gov.mt |
+| Student visa advice blogs | Medium | Search "Malta student visa guide" — non-competing pages |
+| International student community forums | Medium | Search "study in Malta forum reddit" |
+| Erasmus / EU study abroad directories | High | erasmus.ec.europa.eu partner pages |
+| Expat and relocation guides to Malta | Medium | Search "moving to Malta guide" |
+| African / Asian student newspapers | Medium | Search "[country] students studying in EU" |
+| Malta tourism + living guides | Low-Medium | Search "living in Malta guide" |
+| Education consultancy blogs (non-competing) | Medium | Search "study in Europe guide [country]" |
+
+**Prospect record table:**
+```
+| # | URL | Site name | DA estimate | Asset match | Contact email | Status |
+|---|---|---|---|---|---|---|
+| 1 | | | | | | Not contacted |
+```
+
+### Step 3 — Generate outreach email templates
+
+Three templates for the three most common prospect types. Personalise the [BRACKETED] fields before sending.
+
+---
+
+**Template A — University or official education page**
+
+```
+Subject: A resource your international students may find useful
+
+Hi [Name / Admissions Team],
+
+I'm [Name] from Outreach Recruitment Agency, a Malta-based advisory service
+that helps international students navigate the application and visa process
+for studying in Malta.
+
+We recently published a detailed guide on [article topic]:
+https://outreachrecruitment.net/[slug]
+
+It includes [specific asset — e.g. "a step-by-step breakdown of the student
+residence permit process with current 2026 fees from Identity Malta"] that
+we haven't seen documented clearly in one place elsewhere.
+
+Given that your page at [their URL] covers [related topic], we thought this
+might be a useful reference resource for your prospective international students.
+
+If you feel it adds value, we'd appreciate a mention or link — but no pressure.
+Happy to answer any questions about the content.
+
+Best regards,
+[Name]
+Outreach Recruitment Agency
+https://outreachrecruitment.net/
+```
+
+---
+
+**Template B — Student blog or guide site**
+
+```
+Subject: Quick resource for your Malta study guide
+
+Hi [Name],
+
+Found your article on [their article topic] while researching content about
+studying in Malta — great resource.
+
+We just published an updated comparison table showing annual tuition fees
+across Malta, the UK, Ireland, and the Netherlands for 2026:
+https://outreachrecruitment.net/[slug]#[table-anchor]
+
+It might complement your article well — your readers comparing costs across
+destinations would find it useful. If you'd like to reference it, we'd
+be glad to return the favour if you ever need a Malta-specific quote or data point.
+
+Best,
+[Name]
+Outreach Recruitment
+```
+
+---
+
+**Template C — Forum or community resource page**
+
+```
+Subject: Updated Malta student visa guide (2026 fees + new steps)
+
+Hi [moderator/admin name or community name],
+
+I help run Outreach Recruitment Agency in Malta and we work directly with
+international students on their visa and study applications.
+
+We've just updated our Malta student visa guide with the 2026 Identity Malta
+fees and the current 5-step process:
+https://outreachrecruitment.net/[slug]
+
+A lot of students in communities like [community name] ask about this process
+and get outdated information. Happy for you to share the link if the community
+would find it useful.
+
+[Name]
+Outreach Recruitment Agency
+```
+
+---
+
+### Step 4 — Track outreach and links
+
+Maintain a link acquisition log per article. Update after every contact and every confirmed link:
+
+```
+Link Acquisition Log — [Article Title]
+Article URL: https://outreachrecruitment.net/[slug]
+Outreach started: [YYYY-MM-DD]
+
+| # | Prospect URL | Contact | Template used | Sent date | Response | Link acquired | Anchor text | Link URL |
+|---|---|---|---|---|---|---|---|---|
+| 1 | | | A/B/C | | Yes/No/Pending | Yes/No | | |
+```
+
+### Step 5 — Link quality rules
+
+**Only pursue links that meet all of these criteria:**
+- The linking page is indexed in Google (check with `site:` operator)
+- The linking page is topically related to Study in Malta, student visas, Malta education, or international student life
+- The linking domain does not engage in link selling or PBN patterns
+- The anchor text is natural and descriptive — never pay for or request an exact-match keyword anchor
+
+**Never pursue:**
+- Links from article directories, link farms, or low-quality "guest post" mills
+- Links in exchange for a fee
+- Links from sites with no relevance to education, Malta, or international students
+- Reciprocal link exchanges (link for link) — these carry minimal value
+
+### Backlink Acquisition Checklist (per article)
+
+- [ ] Article confirmed as indexed in GSC before outreach begins
+- [ ] Link Asset Inventory completed — minimum 2 assets identified
+- [ ] 10–20 prospects identified and recorded in Prospect table
+- [ ] Prospect contact emails verified (not generic info@ addresses where possible)
+- [ ] Outreach emails personalised — [BRACKETED] fields filled in for every email
+- [ ] Emails sent — dates recorded in Link Acquisition Log
+- [ ] Follow-up scheduled for non-responses at 7 days
+- [ ] All acquired links recorded in Link Acquisition Log
+- [ ] Acquired link anchors are varied and natural
+- [ ] No link quality rules violated
+- [ ] Link Acquisition Log saved in Published Articles Log
+
+---
+
+## SERP POSITION ZERO MONITORING SKILL
+
+Writing for featured snippets without checking whether you actually won them is the most common gap in content SEO. This skill creates a post-publish monitoring cadence that tracks snippet wins and losses, and triggers a format adjustment when a snippet was not captured within the expected timeframe.
+
+### When to run
+
+- **First check: 2 weeks post-publish** — confirm the article is indexed; record first impression of snippet status
+- **Second check: 6 weeks post-publish** — primary check; the snippet should have been captured by now if it's going to be won organically
+- **Third check: 3 months post-publish** — if no snippet by 3 months, trigger a format intervention
+
+### Step 1 — Build the Snippet Target List
+
+Before publishing, generate the Snippet Target List as part of the SEO Research output. This is the list of specific queries you expect to win snippets for.
+
+**Snippet Target List format:**
+```
+Snippet Target List — [Article Title]
+Primary keyword: [keyword]
+
+| # | Target query | Current snippet holder | Snippet type | Our content element | Target section anchor |
+|---|---|---|---|---|---|
+| 1 | [query] | [domain or "none"] | Paragraph/List/Table/None | [H2/H3 + anchor] | #[anchor-id] |
+| 2 | | | | | |
+```
+
+**How to populate:**
+- Row 1 is always the primary keyword
+- Rows 2–5 are the highest-volume secondary keywords and PAA questions
+- "Current snippet holder" is the domain currently shown in position zero (or "none" if no snippet exists)
+- "Our content element" is the specific H2/H3/table/FAQ in our article that targets this query
+
+### Step 2 — 2-Week Check
+
+At 2 weeks post-publish, for each query in the Snippet Target List:
+
+```
+2-Week Snippet Check — [Article Title]
+Check date: [YYYY-MM-DD]
+
+| # | Query | Snippet won? | Position | Impressions (GSC) | Action |
+|---|---|---|---|---|---|
+| 1 | | Yes/No/Partial | | | Monitor / Adjust |
+```
+
+**At 2 weeks — expected outcomes:**
+- Article indexed: ✅ if impressions > 0 in GSC
+- Snippet won: unlikely at 2 weeks — this is a baseline reading
+- If not indexed at 2 weeks: re-request indexing in GSC immediately
+
+### Step 3 — 6-Week Check (Primary Check)
+
+At 6 weeks, snippets should start appearing for well-optimised articles. This is the action trigger point.
+
+```
+6-Week Snippet Check — [Article Title]
+Check date: [YYYY-MM-DD]
+
+| # | Query | Snippet won? | Position | CTR | Action |
+|---|---|---|---|---|---|
+| 1 | | Yes/No/Partial | | | OK / Format adjust / Expand |
+```
+
+**Decision rules at 6 weeks:**
+
+| Status | Action |
+|---|---|
+| Snippet won ✅ | Monitor — record win in Published Articles Log |
+| Position 1–3, no snippet | Format mismatch — run Format-Matching Skill, rewrite opening element |
+| Position 4–10, no snippet | Too low for snippet — improve content depth first, then recheck |
+| Position > 10, no snippet | Content issue — run Content Decay Rescue or PAA Skill |
+| Snippet partial (we appear but get cut off) | Answer paragraph too long — trim to 40–50 words, no filler |
+
+### Step 4 — Format Adjustment Protocol
+
+If the snippet was not won by 6 weeks and the article is in position 1–3, run a format adjustment:
+
+1. **Check the current snippet holder's format** — exact word count, HTML element type, sentence structure
+2. **Rewrite the opening element** of the relevant H2/H3 to match that format precisely
+3. **Update `dateModified`** in schema so Google recrawls promptly
+4. **Request re-indexing** in GSC URL Inspection
+5. **Re-check at 2 weeks** after the adjustment
+
+**Format adjustment log:**
+```
+Format Adjustment — [Query]
+Adjustment date: [YYYY-MM-DD]
+Before: [describe old format — e.g. "prose paragraph, 65 words, included a link"]
+After:  [describe new format — e.g. "prose paragraph, 48 words, no links, no bold"]
+Reason: [e.g. "current snippet is 47-word plain paragraph — matched it exactly"]
+Re-check date: [YYYY-MM-DD + 14 days]
+```
+
+### Step 5 — 3-Month Check (Final Review)
+
+```
+3-Month Snippet Check — [Article Title]
+Check date: [YYYY-MM-DD]
+
+| # | Query | Snippet won? | Position | Total impressions | Total clicks | Decision |
+|---|---|---|---|---|---|---|
+| 1 | | | | | | Keep / Full refresh |
+```
+
+**At 3 months — decision rules:**
+
+| Status | Decision |
+|---|---|
+| Snippet won, position 1–3 | Success — add to Published Articles Log as snippet win |
+| No snippet, position 1–3, > 2 format adjustments tried | SERP likely dominated by .gov/.edu — target a long-tail variant instead |
+| No snippet, position 4–10 | Run Content Decay Rescue — content needs depth improvement |
+| No snippet, position > 10 | Full content refresh — treat as decayed article |
+
+### SERP Position Zero Monitoring Checklist
+
+**Pre-publish:**
+- [ ] Snippet Target List generated — minimum 5 target queries identified
+- [ ] Current snippet holder recorded for each query
+- [ ] Expected snippet format noted for each query
+
+**2-week check:**
+- [ ] Article confirmed indexed in GSC (impressions > 0)
+- [ ] Snippet status recorded for each target query
+- [ ] 2-week check results saved in Published Articles Log
+
+**6-week check:**
+- [ ] Snippet status re-checked for all target queries
+- [ ] Format adjustment triggered for any position 1–3 non-snippets
+- [ ] Format adjustment logged with before/after description
+- [ ] `dateModified` updated and re-indexing requested after any format change
+
+**3-month check:**
+- [ ] Final snippet status recorded
+- [ ] Wins logged in Published Articles Log
+- [ ] Non-wins escalated to Content Decay Rescue or long-tail fallback
+
+---
+
+## META TITLE A/B TEST SKILL
+
+The template already generates 5 title variants per article — but without a testing and decision framework, the first title stays forever regardless of CTR performance. A title change alone can improve CTR by 1–3 percentage points, which compounds into significantly more traffic with no new content needed.
+
+### When to run
+
+- **Set up at publish:** record the live title and baseline CTR target
+- **First evaluation: 4 weeks post-publish** — enough data for a meaningful CTR reading
+- **Swap if needed: at 4-week check** — only one swap per evaluation cycle
+- **Re-evaluate: 4 weeks after each swap**
+
+### Step 1 — Define the Title Test Set
+
+At article creation, generate exactly 3 title variants in addition to the default title. Each variant uses a different format. One format will consistently outperform for your audience — the test identifies which.
+
+**The 4 title formats:**
+
+| Format | Pattern | Example |
+|---|---|---|
+| **Statement** (default) | [Primary Keyword] — [Qualifier or benefit] | "Why Malta is Becoming Europe's Top Study Destination" |
+| **Question** | [Direct question — primary keyword as subject] | "Is Malta the Best Country in Europe to Study In?" |
+| **Number** | [Number] + [noun phrase] + [benefit] | "7 Reasons International Students Choose Malta Over the UK" |
+| **How To / Guide** | How to [verb phrase] in Malta [year] | "How to Study in Malta as an International Student (2026 Guide)" |
+
+**Title Test Set output (generate at article creation):**
+```
+Title Test Set — [Article]
+Primary keyword: [keyword]
+Published date: [YYYY-MM-DD]
+
+Title A (live): [Statement title — default]
+Title B: [Question title]
+Title C: [Number title]
+Title D: [How To / Guide title]
+
+Character counts (all must be ≤ 60 chars for full display):
+A: [N] chars
+B: [N] chars
+C: [N] chars
+D: [N] chars
+```
+
+**Title writing rules (apply to all variants):**
+- Maximum 60 characters — titles truncated in SERP do not get clicked
+- Primary keyword in the first 4 words where possible
+- No clickbait, no misleading claims, no all-caps
+- Year (e.g. "2026") increases CTR for informational queries — include where natural
+- Avoid starting with "The" — wastes the first word
+
+### Step 2 — Establish the CTR baseline
+
+At 4 weeks post-publish, pull these metrics from GSC → Performance → Search results for the article URL:
+
+```
+CTR Baseline — [Article Title]
+Date pulled: [YYYY-MM-DD]
+Period: last 28 days
+
+Total impressions: [N]
+Total clicks: [N]
+Average CTR: [N]%
+Average position: [N]
+
+CTR by position benchmark:
+  Position 1: expect 25–35%
+  Position 2: expect 12–18%
+  Position 3: expect 8–12%
+  Position 4–5: expect 5–8%
+  Position 6–10: expect 2–5%
+
+Our position: [N]
+Expected CTR at this position: [N]%
+Actual CTR: [N]%
+Gap: [positive = outperforming / negative = underperforming]
+```
+
+**Swap trigger:** If actual CTR is more than **1.5 percentage points below** the expected CTR for the article's average position, swap to the next title variant.
+
+### Step 3 — Title swap decision table
+
+| Actual CTR vs expected | Decision |
+|---|---|
+| Within 0.5 percentage points | Keep current title — within margin |
+| 0.5–1.5 pp below expected | Monitor for 2 more weeks before swapping |
+| > 1.5 pp below expected | Swap to next title variant immediately |
+| > 1.5 pp above expected | Keep — title is outperforming; do not change |
+
+**Swap order:** A → B → C → D → back to A (if all four have been tested)
+
+After each swap, wait a minimum of **4 weeks** before evaluating again. Switching titles too frequently prevents meaningful data from accumulating.
+
+### Step 4 — Apply the title swap
+
+A title change requires updates in three places:
+
+```
+Title Swap Checklist
+Old title: [title A]
+New title: [title B]
+Swap date: [YYYY-MM-DD]
+
+Files to update:
+[ ] <title> tag in <head>
+[ ] og:title meta tag
+[ ] twitter:title meta tag
+[ ] "headline" in Article / BlogPosting JSON-LD schema
+[ ] "dateModified" in Article schema (set to swap date so GSC recrawls promptly)
+[ ] Request re-indexing in GSC URL Inspection after updating
+```
+
+### Step 5 — Log results per variant
+
+```
+Title Test Log — [Article Title]
+Article URL: https://outreachrecruitment.net/[slug]
+
+| Variant | Title text | Live period | Avg position | Impressions | CTR | vs expected | Result |
+|---|---|---|---|---|---|---|---|
+| A | [text] | [date]–[date] | | | | | Kept / Swapped |
+| B | [text] | [date]–[date] | | | | | Kept / Swapped |
+| C | [text] | | | | | | |
+| D | [text] | | | | | | |
+
+Winner: [Variant X] — [Title text]
+Winning format: [Statement / Question / Number / How To]
+```
+
+Track the winning format across all articles. If Question titles consistently win, apply that format as the default for new articles and update this rule in the skill.
+
+### Meta Title A/B Test Checklist
+
+**At publish:**
+- [ ] Title Test Set generated — 4 variants (Statement, Question, Number, How To) all ≤ 60 chars
+- [ ] Title A (Statement, default) set as the live title
+- [ ] Title Test Set saved in Published Articles Log
+- [ ] 4-week evaluation date noted
+
+**At 4-week evaluation:**
+- [ ] CTR baseline pulled from GSC (28-day window)
+- [ ] Actual CTR compared against position benchmark
+- [ ] Swap decision made using decision table
+- [ ] If swapping: all 4 locations updated (title, og:title, twitter:title, schema headline)
+- [ ] `dateModified` updated and re-indexing requested after swap
+- [ ] Title Test Log updated
+
+**After all 4 variants tested:**
+- [ ] Winning variant identified and set as permanent title
+- [ ] Winning format pattern recorded — update default format rule if consistent across 3+ articles
+
+---
+
+## AI OVERVIEW INCLUSION AUDIT SKILL
+
+Google AI Overviews (AIO) appear in 30–40% of informational searches and are the single fastest-growing source of zero-click results. Being cited as a source in an AIO generates brand visibility and clicks even without a top-3 organic ranking. This skill audits AIO presence for Study in Malta queries and identifies exactly what content format and schema pattern gets cited.
+
+### When to run
+
+- **Monthly audit** — check all primary keywords for the published article cluster
+- **After every major content update** — confirm AIO citation status after schema or content changes
+- **When a new article is published** — add its primary keyword to the AIO monitoring list
+
+### Step 1 — Build the AIO Query List
+
+For each published article, identify 3–5 queries most likely to trigger an AIO. These are typically:
+- Direct questions: "Can I study in Malta as a Nigerian student?"
+- Comparison queries: "Malta vs Ireland for international students"
+- "Best" queries: "best EU country to study in English"
+- Definition queries: "what is a Malta student residence permit"
+
+```
+AIO Query List — [Article Title]
+Article URL: https://outreachrecruitment.net/[slug]
+
+| # | Query | AIO expected? | Priority |
+|---|---|---|---|
+| 1 | [query] | High / Medium / Low | High |
+```
+
+### Step 2 — Manual AIO check
+
+For each query, search Google while logged out (or in Incognito mode) and record:
+
+```
+AIO Audit Record
+Query: [query]
+Date checked: [YYYY-MM-DD]
+AIO shown: YES / NO
+AIO sources cited: [list domains cited]
+Outreach Recruitment cited: YES / NO
+Our article URL cited: [URL or "not cited"]
+AIO format: Summary paragraph / Bulleted list / Step list / Table / Mixed
+AIO word count (approx.): [N] words
+```
+
+**If Outreach Recruitment is NOT cited:**
+
+Record which sources ARE being cited. Look for:
+- Content format differences (are they using lists where we use paragraphs?)
+- Schema differences (do they have HowTo or FAQPage schema we are missing?)
+- Authority differences (are .edu or .gov sources dominating?)
+- Recency differences (are their articles more recently updated?)
+
+### Step 3 — AIO Inclusion Pattern Analysis
+
+After checking 10+ queries, identify which content patterns correlate with AIO citation. Track:
+
+```
+AIO Inclusion Pattern Log
+
+| Pattern | Observed in cited sources | Present in our articles |
+|---|---|---|
+| FAQ section with <details>/<summary> | ✅ / ❌ | ✅ / ❌ |
+| HowTo JSON-LD schema | ✅ / ❌ | ✅ / ❌ |
+| FAQPage JSON-LD schema | ✅ / ❌ | ✅ / ❌ |
+| 40–50 word Position Zero paragraph | ✅ / ❌ | ✅ / ❌ |
+| Numbered step list in body | ✅ / ❌ | ✅ / ❌ |
+| Cited by a .edu or .gov page | ✅ / ❌ | ✅ / ❌ |
+| Article updated within 6 months | ✅ / ❌ | ✅ / ❌ |
+| AggregateRating schema | ✅ / ❌ | ✅ / ❌ |
+| Organization schema with sameAs | ✅ / ❌ | ✅ / ❌ |
+```
+
+Any pattern present in 3+ cited sources but missing from our articles is a priority fix.
+
+### Step 4 — AIO Optimisation Actions
+
+Based on the Pattern Analysis, apply the following fixes to any article not being cited:
+
+**Fix A — Add or tighten the Position Zero block**
+
+The AIO most commonly lifts the first direct-answer paragraph. Ensure it is:
+- Exactly 40–50 words
+- Plain prose — no links, no bold, no lists
+- First sentence answers the query directly
+- Contains the exact query phrase in the first 10 words
+
+**Fix B — Add `speakable` schema**
+
+`speakable` signals to Google which content is suitable for voice and AI extraction:
+
+```json
+{
+  "@type": "WebPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#position-zero", "#key-takeaways", "#faq"]
+  }
+}
+```
+
+Add `id="position-zero"` to the Position Zero paragraph element and `id="key-takeaways"` to the Key Takeaways aside.
+
+**Fix C — Add `isPartOf` and `about` to Article schema**
+
+These entity relationships help Google understand what the article is *about*:
+
+```json
+{
+  "@type": "BlogPosting",
+  "about": [
+    {"@type": "Thing", "name": "Studying in Malta", "sameAs": "https://www.wikidata.org/wiki/Q233"},
+    {"@type": "Thing", "name": "Student visa Malta"},
+    {"@type": "Thing", "name": "University of Malta", "sameAs": "https://www.wikidata.org/wiki/Q740595"}
+  ],
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://outreachrecruitment.net/#website"
+  }
+}
+```
+
+**Fix D — Structured answer blocks**
+
+AIO systems prefer clearly bounded answer blocks. Wrap every self-contained answer in a `<div>` with a unique `id` and `aria-label`:
+
+```html
+<div id="position-zero" aria-label="Direct answer: [query topic]">
+  <p>[40–50 word answer paragraph]</p>
+</div>
+```
+
+### Step 5 — AIO Monitoring Calendar
+
+```
+AIO Monitoring Schedule
+
+| Article | Primary query | Last checked | Cited? | Next check |
+|---|---|---|---|---|
+| [title] | [query] | [date] | YES/NO | [date + 30 days] |
+```
+
+Review the full AIO Monitoring Schedule on the **1st of every month**.
+
+### AI Overview Inclusion Audit Checklist
+
+**Setup (per article at publish):**
+- [ ] AIO Query List generated — 3–5 queries per article
+- [ ] Queries added to AIO Monitoring Schedule
+- [ ] `speakable` schema added with correct `cssSelector` values
+- [ ] `id="position-zero"` added to Position Zero paragraph
+- [ ] `id="key-takeaways"` added to Key Takeaways aside
+- [ ] `about` array added to Article schema with named entities + `sameAs` Wikidata links
+- [ ] `isPartOf` WebSite reference added to Article schema
+
+**Monthly audit:**
+- [ ] All queries in AIO Monitoring Schedule checked (Incognito mode)
+- [ ] Outreach citation status recorded for each query
+- [ ] AIO Inclusion Pattern Log updated
+- [ ] Any pattern gap identified → fix assigned to relevant article
+- [ ] AIO Monitoring Schedule updated with new check dates
+
+---
+
+## STUDENT JOURNEY FUNNEL SKILL
+
+The template maps CTAs but not the full reader journey. A student from Nigeria who just heard about Malta for the first time needs different content and CTAs than a student who already has an acceptance letter and is applying for a visa. Sending both to the same CTA wastes conversions. This skill maps every article to a funnel stage, assigns stage-appropriate CTAs, and ensures no article dead-ends without forwarding the reader to the next stage.
+
+### When to run
+
+Run this skill **once for the full article cluster** (not per article), then update it every time a new article is published. Re-run per article only when a CTA or internal link structure changes.
+
+### The 3 Funnel Stages
+
+| Stage | Reader mindset | Reader question | Goal |
+|---|---|---|---|
+| **1 — Awareness** | "Is Malta even an option for me?" | Can I study in Malta? Is it affordable? Is it safe? | Move to Consideration |
+| **2 — Consideration** | "Malta seems good. How does it compare and what do I need?" | What universities? What does it cost? Do I qualify? | Move to Decision |
+| **3 — Decision** | "I want to study in Malta. How do I actually do it?" | How do I apply? What documents? How long does the visa take? | Convert — Apply Now |
+
+### Step 1 — Assign every article to a funnel stage
+
+```
+Funnel Stage Map — [Date]
+
+| Article | Slug | Primary keyword | Funnel stage | Primary CTA | Next stage article |
+|---|---|---|---|---|---|
+| Why Malta is Top Study Destination | /why-malta-... | why study in Malta | 1 — Awareness | Free Webinar | /study-in-malta-complete-guide |
+| Cost of Living in Malta | /cost-of-living-... | cost of living Malta | 1–2 — Awareness/Consideration | Browse Programs | /malta-student-visa-complete-guide |
+| Universities in Malta | /universities-... | universities in Malta | 2 — Consideration | Browse Programs | /how-to-apply-to-study-in-malta |
+| Malta Student Visa Guide | /malta-student-visa-... | Malta student visa | 2–3 — Consideration/Decision | Apply Now | /how-to-apply-to-study-in-malta |
+| How to Apply to Study in Malta | /how-to-apply-... | how to apply study Malta | 3 — Decision | Apply Now | (conversion — apply.outreachstudy.eu) |
+```
+
+**Stage assignment rules:**
+- An article is Stage 1 if its primary keyword is a "discovery" query (why / is / what is / best)
+- An article is Stage 2 if its primary keyword is a "comparison" or "requirement" query (how much / which / requirements for)
+- An article is Stage 3 if its primary keyword is a "process" or "how to" query (how to apply / visa steps / what documents)
+- An article spanning two stages uses the lower stage number (earlier in the funnel)
+
+### Step 2 — Assign stage-appropriate CTAs
+
+Different stages need different primary CTAs. Using "Apply Now" on a Stage 1 article is premature — the reader hasn't decided yet. Using "Free Webinar" on a Stage 3 article misses the conversion moment.
+
+**CTA assignment by stage:**
+
+| Stage | Primary CTA | Secondary CTA | Reason |
+|---|---|---|---|
+| **1 — Awareness** | Free Webinar | Browse Programs | Low commitment — explore, don't pressure |
+| **2 — Consideration** | Browse Programs | Free Webinar | They're comparing — give them more info |
+| **3 — Decision** | Apply Now | Free Consultation | They're ready — give them the action |
+
+**CTA placement by stage:**
+
+| Stage | After intro | Mid-article | Before conclusion |
+|---|---|---|---|
+| 1 | Webinar box | Programs box | Webinar box (repeat) |
+| 2 | Programs box | Apply Now | Programs box (repeat) |
+| 3 | Apply Now | Apply Now | Apply Now |
+
+### Step 3 — Ensure every article forwards to the next stage
+
+Every article must end with a "next step" link pointing the reader forward in the funnel. This prevents dead ends and increases session depth, which signals to Google that the content is engaging.
+
+**Next-step link template (place before the final CTA or after the conclusion):**
+
+```html
+<div style="background:#f8fafc;border:1px solid #dbeafe;border-radius:8px;padding:20px;margin:32px 0;">
+  <p style="font-weight:700;margin-bottom:8px;">Ready for the next step?</p>
+  <p style="margin-bottom:12px;">[1 sentence bridging the current article topic to the next article — e.g. "Now that you know why Malta is the right choice, see how to apply and what documents you need."]</p>
+  <a href="https://outreachrecruitment.net/[next-stage-slug]" style="color:#1a56db;font-weight:600;text-decoration:none;">
+    [Next article title] →
+  </a>
+</div>
+```
+
+### Step 4 — Audit for dead ends
+
+A dead end is any article that:
+- Has no link to any other Study in Malta article in its body
+- Has no "next step" block before the final CTA
+- Has only one CTA type throughout the article (all "Apply Now" on a Stage 1 article, for example)
+
+**Dead End Audit:**
+```
+Dead End Audit — [Date]
+
+| Article | Stage | Has next-step link? | Links to 2+ cluster articles? | Stage-appropriate CTA? | Action |
+|---|---|---|---|---|---|
+| [title] | 1/2/3 | YES/NO | YES/NO | YES/NO | Fix / OK |
+```
+
+Any article with NO in any column needs to be updated before the audit closes.
+
+### Step 5 — Funnel performance metrics
+
+Track these metrics per funnel stage in GSC and Google Analytics:
+
+| Stage | Metric to watch | Target |
+|---|---|---|
+| 1 — Awareness | Bounce rate, pages per session | Bounce < 70%; pages/session > 1.8 |
+| 2 — Consideration | Time on page, scroll depth | Time on page > 3 min; scroll depth > 60% |
+| 3 — Decision | CTA click rate, form starts | CTA clicks / sessions > 5%; form starts > 2% |
+
+If Stage 1 articles have > 75% bounce rate, the next-step links or CTAs are not converting readers forward. Rewrite the next-step block or change the CTA.
+
+### Student Journey Funnel Checklist
+
+**One-time setup:**
+- [ ] All published articles assigned to a funnel stage in the Funnel Stage Map
+- [ ] Each article has a "next stage article" identified
+- [ ] Stage-appropriate CTAs assigned to every article (table above applied)
+- [ ] Dead End Audit completed — all articles have next-step links
+
+**Per new article:**
+- [ ] Funnel stage assigned before writing begins
+- [ ] CTA placement follows stage rules (Awareness / Consideration / Decision)
+- [ ] Next-step link block added before the final CTA
+- [ ] Article links to at least 2 other cluster articles in the body
+- [ ] Funnel Stage Map updated with the new article row
+
+**Quarterly review:**
+- [ ] Funnel Stage Map reviewed — any new articles added?
+- [ ] Dead End Audit re-run — any articles now missing next-step links?
+- [ ] CTA click rates checked per stage — any stage underperforming targets?
+- [ ] Stage 1 bounce rate checked — if > 75%, rewrite next-step blocks
