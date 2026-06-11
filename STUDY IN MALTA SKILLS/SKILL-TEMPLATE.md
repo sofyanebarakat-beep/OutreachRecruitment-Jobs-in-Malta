@@ -337,12 +337,25 @@ All comparison tables and data tables must be mobile-safe, accessible, and teste
 
 Every non-decorative image must use `<figure>` and `<figcaption>`.
 
+Article images render at **816px max-width** inside the `container tight` column. Use this as the reference width for `sizes` and `srcset`.
+
 ```html
-<figure>
-  <img src="[image].webp" alt="[descriptive alt text]" width="[W]" height="[H]" loading="lazy" />
-  <figcaption>[Descriptive caption with useful context, not keyword stuffing.]</figcaption>
+<figure itemscope itemtype="https://schema.org/ImageObject">
+  <img src="[image].webp"
+       alt="[descriptive alt text]"
+       width="816" height="[H]"
+       loading="lazy" decoding="async"
+       sizes="(max-width: 600px) 100vw, 816px"
+       itemprop="contentUrl" />
+  <figcaption itemprop="caption">[Descriptive caption with useful context, not keyword stuffing.]</figcaption>
 </figure>
 ```
+
+**Image size rules:**
+- Article body images: `width="816"` — matches `container tight` column width
+- Hero/OG images: `width="1200" height="630"` — standard Open Graph ratio
+- Always include explicit `width` and `height` to prevent CLS
+- Use `loading="lazy"` on all images below the fold; `fetchpriority="high"` on the hero only
 
 ### Print stylesheet
 
