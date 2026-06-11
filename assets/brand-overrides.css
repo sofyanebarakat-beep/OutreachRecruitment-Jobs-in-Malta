@@ -3951,6 +3951,37 @@ body.opening-jobs-page #opening-jobs-filter.is-sticky {
   }
 }
 
+/* ── Override Webflow's FOUC guard ──────────────────────────────────────── */
+/*
+ * Webflow sets visibility:hidden on all headings/nav until its IX2 JS adds
+ * the w-mod-ix3 class — this delays LCP by the full JS parse time (~2-4s
+ * on mobile).  We override it with a higher-specificity rule (0,3,1 beats
+ * Webflow's 0,2,1) so content is immediately visible.  Scroll animations
+ * still run when IX2 loads; they just don't hide the text first.
+ */
+html[lang].w-mod-js:not(.w-mod-ix3) :is(
+  .button-rail, .heading-h1, .heading-h2, .heading-h3,
+  .heading-h4, .heading-h5, .heading-h6,
+  .tag, .caption, .label, .text-medium, .text-small, .text-large,
+  .navigation, .media-fill,
+  [data-gsap-scroll="fade"], [data-gsap-scroll="fade-late"]
+) {
+  visibility: visible !important;
+}
+
+/* ── Apply panel iframe — reduce mobile min-height ──────────────────────── */
+/*
+ * Default was 1650px on mobile, forcing a massive layout shift when the
+ * apply panel opens.  600px renders the form above the fold; the iframe
+ * auto-expands via the postMessage resize handler.
+ */
+@media (max-width: 767px) {
+  .outreach-apply-frame,
+  .outreach-apply-frame.tall {
+    min-height: 620px !important;
+  }
+}
+
 /* ── Mobile performance: suppress decorative autoplay background videos ─── */
 /*
  * On mobile/tablet the nav dropdowns are never shown, so these 3 video
