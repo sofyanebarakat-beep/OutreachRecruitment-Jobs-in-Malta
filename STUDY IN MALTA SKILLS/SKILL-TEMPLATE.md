@@ -463,15 +463,135 @@ https://outreachrecruitment.net/[slug]
 
 ### Breadcrumb Schema (all articles)
 
+Every Study in Malta article must show **3 levels**: Home → Malta Study Guide → Article.
+
 ```json
 {
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"},
-    {"@type": "ListItem", "position": 2, "name": "[Article Title]", "item": "https://outreachrecruitment.net/[slug]"}
+    {"@type": "ListItem", "position": 2, "name": "Malta Study Guide", "item": "https://outreachrecruitment.net/malta-study-guide"},
+    {"@type": "ListItem", "position": 3, "name": "[Article Title]", "item": "https://outreachrecruitment.net/[slug]"}
   ]
 }
 ```
+
+---
+
+## BLOG INDEX — MALTA STUDY GUIDE
+
+**Every new Study in Malta article must be listed in the blog index at:**
+`https://outreachrecruitment.net/malta-study-guide`
+
+### Rules
+
+- The article's **canonical URL** is `https://outreachrecruitment.net/[slug]` (root level)
+- The article **appears as a card** in the Malta Study Guide blog index at `/malta-study-guide`
+- The breadcrumb always shows: **Home → Malta Study Guide → [Article Title]**
+- Every article must include a "Back to Malta Study Guide" link in the header and footer
+
+### Back to Blog Index Link (include at top and bottom of every article)
+
+```html
+<p style="margin-bottom:24px;">
+  <a href="https://outreachrecruitment.net/malta-study-guide" style="color:#1a56db;text-decoration:underline;">
+    ← Back to Malta Study Guide
+  </a>
+</p>
+```
+
+### Blog Card HTML (for malta-study-guide index page — generate one per article)
+
+When generating an article, also output a **Blog Card snippet** to be added to the `/malta-study-guide` index:
+
+```html
+<div class="blog-card" style="border:1px solid #e5e7eb;border-radius:8px;padding:24px;margin-bottom:20px;">
+  <p style="font-size:12px;color:#6b7280;margin-bottom:6px;">[CATEGORY] · [DATE] · [READING TIME] min read</p>
+  <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">
+    <a href="https://outreachrecruitment.net/[slug]" style="color:#111827;text-decoration:none;">[Article Title]</a>
+  </h3>
+  <p style="color:#374151;margin-bottom:16px;">[Meta Description / excerpt — max 155 chars]</p>
+  <a href="https://outreachrecruitment.net/[slug]" style="color:#1a56db;font-weight:600;text-decoration:none;">Read article →</a>
+</div>
+```
+
+---
+
+## SOCIAL META TAGS
+
+Include in every article `<head>`:
+
+```html
+<!-- Open Graph -->
+<meta property="og:title" content="[SEO Title]" />
+<meta property="og:description" content="[Meta Description]" />
+<meta property="og:url" content="https://outreachrecruitment.net/[slug]" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://outreachrecruitment.net/images/[slug]-og.jpg" />
+<meta property="og:site_name" content="Outreach Recruitment" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="[SEO Title]" />
+<meta name="twitter:description" content="[Meta Description]" />
+<meta name="twitter:image" content="https://outreachrecruitment.net/images/[slug]-og.jpg" />
+
+<!-- Article metadata -->
+<meta property="article:published_time" content="[ISO 8601 DATE]" />
+<meta property="article:modified_time" content="[ISO 8601 DATE]" />
+<meta property="article:author" content="Sofyane Barakat" />
+<meta property="article:section" content="Study in Malta" />
+```
+
+---
+
+## ARTICLE HEADER METADATA (required in every article)
+
+Add these fields in the article header or frontmatter:
+
+```html
+<meta name="date" content="[YYYY-MM-DD]" />
+<meta name="last-modified" content="[YYYY-MM-DD]" />
+<meta name="reading-time" content="[X] min read" />
+<meta name="author" content="Sofyane Barakat" />
+<meta name="category" content="Study in Malta" />
+```
+
+Display visibly in the article byline:
+
+```html
+<p style="color:#6b7280;font-size:14px;margin-bottom:24px;">
+  By <strong>Sofyane Barakat</strong> · [YYYY-MM-DD] · [X] min read
+</p>
+```
+
+---
+
+## RELATED ARTICLES SECTION
+
+Include a "Related Articles" section near the bottom of every article (before Conclusion), using 3 articles from the Study in Malta cluster:
+
+```html
+<div style="background:#f9fafb;border-radius:8px;padding:24px;margin:32px 0;">
+  <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Related Articles</h3>
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li style="margin-bottom:12px;"><a href="https://outreachrecruitment.net/[related-slug-1]" style="color:#1a56db;">[Related Article Title 1]</a></li>
+    <li style="margin-bottom:12px;"><a href="https://outreachrecruitment.net/[related-slug-2]" style="color:#1a56db;">[Related Article Title 2]</a></li>
+    <li style="margin-bottom:12px;"><a href="https://outreachrecruitment.net/[related-slug-3]" style="color:#1a56db;">[Related Article Title 3]</a></li>
+  </ul>
+  <p style="margin-top:16px;margin-bottom:0;"><a href="https://outreachrecruitment.net/malta-study-guide" style="color:#1a56db;font-weight:600;">View all articles in the Malta Study Guide →</a></p>
+</div>
+```
+
+---
+
+## PUBLISHED ARTICLES LOG
+
+Track all generated articles here. Update after each generation.
+
+| # | Title | Slug | Date | Status |
+|---|---|---|---|---|
+| 1 | *(add when first article is generated)* | | | |
 
 ---
 
@@ -492,3 +612,14 @@ why-malta-is-becoming-europes-top-destination.html
 ```
 
 Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being moved to the project root.
+
+### OUTPUT CHECKLIST (verify before delivering)
+
+- [ ] Article saved as `[slug].html` at project root
+- [ ] Blog Card snippet generated for `/malta-study-guide` index
+- [ ] "Back to Malta Study Guide" link at top and bottom
+- [ ] Breadcrumb shows: Home → Malta Study Guide → [Article Title]
+- [ ] Social meta tags (OG + Twitter Card) included in `<head>`
+- [ ] Article byline shows author + date + reading time
+- [ ] Related Articles section included near bottom
+- [ ] Published Articles Log updated in this file
