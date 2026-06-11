@@ -14,11 +14,17 @@
   status = 301
   force = true
 
-# ── Study in Malta Complete Guide — handle trailing slash ──────────────────
+# ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
-  from = "/study-in-malta-complete-guide/"
-  to = "/study-in-malta-complete-guide.html"
-  status = 200
+  from = "/study-in-malta-complete-guide"
+  to = "/study-in-malta-complete-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/study-in-malta-complete-guide.html"
+  to = "/study-in-malta-complete-guide/"
+  status = 301
   force = true
 
 # ── Malta Study Guide — redirect old /malta-study-guide/* to root slug ─────
