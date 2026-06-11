@@ -3950,3 +3950,31 @@ body.opening-jobs-page #opening-jobs-filter.is-sticky {
     padding: 0.62rem 1.1rem;
   }
 }
+
+/* ── Mobile performance: suppress decorative autoplay background videos ─── */
+/*
+ * On mobile/tablet the nav dropdowns are never shown, so these 3 video
+ * elements (nav Services promo, nav promo panel, footer promo) download
+ * megabytes of video data for no visible benefit.  Hiding them on ≤991px
+ * is purely cosmetic — all text/links remain intact.
+ */
+@media (max-width: 991px) {
+  .navigation-promo video,
+  .dropdown-promo video,
+  .navigation-promo .w-background-video,
+  .navigation-promo .w-background-video-atom,
+  .dropdown-promo .w-background-video,
+  .dropdown-promo .w-background-video-atom {
+    display: none !important;
+    content-visibility: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-promo video,
+  .footer-promo .w-background-video,
+  .footer-promo .w-background-video-atom {
+    display: none !important;
+    content-visibility: hidden;
+  }
+}
