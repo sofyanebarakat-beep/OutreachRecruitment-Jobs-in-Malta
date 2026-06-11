@@ -2431,6 +2431,137 @@ Delivery checks:
 
 ---
 
+## IMAGE GENERATION SKILL
+
+Every article gets **7 real photographs** fetched automatically from Unsplash / Pexels. No AI-generated images — real photography only.
+
+### Script
+
+```bash
+cd "STUDY IN MALTA SKILLS"
+python3 generate-article-images.py --auto --slug "[article-slug]" --topic "[Article Title]"
+```
+
+Images are saved to `/images/[slug]/` and a ready-to-embed HTML file is written to `/images/[slug]/image-tags.html`.
+
+---
+
+### 7 Image Slots Per Article
+
+| # | Slot | File Name | Size | Role | Loading |
+|---|---|---|---|---|---|
+| 1 | Hero | `[slug]-hero.webp` + `[slug]-hero-800w.webp` | 1200×630 | Page header + OG image | `fetchpriority="high"` |
+| 2 | Section 1 | `[slug]-section-1.webp` | 1200×628 | First H2 section opener | `loading="lazy"` |
+| 3 | Section 2 | `[slug]-section-2.webp` | 800×500 | Visa / requirements section | `loading="lazy"` |
+| 4 | Section 3 | `[slug]-section-3.webp` | 800×500 | Costs / fees section | `loading="lazy"` |
+| 5 | Section 4 | `[slug]-section-4.webp` | 800×500 | Accommodation section | `loading="lazy"` |
+| 6 | Section 5 | `[slug]-section-5.webp` | 800×500 | Work / career section | `loading="lazy"` |
+| 7 | Section 6 | `[slug]-section-6.webp` | 800×500 | Student life / location | `loading="lazy"` |
+
+---
+
+### Image SEO Requirements
+
+Every image in every article must meet **all** of these standards:
+
+**Alt text**
+- Max 120 characters
+- Describes what is visually in the photo (not keyword-stuffed)
+- Ends with ` — Outreach Recruitment`
+- Example: `International students studying in Malta university campus — Outreach Recruitment`
+
+**Caption**
+- Full sentence describing the scene
+- Ends with `Photo: [Photographer Name] / [Source].`
+- Example: `Students attending a university lecture in Malta. Photo: Vitaly Gariev / Unsplash.`
+
+**Figure markup** (required for all non-decorative images)
+```html
+<figure>
+  <img src="/images/[slug]/[slug]-[slot].webp"
+       alt="[descriptive alt text] — Outreach Recruitment"
+       width="[w]" height="[h]"
+       loading="lazy" />
+  <figcaption>[Caption]. Photo: [Photographer] / [Source].</figcaption>
+</figure>
+```
+
+**Hero image** additionally requires:
+- `fetchpriority="high"` (not `loading="lazy"`)
+- `srcset` pointing to both 800w and 1200w WebP variants
+- OG image meta tag updated to point to hero WebP
+
+**Attribution comment** (above every `<figure>`, hidden from users, required for Unsplash/Pexels terms)
+```html
+<!-- Photo: [Photographer] on [Source] — [photo_url] -->
+```
+
+---
+
+### OG / Twitter Image Meta Tags
+
+Replace or add these in `<head>` using the hero image path:
+
+```html
+<meta property="og:image" content="https://outreachrecruitment.net/images/[slug]/[slug]-hero.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content="https://outreachrecruitment.net/images/[slug]/[slug]-hero.webp" />
+```
+
+---
+
+### Query Strategy
+
+The script auto-selects queries based on the article slug. You can override all 7 queries by passing `queries=[...]` when calling `fetch_images_for_article()` in Python. Default query sets are defined in `QUERY_SETS` in `generate-article-images.py`.
+
+General pattern — one query per major article section:
+
+| Slot | Query Theme |
+|---|---|
+| Hero | `[country/topic] students university outdoor` |
+| Section 1 | `diverse university students lecture hall` |
+| Section 2 | `visa passport documents application desk` |
+| Section 3 | `student budget planning laptop` |
+| Section 4 | `student apartment bedroom Mediterranean` |
+| Section 5 | `student working part time cafe` |
+| Section 6 | `[city/country] aerial view landmark` |
+
+---
+
+### Where to Place Images in the Article
+
+| Image | Placement in HTML |
+|---|---|
+| Hero | Immediately inside `<header>` / top of `<main>`, before H1 or styled as the article banner |
+| Section 1 | After the first H2 opening paragraph |
+| Section 2 | After the H2 for visa / requirements |
+| Section 3 | After the H2 for costs / fees |
+| Section 4 | After the H2 for accommodation |
+| Section 5 | After the H2 for work / career |
+| Section 6 | After the H2 for student life, lifestyle, or the city/country |
+
+---
+
+### Image Checklist (per article)
+
+- [ ] Script run: `python3 generate-article-images.py --auto --slug "[slug]" --topic "[title]"`
+- [ ] 7 WebP files confirmed in `/images/[slug]/`
+- [ ] Hero srcset 800w variant confirmed (`[slug]-hero-800w.webp`)
+- [ ] `image-tags.html` generated and reviewed
+- [ ] All 7 `<figure>` blocks embedded at correct section positions
+- [ ] Hero `<img>` uses `fetchpriority="high"` (not `loading="lazy"`)
+- [ ] All 6 section images use `loading="lazy"`
+- [ ] All `<img>` have explicit `width` and `height`
+- [ ] All `<img>` have descriptive `alt` text (max 120 chars, ends with `— Outreach Recruitment`)
+- [ ] All images wrapped in `<figure>` + `<figcaption>`
+- [ ] Attribution HTML comments present above each `<figure>`
+- [ ] OG / Twitter `og:image` meta tags updated to hero WebP URL
+- [ ] `image-manifest.json` saved in `/images/[slug]/`
+- [ ] Images are **real photographs** (Unsplash or Pexels) — never AI-generated
+
+---
+
 ## OUTPUT FILE STRUCTURE
 
 Save every generated article as an HTML file at the **project root**:
@@ -2507,10 +2638,18 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] Broken link check: all outbound URLs verified live before delivering
 - [ ] Social sharing buttons included: WhatsApp, LinkedIn, Email — no JavaScript
 
+**Images (IMAGE GENERATION SKILL)**
+- [ ] `generate-article-images.py` run with `--auto --slug "[slug]" --topic "[title]"`
+- [ ] 7 WebP files confirmed in `/images/[slug]/`
+- [ ] Hero srcset 800w variant confirmed
+- [ ] All 7 `<figure>` blocks embedded at correct H2 section positions
+- [ ] Hero uses `fetchpriority="high"`, all others `loading="lazy"`
+- [ ] OG + Twitter `og:image` meta tags point to hero WebP
+- [ ] Attribution HTML comments above every `<figure>`
+- [ ] Images are real photographs (Unsplash / Pexels) — no AI images
+
 **Media & performance**
 - [ ] All `<img>` tags have explicit `width` and `height`
-- [ ] Visual Asset Brief completed for hero image and supporting visuals
-- [ ] Free image workflow used when no owned image exists: Canva Free / Microsoft Designer / Adobe Express / Pexels / Unsplash, then WebP compression
 - [ ] Every non-decorative image uses `<figure>` and `<figcaption>`
 - [ ] Below-fold images use `loading="lazy"`
 - [ ] Hero image uses `fetchpriority="high"`

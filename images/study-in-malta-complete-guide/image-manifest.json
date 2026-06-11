@@ -1,0 +1,93 @@
+[
+  {
+    "slot": "hero",
+    "file": "study-in-malta-complete-guide-hero.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp",
+    "size": "1200x630",
+    "alt": "Happy young multiracial women in casual clothes sitting outdoors with notepad and papers in daytime while looking \u2014 Outr",
+    "caption": "Happy young multiracial women in casual clothes sitting outdoors with notepad and papers in daytime while looking at each other. Photo: Zen Chung / Pexels.",
+    "source": "Pexels",
+    "photographer": "Zen Chung",
+    "photo_url": "https://www.pexels.com/photo/multiethnic-girlfriends-speaking-with-each-other-in-street-5538583/",
+    "loading": "eager",
+    "html": "<!-- Photo: Zen Chung on Pexels \u2014 https://www.pexels.com/photo/multiethnic-girlfriends-speaking-with-each-other-in-street-5538583/ -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp\"\n       alt=\"Happy young multiracial women in casual clothes sitting outdoors with notepad and papers in daytime while looking \u2014 Outr\"\n       width=\"1200\" height=\"630\" fetchpriority=\"high\"\n     srcset=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero-800w.webp 800w, /images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp 1200w\" />\n  <figcaption>Happy young multiracial women in casual clothes sitting outdoors with notepad and papers in daytime while looking at each other. Photo: Zen Chung / Pexels.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-1",
+    "file": "study-in-malta-complete-guide-section-1.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-1.webp",
+    "size": "1200x628",
+    "alt": "Professor lectures to students in a classroom \u2014 Outreach Recruitment",
+    "caption": "Professor lectures to students in a classroom setting. Photo: Vitaly Gariev / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Vitaly Gariev",
+    "photo_url": "https://unsplash.com/photos/professor-lectures-to-students-in-a-classroom-setting-RDf6Cvns88Q",
+    "loading": "lazy",
+    "html": "<!-- Photo: Vitaly Gariev on Unsplash \u2014 https://unsplash.com/photos/professor-lectures-to-students-in-a-classroom-setting-RDf6Cvns88Q -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-1.webp\"\n       alt=\"Professor lectures to students in a classroom \u2014 Outreach Recruitment\"\n       width=\"1200\" height=\"628\" loading=\"lazy\"\n     srcset=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-1-800w.webp 800w, /images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-1.webp 1200w\" />\n  <figcaption>Professor lectures to students in a classroom setting. Photo: Vitaly Gariev / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-2",
+    "file": "study-in-malta-complete-guide-section-2.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-2.webp",
+    "size": "800x500",
+    "alt": "a person using a laptop and a cell \u2014 Outreach Recruitment",
+    "caption": "A person using a laptop and a cell phone. Photo: Marielle Ursua / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Marielle Ursua",
+    "photo_url": "https://unsplash.com/photos/a-person-using-a-laptop-and-a-cell-phone-l7AVeJi1RMk",
+    "loading": "lazy",
+    "html": "<!-- Photo: Marielle Ursua on Unsplash \u2014 https://unsplash.com/photos/a-person-using-a-laptop-and-a-cell-phone-l7AVeJi1RMk -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-2.webp\"\n       alt=\"a person using a laptop and a cell \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>A person using a laptop and a cell phone. Photo: Marielle Ursua / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-3",
+    "file": "study-in-malta-complete-guide-section-3.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-3.webp",
+    "size": "800x500",
+    "alt": "MacBook Pro near white open \u2014 Outreach Recruitment",
+    "caption": "Macbook pro near white open book. Photo: Nick Morrison / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Nick Morrison",
+    "photo_url": "https://unsplash.com/photos/macbook-pro-near-white-open-book-FHnnjk1Yj7Y",
+    "loading": "lazy",
+    "html": "<!-- Photo: Nick Morrison on Unsplash \u2014 https://unsplash.com/photos/macbook-pro-near-white-open-book-FHnnjk1Yj7Y -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-3.webp\"\n       alt=\"MacBook Pro near white open \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Macbook pro near white open book. Photo: Nick Morrison / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-4",
+    "file": "study-in-malta-complete-guide-section-4.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-4.webp",
+    "size": "800x500",
+    "alt": "white bed comforter near glass \u2014 Outreach Recruitment",
+    "caption": "White bed comforter near glass window. Photo: Frames For Your Heart / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Frames For Your Heart",
+    "photo_url": "https://unsplash.com/photos/white-bed-comforter-near-glass-window-8_V45fGyWz4",
+    "loading": "lazy",
+    "html": "<!-- Photo: Frames For Your Heart on Unsplash \u2014 https://unsplash.com/photos/white-bed-comforter-near-glass-window-8_V45fGyWz4 -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-4.webp\"\n       alt=\"white bed comforter near glass \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>White bed comforter near glass window. Photo: Frames For Your Heart / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-5",
+    "file": "study-in-malta-complete-guide-section-5.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-5.webp",
+    "size": "800x500",
+    "alt": "Focused businessman working on a laptop in a stylish cafe \u2014 Outreach Recruitment",
+    "caption": "Focused businessman working on a laptop in a stylish cafe setting. Photo: Gustavo Fring / Pexels.",
+    "source": "Pexels",
+    "photographer": "Gustavo Fring",
+    "photo_url": "https://www.pexels.com/photo/businessman-working-on-laptop-in-cafe-7446935/",
+    "loading": "lazy",
+    "html": "<!-- Photo: Gustavo Fring on Pexels \u2014 https://www.pexels.com/photo/businessman-working-on-laptop-in-cafe-7446935/ -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-5.webp\"\n       alt=\"Focused businessman working on a laptop in a stylish cafe \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Focused businessman working on a laptop in a stylish cafe setting. Photo: Gustavo Fring / Pexels.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-6",
+    "file": "study-in-malta-complete-guide-section-6.webp",
+    "web_path": "/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-6.webp",
+    "size": "800x500",
+    "alt": "brown building facing \u2014 Outreach Recruitment",
+    "caption": "Brown building facing sea. Photo: Luke Tanis / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Luke Tanis",
+    "photo_url": "https://unsplash.com/photos/brown-building-facing-sea-oJ2eGgSfe6Y",
+    "loading": "lazy",
+    "html": "<!-- Photo: Luke Tanis on Unsplash \u2014 https://unsplash.com/photos/brown-building-facing-sea-oJ2eGgSfe6Y -->\n<figure>\n  <img src=\"/images/study-in-malta-complete-guide/study-in-malta-complete-guide-section-6.webp\"\n       alt=\"brown building facing \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Brown building facing sea. Photo: Luke Tanis / Unsplash.</figcaption>\n</figure>"
+  }
+]
