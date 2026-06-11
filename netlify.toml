@@ -17,7 +17,7 @@
 # ── Study in Malta Complete Guide — handle trailing slash ──────────────────
 [[redirects]]
   from = "/study-in-malta-complete-guide/"
-  to = "/study-in-malta-complete-guide"
+  to = "/study-in-malta-complete-guide.html"
   status = 200
   force = true
 
