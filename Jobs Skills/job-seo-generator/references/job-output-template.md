@@ -227,7 +227,39 @@ Include:
 - Similar-job duplication risks
 - Recommendations for making the page more distinct
 
-## Section 11 - SEO Quality Checklist
+## Section 11 - Site Publishing Plan
+
+When the user asks to add the job to the Outreach Recruitment website, include:
+
+- Job listing page URL: `https://outreachrecruitment.net/jobs/`
+- Local listing file to update, usually `jobs/index.html`
+- Target grid: `opening-jobs-grid`
+- New job card HTML plan
+- Job detail page path: `/jobs/{seo-slug}/`
+- Card link path: `/jobs/{seo-slug}/`
+- Card title
+- Card location
+- Card employment type
+- Card category
+- Card `data-title`
+- Card `data-category`
+- Card `data-location`
+- Card `data-date`
+- Whether the card should be first in the grid
+- Old open-position count
+- New open-position count
+- Count labels to update, including `+{count} Open Positions`, `Showing {count} jobs`, `.or-counter-num`, and `open positions now`
+
+Publishing rules:
+
+- Insert the new active job as the first card in `opening-jobs-grid`.
+- Mark it as new/latest using the existing card pattern.
+- Increase the count by 1 for one new active job, or by the number of active jobs added.
+- Do not hard-code `217`; read the current count and increment it.
+- Keep all visible counts consistent.
+- Do not increase counts for draft, expired, duplicate, or unpublished jobs.
+
+## Section 12 - SEO Quality Checklist
 
 Confirm:
 
@@ -247,3 +279,5 @@ Confirm:
 - Freshness and expiry details are not invented.
 - Apply instructions are clear and conversion-focused.
 - Duplicate content risks have been reduced.
+- If publishing to the website, the new job is first in `opening-jobs-grid`.
+- If publishing to the website, all open-position counts were increased consistently.

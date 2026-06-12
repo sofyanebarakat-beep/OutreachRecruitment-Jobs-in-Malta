@@ -38,6 +38,7 @@ If any field is missing, make a reasonable assumption only when the job descript
 8. Make the job title concise and clean. Do not include salary, employer, location, dates, or promotional words in the schema `title`.
 9. Create unique copy for every vacancy by using the actual duties, requirements, industry, location, and seniority from the source material.
 10. Apply the SERP analysis, entity SEO, job category mapping, candidate question, freshness, conversion, duplicate prevention, and schema safety rules even when the user provides only a short job description.
+11. When the user asks to create or publish a new job in the site, add the job to the jobs page and update open-position counts using the Site Publishing Rules.
 
 ## SEO Expansion Rules
 
@@ -221,6 +222,24 @@ Avoid unsupported values for:
 - Application deadline
 
 If a value is uncertain, use `Not specified` in visible content and omit unsupported schema fields where omission is more accurate than guessing.
+
+## Site Publishing Rules
+
+When the user asks to add a generated job to the Outreach Recruitment website, complete these site updates after creating the job content:
+
+- Add the new job to `https://outreachrecruitment.net/jobs/` in the `opening-jobs-grid`.
+- In the local project, update the jobs listing source that contains `id="opening-jobs-grid"`, usually `jobs/index.html`.
+- Insert the new job card as the first job in `opening-jobs-grid` so it appears as the newest opening.
+- Mark the new card as latest/new using the existing card pattern, such as `data-opening-job`, `data-featured="true"`, `data-latest="true"`, and `<div class="opening-card-day">New</div>`.
+- Use the generated job slug for the card link, for example `/jobs/{seo-slug}/`.
+- Use the generated job title, location, employment type, category, and date in the card fields and `data-*` attributes.
+- Create or update the individual job detail page at `/jobs/{seo-slug}/` when the user asks for the full site implementation.
+- Increase the open-position count by 1 from the current value. For example, if the page currently says `+217 Open Positions`, `Showing 217 jobs`, and `<span class="heading-h4 or-counter-num">217</span>`, update all of them to `218`.
+- Keep every visible count consistent, including `+{count} Open Positions`, `Showing {count} jobs`, tab/filter labels, and any `.or-counter-num` value followed by `open positions now`.
+- Do not hard-code `217`; always read the current count and increment it by the number of new active jobs being added.
+- If the site has JavaScript that derives counters from the actual number of job cards, still verify the visible fallback/static counts are consistent.
+- After editing, search the repo for the old count and new count to ensure no visible job counters were missed.
+- Do not increase counts for draft, expired, duplicate, or unpublished jobs.
 
 ## Output Rules
 
