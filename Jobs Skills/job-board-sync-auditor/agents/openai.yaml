@@ -1,0 +1,3 @@
+display_name: Job Board Sync Auditor
+short_description: Compare Outreach job boards and report count/job mismatches.
+default_prompt: Compare Outreach Recruitment job boards and report open-position count mismatches plus missing jobs.
