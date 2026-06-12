@@ -55,6 +55,11 @@ SITEMAP_INDEX = "https://outreachrecruitment.net/sitemap_index.xml"
 REPORT_RECIPIENT = "sbarakat@outreachrecruitment.net"
 DELAY = 0.8  # seconds between requests
 
+STATE_PATH = ROOT / "tools" / "sync_state.json"
+DASHBOARD_PATH = ROOT / "sync-dashboard.html"
+AUTO_CLOSE_THRESHOLD = 3   # consecutive checks before auto-closing an extra job
+DUPLICATE_THRESHOLD = 0.72  # similarity score to flag potential duplicate titles
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Data classes
@@ -81,6 +86,7 @@ class WebsiteJob:
     meta_description: str = ""
     canonical: str = ""
     is_indexable: bool = True
+    schema_issues: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -109,6 +115,11 @@ class SyncReport:
 
     # Ready-to-paste Claude prompts for each missing job
     missing_prompts: list[str] = field(default_factory=list)
+
+    # New feature fields
+    duplicates: list[dict] = field(default_factory=list)
+    schema_issues: list[dict] = field(default_factory=list)
+    auto_closed_this_run: list[str] = field(default_factory=list)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -370,6 +381,58 @@ META_DESC_RE = re.compile(r'<meta[^>]+name=["\']description["\'][^>]+content=["\
 META_DESC_RE2 = re.compile(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']description["\']', re.I)
 CANONICAL_RE = re.compile(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']*)["\']', re.I)
 NOINDEX_RE = re.compile(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', re.I)
+JSONLD_RE = re.compile(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', re.S | re.I)
+REQUIRED_SCHEMA_FIELDS = ["title", "description", "datePosted", "hiringOrganization", "jobLocation"]
+RECOMMENDED_SCHEMA_FIELDS = ["validThrough", "employmentType", "identifier"]
+
+
+def validate_job_schema(html: str) -> tuple[dict | None, list[str]]:
+    """Extract and validate JSON-LD JobPosting schema. Returns (schema_dict, issues_list)."""
+    schema_m = JSONLD_RE.search(html)
+    if not schema_m:
+        return None, ["No JSON-LD schema found"]
+    try:
+        schema = json.loads(schema_m.group(1))
+    except Exception:
+        return None, ["Malformed JSON in JSON-LD block"]
+
+    if schema.get("@type") not in ("JobPosting", ["JobPosting"]):
+        return schema, [f"@type is '{schema.get('@type')}', expected JobPosting"]
+
+    issues: list[str] = []
+    for f in REQUIRED_SCHEMA_FIELDS:
+        if not schema.get(f):
+            issues.append(f"Missing required: {f}")
+    for f in RECOMMENDED_SCHEMA_FIELDS:
+        if not schema.get(f):
+            issues.append(f"Missing recommended: {f}")
+
+    dp = schema.get("datePosted", "")
+    if dp:
+        try:
+            datetime.fromisoformat(dp)
+        except Exception:
+            issues.append(f"Invalid datePosted: {dp!r}")
+
+    vt = schema.get("validThrough", "")
+    if vt:
+        try:
+            if datetime.fromisoformat(vt) < datetime.now():
+                issues.append(f"validThrough expired: {vt[:10]}")
+        except Exception:
+            issues.append(f"Invalid validThrough: {vt!r}")
+
+    org = schema.get("hiringOrganization", {})
+    if isinstance(org, dict) and not org.get("name"):
+        issues.append("hiringOrganization missing 'name'")
+
+    loc = schema.get("jobLocation", {})
+    if isinstance(loc, dict):
+        addr = loc.get("address", {})
+        if isinstance(addr, dict) and not addr.get("addressLocality"):
+            issues.append("jobLocation.address missing addressLocality")
+
+    return schema, issues
 
 
 def check_job_page_seo(job: WebsiteJob) -> None:
