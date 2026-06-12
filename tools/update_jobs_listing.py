@@ -55,9 +55,13 @@ def load_jobs() -> list[dict]:
 def active_jobs(jobs: list[dict], today: str) -> list[dict]:
     return [
         job for job in jobs
-        if job.get("status", "active").lower() != "expired"
+        if job.get("status", "active").lower() not in ("expired",)
         and job.get("valid_through", "9999-12-31") >= today
     ]
+
+
+def is_closed(job: dict) -> bool:
+    return job.get("status", "active").lower() == "closed"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -95,11 +99,40 @@ def homepage_row(job: dict, num: int) -> str:
 def jobs_page_card(job: dict) -> str:
     cat   = job["category"]
     title = escape(job["title"])
-    # data-title includes both title words and keywords so search works on both
     search_data = escape(
         (job["title"] + " " + job.get("keywords", "")).lower().strip(),
         quote=True
     )
+    closed = is_closed(job)
+
+    if closed:
+        inner = (
+            f'<div class="opening-job-link opening-job-link--closed" '
+            f'style="cursor:default;opacity:0.55;pointer-events:none;display:block;text-decoration:none;">'
+            f'<div class="opening-card-day" style="background:#9e9e9e;color:#fff">Closed</div>'
+            '<img class="opening-job-logo" src="/assets/job-card-logo.jpg" '
+            'alt="Outreach Recruitment job logo"/>'
+            f'<h3 class="heading-h5" style="color:#666">{title}</h3>'
+            f'<div class="opening-job-company">{job["location_html"]}</div>'
+            '<div class="opening-job-meta">'
+            f'<span>{escape(job["employment_type"])}</span>'
+            f'<span style="background:#f44336;color:#fff;border-radius:4px;padding:2px 8px">Position Closed</span>'
+            '</div></div>'
+        )
+    else:
+        inner = (
+            f'<a class="opening-job-link" href="/jobs/{job["slug"]}/">'
+            '<div class="opening-card-day">New</div>'
+            '<img class="opening-job-logo" src="/assets/job-card-logo.jpg" '
+            'alt="Outreach Recruitment job logo"/>'
+            f'<h3 class="heading-h5">{title}</h3>'
+            f'<div class="opening-job-company">{job["location_html"]}</div>'
+            '<div class="opening-job-meta">'
+            f'<span>{escape(job["employment_type"])}</span>'
+            f'<span>{escape(cat)}</span>'
+            '</div></a>'
+        )
+
     return (
         f'<article class="opening-job-card" data-opening-job '
         f'data-featured="{"true" if job.get("featured") else "false"}" '
@@ -108,16 +141,7 @@ def jobs_page_card(job: dict) -> str:
         f'data-category="{escape(cat, quote=True)}" '
         f'data-location="{escape(job["location_slug"], quote=True)}" '
         f'data-date="{job["date"]}">'
-        f'<a class="opening-job-link" href="/jobs/{job["slug"]}/">'
-        '<div class="opening-card-day">New</div>'
-        '<img class="opening-job-logo" src="/assets/job-card-logo.jpg" '
-        'alt="Outreach Recruitment job logo"/>'
-        f'<h3 class="heading-h5">{title}</h3>'
-        f'<div class="opening-job-company">{job["location_html"]}</div>'
-        '<div class="opening-job-meta">'
-        f'<span>{escape(job["employment_type"])}</span>'
-        f'<span>{escape(cat)}</span>'
-        '</div></a></article>'
+        f'{inner}</article>'
     )
 
 
@@ -308,12 +332,15 @@ def update_sitemap_indexes(today: str) -> None:
 def main() -> None:
     jobs = load_jobs()
     today = date.today().isoformat()
-    current_jobs = active_jobs(jobs, today)
+    current_jobs = active_jobs(jobs, today)   # includes both open + closed
+    open_jobs    = [j for j in current_jobs if not is_closed(j)]
+    closed_jobs  = [j for j in current_jobs if is_closed(j)]
     expired_count = len(jobs) - len(current_jobs)
-    print(f"Updating listings ({today}) — {len(current_jobs)} active job(s), {expired_count} expired/hidden")
-    update_homepage(current_jobs)
-    update_jobs_page(current_jobs)
-    update_jobs_sitemap(current_jobs, today)
+    print(f"Updating listings ({today}) — {len(open_jobs)} open, {len(closed_jobs)} closed, {expired_count} expired/hidden")
+    # Pass only open jobs for homepage + counters, but full list for jobs page grid
+    update_homepage(open_jobs)
+    update_jobs_page(current_jobs)  # shows closed cards in grid too
+    update_jobs_sitemap(open_jobs, today)   # don't index closed pages in sitemap
     update_sitemap_indexes(today)
     print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
 

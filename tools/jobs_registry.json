@@ -98,11 +98,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-06-11",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/918b162a-3517-47e9-9753-8cc59ddfaa31/apply",
     "keywords": "business systems analyst it & technology valletta, malta",
     "featured": true,
-    "lastmod": "2026-06-11"
+    "lastmod": "2026-06-12",
+    "status": "expired"
   },
   {
     "slug": "sales-office-coordinator",
@@ -1407,7 +1408,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1cc4a97a-44fc-4dd5-9689-f32213d5b27c/apply",
     "keywords": "senior sales &amp; marketing executive - airline industry sales mosta, malta",
     "featured": true,
-    "lastmod": "2026-06-11"
+    "lastmod": "2026-06-12"
   },
   {
     "slug": "head-chef-greek-cuisine",
@@ -2438,11 +2439,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-06-11",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/54238568-00d4-4e39-9419-84d2f8eb0388/apply",
     "keywords": "call center representative general malta",
     "featured": true,
-    "lastmod": "2026-06-11"
+    "lastmod": "2026-06-12",
+    "status": "expired"
   },
   {
     "slug": "real-estate-agents",

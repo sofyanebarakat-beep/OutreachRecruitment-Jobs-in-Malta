@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-06-12T13:31:41",
-  "careers_count_advertised": 221,
-  "careers_count_scraped": 221,
+  "generated_at": "2026-06-12T14:09:34",
+  "careers_count_advertised": 220,
+  "careers_count_scraped": 220,
   "website_count": 222,
-  "sync_score": 99.3,
+  "sync_score": 99.2,
   "missing_jobs": [
     "Payables Finance Executive",
     "Administration Specialist"
   ],
   "extra_jobs": [
-    "Business Systems Analyst"
+    "Business Systems Analyst",
+    "Call Center Representative"
   ],
   "title_mismatches": [],
   "location_mismatches": [],

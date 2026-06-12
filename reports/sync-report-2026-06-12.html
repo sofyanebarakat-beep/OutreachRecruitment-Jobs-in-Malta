@@ -3,85 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  body { font-family: Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
-  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; }
-  h2 { color: #283593; margin-top: 30px; border-left: 4px solid #3f51b5; padding-left: 10px; }
+  body { font-family: Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }
+  .card { background: white; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 0; }
+  h2 { color: #283593; margin-top: 0; border-left: 4px solid #3f51b5; padding-left: 10px; }
   h3 { color: #37474f; }
   table { border-collapse: collapse; width: 100%; font-size: 13px; }
-  th { background: #1a237e; color: white; padding: 8px; text-align: left; }
-  td { padding: 6px 8px; border-bottom: 1px solid #e0e0e0; }
-  tr:nth-child(even) { background: #f5f5f5; }
-  .score { font-size: 48px; font-weight: bold; color: #558b2f; }
-  .stat { display: inline-block; margin: 10px 20px 10px 0; }
-  .stat-num { font-size: 28px; font-weight: bold; color: #1a237e; }
-  .stat-label { font-size: 12px; color: #666; display: block; }
-  ul li { margin: 4px 0; }
+  th { background: #1a237e; color: white; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e8e8e8; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .score-big { font-size: 52px; font-weight: 900; color: #558b2f; line-height: 1; }
+  .score-label { font-size: 18px; color: #558b2f; font-weight: bold; margin-left: 8px; }
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+  .stat { background: #f5f7ff; border-radius: 8px; padding: 14px 18px; min-width: 110px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: #1a237e; display: block; }
+  .stat-num.red { color: #c62828; }
+  .stat-num.green { color: #2e7d32; }
+  .stat-label { font-size: 11px; color: #666; display: block; margin-top: 2px; }
+  ul li { margin: 5px 0; }
   a { color: #1565c0; }
-  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #888; }
+  code { font-family: monospace; }
+  .footer { margin-top: 30px; padding-top: 16px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; }
+  .goal-box { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 5px solid #558b2f; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
 </style>
 </head>
 <body>
 
+<div class="card">
 <h1>📋 Job Sync Report — Outreach Recruitment</h1>
-<p style="color:#666">Generated: 2026-06-12T13:31:41 | Report for: 2026-06-12</p>
+<p style="color:#666;margin-top:-8px">Generated: 2026-06-12T14:09:34 &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a></p>
 
-<div style='background:#fff9c4;border:2px solid #f9a825;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#e65100'>⚠️ Minor differences detected — review recommended.</b></div>
+<div style='background:#f1f8e9;border:2px solid #558b2f;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#33691e;font-size:16px'>🟡 Almost perfect — small differences to fix.</b></div>
 
+
+<div class="goal-box">
+  <p style="margin:0;font-size:15px;color:#e65100"><b>🎯 To reach 100%: fix 2 job(s) to add + 2 job(s) to remove + 5 sitemap entry(ies) missing</b></p>
+  <div style='background:#e0e0e0;border-radius:8px;height:18px;width:100%;max-width:500px;margin:8px 0'><div style='background:#558b2f;width:99%;height:18px;border-radius:8px;transition:width 0.3s'></div></div>
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:500px">
+    <span>0%</span><span>50%</span><span>100% Goal</span>
+  </div>
+  <p style="margin:8px 0 0"><span style='color:#888;font-size:13px'>First run</span></p>
+</div>
+</div>
+
+<div class="card">
 <h2>📊 Summary</h2>
-<div class="stat"><span class="stat-num">221</span><span class="stat-label">Careers Page Jobs</span></div>
-<div class="stat"><span class="stat-num">222</span><span class="stat-label">Website Jobs</span></div>
-<div class="stat"><span class="stat-num">2</span><span class="stat-label">Missing from Website</span></div>
-<div class="stat"><span class="stat-num">1</span><span class="stat-label">Extra on Website</span></div>
-<div class="stat"><span class="stat-num">0</span><span class="stat-label">Broken Pages</span></div>
-<div class="stat"><span class="stat-num">0</span><span class="stat-label">SEO Issues</span></div>
+<div class="stat-grid">
+  <div class="stat"><span class="stat-num">220</span><span class="stat-label">Careers Page Jobs</span></div>
+  <div class="stat"><span class="stat-num red">222</span><span class="stat-label">Website Jobs</span></div>
+  <div class="stat"><span class="stat-num red" style="font-size:20px">+2</span><span class="stat-label">Count Difference</span></div>
+  <div class="stat"><span class="stat-num red">2</span><span class="stat-label">Missing</span></div>
+  <div class="stat"><span class="stat-num red">2</span><span class="stat-label">Extra</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">Broken Pages</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">SEO Issues</span></div>
+  <div class="stat"><span class="stat-num red">5</span><span class="stat-label">Sitemap Missing</span></div>
+</div>
+<p style="font-size:13px;color:#666;margin:4px 0">
+  <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:#558b2f">99.2%</span>
+  <span class="score-label">Almost There</span>
+</p>
+</div>
 
-<p><span class="score">99.3%</span>&nbsp;&nbsp;<span style="font-size:20px;color:#558b2f">Minor Issues</span></p>
-
+<div class="card">
 <h2>✅ Actions Required</h2>
-<ol><li>Add 2 missing job(s) to website</li><li>Remove 1 closed job(s) from website</li><li>Update sitemap — 5 page(s) missing</li></ol>
+<ol style="margin:0;padding-left:20px"><li style='margin:6px 0'>Add <b>2</b> missing job(s) to website</li><li style='margin:6px 0'>Remove <b>2</b> closed job(s) from website</li><li style='margin:6px 0'>Update sitemap — <b>5</b> page(s) missing</li></ol>
+</div>
 
+<h2>⚡ Quick Fix Commands</h2><p>Run these in Terminal from the project folder:</p><code style='background:#263238;color:#80cbc4;padding:10px;display:block;border-radius:4px;font-size:13px'># Add missing jobs automatically:<br>python3 tools/job_sync_agent.py --auto-fix --no-seo</code><br><br><code style='background:#263238;color:#80cbc4;padding:10px;display:block;border-radius:4px;font-size:13px'># Or expire extra jobs manually:<br>python3 tools/expire_job.py business-systems-analyst call-center-representative</code>
+
+<div class="card">
 <h2>➕ Jobs to Add (2)</h2>
-<p><em>On careers page but missing from website</em></p>
-<ul><li>Payables Finance Executive</li><li>Administration Specialist</li></ul>
+<p style="color:#555;margin-top:-4px;font-size:13px">On careers page but <b>missing</b> from website — run <code>--auto-fix</code> to add automatically</p>
+<table border='1' cellpadding='6' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job Title</th><th>Careers Page Link</th></tr><tr><td>Payables Finance Executive</td><td><a href='https://outreach-recruitment-agency.careers-page.com/jobs/ed60123a-fd7e-4109-a25d-b50ec1c91fa2' style='color:#1565c0'>View on Careers Page ↗</a></td></tr><tr><td>Administration Specialist</td><td><a href='https://outreach-recruitment-agency.careers-page.com/jobs/d66da715-2c9b-492b-bc33-c78258c08665' style='color:#1565c0'>View on Careers Page ↗</a></td></tr></table>
+</div>
 
-<h2>🗑️ Jobs to Remove (1)</h2>
-<p><em>On website but no longer active on careers page</em></p>
-<ul><li>Business Systems Analyst</li></ul>
+<div class="card">
+<h2>🗑️ Jobs to Remove (2)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">On website but <b>no longer active</b> on careers page</p>
+<ul><li>Business Systems Analyst</li><li>Call Center Representative</li></ul>
+</div>
 
-<h2>📝 Possible Title Differences (0)</h2>
-<p><em>Jobs with similar but non-matching titles between platforms</em></p>
-<p style='color:#888'>None</p>
+<div class="card">
+<h2>📝 Title Differences (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Similar but non-matching titles between platforms</p>
+<p style='color:#2e7d32'>✅ All titles match</p>
+</div>
 
-<h2>📍 Location Differences (0)</h2>
-<p style='color:#888'>None</p>
-
+<div class="card">
 <h2>🔗 Broken Pages (0)</h2>
-<p style='color:#888'>None</p>
+<p style='color:#2e7d32'>✅ No broken pages</p>
+</div>
 
+<div class="card">
 <h2>🔍 SEO Issues (0)</h2>
-<p style='color:#888'>SEO check skipped (run without --no-seo for full check)</p>
+<p style='color:#888'>SEO check skipped — run <code>python3 tools/job_sync_agent.py</code> for full check.</p>
+</div>
 
+<div class="card">
 <h2>🗺️ Sitemap Issues (5)</h2>
-<p><em>Job pages missing from sitemap_index.xml</em></p>
+<p style="color:#555;margin-top:-4px;font-size:13px">Job pages not listed in sitemap — Google may not index them</p>
 <ul><li>https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid</li><li>https://outreachrecruitment.net/jobs/plate-shop-foreman-malta</li><li>https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta</li><li>https://outreachrecruitment.net/jobs/client-accountant-ta-xbiex</li><li>https://outreachrecruitment.net/jobs/marine-turner-malta</li></ul>
+</div>
 
 
 
+<div class="card">
 <h2>📎 CSV Attachments</h2>
-<p>The following CSV files are attached to this email:</p>
-<ul>
-  <li>missing_jobs.csv — 2 jobs</li>
-  <li>extra_jobs.csv — 1 jobs</li>
+<ul style="margin:0">
+  <li>missing_jobs.csv — 2 jobs to add</li>
+  <li>extra_jobs.csv — 2 jobs to remove</li>
   <li>title_mismatches.csv — 0 entries</li>
-  <li>location_mismatches.csv — 0 entries</li>
   <li>broken_links.csv — 0 pages</li>
   <li>seo_issues.csv — 0 issues</li>
 </ul>
+</div>
 
 <div class="footer">
-  <p>Outreach Recruitment — Job Sync Agent | Run every 2 days at 08:00 Malta Time</p>
-  <p>Source: <a href="https://outreach-recruitment-agency.careers-page.com/">Careers Platform</a> |
-     Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a></p>
+  <p>Outreach Recruitment — Job Sync Agent | Runs every 2 days at 08:00 Malta Time</p>
+  <p>
+    Careers Platform: <a href="https://outreach-recruitment-agency.careers-page.com/">outreach-recruitment-agency.careers-page.com</a> &nbsp;|&nbsp;
+    Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a>
+  </p>
 </div>
 
 </body>

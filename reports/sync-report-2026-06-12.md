@@ -1,17 +1,17 @@
 # Job Sync Report — 2026-06-12
 
-Generated: 2026-06-12T13:31:41
+Generated: 2026-06-12T14:09:34
 
 ## Summary
 
 | Metric | Value |
 |---|---|
-| Careers Page Jobs | 221 |
-| Careers Jobs Scraped | 221 |
+| Careers Page Jobs | 220 |
+| Careers Jobs Scraped | 220 |
 | Website Jobs | 222 |
-| **Sync Score** | **99.3% — Needs Attention** |
+| **Sync Score** | **99.2% — Needs Attention** |
 | Missing from Website | 2 |
-| Extra on Website | 1 |
+| Extra on Website | 2 |
 | Title Mismatches | 0 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
@@ -26,6 +26,7 @@ Generated: 2026-06-12T13:31:41
 ## Jobs to Remove (Extra on Website)
 
 - Business Systems Analyst
+- Call Center Representative
 
 ## Title Differences
 
@@ -54,5 +55,5 @@ Generated: 2026-06-12T13:31:41
 ## Actions Required
 
 1. Add 2 missing job(s) to website
-2. Remove 1 closed job(s) from website
+2. Remove 2 closed job(s) from website
 3. Update sitemap — 5 page(s) missing

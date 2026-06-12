@@ -2,18 +2,18 @@
 """
 job_sync_agent.py — Outreach Recruitment Job Sync Agent
 ========================================================
+GOAL: Keep outreachrecruitment.net/jobs/ 100% in sync with the careers page.
+
 Compares all active jobs between:
   Source of Truth: https://outreach-recruitment-agency.careers-page.com/
   Website:         https://outreachrecruitment.net/jobs/
 
-Generates HTML email report with sync score + CSV attachments.
-Sends to sbarakat@outreachrecruitment.net
-
 Usage:
   python3 tools/job_sync_agent.py               # full run + email
+  python3 tools/job_sync_agent.py --auto-fix    # auto-add missing + expire extra + push
   python3 tools/job_sync_agent.py --no-email    # run, save report, skip email
   python3 tools/job_sync_agent.py --no-seo      # skip per-page SEO/broken-link checks
-  python3 tools/job_sync_agent.py --dry-run     # no email, no SEO, print summary only
+  python3 tools/job_sync_agent.py --dry-run     # no email, no SEO, no sitemap, print only
 
 Email config — set in tools/sync_config.json or as environment variables:
   SMTP_HOST  SMTP_PORT  SMTP_USER  SMTP_PASS
@@ -26,9 +26,11 @@ import json
 import os
 import re
 import smtplib
+import subprocess
 import sys
 import time
 from dataclasses import dataclass, field
+from datetime import date as date_type
 from datetime import datetime
 from difflib import SequenceMatcher
 from email.mime.application import MIMEApplication
@@ -88,7 +90,8 @@ class SyncReport:
     careers_count_scraped: int
     website_count: int
 
-    missing_jobs: list[str] = field(default_factory=list)       # on careers, not website
+    missing_jobs: list[str] = field(default_factory=list)       # titles only (for display)
+    missing_jobs_detail: list[dict] = field(default_factory=list)  # {title, uuid, careers_url}
     extra_jobs: list[str] = field(default_factory=list)         # on website, not careers
     title_mismatches: list[dict] = field(default_factory=list)  # similar but different title
     location_mismatches: list[dict] = field(default_factory=list)
@@ -97,7 +100,12 @@ class SyncReport:
     sitemap_missing: list[str] = field(default_factory=list)
 
     sync_score: float = 100.0
+    previous_score: float | None = None
     warnings: list[str] = field(default_factory=list)
+
+    # Populated by auto_fix()
+    auto_fixed_added: list[str] = field(default_factory=list)
+    auto_fixed_removed: list[str] = field(default_factory=list)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -472,10 +480,18 @@ def build_report(
 
     # Rule 1 — count mismatch (informational, captured in report fields)
 
+    # Load previous score for trend
+    report.previous_score = load_previous_score()
+
     # Rule 2 — missing from website
     for norm_title, cj in careers_norm.items():
         if norm_title not in website_norm:
             report.missing_jobs.append(cj.title)
+            report.missing_jobs_detail.append({
+                "title": cj.title,
+                "uuid": cj.uuid,
+                "careers_url": cj.url,
+            })
 
     # Rule 3 — extra on website (closed jobs still visible)
     for norm_title, wj in website_norm.items():
@@ -646,6 +662,209 @@ def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, 
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Previous score (trend)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_previous_score() -> float | None:
+    """Load sync score from the most recent past report JSON."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    reports = sorted(REPORT_DIR.glob("sync-report-*.json"), reverse=True)
+    for path in reports:
+        if today not in path.name:  # skip today's report
+            try:
+                return float(json.loads(path.read_text()).get("sync_score", 0))
+            except Exception:
+                pass
+    return None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Auto-fix — fetch missing job details from careers page
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _slugify(text: str) -> str:
+    s = text.lower().strip()
+    s = re.sub(r"[^\w\s-]", "", s)
+    s = re.sub(r"[\s_]+", "-", s)
+    return re.sub(r"-+", "-", s).strip("-")
+
+
+def fetch_job_detail(uuid: str, title: str) -> dict:
+    """Fetch location, employment type and a short about from careers page."""
+    url = f"https://outreach-recruitment-agency.careers-page.com/jobs/{uuid}"
+    try:
+        html, _ = fetch(url)
+    except Exception:
+        return {}
+
+    ld: dict = {}
+    schema_m = re.search(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S | re.I)
+    if schema_m:
+        try:
+            ld = json.loads(schema_m.group(1))
+        except Exception:
+            pass
+
+    # Location
+    location = "Malta"
+    loc_data = ld.get("jobLocation", {})
+    if isinstance(loc_data, dict):
+        city = loc_data.get("address", {}).get("addressLocality", "").strip()
+        if city:
+            city = re.sub(r",?\s*Malta\s*$", "", city, flags=re.I).strip()
+            location = f"{city}, Malta"
+
+    # Employment type
+    et_map = {"FULL_TIME": "Full-Time", "PART_TIME": "Part-Time",
+              "CONTRACTOR": "Subcontracting", "TEMPORARY": "Part-Time"}
+    emp_type = et_map.get(ld.get("employmentType", "FULL_TIME"), "Full-Time")
+
+    # Work mode
+    work_mode = "On-Site"
+    if ld.get("jobLocationType") == "TELECOMMUTE":
+        work_mode = "Remote"
+    elif re.search(r"\bhybrid\b", title, re.I):
+        work_mode = "Hybrid"
+
+    # About — strip HTML from JSON-LD description
+    desc = re.sub(r"<[^>]+>", " ", ld.get("description", ""))
+    desc = re.sub(r"\s+", " ", unescape(desc)).strip()[:900]
+
+    return {
+        "location": location,
+        "employment_type": emp_type,
+        "work_mode": work_mode,
+        "about": desc,
+        "apply_url": f"https://outreach-recruitment-agency.careers-page.com/jobs/{uuid}/apply",
+    }
+
+
+def auto_fix(report: SyncReport) -> None:
+    """
+    Auto-add jobs missing from website, auto-expire jobs no longer on careers page.
+    Commits and pushes changes to GitHub when done.
+    """
+    today = date_type.today().isoformat()
+
+    # ── Add missing jobs ──────────────────────────────────────────────────────
+    if report.missing_jobs_detail:
+        print(f"\n  [Auto-Fix] Fetching details for {len(report.missing_jobs_detail)} missing job(s) …")
+        csv_rows = []
+        existing_slugs: set[str] = set()
+        if REGISTRY_PATH.exists():
+            existing_slugs = {j["slug"] for j in json.loads(REGISTRY_PATH.read_text())}
+
+        for jd in report.missing_jobs_detail:
+            print(f"    {jd['title']} …", end=" ", flush=True)
+            details = fetch_job_detail(jd["uuid"], jd["title"])
+            if not details:
+                print("FAILED — skipping")
+                continue
+
+            slug = _slugify(jd["title"])
+            counter = 2
+            base = slug
+            while slug in existing_slugs:
+                slug = f"{base}-{counter}"
+                counter += 1
+            existing_slugs.add(slug)
+
+            csv_rows.append({
+                "title":           jd["title"],
+                "slug":            slug,
+                "category":        "",
+                "location":        details["location"],
+                "employment_type": details["employment_type"],
+                "work_mode":       details["work_mode"],
+                "apply_url":       details["apply_url"],
+                "about":           details["about"],
+                "responsibilities": "",
+                "requirements":    "",
+                "offer":           "",
+                "closing":         "",
+                "keywords":        "",
+                "date":            today,
+                "valid_through":   "2026-12-31",
+                "featured":        "true",
+            })
+            print(f"OK ({details['location']}, {details['employment_type']})")
+            time.sleep(DELAY)
+
+        if csv_rows:
+            tmp_csv = ROOT / "tools" / "_autofix_import.csv"
+            buf = io.StringIO()
+            writer = csv.DictWriter(buf, fieldnames=list(csv_rows[0].keys()))
+            writer.writeheader()
+            writer.writerows(csv_rows)
+            tmp_csv.write_text(buf.getvalue(), encoding="utf-8")
+
+            print(f"\n    Running add_jobs_from_csv.py …")
+            result = subprocess.run(
+                ["python3", str(ROOT / "tools" / "add_jobs_from_csv.py"), str(tmp_csv)],
+                cwd=str(ROOT), capture_output=True, text=True,
+            )
+            tmp_csv.unlink(missing_ok=True)
+            if result.returncode == 0:
+                report.auto_fixed_added = [r["title"] for r in csv_rows]
+                print(f"    Added {len(report.auto_fixed_added)} job(s) ✓")
+            else:
+                print(f"    ERROR: {result.stderr[:400]}")
+
+    # ── Expire extra jobs ─────────────────────────────────────────────────────
+    if report.extra_jobs and REGISTRY_PATH.exists():
+        print(f"\n  [Auto-Fix] Expiring {len(report.extra_jobs)} extra job(s) …")
+        registry = json.loads(REGISTRY_PATH.read_text())
+        active_jobs = [j for j in registry if j.get("status") != "expired"]
+
+        for extra_title in report.extra_jobs:
+            best_slug, best_score = None, 0.0
+            for job in active_jobs:
+                score = title_similarity(extra_title, job["title"])
+                if score > best_score:
+                    best_score = score
+                    best_slug = job["slug"]
+
+            if best_slug and best_score >= 0.7:
+                print(f"    Expiring: {extra_title} ({best_slug}) …", end=" ", flush=True)
+                result = subprocess.run(
+                    ["python3", str(ROOT / "tools" / "expire_job.py"), best_slug],
+                    cwd=str(ROOT), capture_output=True, text=True,
+                )
+                if result.returncode == 0:
+                    report.auto_fixed_removed.append(extra_title)
+                    print("OK ✓")
+                else:
+                    print(f"ERROR: {result.stderr[:100]}")
+            else:
+                print(f"    Could not match '{extra_title}' in registry — skipping")
+
+    # ── Git commit + push ─────────────────────────────────────────────────────
+    if report.auto_fixed_added or report.auto_fixed_removed:
+        parts = []
+        if report.auto_fixed_added:
+            parts.append(f"add {len(report.auto_fixed_added)} job(s)")
+        if report.auto_fixed_removed:
+            parts.append(f"expire {len(report.auto_fixed_removed)} job(s)")
+        commit_msg = f"[Auto-Sync] {'; '.join(parts)}"
+
+        print(f"\n  [Auto-Fix] Committing and pushing …")
+        subprocess.run(["git", "add", "-A"], cwd=str(ROOT), capture_output=True)
+        commit = subprocess.run(
+            ["git", "commit", "-m", commit_msg],
+            cwd=str(ROOT), capture_output=True, text=True,
+        )
+        if commit.returncode == 0:
+            push = subprocess.run(
+                ["git", "push", "origin", "main"],
+                cwd=str(ROOT), capture_output=True, text=True,
+            )
+            status = "Pushed to GitHub ✓" if push.returncode == 0 else f"Push failed: {push.stderr[:100]}"
+            print(f"  {status}")
+        else:
+            print(f"  Commit failed: {commit.stderr[:200]}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # HTML email body
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -676,172 +895,300 @@ SCORE_COLOR = {
 }
 
 
+def _progress_bar(score: float, color: str) -> str:
+    filled = int(score)
+    empty = 100 - filled
+    return (
+        f"<div style='background:#e0e0e0;border-radius:8px;height:18px;width:100%;max-width:500px;margin:8px 0'>"
+        f"<div style='background:{color};width:{filled}%;height:18px;border-radius:8px;transition:width 0.3s'></div>"
+        f"</div>"
+    )
+
+
+def _trend_badge(current: float, previous: float | None) -> str:
+    if previous is None:
+        return "<span style='color:#888;font-size:13px'>First run</span>"
+    diff = round(current - previous, 1)
+    if diff > 0:
+        return f"<span style='color:#2e7d32;font-size:14px'>▲ +{diff}% vs last run ({previous}%)</span>"
+    elif diff < 0:
+        return f"<span style='color:#c62828;font-size:14px'>▼ {diff}% vs last run ({previous}%)</span>"
+    else:
+        return f"<span style='color:#555;font-size:13px'>= No change vs last run ({previous}%)</span>"
+
+
 def build_html_email(report: SyncReport) -> str:
     date_str = report.generated_at[:10]
     score = report.sync_score
+    careers_count = report.careers_count_advertised or report.careers_count_scraped
 
     if score == 100:
         score_color = SCORE_COLOR["excellent"]
         score_label = "✅ Fully Synced"
-        alert_box = "<div style='background:#e8f5e9;border:2px solid #2e7d32;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#2e7d32'>✅ All Jobs Synced — No action required.</b></div>"
-    elif score >= 90:
+        alert_box = "<div style='background:#e8f5e9;border:2px solid #2e7d32;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#2e7d32;font-size:16px'>✅ All Jobs Synced — Website perfectly mirrors the careers page.</b></div>"
+    elif score >= 95:
         score_color = SCORE_COLOR["good"]
-        score_label = "Minor Issues"
-        alert_box = "<div style='background:#fff9c4;border:2px solid #f9a825;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#e65100'>⚠️ Minor differences detected — review recommended.</b></div>"
-    elif score >= 75:
+        score_label = "Almost There"
+        alert_box = "<div style='background:#f1f8e9;border:2px solid #558b2f;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#33691e;font-size:16px'>🟡 Almost perfect — small differences to fix.</b></div>"
+    elif score >= 85:
         score_color = SCORE_COLOR["warning"]
         score_label = "Needs Attention"
-        alert_box = "<div style='background:#fff3e0;border:2px solid #ef6c00;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#bf360c'>⚠️ Sync issues detected — action needed.</b></div>"
+        alert_box = "<div style='background:#fff3e0;border:2px solid #ef6c00;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#bf360c;font-size:16px'>⚠️ Sync issues detected — action needed.</b></div>"
     else:
         score_color = SCORE_COLOR["critical"]
-        score_label = "Critical"
-        alert_box = "<div style='background:#ffebee;border:2px solid #c62828;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#b71c1c'>🚨 Action Required — Significant differences between Careers Page and Website.</b></div>"
+        score_label = "Action Required"
+        alert_box = "<div style='background:#ffebee;border:2px solid #c62828;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#b71c1c;font-size:16px'>🚨 Significant differences — website is out of sync!</b></div>"
 
-    # Build actions list
+    # Goal gap
+    total_issues = len(report.missing_jobs) + len(report.extra_jobs) + len(report.broken_links)
+    if score == 100:
+        goal_text = "🎯 Goal achieved — website is 100% in sync with the careers page!"
+        goal_color = "#2e7d32"
+    else:
+        gap_items = []
+        if report.missing_jobs:
+            gap_items.append(f"{len(report.missing_jobs)} job(s) to add")
+        if report.extra_jobs:
+            gap_items.append(f"{len(report.extra_jobs)} job(s) to remove")
+        if report.broken_links:
+            gap_items.append(f"{len(report.broken_links)} broken page(s)")
+        if report.seo_issues:
+            gap_items.append(f"{len(report.seo_issues)} SEO issue(s)")
+        if report.sitemap_missing:
+            gap_items.append(f"{len(report.sitemap_missing)} sitemap entry(ies) missing")
+        goal_text = f"🎯 To reach 100%: fix {' + '.join(gap_items)}"
+        goal_color = "#e65100"
+
+    # Auto-fix summary
+    auto_fix_html = ""
+    if report.auto_fixed_added or report.auto_fixed_removed:
+        items = []
+        if report.auto_fixed_added:
+            items.append(f"<li>✅ Auto-added {len(report.auto_fixed_added)} job(s): "
+                         + ", ".join(f"<b>{t}</b>" for t in report.auto_fixed_added) + "</li>")
+        if report.auto_fixed_removed:
+            items.append(f"<li>🗑️ Auto-expired {len(report.auto_fixed_removed)} job(s): "
+                         + ", ".join(f"<b>{t}</b>" for t in report.auto_fixed_removed) + "</li>")
+        auto_fix_html = (
+            f"<div style='background:#e3f2fd;border:2px solid #1565c0;padding:15px;border-radius:8px;margin:20px 0'>"
+            f"<b style='color:#0d47a1'>🤖 Auto-Fix Applied:</b><ul style='margin:8px 0'>{''.join(items)}</ul>"
+            f"<p style='margin:4px 0;font-size:13px;color:#555'>Changes committed and pushed to GitHub automatically.</p>"
+            f"</div>"
+        )
+
+    # Quick fix commands (only if there are issues and no auto-fix ran)
+    quick_fix_html = ""
+    if not (report.auto_fixed_added or report.auto_fixed_removed) and (report.missing_jobs or report.extra_jobs):
+        cmds = []
+        if report.missing_jobs:
+            cmds.append("# Add missing jobs automatically:<br>python3 tools/job_sync_agent.py --auto-fix --no-seo")
+        if report.extra_jobs:
+            slugs = " ".join(_slugify(t) for t in report.extra_jobs[:5])
+            cmds.append(f"# Or expire extra jobs manually:<br>python3 tools/expire_job.py {slugs}")
+        cmd_html = "<br><br>".join(f"<code style='background:#263238;color:#80cbc4;padding:10px;display:block;border-radius:4px;font-size:13px'>{c}</code>" for c in cmds)
+        quick_fix_html = (
+            f"<h2>⚡ Quick Fix Commands</h2>"
+            f"<p>Run these in Terminal from the project folder:</p>"
+            f"{cmd_html}"
+        )
+
+    # Actions list
     actions = []
     if report.missing_jobs:
-        actions.append(f"Add {len(report.missing_jobs)} missing job(s) to website")
+        actions.append(f"Add <b>{len(report.missing_jobs)}</b> missing job(s) to website")
     if report.extra_jobs:
-        actions.append(f"Remove {len(report.extra_jobs)} closed job(s) from website")
+        actions.append(f"Remove <b>{len(report.extra_jobs)}</b> closed job(s) from website")
     if report.title_mismatches:
-        actions.append(f"Review {len(report.title_mismatches)} possible title mismatch(es)")
+        actions.append(f"Review <b>{len(report.title_mismatches)}</b> possible title mismatch(es)")
     if report.location_mismatches:
-        actions.append(f"Verify {len(report.location_mismatches)} location discrepancy(ies)")
+        actions.append(f"Verify <b>{len(report.location_mismatches)}</b> location discrepancy(ies)")
     if report.broken_links:
-        actions.append(f"Fix {len(report.broken_links)} broken page(s)")
+        actions.append(f"Fix <b>{len(report.broken_links)}</b> broken page(s)")
     if report.seo_issues:
-        actions.append(f"Fix {len(report.seo_issues)} SEO issue(s)")
+        actions.append(f"Fix <b>{len(report.seo_issues)}</b> SEO issue(s)")
     if report.sitemap_missing:
-        actions.append(f"Update sitemap — {len(report.sitemap_missing)} page(s) missing")
+        actions.append(f"Update sitemap — <b>{len(report.sitemap_missing)}</b> page(s) missing")
     if not actions:
-        actions = ["No action required — everything is in sync!"]
+        actions = ["No action required — everything is in sync! 🎉"]
+    actions_html = "".join(f"<li style='margin:6px 0'>{a}</li>" for a in actions)
 
-    actions_html = "".join(f"<li>{a}</li>" for a in actions)
+    # Missing jobs table with careers page links
+    missing_html = ""
+    if report.missing_jobs_detail:
+        rows = ""
+        for jd in report.missing_jobs_detail:
+            rows += f"<tr><td>{jd['title']}</td><td><a href='{jd['careers_url']}' style='color:#1565c0'>View on Careers Page ↗</a></td></tr>"
+        missing_html = (
+            f"<table border='1' cellpadding='6' style='border-collapse:collapse;font-size:13px;width:100%'>"
+            f"<tr><th>Job Title</th><th>Careers Page Link</th></tr>{rows}</table>"
+        )
+    else:
+        missing_html = "<p style='color:#2e7d32'>✅ None — all careers page jobs are on the website</p>"
 
+    # SEO section
     seo_rows_html = ""
     for item in report.seo_issues[:30]:
         issues_str = "; ".join(item["issues"])
         item_url = item["url"]
         item_title = item["title"]
-        seo_rows_html += f"<tr><td><a href='{item_url}'>{item_title}</a></td><td>{issues_str}</td></tr>"
+        seo_rows_html += f"<tr><td><a href='{item_url}'>{item_title}</a></td><td style='color:#c62828'>{issues_str}</td></tr>"
 
     if not report.seo_issues and report.website_count > 0 and len(report.broken_links) == 0:
-        seo_section_html = "<p style='color:#888'>SEO check skipped (run without --no-seo for full check)</p>"
+        seo_section_html = "<p style='color:#888'>SEO check skipped — run <code>python3 tools/job_sync_agent.py</code> for full check.</p>"
     elif report.seo_issues:
         seo_section_html = (
-            f"<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px'>"
-            f"<tr><th>Job Title</th><th>Issues</th></tr>"
-            f"{seo_rows_html}"
-            f"</table>"
+            f"<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+            f"<tr><th>Job Title</th><th>Issues</th></tr>{seo_rows_html}</table>"
         )
     else:
-        seo_section_html = "<p style='color:#888'>None</p>"
+        seo_section_html = "<p style='color:#2e7d32'>✅ No SEO issues found</p>"
 
-    sitemap_html = _rows(report.sitemap_missing)
+    sitemap_html = _rows(report.sitemap_missing) if report.sitemap_missing else "<p style='color:#2e7d32'>✅ All job pages are in the sitemap</p>"
 
     warnings_html = ""
     if report.warnings:
         wlist = "".join(f"<li>{w}</li>" for w in report.warnings)
         warnings_html = f"<h3 style='color:#e65100'>⚠️ Warnings</h3><ul>{wlist}</ul>"
 
+    count_diff = report.website_count - careers_count
+    count_diff_str = f"+{count_diff}" if count_diff > 0 else str(count_diff)
+    count_diff_color = "#2e7d32" if count_diff == 0 else "#c62828"
+
     html = f"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <style>
-  body {{ font-family: Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }}
-  h1 {{ color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; }}
-  h2 {{ color: #283593; margin-top: 30px; border-left: 4px solid #3f51b5; padding-left: 10px; }}
+  body {{ font-family: Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }}
+  .card {{ background: white; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }}
+  h1 {{ color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 0; }}
+  h2 {{ color: #283593; margin-top: 0; border-left: 4px solid #3f51b5; padding-left: 10px; }}
   h3 {{ color: #37474f; }}
   table {{ border-collapse: collapse; width: 100%; font-size: 13px; }}
-  th {{ background: #1a237e; color: white; padding: 8px; text-align: left; }}
-  td {{ padding: 6px 8px; border-bottom: 1px solid #e0e0e0; }}
-  tr:nth-child(even) {{ background: #f5f5f5; }}
-  .score {{ font-size: 48px; font-weight: bold; color: {score_color}; }}
-  .stat {{ display: inline-block; margin: 10px 20px 10px 0; }}
-  .stat-num {{ font-size: 28px; font-weight: bold; color: #1a237e; }}
-  .stat-label {{ font-size: 12px; color: #666; display: block; }}
-  ul li {{ margin: 4px 0; }}
+  th {{ background: #1a237e; color: white; padding: 8px 10px; text-align: left; }}
+  td {{ padding: 7px 10px; border-bottom: 1px solid #e8e8e8; }}
+  tr:nth-child(even) td {{ background: #f9f9f9; }}
+  .score-big {{ font-size: 52px; font-weight: 900; color: {score_color}; line-height: 1; }}
+  .score-label {{ font-size: 18px; color: {score_color}; font-weight: bold; margin-left: 8px; }}
+  .stat-grid {{ display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }}
+  .stat {{ background: #f5f7ff; border-radius: 8px; padding: 14px 18px; min-width: 110px; text-align: center; }}
+  .stat-num {{ font-size: 28px; font-weight: 800; color: #1a237e; display: block; }}
+  .stat-num.red {{ color: #c62828; }}
+  .stat-num.green {{ color: #2e7d32; }}
+  .stat-label {{ font-size: 11px; color: #666; display: block; margin-top: 2px; }}
+  ul li {{ margin: 5px 0; }}
   a {{ color: #1565c0; }}
-  .footer {{ margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #888; }}
+  code {{ font-family: monospace; }}
+  .footer {{ margin-top: 30px; padding-top: 16px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; }}
+  .goal-box {{ background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 5px solid {score_color}; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }}
 </style>
 </head>
 <body>
 
+<div class="card">
 <h1>📋 Job Sync Report — Outreach Recruitment</h1>
-<p style="color:#666">Generated: {report.generated_at} | Report for: {date_str}</p>
+<p style="color:#666;margin-top:-8px">Generated: {report.generated_at} &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a></p>
 
 {alert_box}
+{auto_fix_html}
 
+<div class="goal-box">
+  <p style="margin:0;font-size:15px;color:{goal_color}"><b>{goal_text}</b></p>
+  {_progress_bar(score, score_color)}
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:500px">
+    <span>0%</span><span>50%</span><span>100% Goal</span>
+  </div>
+  <p style="margin:8px 0 0">{_trend_badge(score, report.previous_score)}</p>
+</div>
+</div>
+
+<div class="card">
 <h2>📊 Summary</h2>
-<div class="stat"><span class="stat-num">{report.careers_count_advertised or report.careers_count_scraped}</span><span class="stat-label">Careers Page Jobs</span></div>
-<div class="stat"><span class="stat-num">{report.website_count}</span><span class="stat-label">Website Jobs</span></div>
-<div class="stat"><span class="stat-num">{len(report.missing_jobs)}</span><span class="stat-label">Missing from Website</span></div>
-<div class="stat"><span class="stat-num">{len(report.extra_jobs)}</span><span class="stat-label">Extra on Website</span></div>
-<div class="stat"><span class="stat-num">{len(report.broken_links)}</span><span class="stat-label">Broken Pages</span></div>
-<div class="stat"><span class="stat-num">{len(report.seo_issues)}</span><span class="stat-label">SEO Issues</span></div>
+<div class="stat-grid">
+  <div class="stat"><span class="stat-num">{careers_count}</span><span class="stat-label">Careers Page Jobs</span></div>
+  <div class="stat"><span class="stat-num {'red' if count_diff != 0 else 'green'}">{report.website_count}</span><span class="stat-label">Website Jobs</span></div>
+  <div class="stat"><span class="stat-num {'red' if count_diff != 0 else 'green'}" style="font-size:20px">{count_diff_str}</span><span class="stat-label">Count Difference</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.missing_jobs else 'green'}">{len(report.missing_jobs)}</span><span class="stat-label">Missing</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.extra_jobs else 'green'}">{len(report.extra_jobs)}</span><span class="stat-label">Extra</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.broken_links else 'green'}">{len(report.broken_links)}</span><span class="stat-label">Broken Pages</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.seo_issues else 'green'}">{len(report.seo_issues)}</span><span class="stat-label">SEO Issues</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.sitemap_missing else 'green'}">{len(report.sitemap_missing)}</span><span class="stat-label">Sitemap Missing</span></div>
+</div>
+<p style="font-size:13px;color:#666;margin:4px 0">
+  <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:{score_color}">{score}%</span>
+  <span class="score-label">{score_label}</span>
+</p>
+</div>
 
-<p><span class="score">{score}%</span>&nbsp;&nbsp;<span style="font-size:20px;color:{score_color}">{score_label}</span></p>
-
+<div class="card">
 <h2>✅ Actions Required</h2>
-<ol>{actions_html}</ol>
+<ol style="margin:0;padding-left:20px">{actions_html}</ol>
+</div>
 
+{quick_fix_html}
+
+<div class="card">
 <h2>➕ Jobs to Add ({len(report.missing_jobs)})</h2>
-<p><em>On careers page but missing from website</em></p>
-{_rows(report.missing_jobs)}
+<p style="color:#555;margin-top:-4px;font-size:13px">On careers page but <b>missing</b> from website — run <code>--auto-fix</code> to add automatically</p>
+{missing_html}
+</div>
 
+<div class="card">
 <h2>🗑️ Jobs to Remove ({len(report.extra_jobs)})</h2>
-<p><em>On website but no longer active on careers page</em></p>
-{_rows(report.extra_jobs)}
+<p style="color:#555;margin-top:-4px;font-size:13px">On website but <b>no longer active</b> on careers page</p>
+{_rows(report.extra_jobs) if report.extra_jobs else "<p style='color:#2e7d32'>✅ No extra jobs</p>"}
+</div>
 
-<h2>📝 Possible Title Differences ({len(report.title_mismatches)})</h2>
-<p><em>Jobs with similar but non-matching titles between platforms</em></p>
+<div class="card">
+<h2>📝 Title Differences ({len(report.title_mismatches)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Similar but non-matching titles between platforms</p>
 {_mismatch_table(report.title_mismatches, [
     ("careers_title", "Careers Page Title"),
     ("website_title", "Website Title"),
     ("similarity", "Match %"),
     ("website_url", "URL"),
-])}
+]) if report.title_mismatches else "<p style='color:#2e7d32'>✅ All titles match</p>"}
+</div>
 
-<h2>📍 Location Differences ({len(report.location_mismatches)})</h2>
-{_mismatch_table(report.location_mismatches, [
-    ("title", "Job Title"),
-    ("registry_location", "Registry Location"),
-    ("website_location", "Website Card Location"),
-    ("url", "URL"),
-])}
-
+<div class="card">
 <h2>🔗 Broken Pages ({len(report.broken_links)})</h2>
 {_mismatch_table(report.broken_links, [
     ("title", "Job Title"),
     ("url", "URL"),
     ("status", "HTTP Status"),
-])}
+]) if report.broken_links else "<p style='color:#2e7d32'>✅ No broken pages</p>"}
+</div>
 
+<div class="card">
 <h2>🔍 SEO Issues ({len(report.seo_issues)})</h2>
 {seo_section_html}
+</div>
 
+<div class="card">
 <h2>🗺️ Sitemap Issues ({len(report.sitemap_missing)})</h2>
-<p><em>Job pages missing from sitemap_index.xml</em></p>
+<p style="color:#555;margin-top:-4px;font-size:13px">Job pages not listed in sitemap — Google may not index them</p>
 {sitemap_html}
+</div>
 
-{warnings_html}
+{f'<div class="card">{warnings_html}</div>' if report.warnings else ""}
 
+<div class="card">
 <h2>📎 CSV Attachments</h2>
-<p>The following CSV files are attached to this email:</p>
-<ul>
-  <li>missing_jobs.csv — {len(report.missing_jobs)} jobs</li>
-  <li>extra_jobs.csv — {len(report.extra_jobs)} jobs</li>
+<ul style="margin:0">
+  <li>missing_jobs.csv — {len(report.missing_jobs)} jobs to add</li>
+  <li>extra_jobs.csv — {len(report.extra_jobs)} jobs to remove</li>
   <li>title_mismatches.csv — {len(report.title_mismatches)} entries</li>
-  <li>location_mismatches.csv — {len(report.location_mismatches)} entries</li>
   <li>broken_links.csv — {len(report.broken_links)} pages</li>
   <li>seo_issues.csv — {len(report.seo_issues)} issues</li>
 </ul>
+</div>
 
 <div class="footer">
-  <p>Outreach Recruitment — Job Sync Agent | Run every 2 days at 08:00 Malta Time</p>
-  <p>Source: <a href="https://outreach-recruitment-agency.careers-page.com/">Careers Platform</a> |
-     Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a></p>
+  <p>Outreach Recruitment — Job Sync Agent | Runs every 2 days at 08:00 Malta Time</p>
+  <p>
+    Careers Platform: <a href="https://outreach-recruitment-agency.careers-page.com/">outreach-recruitment-agency.careers-page.com</a> &nbsp;|&nbsp;
+    Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a>
+  </p>
 </div>
 
 </body>
@@ -1082,6 +1429,7 @@ def main() -> int:
     no_email = "--no-email" in args or "--dry-run" in args
     no_seo   = "--no-seo"   in args or "--dry-run" in args
     dry_run  = "--dry-run"  in args
+    do_fix   = "--auto-fix" in args
 
     print("=" * 60)
     print("  Outreach Recruitment — Job Sync Agent")
@@ -1119,6 +1467,21 @@ def main() -> int:
 
     print_summary(report)
 
+    # Step 6 (optional): Auto-fix
+    if do_fix and (report.missing_jobs or report.extra_jobs):
+        print("\n[Auto-Fix] Starting …")
+        auto_fix(report)
+        print("\n  Re-scanning after auto-fix …")
+        website_jobs2 = scrape_public_website()
+        report2 = build_report(careers_jobs, careers_count, website_jobs2, sitemap_urls, skip_seo=True)
+        report2.auto_fixed_added = report.auto_fixed_added
+        report2.auto_fixed_removed = report.auto_fixed_removed
+        report2.previous_score = report.sync_score
+        report = report2
+        print_summary(report)
+    elif do_fix:
+        print("\n[Auto-Fix] Nothing to fix — already in sync!")
+
     # Generate HTML + CSVs
     html_body = build_html_email(report)
     md_body = build_markdown_report(report)
@@ -1141,7 +1504,6 @@ def main() -> int:
         send_email(report, html_body, csvs)
     else:
         print(f"\n  Email skipped. To send manually, remove --no-email / --dry-run flag.")
-        print(f"  Configure SMTP in: {CONFIG_PATH}")
 
     return 0 if report.sync_score == 100.0 else 1
 
