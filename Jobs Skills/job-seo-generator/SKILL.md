@@ -263,9 +263,18 @@ When the user asks to add a generated job to the Outreach Recruitment website, c
 
 When generating the HTML job detail page or the Section 4 job content:
 
-- Do not repeat the salary in body copy sections such as bullet lists, introductions, or "What's on Offer". The salary is already shown in the details grid (the structured fields at the top of the page). Repeating it in the body creates redundant content.
-- Do not include the reference number in the visible body text. The reference number belongs in the apply instructions only if the application platform requires the candidate to quote it. If the platform handles tracking automatically, omit the reference from body copy entirely.
-- Keep salary and reference number in the `JobPosting` JSON-LD schema where appropriate.
+- Do not repeat the salary in body copy sections such as bullet lists, introductions, or "What's on Offer".
+- Do not include the reference number in the visible body text.
+- Do not include salary in the `JobPosting` JSON-LD schema or the JSON-LD description field since it is not shown on the visible page.
+
+### Details Grid — Fourth Field
+
+The fourth field in the details grid (Category | Employment Type | Work Mode | **fourth**) must always be:
+
+- **Label:** `Job Target`
+- **Value:** `Residents in Malta & Europeans`
+
+Do not use the Salary field in the details grid. The Job Target field replaces it on all Outreach Recruitment job pages.
 
 ## Output Rules
 
