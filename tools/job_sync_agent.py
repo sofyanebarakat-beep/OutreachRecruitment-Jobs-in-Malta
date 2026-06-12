@@ -107,6 +107,9 @@ class SyncReport:
     auto_fixed_added: list[str] = field(default_factory=list)
     auto_fixed_removed: list[str] = field(default_factory=list)
 
+    # Ready-to-paste Claude prompts for each missing job
+    missing_prompts: list[str] = field(default_factory=list)
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # HTTP helpers
@@ -689,8 +692,21 @@ def _slugify(text: str) -> str:
     return re.sub(r"-+", "-", s).strip("-")
 
 
+def _format_description(raw_html: str) -> str:
+    """Convert HTML job description to clean plain-text with bullet formatting."""
+    text = re.sub(r"<br\s*/?>", "\n", raw_html, flags=re.I)
+    text = re.sub(r"<li[^>]*>", "\n- ", text, flags=re.I)
+    text = re.sub(r"</li>", "", text, flags=re.I)
+    text = re.sub(r"<(?:h[1-6]|p|div|section)[^>]*>", "\n\n", text, flags=re.I)
+    text = re.sub(r"</(?:h[1-6]|p|div|section)>", "", text, flags=re.I)
+    text = re.sub(r"<[^>]+>", "", text)
+    text = unescape(text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+
 def fetch_job_detail(uuid: str, title: str) -> dict:
-    """Fetch location, employment type and a short about from careers page."""
+    """Fetch full job details from careers page for prompt generation."""
     url = f"https://outreach-recruitment-agency.careers-page.com/jobs/{uuid}"
     try:
         html, _ = fetch(url)
@@ -705,14 +721,13 @@ def fetch_job_detail(uuid: str, title: str) -> dict:
         except Exception:
             pass
 
-    # Location
-    location = "Malta"
+    # Location — city only (no ", Malta" suffix)
+    city = "Malta"
     loc_data = ld.get("jobLocation", {})
     if isinstance(loc_data, dict):
-        city = loc_data.get("address", {}).get("addressLocality", "").strip()
-        if city:
-            city = re.sub(r",?\s*Malta\s*$", "", city, flags=re.I).strip()
-            location = f"{city}, Malta"
+        raw_city = loc_data.get("address", {}).get("addressLocality", "").strip()
+        if raw_city:
+            city = re.sub(r",?\s*Malta\s*$", "", raw_city, flags=re.I).strip()
 
     # Employment type
     et_map = {"FULL_TIME": "Full-Time", "PART_TIME": "Part-Time",
@@ -726,17 +741,178 @@ def fetch_job_detail(uuid: str, title: str) -> dict:
     elif re.search(r"\bhybrid\b", title, re.I):
         work_mode = "Hybrid"
 
-    # About — strip HTML from JSON-LD description
-    desc = re.sub(r"<[^>]+>", " ", ld.get("description", ""))
-    desc = re.sub(r"\s+", " ", unescape(desc)).strip()[:900]
+    # Category
+    category = ld.get("occupationalCategory", "").strip() or _guess_category(title)
+
+    # Full description — preserve structure
+    raw_desc = ld.get("description", "")
+    full_description = _format_description(raw_desc) if raw_desc else ""
 
     return {
-        "location": location,
+        "city":            city,
+        "location":        f"{city}, Malta" if city != "Malta" else "Malta",
         "employment_type": emp_type,
-        "work_mode": work_mode,
-        "about": desc,
-        "apply_url": f"https://outreach-recruitment-agency.careers-page.com/jobs/{uuid}/apply",
+        "work_mode":       work_mode,
+        "category":        category,
+        "about":           full_description[:900],
+        "description":     full_description,
+        "apply_url":       f"https://outreach-recruitment-agency.careers-page.com/jobs/{uuid}/apply",
     }
+
+
+def _guess_category(title: str) -> str:
+    t = title.lower()
+    if any(k in t for k in ["chef", "waiter", "cook", "bartend", "restaurant", "sommelier", "hotel"]):
+        return "Hospitality"
+    if any(k in t for k in ["developer", "software", "it ", "network", "data", "cyber", "devops"]):
+        return "IT & Technology"
+    if any(k in t for k in ["account", "finance", "audit", "tax", "payable", "bookkeep", "payroll"]):
+        return "Finance & Accounting"
+    if any(k in t for k in ["nurse", "doctor", "health", "medical", "pharmacy", "therapist"]):
+        return "Healthcare"
+    if any(k in t for k in ["admin", "coordinator", "specialist", "assistant", "secretary", "reception"]):
+        return "Administration"
+    if any(k in t for k in ["plumb", "weld", "electric", "engine", "mechanic", "techni", "fabricat"]):
+        return "Engineering & Maintenance"
+    if any(k in t for k in ["marine", "ship", "vessel", "maritime"]):
+        return "Maritime"
+    if any(k in t for k in ["sales", "business develop", "account manag"]):
+        return "Sales"
+    if any(k in t for k in ["hr ", "human resource", "recruit", "talent"]):
+        return "HR & Recruitment"
+    return "General"
+
+
+def _guess_industry_sector(category: str, title: str, description: str) -> tuple[str, str]:
+    """Return (industry, sector) from category and description context."""
+    cat = category.lower()
+    desc = description.lower()
+    t = title.lower()
+
+    if "finance" in cat or "accounting" in cat:
+        if any(k in desc for k in ["hotel", "hospitality", "resort"]):
+            return "Hospitality", "Finance & Accounting"
+        if any(k in desc for k in ["insurance", "healthcare", "claims"]):
+            return "Healthcare & Insurance", "Finance & Administration"
+        return "Finance & Business Services", "Finance & Accounting"
+    if "it" in cat or "technology" in cat:
+        return "Technology", "IT & Software Development"
+    if "healthcare" in cat or "medical" in cat:
+        return "Healthcare & Insurance", "Healthcare Administration"
+    if "hospitality" in cat:
+        return "Hospitality & Tourism", "Hotel & Food & Beverage Operations"
+    if "admin" in cat:
+        if any(k in desc for k in ["insurance", "healthcare", "claims", "medical"]):
+            return "Healthcare & Insurance", "Administration & Operations"
+        if any(k in desc for k in ["hotel", "hospitality"]):
+            return "Hospitality", "Administration"
+        return "Business Services", "Administration & Operations"
+    if "engineering" in cat or "maintenance" in cat:
+        return "Engineering & Technical Services", "Maintenance & Engineering"
+    if "maritime" in cat or "marine" in t:
+        return "Maritime & Shipping", "Marine Engineering"
+    if "hr" in cat or "recruitment" in cat:
+        return "Human Resources", "HR & Talent Acquisition"
+    if "sales" in cat:
+        return "Sales & Commercial", "Sales & Business Development"
+    if "logistics" in cat:
+        return "Logistics & Supply Chain", "Operations & Logistics"
+    if "retail" in cat:
+        return "Retail", "Retail Operations"
+    return "Business Services", "General"
+
+
+def _guess_region(city: str) -> str:
+    """Map Maltese city to region."""
+    city_lower = city.lower()
+    north = ["mellieħa", "mellieha", "st paul", "naxxar", "mosta", "rabat", "mdina", "attard", "lija", "balzan"]
+    south = ["żurrieq", "zurrieq", "birżebbuġa", "birzebbuga", "safi", "tarxien", "żejtun", "zejtun", "ghaxaq", "siggiewi"]
+    harbour = ["valletta", "floriana", "msida", "gżira", "gzira", "sliema", "st julian", "ta' xbiex", "ta xbiex", "pietà", "pieta", "hamrun", "qormi"]
+    central = ["birkirkara", "swieqi", "san gwann", "iklin", "santa venera"]
+    paola = ["paola", "tarxien", "luqa", "gudja", "mqabba"]
+
+    for k in north:
+        if k in city_lower:
+            return "Northern Malta"
+    for k in south:
+        if k in city_lower:
+            return "Southern Malta"
+    for k in paola:
+        if k in city_lower:
+            return "South Eastern Malta"
+    for k in harbour:
+        if k in city_lower:
+            return "Southern Harbour Region"
+    for k in central:
+        if k in city_lower:
+            return "Central Malta"
+    return "Malta"
+
+
+def _generate_ref_number(category: str) -> str:
+    """Generate OR-ABBR-YEAR-NUM reference number."""
+    import random
+    year = datetime.now().year
+    cat = category.lower()
+    if "finance" in cat or "accounting" in cat:
+        abbr = "FIN"
+    elif "it" in cat or "technology" in cat:
+        abbr = "IT"
+    elif "healthcare" in cat or "medical" in cat:
+        abbr = "MED"
+    elif "hospitality" in cat:
+        abbr = "HOSP"
+    elif "admin" in cat:
+        abbr = "ADMIN"
+    elif "engineering" in cat or "maintenance" in cat:
+        abbr = "ENG"
+    elif "maritime" in cat or "marine" in cat:
+        abbr = "MAR"
+    elif "hr" in cat or "recruitment" in cat:
+        abbr = "HR"
+    elif "sales" in cat:
+        abbr = "SALES"
+    elif "logistics" in cat:
+        abbr = "LOG"
+    else:
+        abbr = "GEN"
+    return f"OR-{abbr}-{year}-{random.randint(100, 999)}"
+
+
+def generate_job_prompt(detail: dict) -> str:
+    """Build the complete job-seo-generator prompt for a missing job."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return (
+        f"Use job-seo-generator to create a complete Google Jobs-ready, SEO-optimized,\n"
+        f"AI-search-friendly job package. Apply all skill rules including SERP competitor\n"
+        f"analysis, semantic SEO/entities, job category mapping, candidate keyword\n"
+        f"questions, freshness/update rules, conversion optimization, duplicate content\n"
+        f"prevention, and structured data safety rules.\n\n"
+        f"Generate all sections from the job-output-template.md.\n\n"
+        f"After generating all sections, also:\n"
+        f"- Add the new job card to jobs/index.html in the opening-jobs-grid as the first card\n"
+        f"- Increase the open positions count by 1 in all counter labels\n"
+        f"- Read the current count from the file before incrementing — do not hard-code a number\n\n"
+        f"---\n\n"
+        f"Job title: {detail['title']}\n"
+        f"Location city: {detail['city']}\n"
+        f"Location region: {detail['region']}\n"
+        f"Country: Malta\n"
+        f"Employment type: {detail['employment_type']}\n"
+        f"Salary range: Not specified\n"
+        f"Salary currency: EUR\n"
+        f"Date posted: {today}\n"
+        f"Expiry date / valid through: {datetime.now().year}-12-31\n"
+        f"Reference number: {detail['ref_number']}\n"
+        f"Application URL: {detail['apply_url']}\n"
+        f"Application method: Apply online\n"
+        f"Remote status: {detail['work_mode']}\n"
+        f"Industry: {detail['industry']}\n"
+        f"Sector: {detail['sector']}\n\n"
+        f"Job description:\n{detail['description']}\n\n"
+        f"Label: Job Target\n"
+        f"Value: Residents in Malta & Europeans"
+    )
 
 
 def auto_fix(report: SyncReport) -> None:
@@ -893,6 +1069,34 @@ SCORE_COLOR = {
     "warning": "#f9a825",
     "critical": "#c62828",
 }
+
+
+def _build_prompts_section(prompts: list[str]) -> str:
+    if not prompts:
+        return ""
+    cards = ""
+    for i, prompt in enumerate(prompts, 1):
+        # Extract title from prompt for the header
+        title_m = re.search(r"^Job title:\s*(.+)$", prompt, re.M)
+        title = title_m.group(1).strip() if title_m else f"Job {i}"
+        escaped = prompt.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        cards += (
+            f'<div style="margin-bottom:24px;border:1px solid #bbdefb;border-radius:8px;overflow:hidden">'
+            f'<div style="background:#1565c0;color:white;padding:10px 16px;font-weight:700;font-size:14px">'
+            f'📋 Prompt {i} — {title}</div>'
+            f'<pre style="margin:0;padding:16px;background:#1e1e2e;color:#cdd6f4;font-size:12px;'
+            f'line-height:1.6;overflow-x:auto;white-space:pre-wrap;word-break:break-word;font-family:monospace">'
+            f'{escaped}</pre>'
+            f'</div>'
+        )
+    return (
+        f'<div class="card">'
+        f'<h2>📋 Claude Prompts — Ready to Paste ({len(prompts)})</h2>'
+        f'<p style="color:#555;margin-top:-4px;font-size:13px">'
+        f'Copy each prompt below and paste it directly into Claude to generate the full job page.</p>'
+        f'{cards}'
+        f'</div>'
+    )
 
 
 def _progress_bar(score: float, color: str) -> str:
@@ -1132,6 +1336,8 @@ def build_html_email(report: SyncReport) -> str:
 <p style="color:#555;margin-top:-4px;font-size:13px">On careers page but <b>missing</b> from website — run <code>--auto-fix</code> to add automatically</p>
 {missing_html}
 </div>
+
+{_build_prompts_section(report.missing_prompts)}
 
 <div class="card">
 <h2>🗑️ Jobs to Remove ({len(report.extra_jobs)})</h2>
@@ -1466,6 +1672,34 @@ def main() -> int:
     report = build_report(careers_jobs, careers_count, website_jobs, sitemap_urls, skip_seo=no_seo)
 
     print_summary(report)
+
+    # Step 5b: Fetch full details + generate prompts for missing jobs
+    if report.missing_jobs_detail and not dry_run:
+        print(f"\n  Fetching details for {len(report.missing_jobs_detail)} missing job(s) …")
+        for jd in report.missing_jobs_detail:
+            print(f"    {jd['title']} …", end=" ", flush=True)
+            detail = fetch_job_detail(jd["uuid"], jd["title"])
+            if detail:
+                industry, sector = _guess_industry_sector(
+                    detail["category"], jd["title"], detail["description"]
+                )
+                prompt_data = {
+                    "title":           jd["title"],
+                    "city":            detail["city"],
+                    "region":          _guess_region(detail["city"]),
+                    "employment_type": detail["employment_type"],
+                    "work_mode":       detail["work_mode"],
+                    "apply_url":       detail["apply_url"],
+                    "industry":        industry,
+                    "sector":          sector,
+                    "description":     detail["description"],
+                    "ref_number":      _generate_ref_number(detail["category"]),
+                }
+                report.missing_prompts.append(generate_job_prompt(prompt_data))
+                print("OK")
+            else:
+                print("FAILED")
+            time.sleep(DELAY)
 
     # Step 6 (optional): Auto-fix
     if do_fix and (report.missing_jobs or report.extra_jobs):

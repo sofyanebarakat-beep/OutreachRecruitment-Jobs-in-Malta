@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-06-12
 
-Generated: 2026-06-12T14:09:34
+Generated: 2026-06-12T14:20:08
 
 ## Summary
 
@@ -8,25 +8,27 @@ Generated: 2026-06-12T14:09:34
 |---|---|
 | Careers Page Jobs | 220 |
 | Careers Jobs Scraped | 220 |
-| Website Jobs | 222 |
-| **Sync Score** | **99.2% — Needs Attention** |
-| Missing from Website | 2 |
-| Extra on Website | 2 |
+| Website Jobs | 215 |
+| **Sync Score** | **98.9% — Needs Attention** |
+| Missing from Website | 5 |
+| Extra on Website | 0 |
 | Title Mismatches | 0 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
 | SEO Issues | 0 |
-| Sitemap Missing | 5 |
+| Sitemap Missing | 0 |
 
 ## Jobs to Add (Missing from Website)
 
 - Payables Finance Executive
+- Marine Turner
+- Marine Mechanical Foreman
+- Plate Shop Foreman
 - Administration Specialist
 
 ## Jobs to Remove (Extra on Website)
 
-- Business Systems Analyst
-- Call Center Representative
+- None
 
 ## Title Differences
 
@@ -46,14 +48,8 @@ Generated: 2026-06-12T14:09:34
 
 ## Sitemap Issues
 
-- https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid
-- https://outreachrecruitment.net/jobs/plate-shop-foreman-malta
-- https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta
-- https://outreachrecruitment.net/jobs/client-accountant-ta-xbiex
-- https://outreachrecruitment.net/jobs/marine-turner-malta
+- None
 
 ## Actions Required
 
-1. Add 2 missing job(s) to website
-2. Remove 2 closed job(s) from website
-3. Update sitemap — 5 page(s) missing
+1. Add 5 missing job(s) to website

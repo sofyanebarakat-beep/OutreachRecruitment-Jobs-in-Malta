@@ -1,27 +1,21 @@
 {
-  "generated_at": "2026-06-12T14:09:34",
+  "generated_at": "2026-06-12T14:20:08",
   "careers_count_advertised": 220,
   "careers_count_scraped": 220,
-  "website_count": 222,
-  "sync_score": 99.2,
+  "website_count": 215,
+  "sync_score": 98.9,
   "missing_jobs": [
     "Payables Finance Executive",
+    "Marine Turner",
+    "Marine Mechanical Foreman",
+    "Plate Shop Foreman",
     "Administration Specialist"
   ],
-  "extra_jobs": [
-    "Business Systems Analyst",
-    "Call Center Representative"
-  ],
+  "extra_jobs": [],
   "title_mismatches": [],
   "location_mismatches": [],
   "broken_links": [],
   "seo_issues": [],
-  "sitemap_missing": [
-    "https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid",
-    "https://outreachrecruitment.net/jobs/plate-shop-foreman-malta",
-    "https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta",
-    "https://outreachrecruitment.net/jobs/client-accountant-ta-xbiex",
-    "https://outreachrecruitment.net/jobs/marine-turner-malta"
-  ],
+  "sitemap_missing": [],
   "warnings": []
 }
