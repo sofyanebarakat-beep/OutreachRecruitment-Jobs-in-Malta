@@ -99,13 +99,49 @@
 
 # ── Legacy WordPress URLs → homepage ───────────────────────────────────────
 [[redirects]]
+  from = "/job-tag"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/job-tag/"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/job-tag/*"
   to = "https://outreachrecruitment.net"
   status = 301
   force = true
 
 [[redirects]]
+  from = "/tag"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/tag/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/author"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/author/"
   to = "https://outreachrecruitment.net"
   status = 301
   force = true
