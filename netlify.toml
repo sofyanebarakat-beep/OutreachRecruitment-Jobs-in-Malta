@@ -97,6 +97,51 @@
   status = 301
   force = true
 
+# ── Legacy WordPress URLs → homepage ───────────────────────────────────────
+[[redirects]]
+  from = "/job-tag/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/author/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/programs-and-courses/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/study-in-malta-from-africa"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/study-in-malta-from-africa/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+# ── Any URL with a tracking suffix (e.g. /page/kala100) ───────────────────
+[[redirects]]
+  from = "/bus-driver-jobs-in-malta/*"
+  to = "https://outreachrecruitment.net"
+  status = 301
+  force = true
+
+# ── Catch-all: serve existing .html files, else 301 to homepage ───────────
 [[redirects]]
   from = "/*"
   to = "/:splat.html"
@@ -104,8 +149,8 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "https://outreachrecruitment.net"
+  status = 301
 
 # ── Cache headers ──────────────────────────────────────────────────────────
 # Immutable assets (versioned filenames) — cache 1 year
