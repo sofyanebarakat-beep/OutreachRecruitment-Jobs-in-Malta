@@ -1,21 +1,22 @@
 {
-  "generated_at": "2026-06-12T14:20:08",
+  "generated_at": "2026-06-12T14:29:06",
   "careers_count_advertised": 220,
   "careers_count_scraped": 220,
-  "website_count": 215,
-  "sync_score": 98.9,
+  "website_count": 217,
+  "sync_score": 99.3,
   "missing_jobs": [
-    "Payables Finance Executive",
     "Marine Turner",
     "Marine Mechanical Foreman",
-    "Plate Shop Foreman",
-    "Administration Specialist"
+    "Plate Shop Foreman"
   ],
   "extra_jobs": [],
   "title_mismatches": [],
   "location_mismatches": [],
   "broken_links": [],
   "seo_issues": [],
-  "sitemap_missing": [],
+  "sitemap_missing": [
+    "https://outreachrecruitment.net/jobs/administration-specialist",
+    "https://outreachrecruitment.net/jobs/payables-finance-executive"
+  ],
   "warnings": []
 }
