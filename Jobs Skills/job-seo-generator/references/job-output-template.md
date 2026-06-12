@@ -10,6 +10,8 @@ Generate all sections below unless the user asks for only specific fields.
 - URL Slug
 - Canonical URL
 - Candidate Search Intent
+- Primary Job Category
+- Secondary Job Categories
 - Primary Keyword
 - Secondary Keywords
 - Long Tail Keywords
@@ -25,6 +27,8 @@ Generate all sections below unless the user asks for only specific fields.
 - Twitter Card Title
 - Twitter Card Description
 - Google Jobs Optimization Notes
+- SERP Competitor Analysis
+- Ranking Opportunity Notes
 
 Keyword rules:
 
@@ -39,6 +43,8 @@ Keyword rules:
 - Job Title
 - H1
 - Short Job Summary
+- Primary Job Category
+- Secondary Job Categories
 - Employment Type
 - Industry
 - Sector
@@ -62,6 +68,8 @@ Keyword rules:
 - Benefits
 - Direct Apply Status
 - Suggested Internal Links
+- Freshness / Update Notes
+- Conversion Notes
 
 ## Section 3 - AI Search Package
 
@@ -86,6 +94,7 @@ Include:
 - Application Method
 - Entity Mentions
 - Candidate Fit Summary
+- Related Candidate Questions
 
 The direct answer summary should clearly state what the job is, where it is based, the employment type, and who should apply.
 
@@ -141,6 +150,12 @@ Provide a content-ready plan for schema fields:
 
 Do not add hidden structured data that is not visible or clearly supported by the page content.
 
+Also include:
+
+- Schema fields to include
+- Schema fields to omit because details are not specified
+- Schema warning notes for salary, remote status, visa sponsorship, work permit support, benefits, education, experience, location, working hours, and expiry date
+
 ## Section 6 - Internal Linking Plan
 
 Suggest relevant internal links for:
@@ -154,7 +169,65 @@ Suggest relevant internal links for:
 
 Use descriptive anchor text. Do not suggest irrelevant links just to add more links.
 
-## Section 7 - SEO Quality Checklist
+## Section 7 - SERP and Competitor Plan
+
+Identify likely competing result types:
+
+- Job boards
+- Recruitment agencies
+- Employer career pages
+- LinkedIn jobs
+- Indeed, JobsinMalta, Keepmeposted, and other Malta job platforms
+- Government, industry, or professional body pages when relevant
+
+Include:
+
+- Main competitors by page type
+- Why candidates may click those pages
+- How this job page can compete
+- Content gaps this job page should fill
+- FAQ or structured data opportunities
+
+## Section 8 - Entity SEO Plan
+
+List the important entities to include naturally:
+
+- Job title and synonyms
+- Job category
+- Industry and sector
+- Location city, region, and Malta
+- Employment type and seniority
+- Skills, tools, certifications, licenses, and languages
+- Employer
+- Application method
+- Reference number
+
+Do not include unsupported entities.
+
+## Section 9 - Freshness and Conversion Plan
+
+Include:
+
+- Date posted
+- Valid through / expiry date
+- Whether the job appears active
+- Recommended refresh timing
+- Apply call-to-action
+- Application URL
+- Reference number
+- Candidate friction points to avoid
+
+## Section 10 - Duplicate Content Prevention Notes
+
+Include:
+
+- Unique angle for this job page
+- Role-specific details used
+- Generic text to avoid
+- Similar-job duplication risks
+- Recommendations for making the page more distinct
+
+## Section 11 - SEO Quality Checklist
 
 Confirm:
 
@@ -168,3 +241,9 @@ Confirm:
 - Visa, work permit, remote, relocation, and benefits claims are included only when supported.
 - FAQ answers are useful for candidates and answer-engine visibility.
 - JobPosting schema content matches the visible page exactly.
+- Category mapping is relevant.
+- SERP competitor plan is realistic.
+- Entity list contains only supported or safely inferable entities.
+- Freshness and expiry details are not invented.
+- Apply instructions are clear and conversion-focused.
+- Duplicate content risks have been reduced.

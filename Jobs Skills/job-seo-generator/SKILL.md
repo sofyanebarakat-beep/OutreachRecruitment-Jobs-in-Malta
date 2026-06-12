@@ -37,6 +37,7 @@ If any field is missing, make a reasonable assumption only when the job descript
 7. Use Malta-focused SEO when the role is located in Malta.
 8. Make the job title concise and clean. Do not include salary, employer, location, dates, or promotional words in the schema `title`.
 9. Create unique copy for every vacancy by using the actual duties, requirements, industry, location, and seniority from the source material.
+10. Apply the SERP analysis, entity SEO, job category mapping, candidate question, freshness, conversion, duplicate prevention, and schema safety rules even when the user provides only a short job description.
 
 ## SEO Expansion Rules
 
@@ -79,6 +80,147 @@ Optimize for answer engines and generative search by including:
 - Clear, factual language that AI systems can quote or summarize without needing hidden context.
 
 Do not over-optimize for AI search at the expense of human readability.
+
+## SERP Competitor Analysis Rules
+
+For every job package, identify the likely competing page types for the target keyword:
+
+- Job boards
+- Recruitment agencies
+- Employer career pages
+- LinkedIn jobs
+- Indeed, JobsinMalta, Keepmeposted, and other Malta job platforms
+- Government, industry, or professional body pages when relevant
+
+Explain how the Outreach Recruitment job page can compete through clearer job details, stronger FAQs, better location relevance, fresh posting dates, internal links, and accurate `JobPosting` structured data.
+
+## Entity SEO Rules
+
+Include relevant entities naturally in visible content, keyword fields, FAQs, and AI-search sections:
+
+- Clean job title and common role synonyms
+- Main job category and related categories
+- Industry, sector, and department where inferable
+- Location city, region, Malta, and nearby location modifiers when supported
+- Employment type, seniority, shift pattern, and working hours when provided
+- Required skills, tools, software, licenses, certifications, and languages
+- Employer entity: Outreach Recruitment Ltd
+- Application method and reference number
+
+Do not force entities that are not relevant to the job. Do not invent certifications, tools, languages, licenses, or locations.
+
+## Job Category Mapping Rules
+
+Classify every job into one primary category and up to three secondary categories.
+
+Use categories such as:
+
+- Hospitality jobs
+- Catering jobs
+- Restaurant jobs
+- Hotel jobs
+- Retail jobs
+- Sales jobs
+- Customer service jobs
+- Finance jobs
+- Accounting jobs
+- Administrative jobs
+- HR and recruitment jobs
+- IT jobs
+- Marketing jobs
+- Healthcare jobs
+- Care jobs
+- Construction jobs
+- Engineering jobs
+- Technical jobs
+- Manufacturing jobs
+- Maritime jobs
+- Logistics jobs
+- Driving jobs
+- Cleaning jobs
+- Security jobs
+- Skilled trades jobs
+
+Use the category mapping to suggest internal links, related jobs, and keyword variations.
+
+## Candidate Question Rules
+
+Generate related keyword questions that match real candidate searches, such as:
+
+- What experience is needed for this job?
+- Is this job full-time or part-time?
+- Where is this job located?
+- How can I apply for this job?
+- Is salary provided for this job?
+- Are work permit or visa details mentioned?
+- What skills are required for this role?
+- Is this role suitable for junior or experienced candidates?
+- What industry is this job in?
+
+Turn the strongest 4-6 questions into the FAQ section. Only answer with details supported by the job description or static employer data.
+
+## Freshness and Update Rules
+
+For active job postings:
+
+- Use a clear `datePosted` when available.
+- Use a clear `validThrough` when available.
+- If the expiry date is missing, mark it as `Not specified` and do not invent one.
+- Do not present expired jobs as active.
+- Recommend reviewing or refreshing active job pages every 14-30 days.
+- Keep expiry dates, salary, location, and application URLs consistent across visible content and schema fields.
+
+Use ISO-style dates, such as `2026-07-30`, for schema-ready fields when dates are provided.
+
+## Conversion Optimization Rules
+
+Every full job page should help candidates apply quickly. Include:
+
+- A clear opening summary
+- Who the job is suitable for
+- Key responsibilities
+- Key requirements
+- Salary and benefits only when provided
+- Location and employment type
+- Reference number
+- Simple application instructions
+- Direct call to apply
+- Contact or application URL
+
+Keep the apply section clear, visible, and free of unnecessary friction.
+
+## Duplicate Content Prevention Rules
+
+When creating multiple similar job pages:
+
+- Rewrite introductions uniquely.
+- Use role-specific duties from the job description.
+- Mention the specific industry, location, shift pattern, tools, and requirements where provided.
+- Avoid reusing the same generic paragraphs across different jobs.
+- Keep the Outreach Recruitment description short and consistent.
+- Make the role content unique enough to stand on its own in search results.
+
+If the provided job description is thin, expand responsibly using safe role expectations, but clearly avoid unsupported employer-specific claims.
+
+## Structured Data Safety Rules
+
+Do not add schema fields that are not visible on the page or clearly supported by the source details.
+
+Avoid unsupported values for:
+
+- Salary
+- Remote status
+- Visa sponsorship
+- Work permit support
+- Benefits
+- Education requirements
+- Experience requirements
+- Job location
+- Working hours
+- Employment type
+- Application deadline
+
+If a value is uncertain, use `Not specified` in visible content and omit unsupported schema fields where omission is more accurate than guessing.
 
 ## Output Rules
 
