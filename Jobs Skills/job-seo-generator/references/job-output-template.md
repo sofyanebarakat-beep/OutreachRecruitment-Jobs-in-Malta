@@ -54,6 +54,8 @@ Keyword rules:
 - Salary
 - Salary Currency
 - Salary Visibility
+- Job Type, default to `Direct Job` unless the user provides another type
+- Target Location, default to `Residents in Malta & Europeans` unless the user provides another target
 - Private Salary Note, only if the user provides salary but does not want it published
 - Date Posted
 - Valid Through
@@ -86,6 +88,8 @@ Include:
 - Industry
 - Location
 - Salary
+- Job Type
+- Target Location
 - Employment Type
 - Experience
 - Education
@@ -249,6 +253,10 @@ When the user asks to add the job to the Outreach Recruitment website, include:
 - Card location
 - Card employment type
 - Card category
+- Job detail metadata grid must show: `Category`, `Employment Type`, `Work Mode`, `Job Type`, and `Target Location`
+- Use `Job Type: Direct Job` unless the user provides another job type
+- Use `Target Location: Residents in Malta & Europeans` unless the user provides another target location
+- Do not show the old `Salary` card in the metadata grid; keep salary only in page content/schema when a visible salary is provided
 - Card `data-title`
 - Card `data-category`
 - Card `data-location`
@@ -278,6 +286,8 @@ Confirm:
 - Job title is concise and not keyword-stuffed.
 - Location is consistent across visible content and schema fields.
 - Salary is included only if visible in the page content.
+- Job detail metadata grid includes Category, Employment Type, Work Mode, Job Type, and Target Location.
+- Job Type and Target Location match the visible page content.
 - Visa, work permit, remote, relocation, and benefits claims are included only when supported.
 - FAQ answers are useful for candidates and answer-engine visibility.
 - JobPosting schema content matches the visible page exactly.
