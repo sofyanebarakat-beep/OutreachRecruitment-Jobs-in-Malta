@@ -1,4 +1,5 @@
 # Local secrets and credentials
+tools/sync_config.json
 .env
 .env.*
 *.pem

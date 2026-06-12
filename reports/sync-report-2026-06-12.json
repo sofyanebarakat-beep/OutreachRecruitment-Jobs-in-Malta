@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-06-12T13:31:41",
+  "careers_count_advertised": 221,
+  "careers_count_scraped": 221,
+  "website_count": 222,
+  "sync_score": 99.3,
+  "missing_jobs": [
+    "Payables Finance Executive",
+    "Administration Specialist"
+  ],
+  "extra_jobs": [
+    "Business Systems Analyst"
+  ],
+  "title_mismatches": [],
+  "location_mismatches": [],
+  "broken_links": [],
+  "seo_issues": [],
+  "sitemap_missing": [
+    "https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid",
+    "https://outreachrecruitment.net/jobs/plate-shop-foreman-malta",
+    "https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta",
+    "https://outreachrecruitment.net/jobs/client-accountant-ta-xbiex",
+    "https://outreachrecruitment.net/jobs/marine-turner-malta"
+  ],
+  "warnings": []
+}
