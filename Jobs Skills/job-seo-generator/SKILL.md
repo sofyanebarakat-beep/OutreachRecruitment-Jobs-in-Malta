@@ -223,6 +223,24 @@ Avoid unsupported values for:
 
 If a value is uncertain, use `Not specified` in visible content and omit unsupported schema fields where omission is more accurate than guessing.
 
+## Salary Visibility Rules
+
+Google Jobs structured data must match visible page content. Do not add salary to `baseSalary`, SEO copy, meta content, or hidden structured data if the salary is not visible on the job page.
+
+When salary is provided but the user does not want it shown publicly:
+
+- Mark visible salary as `Not disclosed` or `Not specified`.
+- Omit `baseSalary` from `JobPosting` JSON-LD.
+- Do not use salary keywords in SEO title, meta description, keyword lists, or FAQs.
+- Do not mention salary ranges in AI-search summaries or internal linking notes.
+- Keep the salary internally only if the user asks for a private recruiter note, clearly separated from publishable content.
+
+When salary is provided and allowed to be visible:
+
+- Show the same salary range in the visible job page content.
+- Use the same currency and range in `baseSalary`.
+- Keep salary wording consistent across the job page, SEO package, FAQs, and schema.
+
 ## Site Publishing Rules
 
 When the user asks to add a generated job to the Outreach Recruitment website, complete these site updates after creating the job content:

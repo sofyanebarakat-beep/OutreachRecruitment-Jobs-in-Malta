@@ -53,6 +53,8 @@ Keyword rules:
 - Remote Status
 - Salary
 - Salary Currency
+- Salary Visibility
+- Private Salary Note, only if the user provides salary but does not want it published
 - Date Posted
 - Valid Through
 - Job ID
@@ -155,6 +157,12 @@ Also include:
 - Schema fields to include
 - Schema fields to omit because details are not specified
 - Schema warning notes for salary, remote status, visa sponsorship, work permit support, benefits, education, experience, location, working hours, and expiry date
+
+Salary schema rule:
+
+- Include `baseSalary` only when the same salary is visible on the job page.
+- If salary is private or not meant to be displayed, mark visible salary as `Not disclosed` or `Not specified` and omit `baseSalary`.
+- Do not add hidden salary only for SEO.
 
 ## Section 6 - Internal Linking Plan
 
