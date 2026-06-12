@@ -457,6 +457,9 @@ def check_job_page_seo(job: WebsiteJob) -> None:
 
         job.is_indexable = not bool(NOINDEX_RE.search(html))
 
+        # Validate JSON-LD structured data
+        _, job.schema_issues = validate_job_schema(html)
+
     except Exception as exc:
         job.status = 0
         print(f"    WARN: {job.url} — {exc}")
@@ -649,6 +652,19 @@ def build_report(
             if normalized_url not in sitemap_urls:
                 report.sitemap_missing.append(wj.url)
 
+    # Rule 10 — duplicate title detection within website jobs
+    report.duplicates = detect_duplicates(website_jobs)
+
+    # Rule 11 — schema issues (collected per-job during SEO check)
+    if not skip_seo:
+        for wj in website_jobs:
+            if wj.schema_issues and wj.status == 200:
+                report.schema_issues.append({
+                    "title": wj.title,
+                    "url": wj.url,
+                    "issues": wj.schema_issues,
+                })
+
     # Sync score
     total_penalties = 0
     weight_missing = 5
@@ -742,6 +758,353 @@ def load_previous_score() -> float | None:
             except Exception:
                 pass
     return None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Sync state — auto-close tracking
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_sync_state() -> dict:
+    """Load persistent state for consecutive-absence tracking."""
+    if STATE_PATH.exists():
+        try:
+            return json.loads(STATE_PATH.read_text())
+        except Exception:
+            pass
+    return {"consecutive_extra": {}, "last_run": ""}
+
+
+def save_sync_state(state: dict) -> None:
+    state["last_run"] = datetime.now().strftime("%Y-%m-%d")
+    STATE_PATH.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def update_auto_close_state(extra_job_titles: list[str], state: dict) -> list[str]:
+    """
+    Increment consecutive-absence counter for each extra job.
+    Reset counters for jobs no longer extra.
+    Return titles that have hit AUTO_CLOSE_THRESHOLD.
+    """
+    consecutive = state.get("consecutive_extra", {})
+    for title in extra_job_titles:
+        consecutive[title] = consecutive.get(title, 0) + 1
+    for title in list(consecutive.keys()):
+        if title not in extra_job_titles:
+            del consecutive[title]
+    state["consecutive_extra"] = consecutive
+    return [t for t, count in consecutive.items() if count >= AUTO_CLOSE_THRESHOLD]
+
+
+def close_job_in_registry(title: str) -> bool:
+    """Mark a job as 'closed' in jobs_registry.json. Returns True if updated."""
+    if not REGISTRY_PATH.exists():
+        return False
+    registry = json.loads(REGISTRY_PATH.read_text())
+    updated = False
+    for job in registry:
+        if title_similarity(job["title"], title) >= 0.75 and job.get("status") not in ("closed", "expired"):
+            job["status"] = "closed"
+            updated = True
+    if updated:
+        REGISTRY_PATH.write_text(json.dumps(registry, indent=2, ensure_ascii=False), encoding="utf-8")
+    return updated
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Duplicate detection
+# ─────────────────────────────────────────────────────────────────────────────
+
+def detect_duplicates(website_jobs: list[WebsiteJob]) -> list[dict]:
+    """Find job cards on the website with suspiciously similar titles."""
+    duplicates: list[dict] = []
+    seen: set[tuple[int, int]] = set()
+    for i, job_a in enumerate(website_jobs):
+        for j, job_b in enumerate(website_jobs):
+            if i >= j or (i, j) in seen:
+                continue
+            seen.add((i, j))
+            score = title_similarity(job_a.title, job_b.title)
+            if DUPLICATE_THRESHOLD <= score < 1.0:
+                duplicates.append({
+                    "title_a": job_a.title,
+                    "url_a": job_a.url,
+                    "title_b": job_b.title,
+                    "url_b": job_b.url,
+                    "similarity": round(score, 2),
+                })
+    return sorted(duplicates, key=lambda x: x["similarity"], reverse=True)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Urgent 404 email alert
+# ─────────────────────────────────────────────────────────────────────────────
+
+def send_urgent_404_alert(broken_links: list[dict]) -> bool:
+    """Send an immediate separate email when 404s are found — don't wait for next run."""
+    config = load_smtp_config()
+    if {"smtp_host", "smtp_port", "smtp_user", "smtp_pass"} - set(config.keys()):
+        return False
+
+    date_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    rows = "".join(
+        f"<tr><td>{item['title']}</td>"
+        f"<td><a href='{item['url']}'>{item['url']}</a></td>"
+        f"<td style='color:#c62828;font-weight:bold'>{item['status'] or 'ERR'}</td></tr>"
+        for item in broken_links
+    )
+    html_body = f"""<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>body{{font-family:Arial,sans-serif;color:#333;max-width:700px;margin:0 auto;padding:20px}}
+table{{border-collapse:collapse;width:100%;font-size:13px}}
+th{{background:#b71c1c;color:white;padding:8px 10px;text-align:left}}
+td{{padding:7px 10px;border-bottom:1px solid #eee}}</style>
+</head><body>
+<div style="background:#ffebee;border:3px solid #c62828;border-radius:10px;padding:20px;margin-bottom:20px">
+  <h1 style="color:#b71c1c;margin:0">🚨 URGENT: {len(broken_links)} Broken Job Page(s)</h1>
+  <p style="margin:8px 0;font-size:14px;color:#555">Detected: {date_str} Malta Time</p>
+</div>
+<p><b>Candidates and Google cannot reach these pages.</b> Fix immediately.</p>
+<table>
+<tr><th>Job Title</th><th>URL</th><th>Status</th></tr>
+{rows}
+</table>
+<h2 style="color:#283593;margin-top:24px">🛠 How to Fix</h2>
+<ol style="font-size:14px">
+  <li>Check the slug in <code>tools/jobs_registry.json</code></li>
+  <li>If job is filled: <code>python3 tools/expire_job.py SLUG</code></li>
+  <li>Regenerate: <code>python3 tools/update_jobs_listing.py</code></li>
+  <li>Deploy: <code>git add -A && git commit -m "Fix broken page" && git push origin main</code></li>
+</ol>
+<p style="font-size:12px;color:#999;border-top:1px solid #eee;padding-top:12px;margin-top:24px">
+  Outreach Recruitment — Job Sync Agent — Urgent 404 Alert<br>
+  <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a>
+</p>
+</body></html>"""
+
+    subject = f"🚨 URGENT: {len(broken_links)} Broken Job Page(s) — Outreach Recruitment — {date_str}"
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = config["smtp_user"]
+    msg["To"] = REPORT_RECIPIENT
+    msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+    try:
+        port = int(config["smtp_port"])
+        if port == 465:
+            import ssl
+            ctx = ssl.create_default_context()
+            with smtplib.SMTP_SSL(config["smtp_host"], port, context=ctx) as server:
+                server.login(config["smtp_user"], config["smtp_pass"])
+                server.sendmail(config["smtp_user"], REPORT_RECIPIENT, msg.as_string())
+        else:
+            with smtplib.SMTP(config["smtp_host"], port) as server:
+                server.ehlo()
+                server.starttls()
+                server.login(config["smtp_user"], config["smtp_pass"])
+                server.sendmail(config["smtp_user"], REPORT_RECIPIENT, msg.as_string())
+        print(f"  ⚠️  Urgent 404 alert sent to {REPORT_RECIPIENT}")
+        return True
+    except Exception as exc:
+        print(f"  ERROR sending 404 alert: {exc}")
+        return False
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Live dashboard page
+# ─────────────────────────────────────────────────────────────────────────────
+
+def generate_dashboard(report: SyncReport, state: dict) -> None:
+    """Write sync-dashboard.html to project root (noindex, updated every run)."""
+    score = report.sync_score
+    if score == 100:
+        score_color, score_label = "#2e7d32", "Fully Synced"
+        status_bg, status_border = "#e8f5e9", "#2e7d32"
+    elif score >= 95:
+        score_color, score_label = "#558b2f", "Almost There"
+        status_bg, status_border = "#f1f8e9", "#558b2f"
+    elif score >= 85:
+        score_color, score_label = "#f9a825", "Needs Attention"
+        status_bg, status_border = "#fff3e0", "#ef6c00"
+    else:
+        score_color, score_label = "#c62828", "Action Required"
+        status_bg, status_border = "#ffebee", "#c62828"
+
+    def _tbl_rows_2(rows_data: list, empty_msg: str = "✅ None", cols: int = 2) -> str:
+        if not rows_data:
+            return f"<tr><td colspan='{cols}' style='color:#2e7d32'>{empty_msg}</td></tr>"
+        return "".join(rows_data)
+
+    missing_rows = [
+        f"<tr><td>{jd['title']}</td>"
+        f"<td><a href='{jd['careers_url']}' target='_blank'>View on Careers ↗</a></td></tr>"
+        for jd in report.missing_jobs_detail
+    ]
+    extra_rows = [
+        f"<tr><td>{t}</td><td style='color:#e65100'>Not on careers page</td></tr>"
+        for t in report.extra_jobs
+    ]
+    broken_rows = [
+        f"<tr><td>{bl['title']}</td>"
+        f"<td><a href='{bl['url']}' target='_blank'>{bl['url']}</a></td>"
+        f"<td style='color:#c62828;font-weight:bold'>{bl['status'] or 'ERR'}</td></tr>"
+        for bl in report.broken_links
+    ]
+    dup_rows = [
+        f"<tr><td><a href='{d[\"url_a\"]}' target='_blank'>{d['title_a']}</a></td>"
+        f"<td><a href='{d[\"url_b\"]}' target='_blank'>{d['title_b']}</a></td>"
+        f"<td>{int(d['similarity']*100)}%</td></tr>"
+        for d in report.duplicates
+    ]
+    schema_rows = [
+        f"<tr><td><a href='{si['url']}' target='_blank'>{si['title']}</a></td>"
+        f"<td style='color:#c62828'>{'; '.join(si['issues'][:3])}</td></tr>"
+        for si in report.schema_issues[:25]
+    ]
+    consecutive = state.get("consecutive_extra", {})
+    tracking_rows = [
+        f"<tr><td>{title}</td><td>{count}/{AUTO_CLOSE_THRESHOLD}</td>"
+        f"<td>{'<span style=\"color:#c62828;font-weight:bold\">⚠️ Next run: auto-close</span>' if count >= AUTO_CLOSE_THRESHOLD - 1 else 'Monitoring'}</td></tr>"
+        for title, count in consecutive.items()
+    ]
+    auto_closed_rows = [
+        f"<tr><td>{t}</td><td style='color:#ff6d00'>Marked closed this run</td></tr>"
+        for t in report.auto_closed_this_run
+    ]
+
+    def stat(val: int, label: str, ok_is_zero: bool = True) -> str:
+        cls = "ok" if (val == 0) == ok_is_zero else "warn"
+        return (
+            f"<div class='stat'><div class='stat-val {cls}'>{val}</div>"
+            f"<div class='stat-lbl'>{label}</div></div>"
+        )
+
+    careers_count = report.careers_count_advertised or report.careers_count_scraped
+    website_ok = len(report.missing_jobs) == 0 and len(report.extra_jobs) == 0
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Job Sync Dashboard — Outreach Recruitment</title>
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f0f2f5;color:#1a1a2e}}
+.header{{background:linear-gradient(135deg,#1a237e 0%,#283593 100%);color:white;padding:28px 32px}}
+.header h1{{font-size:24px;font-weight:800}}
+.header p{{font-size:13px;opacity:.75;margin-top:4px}}
+.noindex-pill{{display:inline-block;background:rgba(255,255,255,.18);border-radius:4px;padding:2px 10px;font-size:11px;margin-top:8px}}
+.content{{max-width:1100px;margin:24px auto;padding:0 16px}}
+.card{{background:white;border-radius:12px;padding:22px 26px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}}
+.card h2{{font-size:16px;font-weight:700;color:#283593;border-left:4px solid #3f51b5;padding-left:10px;margin-bottom:14px}}
+.score-ring{{text-align:center;padding:20px 0}}
+.score-num{{font-size:72px;font-weight:900;color:{score_color};line-height:1}}
+.score-lbl{{font-size:20px;font-weight:600;color:{score_color};margin-top:6px}}
+.progress{{background:#e0e0e0;border-radius:10px;height:20px;margin:16px 0;overflow:hidden}}
+.progress-fill{{background:{score_color};width:{score}%;height:100%;border-radius:10px}}
+.stats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:12px;margin:16px 0}}
+.stat{{background:#f5f7ff;border-radius:10px;padding:14px 12px;text-align:center}}
+.stat-val{{font-size:30px;font-weight:800;color:#1a237e}}
+.stat-val.ok{{color:#2e7d32}}
+.stat-val.warn{{color:#c62828}}
+.stat-lbl{{font-size:11px;color:#666;margin-top:4px}}
+table{{width:100%;border-collapse:collapse;font-size:13px}}
+th{{background:#1a237e;color:white;padding:8px 10px;text-align:left;font-size:12px;font-weight:600}}
+td{{padding:8px 10px;border-bottom:1px solid #f0f0f0}}
+tr:hover td{{background:#fafafa}}
+a{{color:#1565c0;text-decoration:none}}
+a:hover{{text-decoration:underline}}
+.status-bar{{background:{status_bg};border:2px solid {status_border};border-radius:8px;padding:12px 18px;margin-bottom:16px}}
+.status-bar b{{color:{score_color};font-size:16px}}
+.meta{{font-size:12px;color:#888;margin-bottom:12px}}
+.footer{{text-align:center;font-size:12px;color:#999;padding:24px 0}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 Job Sync Dashboard</h1>
+  <p>Outreach Recruitment &nbsp;·&nbsp; Last updated: {now_str} &nbsp;·&nbsp; <a href="https://outreachrecruitment.net/jobs/" style="color:rgba(255,255,255,.8)">View Live Jobs ↗</a></p>
+  <div class="noindex-pill">🔒 noindex — internal use only</div>
+</div>
+<div class="content">
+
+<div class="card">
+  <div class="status-bar"><b>{score_label}</b> — Sync Score {score}% as of {report.generated_at[:16]}</div>
+  <div class="score-ring"><div class="score-num">{score}%</div><div class="score-lbl">{score_label}</div></div>
+  <div class="progress"><div class="progress-fill"></div></div>
+  <div class="stats">
+    {stat(careers_count, "Careers Page", ok_is_zero=False)}
+    {stat(report.website_count, "Website Jobs", ok_is_zero=False)}
+    {stat(len(report.missing_jobs), "Missing")}
+    {stat(len(report.extra_jobs), "Extra")}
+    {stat(len(report.broken_links), "Broken")}
+    {stat(len(report.seo_issues), "SEO Issues")}
+    {stat(len(report.duplicates), "Duplicates")}
+    {stat(len(report.schema_issues), "Schema Issues")}
+  </div>
+</div>
+
+<div class="card">
+  <h2>➕ Missing Jobs ({len(report.missing_jobs)})</h2>
+  <p class="meta">On careers page but not on website</p>
+  <table><tr><th>Job Title</th><th>Action</th></tr>
+  {_tbl_rows_2(missing_rows, "✅ All careers jobs are on the website")}</table>
+</div>
+
+<div class="card">
+  <h2>🗑️ Extra Jobs ({len(report.extra_jobs)})</h2>
+  <p class="meta">On website but no longer on careers page</p>
+  <table><tr><th>Job Title</th><th>Status</th></tr>
+  {_tbl_rows_2(extra_rows, "✅ No extra jobs")}</table>
+</div>
+
+<div class="card">
+  <h2>🔗 Broken Pages ({len(report.broken_links)})</h2>
+  <p class="meta">Job pages returning HTTP errors — candidates cannot access these</p>
+  <table><tr><th>Job Title</th><th>URL</th><th>Status</th></tr>
+  {_tbl_rows_2(broken_rows, "✅ No broken pages", cols=3)}</table>
+</div>
+
+<div class="card">
+  <h2>🔍 Duplicate Suspects ({len(report.duplicates)})</h2>
+  <p class="meta">Jobs with very similar titles — possible duplicates (≥{int(DUPLICATE_THRESHOLD*100)}% match)</p>
+  <table><tr><th>Job A</th><th>Job B</th><th>Similarity</th></tr>
+  {_tbl_rows_2(dup_rows, "✅ No duplicates detected", cols=3)}</table>
+</div>
+
+<div class="card">
+  <h2>📋 Schema Issues ({len(report.schema_issues)})</h2>
+  <p class="meta">JSON-LD structured data problems — missing fields affect Google Jobs indexing</p>
+  <table><tr><th>Job Title</th><th>Issues</th></tr>
+  {_tbl_rows_2(schema_rows, "✅ All schemas pass validation")}</table>
+</div>
+
+<div class="card">
+  <h2>⏳ Auto-Close Tracking ({len(consecutive)})</h2>
+  <p class="meta">Jobs absent from careers page — auto-closes at {AUTO_CLOSE_THRESHOLD} consecutive checks</p>
+  <table><tr><th>Job Title</th><th>Absence Count</th><th>Status</th></tr>
+  {_tbl_rows_2(tracking_rows, "No jobs being tracked", cols=3)}</table>
+</div>
+
+<div class="card">
+  <h2>🔒 Auto-Closed This Run ({len(report.auto_closed_this_run)})</h2>
+  <p class="meta">Jobs automatically marked closed after {AUTO_CLOSE_THRESHOLD}+ consecutive absences from careers page</p>
+  <table><tr><th>Job Title</th><th>Action</th></tr>
+  {_tbl_rows_2(auto_closed_rows, "None auto-closed this run")}</table>
+</div>
+
+</div>
+<div class="footer">
+  <p>Outreach Recruitment — Job Sync Dashboard &nbsp;·&nbsp; Updated every 2 days at 08:00 Malta Time</p>
+  <p style="margin-top:4px"><a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp; <a href="https://outreach-recruitment-agency.careers-page.com/">Careers Platform</a></p>
+  <p style="margin-top:8px;font-size:11px">⚠️ This page is excluded from search engines (noindex, nofollow). Do not share the URL publicly.</p>
+</div>
+</body></html>"""
+
+    DASHBOARD_PATH.write_text(html, encoding="utf-8")
+    print(f"  Dashboard: {DASHBOARD_PATH}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1162,6 +1525,19 @@ def _build_prompts_section(prompts: list[str]) -> str:
     )
 
 
+def _build_schema_section(schema_issues: list[dict]) -> str:
+    if not schema_issues:
+        return "<p style='color:#2e7d32'>✅ All structured data schemas pass validation</p>"
+    rows = ""
+    for item in schema_issues[:30]:
+        issue_str = "; ".join(item["issues"][:4])
+        rows += f"<tr><td><a href='{item['url']}'>{item['title']}</a></td><td style='color:#c62828'>{issue_str}</td></tr>"
+    return (
+        f"<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        f"<tr><th>Job Title</th><th>Issues</th></tr>{rows}</table>"
+    )
+
+
 def _progress_bar(score: float, color: str) -> str:
     filled = int(score)
     empty = 100 - filled
@@ -1275,6 +1651,12 @@ def build_html_email(report: SyncReport) -> str:
         actions.append(f"Fix <b>{len(report.seo_issues)}</b> SEO issue(s)")
     if report.sitemap_missing:
         actions.append(f"Update sitemap — <b>{len(report.sitemap_missing)}</b> page(s) missing")
+    if report.duplicates:
+        actions.append(f"Review <b>{len(report.duplicates)}</b> possible duplicate job(s)")
+    if report.schema_issues:
+        actions.append(f"Fix <b>{len(report.schema_issues)}</b> structured data schema issue(s)")
+    if report.auto_closed_this_run:
+        actions.append(f"<b>{len(report.auto_closed_this_run)}</b> job(s) auto-closed this run — verify and push")
     if not actions:
         actions = ["No action required — everything is in sync! 🎉"]
     actions_html = "".join(f"<li style='margin:6px 0'>{a}</li>" for a in actions)
@@ -1354,7 +1736,7 @@ def build_html_email(report: SyncReport) -> str:
 
 <div class="card">
 <h1>📋 Job Sync Report — Outreach Recruitment</h1>
-<p style="color:#666;margin-top:-8px">Generated: {report.generated_at} &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a></p>
+<p style="color:#666;margin-top:-8px">Generated: {report.generated_at} &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/sync-dashboard.html" style="color:#1565c0;font-weight:bold">📊 Live Dashboard ↗</a></p>
 
 {alert_box}
 {auto_fix_html}
@@ -1380,6 +1762,8 @@ def build_html_email(report: SyncReport) -> str:
   <div class="stat"><span class="stat-num {'red' if report.broken_links else 'green'}">{len(report.broken_links)}</span><span class="stat-label">Broken Pages</span></div>
   <div class="stat"><span class="stat-num {'red' if report.seo_issues else 'green'}">{len(report.seo_issues)}</span><span class="stat-label">SEO Issues</span></div>
   <div class="stat"><span class="stat-num {'red' if report.sitemap_missing else 'green'}">{len(report.sitemap_missing)}</span><span class="stat-label">Sitemap Missing</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.duplicates else 'green'}">{len(report.duplicates)}</span><span class="stat-label">Duplicates</span></div>
+  <div class="stat"><span class="stat-num {'red' if report.schema_issues else 'green'}">{len(report.schema_issues)}</span><span class="stat-label">Schema Issues</span></div>
 </div>
 <p style="font-size:13px;color:#666;margin:4px 0">
   <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:{score_color}">{score}%</span>
@@ -1442,6 +1826,25 @@ def build_html_email(report: SyncReport) -> str:
 {f'<div class="card">{warnings_html}</div>' if report.warnings else ""}
 
 <div class="card">
+<h2>🔍 Duplicate Suspects ({len(report.duplicates)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Jobs with very similar titles on the website — may confuse candidates or Google</p>
+{_mismatch_table(report.duplicates, [
+    ("title_a", "Job A"),
+    ("title_b", "Job B"),
+    ("similarity", "Match"),
+    ("url_a", "URL A"),
+]) if report.duplicates else "<p style='color:#2e7d32'>✅ No duplicates detected</p>"}
+</div>
+
+<div class="card">
+<h2>📋 Schema Issues ({len(report.schema_issues)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">JSON-LD structured data problems — missing fields affect how Google Jobs displays these listings</p>
+{_build_schema_section(report.schema_issues)}
+</div>
+
+{"<div class='card'><h2>🔒 Auto-Closed This Run (" + str(len(report.auto_closed_this_run)) + ")</h2><p style='color:#555;margin-top:-4px;font-size:13px'>Jobs absent from careers page for " + str(AUTO_CLOSE_THRESHOLD) + "+ consecutive checks — automatically marked closed on website</p><ul>" + "".join(f"<li><b>{t}</b> — set to status: closed in registry</li>" for t in report.auto_closed_this_run) + "</ul><p style='font-size:13px;color:#666'>Run <code>python3 tools/update_jobs_listing.py && git add -A && git commit -m \"Auto-close filled jobs\" && git push origin main</code> to deploy.</p></div>" if report.auto_closed_this_run else ""}
+
+<div class="card">
 <h2>📎 CSV Attachments</h2>
 <ul style="margin:0">
   <li>missing_jobs.csv — {len(report.missing_jobs)} jobs to add</li>
@@ -1456,7 +1859,8 @@ def build_html_email(report: SyncReport) -> str:
   <p>Outreach Recruitment — Job Sync Agent | Runs every 2 days at 08:00 Malta Time</p>
   <p>
     Careers Platform: <a href="https://outreach-recruitment-agency.careers-page.com/">outreach-recruitment-agency.careers-page.com</a> &nbsp;|&nbsp;
-    Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a>
+    Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp;
+    <a href="https://outreachrecruitment.net/sync-dashboard.html">📊 Live Dashboard</a>
   </p>
 </div>
 
@@ -1651,6 +2055,9 @@ def save_reports(report: SyncReport, md: str, csvs: dict[str, str]) -> tuple[Pat
         "seo_issues": report.seo_issues,
         "sitemap_missing": report.sitemap_missing,
         "warnings": report.warnings,
+        "duplicates": report.duplicates,
+        "schema_issues": report.schema_issues,
+        "auto_closed_this_run": report.auto_closed_this_run,
     }
     json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -1705,6 +2112,10 @@ def main() -> int:
     print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
+    # Load persistent state for auto-close tracking
+    sync_state = load_sync_state()
+    print(f"\n  State loaded — tracking {len(sync_state.get('consecutive_extra', {}))} job(s) for auto-close")
+
     # Step 1: Scrape careers page
     print("\n[1/5] Scraping careers page …")
     careers_jobs, careers_count = scrape_careers_page()
@@ -1715,7 +2126,7 @@ def main() -> int:
     website_jobs = scrape_public_website()
     print(f"  Found {len(website_jobs)} job cards")
 
-    # Step 3: SEO + broken link checks
+    # Step 3: SEO + broken link checks (includes schema validation)
     if not no_seo:
         run_seo_checks(website_jobs)
     else:
@@ -1730,13 +2141,41 @@ def main() -> int:
         sitemap_urls = set()
         print("  Sitemap check skipped (--dry-run)")
 
-    # Step 5: Build report
+    # Step 5: Build report (duplicates + schema issues included)
     print("\n[5/5] Building report …")
     report = build_report(careers_jobs, careers_count, website_jobs, sitemap_urls, skip_seo=no_seo)
 
     print_summary(report)
+    if report.duplicates:
+        print(f"\n  Duplicate suspects: {len(report.duplicates)}")
+        for d in report.duplicates[:5]:
+            print(f"    '{d['title_a']}' ≈ '{d['title_b']}' ({int(d['similarity']*100)}%)")
+    if report.schema_issues:
+        print(f"\n  Schema issues: {len(report.schema_issues)} job(s)")
 
-    # Step 5b: Fetch full details + generate prompts for missing jobs
+    # Step 5b: Urgent 404 alert — send immediately, don't wait for scheduled report
+    if report.broken_links and not no_email:
+        print(f"\n  🚨 {len(report.broken_links)} broken page(s) — sending urgent 404 alert …")
+        send_urgent_404_alert(report.broken_links)
+
+    # Step 5c: Auto-close check — update state, close jobs that hit threshold
+    if not dry_run:
+        jobs_to_close = update_auto_close_state(report.extra_jobs, sync_state)
+        if jobs_to_close:
+            print(f"\n  [Auto-Close] {len(jobs_to_close)} job(s) hit {AUTO_CLOSE_THRESHOLD}-check threshold:")
+            for title in jobs_to_close:
+                print(f"    Closing: {title} …", end=" ", flush=True)
+                if close_job_in_registry(title):
+                    report.auto_closed_this_run.append(title)
+                    print("updated in registry ✓")
+                else:
+                    print("not found in registry")
+            if report.auto_closed_this_run:
+                print(f"  Run python3 tools/update_jobs_listing.py && git add -A && git commit -m 'Auto-close filled jobs' && git push origin main")
+        save_sync_state(sync_state)
+        print(f"  State saved — tracking {len(sync_state.get('consecutive_extra', {}))} extra job(s)")
+
+    # Step 5d: Fetch full details + generate prompts for missing jobs
     if report.missing_jobs_detail and not dry_run:
         print(f"\n  Fetching details for {len(report.missing_jobs_detail)} missing job(s) …")
         for jd in report.missing_jobs_detail:
@@ -1774,6 +2213,7 @@ def main() -> int:
         report2.auto_fixed_added = report.auto_fixed_added
         report2.auto_fixed_removed = report.auto_fixed_removed
         report2.previous_score = report.sync_score
+        report2.auto_closed_this_run = report.auto_closed_this_run
         report = report2
         print_summary(report)
     elif do_fix:
