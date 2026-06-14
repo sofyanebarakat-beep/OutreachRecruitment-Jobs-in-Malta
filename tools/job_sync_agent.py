@@ -949,23 +949,33 @@ def generate_dashboard(report: SyncReport, state: dict) -> None:
         f"<td style='color:#c62828;font-weight:bold'>{bl['status'] or 'ERR'}</td></tr>"
         for bl in report.broken_links
     ]
-    dup_rows = [
-        f"<tr><td><a href='{d[\"url_a\"]}' target='_blank'>{d['title_a']}</a></td>"
-        f"<td><a href='{d[\"url_b\"]}' target='_blank'>{d['title_b']}</a></td>"
-        f"<td>{int(d['similarity']*100)}%</td></tr>"
-        for d in report.duplicates
-    ]
+    dup_rows = []
+    for d in report.duplicates:
+        ua, ub = d["url_a"], d["url_b"]
+        ta, tb = d["title_a"], d["title_b"]
+        pct = int(d["similarity"] * 100)
+        dup_rows.append(
+            f"<tr><td><a href='{ua}' target='_blank'>{ta}</a></td>"
+            f"<td><a href='{ub}' target='_blank'>{tb}</a></td>"
+            f"<td>{pct}%</td></tr>"
+        )
     schema_rows = [
         f"<tr><td><a href='{si['url']}' target='_blank'>{si['title']}</a></td>"
         f"<td style='color:#c62828'>{'; '.join(si['issues'][:3])}</td></tr>"
         for si in report.schema_issues[:25]
     ]
     consecutive = state.get("consecutive_extra", {})
-    tracking_rows = [
-        f"<tr><td>{title}</td><td>{count}/{AUTO_CLOSE_THRESHOLD}</td>"
-        f"<td>{'<span style=\"color:#c62828;font-weight:bold\">⚠️ Next run: auto-close</span>' if count >= AUTO_CLOSE_THRESHOLD - 1 else 'Monitoring'}</td></tr>"
-        for title, count in consecutive.items()
-    ]
+    tracking_rows = []
+    for title, count in consecutive.items():
+        warn = count >= AUTO_CLOSE_THRESHOLD - 1
+        status_td = (
+            "<span style='color:#c62828;font-weight:bold'>⚠️ Next run: auto-close</span>"
+            if warn else "Monitoring"
+        )
+        tracking_rows.append(
+            f"<tr><td>{title}</td><td>{count}/{AUTO_CLOSE_THRESHOLD}</td>"
+            f"<td>{status_td}</td></tr>"
+        )
     auto_closed_rows = [
         f"<tr><td>{t}</td><td style='color:#ff6d00'>Marked closed this run</td></tr>"
         for t in report.auto_closed_this_run
@@ -1703,6 +1713,19 @@ def build_html_email(report: SyncReport) -> str:
     count_diff_str = f"+{count_diff}" if count_diff > 0 else str(count_diff)
     count_diff_color = "#2e7d32" if count_diff == 0 else "#c62828"
 
+    # Auto-closed section (built outside f-string to avoid backslash in expression)
+    if report.auto_closed_this_run:
+        _ac_items = "".join(f"<li><b>{t}</b> — set to status: closed in registry</li>" for t in report.auto_closed_this_run)
+        _ac_cmd = "python3 tools/update_jobs_listing.py &amp;&amp; git add -A &amp;&amp; git commit -m 'Auto-close filled jobs' &amp;&amp; git push origin main"
+        auto_closed_section_html = (
+            f"<div class='card'><h2>🔒 Auto-Closed This Run ({len(report.auto_closed_this_run)})</h2>"
+            f"<p style='color:#555;margin-top:-4px;font-size:13px'>Jobs absent from careers page for {AUTO_CLOSE_THRESHOLD}+ consecutive checks — automatically marked closed on website</p>"
+            f"<ul>{_ac_items}</ul>"
+            f"<p style='font-size:13px;color:#666'>Run <code>{_ac_cmd}</code> to deploy.</p></div>"
+        )
+    else:
+        auto_closed_section_html = ""
+
     html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -1842,7 +1865,7 @@ def build_html_email(report: SyncReport) -> str:
 {_build_schema_section(report.schema_issues)}
 </div>
 
-{"<div class='card'><h2>🔒 Auto-Closed This Run (" + str(len(report.auto_closed_this_run)) + ")</h2><p style='color:#555;margin-top:-4px;font-size:13px'>Jobs absent from careers page for " + str(AUTO_CLOSE_THRESHOLD) + "+ consecutive checks — automatically marked closed on website</p><ul>" + "".join(f"<li><b>{t}</b> — set to status: closed in registry</li>" for t in report.auto_closed_this_run) + "</ul><p style='font-size:13px;color:#666'>Run <code>python3 tools/update_jobs_listing.py && git add -A && git commit -m \"Auto-close filled jobs\" && git push origin main</code> to deploy.</p></div>" if report.auto_closed_this_run else ""}
+{auto_closed_section_html}
 
 <div class="card">
 <h2>📎 CSV Attachments</h2>
