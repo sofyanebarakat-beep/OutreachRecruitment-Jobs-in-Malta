@@ -317,8 +317,17 @@ def generate_job_page(job: dict) -> str:
         r'"url":\s*"https://outreachrecruitment\.net/jobs/[^"]*"',
         f'"url": "{page_url}"', html, count=1
     )
-    schema_desc = f"{title} role in {city}, Malta. {category}. Apply through Outreach Recruitment Agency."
-    html = re.sub(r'"description":\s*"[^"]*"', f'"description": "{schema_desc}"', html, count=1)
+    # Use actual job content for JSON-LD description (full text, not thin one-liner)
+    raw_about = job.get("about", "") or job.get("responsibilities", "") or ""
+    if raw_about:
+        import html as _html_mod
+        plain = re.sub(r'<[^>]+>', ' ', raw_about)
+        plain = _html_mod.unescape(plain).strip()
+        plain = re.sub(r'\s+', ' ', plain)[:1500]
+        schema_desc = plain
+    else:
+        schema_desc = f"{title} role in {city}, Malta. {category}. Apply through Outreach Recruitment Agency."
+    html = re.sub(r'"description":\s*"[^"]*(?<!\\)"', f'"description": "{json.dumps(schema_desc)[1:-1]}"', html, count=1)
     exp_req = f"Previous experience as a {title} or in a similar role."
     html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
 
@@ -352,6 +361,30 @@ def registry_slugs(jobs: list[dict]) -> set[str]:
 # ─────────────────────────────────────────────────────────────────────────────
 # Sitemap update
 # ─────────────────────────────────────────────────────────────────────────────
+
+def _ping_indexnow(slugs: list[str]) -> None:
+    """Submit new job URLs to IndexNow (Bing/Google instant indexing signal)."""
+    import urllib.request, urllib.error
+    urls = [f"{BASE_URL}/jobs/{s}" for s in slugs]
+    payload = json.dumps({
+        "host": "outreachrecruitment.net",
+        "key": "indexnow",
+        "urlList": urls,
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.indexnow.org/indexnow",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            print(f"  IndexNow: submitted {len(urls)} URL(s) — HTTP {r.status}")
+    except urllib.error.HTTPError as e:
+        print(f"  IndexNow: HTTP {e.code} (non-fatal)")
+    except Exception as e:
+        print(f"  IndexNow: skipped ({e})")
+
 
 def rebuild_sitemap(jobs: list[dict]) -> None:
     today = date.today().isoformat()
@@ -502,6 +535,7 @@ def main(csv_path: str) -> None:
             ["python3", str(TOOLS / "update_jobs_listing.py")],
             check=True
         )
+        _ping_indexnow(added)
     else:
         print("No new jobs added.")
 
