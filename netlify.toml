@@ -97,6 +97,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/jobs/:slug/"
+  to = "/jobs/:slug"
+  status = 301
+  force = true
+
 # ── Legacy WordPress URLs → homepage ───────────────────────────────────────
 [[redirects]]
   from = "/job-tag"
