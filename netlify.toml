@@ -183,6 +183,12 @@
   status = 301
   force = true
 
+# ── Marine Jobs in Malta — trailing slash support ──────────────────────────
+[[redirects]]
+  from = "/marine-jobs-in-malta/"
+  to = "/marine-jobs-in-malta.html"
+  status = 200
+
 # ── Catch-all: serve existing .html files, else 301 to homepage ───────────
 [[redirects]]
   from = "/*"
