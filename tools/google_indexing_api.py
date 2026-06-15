@@ -8,6 +8,7 @@ Setup:
    python3 -m pip install google-auth
 4. Run with credentials:
    GOOGLE_APPLICATION_CREDENTIALS=/path/service-account.json python3 tools/google_indexing_api.py update
+   Or place a service account JSON in tools/private/ and run the script directly.
 
 Commands:
   update   Submit active job URLs as URL_UPDATED.
@@ -31,9 +32,26 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "tools" / "jobs_registry.json"
+PRIVATE_CREDENTIALS_DIR = ROOT / "tools" / "private"
 BASE_URL = "https://outreachrecruitment.net"
 ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
 SCOPE = "https://www.googleapis.com/auth/indexing"
+
+
+def default_credentials_path() -> Path | None:
+    if not PRIVATE_CREDENTIALS_DIR.exists():
+        return None
+
+    candidates = sorted(PRIVATE_CREDENTIALS_DIR.glob("*.json"))
+    if not candidates:
+        return None
+    if len(candidates) > 1:
+        names = ", ".join(path.name for path in candidates)
+        raise SystemExit(
+            "Multiple credential JSON files found in tools/private. "
+            f"Set GOOGLE_APPLICATION_CREDENTIALS to choose one: {names}"
+        )
+    return candidates[0]
 
 
 def load_access_token() -> str:
@@ -48,7 +66,13 @@ def load_access_token() -> str:
 
     credentials_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
     if not credentials_path:
-        raise SystemExit("Set GOOGLE_APPLICATION_CREDENTIALS=/path/service-account.json")
+        default_path = default_credentials_path()
+        if default_path is None:
+            raise SystemExit(
+                "Set GOOGLE_APPLICATION_CREDENTIALS=/path/service-account.json "
+                "or place one service account JSON file in tools/private/."
+            )
+        credentials_path = str(default_path)
 
     credentials = service_account.Credentials.from_service_account_file(
         credentials_path,

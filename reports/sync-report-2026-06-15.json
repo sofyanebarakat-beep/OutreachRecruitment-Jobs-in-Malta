@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:30:11",
+  "generated_at": "2026-06-15T14:56:53",
   "careers_count_advertised": 220,
   "careers_count_scraped": 220,
   "website_count": 220,
@@ -617,5 +617,9 @@
     }
   ],
   "schema_issues": [],
-  "auto_closed_this_run": []
+  "auto_closed_this_run": [],
+  "auto_closed_jobs": [],
+  "auto_fixed_added_jobs": [],
+  "auto_fixed_removed_jobs": [],
+  "indexing_submissions": []
 }

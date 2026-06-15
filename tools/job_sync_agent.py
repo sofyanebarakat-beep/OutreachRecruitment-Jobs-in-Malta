@@ -57,6 +57,7 @@ DELAY = 0.8  # seconds between requests
 
 STATE_PATH = ROOT / "tools" / "sync_state.json"
 DASHBOARD_PATH = ROOT / "sync-dashboard.html"
+GOOGLE_INDEXING_LOG_PATH = REPORT_DIR / "google_indexing_submissions.csv"
 AUTO_CLOSE_THRESHOLD = 3   # consecutive checks before auto-closing an extra job
 DUPLICATE_THRESHOLD = 0.72  # similarity score to flag potential duplicate titles
 
@@ -112,6 +113,8 @@ class SyncReport:
     # Populated by auto_fix()
     auto_fixed_added: list[str] = field(default_factory=list)
     auto_fixed_removed: list[str] = field(default_factory=list)
+    auto_fixed_added_jobs: list[dict] = field(default_factory=list)    # {title, slug, url}
+    auto_fixed_removed_jobs: list[dict] = field(default_factory=list)  # {title, slug, url}
 
     # Ready-to-paste Claude prompts for each missing job
     missing_prompts: list[str] = field(default_factory=list)
@@ -120,6 +123,8 @@ class SyncReport:
     duplicates: list[dict] = field(default_factory=list)
     schema_issues: list[dict] = field(default_factory=list)
     auto_closed_this_run: list[str] = field(default_factory=list)
+    auto_closed_jobs: list[dict] = field(default_factory=list)  # {title, slug, url}
+    indexing_submissions: list[dict] = field(default_factory=list)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -710,6 +715,143 @@ def make_csv(rows: list[dict], fieldnames: list[str]) -> str:
     return buf.getvalue()
 
 
+def append_csv_rows(path: Path, rows: list[dict], fieldnames: list[str]) -> None:
+    """Append rows to a CSV file, creating it with headers when needed."""
+    if not rows:
+        return
+    path.parent.mkdir(exist_ok=True)
+    needs_header = not path.exists() or path.stat().st_size == 0
+    with path.open("a", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
+        if needs_header:
+            writer.writeheader()
+        writer.writerows(rows)
+
+
+def submit_google_indexing(changes: list[dict], dry_run: bool = False) -> list[dict]:
+    """
+    Submit changed job URLs to Google Indexing API.
+
+    changes rows use: {title, slug, url, type, source}
+    type must be URL_UPDATED or URL_DELETED.
+    """
+    if not changes:
+        return []
+
+    stamp = datetime.now().isoformat(timespec="seconds")
+    results: list[dict] = []
+
+    if dry_run:
+        for change in changes:
+            results.append({
+                "date": stamp,
+                "title": change.get("title", ""),
+                "slug": change.get("slug", ""),
+                "url": change["url"],
+                "type": change["type"],
+                "source": change.get("source", ""),
+                "status": "DRY_RUN",
+                "ok": True,
+                "response": "Skipped live Google submission during dry run.",
+            })
+        return results
+
+    try:
+        from google_indexing_api import load_access_token, publish
+    except Exception as exc:
+        message = f"Could not import google_indexing_api helper: {exc}"
+        for change in changes:
+            results.append({
+                "date": stamp,
+                "title": change.get("title", ""),
+                "slug": change.get("slug", ""),
+                "url": change["url"],
+                "type": change["type"],
+                "source": change.get("source", ""),
+                "status": "ERROR",
+                "ok": False,
+                "response": message,
+            })
+        return results
+
+    try:
+        token = load_access_token()
+    except BaseException as exc:
+        message = f"Could not get Google access token: {exc}"
+        for change in changes:
+            results.append({
+                "date": stamp,
+                "title": change.get("title", ""),
+                "slug": change.get("slug", ""),
+                "url": change["url"],
+                "type": change["type"],
+                "source": change.get("source", ""),
+                "status": "ERROR",
+                "ok": False,
+                "response": message,
+            })
+        return results
+
+    for change in changes:
+        try:
+            status, response = publish(token, change["url"], change["type"])
+        except Exception as exc:
+            status, response = "ERROR", str(exc)
+        ok = isinstance(status, int) and 200 <= status < 300
+        results.append({
+            "date": stamp,
+            "title": change.get("title", ""),
+            "slug": change.get("slug", ""),
+            "url": change["url"],
+            "type": change["type"],
+            "source": change.get("source", ""),
+            "status": status,
+            "ok": ok,
+            "response": response[:500],
+        })
+        time.sleep(0.2)
+
+    append_csv_rows(
+        GOOGLE_INDEXING_LOG_PATH,
+        results,
+        ["date", "title", "slug", "url", "type", "source", "status", "ok", "response"],
+    )
+    return results
+
+
+def indexing_changes_from_report(report: SyncReport) -> list[dict]:
+    changes: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+
+    def add(job: dict, notification_type: str, source: str) -> None:
+        url = job.get("url")
+        slug = job.get("slug", "")
+        if not url and slug:
+            url = f"{PUBLIC_BASE}/jobs/{slug}"
+        if not url:
+            return
+        key = (url, notification_type)
+        if key in seen:
+            return
+        seen.add(key)
+        changes.append({
+            "title": job.get("title", ""),
+            "slug": slug,
+            "url": url,
+            "type": notification_type,
+            "source": source,
+        })
+
+    for job in report.auto_fixed_added_jobs:
+        add(job, "URL_UPDATED", "auto_fix_added")
+    for job in report.auto_fixed_removed_jobs:
+        add(job, "URL_DELETED", "auto_fix_removed")
+    for job in report.auto_closed_jobs:
+        add(job, "URL_DELETED", "auto_close")
+
+    return changes
+
+
 def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, str]:
     csvs: dict[str, str] = {}
 
@@ -743,6 +885,15 @@ def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, 
                 "issue": issue,
             })
     csvs["seo_issues.csv"] = make_csv(seo_flat, ["title", "url", "issue"])
+
+    csvs["duplicates.csv"] = make_csv(
+        report.duplicates,
+        ["title_a", "url_a", "title_b", "url_b", "similarity"],
+    )
+    csvs["google_indexing_submissions.csv"] = make_csv(
+        report.indexing_submissions,
+        ["date", "title", "slug", "url", "type", "source", "status", "ok", "response"],
+    )
 
     return csvs
 
@@ -799,19 +950,19 @@ def update_auto_close_state(extra_job_titles: list[str], state: dict) -> list[st
     return [t for t, count in consecutive.items() if count >= AUTO_CLOSE_THRESHOLD]
 
 
-def close_job_in_registry(title: str) -> bool:
-    """Mark a job as 'closed' in jobs_registry.json. Returns True if updated."""
+def close_job_in_registry(title: str) -> str | None:
+    """Mark a job as 'closed' in jobs_registry.json. Returns the closed slug when updated."""
     if not REGISTRY_PATH.exists():
-        return False
+        return None
     registry = json.loads(REGISTRY_PATH.read_text())
-    updated = False
+    closed_slug = None
     for job in registry:
         if title_similarity(job["title"], title) >= 0.75 and job.get("status") not in ("closed", "expired"):
             job["status"] = "closed"
-            updated = True
-    if updated:
+            closed_slug = job["slug"]
+    if closed_slug:
         REGISTRY_PATH.write_text(json.dumps(registry, indent=2, ensure_ascii=False), encoding="utf-8")
-    return updated
+    return closed_slug
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1422,6 +1573,14 @@ def auto_fix(report: SyncReport) -> None:
             tmp_csv.unlink(missing_ok=True)
             if result.returncode == 0:
                 report.auto_fixed_added = [r["title"] for r in csv_rows]
+                report.auto_fixed_added_jobs = [
+                    {
+                        "title": r["title"],
+                        "slug": r["slug"],
+                        "url": f"{PUBLIC_BASE}/jobs/{r['slug']}",
+                    }
+                    for r in csv_rows
+                ]
                 print(f"    Added {len(report.auto_fixed_added)} job(s) ✓")
             else:
                 print(f"    ERROR: {result.stderr[:400]}")
@@ -1448,6 +1607,11 @@ def auto_fix(report: SyncReport) -> None:
                 )
                 if result.returncode == 0:
                     report.auto_fixed_removed.append(extra_title)
+                    report.auto_fixed_removed_jobs.append({
+                        "title": extra_title,
+                        "slug": best_slug,
+                        "url": f"{PUBLIC_BASE}/jobs/{best_slug}",
+                    })
                     print("OK ✓")
                 else:
                     print(f"ERROR: {result.stderr[:100]}")
@@ -1501,6 +1665,30 @@ def _mismatch_table(rows: list[dict], cols: list[tuple[str, str]]) -> str:
         cells = "".join(f"<td>{row.get(key, '')}</td>" for key, _ in cols)
         body += f"<tr>{cells}</tr>"
     return f"<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px'><tr>{headers}</tr>{body}</table>"
+
+
+def _build_indexing_section(submissions: list[dict]) -> str:
+    if not submissions:
+        return "<p style='color:#2e7d32'>No changed job URLs needed Google submission this run.</p>"
+
+    rows = ""
+    for item in submissions[:50]:
+        ok = item.get("ok")
+        status_color = "#2e7d32" if ok else "#c62828"
+        rows += (
+            f"<tr>"
+            f"<td><a href='{item.get('url', '')}'>{item.get('title') or item.get('slug') or item.get('url', '')}</a></td>"
+            f"<td>{item.get('type', '')}</td>"
+            f"<td>{item.get('source', '')}</td>"
+            f"<td style='color:{status_color};font-weight:700'>{item.get('status', '')}</td>"
+            f"</tr>"
+        )
+
+    return (
+        f"<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        f"<tr><th>Job URL</th><th>Notification</th><th>Source</th><th>Status</th></tr>"
+        f"{rows}</table>"
+    )
 
 
 SCORE_COLOR = {
@@ -1578,6 +1766,9 @@ def build_html_email(report: SyncReport) -> str:
     date_str = report.generated_at[:10]
     score = report.sync_score
     careers_count = report.careers_count_advertised or report.careers_count_scraped
+    indexing_total = len(report.indexing_submissions)
+    indexing_success = sum(1 for item in report.indexing_submissions if item.get("ok"))
+    indexing_failed = indexing_total - indexing_success
 
     if score == 100:
         score_color = SCORE_COLOR["excellent"]
@@ -1671,6 +1862,8 @@ def build_html_email(report: SyncReport) -> str:
         actions.append(f"Fix <b>{len(report.schema_issues)}</b> structured data schema issue(s)")
     if report.auto_closed_this_run:
         actions.append(f"<b>{len(report.auto_closed_this_run)}</b> job(s) auto-closed this run — verify and push")
+    if indexing_failed:
+        actions.append(f"Review <b>{indexing_failed}</b> failed Google Indexing API submission(s)")
     if not actions:
         actions = ["No action required — everything is in sync! 🎉"]
     actions_html = "".join(f"<li style='margin:6px 0'>{a}</li>" for a in actions)
@@ -1791,6 +1984,7 @@ def build_html_email(report: SyncReport) -> str:
   <div class="stat"><span class="stat-num {'red' if report.sitemap_missing else 'green'}">{len(report.sitemap_missing)}</span><span class="stat-label">Sitemap Missing</span></div>
   <div class="stat"><span class="stat-num {'red' if report.duplicates else 'green'}">{len(report.duplicates)}</span><span class="stat-label">Duplicates</span></div>
   <div class="stat"><span class="stat-num {'red' if report.schema_issues else 'green'}">{len(report.schema_issues)}</span><span class="stat-label">Schema Issues</span></div>
+  <div class="stat"><span class="stat-num {'red' if indexing_failed else 'green'}">{indexing_total}</span><span class="stat-label">Google Submitted</span></div>
 </div>
 <p style="font-size:13px;color:#666;margin:4px 0">
   <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:{score_color}">{score}%</span>
@@ -1872,6 +2066,12 @@ def build_html_email(report: SyncReport) -> str:
 {auto_closed_section_html}
 
 <div class="card">
+<h2>📡 Google Indexing API ({indexing_total})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Changed job URLs submitted through the connected Search Console service account. Successful: <b style="color:#2e7d32">{indexing_success}</b>; failed: <b style="color:#c62828">{indexing_failed}</b>.</p>
+{_build_indexing_section(report.indexing_submissions)}
+</div>
+
+<div class="card">
 <h2>💡 SEO Action Plan</h2>
 <p style="color:#555;margin-top:-4px;font-size:13px">Concrete steps to improve search visibility and Google Jobs indexing</p>
 <table border="1" cellpadding="7" style="border-collapse:collapse;font-size:13px;width:100%">
@@ -1880,7 +2080,7 @@ def build_html_email(report: SyncReport) -> str:
 <tr><td>2</td><td><b>Meta description length</b> — Keep between 120–155 characters. Too short wastes SERP space; too long gets cut. Descriptions should include the job title, city, and a call-to-action keyword like "Apply now".</td><td style="color:#e65100">🟠 Medium</td><td>Click-through rate</td></tr>
 <tr><td>3</td><td><b>Meta title format</b> — Ideal pattern: <em>Job Title in City, Malta | Outreach Recruitment</em> (max 60 chars). Verify every page follows this pattern.</td><td style="color:#e65100">🟠 Medium</td><td>SERP visibility</td></tr>
 <tr><td>4</td><td><b>JSON-LD schema</b> — All pages need <code>validThrough</code>, <code>employmentType</code>, and <code>identifier</code> fields filled. Missing fields reduce Google Jobs eligibility. Run <code>python3 tools/fix_jobposting_schema.py</code> if needed.</td><td style="color:#e65100">🟠 Medium</td><td>Google Jobs listings</td></tr>
-<tr><td>5</td><td><b>Sitemap freshness</b> — Whenever jobs are added or removed, regenerate <code>sitemaps/sitemap-jobs.xml</code> and ping Google Search Console. New jobs can take 3–5 days to appear without this step.</td><td style="color:#2e7d32">🟢 Low</td><td>Indexing speed</td></tr>
+<tr><td>5</td><td><b>Sitemap freshness + Indexing API</b> — Whenever jobs are added, updated, closed, or removed, regenerate <code>sitemaps/sitemap-jobs.xml</code> and submit changed URLs through the connected Search Console bot. This report now records those Google API submissions.</td><td style="color:#2e7d32">🟢 Low</td><td>Indexing speed</td></tr>
 <tr><td>6</td><td><b>Duplicate job titles</b> — {len(report.duplicates)} duplicate suspects found this run (e.g. "Bartender" vs "Bartenders"). Merge or differentiate these pages — two near-identical pages compete against each other in Google.</td><td style="color:#2e7d32">🟢 Low</td><td>Keyword cannibalization</td></tr>
 <tr><td>7</td><td><b>Internal linking</b> — Add links from category hub pages (e.g. hospitality-jobs-in-malta.html) to individual job pages. This distributes PageRank to new job pages faster.</td><td style="color:#2e7d32">🟢 Low</td><td>Crawl budget, authority</td></tr>
 </table>
@@ -1894,6 +2094,8 @@ def build_html_email(report: SyncReport) -> str:
   <li>title_mismatches.csv — {len(report.title_mismatches)} entries</li>
   <li>broken_links.csv — {len(report.broken_links)} pages</li>
   <li>seo_issues.csv — {len(report.seo_issues)} issues</li>
+  <li>duplicates.csv — {len(report.duplicates)} duplicate suspects</li>
+  <li>google_indexing_submissions.csv — {len(report.indexing_submissions)} submissions this run</li>
 </ul>
 </div>
 
@@ -1918,6 +2120,9 @@ def build_html_email(report: SyncReport) -> str:
 def build_markdown_report(report: SyncReport) -> str:
     score = report.sync_score
     status = "Fully Synced" if score == 100 else "Needs Attention" if score >= 75 else "Critical"
+    indexing_total = len(report.indexing_submissions)
+    indexing_success = sum(1 for item in report.indexing_submissions if item.get("ok"))
+    indexing_failed = indexing_total - indexing_success
     lines = [
         f"# Job Sync Report — {report.generated_at[:10]}",
         "",
@@ -1938,6 +2143,11 @@ def build_markdown_report(report: SyncReport) -> str:
         f"| Broken Links | {len(report.broken_links)} |",
         f"| SEO Issues | {len(report.seo_issues)} |",
         f"| Sitemap Missing | {len(report.sitemap_missing)} |",
+        f"| Possible Duplicates | {len(report.duplicates)} |",
+        f"| Schema Issues | {len(report.schema_issues)} |",
+        f"| Google Indexing Submitted | {indexing_total} |",
+        f"| Google Indexing Successful | {indexing_success} |",
+        f"| Google Indexing Failed | {indexing_failed} |",
         "",
         "## Jobs to Add (Missing from Website)",
         "",
@@ -1976,6 +2186,30 @@ def build_markdown_report(report: SyncReport) -> str:
     lines.extend(["", "## Sitemap Issues", ""])
     lines.extend([f"- {url}" for url in report.sitemap_missing] or ["- None"])
 
+    lines.extend(["", "## Possible Duplicate Jobs", ""])
+    if report.duplicates:
+        lines.append("| Job A | Job B | Similarity |")
+        lines.append("|---|---|---|")
+        for item in report.duplicates:
+            lines.append(
+                f"| [{item['title_a']}]({item['url_a']}) | "
+                f"[{item['title_b']}]({item['url_b']}) | {item['similarity']} |"
+            )
+    else:
+        lines.append("- None")
+
+    lines.extend(["", "## Google Indexing API", ""])
+    if report.indexing_submissions:
+        lines.append("| URL | Type | Source | Status |")
+        lines.append("|---|---|---|---|")
+        for item in report.indexing_submissions:
+            lines.append(
+                f"| [{item.get('title') or item.get('slug') or item['url']}]({item['url']}) | "
+                f"{item['type']} | {item.get('source', '')} | {item['status']} |"
+            )
+    else:
+        lines.append("- No changed job URLs needed Google submission this run.")
+
     if report.warnings:
         lines.extend(["", "## Warnings", ""])
         lines.extend([f"- {w}" for w in report.warnings])
@@ -1996,6 +2230,12 @@ def build_markdown_report(report: SyncReport) -> str:
         actions.append(f"Fix {len(report.seo_issues)} SEO issue(s)")
     if report.sitemap_missing:
         actions.append(f"Update sitemap — {len(report.sitemap_missing)} page(s) missing")
+    if report.duplicates:
+        actions.append(f"Review {len(report.duplicates)} possible duplicate job(s)")
+    if report.schema_issues:
+        actions.append(f"Fix {len(report.schema_issues)} structured data schema issue(s)")
+    if indexing_failed:
+        actions.append(f"Review {indexing_failed} failed Google Indexing API submission(s)")
     if not actions:
         actions = ["No action required — everything is in sync!"]
     lines.extend([f"{i+1}. {a}" for i, a in enumerate(actions)])
@@ -2100,6 +2340,10 @@ def save_reports(report: SyncReport, md: str, csvs: dict[str, str]) -> tuple[Pat
         "duplicates": report.duplicates,
         "schema_issues": report.schema_issues,
         "auto_closed_this_run": report.auto_closed_this_run,
+        "auto_closed_jobs": report.auto_closed_jobs,
+        "auto_fixed_added_jobs": report.auto_fixed_added_jobs,
+        "auto_fixed_removed_jobs": report.auto_fixed_removed_jobs,
+        "indexing_submissions": report.indexing_submissions,
     }
     json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -2207,8 +2451,14 @@ def main() -> int:
             print(f"\n  [Auto-Close] {len(jobs_to_close)} job(s) hit {AUTO_CLOSE_THRESHOLD}-check threshold:")
             for title in jobs_to_close:
                 print(f"    Closing: {title} …", end=" ", flush=True)
-                if close_job_in_registry(title):
+                closed_slug = close_job_in_registry(title)
+                if closed_slug:
                     report.auto_closed_this_run.append(title)
+                    report.auto_closed_jobs.append({
+                        "title": title,
+                        "slug": closed_slug,
+                        "url": f"{PUBLIC_BASE}/jobs/{closed_slug}",
+                    })
                     print("updated in registry ✓")
                 else:
                     print("not found in registry")
@@ -2254,12 +2504,25 @@ def main() -> int:
         report2 = build_report(careers_jobs, careers_count, website_jobs2, sitemap_urls, skip_seo=True)
         report2.auto_fixed_added = report.auto_fixed_added
         report2.auto_fixed_removed = report.auto_fixed_removed
+        report2.auto_fixed_added_jobs = report.auto_fixed_added_jobs
+        report2.auto_fixed_removed_jobs = report.auto_fixed_removed_jobs
         report2.previous_score = report.sync_score
         report2.auto_closed_this_run = report.auto_closed_this_run
+        report2.auto_closed_jobs = report.auto_closed_jobs
         report = report2
         print_summary(report)
     elif do_fix:
         print("\n[Auto-Fix] Nothing to fix — already in sync!")
+
+    indexing_changes = indexing_changes_from_report(report)
+    if indexing_changes:
+        print(f"\n[Google Indexing] Submitting {len(indexing_changes)} changed URL(s) …")
+        report.indexing_submissions = submit_google_indexing(indexing_changes, dry_run=dry_run)
+        ok_count = sum(1 for row in report.indexing_submissions if row.get("ok"))
+        fail_count = len(report.indexing_submissions) - ok_count
+        print(f"  Google Indexing: {ok_count} successful, {fail_count} failed")
+    else:
+        print("\n[Google Indexing] No changed job URLs to submit.")
 
     # Generate HTML + CSVs
     html_body = build_html_email(report)
