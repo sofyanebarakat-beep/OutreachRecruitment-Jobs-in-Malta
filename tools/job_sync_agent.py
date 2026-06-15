@@ -31,7 +31,7 @@ import sys
 import time
 from dataclasses import dataclass, field
 from datetime import date as date_type
-from datetime import datetime
+from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -39,6 +39,7 @@ from email.mime.text import MIMEText
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import quote
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -51,6 +52,8 @@ CAREERS_URL = "https://outreach-recruitment-agency.careers-page.com/"
 PUBLIC_JOBS_URL = "https://outreachrecruitment.net/jobs/"
 PUBLIC_BASE = "https://outreachrecruitment.net"
 SITEMAP_INDEX = "https://outreachrecruitment.net/sitemap_index.xml"
+GSC_SITE_URL = "https://outreachrecruitment.net/"
+GSC_SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
 
 REPORT_RECIPIENT = "sbarakat@outreachrecruitment.net"
 DELAY = 0.8  # seconds between requests
@@ -133,6 +136,16 @@ class SyncReport:
     category_ranking: list[dict] = field(default_factory=list)
     schema_eligibility: list[dict] = field(default_factory=list)
     ranking_action_plan: list[str] = field(default_factory=list)
+    gsc_url_inspection: list[dict] = field(default_factory=list)
+    gsc_search_performance: list[dict] = field(default_factory=list)
+    gsc_indexing_problems: list[dict] = field(default_factory=list)
+    gsc_canonical_conflicts: list[dict] = field(default_factory=list)
+    gsc_not_indexed_jobs: list[dict] = field(default_factory=list)
+    gsc_zero_impression_jobs: list[dict] = field(default_factory=list)
+    gsc_ranking_opportunities: list[dict] = field(default_factory=list)
+    gsc_query_match_issues: list[dict] = field(default_factory=list)
+    gsc_rich_result_issues: list[dict] = field(default_factory=list)
+    gsc_action_plan: list[str] = field(default_factory=list)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -863,6 +876,251 @@ def indexing_changes_from_report(report: SyncReport) -> list[dict]:
     return changes
 
 
+def google_credentials_path() -> Path | None:
+    try:
+        from google_indexing_api import default_credentials_path
+        return default_credentials_path()
+    except BaseException:
+        credentials_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+        return Path(credentials_path) if credentials_path else None
+
+
+def gsc_access_token() -> str:
+    try:
+        from google.oauth2 import service_account
+        from google.auth.transport.requests import Request as GoogleRequest
+    except ImportError as exc:
+        raise RuntimeError("Missing dependency: google-auth. Install with `python3 -m pip install google-auth`.") from exc
+
+    credentials_path = google_credentials_path()
+    if credentials_path is None:
+        raise RuntimeError("No Google service account JSON found. Put one JSON file in tools/private/.")
+
+    credentials = service_account.Credentials.from_service_account_file(
+        str(credentials_path),
+        scopes=[GSC_SCOPE],
+    )
+    credentials.refresh(GoogleRequest())
+    return credentials.token
+
+
+def google_api_post(url: str, token: str, payload: dict, timeout: int = 30) -> tuple[int, dict]:
+    body = json.dumps(payload).encode("utf-8")
+    request = Request(
+        url,
+        data=body,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            text = response.read().decode("utf-8")
+            return response.status, json.loads(text) if text else {}
+    except HTTPError as exc:
+        text = exc.read().decode("utf-8")
+        try:
+            data = json.loads(text)
+        except Exception:
+            data = {"error": {"message": text[:500]}}
+        return exc.code, data
+
+
+def inspect_gsc_url(token: str, url: str) -> tuple[int, dict]:
+    return google_api_post(
+        "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect",
+        token,
+        {
+            "inspectionUrl": url,
+            "siteUrl": GSC_SITE_URL,
+            "languageCode": "en-US",
+        },
+    )
+
+
+def query_gsc_performance(token: str, url: str, days: int = 28) -> tuple[int, dict]:
+    end = (date_type.today() - timedelta(days=2)).isoformat()
+    start = (date_type.today() - timedelta(days=days + 2)).isoformat()
+    site = quote(GSC_SITE_URL, safe="")
+    return google_api_post(
+        f"https://www.googleapis.com/webmasters/v3/sites/{site}/searchAnalytics/query",
+        token,
+        {
+            "startDate": start,
+            "endDate": end,
+            "dimensions": ["page", "query"],
+            "type": "web",
+            "dimensionFilterGroups": [{
+                "groupType": "and",
+                "filters": [{
+                    "dimension": "page",
+                    "operator": "equals",
+                    "expression": url,
+                }],
+            }],
+            "rowLimit": 10,
+            "aggregationType": "auto",
+        },
+    )
+
+
+def parse_gsc_inspection(job: WebsiteJob, status: int, data: dict) -> dict:
+    error = data.get("error", {}) if isinstance(data, dict) else {}
+    result = data.get("inspectionResult", {}) if isinstance(data, dict) else {}
+    index = result.get("indexStatusResult", {}) or {}
+    rich = result.get("richResultsResult", {}) or {}
+
+    user_canonical = index.get("userCanonical", "")
+    google_canonical = index.get("googleCanonical", "")
+    verdict = index.get("verdict", "")
+    coverage = index.get("coverageState", "")
+    indexing_state = index.get("indexingState", "")
+    page_fetch_state = index.get("pageFetchState", "")
+    robots_txt_state = index.get("robotsTxtState", "")
+    last_crawl = index.get("lastCrawlTime", "")
+    sitemap = "; ".join(index.get("sitemap", []) or [])
+    rich_verdict = rich.get("verdict", "")
+    rich_items = rich.get("detectedItems", []) or []
+    rich_item_types = ", ".join(sorted({str(item.get("richResultType", "")) for item in rich_items if item.get("richResultType")}))
+
+    indexed = verdict in {"PASS"} or "indexed" in coverage.lower()
+    canonical_match = bool(user_canonical and google_canonical and user_canonical.rstrip("/") == google_canonical.rstrip("/"))
+
+    return {
+        "title": job.title,
+        "slug": job.slug,
+        "url": job.url,
+        "status": status,
+        "ok": 200 <= status < 300,
+        "indexed": indexed,
+        "verdict": verdict,
+        "coverage_state": coverage,
+        "indexing_state": indexing_state,
+        "page_fetch_state": page_fetch_state,
+        "robots_txt_state": robots_txt_state,
+        "last_crawl_time": last_crawl,
+        "user_canonical": user_canonical,
+        "google_canonical": google_canonical,
+        "canonical_match": canonical_match,
+        "sitemap": sitemap,
+        "rich_results_verdict": rich_verdict,
+        "rich_result_types": rich_item_types,
+        "error": error.get("message", ""),
+    }
+
+
+def parse_gsc_performance(job: WebsiteJob, status: int, data: dict, target_keyword: str) -> dict:
+    rows = data.get("rows", []) if isinstance(data, dict) else []
+    clicks = sum(float(row.get("clicks", 0)) for row in rows)
+    impressions = sum(float(row.get("impressions", 0)) for row in rows)
+    weighted_position = sum(float(row.get("position", 0)) * float(row.get("impressions", 0)) for row in rows)
+    avg_position = round(weighted_position / impressions, 1) if impressions else 0
+    ctr = round(clicks / impressions, 4) if impressions else 0
+    top_query = rows[0]["keys"][1] if rows and len(rows[0].get("keys", [])) > 1 else ""
+    queries = [row["keys"][1] for row in rows if len(row.get("keys", [])) > 1]
+    target_parts = [part for part in re.split(r"\W+", target_keyword.lower()) if len(part) > 2]
+    query_blob = " ".join(queries).lower()
+    target_query_visible = bool(target_parts and all(part in query_blob for part in target_parts[:3]))
+
+    return {
+        "title": job.title,
+        "slug": job.slug,
+        "url": job.url,
+        "status": status,
+        "ok": 200 <= status < 300,
+        "clicks": int(clicks),
+        "impressions": int(impressions),
+        "ctr": ctr,
+        "position": avg_position,
+        "top_query": top_query,
+        "target_keyword": target_keyword,
+        "target_query_visible": target_query_visible,
+        "queries": "; ".join(queries[:10]),
+        "error": (data.get("error", {}) if isinstance(data, dict) else {}).get("message", ""),
+    }
+
+
+def apply_gsc_analysis(report: SyncReport, website_jobs: list[WebsiteJob], limit: int | None = None) -> None:
+    jobs = website_jobs[:limit] if limit else website_jobs
+    if not jobs:
+        return
+
+    print(f"\n[GSC] Checking {len(jobs)} job URL(s) with Search Console …")
+    try:
+        token = gsc_access_token()
+    except Exception as exc:
+        message = f"Google Search Console API skipped: {exc}"
+        report.warnings.append(message)
+        print(f"  WARN: {message}")
+        return
+
+    ranking_by_url = {row["url"].rstrip("/"): row for row in report.ranking_readiness}
+
+    for i, job in enumerate(jobs, 1):
+        print(f"  [{i}/{len(jobs)}] {job.slug}", end=" … ", flush=True)
+        target_keyword = ranking_by_url.get(job.url.rstrip("/"), {}).get("target_keyword", keyword_targets(job.title)[0])
+
+        inspect_status, inspect_data = inspect_gsc_url(token, job.url)
+        inspection = parse_gsc_inspection(job, inspect_status, inspect_data)
+        report.gsc_url_inspection.append(inspection)
+
+        perf_status, perf_data = query_gsc_performance(token, job.url)
+        performance = parse_gsc_performance(job, perf_status, perf_data, target_keyword)
+        report.gsc_search_performance.append(performance)
+
+        problems: list[str] = []
+        if not inspection["ok"]:
+            problems.append(f"URL Inspection API error: {inspection['error'] or inspection['status']}")
+        if inspection["ok"] and not inspection["indexed"]:
+            problems.append(inspection["coverage_state"] or inspection["verdict"] or "Not indexed")
+            report.gsc_not_indexed_jobs.append(inspection)
+        if inspection["ok"] and inspection["user_canonical"] and inspection["google_canonical"] and not inspection["canonical_match"]:
+            problems.append("Google-selected canonical differs from user canonical")
+            report.gsc_canonical_conflicts.append(inspection)
+        if inspection["ok"] and inspection["robots_txt_state"] and inspection["robots_txt_state"] not in {"ALLOWED", "ROBOTS_TXT_STATE_UNSPECIFIED"}:
+            problems.append(f"Robots.txt state: {inspection['robots_txt_state']}")
+        if inspection["ok"] and inspection["page_fetch_state"] and inspection["page_fetch_state"] not in {"SUCCESSFUL", "PAGE_FETCH_STATE_UNSPECIFIED"}:
+            problems.append(f"Page fetch state: {inspection['page_fetch_state']}")
+        if inspection["ok"] and inspection["rich_results_verdict"] and inspection["rich_results_verdict"] not in {"PASS", "VERDICT_UNSPECIFIED"}:
+            problems.append(f"Rich results verdict: {inspection['rich_results_verdict']}")
+            report.gsc_rich_result_issues.append(inspection)
+        if inspection["indexed"] and performance["ok"] and performance["impressions"] == 0:
+            problems.append("Indexed page has zero impressions in selected GSC window")
+            report.gsc_zero_impression_jobs.append(performance)
+        if performance["ok"] and performance["position"] and performance["position"] > 20:
+            problems.append(f"Average position worse than 20 ({performance['position']})")
+            report.gsc_ranking_opportunities.append(performance)
+        if performance["ok"] and performance["impressions"] > 0 and not performance["target_query_visible"]:
+            problems.append("Target keyword not visible in top Search Console queries")
+            report.gsc_query_match_issues.append(performance)
+
+        if problems:
+            report.gsc_indexing_problems.append({
+                "title": job.title,
+                "url": job.url,
+                "problems": problems,
+            })
+
+        print("OK" if not problems else f"{len(problems)} issue(s)")
+        time.sleep(0.2)
+
+    action_counts = [
+        (len(report.gsc_not_indexed_jobs), "job URL(s) not indexed or not passing URL Inspection"),
+        (len(report.gsc_canonical_conflicts), "job URL(s) where Google selected a different canonical"),
+        (len(report.gsc_zero_impression_jobs), "job URL(s) with zero Search Console impressions"),
+        (len(report.gsc_ranking_opportunities), "job URL(s) ranking worse than average position 20"),
+        (len(report.gsc_query_match_issues), "job URL(s) missing target keyword visibility in top queries"),
+        (len(report.gsc_rich_result_issues), "job URL(s) with rich result issues"),
+    ]
+    report.gsc_action_plan = [
+        f"Fix {count} {label}"
+        for count, label in action_counts
+        if count
+    ] or ["No GSC indexing or performance problems detected in checked URLs."]
+
+
 def local_job_html(slug: str) -> str:
     candidates = [
         ROOT / "jobs" / slug / "index.html",
@@ -1224,6 +1482,27 @@ def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, 
         report.category_ranking,
         ["category", "jobs", "average_score", "weak_jobs"],
     )
+    csvs["gsc_url_inspection.csv"] = make_csv(
+        report.gsc_url_inspection,
+        [
+            "title", "slug", "url", "status", "ok", "indexed", "verdict", "coverage_state",
+            "indexing_state", "page_fetch_state", "robots_txt_state", "last_crawl_time",
+            "user_canonical", "google_canonical", "canonical_match", "sitemap",
+            "rich_results_verdict", "rich_result_types", "error",
+        ],
+    )
+    csvs["gsc_search_performance.csv"] = make_csv(
+        report.gsc_search_performance,
+        [
+            "title", "slug", "url", "status", "ok", "clicks", "impressions", "ctr",
+            "position", "top_query", "target_keyword", "target_query_visible", "queries", "error",
+        ],
+    )
+    gsc_problem_rows = []
+    for item in report.gsc_indexing_problems:
+        for problem in item["problems"]:
+            gsc_problem_rows.append({"title": item["title"], "url": item["url"], "problem": problem})
+    csvs["gsc_indexing_problems.csv"] = make_csv(gsc_problem_rows, ["title", "url", "problem"])
 
     return csvs
 
@@ -2081,6 +2360,39 @@ def _build_issue_summary_table(rows: list[dict], empty: str, limit: int = 20) ->
     )
 
 
+def _build_gsc_problem_table(rows: list[dict], empty: str, limit: int = 25) -> str:
+    if not rows:
+        return f"<p style='color:#2e7d32'>{empty}</p>"
+    body = ""
+    for item in rows[:limit]:
+        problems = "; ".join(item.get("problems", [])[:4]) if "problems" in item else (
+            item.get("coverage_state") or item.get("top_query") or item.get("rich_results_verdict") or ""
+        )
+        body += f"<tr><td><a href='{item['url']}'>{item['title']}</a></td><td>{problems}</td></tr>"
+    return (
+        "<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        "<tr><th>Job</th><th>Google Signal</th></tr>"
+        f"{body}</table>"
+    )
+
+
+def _build_gsc_performance_table(rows: list[dict], empty: str, limit: int = 25) -> str:
+    if not rows:
+        return f"<p style='color:#2e7d32'>{empty}</p>"
+    body = ""
+    for item in rows[:limit]:
+        body += (
+            f"<tr><td><a href='{item['url']}'>{item['title']}</a></td>"
+            f"<td>{item.get('impressions', 0)}</td><td>{item.get('clicks', 0)}</td>"
+            f"<td>{item.get('position', 0)}</td><td>{item.get('top_query', '')}</td></tr>"
+        )
+    return (
+        "<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        "<tr><th>Job</th><th>Impr.</th><th>Clicks</th><th>Avg Pos.</th><th>Top Query</th></tr>"
+        f"{body}</table>"
+    )
+
+
 SCORE_COLOR = {
     "excellent": "#2e7d32",
     "good": "#558b2f",
@@ -2164,6 +2476,10 @@ def build_html_email(report: SyncReport) -> str:
         if report.ranking_readiness else 0
     )
     high_priority_rank_jobs = len([item for item in report.ranking_readiness if item["score"] < 70])
+    gsc_checked = len(report.gsc_url_inspection)
+    gsc_problem_count = len(report.gsc_indexing_problems)
+    gsc_checked = len(report.gsc_url_inspection)
+    gsc_problem_count = len(report.gsc_indexing_problems)
 
     if score == 100:
         score_color = SCORE_COLOR["excellent"]
@@ -2384,6 +2700,8 @@ def build_html_email(report: SyncReport) -> str:
   <div class="stat"><span class="stat-num {'red' if indexing_failed else 'green'}">{indexing_total}</span><span class="stat-label">Google Submitted</span></div>
   <div class="stat"><span class="stat-num {'red' if avg_ranking_score < 70 else 'green' if avg_ranking_score >= 85 else ''}">{avg_ranking_score}</span><span class="stat-label">Avg Ranking Score</span></div>
   <div class="stat"><span class="stat-num {'red' if high_priority_rank_jobs else 'green'}">{high_priority_rank_jobs}</span><span class="stat-label">Ranking Priority</span></div>
+  <div class="stat"><span class="stat-num {'red' if gsc_problem_count else 'green'}">{gsc_problem_count}</span><span class="stat-label">GSC Problems</span></div>
+  <div class="stat"><span class="stat-num">{gsc_checked}</span><span class="stat-label">GSC Checked</span></div>
 </div>
 <p style="font-size:13px;color:#666;margin:4px 0">
   <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:{score_color}">{score}%</span>
@@ -2400,6 +2718,43 @@ def build_html_email(report: SyncReport) -> str:
 <h2>🏆 Ranking Action Plan</h2>
 <p style="color:#555;margin-top:-4px;font-size:13px">Prioritized SEO work to help every job page rank for job-title searches in Malta</p>
 {_rows(report.ranking_action_plan)}
+</div>
+
+<div class="card">
+<h2>🔎 Google Search Console Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Google-side indexing, canonical, rich result, and search performance blockers from the Search Console API</p>
+{_rows(report.gsc_action_plan or ["GSC was not run for this report. Use a normal run or add --with-gsc to dry-run."])}
+</div>
+
+<div class="card">
+<h2>🚫 Jobs Not Indexed by Google ({len(report.gsc_not_indexed_jobs)})</h2>
+{_build_gsc_problem_table(report.gsc_not_indexed_jobs, "No not-indexed jobs found in checked URLs")}
+</div>
+
+<div class="card">
+<h2>🧭 Canonical Conflicts ({len(report.gsc_canonical_conflicts)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Google-selected canonical differs from the page's declared canonical</p>
+{_build_gsc_problem_table(report.gsc_canonical_conflicts, "No Google canonical conflicts found")}
+</div>
+
+<div class="card">
+<h2>📉 Indexed but Zero Impressions ({len(report.gsc_zero_impression_jobs)})</h2>
+{_build_gsc_performance_table(report.gsc_zero_impression_jobs, "No zero-impression jobs found in checked URLs")}
+</div>
+
+<div class="card">
+<h2>📍 Ranking Opportunities: Position Worse Than 20 ({len(report.gsc_ranking_opportunities)})</h2>
+{_build_gsc_performance_table(report.gsc_ranking_opportunities, "No checked jobs are ranking worse than average position 20")}
+</div>
+
+<div class="card">
+<h2>🔤 Query Match Gaps ({len(report.gsc_query_match_issues)})</h2>
+{_build_gsc_performance_table(report.gsc_query_match_issues, "Target keywords are visible in top queries for checked jobs")}
+</div>
+
+<div class="card">
+<h2>⭐ GSC Rich Results Issues ({len(report.gsc_rich_result_issues)})</h2>
+{_build_gsc_problem_table(report.gsc_rich_result_issues, "No rich result issues found in checked URLs")}
 </div>
 
 <div class="card">
@@ -2543,6 +2898,9 @@ def build_html_email(report: SyncReport) -> str:
   <li>content_quality_issues.csv — {len(report.content_quality_issues)} jobs needing content work</li>
   <li>schema_eligibility.csv — {len(report.schema_eligibility)} rich result checks</li>
   <li>category_ranking.csv — {len(report.category_ranking)} category summaries</li>
+  <li>gsc_url_inspection.csv — {len(report.gsc_url_inspection)} URL Inspection checks</li>
+  <li>gsc_search_performance.csv — {len(report.gsc_search_performance)} Search Analytics rows</li>
+  <li>gsc_indexing_problems.csv — {len(report.gsc_indexing_problems)} Google-side problem groups</li>
 </ul>
 </div>
 
@@ -2575,6 +2933,8 @@ def build_markdown_report(report: SyncReport) -> str:
         if report.ranking_readiness else 0
     )
     high_priority_rank_jobs = len([item for item in report.ranking_readiness if item["score"] < 70])
+    gsc_checked = len(report.gsc_url_inspection)
+    gsc_problem_count = len(report.gsc_indexing_problems)
     lines = [
         f"# Job Sync Report — {report.generated_at[:10]}",
         "",
@@ -2602,6 +2962,8 @@ def build_markdown_report(report: SyncReport) -> str:
         f"| Google Indexing Failed | {indexing_failed} |",
         f"| Average Ranking Readiness | {avg_ranking_score}/100 |",
         f"| High-Priority Ranking Jobs | {high_priority_rank_jobs} |",
+        f"| GSC URLs Checked | {gsc_checked} |",
+        f"| GSC Problem Groups | {gsc_problem_count} |",
         "",
         "## Jobs to Add (Missing from Website)",
         "",
@@ -2666,6 +3028,46 @@ def build_markdown_report(report: SyncReport) -> str:
 
     lines.extend(["", "## Ranking Action Plan", ""])
     lines.extend([f"{i+1}. {item}" for i, item in enumerate(report.ranking_action_plan)] or ["- None"])
+
+    lines.extend(["", "## Google Search Console Action Plan", ""])
+    lines.extend([f"{i+1}. {item}" for i, item in enumerate(report.gsc_action_plan)] or ["- GSC was not run for this report."])
+
+    lines.extend(["", "## Jobs Not Indexed by Google", ""])
+    if report.gsc_not_indexed_jobs:
+        for item in report.gsc_not_indexed_jobs[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: {item.get('coverage_state') or item.get('verdict')}")
+    else:
+        lines.append("- None found in checked URLs")
+
+    lines.extend(["", "## Canonical Conflicts", ""])
+    if report.gsc_canonical_conflicts:
+        for item in report.gsc_canonical_conflicts[:30]:
+            lines.append(
+                f"- **[{item['title']}]({item['url']})**: user `{item.get('user_canonical')}` vs Google `{item.get('google_canonical')}`"
+            )
+    else:
+        lines.append("- None found")
+
+    lines.extend(["", "## Indexed but Zero Impressions", ""])
+    if report.gsc_zero_impression_jobs:
+        for item in report.gsc_zero_impression_jobs[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: target `{item['target_keyword']}`")
+    else:
+        lines.append("- None found in checked URLs")
+
+    lines.extend(["", "## Ranking Opportunities from GSC", ""])
+    if report.gsc_ranking_opportunities:
+        for item in report.gsc_ranking_opportunities[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: avg position {item['position']}, top query `{item['top_query']}`")
+    else:
+        lines.append("- None found in checked URLs")
+
+    lines.extend(["", "## Query Match Gaps from GSC", ""])
+    if report.gsc_query_match_issues:
+        for item in report.gsc_query_match_issues[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: target `{item['target_keyword']}`, top query `{item['top_query']}`")
+    else:
+        lines.append("- None found in checked URLs")
 
     lines.extend(["", "## Top Jobs Needing Ranking Work", ""])
     if report.priority_jobs:
@@ -2861,6 +3263,16 @@ def save_reports(report: SyncReport, md: str, csvs: dict[str, str]) -> tuple[Pat
         "category_ranking": report.category_ranking,
         "schema_eligibility": report.schema_eligibility,
         "ranking_action_plan": report.ranking_action_plan,
+        "gsc_url_inspection": report.gsc_url_inspection,
+        "gsc_search_performance": report.gsc_search_performance,
+        "gsc_indexing_problems": report.gsc_indexing_problems,
+        "gsc_canonical_conflicts": report.gsc_canonical_conflicts,
+        "gsc_not_indexed_jobs": report.gsc_not_indexed_jobs,
+        "gsc_zero_impression_jobs": report.gsc_zero_impression_jobs,
+        "gsc_ranking_opportunities": report.gsc_ranking_opportunities,
+        "gsc_query_match_issues": report.gsc_query_match_issues,
+        "gsc_rich_result_issues": report.gsc_rich_result_issues,
+        "gsc_action_plan": report.gsc_action_plan,
     }
     json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -2909,6 +3321,14 @@ def main() -> int:
     no_seo   = "--no-seo"   in args or "--dry-run" in args
     dry_run  = "--dry-run"  in args
     do_fix   = "--auto-fix" in args
+    with_gsc = "--with-gsc" in args
+    no_gsc = "--no-gsc" in args
+    gsc_limit = None
+    for i, arg in enumerate(args):
+        if arg.startswith("--gsc-limit="):
+            gsc_limit = int(arg.split("=", 1)[1])
+        elif arg == "--gsc-limit" and i + 1 < len(args):
+            gsc_limit = int(args[i + 1])
 
     print("=" * 60)
     print("  Outreach Recruitment — Job Sync Agent")
@@ -3030,6 +3450,16 @@ def main() -> int:
         print_summary(report)
     elif do_fix:
         print("\n[Auto-Fix] Nothing to fix — already in sync!")
+
+    gsc_jobs = website_jobs2 if do_fix and (report.auto_fixed_added or report.auto_fixed_removed) and "website_jobs2" in locals() else website_jobs
+    if not no_gsc and (not dry_run or with_gsc):
+        apply_gsc_analysis(report, gsc_jobs, limit=gsc_limit)
+    elif dry_run and not with_gsc:
+        report.gsc_action_plan = ["GSC skipped during dry run. Run with --with-gsc to test Search Console API."]
+        print("\n[GSC] Skipped during dry run. Add --with-gsc to test Search Console API.")
+    elif no_gsc:
+        report.gsc_action_plan = ["GSC skipped by --no-gsc."]
+        print("\n[GSC] Skipped by --no-gsc.")
 
     indexing_changes = indexing_changes_from_report(report)
     if indexing_changes:

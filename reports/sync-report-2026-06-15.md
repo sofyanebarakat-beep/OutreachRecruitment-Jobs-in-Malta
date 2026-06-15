@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-06-15
 
-Generated: 2026-06-15T15:07:31
+Generated: 2026-06-15T15:19:39
 
 ## Summary
 
@@ -24,6 +24,8 @@ Generated: 2026-06-15T15:07:31
 | Google Indexing Failed | 0 |
 | Average Ranking Readiness | 84.3/100 |
 | High-Priority Ranking Jobs | 2 |
+| GSC URLs Checked | 2 |
+| GSC Problem Groups | 2 |
 
 ## Jobs to Add (Missing from Website)
 
@@ -155,6 +157,31 @@ Generated: 2026-06-15T15:07:31
 3. Fix 68 job page(s) missing category-page internal links
 4. Fix 3 job page(s) needing deeper content
 5. Fix 86 possible duplicate/cannibalization pair(s) to review
+
+## Google Search Console Action Plan
+
+1. Fix 2 job URL(s) not indexed or not passing URL Inspection
+
+## Jobs Not Indexed by Google
+
+- **[Marine Mechanical Foreman](https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta)**: URL is unknown to Google
+- **[Plate Shop Foreman](https://outreachrecruitment.net/jobs/plate-shop-foreman-malta)**: URL is unknown to Google
+
+## Canonical Conflicts
+
+- None found
+
+## Indexed but Zero Impressions
+
+- None found in checked URLs
+
+## Ranking Opportunities from GSC
+
+- None found in checked URLs
+
+## Query Match Gaps from GSC
+
+- None found in checked URLs
 
 ## Top Jobs Needing Ranking Work
 

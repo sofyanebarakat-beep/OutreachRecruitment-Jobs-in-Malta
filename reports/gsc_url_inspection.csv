@@ -1,0 +1,3 @@
+title,slug,url,status,ok,indexed,verdict,coverage_state,indexing_state,page_fetch_state,robots_txt_state,last_crawl_time,user_canonical,google_canonical,canonical_match,sitemap,rich_results_verdict,rich_result_types,error
+Marine Mechanical Foreman,marine-mechanical-foreman-malta,https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta,200,True,False,NEUTRAL,URL is unknown to Google,INDEXING_STATE_UNSPECIFIED,PAGE_FETCH_STATE_UNSPECIFIED,ROBOTS_TXT_STATE_UNSPECIFIED,,,,False,,,,
+Plate Shop Foreman,plate-shop-foreman-malta,https://outreachrecruitment.net/jobs/plate-shop-foreman-malta,200,True,False,NEUTRAL,URL is unknown to Google,INDEXING_STATE_UNSPECIFIED,PAGE_FETCH_STATE_UNSPECIFIED,ROBOTS_TXT_STATE_UNSPECIFIED,,,,False,,,,
