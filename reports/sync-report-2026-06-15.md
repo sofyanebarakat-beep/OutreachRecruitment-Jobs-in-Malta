@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-06-15
 
-Generated: 2026-06-15T14:56:53
+Generated: 2026-06-15T15:07:31
 
 ## Summary
 
@@ -22,6 +22,8 @@ Generated: 2026-06-15T14:56:53
 | Google Indexing Submitted | 0 |
 | Google Indexing Successful | 0 |
 | Google Indexing Failed | 0 |
+| Average Ranking Readiness | 84.3/100 |
+| High-Priority Ranking Jobs | 2 |
 
 ## Jobs to Add (Missing from Website)
 
@@ -146,6 +148,132 @@ Generated: 2026-06-15T14:56:53
 
 - No changed job URLs needed Google submission this run.
 
+## Ranking Action Plan
+
+1. Fix 2 high-priority job page(s) below 70/100
+2. Fix 209 job page(s) with keyword targeting gaps
+3. Fix 68 job page(s) missing category-page internal links
+4. Fix 3 job page(s) needing deeper content
+5. Fix 86 possible duplicate/cannibalization pair(s) to review
+
+## Top Jobs Needing Ranking Work
+
+| Job | Category | Score | Target Keyword | Top Fixes |
+|---|---|---|---|---|
+| [Customer Operations Associate](https://outreachrecruitment.net/jobs/customer-operations-associate) | General | 65/100 | Customer Operations Associate jobs in Malta | Possible duplicate/cannibalization risk; Meta title does not include exact job title; Meta title missing job/jobs intent |
+| [Italian/Swedish Retention Team Leader](https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader) | General | 65/100 | Italian/Swedish Retention Team Leader jobs in Malta | Possible duplicate/cannibalization risk; Meta title does not include exact job title; Meta title missing job/jobs intent |
+| [Bar Attendand](https://outreachrecruitment.net/jobs/bar-attendand) | General | 71/100 | Bar Attendand jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Bar Attendand jobs in Malta |
+| [Bar attendant](https://outreachrecruitment.net/jobs/bar-attendant) | General | 71/100 | Bar attendant jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Bar attendant jobs in Malta |
+| [Bartender & Front Office Agent](https://outreachrecruitment.net/jobs/bartender-front-office-agent) | Hospitality | 71/100 | Bartender & Front Office Agent jobs in Malta | Possible duplicate/cannibalization risk; Meta title does not include exact job title; Meta title missing job/jobs intent |
+| [Compliance Manager](https://outreachrecruitment.net/jobs/compliance-manager) | General | 71/100 | Compliance Manager jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Compliance Manager jobs in Malta |
+| [Head Housekeeper](https://outreachrecruitment.net/jobs/head-housekeeper) | General | 71/100 | Head Housekeeper jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Head Housekeeper jobs in Malta |
+| [Lead Microsoft 365 Architect Modern Work & Security](https://outreachrecruitment.net/jobs/lead-microsoft-365-architect-modern-work-security) | General | 71/100 | Lead Microsoft 365 Architect Modern Work & Security jobs in Malta | Meta title does not include exact job title; Meta title missing job/jobs intent; Meta description does not include exact job title |
+| [Outlet Manager](https://outreachrecruitment.net/jobs/outlet-manager) | General | 71/100 | Outlet Manager jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Outlet Manager jobs in Malta |
+| [Payroll Executive](https://outreachrecruitment.net/jobs/payroll-executive) | General | 71/100 | Payroll Executive jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Payroll Executive jobs in Malta |
+| [Pool Attendants](https://outreachrecruitment.net/jobs/pool-attendants) | General | 71/100 | Pool Attendants jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Pool Attendants jobs in Malta |
+| [QA Manager - Construction](https://outreachrecruitment.net/jobs/qa-manager-construction) | General | 71/100 | QA Manager - Construction jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: QA Manager - Construction jobs in Malta |
+| [Room Attendants](https://outreachrecruitment.net/jobs/room-attendants) | General | 71/100 | Room Attendants jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Room Attendants jobs in Malta |
+| [Room Attendents](https://outreachrecruitment.net/jobs/room-attendents) | General | 71/100 | Room Attendents jobs in Malta | Possible duplicate/cannibalization risk; Meta title missing job/jobs intent; Target phrase missing: Room Attendents jobs in Malta |
+| [Senior Quantity Estimator (M&E)](https://outreachrecruitment.net/jobs/senior-quantity-estimator-me) | General | 71/100 | Senior Quantity Estimator (M&E) jobs in Malta | Meta title does not include exact job title; Meta title missing job/jobs intent; Meta description does not include exact job title |
+
+## Category Ranking Report
+
+| Category | Jobs | Average Score | Weak Jobs |
+|---|---|---|---|
+| Management | 2 | 80.0/100 | 1 |
+| General | 76 | 80.2/100 | 45 |
+| Construction | 1 | 81.0/100 | 1 |
+| Sales | 18 | 82.5/100 | 9 |
+| Marketing | 4 | 83.5/100 | 3 |
+| IT & Technology | 7 | 84.3/100 | 2 |
+| Administration | 12 | 85.1/100 | 4 |
+| Logistics | 9 | 86.0/100 | 4 |
+| Finance & Accounting | 14 | 86.9/100 | 4 |
+| Healthcare & Insurance | 1 | 87.0/100 | 0 |
+| Hospitality | 33 | 87.4/100 | 10 |
+| Engineering & Maintenance | 30 | 87.6/100 | 6 |
+| HR & Recruitment | 2 | 88.0/100 | 0 |
+| Healthcare | 5 | 91.8/100 | 0 |
+| Maritime & Engineering | 2 | 92.5/100 | 0 |
+| Retail | 4 | 93.0/100 | 0 |
+
+## Keyword Target Gaps
+
+- **[Marine Mechanical Foreman](https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta)** — target `Marine Mechanical Foreman jobs in Malta`: Meta title does not include exact job title; Meta title missing job/jobs intent; Target phrase missing: Marine Mechanical Foreman jobs in Malta
+- **[Administration Specialist](https://outreachrecruitment.net/jobs/administration-specialist)** — target `Administration Specialist jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Administration Specialist jobs in Malta
+- **[Payables Finance Executive](https://outreachrecruitment.net/jobs/payables-finance-executive)** — target `Payables Finance Executive jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Payables Finance Executive jobs in Malta
+- **[Plumber](https://outreachrecruitment.net/jobs/plumber)** — target `Plumber jobs in Malta`: Target phrase missing: Plumber jobs in Malta
+- **[Welder](https://outreachrecruitment.net/jobs/welder)** — target `Welder jobs in Malta`: Target phrase missing: Welder jobs in Malta
+- **[Server (Spanish Speaker)](https://outreachrecruitment.net/jobs/server-spanish-speaker)** — target `Server (Spanish Speaker) jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Server (Spanish Speaker) jobs in Malta
+- **[Plant Technician](https://outreachrecruitment.net/jobs/plant-technician)** — target `Plant Technician jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Plant Technician jobs in Malta
+- **[Application Developer (.NET, SharePoint) - Hybrid](https://outreachrecruitment.net/jobs/application-developer-net-sharepoint-hybrid)** — target `Application Developer (.NET, SharePoint) - Hybrid jobs in Malta`: Meta title does not include exact job title; Meta title missing job/jobs intent; Target phrase missing: Application Developer (.NET, SharePoint) - Hybrid jobs in Malta
+- **[Sales Office Coordinator](https://outreachrecruitment.net/jobs/sales-office-coordinator)** — target `Sales Office Coordinator jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Sales Office Coordinator jobs in Malta
+- **[Maintenance Technician](https://outreachrecruitment.net/jobs/maintenance-technician)** — target `Maintenance Technician jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Maintenance Technician jobs in Malta
+- **[Assistance Co-ordinator](https://outreachrecruitment.net/jobs/assistance-co-ordinator)** — target `Assistance Co-ordinator jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Assistance Co-ordinator jobs in Malta
+- **[Customer Contact Agent](https://outreachrecruitment.net/jobs/customer-contact-agent)** — target `Customer Contact Agent jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Customer Contact Agent jobs in Malta
+- **[Auditor Doctor](https://outreachrecruitment.net/jobs/auditor-doctor)** — target `Auditor Doctor jobs in Malta`: Target phrase missing: Auditor Doctor jobs in Malta
+- **[Nurse Advisor](https://outreachrecruitment.net/jobs/nurse-advisor)** — target `Nurse Advisor jobs in Malta`: Target phrase missing: Nurse Advisor jobs in Malta
+- **[Summer Waiter - Mellieha](https://outreachrecruitment.net/jobs/summer-waiter-mellieha)** — target `Summer Waiter - Mellieha jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Summer Waiter - Mellieha jobs in Malta
+- **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)** — target `HR Administration Officer jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: HR Administration Officer jobs in Malta
+- **[Restaurant Manager](https://outreachrecruitment.net/jobs/restaurant-manager)** — target `Restaurant Manager jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Restaurant Manager jobs in Malta
+- **[Project Manager](https://outreachrecruitment.net/jobs/project-manager)** — target `Project Manager jobs in Malta`: Target phrase missing: Project Manager jobs in Malta
+- **[Purchasing Officer](https://outreachrecruitment.net/jobs/purchasing-officer)** — target `Purchasing Officer jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Purchasing Officer jobs in Malta
+- **[Estimator](https://outreachrecruitment.net/jobs/estimator)** — target `Estimator jobs in Malta`: Target phrase missing: Estimator jobs in Malta
+- **[HSSE Coordinator](https://outreachrecruitment.net/jobs/hsse-coordinator)** — target `HSSE Coordinator jobs in Malta`: Target phrase missing: HSSE Coordinator jobs in Malta
+- **[Restaurant Supervisor](https://outreachrecruitment.net/jobs/restaurant-supervisor)** — target `Restaurant Supervisor jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Restaurant Supervisor jobs in Malta
+- **[Kitchen Porter](https://outreachrecruitment.net/jobs/kitchen-porter)** — target `Kitchen Porter jobs in Malta`: Target phrase missing: Kitchen Porter jobs in Malta
+- **[Chef de Partie](https://outreachrecruitment.net/jobs/chef-de-partie)** — target `Chef de Partie jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Chef de Partie jobs in Malta
+- **[Contact Centre Team Leader](https://outreachrecruitment.net/jobs/contact-centre-team-leader)** — target `Contact Centre Team Leader jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Contact Centre Team Leader jobs in Malta
+- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner)** — target `Cleaner jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Cleaner jobs in Malta
+- **[Assistant Pizza Chef](https://outreachrecruitment.net/jobs/assistant-pizza-chef)** — target `Assistant Pizza Chef jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Assistant Pizza Chef jobs in Malta
+- **[Production Chef](https://outreachrecruitment.net/jobs/production-chef)** — target `Production Chef jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Production Chef jobs in Malta
+- **[Runners](https://outreachrecruitment.net/jobs/runners)** — target `Runners jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Runners jobs in Malta
+- **[Bar attendant](https://outreachrecruitment.net/jobs/bar-attendant)** — target `Bar attendant jobs in Malta`: Meta title missing job/jobs intent; Target phrase missing: Bar attendant jobs in Malta
+
+## Internal Link Coverage
+
+- **[Payables Finance Executive](https://outreachrecruitment.net/jobs/payables-finance-executive)**: Not linked from a category jobs page
+- **[Kitchen Porter](https://outreachrecruitment.net/jobs/kitchen-porter)**: Not linked from a category jobs page
+- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner)**: Not linked from a category jobs page
+- **[Runners](https://outreachrecruitment.net/jobs/runners)**: Not linked from a category jobs page
+- **[Bar attendant](https://outreachrecruitment.net/jobs/bar-attendant)**: Not linked from a category jobs page
+- **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper)**: Not linked from a category jobs page
+- **[Outlet Manager](https://outreachrecruitment.net/jobs/outlet-manager)**: Not linked from a category jobs page
+- **[Compliance Manager](https://outreachrecruitment.net/jobs/compliance-manager)**: Not linked from a category jobs page
+- **[Hairdresser](https://outreachrecruitment.net/jobs/hairdresser)**: Not linked from a category jobs page
+- **[Pool Attendants](https://outreachrecruitment.net/jobs/pool-attendants)**: Not linked from a category jobs page
+- **[Hospitality Staff – Malta](https://outreachrecruitment.net/jobs/hospitality-staff-malta)**: Not linked from a category jobs page
+- **[Head of Spa](https://outreachrecruitment.net/jobs/head-of-spa)**: Not linked from a category jobs page
+- **[Supervisor](https://outreachrecruitment.net/jobs/supervisor)**: Not linked from a category jobs page
+- **[Executive Operations Manager](https://outreachrecruitment.net/jobs/executive-operations-manager)**: Not linked from a category jobs page
+- **[Kitchen Manager](https://outreachrecruitment.net/jobs/kitchen-manager)**: Not linked from a category jobs page
+- **[NetSuite Specialist](https://outreachrecruitment.net/jobs/netsuite-specialist)**: Not linked from a category jobs page
+- **[Customer Operations Associate](https://outreachrecruitment.net/jobs/customer-operations-associate)**: Not linked from a category jobs page
+- **[Customer Experience Supervisor](https://outreachrecruitment.net/jobs/customer-experience-supervisor)**: Not linked from a category jobs page
+- **[Senior Quantity Estimator (M&E)](https://outreachrecruitment.net/jobs/senior-quantity-estimator-me)**: Not linked from a category jobs page
+- **[Commis](https://outreachrecruitment.net/jobs/commis)**: Not linked from a category jobs page
+- **[Housekeeping supervisor](https://outreachrecruitment.net/jobs/housekeeping-supervisor)**: Not linked from a category jobs page
+- **[Housekeeping Attendant](https://outreachrecruitment.net/jobs/housekeeping-attendant)**: Not linked from a category jobs page
+- **[Handyman](https://outreachrecruitment.net/jobs/handyman)**: Not linked from a category jobs page
+- **[Payroll Executive](https://outreachrecruitment.net/jobs/payroll-executive)**: Not linked from a category jobs page
+- **[Quantity Surveyor](https://outreachrecruitment.net/jobs/quantity-surveyor)**: Not linked from a category jobs page
+- **[Head Housekeeper](https://outreachrecruitment.net/jobs/head-housekeeper)**: Not linked from a category jobs page
+- **[QA Manager - Construction](https://outreachrecruitment.net/jobs/qa-manager-construction)**: Not linked from a category jobs page
+- **[Skilled Worker for Outdoor & Civil Works](https://outreachrecruitment.net/jobs/skilled-worker-for-outdoor-civil-works)**: Not linked from a category jobs page
+- **[Reservations Agent](https://outreachrecruitment.net/jobs/reservations-agent)**: Not linked from a category jobs page
+- **[Italian/Swedish Retention Team Leader](https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader)**: Not linked from a category jobs page
+
+## Content Quality Checks
+
+- **[Administration Specialist](https://outreachrecruitment.net/jobs/administration-specialist)** — 2839 words: Missing offer/benefits section
+- **[Payables Finance Executive](https://outreachrecruitment.net/jobs/payables-finance-executive)** — 2404 words: Salary/baseSalary missing or not specific
+- **[Shop Assistant](https://outreachrecruitment.net/jobs/shop-assistant)** — 2178 words: Missing offer/benefits section
+
+## JobPosting Rich Results Eligibility
+
+- All checked jobs are eligible by tracked schema rules
+
 ## Actions Required
 
 1. Review 86 possible duplicate job(s)
+2. Improve 2 high-priority ranking page(s) below 70/100

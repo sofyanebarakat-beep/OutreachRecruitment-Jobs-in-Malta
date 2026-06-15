@@ -57,7 +57,7 @@ DELAY = 0.8  # seconds between requests
 
 STATE_PATH = ROOT / "tools" / "sync_state.json"
 DASHBOARD_PATH = ROOT / "sync-dashboard.html"
-GOOGLE_INDEXING_LOG_PATH = REPORT_DIR / "google_indexing_submissions.csv"
+GOOGLE_INDEXING_LOG_PATH = REPORT_DIR / "google_indexing_history.csv"
 AUTO_CLOSE_THRESHOLD = 3   # consecutive checks before auto-closing an extra job
 DUPLICATE_THRESHOLD = 0.72  # similarity score to flag potential duplicate titles
 
@@ -125,6 +125,14 @@ class SyncReport:
     auto_closed_this_run: list[str] = field(default_factory=list)
     auto_closed_jobs: list[dict] = field(default_factory=list)  # {title, slug, url}
     indexing_submissions: list[dict] = field(default_factory=list)
+    ranking_readiness: list[dict] = field(default_factory=list)
+    priority_jobs: list[dict] = field(default_factory=list)
+    keyword_issues: list[dict] = field(default_factory=list)
+    internal_link_issues: list[dict] = field(default_factory=list)
+    content_quality_issues: list[dict] = field(default_factory=list)
+    category_ranking: list[dict] = field(default_factory=list)
+    schema_eligibility: list[dict] = field(default_factory=list)
+    ranking_action_plan: list[str] = field(default_factory=list)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -674,6 +682,9 @@ def build_report(
                     "issues": wj.schema_issues,
                 })
 
+    # Ranking analysis — separate from sync score
+    apply_ranking_analysis(report, website_jobs)
+
     # Sync score
     total_penalties = 0
     weight_missing = 5
@@ -852,6 +863,275 @@ def indexing_changes_from_report(report: SyncReport) -> list[dict]:
     return changes
 
 
+def local_job_html(slug: str) -> str:
+    candidates = [
+        ROOT / "jobs" / slug / "index.html",
+        ROOT / "jobs" / f"{slug}.html",
+    ]
+    for path in candidates:
+        if path.exists():
+            return path.read_text(encoding="utf-8", errors="ignore")
+    return ""
+
+
+def category_link_sources(slug: str) -> list[str]:
+    sources: list[str] = []
+    needles = [f"/jobs/{slug}", f"https://outreachrecruitment.net/jobs/{slug}"]
+    for path in sorted(ROOT.glob("*jobs-in-malta.html")):
+        if path.name == "jobs-in-malta-top-15-opening-jobs.html":
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        if any(needle in text for needle in needles):
+            sources.append(path.name)
+    return sources
+
+
+def last_indexing_status_by_url() -> dict[str, dict]:
+    rows: dict[str, dict] = {}
+    if not GOOGLE_INDEXING_LOG_PATH.exists():
+        return rows
+    try:
+        with GOOGLE_INDEXING_LOG_PATH.open(encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle):
+                url = row.get("url", "")
+                if url:
+                    rows[url.rstrip("/")] = row
+    except Exception:
+        return {}
+    return rows
+
+
+def keyword_targets(title: str) -> tuple[str, str]:
+    clean_title = re.sub(r"\s+", " ", title).strip()
+    return f"{clean_title} jobs in Malta", f"{clean_title} job in Malta"
+
+
+def schema_has_salary(schema: dict | None) -> bool:
+    if not isinstance(schema, dict):
+        return False
+    return bool(schema.get("baseSalary"))
+
+
+def apply_ranking_analysis(report: SyncReport, website_jobs: list[WebsiteJob]) -> None:
+    """Build ranking-readiness, keyword, linking, content, schema, and category sections."""
+    duplicate_slugs: set[str] = set()
+    for item in report.duplicates:
+        for key in ("url_a", "url_b"):
+            slug = item.get(key, "").rstrip("/").split("/")[-1]
+            if slug:
+                duplicate_slugs.add(slug)
+
+    sitemap_missing = {url.rstrip("/") for url in report.sitemap_missing}
+    schema_issue_by_url = {item["url"].rstrip("/"): item["issues"] for item in report.schema_issues}
+    indexing_by_url = last_indexing_status_by_url()
+    category_rows: dict[str, dict] = {}
+
+    for job in website_jobs:
+        html = local_job_html(job.slug)
+        text = strip_tags(html)
+        text_l = re.sub(r"\s+", " ", text).lower()
+        word_count = len(re.findall(r"\b\w+\b", text))
+
+        meta_title = job.meta_title
+        if not meta_title and html:
+            tm = META_TITLE_RE.search(html)
+            meta_title = strip_tags(tm.group(1)).strip() if tm else ""
+
+        meta_description = job.meta_description
+        if not meta_description and html:
+            dm = META_DESC_RE.search(html) or META_DESC_RE2.search(html)
+            meta_description = dm.group(1).strip() if dm else ""
+
+        canonical = job.canonical
+        if not canonical and html:
+            cm = CANONICAL_RE.search(html)
+            canonical = (cm.group(1) or cm.group(2)).strip() if cm else ""
+
+        is_indexable = job.is_indexable and not bool(NOINDEX_RE.search(html))
+        schema, local_schema_issues = validate_job_schema(html) if html else (None, ["No local job HTML found"])
+        schema_issues = schema_issue_by_url.get(job.url.rstrip("/"), local_schema_issues)
+        category_sources = category_link_sources(job.slug)
+        last_indexing = indexing_by_url.get(job.url.rstrip("/"))
+        primary_kw, secondary_kw = keyword_targets(job.title)
+        haystack = " ".join([meta_title, meta_description, text]).lower()
+
+        issues: list[str] = []
+        keyword_gaps: list[str] = []
+        content_gaps: list[str] = []
+        link_gaps: list[str] = []
+        score = 100
+
+        status_ok = job.status in (0, 200) and bool(html or job.status == 200)
+        if not status_ok:
+            score -= 25
+            issues.append(f"Page status not confirmed as 200 ({job.status or 'unknown'})")
+
+        if not meta_title:
+            score -= 12
+            issues.append("Missing meta title")
+        else:
+            title_l = meta_title.lower()
+            if job.title.lower() not in title_l:
+                score -= 6
+                keyword_gaps.append("Meta title does not include exact job title")
+            if "malta" not in title_l:
+                score -= 6
+                keyword_gaps.append("Meta title missing Malta")
+            if "job" not in title_l:
+                score -= 4
+                keyword_gaps.append("Meta title missing job/jobs intent")
+
+        if not meta_description:
+            score -= 10
+            issues.append("Missing meta description")
+        else:
+            desc_l = meta_description.lower()
+            if job.title.lower() not in desc_l:
+                score -= 4
+                keyword_gaps.append("Meta description does not include exact job title")
+            if "malta" not in desc_l:
+                score -= 4
+                keyword_gaps.append("Meta description missing Malta")
+            if "apply" not in desc_l:
+                score -= 3
+                keyword_gaps.append("Meta description missing apply CTA")
+
+        if primary_kw.lower() not in haystack and secondary_kw.lower() not in haystack:
+            score -= 5
+            keyword_gaps.append(f"Target phrase missing: {primary_kw}")
+
+        expected_canonical = f"{PUBLIC_BASE}/jobs/{job.slug}"
+        if not canonical:
+            score -= 8
+            issues.append("Missing canonical")
+        elif canonical.rstrip("/") != expected_canonical:
+            score -= 6
+            issues.append("Canonical does not match clean job URL")
+
+        if not is_indexable:
+            score -= 20
+            issues.append("Page is noindex")
+
+        if schema_issues:
+            score -= min(18, 6 + len(schema_issues) * 3)
+            issues.append("JobPosting schema needs fixes")
+
+        if job.url.rstrip("/") in sitemap_missing:
+            score -= 8
+            issues.append("Missing from sitemap")
+
+        if not category_sources:
+            score -= 10
+            link_gaps.append("Not linked from a category jobs page")
+
+        if job.slug in duplicate_slugs:
+            score -= 10
+            issues.append("Possible duplicate/cannibalization risk")
+
+        if word_count < 250:
+            score -= 12
+            content_gaps.append(f"Job content is very short ({word_count} words)")
+        elif word_count < 450:
+            score -= 6
+            content_gaps.append(f"Job content could be deeper ({word_count} words)")
+
+        required_sections = {
+            "responsibilities": "Missing responsibilities section",
+            "requirements": "Missing requirements section",
+            "what's on offer": "Missing offer/benefits section",
+            "apply": "Missing strong apply CTA",
+        }
+        for needle, label in required_sections.items():
+            if needle not in text_l:
+                score -= 4
+                content_gaps.append(label)
+
+        if not schema_has_salary(schema):
+            score -= 2
+            content_gaps.append("Salary/baseSalary missing or not specific")
+
+        score = max(0, min(100, score))
+        all_issues = issues + keyword_gaps + link_gaps + content_gaps
+        category = job.category or "Uncategorized"
+        row = {
+            "title": job.title,
+            "slug": job.slug,
+            "url": job.url,
+            "category": category,
+            "score": score,
+            "priority": "High" if score < 70 else "Medium" if score < 85 else "Low",
+            "target_keyword": primary_kw,
+            "word_count": word_count,
+            "category_links": len(category_sources),
+            "category_sources": ", ".join(category_sources),
+            "schema_eligible": not bool(schema_issues),
+            "last_indexing_status": (last_indexing or {}).get("status", "Not recorded"),
+            "last_indexing_date": (last_indexing or {}).get("date", ""),
+            "issues": all_issues[:10],
+        }
+        report.ranking_readiness.append(row)
+
+        bucket = category_rows.setdefault(category, {"category": category, "jobs": 0, "score_total": 0, "weak_jobs": 0})
+        bucket["jobs"] += 1
+        bucket["score_total"] += score
+        if score < 85:
+            bucket["weak_jobs"] += 1
+
+        if keyword_gaps:
+            report.keyword_issues.append({
+                "title": job.title,
+                "url": job.url,
+                "target_keyword": primary_kw,
+                "issues": keyword_gaps,
+            })
+        if link_gaps:
+            report.internal_link_issues.append({
+                "title": job.title,
+                "url": job.url,
+                "issues": link_gaps,
+            })
+        if content_gaps:
+            report.content_quality_issues.append({
+                "title": job.title,
+                "url": job.url,
+                "word_count": word_count,
+                "issues": content_gaps,
+            })
+        report.schema_eligibility.append({
+            "title": job.title,
+            "url": job.url,
+            "eligible": not bool(schema_issues),
+            "issues": schema_issues,
+        })
+
+    report.ranking_readiness.sort(key=lambda item: (item["score"], item["title"]))
+    report.priority_jobs = report.ranking_readiness[:15]
+    report.category_ranking = [
+        {
+            "category": row["category"],
+            "jobs": row["jobs"],
+            "average_score": round(row["score_total"] / max(row["jobs"], 1), 1),
+            "weak_jobs": row["weak_jobs"],
+        }
+        for row in category_rows.values()
+    ]
+    report.category_ranking.sort(key=lambda item: (item["average_score"], item["category"]))
+
+    action_counts = [
+        (len([j for j in report.ranking_readiness if j["score"] < 70]), "high-priority job page(s) below 70/100"),
+        (len(report.keyword_issues), "job page(s) with keyword targeting gaps"),
+        (len(report.internal_link_issues), "job page(s) missing category-page internal links"),
+        (len(report.content_quality_issues), "job page(s) needing deeper content"),
+        (len([s for s in report.schema_eligibility if not s["eligible"]]), "job page(s) not fully eligible for JobPosting rich results"),
+        (len(report.duplicates), "possible duplicate/cannibalization pair(s) to review"),
+    ]
+    report.ranking_action_plan = [
+        f"Fix {count} {label}"
+        for count, label in action_counts
+        if count
+    ] or ["All tracked ranking checks look strong this run."]
+
+
 def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, str]:
     csvs: dict[str, str] = {}
 
@@ -893,6 +1173,56 @@ def build_csvs(report: SyncReport, website_jobs: list[WebsiteJob]) -> dict[str, 
     csvs["google_indexing_submissions.csv"] = make_csv(
         report.indexing_submissions,
         ["date", "title", "slug", "url", "type", "source", "status", "ok", "response"],
+    )
+    ranking_rows = []
+    for item in report.ranking_readiness:
+        row = dict(item)
+        row["issues"] = "; ".join(item.get("issues", []))
+        ranking_rows.append(row)
+    csvs["ranking_readiness.csv"] = make_csv(
+        ranking_rows,
+        [
+            "title", "slug", "url", "category", "score", "priority",
+            "target_keyword", "word_count", "category_links", "category_sources",
+            "schema_eligible", "last_indexing_status", "last_indexing_date", "issues",
+        ],
+    )
+    keyword_rows = []
+    for item in report.keyword_issues:
+        for issue in item["issues"]:
+            keyword_rows.append({
+                "title": item["title"],
+                "url": item["url"],
+                "target_keyword": item["target_keyword"],
+                "issue": issue,
+            })
+    csvs["keyword_issues.csv"] = make_csv(keyword_rows, ["title", "url", "target_keyword", "issue"])
+    content_rows = []
+    for item in report.content_quality_issues:
+        for issue in item["issues"]:
+            content_rows.append({
+                "title": item["title"],
+                "url": item["url"],
+                "word_count": item["word_count"],
+                "issue": issue,
+            })
+    csvs["content_quality_issues.csv"] = make_csv(content_rows, ["title", "url", "word_count", "issue"])
+    link_rows = []
+    for item in report.internal_link_issues:
+        for issue in item["issues"]:
+            link_rows.append({"title": item["title"], "url": item["url"], "issue": issue})
+    csvs["internal_link_issues.csv"] = make_csv(link_rows, ["title", "url", "issue"])
+    schema_rows = []
+    for item in report.schema_eligibility:
+        if item["eligible"]:
+            schema_rows.append({"title": item["title"], "url": item["url"], "eligible": True, "issue": ""})
+        else:
+            for issue in item["issues"]:
+                schema_rows.append({"title": item["title"], "url": item["url"], "eligible": False, "issue": issue})
+    csvs["schema_eligibility.csv"] = make_csv(schema_rows, ["title", "url", "eligible", "issue"])
+    csvs["category_ranking.csv"] = make_csv(
+        report.category_ranking,
+        ["category", "jobs", "average_score", "weak_jobs"],
     )
 
     return csvs
@@ -1691,6 +2021,66 @@ def _build_indexing_section(submissions: list[dict]) -> str:
     )
 
 
+def _build_ranking_table(rows: list[dict], limit: int = 15) -> str:
+    if not rows:
+        return "<p style='color:#2e7d32'>No ranking issues detected.</p>"
+    body = ""
+    for item in rows[:limit]:
+        color = "#c62828" if item["score"] < 70 else "#e65100" if item["score"] < 85 else "#2e7d32"
+        issue_text = "; ".join(item.get("issues", [])[:3])
+        body += (
+            f"<tr>"
+            f"<td><a href='{item['url']}'>{item['title']}</a></td>"
+            f"<td>{item.get('category', '')}</td>"
+            f"<td style='color:{color};font-weight:800'>{item['score']}/100</td>"
+            f"<td>{item.get('target_keyword', '')}</td>"
+            f"<td>{issue_text}</td>"
+            f"</tr>"
+        )
+    return (
+        "<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        "<tr><th>Job</th><th>Category</th><th>Score</th><th>Target Keyword</th><th>Top Fixes</th></tr>"
+        f"{body}</table>"
+    )
+
+
+def _build_category_ranking_table(rows: list[dict]) -> str:
+    if not rows:
+        return "<p style='color:#888'>No category ranking data available.</p>"
+    body = ""
+    for item in rows:
+        color = "#c62828" if item["average_score"] < 70 else "#e65100" if item["average_score"] < 85 else "#2e7d32"
+        body += (
+            f"<tr><td>{item['category']}</td><td>{item['jobs']}</td>"
+            f"<td style='color:{color};font-weight:800'>{item['average_score']}/100</td>"
+            f"<td>{item['weak_jobs']}</td></tr>"
+        )
+    return (
+        "<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        "<tr><th>Category</th><th>Jobs</th><th>Average Score</th><th>Weak Jobs</th></tr>"
+        f"{body}</table>"
+    )
+
+
+def _build_issue_summary_table(rows: list[dict], empty: str, limit: int = 20) -> str:
+    if not rows:
+        return f"<p style='color:#2e7d32'>{empty}</p>"
+    body = ""
+    for item in rows[:limit]:
+        issues = "; ".join(item.get("issues", [])[:4])
+        extra = ""
+        if "target_keyword" in item:
+            extra = f"<br><span style='color:#666;font-size:12px'>{item['target_keyword']}</span>"
+        if "word_count" in item:
+            extra = f"<br><span style='color:#666;font-size:12px'>{item['word_count']} words</span>"
+        body += f"<tr><td><a href='{item['url']}'>{item['title']}</a>{extra}</td><td>{issues}</td></tr>"
+    return (
+        "<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'>"
+        "<tr><th>Job</th><th>Issues</th></tr>"
+        f"{body}</table>"
+    )
+
+
 SCORE_COLOR = {
     "excellent": "#2e7d32",
     "good": "#558b2f",
@@ -1769,6 +2159,11 @@ def build_html_email(report: SyncReport) -> str:
     indexing_total = len(report.indexing_submissions)
     indexing_success = sum(1 for item in report.indexing_submissions if item.get("ok"))
     indexing_failed = indexing_total - indexing_success
+    avg_ranking_score = (
+        round(sum(item["score"] for item in report.ranking_readiness) / len(report.ranking_readiness), 1)
+        if report.ranking_readiness else 0
+    )
+    high_priority_rank_jobs = len([item for item in report.ranking_readiness if item["score"] < 70])
 
     if score == 100:
         score_color = SCORE_COLOR["excellent"]
@@ -1864,6 +2259,8 @@ def build_html_email(report: SyncReport) -> str:
         actions.append(f"<b>{len(report.auto_closed_this_run)}</b> job(s) auto-closed this run — verify and push")
     if indexing_failed:
         actions.append(f"Review <b>{indexing_failed}</b> failed Google Indexing API submission(s)")
+    if high_priority_rank_jobs:
+        actions.append(f"Improve <b>{high_priority_rank_jobs}</b> high-priority ranking page(s) below 70/100")
     if not actions:
         actions = ["No action required — everything is in sync! 🎉"]
     actions_html = "".join(f"<li style='margin:6px 0'>{a}</li>" for a in actions)
@@ -1985,6 +2382,8 @@ def build_html_email(report: SyncReport) -> str:
   <div class="stat"><span class="stat-num {'red' if report.duplicates else 'green'}">{len(report.duplicates)}</span><span class="stat-label">Duplicates</span></div>
   <div class="stat"><span class="stat-num {'red' if report.schema_issues else 'green'}">{len(report.schema_issues)}</span><span class="stat-label">Schema Issues</span></div>
   <div class="stat"><span class="stat-num {'red' if indexing_failed else 'green'}">{indexing_total}</span><span class="stat-label">Google Submitted</span></div>
+  <div class="stat"><span class="stat-num {'red' if avg_ranking_score < 70 else 'green' if avg_ranking_score >= 85 else ''}">{avg_ranking_score}</span><span class="stat-label">Avg Ranking Score</span></div>
+  <div class="stat"><span class="stat-num {'red' if high_priority_rank_jobs else 'green'}">{high_priority_rank_jobs}</span><span class="stat-label">Ranking Priority</span></div>
 </div>
 <p style="font-size:13px;color:#666;margin:4px 0">
   <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:{score_color}">{score}%</span>
@@ -1995,6 +2394,48 @@ def build_html_email(report: SyncReport) -> str:
 <div class="card">
 <h2>✅ Actions Required</h2>
 <ol style="margin:0;padding-left:20px">{actions_html}</ol>
+</div>
+
+<div class="card">
+<h2>🏆 Ranking Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Prioritized SEO work to help every job page rank for job-title searches in Malta</p>
+{_rows(report.ranking_action_plan)}
+</div>
+
+<div class="card">
+<h2>📈 Top Jobs Needing Ranking Work ({len(report.priority_jobs)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Lowest ranking-readiness scores across metadata, schema, content, links, duplicates, sitemap, and indexing history</p>
+{_build_ranking_table(report.priority_jobs)}
+</div>
+
+<div class="card">
+<h2>🧭 Category Ranking Report</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Average ranking readiness by job category</p>
+{_build_category_ranking_table(report.category_ranking)}
+</div>
+
+<div class="card">
+<h2>🎯 Keyword Target Gaps ({len(report.keyword_issues)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Checks target phrases like “Job Title jobs in Malta”, “Job Title job in Malta”, and apply-intent copy</p>
+{_build_issue_summary_table(report.keyword_issues, "No keyword targeting gaps detected")}
+</div>
+
+<div class="card">
+<h2>🔗 Internal Link Coverage ({len(report.internal_link_issues)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Flags jobs not linked from category hub pages such as hospitality, construction, finance, IT, sales, insurance, or marine</p>
+{_build_issue_summary_table(report.internal_link_issues, "Every job has category-page link coverage")}
+</div>
+
+<div class="card">
+<h2>✍️ Content Quality Checks ({len(report.content_quality_issues)})</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Checks depth, responsibilities, requirements, offer/benefits, salary/baseSalary, and apply CTA</p>
+{_build_issue_summary_table(report.content_quality_issues, "No content quality gaps detected")}
+</div>
+
+<div class="card">
+<h2>⭐ JobPosting Rich Results Eligibility</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Schema eligibility for Google Jobs rich result consideration</p>
+{_build_issue_summary_table([item for item in report.schema_eligibility if not item["eligible"]], "All checked jobs are eligible by tracked schema rules")}
 </div>
 
 {quick_fix_html}
@@ -2096,6 +2537,12 @@ def build_html_email(report: SyncReport) -> str:
   <li>seo_issues.csv — {len(report.seo_issues)} issues</li>
   <li>duplicates.csv — {len(report.duplicates)} duplicate suspects</li>
   <li>google_indexing_submissions.csv — {len(report.indexing_submissions)} submissions this run</li>
+  <li>ranking_readiness.csv — {len(report.ranking_readiness)} job ranking scores</li>
+  <li>keyword_issues.csv — {len(report.keyword_issues)} jobs with keyword gaps</li>
+  <li>internal_link_issues.csv — {len(report.internal_link_issues)} jobs missing category links</li>
+  <li>content_quality_issues.csv — {len(report.content_quality_issues)} jobs needing content work</li>
+  <li>schema_eligibility.csv — {len(report.schema_eligibility)} rich result checks</li>
+  <li>category_ranking.csv — {len(report.category_ranking)} category summaries</li>
 </ul>
 </div>
 
@@ -2123,6 +2570,11 @@ def build_markdown_report(report: SyncReport) -> str:
     indexing_total = len(report.indexing_submissions)
     indexing_success = sum(1 for item in report.indexing_submissions if item.get("ok"))
     indexing_failed = indexing_total - indexing_success
+    avg_ranking_score = (
+        round(sum(item["score"] for item in report.ranking_readiness) / len(report.ranking_readiness), 1)
+        if report.ranking_readiness else 0
+    )
+    high_priority_rank_jobs = len([item for item in report.ranking_readiness if item["score"] < 70])
     lines = [
         f"# Job Sync Report — {report.generated_at[:10]}",
         "",
@@ -2148,6 +2600,8 @@ def build_markdown_report(report: SyncReport) -> str:
         f"| Google Indexing Submitted | {indexing_total} |",
         f"| Google Indexing Successful | {indexing_success} |",
         f"| Google Indexing Failed | {indexing_failed} |",
+        f"| Average Ranking Readiness | {avg_ranking_score}/100 |",
+        f"| High-Priority Ranking Jobs | {high_priority_rank_jobs} |",
         "",
         "## Jobs to Add (Missing from Website)",
         "",
@@ -2210,6 +2664,59 @@ def build_markdown_report(report: SyncReport) -> str:
     else:
         lines.append("- No changed job URLs needed Google submission this run.")
 
+    lines.extend(["", "## Ranking Action Plan", ""])
+    lines.extend([f"{i+1}. {item}" for i, item in enumerate(report.ranking_action_plan)] or ["- None"])
+
+    lines.extend(["", "## Top Jobs Needing Ranking Work", ""])
+    if report.priority_jobs:
+        lines.append("| Job | Category | Score | Target Keyword | Top Fixes |")
+        lines.append("|---|---|---|---|---|")
+        for item in report.priority_jobs:
+            lines.append(
+                f"| [{item['title']}]({item['url']}) | {item['category']} | {item['score']}/100 | "
+                f"{item['target_keyword']} | {'; '.join(item.get('issues', [])[:3])} |"
+            )
+    else:
+        lines.append("- None")
+
+    lines.extend(["", "## Category Ranking Report", ""])
+    if report.category_ranking:
+        lines.append("| Category | Jobs | Average Score | Weak Jobs |")
+        lines.append("|---|---|---|---|")
+        for item in report.category_ranking:
+            lines.append(f"| {item['category']} | {item['jobs']} | {item['average_score']}/100 | {item['weak_jobs']} |")
+    else:
+        lines.append("- None")
+
+    lines.extend(["", "## Keyword Target Gaps", ""])
+    if report.keyword_issues:
+        for item in report.keyword_issues[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})** — target `{item['target_keyword']}`: {'; '.join(item['issues'])}")
+    else:
+        lines.append("- None")
+
+    lines.extend(["", "## Internal Link Coverage", ""])
+    if report.internal_link_issues:
+        for item in report.internal_link_issues[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: {'; '.join(item['issues'])}")
+    else:
+        lines.append("- All jobs have category-page link coverage")
+
+    lines.extend(["", "## Content Quality Checks", ""])
+    if report.content_quality_issues:
+        for item in report.content_quality_issues[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})** — {item['word_count']} words: {'; '.join(item['issues'])}")
+    else:
+        lines.append("- None")
+
+    lines.extend(["", "## JobPosting Rich Results Eligibility", ""])
+    ineligible = [item for item in report.schema_eligibility if not item["eligible"]]
+    if ineligible:
+        for item in ineligible[:30]:
+            lines.append(f"- **[{item['title']}]({item['url']})**: {'; '.join(item['issues'])}")
+    else:
+        lines.append("- All checked jobs are eligible by tracked schema rules")
+
     if report.warnings:
         lines.extend(["", "## Warnings", ""])
         lines.extend([f"- {w}" for w in report.warnings])
@@ -2236,6 +2743,8 @@ def build_markdown_report(report: SyncReport) -> str:
         actions.append(f"Fix {len(report.schema_issues)} structured data schema issue(s)")
     if indexing_failed:
         actions.append(f"Review {indexing_failed} failed Google Indexing API submission(s)")
+    if high_priority_rank_jobs:
+        actions.append(f"Improve {high_priority_rank_jobs} high-priority ranking page(s) below 70/100")
     if not actions:
         actions = ["No action required — everything is in sync!"]
     lines.extend([f"{i+1}. {a}" for i, a in enumerate(actions)])
@@ -2344,6 +2853,14 @@ def save_reports(report: SyncReport, md: str, csvs: dict[str, str]) -> tuple[Pat
         "auto_fixed_added_jobs": report.auto_fixed_added_jobs,
         "auto_fixed_removed_jobs": report.auto_fixed_removed_jobs,
         "indexing_submissions": report.indexing_submissions,
+        "ranking_readiness": report.ranking_readiness,
+        "priority_jobs": report.priority_jobs,
+        "keyword_issues": report.keyword_issues,
+        "internal_link_issues": report.internal_link_issues,
+        "content_quality_issues": report.content_quality_issues,
+        "category_ranking": report.category_ranking,
+        "schema_eligibility": report.schema_eligibility,
+        "ranking_action_plan": report.ranking_action_plan,
     }
     json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
