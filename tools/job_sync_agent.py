@@ -379,7 +379,11 @@ def scrape_public_website() -> list[WebsiteJob]:
 META_TITLE_RE = re.compile(r'<title[^>]*>(.*?)</title>', re.I | re.S)
 META_DESC_RE = re.compile(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']*)["\']', re.I)
 META_DESC_RE2 = re.compile(r'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']description["\']', re.I)
-CANONICAL_RE = re.compile(r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']*)["\']', re.I)
+CANONICAL_RE = re.compile(
+    r'<link\b[^>]*\bhref=["\']([^"\']*)["\'][^>]*\brel=["\']canonical["\']'
+    r'|<link\b[^>]*\brel=["\']canonical["\'][^>]*\bhref=["\']([^"\']*)["\']',
+    re.I,
+)
 NOINDEX_RE = re.compile(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', re.I)
 JSONLD_RE = re.compile(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', re.S | re.I)
 REQUIRED_SCHEMA_FIELDS = ["title", "description", "datePosted", "hiringOrganization", "jobLocation"]
@@ -453,7 +457,7 @@ def check_job_page_seo(job: WebsiteJob) -> None:
         job.meta_description = dm.group(1).strip() if dm else ""
 
         cm = CANONICAL_RE.search(html)
-        job.canonical = cm.group(1).strip() if cm else ""
+        job.canonical = (cm.group(1) or cm.group(2)).strip() if cm else ""
 
         job.is_indexable = not bool(NOINDEX_RE.search(html))
 
@@ -1868,6 +1872,21 @@ def build_html_email(report: SyncReport) -> str:
 {auto_closed_section_html}
 
 <div class="card">
+<h2>💡 SEO Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Concrete steps to improve search visibility and Google Jobs indexing</p>
+<table border="1" cellpadding="7" style="border-collapse:collapse;font-size:13px;width:100%">
+<tr><th style="width:30px">#</th><th>Action</th><th>Priority</th><th>Impact</th></tr>
+<tr><td>1</td><td><b>Canonical tags</b> — Each job page must have exactly ONE <code>&lt;link rel="canonical"&gt;</code> pointing to its own URL. Duplicate or mismatched canonicals split authority and confuse Google.<br><code style="font-size:11px;color:#555">Fix: run <b>python3 tools/fix_canonical.py</b> then push.</code></td><td style="color:#c62828">🔴 High</td><td>Google ranking, de-duplication</td></tr>
+<tr><td>2</td><td><b>Meta description length</b> — Keep between 120–155 characters. Too short wastes SERP space; too long gets cut. Descriptions should include the job title, city, and a call-to-action keyword like "Apply now".</td><td style="color:#e65100">🟠 Medium</td><td>Click-through rate</td></tr>
+<tr><td>3</td><td><b>Meta title format</b> — Ideal pattern: <em>Job Title in City, Malta | Outreach Recruitment</em> (max 60 chars). Verify every page follows this pattern.</td><td style="color:#e65100">🟠 Medium</td><td>SERP visibility</td></tr>
+<tr><td>4</td><td><b>JSON-LD schema</b> — All pages need <code>validThrough</code>, <code>employmentType</code>, and <code>identifier</code> fields filled. Missing fields reduce Google Jobs eligibility. Run <code>python3 tools/fix_jobposting_schema.py</code> if needed.</td><td style="color:#e65100">🟠 Medium</td><td>Google Jobs listings</td></tr>
+<tr><td>5</td><td><b>Sitemap freshness</b> — Whenever jobs are added or removed, regenerate <code>sitemaps/sitemap-jobs.xml</code> and ping Google Search Console. New jobs can take 3–5 days to appear without this step.</td><td style="color:#2e7d32">🟢 Low</td><td>Indexing speed</td></tr>
+<tr><td>6</td><td><b>Duplicate job titles</b> — {len(report.duplicates)} duplicate suspects found this run (e.g. "Bartender" vs "Bartenders"). Merge or differentiate these pages — two near-identical pages compete against each other in Google.</td><td style="color:#2e7d32">🟢 Low</td><td>Keyword cannibalization</td></tr>
+<tr><td>7</td><td><b>Internal linking</b> — Add links from category hub pages (e.g. hospitality-jobs-in-malta.html) to individual job pages. This distributes PageRank to new job pages faster.</td><td style="color:#2e7d32">🟢 Low</td><td>Crawl budget, authority</td></tr>
+</table>
+</div>
+
+<div class="card">
 <h2>📎 CSV Attachments</h2>
 <ul style="margin:0">
   <li>missing_jobs.csv — {len(report.missing_jobs)} jobs to add</li>
@@ -1879,7 +1898,7 @@ def build_html_email(report: SyncReport) -> str:
 </div>
 
 <div class="footer">
-  <p>Outreach Recruitment — Job Sync Agent | Runs every 2 days at 08:00 Malta Time</p>
+  <p>Outreach Recruitment — Job Sync Agent | Runs every day at 08:00 Malta Time</p>
   <p>
     Careers Platform: <a href="https://outreach-recruitment-agency.careers-page.com/">outreach-recruitment-agency.careers-page.com</a> &nbsp;|&nbsp;
     Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp;

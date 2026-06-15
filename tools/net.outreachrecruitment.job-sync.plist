@@ -3,7 +3,7 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
   launchd plist for Outreach Recruitment Job Sync Agent
-  Runs every 2 days at 08:00 Malta time (06:00 UTC summer / 07:00 UTC winter)
+  Runs every day at 08:00 Malta time (06:00 UTC summer / 07:00 UTC winter)
 
   Install:
     cp tools/net.outreachrecruitment.job-sync.plist ~/Library/LaunchAgents/
@@ -27,26 +27,12 @@
     <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/tools/run_sync_agent.sh</string>
   </array>
 
-  <!-- Run at 06:00 UTC on even days (= 08:00 Malta summer time) -->
+  <!-- Run every day at 06:00 UTC (= 08:00 Malta summer time) -->
   <key>StartCalendarInterval</key>
-  <array>
-    <!-- Day 2, 4, 6, 8, ... of each month — approximate "every 2 days" -->
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>2</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>4</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>6</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>8</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>10</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>12</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>14</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>16</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>18</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>20</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>22</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>24</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>26</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>28</integer></dict>
-    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>0</integer><key>Day</key><integer>30</integer></dict>
-  </array>
+  <dict>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
 
   <key>StandardOutPath</key>
   <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/logs/launchd-stdout.log</string>

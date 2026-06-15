@@ -1,0 +1,621 @@
+{
+  "generated_at": "2026-06-15T11:30:11",
+  "careers_count_advertised": 220,
+  "careers_count_scraped": 220,
+  "website_count": 220,
+  "sync_score": 100.0,
+  "missing_jobs": [],
+  "extra_jobs": [],
+  "title_mismatches": [],
+  "location_mismatches": [],
+  "broken_links": [],
+  "seo_issues": [],
+  "sitemap_missing": [],
+  "warnings": [],
+  "duplicates": [
+    {
+      "title_a": "Assistance Co-ordinator",
+      "url_a": "https://outreachrecruitment.net/jobs/assistance-co-ordinator",
+      "title_b": "Assistance Coordinator (Contact Centre Agent)",
+      "url_b": "https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent",
+      "similarity": 0.98
+    },
+    {
+      "title_a": "Bartender",
+      "url_a": "https://outreachrecruitment.net/jobs/bartender",
+      "title_b": "Bartenders",
+      "url_b": "https://outreachrecruitment.net/jobs/bartenders",
+      "similarity": 0.95
+    },
+    {
+      "title_a": "Junior Sales Assistant - Maltese Speaking",
+      "url_a": "https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking",
+      "title_b": "Senior Sales Assistant - Maltese Speaking",
+      "url_b": "https://outreachrecruitment.net/jobs/senior-sales-assistant-maltese-speaking",
+      "similarity": 0.95
+    },
+    {
+      "title_a": "Plumber",
+      "url_a": "https://outreachrecruitment.net/jobs/plumber",
+      "title_b": "Plumbers",
+      "url_b": "https://outreachrecruitment.net/jobs/plumbers",
+      "similarity": 0.93
+    },
+    {
+      "title_a": "Room Attendants",
+      "url_a": "https://outreachrecruitment.net/jobs/room-attendants",
+      "title_b": "Room Attendents",
+      "url_b": "https://outreachrecruitment.net/jobs/room-attendents",
+      "similarity": 0.93
+    },
+    {
+      "title_a": "Bar attendant",
+      "url_a": "https://outreachrecruitment.net/jobs/bar-attendant",
+      "title_b": "Bar Attendand",
+      "url_b": "https://outreachrecruitment.net/jobs/bar-attendand",
+      "similarity": 0.92
+    },
+    {
+      "title_a": "Delivery Driver - Malta C License",
+      "url_a": "https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license",
+      "title_b": "Delivery Drivers - C1 Malta License",
+      "url_b": "https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license",
+      "similarity": 0.91
+    },
+    {
+      "title_a": "Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive",
+      "title_b": "Sales Executive B2B",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-b2b",
+      "similarity": 0.88
+    },
+    {
+      "title_a": "Sales Executive B2B",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive-b2b",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.88
+    },
+    {
+      "title_a": "Sales Executive B2B",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive-b2b",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.88
+    },
+    {
+      "title_a": "Pool Attendants",
+      "url_a": "https://outreachrecruitment.net/jobs/pool-attendants",
+      "title_b": "Room Attendants",
+      "url_b": "https://outreachrecruitment.net/jobs/room-attendants",
+      "similarity": 0.87
+    },
+    {
+      "title_a": "Project Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/project-manager",
+      "title_b": "HVAC Project Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/hvac-project-manager",
+      "similarity": 0.86
+    },
+    {
+      "title_a": "Maintenance Technician",
+      "url_a": "https://outreachrecruitment.net/jobs/maintenance-technician",
+      "title_b": "General Maintenance Technician",
+      "url_b": "https://outreachrecruitment.net/jobs/general-maintenance-technician",
+      "similarity": 0.85
+    },
+    {
+      "title_a": "Chef de Partie",
+      "url_a": "https://outreachrecruitment.net/jobs/chef-de-partie",
+      "title_b": "Demi Chef de Partie (Breakfast Shift)",
+      "url_b": "https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift",
+      "similarity": 0.85
+    },
+    {
+      "title_a": "Demi Chef de Partie (Breakfast Shift)",
+      "url_a": "https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift",
+      "title_b": "Chef de Partie",
+      "url_b": "https://outreachrecruitment.net/jobs/chef-de-partie-2",
+      "similarity": 0.85
+    },
+    {
+      "title_a": "Demi Chef de Partie (Breakfast Shift)",
+      "url_a": "https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift",
+      "title_b": "Chef De Partie",
+      "url_b": "https://outreachrecruitment.net/jobs/chef-de-partie-3",
+      "similarity": 0.85
+    },
+    {
+      "title_a": "Restaurant Supervisor",
+      "url_a": "https://outreachrecruitment.net/jobs/restaurant-supervisor",
+      "title_b": "Restaurant Supervisor in Gozo",
+      "url_b": "https://outreachrecruitment.net/jobs/restaurant-supervisor-in-gozo",
+      "similarity": 0.84
+    },
+    {
+      "title_a": "Sous Chef",
+      "url_a": "https://outreachrecruitment.net/jobs/sous-chef",
+      "title_b": "Sushi Chef",
+      "url_b": "https://outreachrecruitment.net/jobs/sushi-chef",
+      "similarity": 0.84
+    },
+    {
+      "title_a": "Head Chef - Maltese Cuisine",
+      "url_a": "https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine",
+      "title_b": "Head Chef - Chinese Cuisine",
+      "url_b": "https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine",
+      "similarity": 0.84
+    },
+    {
+      "title_a": "Sushi Chef",
+      "url_a": "https://outreachrecruitment.net/jobs/sushi-chef",
+      "title_b": "Sous Chef",
+      "url_b": "https://outreachrecruitment.net/jobs/sous-chef-2",
+      "similarity": 0.84
+    },
+    {
+      "title_a": "Real Estate Agents",
+      "url_a": "https://outreachrecruitment.net/jobs/real-estate-agents",
+      "title_b": "Real Estate Managers",
+      "url_b": "https://outreachrecruitment.net/jobs/real-estate-managers",
+      "similarity": 0.84
+    },
+    {
+      "title_a": "Head Chef - Maltese Cuisine",
+      "url_a": "https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine",
+      "title_b": "Head Chef - Greek Cuisine",
+      "url_b": "https://outreachrecruitment.net/jobs/head-chef-greek-cuisine",
+      "similarity": 0.83
+    },
+    {
+      "title_a": "Head Chef - Chinese Cuisine",
+      "url_a": "https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine",
+      "title_b": "Head Chef - Greek Cuisine",
+      "url_b": "https://outreachrecruitment.net/jobs/head-chef-greek-cuisine",
+      "similarity": 0.83
+    },
+    {
+      "title_a": "Italian/Swedish Sales Team Leader",
+      "url_a": "https://outreachrecruitment.net/jobs/italianswedish-sales-team-leader",
+      "title_b": "Italian/Swedish Retention Team Leader",
+      "url_b": "https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader",
+      "similarity": 0.83
+    },
+    {
+      "title_a": "Driver - Malta C License",
+      "url_a": "https://outreachrecruitment.net/jobs/driver-malta-c-license",
+      "title_b": "Delivery Driver - Malta C License",
+      "url_b": "https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license",
+      "similarity": 0.83
+    },
+    {
+      "title_a": "QA Manager - Construction",
+      "url_a": "https://outreachrecruitment.net/jobs/qa-manager-construction",
+      "title_b": "Project Manager - Construction",
+      "url_b": "https://outreachrecruitment.net/jobs/project-manager-construction",
+      "similarity": 0.82
+    },
+    {
+      "title_a": "Tax Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/tax-manager",
+      "title_b": "Bar Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/bar-manager",
+      "similarity": 0.82
+    },
+    {
+      "title_a": "Housekeeper",
+      "url_a": "https://outreachrecruitment.net/jobs/housekeeper",
+      "title_b": "Head Housekeeper",
+      "url_b": "https://outreachrecruitment.net/jobs/head-housekeeper",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Sales Shift Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-shift-manager",
+      "title_b": "Sales Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-manager",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Sales Shift Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-shift-manager",
+      "title_b": "Sales Assistant Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-assistant-manager",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Driver – Category C License",
+      "url_a": "https://outreachrecruitment.net/jobs/driver-category-c-license",
+      "title_b": "Driver - Malta C License",
+      "url_b": "https://outreachrecruitment.net/jobs/driver-malta-c-license",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Heavy Machine Operator",
+      "url_a": "https://outreachrecruitment.net/jobs/heavy-machine-operator",
+      "title_b": "CNC Machine Operator",
+      "url_b": "https://outreachrecruitment.net/jobs/cnc-machine-operator",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Head Housekeeper",
+      "url_a": "https://outreachrecruitment.net/jobs/head-housekeeper",
+      "title_b": "Housekeeper",
+      "url_b": "https://outreachrecruitment.net/jobs/housekeeper-2",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Corporate Insurance Associate",
+      "url_a": "https://outreachrecruitment.net/jobs/corporate-insurance-associate",
+      "title_b": "Commercial Insurance Associate",
+      "url_b": "https://outreachrecruitment.net/jobs/commercial-insurance-associate",
+      "similarity": 0.81
+    },
+    {
+      "title_a": "Pool Attendants",
+      "url_a": "https://outreachrecruitment.net/jobs/pool-attendants",
+      "title_b": "Room Attendents",
+      "url_b": "https://outreachrecruitment.net/jobs/room-attendents",
+      "similarity": 0.8
+    },
+    {
+      "title_a": "Front Office Assistant",
+      "url_a": "https://outreachrecruitment.net/jobs/front-office-assistant",
+      "title_b": "Front Office Agent",
+      "url_b": "https://outreachrecruitment.net/jobs/front-office-agent",
+      "similarity": 0.8
+    },
+    {
+      "title_a": "HSSE Coordinator",
+      "url_a": "https://outreachrecruitment.net/jobs/hsse-coordinator",
+      "title_b": "Assistance Coordinator (Contact Centre Agent)",
+      "url_b": "https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent",
+      "similarity": 0.79
+    },
+    {
+      "title_a": "Bar attendant",
+      "url_a": "https://outreachrecruitment.net/jobs/bar-attendant",
+      "title_b": "Room Attendants",
+      "url_b": "https://outreachrecruitment.net/jobs/room-attendants",
+      "similarity": 0.79
+    },
+    {
+      "title_a": "Assistance Co-ordinator",
+      "url_a": "https://outreachrecruitment.net/jobs/assistance-co-ordinator",
+      "title_b": "HSSE Coordinator",
+      "url_b": "https://outreachrecruitment.net/jobs/hsse-coordinator",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Customer Operations Associate",
+      "url_a": "https://outreachrecruitment.net/jobs/customer-operations-associate",
+      "title_b": "Customer Care Associate",
+      "url_b": "https://outreachrecruitment.net/jobs/customer-care-associate",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive",
+      "title_b": "Showroom Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/showroom-sales-executive",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Showroom Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/showroom-sales-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Showroom Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/showroom-sales-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Project Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/project-manager",
+      "title_b": "Outlet Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/outlet-manager",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Outlet Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/outlet-manager",
+      "title_b": "Account Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/account-manager",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Compliance Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "title_b": "Maintenance Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/maintenance-manager",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Marketing Administrator",
+      "url_a": "https://outreachrecruitment.net/jobs/marketing-administrator",
+      "title_b": "Marketing Assistant",
+      "url_b": "https://outreachrecruitment.net/jobs/marketing-assistant",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "HR Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/hr-executive",
+      "title_b": "Payroll Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/payroll-executive",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive",
+      "title_b": "Social Media Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/social-media-executive",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Client Accountant",
+      "url_a": "https://outreachrecruitment.net/jobs/client-accountant",
+      "title_b": "Client Accounting Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/client-accounting-manager",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Social Media Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/social-media-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Social Media Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/social-media-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Sales Office Coordinator",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-office-coordinator",
+      "title_b": "HSSE Coordinator",
+      "url_b": "https://outreachrecruitment.net/jobs/hsse-coordinator",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive",
+      "title_b": "Payroll Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/payroll-executive",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "IT Support Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/it-support-executive",
+      "title_b": "IT Systems Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/it-systems-executive",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Sales Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-manager",
+      "title_b": "Tax Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/tax-manager",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Sales Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-manager",
+      "title_b": "Bar Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/bar-manager",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "IT Systems Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/it-systems-executive",
+      "title_b": "IT Support Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/it-support-executive-2",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Payroll Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/payroll-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Payroll Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/payroll-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Client Accounting Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/client-accounting-manager",
+      "title_b": "Account Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/account-manager",
+      "similarity": 0.75
+    },
+    {
+      "title_a": "Restaurant Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/restaurant-manager",
+      "title_b": "Real Estate Managers",
+      "url_b": "https://outreachrecruitment.net/jobs/real-estate-managers",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Outlet Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/outlet-manager",
+      "title_b": "Sales Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-manager",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "HR Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/hr-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "HR Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/hr-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "HR Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/hr-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Sales Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-executive",
+      "title_b": "IT Systems Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/it-systems-executive",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Sales Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-manager",
+      "title_b": "Sales Engineer",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-engineer",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "IT Systems Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/it-systems-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "IT Systems Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/it-systems-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Accounts Senior",
+      "url_a": "https://outreachrecruitment.net/jobs/accounts-senior",
+      "title_b": "Audit Senior",
+      "url_b": "https://outreachrecruitment.net/jobs/audit-senior",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Auditor",
+      "url_a": "https://outreachrecruitment.net/jobs/auditor",
+      "title_b": "Audit Senior",
+      "url_b": "https://outreachrecruitment.net/jobs/audit-senior",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Audit Senior",
+      "url_a": "https://outreachrecruitment.net/jobs/audit-senior",
+      "title_b": "Accounts Senior",
+      "url_b": "https://outreachrecruitment.net/jobs/accounts-senior-2",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Restaurant Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/restaurant-manager",
+      "title_b": "Account Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/account-manager",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Accounts Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/accounts-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Accounts Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/accounts-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-2",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Accounts Executive",
+      "url_a": "https://outreachrecruitment.net/jobs/accounts-executive",
+      "title_b": "Sales Executive",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-executive-3",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Structural Engineer",
+      "url_a": "https://outreachrecruitment.net/jobs/structural-engineer",
+      "title_b": "Sales Engineer",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-engineer",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Sales Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-manager",
+      "title_b": "Real Estate Managers",
+      "url_b": "https://outreachrecruitment.net/jobs/real-estate-managers",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Sales Engineer",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-engineer",
+      "title_b": "Structural Engineer",
+      "url_b": "https://outreachrecruitment.net/jobs/structural-engineer-2",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Audit Senior Associate",
+      "url_a": "https://outreachrecruitment.net/jobs/audit-senior-associate",
+      "title_b": "Senior Audit Associate",
+      "url_b": "https://outreachrecruitment.net/jobs/senior-audit-associate",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Driver - Malta C License",
+      "url_a": "https://outreachrecruitment.net/jobs/driver-malta-c-license",
+      "title_b": "Delivery Drivers - C1 Malta License",
+      "url_b": "https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license",
+      "similarity": 0.73
+    },
+    {
+      "title_a": "Outlet Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/outlet-manager",
+      "title_b": "Tax Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/tax-manager",
+      "similarity": 0.72
+    },
+    {
+      "title_a": "Marketing Assistant",
+      "url_a": "https://outreachrecruitment.net/jobs/marketing-assistant",
+      "title_b": "Kitchen Assistant",
+      "url_b": "https://outreachrecruitment.net/jobs/kitchen-assistant",
+      "similarity": 0.72
+    },
+    {
+      "title_a": "Bartender & Front Office Agent",
+      "url_a": "https://outreachrecruitment.net/jobs/bartender-front-office-agent",
+      "title_b": "Front Office Agent",
+      "url_b": "https://outreachrecruitment.net/jobs/front-office-agent",
+      "similarity": 0.72
+    },
+    {
+      "title_a": "Sales Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/sales-manager",
+      "title_b": "Sales Assistant Manager",
+      "url_b": "https://outreachrecruitment.net/jobs/sales-assistant-manager",
+      "similarity": 0.72
+    }
+  ],
+  "schema_issues": [],
+  "auto_closed_this_run": []
+}
