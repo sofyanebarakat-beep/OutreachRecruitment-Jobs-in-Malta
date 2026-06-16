@@ -926,6 +926,8 @@ def google_api_post(url: str, token: str, payload: dict, timeout: int = 30) -> t
         except Exception:
             data = {"error": {"message": text[:500]}}
         return exc.code, data
+    except (URLError, ConnectionResetError, OSError, TimeoutError) as exc:
+        return 0, {"error": {"message": f"Network error: {exc}"}}
 
 
 def inspect_gsc_url(token: str, url: str) -> tuple[int, dict]:
