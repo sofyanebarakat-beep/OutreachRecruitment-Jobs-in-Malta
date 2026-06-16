@@ -27,3 +27,4 @@ Disallow: /opening-jobs-in-malta
 
 Sitemap: https://outreachrecruitment.net/sitemap_index.xml
 Sitemap: https://outreachrecruitment.net/sitemaps/sitemap-jobs.xml
+Sitemap: https://outreachrecruitment.net/sitemaps/sitemap-video.xml

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://outreachrecruitment.net/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://outreachrecruitment.net/assets/og-preview.jpg</video:thumbnail_loc>
+      <video:title>Jobs in Malta — Outreach Recruitment Agency</video:title>
+      <video:description>Outreach Recruitment Agency connects EU candidates with jobs in Malta and across Europe. Find your next role or hire top talent with Malta's leading recruitment specialists.</video:description>
+      <video:content_loc>https://outreachrecruitment.net/assets/videos/Hero1.webm</video:content_loc>
+      <video:player_loc>https://outreachrecruitment.net/</video:player_loc>
+      <video:publication_date>2025-01-01</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>
