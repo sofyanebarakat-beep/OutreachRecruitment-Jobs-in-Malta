@@ -12,6 +12,10 @@ DirectoryIndex index.html index.php
     RewriteRule ^study-in-malta-from-morocco/?$ study-in-malta-from-morocco/index.html [L]
     RewriteRule ^study-in-malta-from-india/?$ study-in-malta-from-india/index.html [L]
 
+    # Serve sitemap XML files directly with correct MIME type
+    RewriteRule ^sitemaps/.*\.xml$ - [L,T=text/xml]
+    RewriteRule ^sitemap.*\.xml$ - [L,T=text/xml]
+
     # Serve real files and directories directly
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
