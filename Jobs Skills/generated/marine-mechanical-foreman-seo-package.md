@@ -1,6 +1,6 @@
 # Marine Mechanical Foreman — SEO Package
-**Reference:** OR-MMEC-2026-001
-**Date Generated:** 2026-06-12
+**Reference:** OR-ENG-2026-537
+**Date Generated:** 2026-06-17
 
 ---
 
@@ -84,8 +84,8 @@ foreman, mechanical supervisor, team leader, senior mechanical, experienced trad
 ---
 
 **Google Jobs Optimization Notes:**
-- `datePosted: 2026-06-12` — fresh and indexable
-- No `validThrough` set — Google Jobs will still index but may deprioritize over time; recommend adding one within 30 days
+- `datePosted: 2026-06-17` — fresh and indexable
+- `validThrough: 2026-12-31` — expiry date set; eligible for Google Jobs freshness signal
 - `FULL_TIME` employment type declared in schema
 - Direct apply via Outreach Recruitment careers platform
 - Location consistent across visible content and schema: Paola, Malta
@@ -106,7 +106,7 @@ Main competitors for "marine mechanical foreman Malta":
 
 Why candidates click those pages: familiar platforms, quick apply features, aggregator trust, some show salary data.
 
-How this Outreach page competes: direct apply integration, rich FAQ content targeting candidate questions, accurate JobPosting schema with no unsupported fields, fresh datePosted, specific Paola location, internal links to related maritime roles.
+How this Outreach page competes: direct apply integration, rich FAQ content targeting candidate questions, accurate JobPosting schema with no unsupported fields, fresh datePosted, expiry date set, specific Paola location, internal links to related maritime roles.
 
 ---
 
@@ -130,16 +130,18 @@ How this Outreach page competes: direct apply integration, rich FAQ content targ
 | Secondary Job Categories | Engineering jobs, Technical jobs, Skilled trades jobs |
 | Employment Type | Full-Time |
 | Industry | Marine Engineering |
-| Sector | Ship Repair & Maintenance |
+| Sector | Maintenance & Engineering |
 | Location | Paola, South Eastern Malta |
 | Country | Malta |
 | Remote Status | On-Site |
 | Salary | Not specified |
 | Salary Currency | EUR |
 | Salary Visibility | Not displayed |
-| Date Posted | 2026-06-12 |
-| Valid Through | Not specified — recommend adding |
-| Job ID / Reference | OR-MMEC-2026-001 |
+| Job Type | Direct Job |
+| Target Location | Residents in Malta & Europeans |
+| Date Posted | 2026-06-17 |
+| Valid Through | 2026-12-31 |
+| Job ID / Reference | OR-ENG-2026-537 |
 | Hiring Organization | Outreach Recruitment Ltd |
 | Application URL | https://outreach-recruitment-agency.careers-page.com/jobs/3abd2a84-9fa8-4b46-a244-1e8fca21bf9d/apply |
 | Application Method | Apply Online |
@@ -161,16 +163,17 @@ How this Outreach page competes: direct apply integration, rich FAQ content targ
 - `/service` — Outreach Recruitment Services
 
 **Freshness / Update Notes:**
-- Date posted: 2026-06-12 — current and fresh
-- No expiry date — recommend reviewing and refreshing by 2026-07-12
+- Date posted: 2026-06-17 — current and fresh
+- Valid through: 2026-12-31 — expiry set; active until end of year
 - Verify application URL remains active monthly
+- Recommended content refresh: 2026-09-17
 
 **Conversion Notes:**
 - "Apply Now" CTA with direct iframe embed on page
 - Job title, location, and employment type visible in page header
 - Specific responsibilities listed to attract high-intent candidates
 - Salary not disclosed — acceptable per client policy; no salary keywords used in copy
-- Reference OR-MMEC-2026-001 included in FAQ for application enquiries
+- Reference OR-ENG-2026-537 included in FAQ for application enquiries
 
 ---
 
@@ -194,6 +197,8 @@ This Marine Mechanical Foreman vacancy in Paola, Malta is a full-time, on-site r
 | Industry | Marine Engineering / Ship Repair |
 | Location | Paola, South Eastern Malta |
 | Salary | Not specified |
+| Job Type | Direct Job |
+| Target Location | Residents in Malta & Europeans |
 | Employment Type | Full-Time |
 | Work Mode | On-Site |
 | Experience | Proven marine mechanical & supervisory experience |
@@ -203,7 +208,7 @@ This Marine Mechanical Foreman vacancy in Paola, Malta is a full-time, on-site r
 | Work Permit Support | Not specified |
 | Employer / Agency | Outreach Recruitment Ltd |
 | Application Method | Apply Online |
-| Reference | OR-MMEC-2026-001 |
+| Reference | OR-ENG-2026-537 |
 
 ---
 
@@ -215,7 +220,7 @@ This Marine Mechanical Foreman vacancy in Paola, Malta is a full-time, on-site r
 - Full-Time, On-Site, Senior/Experienced (employment type and seniority)
 - Engines, pumps, compressors, valves, auxiliary systems, technical drawings, classification societies (skills/systems)
 - Outreach Recruitment Ltd (employer/agency)
-- Apply Online, OR-MMEC-2026-001 (application)
+- Apply Online, OR-ENG-2026-537 (application)
 
 ---
 
@@ -305,7 +310,7 @@ Outreach Recruitment Ltd is a Malta-based recruitment agency connecting employer
 
 ### How To Apply
 
-Apply online for this Marine Mechanical Foreman vacancy in Paola, Malta via the Outreach Recruitment careers platform. Use the Apply Now button on this page. For enquiries, contact hr@outreachrecruitment.net and quote reference **OR-MMEC-2026-001**.
+Apply online for this Marine Mechanical Foreman vacancy in Paola, Malta via the Outreach Recruitment careers platform. Use the Apply Now button on this page. For enquiries, contact hr@outreachrecruitment.net and quote reference **OR-ENG-2026-537**.
 
 ### Closing Statement
 
@@ -325,7 +330,7 @@ Yes. This is a full-time, on-site role based in Paola, South Eastern Malta, with
 The role is based in Paola, South Eastern Malta, within the facilities of a well-established marine engineering and ship repair organisation.
 
 **Q: How do I apply for this Marine Mechanical Foreman vacancy?**
-Apply online through the Outreach Recruitment careers platform using the Apply Now button on this page. For enquiries, contact hr@outreachrecruitment.net and quote reference OR-MMEC-2026-001.
+Apply online through the Outreach Recruitment careers platform using the Apply Now button on this page. For enquiries, contact hr@outreachrecruitment.net and quote reference OR-ENG-2026-537.
 
 **Q: What equipment and systems does this role involve?**
 The role covers maintenance and repair of engines, pumps, compressors, valves, auxiliary systems, and other shipboard machinery. Experience with dry-docking and refit projects, and coordination with classification societies and surveyors, is part of the scope.
@@ -343,14 +348,15 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
   "title": "Marine Mechanical Foreman",
   "description": "Outreach Recruitment Ltd is seeking an experienced Marine Mechanical Foreman for a full-time, on-site role in Paola, South Eastern Malta. The successful candidate will coordinate and supervise mechanical repair, maintenance, and installation activities onboard vessels and within shipyard facilities during repair, maintenance, and refit projects. Responsibilities include leading teams of mechanics, fitters, and specialised technicians; supervising maintenance and overhaul of engines, pumps, compressors, valves, and auxiliary systems; supporting dry-docking and refit activities; and coordinating with clients, surveyors, and classification societies. Applicants require proven experience in marine mechanical maintenance or ship repair, previous supervisory experience, strong knowledge of marine machinery, and the ability to read technical drawings.",
   "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta",
-  "datePosted": "2026-06-12",
+  "datePosted": "2026-06-17",
+  "validThrough": "2026-12-31",
   "employmentType": "FULL_TIME",
   "industry": "Marine Engineering",
   "occupationalCategory": "49-9041.00",
   "identifier": {
     "@type": "PropertyValue",
     "name": "Outreach Recruitment Ltd",
-    "value": "OR-MMEC-2026-001"
+    "value": "OR-ENG-2026-537"
   },
   "hiringOrganization": {
     "@type": "Organization",
@@ -375,7 +381,6 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
 
 **Schema fields to omit:**
 - `baseSalary` — salary not disclosed on page
-- `validThrough` — expiry date not provided by client
 - `educationRequirements` — listed as preferred, not required; not clearly specified
 - `applicantLocationRequirements` — not a remote or location-restricted role
 - `jobLocationType` — on-site role, field not applicable
@@ -387,7 +392,7 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
 - **Work permit support:** Not mentioned — omit entirely.
 - **Education:** Listed as preferred qualification only — `educationRequirements` omitted to avoid implying a mandatory credential.
 - **Experience months:** Do not add a specific `monthsOfExperience` number — not stated in job description.
-- **Expiry date:** Not provided — `validThrough` omitted. Review and add within 30 days.
+- **Expiry date:** `validThrough: 2026-12-31` set as provided by client.
 - **Benefits:** Not specified — omit `jobBenefits`.
 
 ---
@@ -425,13 +430,13 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
 - Richer content with specific duties, systems, and project types (dry-docking, classification societies)
 - FAQ section aligned with real candidate search queries
 - Accurate `JobPosting` schema with no unsupported or fabricated fields
-- Fresh `datePosted` aligned with current vacancy date
+- Fresh `datePosted` aligned with current vacancy date (2026-06-17)
+- `validThrough: 2026-12-31` set — improved Google Jobs freshness signal
 - Direct apply via careers platform without extra redirect
 - Internal links to related maritime roles strengthening topical authority
 
 **Content Gaps to Fill:**
 - Add salary data if/when disclosed
-- Add `validThrough` expiry date to improve Google Jobs freshness signal
 - Consider adding a "Typical career path" FAQ to target informational intent
 
 **FAQ and Structured Data Opportunities:**
@@ -464,7 +469,7 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
 | Classification societies, surveyors | Stakeholders |
 | Outreach Recruitment Ltd | Employer/agency |
 | Apply Online | Application method |
-| OR-MMEC-2026-001 | Reference number |
+| OR-ENG-2026-537 | Reference number |
 
 **Do not include:** salary figures, visa sponsorship, specific certifications not mentioned in job description, remote work, relocation assistance.
 
@@ -474,13 +479,13 @@ The role covers maintenance and repair of engines, pumps, compressors, valves, a
 
 | Field | Value |
 |-------|-------|
-| Date posted | 2026-06-12 |
-| Valid through | Not specified — recommend adding by 2026-07-12 |
+| Date posted | 2026-06-17 |
+| Valid through | 2026-12-31 |
 | Job appears active | Yes — fresh date, active apply URL verified |
-| Recommended refresh | Review by 2026-07-10 |
+| Recommended refresh | Review by 2026-09-17 |
 | CTA | "Apply Now" button linked to Outreach careers platform |
 | Application URL | https://outreach-recruitment-agency.careers-page.com/jobs/3abd2a84-9fa8-4b46-a244-1e8fca21bf9d/apply |
-| Reference | OR-MMEC-2026-001 |
+| Reference | OR-ENG-2026-537 |
 
 **Candidate friction points to avoid:**
 - Do not require additional registration before showing the apply form
@@ -535,13 +540,18 @@ Marine mechanical supervisory role in a Maltese shipyard environment — specifi
 | Card employment type | Full-Time |
 | Card category | Maritime & Engineering |
 | Card `data-title` | marine mechanical foreman shipyard ship repair marine engineering paola south eastern malta |
-| Card `data-category` | Maritime & Engineering |
+| Card `data-category` | Maritime &amp; Engineering |
 | Card `data-location` | paola, malta |
-| Card `data-date` | 2026-06-12 |
+| Card `data-date` | 2026-06-17 |
 | Card first in grid | Yes |
-| Old open-position count | 216 |
-| New open-position count | 217 |
-| Count labels to update | `+216 Open Positions` → `+217`, `Showing 216 jobs` → `217`, `<span>216</span>` × 3 → `217`, `216 roles available` → `217` |
+| Old open-position count (or-open-pos-num) | +220 Open Positions |
+| New open-position count (or-open-pos-num) | +221 Open Positions |
+| Old showing count | Showing 215 jobs |
+| New showing count | Showing 216 jobs |
+| Old tab span count | 215 |
+| New tab span count | 216 |
+| Old board count | 215 roles available |
+| New board count | 216 roles available |
 
 ---
 
@@ -560,8 +570,11 @@ Marine mechanical supervisory role in a Maltese shipyard environment — specifi
 - ✅ Category mapping relevant: Maritime & Engineering
 - ✅ SERP competitor plan realistic for Malta maritime searches
 - ✅ Entity list contains only supported and inferable entities
-- ✅ No invented expiry date or salary
+- ✅ validThrough: 2026-12-31 — expiry date set as provided
+- ✅ Reference updated to OR-ENG-2026-537
 - ✅ Apply instructions clear: button + email + reference number
 - ✅ Duplicate content risks addressed through marine/shipyard-specific detail
 - ✅ New job card inserted first in `opening-jobs-grid`
-- ✅ All open-position counters updated from 216 → 217 consistently
+- ✅ All open-position counters updated consistently (220→221, 215→216)
+- ✅ Job Type: Direct Job
+- ✅ Target Location: Residents in Malta & Europeans
