@@ -1,27 +1,32 @@
 title,url,eligible,issue
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,False,Malformed JSON in JSON-LD block
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman-malta,False,Malformed JSON in JSON-LD block
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman-malta,False,Malformed JSON in JSON-LD block
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner-malta,False,Malformed JSON in JSON-LD block
 Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,True,
 Plumber,https://outreachrecruitment.net/jobs/plumber,True,
 Welder,https://outreachrecruitment.net/jobs/welder,True,
 Server (Spanish Speaker),https://outreachrecruitment.net/jobs/server-spanish-speaker,True,
 Plant Technician,https://outreachrecruitment.net/jobs/plant-technician,True,
 "Application Developer (.NET, SharePoint) - Hybrid",https://outreachrecruitment.net/jobs/application-developer-net-sharepoint-hybrid,True,
-Sales Office Coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator,False,Malformed JSON in JSON-LD block
-Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician,False,Malformed JSON in JSON-LD block
-Assistance Co-ordinator,https://outreachrecruitment.net/jobs/assistance-co-ordinator,False,Malformed JSON in JSON-LD block
-Customer Contact Agent,https://outreachrecruitment.net/jobs/customer-contact-agent,False,Malformed JSON in JSON-LD block
-Auditor Doctor,https://outreachrecruitment.net/jobs/auditor-doctor,False,Malformed JSON in JSON-LD block
-Nurse Advisor,https://outreachrecruitment.net/jobs/nurse-advisor,False,Malformed JSON in JSON-LD block
+Application Developer (Drupal) - Hybrid,https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid,True,
+Sales Office Coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator,True,
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician,True,
+Assistance Co-ordinator,https://outreachrecruitment.net/jobs/assistance-co-ordinator,True,
+Customer Contact Agent,https://outreachrecruitment.net/jobs/customer-contact-agent,True,
+Auditor Doctor,https://outreachrecruitment.net/jobs/auditor-doctor,True,
+Nurse Advisor,https://outreachrecruitment.net/jobs/nurse-advisor,True,
 Summer Waiter - Mellieha,https://outreachrecruitment.net/jobs/summer-waiter-mellieha,True,
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,True,
 Restaurant Manager,https://outreachrecruitment.net/jobs/restaurant-manager,True,
-Project Manager,https://outreachrecruitment.net/jobs/project-manager,False,Malformed JSON in JSON-LD block
+Project Manager,https://outreachrecruitment.net/jobs/project-manager,True,
 Purchasing Officer,https://outreachrecruitment.net/jobs/purchasing-officer,True,
-Estimator,https://outreachrecruitment.net/jobs/estimator,False,Malformed JSON in JSON-LD block
-HSSE Coordinator,https://outreachrecruitment.net/jobs/hsse-coordinator,False,Malformed JSON in JSON-LD block
+Estimator,https://outreachrecruitment.net/jobs/estimator,True,
+HSSE Coordinator,https://outreachrecruitment.net/jobs/hsse-coordinator,True,
 Restaurant Supervisor,https://outreachrecruitment.net/jobs/restaurant-supervisor,True,
 Kitchen Porter,https://outreachrecruitment.net/jobs/kitchen-porter,True,
 Chef de Partie,https://outreachrecruitment.net/jobs/chef-de-partie,True,
-Contact Centre Team Leader,https://outreachrecruitment.net/jobs/contact-centre-team-leader,False,Malformed JSON in JSON-LD block
+Contact Centre Team Leader,https://outreachrecruitment.net/jobs/contact-centre-team-leader,True,
 Cleaner,https://outreachrecruitment.net/jobs/cleaner,True,
 Assistant Pizza Chef,https://outreachrecruitment.net/jobs/assistant-pizza-chef,True,
 Production Chef,https://outreachrecruitment.net/jobs/production-chef,True,
@@ -34,20 +39,20 @@ Food & Beverage Staff,https://outreachrecruitment.net/jobs/food-beverage-staff,T
 Compliance Manager,https://outreachrecruitment.net/jobs/compliance-manager,True,
 Hairdresser,https://outreachrecruitment.net/jobs/hairdresser,True,
 Pool Attendants,https://outreachrecruitment.net/jobs/pool-attendants,True,
-Head Chef,https://outreachrecruitment.net/jobs/head-chef,False,Malformed JSON in JSON-LD block
+Head Chef,https://outreachrecruitment.net/jobs/head-chef,True,
 Hospitality Staff – Malta,https://outreachrecruitment.net/jobs/hospitality-staff-malta,True,
 Driver / Runner / Washer,https://outreachrecruitment.net/jobs/driver-runner-washer,True,
 Level 2 Platform Ops Engineer,https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer,True,
-Sales Shift Manager,https://outreachrecruitment.net/jobs/sales-shift-manager,False,Malformed JSON in JSON-LD block
+Sales Shift Manager,https://outreachrecruitment.net/jobs/sales-shift-manager,True,
 Head of Spa,https://outreachrecruitment.net/jobs/head-of-spa,True,
 Truck Driver - Residing in Malta,https://outreachrecruitment.net/jobs/truck-driver-residing-in-malta,True,
 Senior Plant Technician – Hotel Operations & Maintenance,https://outreachrecruitment.net/jobs/senior-plant-technician-hotel-operations-maintenance,True,
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,True,
 Driver – Category C License,https://outreachrecruitment.net/jobs/driver-category-c-license,True,
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,True,
-Cashier,https://outreachrecruitment.net/jobs/cashier,False,Malformed JSON in JSON-LD block
+Cashier,https://outreachrecruitment.net/jobs/cashier,True,
 F&B Shift Leader,https://outreachrecruitment.net/jobs/fb-shift-leader,True,
-Technical Systems Analyst,https://outreachrecruitment.net/jobs/technical-systems-analyst,False,Malformed JSON in JSON-LD block
+Technical Systems Analyst,https://outreachrecruitment.net/jobs/technical-systems-analyst,True,
 Senior IT Infrastructure Engineer,https://outreachrecruitment.net/jobs/senior-it-infrastructure-engineer,True,
 Marketing Administrator,https://outreachrecruitment.net/jobs/marketing-administrator,True,
 Accounts Executive,https://outreachrecruitment.net/jobs/accounts-executive,True,
@@ -58,38 +63,38 @@ Receptionist - Maltese Speaking,https://outreachrecruitment.net/jobs/receptionis
 NetSuite Specialist,https://outreachrecruitment.net/jobs/netsuite-specialist,True,
 HR Executive,https://outreachrecruitment.net/jobs/hr-executive,True,
 Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,True,
-Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,False,Malformed JSON in JSON-LD block
+Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,True,
 Customer Experience Supervisor,https://outreachrecruitment.net/jobs/customer-experience-supervisor,True,
-Senior Quantity Estimator (M&E),https://outreachrecruitment.net/jobs/senior-quantity-estimator-me,False,Malformed JSON in JSON-LD block
+Senior Quantity Estimator (M&E),https://outreachrecruitment.net/jobs/senior-quantity-estimator-me,True,
 Sales Representative in Renewables,https://outreachrecruitment.net/jobs/sales-representative-in-renewables,True,
 HVAC Project Manager,https://outreachrecruitment.net/jobs/hvac-project-manager,True,
 HVAC Sales Representative,https://outreachrecruitment.net/jobs/hvac-sales-representative,True,
 Maintenance Technician - Electrical Licence A or B),https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b,True,
 Sales Executive,https://outreachrecruitment.net/jobs/sales-executive,True,
-Head Chef - Maltese Cuisine,https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine,False,Malformed JSON in JSON-LD block
+Head Chef - Maltese Cuisine,https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine,True,
 Marketing Assistant,https://outreachrecruitment.net/jobs/marketing-assistant,True,
 IT Support Executive,https://outreachrecruitment.net/jobs/it-support-executive,True,
 Commis,https://outreachrecruitment.net/jobs/commis,True,
-Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,False,Malformed JSON in JSON-LD block
+Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,True,
 Electrician Installer,https://outreachrecruitment.net/jobs/electrician-installer,True,
 Plumbers,https://outreachrecruitment.net/jobs/plumbers,True,
 General Maintenance Technician,https://outreachrecruitment.net/jobs/general-maintenance-technician,True,
-Spa Therapist,https://outreachrecruitment.net/jobs/spa-therapist,False,Malformed JSON in JSON-LD block
+Spa Therapist,https://outreachrecruitment.net/jobs/spa-therapist,True,
 Front Office Assistant,https://outreachrecruitment.net/jobs/front-office-assistant,True,
-Kitchen Assistant - Chinese Cuisine,https://outreachrecruitment.net/jobs/kitchen-assistant-chinese-cuisine,False,Malformed JSON in JSON-LD block
-Head Chef - Chinese Cuisine,https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine,False,Malformed JSON in JSON-LD block
+Kitchen Assistant - Chinese Cuisine,https://outreachrecruitment.net/jobs/kitchen-assistant-chinese-cuisine,True,
+Head Chef - Chinese Cuisine,https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine,True,
 Showroom Sales Executive,https://outreachrecruitment.net/jobs/showroom-sales-executive,True,
 Bartender,https://outreachrecruitment.net/jobs/bartender,True,
 Housekeeping supervisor,https://outreachrecruitment.net/jobs/housekeeping-supervisor,True,
 Counter assistant,https://outreachrecruitment.net/jobs/counter-assistant,True,
 Kitchen Assistant,https://outreachrecruitment.net/jobs/kitchen-assistant,True,
 Heavy Machine Operator,https://outreachrecruitment.net/jobs/heavy-machine-operator,True,
-Building Services Maintenance Helper,https://outreachrecruitment.net/jobs/building-services-maintenance-helper,False,Malformed JSON in JSON-LD block
-Client Accountant,https://outreachrecruitment.net/jobs/client-accountant,False,Malformed JSON in JSON-LD block
+Building Services Maintenance Helper,https://outreachrecruitment.net/jobs/building-services-maintenance-helper,True,
+Client Accountant,https://outreachrecruitment.net/jobs/client-accountant,True,
 Housekeeping Attendant,https://outreachrecruitment.net/jobs/housekeeping-attendant,True,
-Handyman,https://outreachrecruitment.net/jobs/handyman,False,Malformed JSON in JSON-LD block
-Middle Officer - (Asset Management),https://outreachrecruitment.net/jobs/middle-officer-asset-management,False,Malformed JSON in JSON-LD block
-Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor,False,Malformed JSON in JSON-LD block
+Handyman,https://outreachrecruitment.net/jobs/handyman,True,
+Middle Officer - (Asset Management),https://outreachrecruitment.net/jobs/middle-officer-asset-management,True,
+Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor,True,
 Bartender & Front Office Agent,https://outreachrecruitment.net/jobs/bartender-front-office-agent,True,
 Senior Sales & Marketing Executive - Airline Industry,https://outreachrecruitment.net/jobs/senior-sales-marketing-executive-airline-industry,False,Malformed JSON in JSON-LD block
 Head Chef - Greek Cuisine,https://outreachrecruitment.net/jobs/head-chef-greek-cuisine,True,
@@ -102,18 +107,18 @@ Accounts Payable,https://outreachrecruitment.net/jobs/accounts-payable,True,
 Payroll Executive,https://outreachrecruitment.net/jobs/payroll-executive,True,
 Quantity Surveyor,https://outreachrecruitment.net/jobs/quantity-surveyor,True,
 Head Housekeeper,https://outreachrecruitment.net/jobs/head-housekeeper,True,
-QA Manager - Construction,https://outreachrecruitment.net/jobs/qa-manager-construction,False,Malformed JSON in JSON-LD block
-Quality Assurance Officer/Engineer,https://outreachrecruitment.net/jobs/quality-assurance-officerengineer,False,Malformed JSON in JSON-LD block
+QA Manager - Construction,https://outreachrecruitment.net/jobs/qa-manager-construction,True,
+Quality Assurance Officer/Engineer,https://outreachrecruitment.net/jobs/quality-assurance-officerengineer,True,
 Tax Manager,https://outreachrecruitment.net/jobs/tax-manager,True,
 Client Accounting Manager,https://outreachrecruitment.net/jobs/client-accounting-manager,True,
 Skilled Worker for Outdoor & Civil Works,https://outreachrecruitment.net/jobs/skilled-worker-for-outdoor-civil-works,True,
 Project Manager - Construction,https://outreachrecruitment.net/jobs/project-manager-construction,True,
 Sushi Chef,https://outreachrecruitment.net/jobs/sushi-chef,True,
 Reservations Agent,https://outreachrecruitment.net/jobs/reservations-agent,True,
-"Airline Sales, Reservations, and Ticketing Officer",https://outreachrecruitment.net/jobs/airline-sales-reservations-and-ticketing-officer,False,Malformed JSON in JSON-LD block
-Account Manager,https://outreachrecruitment.net/jobs/account-manager,False,Malformed JSON in JSON-LD block
-Italian/Swedish Sales Team Leader,https://outreachrecruitment.net/jobs/italianswedish-sales-team-leader,False,Malformed JSON in JSON-LD block
-Italian/Swedish Retention Team Leader,https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader,False,Malformed JSON in JSON-LD block
+"Airline Sales, Reservations, and Ticketing Officer",https://outreachrecruitment.net/jobs/airline-sales-reservations-and-ticketing-officer,True,
+Account Manager,https://outreachrecruitment.net/jobs/account-manager,True,
+Italian/Swedish Sales Team Leader,https://outreachrecruitment.net/jobs/italianswedish-sales-team-leader,True,
+Italian/Swedish Retention Team Leader,https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader,True,
 Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,False,Malformed JSON in JSON-LD block
 Sales Assistant Manager,https://outreachrecruitment.net/jobs/sales-assistant-manager,True,
 Automotive Service Advisor,https://outreachrecruitment.net/jobs/automotive-service-advisor,True,
@@ -139,7 +144,7 @@ General Manager,https://outreachrecruitment.net/jobs/general-manager,True,
 Refrigeration Technician,https://outreachrecruitment.net/jobs/refrigeration-technician,True,
 Kitchen Equipment Technician,https://outreachrecruitment.net/jobs/kitchen-equipment-technician,True,
 Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,True,
-Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,False,Malformed JSON in JSON-LD block
+Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,True,
 Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,True,
 Builders and Shutterers,https://outreachrecruitment.net/jobs/builders-and-shutterers,True,
 Driver - Malta C License,https://outreachrecruitment.net/jobs/driver-malta-c-license,True,
@@ -162,12 +167,12 @@ Motor Vehicle Mechanic/Technician,https://outreachrecruitment.net/jobs/motor-veh
 Automotive Parts Personnel,https://outreachrecruitment.net/jobs/automotive-parts-personnel,True,
 Real Estate Agents,https://outreachrecruitment.net/jobs/real-estate-agents,True,
 Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,True,
-Wood Painting & Finishing Specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist,False,Malformed JSON in JSON-LD block
+Wood Painting & Finishing Specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist,True,
 Delivery Driver - Malta C License,https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license,True,
 Health Claims Associate,https://outreachrecruitment.net/jobs/health-claims-associate,True,
-Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,False,Malformed JSON in JSON-LD block
+Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,True,
 Auditor,https://outreachrecruitment.net/jobs/auditor,True,
-Junior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking,False,Malformed JSON in JSON-LD block
+Junior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking,True,
 CNC Machine Operator,https://outreachrecruitment.net/jobs/cnc-machine-operator,False,Malformed JSON in JSON-LD block
 Room Attendents,https://outreachrecruitment.net/jobs/room-attendents,True,
 Kitchen Helpers in Gozo,https://outreachrecruitment.net/jobs/kitchen-helpers-in-gozo,True,
@@ -188,7 +193,7 @@ Sign Assembler & Installer,https://outreachrecruitment.net/jobs/sign-assembler-i
 Waiters,https://outreachrecruitment.net/jobs/waiters,True,
 Shop Assistant (Safi and Tarxien),https://outreachrecruitment.net/jobs/shop-assistant-safi-and-tarxien,True,
 Workshop Administrator,https://outreachrecruitment.net/jobs/workshop-administrator,False,Malformed JSON in JSON-LD block
-Senior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/senior-sales-assistant-maltese-speaking,False,Malformed JSON in JSON-LD block
+Senior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/senior-sales-assistant-maltese-speaking,True,
 Hotel Porter,https://outreachrecruitment.net/jobs/hotel-porter,True,
 Boat Maintenance,https://outreachrecruitment.net/jobs/boat-maintenance,True,
 Demi Chef de Partie (Breakfast Shift),https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift,True,

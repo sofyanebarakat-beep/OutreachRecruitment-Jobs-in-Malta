@@ -1,16 +1,19 @@
 category,jobs,average_score,weak_jobs
-Management,2,75.5,2
-Sales & Marketing,1,76.0,1
-Sales,18,78.0,12
+Healthcare & Insurance,1,70.0,1
+Maritime & Engineering,2,75.5,2
+IT & Technology,8,79.8,5
+Management,2,80.0,1
 Construction,1,81.0,1
-Administration,12,81.3,8
-IT & Technology,7,82.4,4
-Logistics,9,83.0,5
-Engineering & Maintenance,29,83.5,14
+Sales & Marketing,1,81.0,1
+Maritime & Shipping,1,83.0,1
 Marketing,4,83.5,3
-Finance & Accounting,13,84.0,6
-General,75,84.4,32
-Hospitality,34,86.1,13
-Retail,4,86.2,1
+Sales,18,83.5,8
+Engineering & Maintenance,29,85.3,10
+Logistics,9,85.7,4
+Administration,12,86.3,3
+Finance & Accounting,13,86.8,4
+General,75,87.1,22
+Hospitality,34,87.3,11
 HR & Recruitment,2,88.0,0
-Healthcare,5,88.2,1
+Retail,4,88.5,1
+Healthcare,5,91.8,0
