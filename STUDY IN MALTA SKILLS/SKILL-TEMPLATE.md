@@ -2277,7 +2277,9 @@ Track all generated articles here. Update after each generation.
 
 | # | Title | Slug | Date | Status |
 |---|---|---|---|---|
-| 1 | *(add when first article is generated)* | | | |
+| 1 | Guide to Study in Malta 2026 | guide-to-study-in-malta-2026 | 2026-06-11 | Published |
+| 2 | Malta Student Visa Complete Guide 2026 | malta-student-visa-complete-guide | 2026-06-11 | Published |
+| 3 | Is Malta Good for International Students? Honest 2026 Review | is-malta-good-for-international-students | 2026-06-18 | Draft |
 
 ---
 

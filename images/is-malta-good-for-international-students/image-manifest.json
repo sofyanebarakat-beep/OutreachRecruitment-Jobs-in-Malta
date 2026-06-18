@@ -1,0 +1,93 @@
+[
+  {
+    "slot": "hero",
+    "file": "is-malta-good-for-international-students-hero.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-hero.webp",
+    "size": "1200x630",
+    "alt": "brown building facing \u2014 Outreach Recruitment",
+    "caption": "Brown building facing sea. Photo: Luke Tanis / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Luke Tanis",
+    "photo_url": "https://unsplash.com/photos/brown-building-facing-sea-oJ2eGgSfe6Y",
+    "loading": "eager",
+    "html": "<!-- Photo: Luke Tanis on Unsplash \u2014 https://unsplash.com/photos/brown-building-facing-sea-oJ2eGgSfe6Y -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-hero.webp\"\n       alt=\"brown building facing \u2014 Outreach Recruitment\"\n       width=\"1200\" height=\"630\" fetchpriority=\"high\"\n     srcset=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-hero-800w.webp 800w, /images/is-malta-good-for-international-students/is-malta-good-for-international-students-hero.webp 1200w\" />\n  <figcaption>Brown building facing sea. Photo: Luke Tanis / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-1",
+    "file": "is-malta-good-for-international-students-section-1.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-1.webp",
+    "size": "1200x628",
+    "alt": "people walking near Paccar Hall University of Washington during \u2014 Outreach Recruitment",
+    "caption": "People walking near paccar hall university of washington during daytime. Photo: Wonderlane / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Wonderlane",
+    "photo_url": "https://unsplash.com/photos/people-walking-near-paccar-hall-university-of-washington-during-daytime-6zlgM-GUd6I",
+    "loading": "lazy",
+    "html": "<!-- Photo: Wonderlane on Unsplash \u2014 https://unsplash.com/photos/people-walking-near-paccar-hall-university-of-washington-during-daytime-6zlgM-GUd6I -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-1.webp\"\n       alt=\"people walking near Paccar Hall University of Washington during \u2014 Outreach Recruitment\"\n       width=\"1200\" height=\"628\" loading=\"lazy\"\n     srcset=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-1-800w.webp 800w, /images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-1.webp 1200w\" />\n  <figcaption>People walking near paccar hall university of washington during daytime. Photo: Wonderlane / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-2",
+    "file": "is-malta-good-for-international-students-section-2.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-2.webp",
+    "size": "800x500",
+    "alt": "Student studies at a library with \u2014 Outreach Recruitment",
+    "caption": "Student studies at a library with books. Photo: Zoshua Colah / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Zoshua Colah",
+    "photo_url": "https://unsplash.com/photos/student-studies-at-a-library-with-books-klbApl9mxr0",
+    "loading": "lazy",
+    "html": "<!-- Photo: Zoshua Colah on Unsplash \u2014 https://unsplash.com/photos/student-studies-at-a-library-with-books-klbApl9mxr0 -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-2.webp\"\n       alt=\"Student studies at a library with \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Student studies at a library with books. Photo: Zoshua Colah / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-3",
+    "file": "is-malta-good-for-international-students-section-3.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-3.webp",
+    "size": "800x500",
+    "alt": "Cityscape with domed cathedral and \u2014 Outreach Recruitment",
+    "caption": "Cityscape with domed cathedral and harbor. Photo: Adam Hornyak / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Adam Hornyak",
+    "photo_url": "https://unsplash.com/photos/cityscape-with-domed-cathedral-and-harbor-huKln0DbGAY",
+    "loading": "lazy",
+    "html": "<!-- Photo: Adam Hornyak on Unsplash \u2014 https://unsplash.com/photos/cityscape-with-domed-cathedral-and-harbor-huKln0DbGAY -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-3.webp\"\n       alt=\"Cityscape with domed cathedral and \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Cityscape with domed cathedral and harbor. Photo: Adam Hornyak / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-4",
+    "file": "is-malta-good-for-international-students-section-4.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-4.webp",
+    "size": "800x500",
+    "alt": "Brick apartment building with outdoor stairs and \u2014 Outreach Recruitment",
+    "caption": "Brick apartment building with outdoor stairs and windows. Photo: Sang Kwak / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Sang Kwak",
+    "photo_url": "https://unsplash.com/photos/brick-apartment-building-with-outdoor-stairs-and-windows-1jISrbOP_YQ",
+    "loading": "lazy",
+    "html": "<!-- Photo: Sang Kwak on Unsplash \u2014 https://unsplash.com/photos/brick-apartment-building-with-outdoor-stairs-and-windows-1jISrbOP_YQ -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-4.webp\"\n       alt=\"Brick apartment building with outdoor stairs and \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Brick apartment building with outdoor stairs and windows. Photo: Sang Kwak / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-5",
+    "file": "is-malta-good-for-international-students-section-5.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-5.webp",
+    "size": "800x500",
+    "alt": "three people sitting in front of table laughing \u2014 Outreach Recruitment",
+    "caption": "Three people sitting in front of table laughing together. Photo: Brooke Cagle / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Brooke Cagle",
+    "photo_url": "https://unsplash.com/photos/three-people-sitting-in-front-of-table-laughing-together-g1Kr4Ozfoac",
+    "loading": "lazy",
+    "html": "<!-- Photo: Brooke Cagle on Unsplash \u2014 https://unsplash.com/photos/three-people-sitting-in-front-of-table-laughing-together-g1Kr4Ozfoac -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-5.webp\"\n       alt=\"three people sitting in front of table laughing \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>Three people sitting in front of table laughing together. Photo: Brooke Cagle / Unsplash.</figcaption>\n</figure>"
+  },
+  {
+    "slot": "section-6",
+    "file": "is-malta-good-for-international-students-section-6.webp",
+    "web_path": "/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-6.webp",
+    "size": "800x500",
+    "alt": "white red and green \u2014 Outreach Recruitment",
+    "caption": "White red and green map. Photo: Christian Lue / Unsplash.",
+    "source": "Unsplash",
+    "photographer": "Christian Lue",
+    "photo_url": "https://unsplash.com/photos/white-red-and-green-map-7dEyTJ7-8os",
+    "loading": "lazy",
+    "html": "<!-- Photo: Christian Lue on Unsplash \u2014 https://unsplash.com/photos/white-red-and-green-map-7dEyTJ7-8os -->\n<figure>\n  <img src=\"/images/is-malta-good-for-international-students/is-malta-good-for-international-students-section-6.webp\"\n       alt=\"white red and green \u2014 Outreach Recruitment\"\n       width=\"800\" height=\"500\" loading=\"lazy\" />\n  <figcaption>White red and green map. Photo: Christian Lue / Unsplash.</figcaption>\n</figure>"
+  }
+]
