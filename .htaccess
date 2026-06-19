@@ -8,6 +8,9 @@ DirectoryIndex index.html index.php
     RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?]
     RewriteRule ^ /%1 [R=301,L]
 
+    # Serve sector pages clean URLs directly
+    RewriteRule ^marine-jobs-in-malta/?$ marine-jobs-in-malta.html [L]
+
     # Serve new Study in Malta article clean URL directly
     RewriteRule ^study-in-malta-from-morocco/?$ study-in-malta-from-morocco/index.html [L]
     RewriteRule ^study-in-malta-from-india/?$ study-in-malta-from-india/index.html [L]
