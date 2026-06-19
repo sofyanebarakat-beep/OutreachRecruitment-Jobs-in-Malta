@@ -260,7 +260,7 @@
   var nextPage = document.getElementById('opening-page-next');
   var pageSize = 20;
   var currentPage = 1;
-  var activeTab = 'latest';
+  var activeTab = 'all';
   var results = document.getElementById('opening-jobs-results');
   var hasInteracted = false;
   var showSuggestions = null;
@@ -725,11 +725,21 @@
   initStickyFilter();
   updateJumpBtn = initJumpButton();
   applyFilters();
-  // Update open positions tag from actual tab count
+  // Sync counts from the actual job cards
   (function() {
+    var allCount = cards.length;
+    var featuredCount = cards.filter(function (card) { return card.getAttribute('data-featured') === 'true'; }).length;
+    var latestCount = cards.filter(function (card) { return card.getAttribute('data-latest') === 'true'; }).length;
     var tabAll = document.querySelector('[data-opening-tab="all"] span');
+    var tabFeatured = document.querySelector('[data-opening-tab="featured"] span');
+    var tabLatest = document.querySelector('[data-opening-tab="latest"] span');
     var numEl = document.getElementById('or-open-pos-num');
-    if (tabAll && numEl) numEl.textContent = '+' + tabAll.textContent.trim() + ' Open Positions';
+    var boardCount = document.querySelector('.opening-board-count');
+    if (tabAll) tabAll.textContent = allCount;
+    if (tabFeatured) tabFeatured.textContent = featuredCount;
+    if (tabLatest) tabLatest.textContent = latestCount;
+    if (numEl) numEl.textContent = '+' + allCount + ' Open Positions';
+    if (boardCount) boardCount.textContent = allCount + ' roles available';
   }());
 }());
 </script><footer class="footer"><div class="w-layout-blockcontainer container w-container"><div class="footer-content"><div class="footer-promo" data-gsap-scroll="fade"><div class="promo-media"><div class="media-fill w-background-video w-background-video-atom" data-autoplay="true" data-loop="true" data-poster-url="https://cdn.prod.website-files.com/6996b31b0e199fa8510adf4f%2F69aa7c1d4af42495de38dae0_Smiling%20Professional%20Woman_poster.0000000.jpg" data-video-urls="https://outreachrecruitment.net/assets/videos/Hero1.webm,https://outreachrecruitment.net/assets/videos/Hero1.webm" data-wf-ignore="true"><video autoplay="" data-object-fit="cover" data-wf-ignore="true" id="4bf6e483-2826-42d8-9159-e36eb66eba48-video" loop="" muted="" playsinline="" style='background-image:url("https://cdn.prod.website-files.com/6996b31b0e199fa8510adf4f%2F69aa7c1d4af42495de38dae0_Smiling%20Professional%20Woman_poster.0000000.jpg")'><source data-wf-ignore="true" src="https://outreachrecruitment.net/assets/videos/Hero1.webm"/><source data-wf-ignore="true" src="https://outreachrecruitment.net/assets/videos/Hero1.webm"/></video><noscript><style>
