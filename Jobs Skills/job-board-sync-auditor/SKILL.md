@@ -36,7 +36,6 @@ A skill cannot run itself every day. To automate daily checks, connect the scrip
 
 - GitHub Actions scheduled workflow.
 - Server cron job.
-- Netlify Scheduled Function.
 - External monitor such as Zapier, Make, or a small VPS cron.
 
 The daily task should run:
