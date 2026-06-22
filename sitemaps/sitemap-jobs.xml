@@ -9,6 +9,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/tank-cleaner</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://outreachrecruitment.net/jobs/shipyard-sprayer-painter</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -40,7 +52,31 @@
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/qhse-manager-malta</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/shipyard-sprayer-painter</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/marine-carpenter</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/electronic-technician</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/commercial-divers</loc>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -178,7 +214,7 @@
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/skilled-carpenters</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -970,7 +1006,7 @@
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/customer-contact-agent</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1297,6 +1333,32 @@
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Closed job pages (no longer active, kept for SEO) -->
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/application-developer-drupal</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/contact-centre-team-leader</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/outlet-manager</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/handyman</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
