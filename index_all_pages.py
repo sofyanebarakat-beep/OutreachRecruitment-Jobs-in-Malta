@@ -14,6 +14,7 @@ USAGE:
   python3 index_all_pages.py                  # submit all URLs from all sitemaps
   python3 index_all_pages.py --dry-run        # print URLs without submitting
   python3 index_all_pages.py --sitemap sitemaps/sitemap-jobs.xml   # one sitemap only
+  python3 index_all_pages.py --resume         # retry only previously failed/skipped URLs
 """
 
 import argparse
@@ -99,18 +100,25 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print URLs without submitting")
     parser.add_argument("--sitemap", type=str, default=SITEMAP_INDEX, help="Sitemap file to process")
     parser.add_argument("--service-account", type=str, default=SERVICE_ACCOUNT_FILE)
+    parser.add_argument("--resume", action="store_true", help="Only submit URLs that failed in last run")
     args = parser.parse_args()
 
+    FAILED_URLS_FILE = "reports/indexing-failed-urls.txt"
+
     # Load URLs
-    print(f"Reading sitemap: {args.sitemap}")
-    urls = load_urls_from_sitemap(args.sitemap)
-    # Deduplicate preserving order
-    seen = set()
-    unique_urls = []
-    for u in urls:
-        if u not in seen:
-            seen.add(u)
-            unique_urls.append(u)
+    if args.resume and os.path.exists(FAILED_URLS_FILE):
+        with open(FAILED_URLS_FILE) as f:
+            unique_urls = [line.strip() for line in f if line.strip()]
+        print(f"Resuming with {len(unique_urls)} previously failed URLs\n")
+    else:
+        print(f"Reading sitemap: {args.sitemap}")
+        urls = load_urls_from_sitemap(args.sitemap)
+        seen = set()
+        unique_urls = []
+        for u in urls:
+            if u not in seen:
+                seen.add(u)
+                unique_urls.append(u)
     print(f"Found {len(unique_urls)} unique URLs\n")
 
     if args.dry_run:
@@ -172,8 +180,8 @@ def main():
     print(f"  ✗ Errors:     {len(results['error'])}")
 
     # Save report
-    report_path = "reports/indexing-report.json"
     os.makedirs("reports", exist_ok=True)
+    report_path = "reports/indexing-report.json"
     with open(report_path, "w") as f:
         json.dump({
             "total": len(unique_urls),
@@ -181,6 +189,19 @@ def main():
             "errors": [(u, str(r)) for u, r in results["error"]],
         }, f, indent=2)
     print(f"\nReport saved to: {report_path}")
+
+    # Save failed URLs for resume tomorrow
+    failed_urls = [u for u, _ in results["error"]]
+    if failed_urls:
+        with open(FAILED_URLS_FILE, "w") as f:
+            f.write("\n".join(failed_urls))
+        print(f"Failed URLs saved to: {FAILED_URLS_FILE}")
+        print(f"\nRun tomorrow to submit the remaining {len(failed_urls)} URLs:")
+        print(f"  python3 index_all_pages.py --resume")
+    else:
+        if os.path.exists(FAILED_URLS_FILE):
+            os.remove(FAILED_URLS_FILE)
+        print("All URLs submitted successfully!")
 
 
 if __name__ == "__main__":
