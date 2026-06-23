@@ -4,7 +4,7 @@
   <!-- Job listing index -->
   <url>
     <loc>https://outreachrecruitment.net/jobs</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -1263,12 +1263,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/application-developer-net-sharepoint-hybrid</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/aluminum-install-and-fabrication-foreman</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -1305,36 +1299,16 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/shop-assistant</loc>
-    <lastmod>2026-06-18</lastmod>
+    <loc>https://outreachrecruitment.net/jobs/client-accountant-2</loc>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Closed job pages (no longer active, kept for SEO) -->
   <url>
-    <loc>https://outreachrecruitment.net/jobs/application-developer-drupal</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/contact-centre-team-leader</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/outlet-manager</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/handyman</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://outreachrecruitment.net/jobs/front-office-supervisor-2</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
