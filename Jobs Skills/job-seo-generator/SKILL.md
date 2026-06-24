@@ -51,14 +51,35 @@ For every job package, generate:
 - Industry keyword variations
 - Candidate search intent
 - Suggested SEO slug
-- SEO title under 60 characters
-- Meta description under 155 characters
+- SEO title under 60 characters following the format: Job Title Job in City, Malta | Outreach Recruitment
+- Meta description 120–155 characters including job title, city, and "Apply now"
 - 4-6 FAQ questions and answers
-- Internal linking suggestions
+- Internal linking suggestions including category hub pages and location pages
 - Short AI-search answer summary
 - Google Jobs optimization notes
 
 Use the main job title, location, industry, seniority, and employment type naturally. Avoid repeating the same keyword too many times.
+
+## Meta Title Rules
+
+Every meta title must:
+
+- Follow the format: `Job Title Job in City, Malta | Outreach Recruitment`
+- Be a maximum of 60 characters
+- Contain the word "Job" or "Jobs"
+- Contain the word "Malta" for Malta-based roles
+- Include the city when known
+- Not include salary, employer name variations, dates, or promotional words
+
+## Meta Description Rules
+
+Every meta description must:
+
+- Be between 120 and 155 characters
+- Include the job title
+- Include the city and Malta
+- Include a call-to-action phrase such as "Apply now" or "Apply today"
+- Match the visible page content
 
 ## Keyword Targeting Rules
 
@@ -144,6 +165,94 @@ Use categories such as:
 
 Use the category mapping to suggest internal links, related jobs, and keyword variations.
 
+## Google Jobs Schema Rules
+
+Every job page must include a complete `JobPosting` JSON-LD block. Generate values for all fields below. Mark fields as omitted only when the detail is genuinely unknown and cannot be safely inferred.
+
+Required schema fields:
+
+- `@context`: `https://schema.org`
+- `@type`: `JobPosting`
+- `title`: clean job title only, no salary, no location, no promotional text
+- `description`: full HTML-safe job description visible on the page
+- `datePosted`: ISO date when the job was published
+- `validThrough`: ISO date when the job expires — must also be visible on the page
+- `employmentType`: FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM, or OTHER
+- `hiringOrganization`: name, sameAs URL, and logo — use Outreach Recruitment Ltd and its website by default
+- `jobLocation`: streetAddress, addressLocality (city), addressRegion (Malta), addressCountry (MT)
+- `baseSalary`: include only when salary is visible on the page — must use `unitText` (MONTH or YEAR) and `value` with `minValue`, `maxValue`, and `@type: QuantitativeValue`
+- `salaryCurrency`: must be `EUR` whenever `baseSalary` is included
+- `experienceRequirements`: years of experience, for example "Minimum 2 years experience in a similar role"
+- `educationRequirements`: degree level or equivalent, for example "Bachelor's degree or equivalent experience"
+- `qualifications`: specific certifications, licences, or professional qualifications, for example "ACCA qualified", "HACCP certified", "Clean driving licence"
+- `responsibilities`: list of key duties as a separate field from the description
+- `incentiveCompensation`: bonus, commission, tips, or other variable pay — include only when clearly supported
+- `skills`: comma-separated list of specific skills and tools, for example "Xero, ACCA, Excel, customer-facing accounting"
+- `jobBenefits`: visible benefits list, for example "Health insurance, meal allowance, career progression"
+- `workHours`: shift pattern or working hours, for example "Monday to Friday, 08:00–17:00" or "40 hours per week"
+- `occupationalCategory`: O*NET or ISCO category when inferable
+- `industry`: the industry sector, for example "Hospitality", "Finance", "Information Technology"
+- `directApply`: `true` only when candidates can apply directly through the Outreach Recruitment platform or a direct employer application link
+- `identifier`: `@type: PropertyValue`, `name`: reference number label, `value`: actual reference number
+- `jobLocationType`: include `TELECOMMUTE` only for fully remote roles — omit for on-site roles
+- `applicantLocationRequirements`: include for remote or location-restricted roles
+
+Also add these supporting schema blocks on every job page:
+
+- `BreadcrumbList`: Home → Jobs → Category → Job Title
+- `FAQPage`: 4–6 FAQ items matching the visible FAQ section
+- `ImageObject`: for the job page featured image or company logo
+
+## Badge and Highlight Rules
+
+Every job page must include a visible Job Highlights block near the top of the page showing:
+
+- Salary range (if visible)
+- Employment type (Full-Time, Part-Time, Contract, etc.)
+- Location and work mode (On-Site, Hybrid, Remote)
+- Experience required
+- Shift pattern or working hours
+
+Add trust and urgency badges where clearly supported by the job details. Use only these approved badges:
+
+- Immediate Start — only when the job description states urgency
+- Training Provided — only when mentioned in the job description
+- Full-Time Position — for FULL_TIME roles
+- Visa Sponsorship Available — only when explicitly stated
+- Career Growth Opportunities — only when progression is mentioned
+- Relocation Assistance — only when explicitly stated
+- Language Bonus — only when a language premium is mentioned
+
+Do not invent badges. Only show badges that match the actual job details.
+
+## Rich Content Section Rules
+
+Every full job page must include all of the following visible sections:
+
+- Job Highlights (salary, type, location, experience, hours)
+- About the Role — 2–3 paragraph introduction
+- Key Responsibilities — bulleted list from the job description
+- Key Requirements — required skills, experience, and qualifications
+- Skills Required — specific tools, software, and certifications
+- Preferred Qualifications — nice-to-have items
+- Languages Required — include only when stated or clearly required by the role
+- What We Offer (benefits, salary range if visible, work environment)
+- Career Growth Opportunities — include only when supported
+- About the Company — anonymised paragraph such as "Our client is a leading hotel group operating in St Julian's" — do not invent employer-specific claims
+- Visa Sponsorship and Relocation Assistance — include only when explicitly stated
+- Reporting To — include only when the reporting line is stated or inferable
+- Contract Duration — include for temporary or fixed-term roles
+- Application Deadline — visible date matching `validThrough`
+- Response Timeline — always include: "We aim to respond to all applications within 3–5 business days"
+- How to Apply — clear instructions and application URL
+- Neighbourhood or Location Description — one sentence describing the area, for example "Located in St Julian's, near Spinola Bay and the Paceville entertainment district" — include when the city is known
+- FAQ Section — 4–6 questions and answers
+- Similar Jobs — 3–5 links to related open roles using descriptive anchor text
+- Latest Jobs — 3–5 links to the most recently posted jobs
+- People Also Viewed — 3–5 links to related roles candidates commonly compare
+
+Minimum page word count is 300 words. Target 1000+ words for full job page copy.
+
 ## Candidate Question Rules
 
 Generate related keyword questions that match real candidate searches, such as:
@@ -170,6 +279,9 @@ For active job postings:
 - Do not present expired jobs as active.
 - Recommend reviewing or refreshing active job pages every 14-30 days.
 - Keep expiry dates, salary, location, and application URLs consistent across visible content and schema fields.
+- Recommend updating `lastmod` in the sitemap every time the page is changed.
+- Recommend resubmitting the sitemap in Google Search Console after each update.
+- Recommend using the Google Indexing API to resubmit updated pages immediately.
 
 Use ISO-style dates, such as `2026-07-30`, for schema-ready fields when dates are provided.
 
@@ -187,6 +299,7 @@ Every full job page should help candidates apply quickly. Include:
 - Simple application instructions
 - Direct call to apply
 - Contact or application URL
+- Response timeline statement
 
 Keep the apply section clear, visible, and free of unnecessary friction.
 
@@ -202,6 +315,133 @@ When creating multiple similar job pages:
 - Make the role content unique enough to stand on its own in search results.
 
 If the provided job description is thin, expand responsibly using safe role expectations, but clearly avoid unsupported employer-specific claims.
+
+## Duplicate Title Prevention Rules
+
+When two or more pages exist for the same role:
+
+- Add a differentiator to the second page title, such as the hotel name, area of the island, shift pattern, or "(2nd Opening)".
+- Ensure the canonical URL points to the intended primary page.
+- Add a note in the internal linking plan if pages risk cannibalization.
+
+## Internal Linking Rules
+
+For every job package, suggest internal links to:
+
+- Main jobs index: `/jobs/`
+- Primary category hub page (e.g. `hospitality-jobs-in-malta.html`)
+- Secondary category hub pages where relevant
+- Location pages where they exist (e.g. `jobs-in-st-julians.html`)
+- 3–5 related open job pages
+- Blog posts or guides relevant to the industry or role
+
+Category hub pages to link from:
+
+- Hospitality Jobs in Malta
+- Marine Jobs in Malta
+- Engineering Jobs in Malta
+- IT Jobs in Malta
+- Healthcare Jobs in Malta
+- Finance Jobs in Malta
+- Construction Jobs in Malta
+- Sales Jobs in Malta
+- Insurance Jobs in Malta
+
+Location hub pages to link from when the city matches:
+
+- Jobs in St Julian's, Malta
+- Jobs in Sliema, Malta
+- Jobs in Valletta, Malta
+- Jobs in Gozo, Malta
+- Jobs in Mellieha, Malta
+- Jobs in Birkirkara, Malta
+- Jobs in Mosta, Malta
+- Jobs in Paola, Malta
+
+When a new job page is created, always flag which category hub pages and location hub pages should link back to it.
+
+## Image SEO Rules
+
+For every job page, generate:
+
+- A descriptive image filename following the pattern: `{job-title}-job-malta.jpg`
+- A descriptive ALT tag: `{Job Title} job opportunity in {City}, Malta — Outreach Recruitment`
+- An `ImageObject` schema block with `url`, `width`, `height`, and `caption`
+- Open Graph image tag recommendation using the same image
+
+Rename all images descriptively. Do not use generic filenames like `image1.jpg` or `job-card-logo.jpg` as the primary job page image.
+
+## Open Graph and Social Rules
+
+Every job page must include:
+
+- `og:title` — matches the SEO title
+- `og:description` — matches the meta description
+- `og:image` — descriptive job or company image
+- `og:type` — `website`
+- `og:url` — matches the canonical URL
+- Twitter card title
+- Twitter card description
+
+Include these in the SEO package output.
+
+## Advanced Schema Rules
+
+For every job page, in addition to `JobPosting`, recommend adding:
+
+- `BreadcrumbList` — Home > Jobs > Category > Job Title
+- `FAQPage` — matching the visible FAQ section
+- `ImageObject` — for the featured image
+
+For category hub pages, recommend:
+
+- `CollectionPage` — wrapping the list of jobs on the page
+- `ItemList` — listing each job as a `ListItem` with `name`, `url`, and `position`
+- `BreadcrumbList` — Home > Category
+
+For the main jobs index page, recommend:
+
+- `WebSite` — with `SearchAction` for sitelinks search box
+- `Organization` — with name, URL, logo, social profiles, and contact info
+
+For the home page and contact page, recommend:
+
+- `LocalBusiness` — with name, address, phone, email, geo coordinates, and opening hours
+- `ContactPage`
+
+## Off-Page Distribution Rules
+
+For every new job published, include an off-page distribution checklist in the output:
+
+- Post on LinkedIn company page with the direct link to the job page
+- Post on Facebook with the direct link — Facebook links are indexed quickly
+- Submit to Indeed (free listing) — creates a backlink and cross-platform authority signal
+- Submit to Glassdoor
+- Submit to Jooble
+- Submit to Jobrapido
+- Submit to MaltaPark
+- Publish a supporting note on Medium if the role is senior or specialist
+- Share in relevant Malta career communities and directories
+
+## Google Business Profile Rules
+
+Include a note with every job package recommending:
+
+- Ensure a Google Business Profile exists for Outreach Recruitment at the correct address
+- Link from GBP posts to the new job page
+- Use GBP posts to announce new vacancies with a direct apply link
+
+## Advanced SEO Recommendations
+
+Include the following recommendations in the output when relevant:
+
+- RSS feed generation: suggest RSS feeds for Latest Jobs, Hospitality Jobs, Marine Jobs, and IT Jobs
+- Job collections: recommend creating collection pages for Latest Jobs in Malta, Remote Jobs in Malta, Full-Time Jobs in Malta, and Hospitality Jobs in Malta
+- Pagination schema: add `rel="next"` and `rel="prev"` on paginated job listing pages
+- Author and publisher info: add `author` as `Outreach Recruitment` and `dateModified` to each job page
+- Core Web Vitals: flag if images need WebP conversion, lazy loading, or if scripts should be deferred
+- HTML sitemap: recommend creating an HTML sitemap page for additional crawl coverage
+- Category-specific XML sitemaps: recommend separate sitemaps for jobs, blog, pages, and video
 
 ## Structured Data Safety Rules
 
@@ -239,6 +479,7 @@ When salary is provided and allowed to be visible:
 
 - Show the same salary range in the visible job page content.
 - Use the same currency and range in `baseSalary`.
+- Always pair `baseSalary` with `salaryCurrency: EUR`.
 - Keep salary wording consistent across the job page, SEO package, FAQs, and schema.
 
 ## Site Publishing Rules
@@ -252,12 +493,18 @@ When the user asks to add a generated job to the Outreach Recruitment website, c
 - Use the generated job slug for the card link, for example `/jobs/{seo-slug}/`.
 - Use the generated job title, location, employment type, category, and date in the card fields and `data-*` attributes.
 - Create or update the individual job detail page at `/jobs/{seo-slug}/` when the user asks for the full site implementation.
-- Increase the open-position count by 1 from the current value. For example, if the page currently says `+217 Open Positions`, `Showing 217 jobs`, and `<span class="heading-h4 or-counter-num">217</span>`, update all of them to `218`.
+- Increase the open-position count by 1 from the current value.
 - Keep every visible count consistent, including `+{count} Open Positions`, `Showing {count} jobs`, tab/filter labels, and any `.or-counter-num` value followed by `open positions now`.
-- Do not hard-code `217`; always read the current count and increment it by the number of new active jobs being added.
+- Do not hard-code a specific number; always read the current count and increment it by the number of new active jobs being added.
 - If the site has JavaScript that derives counters from the actual number of job cards, still verify the visible fallback/static counts are consistent.
 - After editing, search the repo for the old count and new count to ensure no visible job counters were missed.
 - Do not increase counts for draft, expired, duplicate, or unpublished jobs.
+- After publishing, add the new job page URL to `sitemaps/sitemap-jobs.xml` with the current date as `lastmod`.
+- Update `sitemap_index.xml` with the new `lastmod` date for `sitemap-jobs.xml`.
+- Recommend submitting the sitemap in Google Search Console.
+- Recommend running the Google Indexing API script to submit the new URL immediately.
+- Add the new job to the matching category hub page internal links.
+- Add the new job to the matching location hub page internal links if one exists.
 
 ## Job Page Body Content Rules
 
@@ -282,7 +529,7 @@ Do not use the Salary field in the details grid. The Job Target field replaces i
 - Use natural human language.
 - Generate unique content for each job.
 - Use HTML-friendly headings when writing long job page content.
-- Keep meta descriptions under 155 characters.
+- Keep meta descriptions between 120 and 155 characters.
 - Keep SEO titles under 60 characters.
 - Use ISO-style dates for `datePosted` and `validThrough` when dates are available.
 - Use `EUR` as the default salary currency unless the user specifies otherwise.
@@ -299,17 +546,43 @@ Do not use the Salary field in the details grid. The Job Target field replaces i
 Before finalizing, verify:
 
 - Job title matches the visible page title.
+- Meta title follows the format: Job Title Job in City, Malta | Outreach Recruitment and is under 60 characters.
+- Meta title contains the word "Job" or "Jobs".
+- Meta title contains "Malta" for Malta roles.
+- Meta description is between 120 and 155 characters and includes "Apply now" or "Apply today".
 - Location city, region, and country are realistic and consistent.
 - Employer is `Outreach Recruitment Ltd` unless the user provides another authorized hiring organization.
 - Salary appears only if it will also be visible on the page.
+- `salaryCurrency` is set to `EUR` whenever `baseSalary` is included.
+- `validThrough` is present and visible on the page.
+- `employmentType` is present and matches visible content.
+- `experienceRequirements` is present and visible on the page.
+- `educationRequirements` is present and visible on the page.
+- `qualifications` is present when certifications or licences apply.
+- `responsibilities` is present as a separate field.
+- `skills` field is present and matches the Skills Required section.
+- `jobBenefits` is present when a benefits section is on the page.
+- `workHours` is present when hours or shift pattern is stated.
+- `BreadcrumbList` schema is included.
+- `FAQPage` schema matches the visible FAQ section.
+- `ImageObject` schema is included for the featured image.
+- Open Graph tags are included.
 - Expiry date is present for active job postings when possible.
 - Application URL uses the Outreach Recruitment careers platform unless the user provides a role-specific apply URL.
 - The output can be translated into valid `JobPosting` JSON-LD without adding hidden facts.
 - Primary keyword appears naturally in the SEO title, H1, first paragraph, and meta description.
 - SEO title is under 60 characters.
-- Meta description is under 155 characters.
+- Meta description is 120–155 characters.
 - Slug is lowercase, short, hyphenated, and relevant.
 - FAQ answers are direct, useful, and not repetitive.
-- Internal links are relevant to the role, industry, or location.
+- Internal links include the category hub page and location hub page.
+- Similar Jobs, Latest Jobs, and People Also Viewed sections are included.
+- Neighbourhood description is included when the city is known.
+- Response timeline statement is included.
 - Content is unique and not copied from a generic job description.
 - No unsupported salary, visa sponsorship, work permit support, remote work, relocation, benefits, or urgency claims are added.
+- Job detail metadata grid includes Category, Employment Type, Work Mode, Job Type, and Target Location.
+- Off-page distribution checklist is included.
+- Sitemap update and indexing API submission notes are included.
+- Canonical tag points to the correct job page URL.
+- Duplicate title risk has been assessed and flagged if applicable.
