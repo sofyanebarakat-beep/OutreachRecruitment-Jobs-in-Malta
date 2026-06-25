@@ -23,6 +23,8 @@ Collect or infer the following from the user request and job description:
 - Salary range
 - Expiry date
 - Reference number
+- Candidate Origin — who should apply: `Malta residents` / `EU relocating` / `International` / `Open` (default: `Open`)
+- Immediate Start — whether urgency is stated: `Yes` / `No` / `Not stated` (default: `Not stated`)
 
 If any field is missing, make a reasonable assumption only when the job description clearly supports it. Otherwise mark the value as `Not specified` and keep structured-data fields honest.
 
@@ -81,6 +83,36 @@ Every meta description must:
 - Include a call-to-action phrase such as "Apply now" or "Apply today"
 - Match the visible page content
 
+## Candidate Origin Rules
+
+The Candidate Origin field determines how the job is positioned in SEO copy, schema, keyword targeting, and the details grid. Apply the following rules based on the value provided.
+
+**Malta residents:**
+- Set `applicantLocationRequirements: Malta` in the JobPosting schema
+- Set the Job Target grid value to: `Residents in Malta`
+- Include keywords such as `[job title] jobs Malta`, `jobs for Malta residents`, `local hiring Malta`
+- Do not include relocation, EU, or international keywords
+- Do not mention visa or work permit unless explicitly stated
+
+**EU relocating:**
+- Set `applicantLocationRequirements: European Union` in the JobPosting schema
+- Set the Job Target grid value to: `EU Nationals & Relocating Candidates`
+- Include keywords such as `[job title] jobs Malta for Europeans`, `relocate to Malta [job title]`, `EU candidates Malta`
+- Include a relocation note in the page intro only if relocation assistance is explicitly stated
+- Do not mention visa sponsorship unless explicitly provided
+
+**International:**
+- Set `applicantLocationRequirements: Worldwide` in the JobPosting schema
+- Set the Job Target grid value to: `International Applicants Welcome`
+- Include keywords such as `[job title] Malta international`, `work in Malta [job title]`
+- Include a work permit or visa note only if explicitly stated in the job description
+- Do not imply sponsorship or permit support unless explicitly confirmed
+
+**Open (default):**
+- Set the Job Target grid value to: `Residents in Malta & Europeans`
+- Include standard Malta location keywords
+- Do not reference visa, sponsorship, or international relocation unless stated
+
 ## Keyword Targeting Rules
 
 - Prefer long-tail, role-specific keywords over generic terms.
@@ -88,6 +120,8 @@ Every meta description must:
 - Include city-specific modifiers only when the city is known or clearly supported.
 - Include salary keywords only when salary is visible on the page.
 - Include visa, relocation, sponsorship, or work permit keywords only when explicitly provided or clearly supported.
+- Apply Candidate Origin keyword rules: include relocation and EU keywords only when Candidate Origin is `EU relocating` or `International`.
+- Include `immediate start` or `urgent vacancy` keywords only when `Immediate Start: Yes` is provided.
 - Match keywords to candidate intent: role search, location search, industry search, salary search, career level search, or urgent vacancy search.
 - Do not create misleading keywords for remote work, flexible work, benefits, or employer names unless they are supported by the job details.
 
@@ -195,7 +229,8 @@ Required schema fields:
 - `directApply`: `true` only when candidates can apply directly through the Outreach Recruitment platform or a direct employer application link
 - `identifier`: `@type: PropertyValue`, `name`: reference number label, `value`: actual reference number
 - `jobLocationType`: include `TELECOMMUTE` only for fully remote roles — omit for on-site roles
-- `applicantLocationRequirements`: include for remote or location-restricted roles
+- `applicantLocationRequirements`: set based on Candidate Origin field — `Malta` for Malta residents, `European Union` for EU relocating, `Worldwide` for International, standard Malta for Open
+- `jobImmediateStart`: set to `true` only when `Immediate Start: Yes` is provided — omit otherwise
 
 Also add these supporting schema blocks on every job page:
 
@@ -212,10 +247,11 @@ Every job page must include a visible Job Highlights block near the top of the p
 - Location and work mode (On-Site, Hybrid, Remote)
 - Experience required
 - Shift pattern or working hours
+- Candidate Origin (e.g. "Open to EU candidates", "Malta residents only", "International applicants welcome")
 
 Add trust and urgency badges where clearly supported by the job details. Use only these approved badges:
 
-- Immediate Start — only when the job description states urgency
+- Immediate Start — only when `Immediate Start: Yes` is provided or the job description explicitly states urgency. When active, add `"jobImmediateStart": true` to the JobPosting schema and include urgency language in the intro paragraph and CTA.
 - Training Provided — only when mentioned in the job description
 - Full-Time Position — for FULL_TIME roles
 - Visa Sponsorship Available — only when explicitly stated
@@ -224,6 +260,18 @@ Add trust and urgency badges where clearly supported by the job details. Use onl
 - Language Bonus — only when a language premium is mentioned
 
 Do not invent badges. Only show badges that match the actual job details.
+
+When `Immediate Start: Yes`:
+- Add "Immediate Start Available" badge to the Job Highlights block
+- Use urgency language in the page intro: "This is an urgent vacancy — we are interviewing immediately."
+- Add urgency keywords to the SEO package: `immediate start [job title] Malta`, `urgent [job title] vacancy Malta`
+- Set `"jobImmediateStart": true` in the JobPosting JSON-LD
+- Mention in the FAQ: "Is an immediate start required?" → "Yes, the employer is looking to fill this role as soon as possible."
+
+When `Immediate Start: No` or `Not stated`:
+- Do not add the Immediate Start badge
+- Do not use urgency language
+- Omit `jobImmediateStart` from the schema
 
 ## Rich Content Section Rules
 
@@ -519,7 +567,11 @@ When generating the HTML job detail page or the Section 4 job content:
 The fourth field in the details grid (Category | Employment Type | Work Mode | **fourth**) must always be:
 
 - **Label:** `Job Target`
-- **Value:** `Residents in Malta & Europeans`
+- **Value:** determined by the Candidate Origin field:
+  - `Malta residents` → `Residents in Malta`
+  - `EU relocating` → `EU Nationals & Relocating Candidates`
+  - `International` → `International Applicants Welcome`
+  - `Open` or not stated → `Residents in Malta & Europeans` (default)
 
 Do not use the Salary field in the details grid. The Job Target field replaces it on all Outreach Recruitment job pages.
 
@@ -581,6 +633,11 @@ Before finalizing, verify:
 - Response timeline statement is included.
 - Content is unique and not copied from a generic job description.
 - No unsupported salary, visa sponsorship, work permit support, remote work, relocation, benefits, or urgency claims are added.
+- `jobImmediateStart: true` is only present in schema when `Immediate Start: Yes` was explicitly provided.
+- `applicantLocationRequirements` matches the Candidate Origin value provided.
+- Job Target grid value matches the Candidate Origin: Malta residents → "Residents in Malta", EU relocating → "EU Nationals & Relocating Candidates", International → "International Applicants Welcome", Open → "Residents in Malta & Europeans".
+- Immediate Start badge only appears when `Immediate Start: Yes` was provided.
+- Urgency keywords only appear in the SEO package when `Immediate Start: Yes` was provided.
 - Job detail metadata grid includes Category, Employment Type, Work Mode, Job Type, and Target Location.
 - Off-page distribution checklist is included.
 - Sitemap update and indexing API submission notes are included.
