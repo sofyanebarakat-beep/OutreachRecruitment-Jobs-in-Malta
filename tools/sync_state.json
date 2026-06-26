@@ -1,4 +1,7 @@
 {
-  "consecutive_extra": {},
-  "last_run": "2026-06-25"
+  "consecutive_extra": {
+    "Driver (Licence B)": 1,
+    "Electrician or Instrumentation Technician (Licence A)": 1
+  },
+  "last_run": "2026-06-26"
 }
