@@ -3561,5 +3561,33 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/466716df-6a34-46fd-ae46-7e3bb74681f3/apply",
     "keywords": "account manager general malta",
     "featured": true
+  },
+  {
+    "slug": "crew-concierge",
+    "title": "Crew Concierge",
+    "category": "General",
+    "location": "Paola, Malta",
+    "location_slug": "paola, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-01",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/383c65f8-8e05-45c4-bf5c-dd4720d39f27/apply",
+    "keywords": "crew concierge general paola, malta",
+    "featured": true
+  },
+  {
+    "slug": "payables-finance-executive",
+    "title": "Payables Finance Executive",
+    "category": "General",
+    "location": "Mellieħa, Malta",
+    "location_slug": "mellieħa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-01",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ed60123a-fd7e-4109-a25d-b50ec1c91fa2/apply",
+    "keywords": "payables finance executive general mellieħa, malta",
+    "featured": true
   }
 ]

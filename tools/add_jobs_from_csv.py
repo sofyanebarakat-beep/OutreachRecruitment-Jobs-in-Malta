@@ -327,7 +327,11 @@ def generate_job_page(job: dict) -> str:
         schema_desc = plain
     else:
         schema_desc = f"{title} role in {city}, Malta. {category}. Apply through Outreach Recruitment Agency."
-    html = re.sub(r'"description":\s*"[^"]*(?<!\\)"', f'"description": "{json.dumps(schema_desc)[1:-1]}"', html, count=1)
+    schema_desc_json = json.dumps(schema_desc)[1:-1]
+    html = re.sub(
+        r'"description":\s*"[^"]*(?<!\\)"',
+        lambda m: f'"description": "{schema_desc_json}"', html, count=1
+    )
     exp_req = f"Previous experience as a {title} or in a similar role."
     html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
     html = re.sub(r'"value":\s*"[^"]*"', f'"value": "{slug}"', html, count=1)
