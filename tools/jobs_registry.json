@@ -3313,7 +3313,7 @@
   {
     "slug": "driver-license-b",
     "title": "Driver License B",
-    "category": "General",
+    "category": "Logistics",
     "location": "Żebbuġ, Malta",
     "location_slug": "żebbuġ, malta",
     "employment_type": "Full-Time",
@@ -3341,7 +3341,7 @@
   {
     "slug": "tank-cleaner",
     "title": "Tank Cleaner",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Biot, Malta",
     "location_slug": "biot, malta",
     "employment_type": "Full-Time",
@@ -3355,7 +3355,7 @@
   {
     "slug": "welder-burner-pipe-fitter",
     "title": "Welder / Burner / Pipe Fitter",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Żejtun, Malta",
     "location_slug": "żejtun, malta",
     "employment_type": "Full-Time",
@@ -3369,7 +3369,7 @@
   {
     "slug": "shipyard-sprayer-painter",
     "title": "Shipyard Sprayer / Painter",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Żejtun, Malta",
     "location_slug": "żejtun, malta",
     "employment_type": "Full-Time",
@@ -3383,7 +3383,7 @@
   {
     "slug": "marine-carpenter",
     "title": "Marine Carpenter",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Biot, Malta",
     "location_slug": "biot, malta",
     "employment_type": "Full-Time",
@@ -3397,7 +3397,7 @@
   {
     "slug": "electronic-technician",
     "title": "Electronic Technician",
-    "category": "General",
+    "category": "Engineering & Maintenance",
     "location": "Biot, Malta",
     "location_slug": "biot, malta",
     "employment_type": "Full-Time",
@@ -3411,7 +3411,7 @@
   {
     "slug": "commercial-divers",
     "title": "Commercial Divers",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Żejtun, Malta",
     "location_slug": "żejtun, malta",
     "employment_type": "Full-Time",
@@ -3425,7 +3425,7 @@
   {
     "slug": "trailer-drivers",
     "title": "Trailer Drivers",
-    "category": "General",
+    "category": "Logistics",
     "location": "Luqa, Malta",
     "location_slug": "luqa, malta",
     "employment_type": "Full-Time",
@@ -3439,7 +3439,7 @@
   {
     "slug": "purchasing-manager",
     "title": "Purchasing Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3453,7 +3453,7 @@
   {
     "slug": "quality-engineer",
     "title": "Quality Engineer",
-    "category": "General",
+    "category": "Engineering & Maintenance",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3467,7 +3467,7 @@
   {
     "slug": "fleet-tools-and-facility-manager",
     "title": "Fleet, Tools and Facility Manager",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3481,7 +3481,7 @@
   {
     "slug": "marine-turner",
     "title": "Marine Turner",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3495,7 +3495,7 @@
   {
     "slug": "marine-mechanical-foreman",
     "title": "Marine Mechanical Foreman",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3509,7 +3509,7 @@
   {
     "slug": "plate-shop-foreman",
     "title": "Plate Shop Foreman",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3523,7 +3523,7 @@
   {
     "slug": "administration-specialist",
     "title": "Administration Specialist",
-    "category": "General",
+    "category": "Administration",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -3537,7 +3537,7 @@
   {
     "slug": "project-manager-2",
     "title": "Project Manager",
-    "category": "General",
+    "category": "Management",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3551,7 +3551,7 @@
   {
     "slug": "account-manager-2",
     "title": "Account Manager",
-    "category": "General",
+    "category": "Sales",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3565,7 +3565,7 @@
   {
     "slug": "crew-concierge",
     "title": "Crew Concierge",
-    "category": "General",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -3579,7 +3579,7 @@
   {
     "slug": "payables-finance-executive",
     "title": "Payables Finance Executive",
-    "category": "General",
+    "category": "Finance & Accounting",
     "location": "Mellieħa, Malta",
     "location_slug": "mellieħa, malta",
     "employment_type": "Full-Time",

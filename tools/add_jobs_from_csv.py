@@ -254,8 +254,11 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
     )
 
     # ── 6. Apply iframe src + title ───────────────────────────────────────────
+    # The real apply form is lazy-loaded via data-src (swapped to src by JS on
+    # open) — NOT the plain src= attribute, which belongs to the unrelated GTM
+    # noscript iframe higher up the page. Target the apply iframe specifically.
     html = re.sub(
-        r'(<iframe[^>]* src=")[^"]*(")',
+        r'(<iframe class="outreach-apply-frame[^"]*"[^>]*data-src=")[^"]*(")',
         rf"\g<1>{apply_url}\2", html, count=1
     )
     html = re.sub(
@@ -285,9 +288,15 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         html, count=1
     )
 
-    # ── 8. Location caption ───────────────────────────────────────────────────
+    # ── 8. Location caption (hero section) ────────────────────────────────────
     html = re.sub(
         r'(class="caption blue-caption">)[^<]*(</div>)',
+        rf"\g<1>{loc_esc}\2", html, count=1
+    )
+    # ── 8b. Location caption (apply-panel header — 2nd occurrence, right after
+    #        the aria-label h1 set in step 7b) ────────────────────────────────
+    html = re.sub(
+        rf'(aria-label="{re.escape(html_esc(title))}">{re.escape(html_esc(title))}</h1><div class="caption blue-caption">)[^<]*(</div>)',
         rf"\g<1>{loc_esc}\2", html, count=1
     )
 
@@ -346,7 +355,7 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         html, count=1, flags=re.S
     )
     html = re.sub(
-        r'(How to Apply</h2><div class="w-richtext"><p>)(.*?)(</p></div>)',
+        r'(How To Apply</h2><div class="w-richtext"><p>)(.*?)(</p>)',
         lambda m: m.group(1) + html_esc(closing) + m.group(3),
         html, count=1, flags=re.S
     )
@@ -355,12 +364,6 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
     html = re.sub(
         r"(apply for this <em>)[^<]*(</em>)",
         rf"\g<1>{html_esc(title)}\2", html, count=1
-    )
-
-    # ── 14. "TITLE vacancy in CITY" text ─────────────────────────────────────
-    html = re.sub(
-        r"[^>]+vacancy in [^,<]+",
-        f"{html_esc(title)} vacancy in {html_esc(city)}", html, count=1
     )
 
     # ── 15. JobPosting JSON-LD schema ─────────────────────────────────────────
