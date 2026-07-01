@@ -59,6 +59,62 @@ BASE_URL = "https://outreachrecruitment.net"
 # ── How many jobs to show on the homepage scroll-track ──────────────────────
 HOMEPAGE_LIMIT = 10   # show the 10 most recent; set 0 for unlimited
 
+# ── Category → live hub page (slug, display name) ───────────────────────────
+CATEGORY_HUBS = {
+    "Hospitality":               ("hospitality-jobs-in-malta", "Hospitality Jobs in Malta"),
+    "Hospitality & Hotel Jobs":  ("hospitality-jobs-in-malta", "Hospitality Jobs in Malta"),
+    "Engineering & Maintenance": ("engineering-jobs-in-malta", "Engineering Jobs in Malta"),
+    "Sales":                     ("sales-jobs-in-malta", "Sales Jobs in Malta"),
+    "Sales & Marketing":         ("sales-jobs-in-malta", "Sales Jobs in Malta"),
+    "Marine & Shipping":         ("marine-jobs-in-malta", "Marine Jobs in Malta"),
+    "Marine":                    ("marine-jobs-in-malta", "Marine Jobs in Malta"),
+    "Construction":              ("construction-jobs-in-malta", "Construction Jobs in Malta"),
+    "IT & Technology":           ("it-jobs-in-malta", "IT Jobs in Malta"),
+    "IT":                        ("it-jobs-in-malta", "IT Jobs in Malta"),
+    "Finance & Accounting":      ("finance-jobs-in-malta", "Finance Jobs in Malta"),
+    "Insurance":                 ("insurance-jobs-in-malta", "Insurance Jobs in Malta"),
+    "Insurance & Pension":       ("insurance-jobs-in-malta", "Insurance Jobs in Malta"),
+}
+# Categories with no live hub page yet (General, Administration, Logistics,
+# Healthcare, Marketing, HR & Recruitment, Management, Retail, ...) fall back
+# to a 3-level breadcrumb (Home > Jobs in Malta > Title) with no hub segment.
+
+# ── City → one-sentence neighbourhood blurb ──────────────────────────────────
+NEIGHBOURHOODS = {
+    "mellieħa":     "Located in Mellieħa, in the scenic north of Malta near beaches and the Mellieħa Bay resort area.",
+    "st. julian's": "Located in St. Julian's, near Spinola Bay and the Paceville entertainment district.",
+    "san ġiljan":   "Located in St. Julian's, near Spinola Bay and the Paceville entertainment district.",
+    "sliema":       "Located in Sliema, along Malta's main seafront promenade and shopping district.",
+    "valletta":     "Located in Valletta, Malta's capital and UNESCO World Heritage city.",
+    "floriana":     "Located in Floriana, on the outskirts of Valletta.",
+    "birkirkara":   "Located in Birkirkara, one of Malta's largest and most central residential towns.",
+    "gżira":        "Located in Gżira, on the waterfront facing Manoel Island and Sliema Creek.",
+    "msida":        "Located in Msida, near the University of Malta and Msida Marina.",
+    "mosta":        "Located in Mosta, home to the famous Rotunda and a major central-Malta hub.",
+    "naxxar":       "Located in Naxxar, a residential town close to the Malta National Aquarium.",
+    "paola":        "Located in Paola, in the Cottonera / South Harbour area of Malta.",
+    "żejtun":       "Located in Żejtun, in the south-east of Malta near industrial and marine sites.",
+    "marsaxlokk":   "Located in Marsaxlokk, Malta's traditional fishing village in the south-east.",
+    "birżebbuġa":   "Located in Birżebbuġa, near Malta Freeport in the south of the island.",
+    "luqa":         "Located in Luqa, close to Malta International Airport.",
+    "qormi":        "Located in Qormi, a central Malta town with a strong industrial base.",
+    "hamrun":       "Located in Ħamrun, a busy commercial town close to Valletta.",
+    "żebbuġ":       "Located in Żebbuġ, a residential town in central Malta.",
+    "attard":       "Located in Attard, one of Malta's affluent central towns near San Anton Gardens.",
+    "rabat":        "Located in Rabat, next to the ancient walled city of Mdina.",
+    "st. paul's bay": "Located in St. Paul's Bay, a popular seaside town in the north of Malta.",
+    "bugibba":      "Located in Bugibba, part of Malta's lively northern tourist strip.",
+    "qawra":        "Located in Qawra, on the northern coast alongside Bugibba and St. Paul's Bay.",
+    "san gwann":    "Located in San Ġwann, a residential and commercial town near Sliema.",
+    "swieqi":       "Located in Swieqi, a residential area close to St. Julian's and Paceville.",
+    "marsaskala":   "Located in Marsaskala, a coastal town in the south-east of Malta.",
+    "fgura":        "Located in Fgura, in the Cottonera area of south-east Malta.",
+    "santa venera": "Located in Santa Venera, a central town close to Valletta and Ħamrun.",
+    "biot":         "Located in the shipyard and marine services area on Malta's Grand Harbour.",
+    "gozo":         "Located in Gozo, Malta's sister island, known for its slower pace and coastal scenery.",
+    "victoria":     "Located in Victoria (Rabat), the capital of Gozo.",
+}
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Helpers
@@ -129,8 +185,9 @@ def auto_keywords(job: dict) -> str:
 # HTML page generator
 # ─────────────────────────────────────────────────────────────────────────────
 
-def generate_job_page(job: dict) -> str:
+def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
     """Clone jobs/plumber/index.html and substitute all dynamic fields."""
+    other_jobs = other_jobs or []
     base_path = JOBS / "plumber" / "index.html"
     if not base_path.exists():
         raise FileNotFoundError("Base template jobs/plumber/index.html not found")
@@ -310,6 +367,7 @@ def generate_job_page(job: dict) -> str:
     html = re.sub(r'"title":\s*"[^"]*"', f'"title": "{title}"', html, count=1)
     html = re.sub(r'"datePosted":\s*"[^"]*"', f'"datePosted": "{date_posted}"', html, count=1)
     html = re.sub(r'"validThrough":\s*"[^"]*"', f'"validThrough": "{valid_thru}"', html, count=1)
+    html = re.sub(r'"streetAddress":\s*"[^"]*"', f'"streetAddress": "{city}, Malta"', html, count=1)
     html = re.sub(r'"addressLocality":\s*"[^"]*"', f'"addressLocality": "{city}"', html, count=1)
     html = re.sub(r'"employmentType":\s*"[^"]*"', f'"employmentType": "{emp_type_schema(emp_type)}"', html, count=1)
     html = re.sub(r'"occupationalCategory":\s*"[^"]*"', f'"occupationalCategory": "{occ_category(category)}"', html, count=1)
@@ -336,10 +394,87 @@ def generate_job_page(job: dict) -> str:
     html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
     html = re.sub(r'"value":\s*"[^"]*"', f'"value": "{slug}"', html, count=1)
 
-    # ── 16. Breadcrumb schema (leaf item = the job page itself) ──────────────
+    # ── 16. Breadcrumb (visible nav + JSON-LD) — rebuilt from the real category ─
+    hub = CATEGORY_HUBS.get(category)
+    crumbs = [("Home", "/"), ("Jobs in Malta", "/jobs")]
+    if hub:
+        hub_slug, hub_name = hub
+        crumbs.append((hub_name, f"/{hub_slug}"))
+    crumbs.append((title, f"/jobs/{slug}"))
+
+    nav_parts = []
+    for i, (name, href) in enumerate(crumbs):
+        if i == len(crumbs) - 1:
+            nav_parts.append(f'<span aria-current="page" style="opacity:0.9;">{html_esc(name)}</span>')
+        else:
+            nav_parts.append(
+                f'<a href="{href}" style="color:inherit;text-decoration:none;">{html_esc(name)}</a>'
+                f'<span aria-hidden="true">›</span>'
+            )
+    nav_html = (
+        '<nav aria-label="Breadcrumb" style="text-align:center;margin-bottom:0.5rem;">'
+        '<div style="display:inline-flex;align-items:center;gap:0.3rem;flex-wrap:wrap;'
+        'justify-content:center;font-size:0.75rem;opacity:0.6;">' + "".join(nav_parts) + "</div></nav>"
+    )
     html = re.sub(
-        r'(\{\s*"@type":\s*"ListItem",\s*"position":\s*4,\s*"name":\s*")[^"]*(",\s*"item":\s*")[^"]*(")',
-        rf'\g<1>{title}\g<2>{page_url}\3', html, count=1
+        r'<nav aria-label="Breadcrumb".*?</nav>',
+        lambda m: nav_html, html, count=1, flags=re.S
+    )
+
+    bc_items = []
+    for i, (name, href) in enumerate(crumbs, start=1):
+        item_url = page_url if href.startswith(f"/jobs/{slug}") else f"{BASE_URL}{href}"
+        bc_items.append(
+            '    {\n      "@type": "ListItem",\n'
+            f'      "position": {i},\n      "name": "{name}",\n      "item": "{item_url}"\n    }}'
+        )
+    bc_json = '"@type": "BreadcrumbList",\n  "itemListElement": [\n' + ",\n".join(bc_items) + "\n  ]\n}"
+    html = re.sub(
+        r'"@type":\s*"BreadcrumbList".*?\]\s*\}',
+        lambda m: bc_json, html, count=1, flags=re.S
+    )
+
+    # ── 17. Neighbourhood description ────────────────────────────────────────
+    neighbourhood = NEIGHBOURHOODS.get(city.lower(), f"Located in {city}, Malta.")
+    html = re.sub(
+        r'(<p id="neighbourhood-desc"[^>]*>)[^<]*(</p>)',
+        lambda m: m.group(1) + neighbourhood + m.group(2), html, count=1
+    )
+
+    # ── 18. Similar Jobs — same category first, then same city, then latest ──
+    pool = [j for j in other_jobs if j.get("slug") != slug and j.get("status") != "expired"]
+    same_category = [j for j in pool if j.get("category") == category]
+    same_city = [j for j in pool if j.get("location", "").split(",")[0].strip().lower() == city.lower()]
+    seen_slugs: set[str] = set()
+    similar: list[dict] = []
+    for group in (same_category, same_city, pool):
+        for j in group:
+            if j["slug"] not in seen_slugs:
+                seen_slugs.add(j["slug"])
+                similar.append(j)
+            if len(similar) >= 4:
+                break
+        if len(similar) >= 4:
+            break
+
+    similar_cards = []
+    for j in similar:
+        j_loc = html_esc(j.get("location", "Malta"))
+        j_emp = html_esc(j.get("employment_type", "Full-Time"))
+        similar_cards.append(
+            f'<a href="/jobs/{j["slug"]}" style="display:flex;flex-direction:column;padding:0.875rem 1rem;'
+            'border:1px solid #e2e8f0;border-radius:8px;text-decoration:none;color:inherit;background:#fff;'
+            f'transition:box-shadow .15s;"><span style="font-weight:600;color:#1a1a1a;font-size:0.95rem;">'
+            f'{html_esc(j["title"])}</span><span style="font-size:0.8rem;color:#666;margin-top:0.2rem;">'
+            f'\U0001F4CD {j_loc} &nbsp;·&nbsp; {j_emp}</span></a>'
+        )
+    similar_html = "\n".join(similar_cards) if similar_cards else (
+        '<p style="font-size:0.85rem;color:#666;">No similar roles open right now — '
+        '<a href="/jobs" style="color:#0070f3;">browse all jobs</a>.</p>'
+    )
+    html = re.sub(
+        r'(<section id="similar-jobs"[^>]*>\s*<h2[^>]*>Similar Jobs in Malta</h2>\s*<div style="display:grid;gap:0\.625rem;">)(.*?)(</div>)',
+        lambda m: m.group(1) + similar_html + m.group(3), html, count=1, flags=re.S
     )
 
     return html
@@ -506,7 +641,7 @@ def main(csv_path: str) -> None:
 
         # Generate HTML
         try:
-            html = generate_job_page(job)
+            html = generate_job_page(job, other_jobs=registry)
         except Exception as e:
             print(f"  ERROR generating {slug}: {e}")
             continue

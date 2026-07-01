@@ -1974,7 +1974,10 @@ def fetch_job_detail(uuid: str, title: str) -> dict:
 
 def _guess_category(title: str) -> str:
     t = title.lower()
-    if any(k in t for k in ["chef", "waiter", "cook", "bartend", "restaurant", "sommelier", "hotel"]):
+    if any(k in t for k in ["chef", "waiter", "cook", "bartend", "restaurant", "sommelier", "hotel",
+                            "housekeep", "concierge", "porter", "steward", "barista", "bar attend",
+                            "front office", "spa therap", "room attend", "f&b", "food and beverage",
+                            "food & beverage"]):
         return "Hospitality"
     if any(k in t for k in ["developer", "software", "it ", "network", "data", "cyber", "devops"]):
         return "IT & Technology"
