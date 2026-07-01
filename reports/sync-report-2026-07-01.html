@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: Arial, sans-serif; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }
+  .card { background: white; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-top: 0; }
+  h2 { color: #283593; margin-top: 0; border-left: 4px solid #3f51b5; padding-left: 10px; }
+  h3 { color: #37474f; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th { background: #1a237e; color: white; padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e8e8e8; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .score-big { font-size: 52px; font-weight: 900; color: #558b2f; line-height: 1; }
+  .score-label { font-size: 18px; color: #558b2f; font-weight: bold; margin-left: 8px; }
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+  .stat { background: #f5f7ff; border-radius: 8px; padding: 14px 18px; min-width: 110px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: #1a237e; display: block; }
+  .stat-num.red { color: #c62828; }
+  .stat-num.green { color: #2e7d32; }
+  .stat-label { font-size: 11px; color: #666; display: block; margin-top: 2px; }
+  ul li { margin: 5px 0; }
+  a { color: #1565c0; }
+  code { font-family: monospace; }
+  .footer { margin-top: 30px; padding-top: 16px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; }
+  .goal-box { background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); border-left: 5px solid #558b2f; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>📋 Job Sync Report — Outreach Recruitment</h1>
+<p style="color:#666;margin-top:-8px">Generated: 2026-07-01T09:26:44 &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp; <a href="https://outreachrecruitment.net/sync-dashboard.html" style="color:#1565c0;font-weight:bold">📊 Live Dashboard ↗</a></p>
+
+<div style='background:#f1f8e9;border:2px solid #558b2f;padding:15px;border-radius:8px;margin:20px 0'><b style='color:#33691e;font-size:16px'>🟡 Almost perfect — small differences to fix.</b></div>
+
+
+<div class="goal-box">
+  <p style="margin:0;font-size:15px;color:#e65100"><b>🎯 To reach 100%: fix 1 job(s) to add + 3 job(s) to remove</b></p>
+  <div style='background:#e0e0e0;border-radius:8px;height:18px;width:100%;max-width:500px;margin:8px 0'><div style='background:#558b2f;width:99%;height:18px;border-radius:8px;transition:width 0.3s'></div></div>
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:500px">
+    <span>0%</span><span>50%</span><span>100% Goal</span>
+  </div>
+  <p style="margin:8px 0 0"><span style='color:#2e7d32;font-size:14px'>▲ +26.3% vs last run (73.1%)</span></p>
+</div>
+</div>
+
+<div class="card">
+<h2>📊 Summary</h2>
+<div class="stat-grid">
+  <div class="stat"><span class="stat-num">232</span><span class="stat-label">Careers Page Jobs</span></div>
+  <div class="stat"><span class="stat-num red">235</span><span class="stat-label">Website Jobs</span></div>
+  <div class="stat"><span class="stat-num red" style="font-size:20px">+3</span><span class="stat-label">Count Difference</span></div>
+  <div class="stat"><span class="stat-num red">1</span><span class="stat-label">Missing</span></div>
+  <div class="stat"><span class="stat-num red">3</span><span class="stat-label">Extra</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">Broken Pages</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">SEO Issues</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">Sitemap Missing</span></div>
+  <div class="stat"><span class="stat-num red">91</span><span class="stat-label">Duplicates</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">Schema Issues</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">Google Submitted</span></div>
+  <div class="stat"><span class="stat-num green">87.8</span><span class="stat-label">Avg Ranking Score</span></div>
+  <div class="stat"><span class="stat-num red">2</span><span class="stat-label">Ranking Priority</span></div>
+  <div class="stat"><span class="stat-num green">0</span><span class="stat-label">GSC Problems</span></div>
+  <div class="stat"><span class="stat-num">0</span><span class="stat-label">GSC Checked</span></div>
+</div>
+<p style="font-size:13px;color:#666;margin:4px 0">
+  <b>Sync Score:</b> <span style="font-size:22px;font-weight:900;color:#558b2f">99.4%</span>
+  <span class="score-label">Almost There</span>
+</p>
+</div>
+
+<div class="card">
+<h2>✅ Actions Required</h2>
+<ol style="margin:0;padding-left:20px"><li style='margin:6px 0'>Add <b>1</b> missing job(s) to website</li><li style='margin:6px 0'>Remove <b>3</b> closed job(s) from website</li><li style='margin:6px 0'>Review <b>91</b> possible duplicate job(s)</li><li style='margin:6px 0'>Improve <b>2</b> high-priority ranking page(s) below 70/100</li></ol>
+</div>
+
+<div class="card">
+<h2>🏆 Ranking Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Prioritized SEO work to help every job page rank for job-title searches in Malta</p>
+<ul><li>Fix 2 high-priority job page(s) below 70/100</li><li>Fix 144 job page(s) with keyword targeting gaps</li><li>Fix 29 job page(s) missing category-page internal links</li><li>Fix 235 job page(s) needing deeper content</li><li>Fix 91 possible duplicate/cannibalization pair(s) to review</li></ul>
+</div>
+
+<div class="card">
+<h2>🔎 Google Search Console Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Google-side indexing, canonical, rich result, and search performance blockers from the Search Console API</p>
+<ul><li>GSC skipped during dry run. Run with --with-gsc to test Search Console API.</li></ul>
+</div>
+
+<div class="card">
+<h2>🚫 Jobs Not Indexed by Google (0)</h2>
+<p style='color:#2e7d32'>No not-indexed jobs found in checked URLs</p>
+</div>
+
+<div class="card">
+<h2>🧭 Canonical Conflicts (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Google-selected canonical differs from the page's declared canonical</p>
+<p style='color:#2e7d32'>No Google canonical conflicts found</p>
+</div>
+
+<div class="card">
+<h2>📉 Indexed but Zero Impressions (0)</h2>
+<p style='color:#2e7d32'>No zero-impression jobs found in checked URLs</p>
+</div>
+
+<div class="card">
+<h2>📍 Ranking Opportunities: Position Worse Than 20 (0)</h2>
+<p style='color:#2e7d32'>No checked jobs are ranking worse than average position 20</p>
+</div>
+
+<div class="card">
+<h2>🔤 Query Match Gaps (0)</h2>
+<p style='color:#2e7d32'>Target keywords are visible in top queries for checked jobs</p>
+</div>
+
+<div class="card">
+<h2>⭐ GSC Rich Results Issues (0)</h2>
+<p style='color:#2e7d32'>No rich result issues found in checked URLs</p>
+</div>
+
+<div class="card">
+<h2>📈 Top Jobs Needing Ranking Work (15)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Lowest ranking-readiness scores across metadata, schema, content, links, duplicates, sitemap, and indexing history</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job</th><th>Category</th><th>Score</th><th>Target Keyword</th><th>Top Fixes</th></tr><tr><td><a href='https://outreachrecruitment.net/jobs/marine-carpenter'>Marine Carpenter</a></td><td>Marine & Shipping</td><td style='color:#c62828;font-weight:800'>69/100</td><td>Marine Carpenter jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title missing Malta; Meta description missing Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/tank-cleaner'>Tank Cleaner</a></td><td>Marine & Shipping</td><td style='color:#c62828;font-weight:800'>69/100</td><td>Tank Cleaner jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title missing Malta; Meta description missing Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/compliance-manager'>Compliance Manager</a></td><td>General</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Compliance Manager jobs in Malta</td><td>Possible duplicate/cannibalization risk; Target phrase missing: Compliance Manager jobs in Malta; Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/driver-licence-b-zebbug'>Driver (Licence B)</a></td><td>Construction</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Driver (Licence B) jobs in Malta</td><td>Meta title does not include exact job title; Target phrase missing: Driver (Licence B) jobs in Malta; Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/lead-microsoft-365-architect-modern-work-security'>Lead Microsoft 365 Architect Modern Work & Security</a></td><td>General</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Lead Microsoft 365 Architect Modern Work & Security jobs in Malta</td><td>Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Lead Microsoft 365 Architect Modern Work & Security jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/senior-quantity-estimator-me'>Senior Quantity Estimator (M&E)</a></td><td>General</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Senior Quantity Estimator (M&E) jobs in Malta</td><td>Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Senior Quantity Estimator (M&E) jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/skilled-worker-for-outdoor-civil-works'>Skilled Worker for Outdoor & Civil Works</a></td><td>General</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Skilled Worker for Outdoor & Civil Works jobs in Malta</td><td>Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Skilled Worker for Outdoor & Civil Works jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/steel-shutterers-steel-fixers'>Steel Shutterers & Steel Fixers</a></td><td>General</td><td style='color:#e65100;font-weight:800'>73/100</td><td>Steel Shutterers & Steel Fixers jobs in Malta</td><td>Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Steel Shutterers & Steel Fixers jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/application-developer-drupal'>Application Developer (Drupal) - Hybrid</a></td><td>IT</td><td style='color:#e65100;font-weight:800'>76/100</td><td>Application Developer (Drupal) - Hybrid jobs in Malta</td><td>Meta title does not include exact job title; Meta description does not include exact job title; Meta description missing apply CTA</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent'>Assistance Coordinator (Contact Centre Agent)</a></td><td>Administration</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Assistance Coordinator (Contact Centre Agent) jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title does not include exact job title; Target phrase missing: Assistance Coordinator (Contact Centre Agent) jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/customer-experience-supervisor'>Customer Experience Supervisor</a></td><td>General</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Customer Experience Supervisor jobs in Malta</td><td>Meta title does not include exact job title; Target phrase missing: Customer Experience Supervisor jobs in Malta; Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license'>Delivery Driver - Malta C License</a></td><td>Logistics</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Delivery Driver - Malta C License jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title does not include exact job title; Target phrase missing: Delivery Driver - Malta C License jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license'>Delivery Drivers - C1 Malta License</a></td><td>Logistics</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Delivery Drivers - C1 Malta License jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title does not include exact job title; Target phrase missing: Delivery Drivers - C1 Malta License jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader'>Italian/Swedish Retention Team Leader</a></td><td>General</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Italian/Swedish Retention Team Leader jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title does not include exact job title; Target phrase missing: Italian/Swedish Retention Team Leader jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking'>Junior Sales Assistant - Maltese Speaking</a></td><td>Sales</td><td style='color:#e65100;font-weight:800'>77/100</td><td>Junior Sales Assistant - Maltese Speaking jobs in Malta</td><td>Possible duplicate/cannibalization risk; Meta title does not include exact job title; Target phrase missing: Junior Sales Assistant - Maltese Speaking jobs in Malta</td></tr></table>
+</div>
+
+<div class="card">
+<h2>🧭 Category Ranking Report</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Average ranking readiness by job category</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Category</th><th>Jobs</th><th>Average Score</th><th>Weak Jobs</th></tr><tr><td>IT</td><td>1</td><td style='color:#e65100;font-weight:800'>76.0/100</td><td>1</td></tr><tr><td>Management</td><td>2</td><td style='color:#e65100;font-weight:800'>82.5/100</td><td>1</td></tr><tr><td>Marine & Shipping</td><td>11</td><td style='color:#e65100;font-weight:800'>82.7/100</td><td>6</td></tr><tr><td>Construction</td><td>3</td><td style='color:#e65100;font-weight:800'>84.7/100</td><td>1</td></tr><tr><td>HR & Recruitment</td><td>2</td><td style='color:#2e7d32;font-weight:800'>85.0/100</td><td>1</td></tr><tr><td>Sales</td><td>18</td><td style='color:#2e7d32;font-weight:800'>86.1/100</td><td>8</td></tr><tr><td>Marine</td><td>3</td><td style='color:#2e7d32;font-weight:800'>86.7/100</td><td>1</td></tr><tr><td>General</td><td>72</td><td style='color:#2e7d32;font-weight:800'>87.2/100</td><td>28</td></tr><tr><td>Logistics</td><td>10</td><td style='color:#2e7d32;font-weight:800'>87.2/100</td><td>3</td></tr><tr><td>Administration</td><td>13</td><td style='color:#2e7d32;font-weight:800'>87.3/100</td><td>4</td></tr><tr><td>IT & Technology</td><td>7</td><td style='color:#2e7d32;font-weight:800'>87.9/100</td><td>1</td></tr><tr><td>Hospitality</td><td>34</td><td style='color:#2e7d32;font-weight:800'>88.7/100</td><td>12</td></tr><tr><td>Engineering</td><td>24</td><td style='color:#2e7d32;font-weight:800'>89.2/100</td><td>7</td></tr><tr><td>Marketing</td><td>4</td><td style='color:#2e7d32;font-weight:800'>89.2/100</td><td>1</td></tr><tr><td>Finance & Accounting</td><td>15</td><td style='color:#2e7d32;font-weight:800'>89.5/100</td><td>4</td></tr><tr><td>Engineering & Maintenance</td><td>5</td><td style='color:#2e7d32;font-weight:800'>91.6/100</td><td>1</td></tr><tr><td>Retail</td><td>4</td><td style='color:#2e7d32;font-weight:800'>93.0/100</td><td>0</td></tr><tr><td>Healthcare</td><td>5</td><td style='color:#2e7d32;font-weight:800'>94.0/100</td><td>0</td></tr><tr><td>Insurance & Pension</td><td>1</td><td style='color:#2e7d32;font-weight:800'>94.0/100</td><td>0</td></tr><tr><td>Sales & Marketing</td><td>1</td><td style='color:#2e7d32;font-weight:800'>98.0/100</td><td>0</td></tr></table>
+</div>
+
+<div class="card">
+<h2>🎯 Keyword Target Gaps (144)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Checks target phrases like “Job Title jobs in Malta”, “Job Title job in Malta”, and apply-intent copy</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job</th><th>Issues</th></tr><tr><td><a href='https://outreachrecruitment.net/jobs/accounts-payable'>Accounts Payable</a><br><span style='color:#666;font-size:12px'>Accounts Payable jobs in Malta</span></td><td>Target phrase missing: Accounts Payable jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/airline-sales-reservations-and-ticketing-officer'>Airline Sales, Reservations, and Ticketing Officer</a><br><span style='color:#666;font-size:12px'>Airline Sales, Reservations, and Ticketing Officer jobs in Malta</span></td><td>Meta title does not include exact job title; Target phrase missing: Airline Sales, Reservations, and Ticketing Officer jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid'>Application Developer (Drupal) - Hybrid</a><br><span style='color:#666;font-size:12px'>Application Developer (Drupal) - Hybrid jobs in Malta</span></td><td>Meta title does not include exact job title</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent'>Assistance Coordinator (Contact Centre Agent)</a><br><span style='color:#666;font-size:12px'>Assistance Coordinator (Contact Centre Agent) jobs in Malta</span></td><td>Meta title does not include exact job title; Target phrase missing: Assistance Coordinator (Contact Centre Agent) jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistant-executive-housekeeper'>Assistant Executive Housekeeper</a><br><span style='color:#666;font-size:12px'>Assistant Executive Housekeeper jobs in Malta</span></td><td>Meta title does not include exact job title</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistant-laboratory-manager-construction-materials'>Assistant Laboratory Manager - Construction Materials</a><br><span style='color:#666;font-size:12px'>Assistant Laboratory Manager - Construction Materials jobs in Malta</span></td><td>Meta title does not include exact job title; Target phrase missing: Assistant Laboratory Manager - Construction Materials jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/associate-tax-advisor'>Associate Tax Advisor</a><br><span style='color:#666;font-size:12px'>Associate Tax Advisor jobs in Malta</span></td><td>Meta description does not include exact job title</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bar-attendand'>Bar Attendand</a><br><span style='color:#666;font-size:12px'>Bar Attendand jobs in Malta</span></td><td>Target phrase missing: Bar Attendand jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bar-manager'>Bar Manager</a><br><span style='color:#666;font-size:12px'>Bar Manager jobs in Malta</span></td><td>Target phrase missing: Bar Manager jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/barber'>Barber</a><br><span style='color:#666;font-size:12px'>Barber jobs in Malta</span></td><td>Target phrase missing: Barber jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/barista'>Barista</a><br><span style='color:#666;font-size:12px'>Barista jobs in Malta</span></td><td>Target phrase missing: Barista jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bartender'>Bartender</a><br><span style='color:#666;font-size:12px'>Bartender jobs in Malta</span></td><td>Target phrase missing: Bartender jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bartender-front-office-agent'>Bartender & Front Office Agent</a><br><span style='color:#666;font-size:12px'>Bartender & Front Office Agent jobs in Malta</span></td><td>Meta description does not include exact job title; Target phrase missing: Bartender & Front Office Agent jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bartender-mellieha'>Bartender</a><br><span style='color:#666;font-size:12px'>Bartender jobs in Malta</span></td><td>Target phrase missing: Bartender jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bartenders'>Bartenders</a><br><span style='color:#666;font-size:12px'>Bartenders jobs in Malta</span></td><td>Target phrase missing: Bartenders jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/building-services-maintenance-helper'>Building Services Maintenance Helper</a><br><span style='color:#666;font-size:12px'>Building Services Maintenance Helper jobs in Malta</span></td><td>Meta title does not include exact job title; Target phrase missing: Building Services Maintenance Helper jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/cashier'>Cashier</a><br><span style='color:#666;font-size:12px'>Cashier jobs in Malta</span></td><td>Target phrase missing: Cashier jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/chef-de-partie'>Chef de Partie</a><br><span style='color:#666;font-size:12px'>Chef de Partie jobs in Malta</span></td><td>Target phrase missing: Chef de Partie jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/chefs'>Chefs</a><br><span style='color:#666;font-size:12px'>Chefs jobs in Malta</span></td><td>Target phrase missing: Chefs jobs in Malta</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/cleaner'>Cleaner</a><br><span style='color:#666;font-size:12px'>Cleaner jobs in Malta</span></td><td>Target phrase missing: Cleaner jobs in Malta</td></tr></table>
+</div>
+
+<div class="card">
+<h2>🔗 Internal Link Coverage (29)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Flags jobs not linked from category hub pages such as hospitality, construction, finance, IT, sales, insurance, or marine</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job</th><th>Issues</th></tr><tr><td><a href='https://outreachrecruitment.net/jobs/automotive-service-advisor'>Automotive Service Advisor</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/builders-and-shutterers'>Builders and Shutterers</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/compliance-manager'>Compliance Manager</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/construction-site-foreman'>Construction Site Foreman</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/cost-controller'>Cost Controller</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/customer-experience-supervisor'>Customer Experience Supervisor</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/draughtsperson'>Draughtsperson</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/driver-licence-b-zebbug'>Driver (Licence B)</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/executive-operations-manager'>Executive Operations Manager</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/front-office-supervisor-2'>Front Office Supervisor</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/general-manager'>General Manager</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/hairdresser'>Hairdresser</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/lead-azure-infrastructure-architect'>Lead Azure Infrastructure Architect</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/quantity-surveyor'>Quantity Surveyor</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/senior-quantity-estimator-me'>Senior Quantity Estimator (M&E)</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/skilled-worker-for-outdoor-civil-works'>Skilled Worker for Outdoor & Civil Works</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/trailer-drivers'>Trailer Drivers</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/automotive-parts-personnel'>Automotive Parts Personnel</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/real-estate-agents'>Real Estate Agents</a></td><td>Not linked from a category jobs page</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/cnc-machine-operator'>CNC Machine Operator</a></td><td>Not linked from a category jobs page</td></tr></table>
+</div>
+
+<div class="card">
+<h2>✍️ Content Quality Checks (235)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Checks depth, responsibilities, requirements, offer/benefits, salary/baseSalary, and apply CTA</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job</th><th>Issues</th></tr><tr><td><a href='https://outreachrecruitment.net/jobs/account-manager'>Account Manager</a><br><span style='color:#666;font-size:12px'>2444 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/accounts-executive'>Accounts Executive</a><br><span style='color:#666;font-size:12px'>1913 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/accounts-payable'>Accounts Payable</a><br><span style='color:#666;font-size:12px'>2500 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/administration-specialist'>Administration Specialist</a><br><span style='color:#666;font-size:12px'>2901 words</span></td><td>Missing offer/benefits section; Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/airline-sales-reservations-and-ticketing-officer'>Airline Sales, Reservations, and Ticketing Officer</a><br><span style='color:#666;font-size:12px'>1981 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid'>Application Developer (Drupal) - Hybrid</a><br><span style='color:#666;font-size:12px'>2436 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistance-co-ordinator'>Assistance Co-ordinator</a><br><span style='color:#666;font-size:12px'>2698 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent'>Assistance Coordinator (Contact Centre Agent)</a><br><span style='color:#666;font-size:12px'>2313 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistant-executive-housekeeper'>Assistant Executive Housekeeper</a><br><span style='color:#666;font-size:12px'>2058 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistant-laboratory-manager-construction-materials'>Assistant Laboratory Manager - Construction Materials</a><br><span style='color:#666;font-size:12px'>2147 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/assistant-pizza-chef'>Assistant Pizza Chef</a><br><span style='color:#666;font-size:12px'>2136 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/associate-tax-advisor'>Associate Tax Advisor</a><br><span style='color:#666;font-size:12px'>1846 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/audit-senior-associate'>Audit Senior Associate</a><br><span style='color:#666;font-size:12px'>1861 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/auditor-doctor'>Auditor Doctor</a><br><span style='color:#666;font-size:12px'>2772 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/automotive-service-advisor'>Automotive Service Advisor</a><br><span style='color:#666;font-size:12px'>1855 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bar-attendand'>Bar Attendand</a><br><span style='color:#666;font-size:12px'>1853 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bar-attendant'>Bar attendant</a><br><span style='color:#666;font-size:12px'>2312 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/bar-manager'>Bar Manager</a><br><span style='color:#666;font-size:12px'>2022 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/barber'>Barber</a><br><span style='color:#666;font-size:12px'>2613 words</span></td><td>Salary/baseSalary missing or not specific</td></tr><tr><td><a href='https://outreachrecruitment.net/jobs/barista'>Barista</a><br><span style='color:#666;font-size:12px'>2194 words</span></td><td>Salary/baseSalary missing or not specific</td></tr></table>
+</div>
+
+<div class="card">
+<h2>⭐ JobPosting Rich Results Eligibility</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Schema eligibility for Google Jobs rich result consideration</p>
+<p style='color:#2e7d32'>All checked jobs are eligible by tracked schema rules</p>
+</div>
+
+<h2>⚡ Quick Fix Commands</h2><p>Run these in Terminal from the project folder:</p><code style='background:#263238;color:#80cbc4;padding:10px;display:block;border-radius:4px;font-size:13px'># Add missing jobs automatically:<br>python3 tools/job_sync_agent.py --auto-fix --no-seo</code><br><br><code style='background:#263238;color:#80cbc4;padding:10px;display:block;border-radius:4px;font-size:13px'># Or expire extra jobs manually:<br>python3 tools/expire_job.py driver-licence-b electrician-or-instrumentation-technician-licence-a senior-audit-associate</code>
+
+<div class="card">
+<h2>➕ Jobs to Add (1)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">On careers page but <b>missing</b> from website — run <code>--auto-fix</code> to add automatically</p>
+<table border='1' cellpadding='6' style='border-collapse:collapse;font-size:13px;width:100%'><tr><th>Job Title</th><th>Careers Page Link</th></tr><tr><td>Driver License B</td><td><a href='https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a' style='color:#1565c0'>View on Careers Page ↗</a></td></tr></table>
+</div>
+
+
+
+<div class="card">
+<h2>🗑️ Jobs to Remove (3)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">On website but <b>no longer active</b> on careers page</p>
+<ul><li>Driver (Licence B)</li><li>Electrician or Instrumentation Technician (Licence A)</li><li>Senior Audit Associate</li></ul>
+</div>
+
+<div class="card">
+<h2>📝 Title Differences (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Similar but non-matching titles between platforms</p>
+<p style='color:#2e7d32'>✅ All titles match</p>
+</div>
+
+<div class="card">
+<h2>🔗 Broken Pages (0)</h2>
+<p style='color:#2e7d32'>✅ No broken pages</p>
+</div>
+
+<div class="card">
+<h2>🔍 SEO Issues (0)</h2>
+<p style='color:#888'>SEO check skipped — run <code>python3 tools/job_sync_agent.py</code> for full check.</p>
+</div>
+
+<div class="card">
+<h2>🗺️ Sitemap Issues (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Job pages not listed in sitemap — Google may not index them</p>
+<p style='color:#2e7d32'>✅ All job pages are in the sitemap</p>
+</div>
+
+
+
+<div class="card">
+<h2>🔍 Duplicate Suspects (91)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Jobs with very similar titles on the website — may confuse candidates or Google</p>
+<table border='1' cellpadding='5' style='border-collapse:collapse;font-size:13px'><tr><th>Job A</th><th>Job B</th><th>Match</th><th>URL A</th></tr><tr><td>Assistance Co-ordinator</td><td>Assistance Coordinator (Contact Centre Agent)</td><td>0.98</td><td>https://outreachrecruitment.net/jobs/assistance-co-ordinator</td></tr><tr><td>Bartender</td><td>Bartenders</td><td>0.95</td><td>https://outreachrecruitment.net/jobs/bartender</td></tr><tr><td>Bartender</td><td>Bartenders</td><td>0.95</td><td>https://outreachrecruitment.net/jobs/bartender-mellieha</td></tr><tr><td>Junior Sales Assistant - Maltese Speaking</td><td>Senior Sales Assistant - Maltese Speaking</td><td>0.95</td><td>https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking</td></tr><tr><td>Plumber</td><td>Plumbers</td><td>0.93</td><td>https://outreachrecruitment.net/jobs/plumber</td></tr><tr><td>Room Attendants</td><td>Room Attendents</td><td>0.93</td><td>https://outreachrecruitment.net/jobs/room-attendants</td></tr><tr><td>Bar Attendand</td><td>Bar attendant</td><td>0.92</td><td>https://outreachrecruitment.net/jobs/bar-attendand</td></tr><tr><td>Delivery Driver - Malta C License</td><td>Delivery Drivers - C1 Malta License</td><td>0.91</td><td>https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license</td></tr><tr><td>Sales Executive</td><td>Sales Executive B2B</td><td>0.88</td><td>https://outreachrecruitment.net/jobs/sales-executive</td></tr><tr><td>Sales Executive B2B</td><td>Sales Executive</td><td>0.88</td><td>https://outreachrecruitment.net/jobs/sales-executive-b2b</td></tr><tr><td>Sales Executive B2B</td><td>Sales Executive</td><td>0.88</td><td>https://outreachrecruitment.net/jobs/sales-executive-b2b</td></tr><tr><td>Pool Attendants</td><td>Room Attendants</td><td>0.87</td><td>https://outreachrecruitment.net/jobs/pool-attendants</td></tr><tr><td>HVAC Project Manager</td><td>Project Manager</td><td>0.86</td><td>https://outreachrecruitment.net/jobs/hvac-project-manager</td></tr><tr><td>Chef de Partie</td><td>Demi Chef de Partie (Breakfast Shift)</td><td>0.85</td><td>https://outreachrecruitment.net/jobs/chef-de-partie</td></tr><tr><td>General Maintenance Technician</td><td>Maintenance Technician</td><td>0.85</td><td>https://outreachrecruitment.net/jobs/general-maintenance-technician</td></tr><tr><td>Demi Chef de Partie (Breakfast Shift)</td><td>Chef de Partie</td><td>0.85</td><td>https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift</td></tr><tr><td>Demi Chef de Partie (Breakfast Shift)</td><td>Chef De Partie</td><td>0.85</td><td>https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift</td></tr><tr><td>Head Chef - Chinese Cuisine</td><td>Head Chef - Maltese Cuisine</td><td>0.84</td><td>https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine</td></tr><tr><td>Restaurant Supervisor</td><td>Restaurant Supervisor in Gozo</td><td>0.84</td><td>https://outreachrecruitment.net/jobs/restaurant-supervisor</td></tr><tr><td>Sous Chef</td><td>Sushi Chef</td><td>0.84</td><td>https://outreachrecruitment.net/jobs/sous-chef</td></tr><tr><td>Sushi Chef</td><td>Sous Chef</td><td>0.84</td><td>https://outreachrecruitment.net/jobs/sushi-chef</td></tr><tr><td>Real Estate Agents</td><td>Real Estate Managers</td><td>0.84</td><td>https://outreachrecruitment.net/jobs/real-estate-agents</td></tr><tr><td>Driver - Malta C License</td><td>Delivery Driver - Malta C License</td><td>0.83</td><td>https://outreachrecruitment.net/jobs/driver-malta-c-license</td></tr><tr><td>Head Chef - Chinese Cuisine</td><td>Head Chef - Greek Cuisine</td><td>0.83</td><td>https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine</td></tr><tr><td>Head Chef - Greek Cuisine</td><td>Head Chef - Maltese Cuisine</td><td>0.83</td><td>https://outreachrecruitment.net/jobs/head-chef-greek-cuisine</td></tr><tr><td>Italian/Swedish Retention Team Leader</td><td>Italian/Swedish Sales Team Leader</td><td>0.83</td><td>https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader</td></tr><tr><td>Bar Manager</td><td>Tax Manager</td><td>0.82</td><td>https://outreachrecruitment.net/jobs/bar-manager</td></tr><tr><td>Project Manager - Construction</td><td>QA Manager - Construction</td><td>0.82</td><td>https://outreachrecruitment.net/jobs/project-manager-construction</td></tr><tr><td>Driver – Category C License</td><td>Driver - Malta C License</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/driver-category-c-license</td></tr><tr><td>Head Housekeeper</td><td>Housekeeper</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/head-housekeeper</td></tr><tr><td>Head Housekeeper</td><td>Housekeeper</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/head-housekeeper</td></tr><tr><td>Heavy Machine Operator</td><td>CNC Machine Operator</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/heavy-machine-operator</td></tr><tr><td>Sales Assistant Manager</td><td>Sales Shift Manager</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/sales-assistant-manager</td></tr><tr><td>Sales Manager</td><td>Sales Shift Manager</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/sales-manager</td></tr><tr><td>Corporate Insurance Associate</td><td>Commercial Insurance Associate</td><td>0.81</td><td>https://outreachrecruitment.net/jobs/corporate-insurance-associate</td></tr><tr><td>Front Office Agent</td><td>Front Office Assistant</td><td>0.8</td><td>https://outreachrecruitment.net/jobs/front-office-agent</td></tr><tr><td>Pool Attendants</td><td>Room Attendents</td><td>0.8</td><td>https://outreachrecruitment.net/jobs/pool-attendants</td></tr><tr><td>QHSE Manager</td><td>Sales Manager</td><td>0.8</td><td>https://outreachrecruitment.net/jobs/qhse-manager-malta</td></tr><tr><td>Assistance Coordinator (Contact Centre Agent)</td><td>HSSE Coordinator</td><td>0.79</td><td>https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent</td></tr><tr><td>Bar attendant</td><td>Room Attendants</td><td>0.79</td><td>https://outreachrecruitment.net/jobs/bar-attendant</td></tr><tr><td>Assistance Co-ordinator</td><td>HSSE Coordinator</td><td>0.77</td><td>https://outreachrecruitment.net/jobs/assistance-co-ordinator</td></tr><tr><td>Customer Care Associate</td><td>Customer Operations Associate</td><td>0.77</td><td>https://outreachrecruitment.net/jobs/customer-care-associate</td></tr><tr><td>Sales Executive</td><td>Showroom Sales Executive</td><td>0.77</td><td>https://outreachrecruitment.net/jobs/sales-executive</td></tr><tr><td>Showroom Sales Executive</td><td>Sales Executive</td><td>0.77</td><td>https://outreachrecruitment.net/jobs/showroom-sales-executive</td></tr><tr><td>Showroom Sales Executive</td><td>Sales Executive</td><td>0.77</td><td>https://outreachrecruitment.net/jobs/showroom-sales-executive</td></tr><tr><td>Client Accountant</td><td>Client Accounting Manager</td><td>0.76</td><td>https://outreachrecruitment.net/jobs/client-accountant</td></tr><tr><td>Client Accountant</td><td>Client Accounting Manager</td><td>0.76</td><td>https://outreachrecruitment.net/jobs/client-accountant-2</td></tr><tr><td>Compliance Manager</td><td>Maintenance Manager</td><td>0.76</td><td>https://outreachrecruitment.net/jobs/compliance-manager</td></tr><tr><td>HR Executive</td><td>Payroll Executive</td><td>0.76</td><td>https://outreachrecruitment.net/jobs/hr-executive</td></tr><tr><td>Marine Carpenter</td><td>Marine Turner</td><td>0.76</td><td>https://outreachrecruitment.net/jobs/marine-carpenter</td></tr></table>
+</div>
+
+<div class="card">
+<h2>📋 Schema Issues (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">JSON-LD structured data problems — missing fields affect how Google Jobs displays these listings</p>
+<p style='color:#2e7d32'>✅ All structured data schemas pass validation</p>
+</div>
+
+
+
+<div class="card">
+<h2>📡 Google Indexing API (0)</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Changed job URLs submitted through the connected Search Console service account. Successful: <b style="color:#2e7d32">0</b>; failed: <b style="color:#c62828">0</b>.</p>
+<p style='color:#2e7d32'>No changed job URLs needed Google submission this run.</p>
+</div>
+
+<div class="card">
+<h2>💡 SEO Action Plan</h2>
+<p style="color:#555;margin-top:-4px;font-size:13px">Concrete steps to improve search visibility and Google Jobs indexing</p>
+<table border="1" cellpadding="7" style="border-collapse:collapse;font-size:13px;width:100%">
+<tr><th style="width:30px">#</th><th>Action</th><th>Priority</th><th>Impact</th></tr>
+<tr><td>1</td><td><b>Canonical tags</b> — Each job page must have exactly ONE <code>&lt;link rel="canonical"&gt;</code> pointing to its own URL. Duplicate or mismatched canonicals split authority and confuse Google.<br><code style="font-size:11px;color:#555">Fix: run <b>python3 tools/fix_canonical.py</b> then push.</code></td><td style="color:#c62828">🔴 High</td><td>Google ranking, de-duplication</td></tr>
+<tr><td>2</td><td><b>Meta description length</b> — Keep between 120–155 characters. Too short wastes SERP space; too long gets cut. Descriptions should include the job title, city, and a call-to-action keyword like "Apply now".</td><td style="color:#e65100">🟠 Medium</td><td>Click-through rate</td></tr>
+<tr><td>3</td><td><b>Meta title format</b> — Ideal pattern: <em>Job Title in City, Malta | Outreach Recruitment</em> (max 60 chars). Verify every page follows this pattern.</td><td style="color:#e65100">🟠 Medium</td><td>SERP visibility</td></tr>
+<tr><td>4</td><td><b>JSON-LD schema</b> — All pages need <code>validThrough</code>, <code>employmentType</code>, and <code>identifier</code> fields filled. Missing fields reduce Google Jobs eligibility. Run <code>python3 tools/fix_jobposting_schema.py</code> if needed.</td><td style="color:#e65100">🟠 Medium</td><td>Google Jobs listings</td></tr>
+<tr><td>5</td><td><b>Sitemap freshness + Indexing API</b> — Whenever jobs are added, updated, closed, or removed, regenerate <code>sitemaps/sitemap-jobs.xml</code> and submit changed URLs through the connected Search Console bot. This report now records those Google API submissions.</td><td style="color:#2e7d32">🟢 Low</td><td>Indexing speed</td></tr>
+<tr><td>6</td><td><b>Duplicate job titles</b> — 91 duplicate suspects found this run (e.g. "Bartender" vs "Bartenders"). Merge or differentiate these pages — two near-identical pages compete against each other in Google.</td><td style="color:#2e7d32">🟢 Low</td><td>Keyword cannibalization</td></tr>
+<tr><td>7</td><td><b>Internal linking</b> — Add links from category hub pages (e.g. hospitality-jobs-in-malta.html) to individual job pages. This distributes PageRank to new job pages faster.</td><td style="color:#2e7d32">🟢 Low</td><td>Crawl budget, authority</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>📎 CSV Attachments</h2>
+<ul style="margin:0">
+  <li>missing_jobs.csv — 1 jobs to add</li>
+  <li>extra_jobs.csv — 3 jobs to remove</li>
+  <li>title_mismatches.csv — 0 entries</li>
+  <li>broken_links.csv — 0 pages</li>
+  <li>seo_issues.csv — 0 issues</li>
+  <li>duplicates.csv — 91 duplicate suspects</li>
+  <li>google_indexing_submissions.csv — 0 submissions this run</li>
+  <li>ranking_readiness.csv — 235 job ranking scores</li>
+  <li>keyword_issues.csv — 144 jobs with keyword gaps</li>
+  <li>internal_link_issues.csv — 29 jobs missing category links</li>
+  <li>content_quality_issues.csv — 235 jobs needing content work</li>
+  <li>schema_eligibility.csv — 235 rich result checks</li>
+  <li>category_ranking.csv — 20 category summaries</li>
+  <li>gsc_url_inspection.csv — 0 URL Inspection checks</li>
+  <li>gsc_search_performance.csv — 0 Search Analytics rows</li>
+  <li>gsc_indexing_problems.csv — 0 Google-side problem groups</li>
+</ul>
+</div>
+
+<div class="footer">
+  <p>Outreach Recruitment — Job Sync Agent | Runs every day at 08:00 Malta Time</p>
+  <p>
+    Careers Platform: <a href="https://outreach-recruitment-agency.careers-page.com/">outreach-recruitment-agency.careers-page.com</a> &nbsp;|&nbsp;
+    Website: <a href="https://outreachrecruitment.net/jobs/">outreachrecruitment.net/jobs</a> &nbsp;|&nbsp;
+    <a href="https://outreachrecruitment.net/sync-dashboard.html">📊 Live Dashboard</a>
+  </p>
+</div>
+
+</body>
+</html>
