@@ -353,12 +353,16 @@ def scrape_public_website() -> list[WebsiteJob]:
 
         # URL / slug
         lm = LINK_RE.search(card_html)
-        rel_url = lm.group(1) if lm else ""
+        if not lm:
+            # Closed-job placeholder cards render as a disabled <div>, not a
+            # link — skip them, they're not a live job to sync against.
+            continue
+        rel_url = lm.group(1)
         # Normalize: strip /jobs/ prefix and slashes to get just the slug
         slug = rel_url.strip("/").replace("jobs/", "")
         full_url = f"{PUBLIC_BASE}/jobs/{slug}" if slug else ""
 
-        if slug in seen_slugs:
+        if not slug or slug in seen_slugs:
             continue
         seen_slugs.add(slug)
 
@@ -425,6 +429,11 @@ def validate_job_schema(html: str) -> tuple[dict | None, list[str]]:
         schema = json.loads(schema_m.group(1))
     except Exception:
         return None, ["Malformed JSON in JSON-LD block"]
+
+    if isinstance(schema, list):
+        schema = next((s for s in schema if isinstance(s, dict) and s.get("@type") == "JobPosting"), None)
+        if schema is None:
+            return None, ["No JobPosting object in JSON-LD array"]
 
     if schema.get("@type") not in ("JobPosting", ["JobPosting"]):
         return schema, [f"@type is '{schema.get('@type')}', expected JobPosting"]
@@ -987,7 +996,7 @@ def parse_gsc_inspection(job: WebsiteJob, status: int, data: dict) -> dict:
     rich_items = rich.get("detectedItems", []) or []
     rich_item_types = ", ".join(sorted({str(item.get("richResultType", "")) for item in rich_items if item.get("richResultType")}))
 
-    indexed = verdict in {"PASS"} or "indexed" in coverage.lower()
+    indexed = verdict == "PASS" or coverage.strip().lower() == "submitted and indexed"
     canonical_match = bool(user_canonical and google_canonical and user_canonical.rstrip("/") == google_canonical.rstrip("/"))
 
     return {
@@ -1064,11 +1073,12 @@ def apply_gsc_analysis(report: SyncReport, website_jobs: list[WebsiteJob], limit
         print(f"  [{i}/{len(jobs)}] {job.slug}", end=" … ", flush=True)
         target_keyword = ranking_by_url.get(job.url.rstrip("/"), {}).get("target_keyword", keyword_targets(job.title)[0])
 
-        inspect_status, inspect_data = inspect_gsc_url(token, job.url)
+        canonical_url = job.url.rstrip("/") + "/"
+        inspect_status, inspect_data = inspect_gsc_url(token, canonical_url)
         inspection = parse_gsc_inspection(job, inspect_status, inspect_data)
         report.gsc_url_inspection.append(inspection)
 
-        perf_status, perf_data = query_gsc_performance(token, job.url)
+        perf_status, perf_data = query_gsc_performance(token, canonical_url)
         performance = parse_gsc_performance(job, perf_status, perf_data, target_keyword)
         report.gsc_search_performance.append(performance)
 
