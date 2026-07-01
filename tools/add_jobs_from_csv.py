@@ -130,10 +130,10 @@ def auto_keywords(job: dict) -> str:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def generate_job_page(job: dict) -> str:
-    """Clone jobs/plumber.html and substitute all dynamic fields."""
-    base_path = JOBS / "plumber.html"
+    """Clone jobs/plumber/index.html and substitute all dynamic fields."""
+    base_path = JOBS / "plumber" / "index.html"
     if not base_path.exists():
-        raise FileNotFoundError("Base template jobs/plumber.html not found")
+        raise FileNotFoundError("Base template jobs/plumber/index.html not found")
 
     html = base_path.read_text(encoding="utf-8")
 
@@ -330,10 +330,11 @@ def generate_job_page(job: dict) -> str:
     html = re.sub(r'"description":\s*"[^"]*(?<!\\)"', f'"description": "{json.dumps(schema_desc)[1:-1]}"', html, count=1)
     exp_req = f"Previous experience as a {title} or in a similar role."
     html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
+    html = re.sub(r'"value":\s*"[^"]*"', f'"value": "{slug}"', html, count=1)
 
-    # ── 16. Breadcrumb schema ─────────────────────────────────────────────────
+    # ── 16. Breadcrumb schema (leaf item = the job page itself) ──────────────
     html = re.sub(
-        r'(\{"@type":\s*"ListItem",\s*"position":\s*3,\s*"name":\s*")[^"]*(",\s*"item":\s*")[^"]*(")',
+        r'(\{\s*"@type":\s*"ListItem",\s*"position":\s*4,\s*"name":\s*")[^"]*(",\s*"item":\s*")[^"]*(")',
         rf'\g<1>{title}\g<2>{page_url}\3', html, count=1
     )
 
