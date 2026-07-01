@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-07-01
 
-Generated: 2026-07-01T09:48:42
+Generated: 2026-07-01T10:17:14
 
 ## Summary
 
@@ -25,7 +25,7 @@ Generated: 2026-07-01T09:48:42
 | Average Ranking Readiness | 88.1/100 |
 | High-Priority Ranking Jobs | 1 |
 | GSC URLs Checked | 209 |
-| GSC Problem Groups | 209 |
+| GSC Problem Groups | 200 |
 
 ## Jobs to Add (Missing from Website)
 
@@ -173,114 +173,135 @@ Generated: 2026-07-01T09:48:42
 
 ## Google Search Console Action Plan
 
-1. Fix 105 job URL(s) not indexed or not passing URL Inspection
-2. Fix 1 job URL(s) where Google selected a different canonical
-3. Fix 88 job URL(s) with zero Search Console impressions
-4. Fix 6 job URL(s) ranking worse than average position 20
-5. Fix 20 job URL(s) missing target keyword visibility in top queries
-6. Fix 31 job URL(s) with rich result issues
+1. Fix 67 job URL(s) not indexed or not passing URL Inspection
+2. Fix 3 job URL(s) where Google selected a different canonical
+3. Fix 89 job URL(s) with zero Search Console impressions
+4. Fix 15 job URL(s) ranking worse than average position 20
+5. Fix 55 job URL(s) missing target keyword visibility in top queries
+6. Fix 15 job URL(s) with rich result issues
 
 ## Jobs Not Indexed by Google
 
-- **[Plumber](https://outreachrecruitment.net/jobs/plumber)**: URL is unknown to Google
 - **[Server (Spanish Speaker)](https://outreachrecruitment.net/jobs/server-spanish-speaker)**: URL is unknown to Google
-- **[Plant Technician](https://outreachrecruitment.net/jobs/plant-technician)**: Page with redirect
-- **[Application Developer (.NET, SharePoint) - Hybrid](https://outreachrecruitment.net/jobs/application-developer-net-sharepoint-hybrid)**: URL is unknown to Google
-- **[Maintenance Technician](https://outreachrecruitment.net/jobs/maintenance-technician)**: Page with redirect
-- **[Assistance Co-ordinator](https://outreachrecruitment.net/jobs/assistance-co-ordinator)**: Page with redirect
-- **[Nurse Advisor](https://outreachrecruitment.net/jobs/nurse-advisor)**: Page with redirect
-- **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)**: Page with redirect
-- **[Purchasing Officer](https://outreachrecruitment.net/jobs/purchasing-officer)**: Page with redirect
-- **[HSSE Coordinator](https://outreachrecruitment.net/jobs/hsse-coordinator)**: Page with redirect
-- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner)**: URL is unknown to Google
-- **[Runners](https://outreachrecruitment.net/jobs/runners)**: Page with redirect
-- **[Food & Beverage Staff](https://outreachrecruitment.net/jobs/food-beverage-staff)**: Page with redirect
-- **[Hairdresser](https://outreachrecruitment.net/jobs/hairdresser)**: Page with redirect
-- **[Head Chef](https://outreachrecruitment.net/jobs/head-chef)**: Page with redirect
-- **[Hospitality Staff – Malta](https://outreachrecruitment.net/jobs/hospitality-staff-malta)**: URL is unknown to Google
-- **[Driver / Runner / Washer](https://outreachrecruitment.net/jobs/driver-runner-washer)**: Page with redirect
-- **[Head of Spa](https://outreachrecruitment.net/jobs/head-of-spa)**: URL is unknown to Google
-- **[Truck Driver - Residing in Malta](https://outreachrecruitment.net/jobs/truck-driver-residing-in-malta)**: URL is unknown to Google
-- **[Sous Chef](https://outreachrecruitment.net/jobs/sous-chef)**: URL is unknown to Google
-- **[Accounts Executive](https://outreachrecruitment.net/jobs/accounts-executive)**: URL is unknown to Google
-- **[Executive Operations Manager](https://outreachrecruitment.net/jobs/executive-operations-manager)**: Page with redirect
-- **[HR Executive](https://outreachrecruitment.net/jobs/hr-executive)**: URL is unknown to Google
-- **[Customer Operations Associate](https://outreachrecruitment.net/jobs/customer-operations-associate)**: URL is unknown to Google
-- **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: Page with redirect
-- **[Customer Experience Supervisor](https://outreachrecruitment.net/jobs/customer-experience-supervisor)**: URL is unknown to Google
-- **[Sales Representative in Renewables](https://outreachrecruitment.net/jobs/sales-representative-in-renewables)**: URL is unknown to Google
-- **[HVAC Project Manager](https://outreachrecruitment.net/jobs/hvac-project-manager)**: URL is unknown to Google
-- **[Maintenance Technician - Electrical Licence A or B)](https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b)**: URL is unknown to Google
-- **[Head Chef - Maltese Cuisine](https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine)**: URL is unknown to Google
+- **[Application Developer (.NET, SharePoint) - Hybrid](https://outreachrecruitment.net/jobs/application-developer-net-sharepoint-hybrid)**: Not found (404)
+- **[Auditor Doctor](https://outreachrecruitment.net/jobs/auditor-doctor)**: Alternate page with proper canonical tag
+- **[Summer Waiter - Mellieha](https://outreachrecruitment.net/jobs/summer-waiter-mellieha)**: Alternate page with proper canonical tag
+- **[Estimator](https://outreachrecruitment.net/jobs/estimator)**: URL is unknown to Google
+- **[Restaurant Supervisor](https://outreachrecruitment.net/jobs/restaurant-supervisor)**: Alternate page with proper canonical tag
+- **[Chef de Partie](https://outreachrecruitment.net/jobs/chef-de-partie)**: Alternate page with proper canonical tag
+- **[Assistant Pizza Chef](https://outreachrecruitment.net/jobs/assistant-pizza-chef)**: Alternate page with proper canonical tag
+- **[Production Chef](https://outreachrecruitment.net/jobs/production-chef)**: Alternate page with proper canonical tag
+- **[Barista](https://outreachrecruitment.net/jobs/barista)**: Alternate page with proper canonical tag
+- **[Pool Attendants](https://outreachrecruitment.net/jobs/pool-attendants)**: Alternate page with proper canonical tag
+- **[Level 2 Platform Ops Engineer](https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer)**: Alternate page with proper canonical tag
+- **[Senior Plant Technician – Hotel Operations & Maintenance](https://outreachrecruitment.net/jobs/senior-plant-technician-hotel-operations-maintenance)**: Alternate page with proper canonical tag
+- **[Driver – Category C License](https://outreachrecruitment.net/jobs/driver-category-c-license)**: Alternate page with proper canonical tag
+- **[Cashier](https://outreachrecruitment.net/jobs/cashier)**: URL is unknown to Google
+- **[F&B Shift Leader](https://outreachrecruitment.net/jobs/fb-shift-leader)**: Alternate page with proper canonical tag
+- **[Senior IT Infrastructure Engineer](https://outreachrecruitment.net/jobs/senior-it-infrastructure-engineer)**: Alternate page with proper canonical tag
+- **[Marketing Administrator](https://outreachrecruitment.net/jobs/marketing-administrator)**: Alternate page with proper canonical tag
+- **[NetSuite Specialist](https://outreachrecruitment.net/jobs/netsuite-specialist)**: Alternate page with proper canonical tag
+- **[Senior Quantity Estimator (M&E)](https://outreachrecruitment.net/jobs/senior-quantity-estimator-me)**: URL is unknown to Google
+- **[HVAC Sales Representative](https://outreachrecruitment.net/jobs/hvac-sales-representative)**: Alternate page with proper canonical tag
+- **[Sales Executive](https://outreachrecruitment.net/jobs/sales-executive)**: Alternate page with proper canonical tag
+- **[IT Support Executive](https://outreachrecruitment.net/jobs/it-support-executive)**: Alternate page with proper canonical tag
+- **[Commis](https://outreachrecruitment.net/jobs/commis)**: Alternate page with proper canonical tag
+- **[Labourer Mechanic](https://outreachrecruitment.net/jobs/labourer-mechanic)**: Alternate page with proper canonical tag
+- **[Head Chef - Chinese Cuisine](https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine)**: Alternate page with proper canonical tag
+- **[Client Accountant](https://outreachrecruitment.net/jobs/client-accountant)**: Alternate page with proper canonical tag
+- **[Front Office Supervisor](https://outreachrecruitment.net/jobs/front-office-supervisor)**: URL is unknown to Google
+- **[Bartender & Front Office Agent](https://outreachrecruitment.net/jobs/bartender-front-office-agent)**: Alternate page with proper canonical tag
+- **[Payroll Executive](https://outreachrecruitment.net/jobs/payroll-executive)**: Alternate page with proper canonical tag
 
 ## Canonical Conflicts
 
+- **[IT Support Executive](https://outreachrecruitment.net/jobs/it-support-executive)**: user `https://outreachrecruitment.net/jobs/it-support-executive` vs Google `https://outreachrecruitment.net/jobs/it-support-executive-2/`
 - **[Accounts Senior](https://outreachrecruitment.net/jobs/accounts-senior)**: user `https://outreachrecruitment.net/jobs/accounts-senior` vs Google `https://outreachrecruitment.net/jobs/accounts-senior-2/`
+- **[Commis](https://outreachrecruitment.net/jobs/commis-2)**: user `https://outreachrecruitment.net/jobs/commis-2` vs Google `https://outreachrecruitment.net/jobs/commis`
 
 ## Indexed but Zero Impressions
 
 - **[Assistant Executive Housekeeper](https://outreachrecruitment.net/jobs/assistant-executive-housekeeper)**: target `Assistant Executive Housekeeper jobs in Malta`
 - **[QHSE Manager](https://outreachrecruitment.net/jobs/qhse-manager-malta)**: target `QHSE Manager jobs in Malta`
-- **[Welder](https://outreachrecruitment.net/jobs/welder)**: target `Welder jobs in Malta`
-- **[Estimator](https://outreachrecruitment.net/jobs/estimator)**: target `Estimator jobs in Malta`
-- **[Restaurant Supervisor](https://outreachrecruitment.net/jobs/restaurant-supervisor)**: target `Restaurant Supervisor jobs in Malta`
-- **[Kitchen Porter](https://outreachrecruitment.net/jobs/kitchen-porter)**: target `Kitchen Porter jobs in Malta`
-- **[Assistant Pizza Chef](https://outreachrecruitment.net/jobs/assistant-pizza-chef)**: target `Assistant Pizza Chef jobs in Malta`
-- **[Production Chef](https://outreachrecruitment.net/jobs/production-chef)**: target `Production Chef jobs in Malta`
-- **[Bar attendant](https://outreachrecruitment.net/jobs/bar-attendant)**: target `Bar attendant jobs in Malta`
+- **[Plumber](https://outreachrecruitment.net/jobs/plumber)**: target `Plumber jobs in Malta`
+- **[Plant Technician](https://outreachrecruitment.net/jobs/plant-technician)**: target `Plant Technician jobs in Malta`
+- **[Sales Office Coordinator](https://outreachrecruitment.net/jobs/sales-office-coordinator)**: target `Sales Office Coordinator jobs in Malta`
+- **[Maintenance Technician](https://outreachrecruitment.net/jobs/maintenance-technician)**: target `Maintenance Technician jobs in Malta`
+- **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)**: target `HR Administration Officer jobs in Malta`
+- **[Purchasing Officer](https://outreachrecruitment.net/jobs/purchasing-officer)**: target `Purchasing Officer jobs in Malta`
+- **[HSSE Coordinator](https://outreachrecruitment.net/jobs/hsse-coordinator)**: target `HSSE Coordinator jobs in Malta`
+- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner)**: target `Cleaner jobs in Malta`
 - **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper)**: target `Housekeeper jobs in Malta`
+- **[Food & Beverage Staff](https://outreachrecruitment.net/jobs/food-beverage-staff)**: target `Food & Beverage Staff jobs in Malta`
 - **[Compliance Manager](https://outreachrecruitment.net/jobs/compliance-manager)**: target `Compliance Manager jobs in Malta`
-- **[Pool Attendants](https://outreachrecruitment.net/jobs/pool-attendants)**: target `Pool Attendants jobs in Malta`
-- **[Level 2 Platform Ops Engineer](https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer)**: target `Level 2 Platform Ops Engineer jobs in Malta`
+- **[Head Chef](https://outreachrecruitment.net/jobs/head-chef)**: target `Head Chef jobs in Malta`
+- **[Hospitality Staff – Malta](https://outreachrecruitment.net/jobs/hospitality-staff-malta)**: target `Hospitality Staff – Malta jobs in Malta`
 - **[Sales Shift Manager](https://outreachrecruitment.net/jobs/sales-shift-manager)**: target `Sales Shift Manager jobs in Malta`
-- **[Senior Plant Technician – Hotel Operations & Maintenance](https://outreachrecruitment.net/jobs/senior-plant-technician-hotel-operations-maintenance)**: target `Senior Plant Technician – Hotel Operations & Maintenance jobs in Malta`
-- **[Driver – Category C License](https://outreachrecruitment.net/jobs/driver-category-c-license)**: target `Driver – Category C License jobs in Malta`
+- **[Head of Spa](https://outreachrecruitment.net/jobs/head-of-spa)**: target `Head of Spa jobs in Malta`
+- **[Truck Driver - Residing in Malta](https://outreachrecruitment.net/jobs/truck-driver-residing-in-malta)**: target `Truck Driver - Residing in Malta jobs in Malta`
 - **[Supervisor](https://outreachrecruitment.net/jobs/supervisor)**: target `Supervisor jobs in Malta`
-- **[Cashier](https://outreachrecruitment.net/jobs/cashier)**: target `Cashier jobs in Malta`
-- **[F&B Shift Leader](https://outreachrecruitment.net/jobs/fb-shift-leader)**: target `F&B Shift Leader jobs in Malta`
-- **[Technical Systems Analyst](https://outreachrecruitment.net/jobs/technical-systems-analyst)**: target `Technical Systems Analyst jobs in Malta`
-- **[Marketing Administrator](https://outreachrecruitment.net/jobs/marketing-administrator)**: target `Marketing Administrator jobs in Malta`
-- **[Retail Sales Associate](https://outreachrecruitment.net/jobs/retail-sales-associate)**: target `Retail Sales Associate jobs in Malta`
+- **[Accounts Executive](https://outreachrecruitment.net/jobs/accounts-executive)**: target `Accounts Executive jobs in Malta`
+- **[Executive Operations Manager](https://outreachrecruitment.net/jobs/executive-operations-manager)**: target `Executive Operations Manager jobs in Malta`
 - **[Kitchen Manager](https://outreachrecruitment.net/jobs/kitchen-manager)**: target `Kitchen Manager jobs in Malta`
-- **[Receptionist - Maltese Speaking](https://outreachrecruitment.net/jobs/receptionist-maltese-speaking)**: target `Receptionist - Maltese Speaking jobs in Malta`
-- **[Senior Quantity Estimator (M&E)](https://outreachrecruitment.net/jobs/senior-quantity-estimator-me)**: target `Senior Quantity Estimator (M&E) jobs in Malta`
-- **[HVAC Sales Representative](https://outreachrecruitment.net/jobs/hvac-sales-representative)**: target `HVAC Sales Representative jobs in Malta`
-- **[IT Support Executive](https://outreachrecruitment.net/jobs/it-support-executive)**: target `IT Support Executive jobs in Malta`
-- **[Commis](https://outreachrecruitment.net/jobs/commis)**: target `Commis jobs in Malta`
-- **[Labourer Mechanic](https://outreachrecruitment.net/jobs/labourer-mechanic)**: target `Labourer Mechanic jobs in Malta`
+- **[Customer Experience Supervisor](https://outreachrecruitment.net/jobs/customer-experience-supervisor)**: target `Customer Experience Supervisor jobs in Malta`
+- **[Sales Representative in Renewables](https://outreachrecruitment.net/jobs/sales-representative-in-renewables)**: target `Sales Representative in Renewables jobs in Malta`
+- **[HVAC Project Manager](https://outreachrecruitment.net/jobs/hvac-project-manager)**: target `HVAC Project Manager jobs in Malta`
+- **[Maintenance Technician - Electrical Licence A or B)](https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b)**: target `Maintenance Technician - Electrical Licence A or B) jobs in Malta`
+- **[Head Chef - Maltese Cuisine](https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine)**: target `Head Chef - Maltese Cuisine jobs in Malta`
+- **[Marketing Assistant](https://outreachrecruitment.net/jobs/marketing-assistant)**: target `Marketing Assistant jobs in Malta`
 - **[Electrician Installer](https://outreachrecruitment.net/jobs/electrician-installer)**: target `Electrician Installer jobs in Malta`
+- **[General Maintenance Technician](https://outreachrecruitment.net/jobs/general-maintenance-technician)**: target `General Maintenance Technician jobs in Malta`
 
 ## Ranking Opportunities from GSC
 
-- **[Auditor Doctor](https://outreachrecruitment.net/jobs/auditor-doctor)**: avg position 39.0, top query `doctor jobs in malta`
-- **[Chef de Partie](https://outreachrecruitment.net/jobs/chef-de-partie)**: avg position 20.2, top query `chef de partie`
-- **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: avg position 42.0, top query `structural recruitment`
-- **[Client Accountant](https://outreachrecruitment.net/jobs/client-accountant)**: avg position 23.0, top query `accounting recruitment malta`
-- **[Delivery Drivers - C1 Malta License](https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license)**: avg position 34.0, top query `delivery driver recruitment company in malta`
-- **[Sous Chef](https://outreachrecruitment.net/jobs/sous-chef-2)**: avg position 21.7, top query `sous chef`
+- **[Nurse Advisor](https://outreachrecruitment.net/jobs/nurse-advisor)**: avg position 28.7, top query `malta nurse of the mediterranean`
+- **[HR Executive](https://outreachrecruitment.net/jobs/hr-executive)**: avg position 30.0, top query `hr executive recruiters`
+- **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: avg position 53.0, top query `structural engineering recruitment agencies`
+- **[Client Accountant](https://outreachrecruitment.net/jobs/client-accountant)**: avg position 24.0, top query `accounting recruitment malta`
+- **[Bartender & Front Office Agent](https://outreachrecruitment.net/jobs/bartender-front-office-agent)**: avg position 24.5, top query `bar jobs in malta`
+- **[Chefs](https://outreachrecruitment.net/jobs/chefs)**: avg position 21.0, top query `sushi chef jobs in europe`
+- **[Project Manager - Construction](https://outreachrecruitment.net/jobs/project-manager-construction)**: avg position 45.0, top query `project management recruitment agencies`
+- **[Italian Media Buyer](https://outreachrecruitment.net/jobs/italian-media-buyer)**: avg position 24.0, top query `italian speaking jobs malta`
+- **[Lead Azure Infrastructure Architect](https://outreachrecruitment.net/jobs/lead-azure-infrastructure-architect)**: avg position 46.2, top query `us cellular salary infrastructure architecture lead`
+- **[CNC Machine Operator](https://outreachrecruitment.net/jobs/cnc-machine-operator)**: avg position 38.0, top query `machine operator`
+- **[Finance Associate](https://outreachrecruitment.net/jobs/finance-associate)**: avg position 33.5, top query `finance recruitment agency malta`
+- **[Commercial Insurance Associate](https://outreachrecruitment.net/jobs/commercial-insurance-associate)**: avg position 34.0, top query `insurance recruitment agency malta`
+- **[Semi-Senior Accountant](https://outreachrecruitment.net/jobs/semi-senior-accountant)**: avg position 43.0, top query `accounting recruitment malta`
+- **[Barista](https://outreachrecruitment.net/jobs/barista-2)**: avg position 30.5, top query `barista`
+- **[Barista](https://outreachrecruitment.net/jobs/barista-3)**: avg position 33.0, top query `coffee barista`
 
 ## Query Match Gaps from GSC
 
-- **[Sales Office Coordinator](https://outreachrecruitment.net/jobs/sales-office-coordinator)**: target `Sales Office Coordinator jobs in Malta`, top query `office coordinator`
-- **[Customer Contact Agent](https://outreachrecruitment.net/jobs/customer-contact-agent)**: target `Customer Contact Agent jobs in Malta`, top query `outreach recruitment`
-- **[Auditor Doctor](https://outreachrecruitment.net/jobs/auditor-doctor)**: target `Auditor Doctor jobs in Malta`, top query `doctor jobs in malta`
-- **[Summer Waiter - Mellieha](https://outreachrecruitment.net/jobs/summer-waiter-mellieha)**: target `Summer Waiter - Mellieha jobs in Malta`, top query `part time jobs mellieha`
+- **[Welder](https://outreachrecruitment.net/jobs/welder)**: target `Welder jobs in Malta`, top query `malta welder job vacancy`
+- **[Assistance Co-ordinator](https://outreachrecruitment.net/jobs/assistance-co-ordinator)**: target `Assistance Co-ordinator jobs in Malta`, top query `co-ordinator`
+- **[Nurse Advisor](https://outreachrecruitment.net/jobs/nurse-advisor)**: target `Nurse Advisor jobs in Malta`, top query `malta nurse of the mediterranean`
 - **[Chef de Partie](https://outreachrecruitment.net/jobs/chef-de-partie)**: target `Chef de Partie jobs in Malta`, top query `chef de partie`
-- **[Driver / Runner / Washer](https://outreachrecruitment.net/jobs/driver-runner-washer)**: target `Driver / Runner / Washer jobs in Malta`, top query `outreach recruitment bus driver`
-- **[Senior IT Infrastructure Engineer](https://outreachrecruitment.net/jobs/senior-it-infrastructure-engineer)**: target `Senior IT Infrastructure Engineer jobs in Malta`, top query `infrastructure & network jobs`
-- **[NetSuite Specialist](https://outreachrecruitment.net/jobs/netsuite-specialist)**: target `NetSuite Specialist jobs in Malta`, top query `netsuite malta`
-- **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: target `Structural Engineer jobs in Malta`, top query `structural recruitment`
-- **[Sales Executive](https://outreachrecruitment.net/jobs/sales-executive)**: target `Sales Executive jobs in Malta`, top query `outreach recruitment malta`
+- **[Runners](https://outreachrecruitment.net/jobs/runners)**: target `Runners jobs in Malta`, top query `outreach recruitment`
+- **[Bar attendant](https://outreachrecruitment.net/jobs/bar-attendant)**: target `Bar attendant jobs in Malta`, top query `bar attendant`
+- **[Hairdresser](https://outreachrecruitment.net/jobs/hairdresser)**: target `Hairdresser jobs in Malta`, top query `hairdresser job`
+- **[Driver / Runner / Washer](https://outreachrecruitment.net/jobs/driver-runner-washer)**: target `Driver / Runner / Washer jobs in Malta`, top query `car runner jobs near me`
+- **[Sous Chef](https://outreachrecruitment.net/jobs/sous-chef)**: target `Sous Chef jobs in Malta`, top query `sous chef`
+- **[Driver – Category C License](https://outreachrecruitment.net/jobs/driver-category-c-license)**: target `Driver – Category C License jobs in Malta`, top query `category c driver jobs`
+- **[Receptionist - Maltese Speaking](https://outreachrecruitment.net/jobs/receptionist-maltese-speaking)**: target `Receptionist - Maltese Speaking jobs in Malta`, top query `receptionist`
+- **[HR Executive](https://outreachrecruitment.net/jobs/hr-executive)**: target `HR Executive jobs in Malta`, top query `hr executive recruiters`
+- **[Customer Operations Associate](https://outreachrecruitment.net/jobs/customer-operations-associate)**: target `Customer Operations Associate jobs in Malta`, top query `outreach recruitment malta`
+- **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: target `Structural Engineer jobs in Malta`, top query `structural engineering recruitment agencies`
+- **[HVAC Sales Representative](https://outreachrecruitment.net/jobs/hvac-sales-representative)**: target `HVAC Sales Representative jobs in Malta`, top query `hvac sales`
+- **[Plumbers](https://outreachrecruitment.net/jobs/plumbers)**: target `Plumbers jobs in Malta`, top query `outreach recruitment malta`
+- **[Front Office Assistant](https://outreachrecruitment.net/jobs/front-office-assistant)**: target `Front Office Assistant jobs in Malta`, top query `office assistant vacancies`
+- **[Bartender](https://outreachrecruitment.net/jobs/bartender)**: target `Bartender jobs in Malta`, top query `bartender job vacancy`
+- **[Counter assistant](https://outreachrecruitment.net/jobs/counter-assistant)**: target `Counter assistant jobs in Malta`, top query `outreach recruitment malta`
 - **[Client Accountant](https://outreachrecruitment.net/jobs/client-accountant)**: target `Client Accountant jobs in Malta`, top query `accounting recruitment malta`
-- **[Sushi Chef](https://outreachrecruitment.net/jobs/sushi-chef)**: target `Sushi Chef jobs in Malta`, top query `sushi chef`
-- **[Steward](https://outreachrecruitment.net/jobs/steward)**: target `Steward jobs in Malta`, top query `outreach recruitment malta`
-- **[F&B Server](https://outreachrecruitment.net/jobs/fb-server)**: target `F&B Server jobs in Malta`, top query `f&b server`
-- **[Delivery Drivers - C1 Malta License](https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license)**: target `Delivery Drivers - C1 Malta License jobs in Malta`, top query `delivery driver recruitment company in malta`
-- **[Volvo Penta Mechanic](https://outreachrecruitment.net/jobs/volvo-penta-mechanic)**: target `Volvo Penta Mechanic jobs in Malta`, top query `volvo penta malta`
-- **[Sales and Customer Executive](https://outreachrecruitment.net/jobs/sales-and-customer-executive)**: target `Sales and Customer Executive jobs in Malta`, top query `outreach recruitment malta`
-- **[First Line Support - Hybrid](https://outreachrecruitment.net/jobs/first-line-support-hybrid)**: target `First Line Support - Hybrid jobs in Malta`, top query `hybrid jobs malta`
-- **[Sous Chef](https://outreachrecruitment.net/jobs/sous-chef-2)**: target `Sous Chef jobs in Malta`, top query `sous chef`
-- **[Shop Assistant](https://outreachrecruitment.net/jobs/shop-assistant)**: target `Shop Assistant jobs in Malta`, top query `shop assistant`
+- **[Bartender & Front Office Agent](https://outreachrecruitment.net/jobs/bartender-front-office-agent)**: target `Bartender & Front Office Agent jobs in Malta`, top query `bar jobs in malta`
+- **[Chefs](https://outreachrecruitment.net/jobs/chefs)**: target `Chefs jobs in Malta`, top query `sushi chef jobs in europe`
+- **[Project Manager - Construction](https://outreachrecruitment.net/jobs/project-manager-construction)**: target `Project Manager - Construction jobs in Malta`, top query `project management recruitment agencies`
+- **[Italian Media Buyer](https://outreachrecruitment.net/jobs/italian-media-buyer)**: target `Italian Media Buyer jobs in Malta`, top query `italian speaking jobs malta`
+- **[Automotive Service Advisor](https://outreachrecruitment.net/jobs/automotive-service-advisor)**: target `Automotive Service Advisor jobs in Malta`, top query `service advisor roles`
+- **[Sales Executive B2B](https://outreachrecruitment.net/jobs/sales-executive-b2b)**: target `Sales Executive B2B jobs in Malta`, top query `sales outsourcing malta`
+- **[Construction Site Foreman](https://outreachrecruitment.net/jobs/construction-site-foreman)**: target `Construction Site Foreman jobs in Malta`, top query `site foreman`
+- **[Front Office Agent](https://outreachrecruitment.net/jobs/front-office-agent)**: target `Front Office Agent jobs in Malta`, top query `outreach recruitment malta`
+- **[Room Attendants](https://outreachrecruitment.net/jobs/room-attendants)**: target `Room Attendants jobs in Malta`, top query `outreach recruitment malta`
+- **[Hostess](https://outreachrecruitment.net/jobs/hostess)**: target `Hostess jobs in Malta`, top query `hostess job`
 
 ## Top Jobs Needing Ranking Work
 
