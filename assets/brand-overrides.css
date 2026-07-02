@@ -2817,6 +2817,23 @@ body.opening-jobs-page .opening-board-count{
   border-bottom: 1px solid rgba(15,23,42,0.07);
 }
 .or-prog-divider[hidden]{ display: none; }
+.or-prog-divider{ position: relative; cursor: pointer; user-select: none; padding-right: 2.2rem; }
+.or-prog-divider:hover{ background: rgba(68,45,250,0.09); }
+.or-prog-divider::before{
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #442dfa;
+  border-bottom: 2px solid #442dfa;
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform 0.18s ease;
+}
+.or-prog-divider.is-open::before{ transform: translateY(-35%) rotate(-135deg); }
+.or-prog-row--collapsed,
+.or-prog-note--collapsed{ display: none !important; }
 .or-prog-divider span{
   font-size: 0.7rem;
   font-weight: 800;
