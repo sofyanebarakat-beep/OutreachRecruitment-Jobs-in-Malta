@@ -4,6 +4,8 @@ Source: https://outreach-recruitment-agency.careers-page.com/jobs/52efdcb6-1959-
 Published page: https://outreachrecruitment.net/jobs/delivery-man/
 Apply iframe: https://outreach-recruitment-agency.careers-page.com/jobs/52efdcb6-1959-4340-a52f-7df576fbcab4/apply
 
+**Update (2026-07-02):** Sector reclassified from Logistics to **Engineering & Maintenance** at the client's/user's request. All references to "Logistics" below (category chip, JSON-LD `industry`/`occupationalCategory`, breadcrumb, registry) are superseded — the page now shows Category "Engineering & Maintenance", `occupationalCategory` "Installation, Maintenance, and Repair Workers", a 4-level breadcrumb (Home → Jobs in Malta → Engineering Jobs in Malta → Delivery Man), and a new card was added to `engineering-jobs-in-malta.html`. The rest of this document (keywords, copy, competitor plan, etc.) is left as originally generated and still applies.
+
 ## Section 1 — SEO Package
 
 - Meta Title (59 chars): Delivery Man Job in San Ġwann, Malta | Outreach Recruitment
