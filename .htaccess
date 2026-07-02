@@ -15,6 +15,15 @@ DirectoryIndex index.html index.php
     RewriteRule ^study-in-malta-from-morocco/?$ study-in-malta-from-morocco/index.html [L]
     RewriteRule ^study-in-malta-from-india/?$ study-in-malta-from-india/index.html [L]
 
+    # Redirect dead pages from the previous site (still indexed by Google as of 2026-07)
+    # to their closest current equivalent, so old backlinks/search results aren't 404s.
+    RewriteRule ^gbs-malta/?$ /study-in-malta [R=301,L]
+    RewriteRule ^tourism-hospitality/?$ /study-in-malta [R=301,L]
+    RewriteRule ^study-english-in-malta-3/?$ /study-in-malta [R=301,L]
+    RewriteRule ^information-technology-courses/?$ /study-in-malta [R=301,L]
+    RewriteRule ^courses/master-of-business-administration/?$ /study-in-malta [R=301,L]
+    RewriteRule ^free-webinar-study-and-eventually-work-in-malta/?$ /webinar-study-in-malta [R=301,L]
+
     # Serve sitemap XML files directly with correct MIME type
     RewriteRule ^sitemaps/.*\.xml$ - [L,T=text/xml]
     RewriteRule ^sitemap.*\.xml$ - [L,T=text/xml]
