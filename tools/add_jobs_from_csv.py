@@ -377,7 +377,11 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
     html = re.sub(r'"addressLocality":\s*"[^"]*"', f'"addressLocality": "{city}"', html, count=1)
     html = re.sub(r'"employmentType":\s*"[^"]*"', f'"employmentType": "{emp_type_schema(emp_type)}"', html, count=1)
     html = re.sub(r'"occupationalCategory":\s*"[^"]*"', f'"occupationalCategory": "{occ_category(category)}"', html, count=1)
-    html = re.sub(r'"industry":\s*"[^"]*"', f'"industry": "{cat_esc}"', html, count=1)
+    # NOTE: JSON-LD is not HTML, so this must use the raw category, not cat_esc
+    # (html_esc(category)) — using the HTML-escaped form wrote literal "&amp;"
+    # into the JSON-LD industry field for any category containing "&" (e.g.
+    # "Engineering & Maintenance", "Sales & Marketing").
+    html = re.sub(r'"industry":\s*"[^"]*"', f'"industry": "{category}"', html, count=1)
     html = re.sub(
         r'"url":\s*"https://outreachrecruitment\.net/jobs/[^"]*"',
         f'"url": "{page_url}"', html, count=1
