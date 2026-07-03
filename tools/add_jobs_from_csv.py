@@ -300,21 +300,24 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         rf"\g<1>{loc_esc}\2", html, count=1
     )
 
-    # ── 9. Department tag ─────────────────────────────────────────────────────
+    # ── 9/10/11. Details-grid chips (Category / Employment Type / Work Mode) ──
+    # NOTE: these previously targeted <span class="tag blue-tag/grey-tag/green-tag">,
+    # which does not exist anywhere in the base template (jobs/plumber/index.html).
+    # The real visible markup is the cms-details-grid's "Category" / "Employment
+    # Type" / "Work Mode" cms-detail divs below — those were silently left
+    # unchanged on every generated job page (visible chip stayed hardcoded from
+    # the plumber template, e.g. "Hospitality", regardless of the job's actual
+    # category). Fixed to target the real elements.
     html = re.sub(
-        r'(<span class="tag blue-tag">)[^<]*(</span>)',
+        r'(<div class="caption blue-caption">Category</div><div class="text-medium">)[^<]*(</div>)',
         rf"\g<1>{cat_esc}\2", html, count=1
     )
-
-    # ── 10. Employment type tag ───────────────────────────────────────────────
     html = re.sub(
-        r'(<span class="tag grey-tag">)[^<]*(</span>)',
+        r'(<div class="caption blue-caption">Employment Type</div><div class="text-medium">)[^<]*(</div>)',
         rf"\g<1>{html_esc(emp_type)}\2", html, count=1
     )
-
-    # ── 11. Work mode tag ────────────────────────────────────────────────────
     html = re.sub(
-        r'(<span class="tag green-tag">)[^<]*(</span>)',
+        r'(<div class="caption blue-caption">Work Mode</div><div class="text-medium">)[^<]*(</div>)',
         rf"\g<1>{html_esc(work_mode)}\2", html, count=1
     )
 
@@ -394,8 +397,16 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         r'"description":\s*"[^"]*(?<!\\)"',
         lambda m: f'"description": "{schema_desc_json}"', html, count=1
     )
+    # NOTE: the base template's "experienceRequirements" is an OBJECT
+    # ({"@type": "OccupationalExperienceRequirements", "monthsOfExperience": 1}),
+    # not a string — the old string-only regex below silently never matched,
+    # so every generated job page kept the generic "monthsOfExperience": 1
+    # placeholder. Match either shape and replace with a real string value.
     exp_req = f"Previous experience as a {title} or in a similar role."
-    html = re.sub(r'"experienceRequirements":\s*"[^"]*"', f'"experienceRequirements": "{exp_req}"', html, count=1)
+    html = re.sub(
+        r'"experienceRequirements":\s*(?:"[^"]*"|\{[^}]*\})',
+        f'"experienceRequirements": "{exp_req}"', html, count=1
+    )
     html = re.sub(r'"value":\s*"[^"]*"', f'"value": "{slug}"', html, count=1)
 
     # ── 16. Breadcrumb (visible nav + JSON-LD) — rebuilt from the real category ─
