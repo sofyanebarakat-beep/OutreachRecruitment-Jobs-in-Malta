@@ -43,14 +43,63 @@ JSONLD_VARIANTS = {
     "offer": ["What's on Offer", "What&#x27;s on Offer"],
 }
 
-# Section-heading fragments that sometimes bleed into a scraped bullet list
-# (source pages nest headings inside <ul><li> markup) — drop these as items.
-HEADING_NOISE = {
-    "key responsibilities", "responsibilities", "requirements",
-    "what we're looking for", "what were looking for", "qualifications",
-    "what's on offer", "what we offer", "benefits", "the ideal candidate",
-    "your profile", "about you",
-}
+# Source postings use wildly inconsistent heading text (plain, emoji-prefixed,
+# synonyms) — classify any short standalone line by keyword rather than exact
+# match, so the sectionizer below stays robust across formats.
+RESP_KW = ["responsibilit", "key duties", "main duties", "your tasks", "key tasks",
+           "what you'll do", "what you will do", "day-to-day", "day to day", "duties"]
+REQ_KW = ["requirement", "looking for", "qualification", "your profile", "about you",
+          "candidate profile", "who we need", "ideal candidate", "what you need",
+          "skills & experience", "skills and experience"]
+OFFER_KW = ["on offer", "we offer", "benefit", "perks", "package", "remuneration",
+            "why join", "what you get", "compensation", "in it for you"]
+
+
+def classify_heading(line: str) -> str | None:
+    h = re.sub(r"^[^\w]+", "", line).strip().lower()
+    if not h or len(h) > 80:
+        return None
+    if any(kw in h for kw in OFFER_KW):
+        return "offer"
+    if any(kw in h for kw in REQ_KW):
+        return "requirements"
+    if any(kw in h for kw in RESP_KW):
+        return "responsibilities"
+    return None
+
+
+def sectionize(text: str) -> dict:
+    """Split a scraped job description into responsibilities/requirements/offer
+    bullet lists. Source markup varies (real <li> lists, <br>-separated bullet
+    characters, emoji headings, or a bullet-marker-then-text-on-next-line
+    pattern), so this walks line by line rather than relying on fixed
+    heading strings or paragraph boundaries."""
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
+    result: dict[str, list[str]] = {"responsibilities": [], "requirements": [], "offer": []}
+    current: str | None = None
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line in ("•", "-", "*"):
+            if i + 1 < len(lines):
+                content = lines[i + 1]
+                if current in result and 3 < len(content) <= 300:
+                    result[current].append(content)
+                i += 2
+                continue
+            i += 1
+            continue
+        if line[:1] in ("•", "-", "*"):
+            content = line.lstrip("•-* ").strip()
+            if current in result and 3 < len(content) <= 300:
+                result[current].append(content)
+            i += 1
+            continue
+        cat = classify_heading(line)
+        if cat:
+            current = cat
+        i += 1
+    return result
 
 
 def git_show(rel_path: str) -> str | None:
@@ -74,23 +123,6 @@ def extract_uuid(html: str) -> str | None:
     return m.group(1) if m else None
 
 
-def extract_section(text: str, heading: str) -> list[str]:
-    all_headings = list(HEADINGS.values()) + [
-        "What We're Looking For", "Qualifications", "Benefits",
-        "What We Offer", "Skills & Experience", "Your Profile",
-    ]
-    stop_alts = "|".join(re.escape(h) for h in all_headings)
-    stop_pat = rf"(?:\n\n?(?:{stop_alts})\s*:?|\Z)"
-    pattern = rf"(?<!\w){re.escape(heading)}\s*:?\s*\n(.*?){stop_pat}"
-    m = re.search(pattern, text, re.S | re.I)
-    if not m:
-        return []
-    block = m.group(1)
-    items = [l.lstrip("•- ").strip() for l in block.splitlines() if l.strip() and l.strip() not in ("•", "-")]
-    items = [i for i in items if 5 < len(i) <= 300 and i.lower().rstrip(":") not in HEADING_NOISE]
-    return items
-
-
 def fetch_content(uuid: str) -> dict:
     url = f"{CAREERS_BASE}/jobs/{uuid}"
     try:
@@ -109,7 +141,7 @@ def fetch_content(uuid: str) -> dict:
     if len(text.strip()) < 30:
         return {}
 
-    return {key: extract_section(text, heading) for key, heading in HEADINGS.items()}
+    return sectionize(text)
 
 
 def li_html(items: list[str]) -> str:

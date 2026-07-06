@@ -12,7 +12,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8e07b6eb-c9c4-4c3a-8c1d-e3e5c8f7a234/apply",
     "keywords": "shop assistant retail supermarket convenience customer service",
     "featured": true,
-    "lastmod": "2026-07-01"
+    "lastmod": "2026-07-01",
+    "status": "closed"
   },
   {
     "slug": "plumber",
@@ -2858,7 +2859,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8442ae7e-c681-4994-b310-afdb3ae2d9a5/apply",
     "keywords": "shop assistant (safi and tarxien) retail malta",
     "featured": true,
-    "lastmod": "2026-07-01"
+    "lastmod": "2026-07-01",
+    "status": "closed"
   },
   {
     "slug": "workshop-administrator",
@@ -3673,6 +3675,20 @@
     "valid_through": "2027-07-02",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/83970ed6-cde9-4a86-9db1-6a7ef305c0e5/apply",
     "keywords": "head of hvac technicians engineering & maintenance qormi, malta hvac technician supervisor manager qormi malta engineering maintenance team leader hvac lead",
+    "featured": true
+  },
+  {
+    "slug": "guest-service-agent",
+    "title": "Guest Service Agent",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-06",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b8e77f05-ca35-4ea0-aa2c-c5855a219284/apply",
+    "keywords": "guest service agent hospitality st. julian's, malta guest service agent front office receptionist hotel hospitality st julians",
     "featured": true
   }
 ]
