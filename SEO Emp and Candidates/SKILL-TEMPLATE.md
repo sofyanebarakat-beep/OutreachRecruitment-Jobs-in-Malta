@@ -276,6 +276,17 @@ Recommended length:
 - FAQ page: 1,200-2,000 words
 - Category page: 900-1,500 words
 
+### Publishing Images
+
+For every publishable page or blog article, include a complete image set before publication:
+
+- Use the Codex `imagegen` skill for bespoke raster visuals when no stronger project-owned asset exists.
+- Save final generated/selected images inside the project workspace, never only in Codex generated-images storage.
+- Produce a visible hero image, an Open Graph/Twitter image, and a blog/card thumbnail when the page appears in a listing grid.
+- Recommended dimensions: OG/Twitter image `1200x630`, card thumbnail `400x210`, and hero sized for the page template.
+- Use descriptive filenames based on the slug, such as `{slug}-og.jpg`, `{slug}-hero.webp`, and `{slug}-thumb.jpg`.
+- Update `og:image`, `twitter:image`, visible hero image, card thumbnail, JSON-LD image fields, image alt text, and captions so they match the final assets.
+
 ### FAQ Section
 
 Create 4-8 FAQs. Answers must be concise, factual, and able to stand alone in Google snippets or AI-search answers.

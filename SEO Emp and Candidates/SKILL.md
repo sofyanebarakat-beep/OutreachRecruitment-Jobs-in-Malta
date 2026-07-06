@@ -123,6 +123,18 @@ For every package, generate:
 - AI-search summary
 - Image alt text suggestions
 
+## Publishing Image Requirements
+
+For every publishable page or blog article, create or specify a complete image set before final publication:
+
+- Use the Codex `imagegen` skill for bespoke raster visuals when a suitable project asset does not already exist.
+- Save generated project assets inside the workspace, never only under the default Codex generated-images folder.
+- Produce a hero image, an Open Graph/Twitter image, and a card thumbnail from the same visual direction when practical.
+- Recommended dimensions: hero image sized for the page template, OG/Twitter image at `1200x630`, and card thumbnail at `400x210`.
+- Use descriptive filenames based on the page slug, such as `{slug}-og.jpg` and `{slug}-thumb.jpg`.
+- Update `og:image`, `twitter:image`, visible hero image, card thumbnail, JSON-LD image fields, and image alt text so they all match the final asset choices.
+- If generation is unavailable, use the best existing site asset as a temporary placeholder and clearly mark that it should be replaced.
+
 ## Keyword Targeting Rules
 
 - Use Malta modifiers where relevant: `Malta`, `jobs in Malta`, `recruitment agency Malta`, `hiring in Malta`, `Malta employers`, `career opportunities Malta`.
@@ -227,4 +239,3 @@ Return content in this order:
 10. Schema Recommendations
 11. AI Search Summary
 12. Publishing Checklist
-

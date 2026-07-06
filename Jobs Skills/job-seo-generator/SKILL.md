@@ -39,8 +39,9 @@ If any field is missing, make a reasonable assumption only when the job descript
 7. Use Malta-focused SEO when the role is located in Malta.
 8. Make the job title concise and clean. Do not include salary, employer, location, dates, or promotional words in the schema `title`.
 9. Create unique copy for every vacancy by using the actual duties, requirements, industry, location, and seniority from the source material.
-10. Apply the SERP analysis, entity SEO, job category mapping, candidate question, freshness, conversion, duplicate prevention, and schema safety rules even when the user provides only a short job description.
-11. When the user asks to create or publish a new job in the site, add the job to the jobs page and update open-position counts using the Site Publishing Rules.
+10. Use the Codex `imagegen` skill for bespoke job page visuals when no stronger project-owned role/category image exists, and save final assets inside the workspace.
+11. Apply the SERP analysis, entity SEO, job category mapping, candidate question, freshness, conversion, duplicate prevention, and schema safety rules even when the user provides only a short job description.
+12. When the user asks to create or publish a new job in the site, add the job to the jobs page and update open-position counts using the Site Publishing Rules.
 
 ## SEO Expansion Rules
 
@@ -412,12 +413,15 @@ When a new job page is created, always flag which category hub pages and locatio
 
 For every job page, generate:
 
+- A bespoke image using the Codex `imagegen` skill unless a stronger project-owned role/category asset already exists
 - A descriptive image filename following the pattern: `{job-title}-job-malta.jpg`
+- An Open Graph/Twitter image at `1200x630` when the job page has its own social preview
+- A card thumbnail at `400x210` when the job appears in a visual listing grid
 - A descriptive ALT tag: `{Job Title} job opportunity in {City}, Malta — Outreach Recruitment`
 - An `ImageObject` schema block with `url`, `width`, `height`, and `caption`
 - Open Graph image tag recommendation using the same image
 
-Rename all images descriptively. Do not use generic filenames like `image1.jpg` or `job-card-logo.jpg` as the primary job page image.
+Save generated project assets in `/assets/` or another workspace path used by the page. Never leave a referenced image only in Codex generated-images storage. Rename all images descriptively. Do not use generic filenames like `image1.jpg` or `job-card-logo.jpg` as the primary job page image.
 
 ## Open Graph and Social Rules
 

@@ -335,6 +335,18 @@ All comparison tables and data tables must be mobile-safe, accessible, and teste
 
 ### Image captions
 
+Use the Codex `imagegen` skill by default for future post images when a suitable project-owned image does not already exist. Generate or select a complete publishable image set before the article is considered finished, then save final files inside the project workspace.
+
+Required assets for every new post:
+
+- Hero / OG image at `1200x630`
+- Responsive hero variant when needed, usually `800w`
+- 4 to 6 in-article section images for long-form posts
+- Blog/card thumbnail when the post appears in a listing grid
+- WebP versions for page images, plus JPG/PNG only when required by the consuming template
+
+Update `og:image`, `twitter:image`, JSON-LD image fields, visible hero image, card thumbnail, alt text, captions, and image schema so they all point to the final assets.
+
 Every non-decorative image must use `<figure>` and `<figcaption>`.
 
 Article images render at **816px max-width** inside the `container tight` column. Use this as the reference width for `sizes` and `srcset`.
@@ -632,12 +644,21 @@ Caption: [human-readable caption]
 File name: [keyword-rich-file-name.webp]
 ```
 
-### 3. Free Image Generation Workflow
+### 3. Image Generation Workflow
 
-Use this workflow when you need article images without paid tools.
+Use this workflow when you need article images.
+
+Primary path:
+
+- Use the Codex `imagegen` skill for bespoke AI-generated raster visuals.
+- Move or copy selected generated outputs into `/images/[slug]/` or `/assets/`.
+- Convert/compress final page images to WebP.
+- Keep `1200x630` for hero/OG images and `400x210` for thumbnails.
+- Do not leave any page-referenced image only under the default Codex generated-images folder.
 
 Recommended free/low-cost tools:
 
+- **Codex imagegen skill**: default for bespoke hero, OG, thumbnail, and section visuals
 - **Canva Free**: good for hero banners, diagrams, social carousels, and resizing
 - **Microsoft Designer / Bing Image Creator**: good for AI-generated education visuals
 - **Adobe Express Free**: good for quick branded social graphics
@@ -2481,7 +2502,7 @@ Delivery checks:
 
 ## IMAGE GENERATION SKILL
 
-Every article gets **7 real photographs** fetched automatically from Unsplash / Pexels. No AI-generated images — real photography only. All in-article section images are rendered **full viewport width** using the `figure-full` CSS breakout class.
+Every article gets **7 publish-ready visuals**. Use the Codex `imagegen` skill by default for bespoke AI-generated images, or use project-owned/real photography when that is more accurate for the topic. All in-article section images are rendered **full viewport width** using the `figure-full` CSS breakout class.
 
 ### Script
 
@@ -2652,7 +2673,9 @@ All 6 section images in the article body must break out of the narrow article co
 
 ### Image Checklist (per article)
 
-- [ ] Script run: `python3 generate-article-images.py --auto --slug "[slug]" --topic "[title]"`
+- [ ] Codex `imagegen` skill used for bespoke visuals, unless stronger project-owned/real photography was selected
+- [ ] Final generated/selected images copied into `/images/[slug]/` or `/assets/`
+- [ ] Script run when using the fetch workflow: `python3 generate-article-images.py --auto --slug "[slug]" --topic "[title]"`
 - [ ] 7 WebP files confirmed in `/images/[slug]/`
 - [ ] Hero at exact 16:9 ratio (e.g. 1200×675) to match `cms-featured-media` CSS `aspect-ratio: 16/9`
 - [ ] Hero srcset 800w variant confirmed (`[slug]-hero-800w.webp`)
@@ -2670,7 +2693,7 @@ All 6 section images in the article body must break out of the narrow article co
 - [ ] OG / Twitter `og:image` meta tags updated to hero WebP URL
 - [ ] `og:image:width` = 1200, `og:image:height` = 675
 - [ ] `image-manifest.json` saved in `/images/[slug]/`
-- [ ] Images are **real photographs** (Unsplash or Pexels) — never AI-generated
+- [ ] Images are bespoke `imagegen` outputs or suitable project-owned/real photographs
 
 ---
 
@@ -2751,7 +2774,9 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] Social sharing buttons included: WhatsApp, LinkedIn, Email — no JavaScript
 
 **Images (IMAGE GENERATION SKILL)**
-- [ ] `generate-article-images.py` run with `--auto --slug "[slug]" --topic "[title]"`
+- [ ] Codex `imagegen` skill used for bespoke visuals, unless stronger project-owned/real photography was selected
+- [ ] Final images saved inside the project workspace, not only in Codex generated-images storage
+- [ ] `generate-article-images.py` run with `--auto --slug "[slug]" --topic "[title]"` only when using the fetch workflow
 - [ ] 7 WebP files confirmed in `/images/[slug]/`
 - [ ] Hero at exact 16:9 ratio (1200×675), srcset 800w variant confirmed
 - [ ] All 7 `<figure>` blocks embedded at correct H2 section positions
@@ -2760,7 +2785,7 @@ Working drafts may be saved to `STUDY IN MALTA SKILLS/generated/` before being m
 - [ ] OG + Twitter `og:image` meta tags point to hero WebP (`og:image:height` = 675)
 - [ ] Attribution HTML comments above every `<figure>`
 - [ ] All section figures have `itemscope itemtype="https://schema.org/ImageObject"`
-- [ ] Images are real photographs (Unsplash / Pexels) — no AI images
+- [ ] Images are bespoke `imagegen` outputs or suitable project-owned/real photographs
 
 **Media & performance**
 - [ ] All `<img>` tags have explicit `width` and `height`

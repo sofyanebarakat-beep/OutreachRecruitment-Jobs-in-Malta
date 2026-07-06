@@ -52,6 +52,21 @@ The filled prompt is saved to `generated/` and ready to paste into Claude Code.
 
 Open `SKILL-TEMPLATE.md`, fill in the three `[INSERT ...]` placeholders, and paste the full prompt into Claude Code.
 
+## Imagegen Requirement for Future Posts
+
+Every future Study in Malta post must include a complete image set created or selected during publication. Use the Codex `imagegen` skill by default for bespoke article visuals when no stronger project-owned asset exists.
+
+Required outputs:
+
+- Hero / OG image: `1200x630`
+- Hero responsive variant when needed, usually `800w`
+- Article section images: generated or selected to match the article sections
+- Blog/card thumbnail where the page is listed in a card grid
+- WebP versions for published page images
+- Descriptive alt text, captions, `ImageObject` schema, `og:image`, and `twitter:image`
+
+Save final project images in `/images/[slug]/` or `/assets/`, never only in the default Codex generated-images folder.
+
 ---
 
 ## Study in Malta — Suggested Article Topics
