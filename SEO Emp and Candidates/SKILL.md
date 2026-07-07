@@ -1,6 +1,6 @@
 ---
 name: employer-candidate-seo-generator
-description: Generate SEO-optimized, AI-search-friendly content packages for Outreach Recruitment employer and candidate pages. Use when creating employer service pages, recruitment landing pages, candidate career guides, job seeker content, hiring guides, meta tags, FAQs, schema recommendations, internal links, or conversion copy for Outreach Recruitment audiences.
+description: Generate and audit SEO-optimized, AI-search-friendly content packages for Outreach Recruitment employer and candidate pages. Use when creating or improving employer service pages, recruitment landing pages, candidate career guides, job seeker content, hiring guides, meta tags, FAQs, schema recommendations, internal links, SEO audits, content refreshes, or conversion copy for Outreach Recruitment audiences.
 ---
 
 # Employer and Candidate SEO Generator
@@ -101,7 +101,9 @@ Avoid promising jobs, visas, work permits, salaries, accommodation, or employer 
 11. Produce the required image set with the Codex `imagegen` skill when a suitable project-owned asset does not already exist, then save final assets inside the workspace before wiring them into the page.
 12. For generated blog HTML files, apply the Blog HTML Layout Requirements before final review.
 13. For any generated HTML page or post with FAQs, apply the FAQ HTML Style Requirements before final review.
-14. Keep all claims aligned with visible page content and provided facts.
+14. Apply the Article UX and Ranking Requirements to improve readability, internal linking, conversion, and snippet eligibility.
+15. Apply the SEO Audit and Optimization Requirements when improving an existing page or before final publication.
+16. Keep all claims aligned with visible page content and provided facts.
 
 ## SEO Output Requirements
 
@@ -125,6 +127,40 @@ For every package, generate:
 - Schema recommendations
 - AI-search summary
 - Image alt text suggestions
+
+## Article UX and Ranking Requirements
+
+For every publishable article, guide, landing page, or service page:
+
+- Add a concise direct answer near the top of the page, 40-60 words, styled as an `answer-box` or equivalent visible summary block.
+- Use short paragraphs, clear H2/H3 hierarchy, and enough spacing between headings and body text for easy scanning.
+- Use tables for checklists, comparisons, documents, requirements, timelines, pros/cons, role categories, or step-by-step summaries instead of dense paragraph blocks.
+- Use highlighted boxes for quick answers, key takeaways, warnings, official-source reminders, and CTAs.
+- Include audience-matched CTAs at natural decision points: after the introduction, mid-page, and near the conclusion.
+- For candidate pages, prefer CTAs such as `Browse jobs in Malta`, `Register your interest`, `Prepare your CV`, and relevant interview or application guides.
+- For employer pages, prefer CTAs such as `Request recruitment support`, `Contact Outreach Recruitment`, `View employer services`, and `Book a call` when that path exists.
+- End blog posts with 2-3 related articles using the existing `article-card` style and internally link to relevant guides in the body.
+- Naturally include relevant entities where accurate: Outreach Recruitment Ltd, Malta, jobs in Malta, recruitment agency, employers, candidates, and official Malta entities such as Jobsplus or Identita Malta when the topic requires them.
+- For topics involving documents, permits, eligibility, taxes, employment law, visas, work status, or official processes, add a visible accuracy note that the content is general guidance, not legal advice, and link to relevant official Malta resources where useful.
+- Before final delivery, check that the page has: home header/footer, working hero image, matching OG/schema images, readable mobile table behavior, visible CTAs, FAQ accordion behavior, related article cards, and an updated `blog/index.html` card when publishing a blog post.
+
+## SEO Audit and Optimization Requirements
+
+When generating, improving, or refreshing a page, perform a compact ranking audit and apply fixes where practical:
+
+- Confirm the page targets one clear primary keyword and that title, H1, slug, intro, metadata, and FAQ intent support it without keyword stuffing.
+- Check heading structure: one H1, logical H2/H3 hierarchy, no skipped or decorative headings that confuse the article outline.
+- Optimize SEO title under 60 characters and meta description under 155 characters, with Malta/location intent when relevant.
+- Add or improve the featured-snippet answer block near the top and make sure it directly answers the primary query.
+- Check FAQ quality: questions should match search intent, answers should be concise, visible in HTML, styled with the FAQ accordion component, and reflected accurately in `FAQPage` schema.
+- Recommend or add 3-6 internal links from existing relevant pages/posts, and add 2-3 related article cards at the end of blog posts.
+- Check image SEO: descriptive filenames, meaningful alt text, visible hero image, card thumbnail, OG/Twitter image, and matching JSON-LD image.
+- Check schema markup: use only schemas matching visible page content, usually `BlogPosting`/`Article`, `FAQPage`, `BreadcrumbList`, `Organization`, `Service`, or `LocalBusiness` depending on page type.
+- Improve CTAs so the next step matches the audience and intent, without mixing employer and candidate conversion paths in the same paragraph.
+- Flag thin content, duplicated generic sections, weak local relevance, unsupported claims, or missing official-source notes for sensitive topics.
+- For old or existing posts, refresh stale dates, outdated claims, weak introductions, missing FAQs, poor CTA placement, missing related posts, and missing schema/image fields.
+- For new topic planning, suggest candidate keywords and employer keywords separately, prioritizing Malta-specific long-tail searches with commercial or practical intent.
+- Finish with a short `SEO Audit Notes` section listing what was improved and any remaining risk or manual follow-up.
 
 ## Publishing Image Requirements
 

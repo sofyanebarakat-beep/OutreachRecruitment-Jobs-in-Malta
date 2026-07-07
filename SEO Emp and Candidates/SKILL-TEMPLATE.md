@@ -38,6 +38,8 @@ Create a fully optimized, publication-ready SEO content package for **Outreach R
 
 The content must be optimized for Google Search, Google AI Overviews, ChatGPT, Gemini, Claude, Perplexity, Bing Copilot, and other AI-powered search engines while still reading naturally for humans.
 
+If improving an existing page instead of creating a new one, audit the current page first, then apply the SEO, UX, schema, internal-linking, image, CTA, and FAQ improvements below.
+
 ---
 
 ## AUDIENCE POSITIONING
@@ -275,6 +277,40 @@ Recommended length:
 - Blog article or guide: 2,000-3,500 words
 - FAQ page: 1,200-2,000 words
 - Category page: 900-1,500 words
+
+### Article UX and Ranking Requirements
+
+For every publishable article, guide, landing page, or service page:
+
+- Add a concise direct answer near the top, 40-60 words, styled as an `answer-box` or equivalent visible summary block.
+- Use short paragraphs, clear H2/H3 hierarchy, and enough spacing between headings and body text for easy scanning.
+- Use tables for checklists, comparisons, documents, requirements, timelines, pros/cons, role categories, or step-by-step summaries.
+- Use highlighted boxes for quick answers, key takeaways, warnings, official-source reminders, and CTAs.
+- Include audience-matched CTAs after the introduction, mid-page, and near the conclusion.
+- Candidate CTAs should favor `Browse jobs in Malta`, `Register your interest`, `Prepare your CV`, and relevant interview or application guides.
+- Employer CTAs should favor `Request recruitment support`, `Contact Outreach Recruitment`, `View employer services`, and `Book a call` when that path exists.
+- End blog posts with 2-3 related articles using the existing `article-card` style and internally link to relevant guides in the body.
+- Naturally include relevant entities where accurate: Outreach Recruitment Ltd, Malta, jobs in Malta, recruitment agency, employers, candidates, and official Malta entities such as Jobsplus or Identita Malta when the topic requires them.
+- For documents, permits, eligibility, taxes, employment law, visas, work status, or official processes, add a visible note that the content is general guidance, not legal advice, and link to relevant official Malta resources where useful.
+- Before final delivery, check that the page has: home header/footer, working hero image, matching OG/schema images, readable mobile table behavior, visible CTAs, FAQ accordion behavior, related article cards, and an updated `blog/index.html` card when publishing a blog post.
+
+### SEO Audit and Optimization Requirements
+
+When generating, improving, or refreshing a page, perform a compact ranking audit and apply fixes where practical:
+
+- Confirm the page targets one clear primary keyword and that title, H1, slug, intro, metadata, and FAQ intent support it without keyword stuffing.
+- Check heading structure: one H1, logical H2/H3 hierarchy, no skipped or decorative headings that confuse the article outline.
+- Optimize SEO title under 60 characters and meta description under 155 characters, with Malta/location intent when relevant.
+- Add or improve the featured-snippet answer block near the top and make sure it directly answers the primary query.
+- Check FAQ quality: questions should match search intent, answers should be concise, visible in HTML, styled with the FAQ accordion component, and reflected accurately in `FAQPage` schema.
+- Recommend or add 3-6 internal links from existing relevant pages/posts, and add 2-3 related article cards at the end of blog posts.
+- Check image SEO: descriptive filenames, meaningful alt text, visible hero image, card thumbnail, OG/Twitter image, and matching JSON-LD image.
+- Check schema markup: use only schemas matching visible page content, usually `BlogPosting`/`Article`, `FAQPage`, `BreadcrumbList`, `Organization`, `Service`, or `LocalBusiness` depending on page type.
+- Improve CTAs so the next step matches the audience and intent, without mixing employer and candidate conversion paths in the same paragraph.
+- Flag thin content, duplicated generic sections, weak local relevance, unsupported claims, or missing official-source notes for sensitive topics.
+- For old or existing posts, refresh stale dates, outdated claims, weak introductions, missing FAQs, poor CTA placement, missing related posts, and missing schema/image fields.
+- For new topic planning, suggest candidate keywords and employer keywords separately, prioritizing Malta-specific long-tail searches with commercial or practical intent.
+- Finish with a short `SEO Audit Notes` section listing what was improved and any remaining risk or manual follow-up.
 
 ### Publishing Images
 
