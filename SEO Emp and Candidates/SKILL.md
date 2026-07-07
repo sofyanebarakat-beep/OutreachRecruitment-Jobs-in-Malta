@@ -98,7 +98,7 @@ Avoid promising jobs, visas, work permits, salaries, accommodation, or employer 
 8. Add internal links and CTAs that match the audience.
 9. Add FAQ content that answers real search questions.
 10. Recommend appropriate schema markup.
-11. Generate the required image set with the Codex `imagegen` skill (see Publishing Image Requirements) and save the final assets inside the workspace, never only under the default Codex generated-images folder.
+11. Produce the required image set with the Codex `imagegen` skill when a suitable project-owned asset does not already exist, then save final assets inside the workspace before wiring them into the page.
 12. Keep all claims aligned with visible page content and provided facts.
 
 ## SEO Output Requirements
@@ -128,13 +128,13 @@ For every package, generate:
 
 For every publishable page or blog article, create or specify a complete image set before final publication:
 
-- Use the Codex `imagegen` skill for bespoke raster visuals when a suitable project asset does not already exist.
-- Save generated project assets inside the workspace, never only under the default Codex generated-images folder.
+- Use the Codex `imagegen` skill for bespoke raster visuals when a suitable existing project asset does not already exist.
+- Save generated project assets inside the workspace `assets/` folder or another page-referenced workspace path; never leave referenced files only in Codex generated-images storage.
 - Produce a hero image, an Open Graph/Twitter image, and a card thumbnail from the same visual direction when practical.
 - Recommended dimensions: hero image sized for the page template, OG/Twitter image at `1200x630`, and card thumbnail at `400x210`.
 - Use descriptive filenames based on the page slug, such as `{slug}-og.jpg` and `{slug}-thumb.jpg`.
 - Update `og:image`, `twitter:image`, visible hero image, card thumbnail, JSON-LD image fields, and image alt text so they all match the final asset choices.
-- If generation is unavailable, use the best existing site asset as a temporary placeholder and clearly mark that it should be replaced.
+- Until the user provides the generated assets, use the best existing site asset as a temporary placeholder and clearly mark that it should be replaced.
 
 ## Keyword Targeting Rules
 
