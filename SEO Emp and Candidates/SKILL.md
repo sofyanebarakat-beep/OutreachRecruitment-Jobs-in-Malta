@@ -98,7 +98,8 @@ Avoid promising jobs, visas, work permits, salaries, accommodation, or employer 
 8. Add internal links and CTAs that match the audience.
 9. Add FAQ content that answers real search questions.
 10. Recommend appropriate schema markup.
-11. Keep all claims aligned with visible page content and provided facts.
+11. Generate the required image set with the Codex `imagegen` skill (see Publishing Image Requirements) and save the final assets inside the workspace, never only under the default Codex generated-images folder.
+12. Keep all claims aligned with visible page content and provided facts.
 
 ## SEO Output Requirements
 
