@@ -34,6 +34,33 @@
   <style>
     html{font-kerning:normal;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
     body{margin:0;background:#f7f5ef;color:#2c2d2d;-webkit-font-smoothing:antialiased}
+    .cms-article .w-richtext > section{margin:0 0 3rem;scroll-margin-top:120px}
+    .cms-article .w-richtext h2{margin:0 0 1rem;line-height:1.15}
+    .cms-article .w-richtext h3{margin:1.75rem 0 .75rem;line-height:1.25}
+    .cms-article .w-richtext p{margin:0 0 1.15rem;line-height:1.75}
+    .cms-article .w-richtext ul{margin-top:.85rem;margin-bottom:1.35rem}
+    .cms-article .w-richtext li{margin-bottom:.7rem;line-height:1.65}
+    .answer-box,.note-box,.source-list{border:1px solid rgba(68,45,250,.16);border-radius:12px;background:#fff;padding:1.45rem;margin-bottom:2rem}
+    .note-box{background:#f8f7ff;border-left:4px solid #442dfa}
+    .cta-box{border-radius:12px;background:#2c2d2d;color:#fff;padding:1.6rem;margin:2.2rem 0}
+    .cta-box h2,.cta-box p{color:#fff}
+    .cta-box a{display:inline-flex;margin-top:.35rem;background:#fff;color:#2c2d2d;border-radius:999px;padding:.75rem 1.1rem;font-weight:700;text-decoration:none}
+    .article-table-wrap{overflow-x:auto;margin-top:1.25rem;border:1px solid rgba(44,45,45,.14);border-radius:12px;background:#fff}
+    .check-table{width:100%;border-collapse:collapse;min-width:720px;margin:0}
+    .check-table th,.check-table td{padding:1rem 1.1rem;text-align:left;vertical-align:top;border-bottom:1px solid rgba(44,45,45,.12)}
+    .check-table th{background:#2c2d2d;color:#fff;font-weight:700}
+    .check-table tbody tr:nth-child(even){background:#f7f5ef}
+    .check-table tbody tr:last-child td{border-bottom:0}
+    .article-faq-section .faq-list{display:grid;gap:12px;margin-top:1.25rem}
+    .article-faq-section .faq-item{border:1px solid rgba(44,45,45,.14);border-radius:12px;background:#fff;overflow:hidden}
+    .article-faq-section .faq-item-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.25rem;cursor:pointer}
+    .article-faq-section .faq-item-bottom{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms ease}
+    .article-faq-section .faq-item.or-open .faq-item-bottom{grid-template-rows:1fr}
+    .article-faq-section .faq-item-text-wrapper{overflow:hidden;padding:0 1.25rem}
+    .article-faq-section .faq-item-text-wrapper p{padding-bottom:1.15rem;margin-bottom:0}
+    .article-faq-section .minus{display:none}
+    .article-faq-section .faq-item.or-open .plus{display:none}
+    .article-faq-section .faq-item.or-open .minus{display:block}
   </style>
   <script type="application/ld+json">
   {
@@ -170,52 +197,54 @@
 
           <section id="checklist">
             <h2>Malta job application checklist</h2>
-            <table class="check-table">
-              <thead>
-                <tr>
-                  <th>Document</th>
-                  <th>When you need it</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Updated CV</td>
-                  <td>First application</td>
-                  <td>Keep it clear, recent, and tailored to the role.</td>
-                </tr>
-                <tr>
-                  <td>Cover letter or short message</td>
-                  <td>Optional, but helpful</td>
-                  <td>Useful for explaining why you fit the role or why you are moving to Malta.</td>
-                </tr>
-                <tr>
-                  <td>ID or passport</td>
-                  <td>Usually later in the process</td>
-                  <td>Do not send sensitive ID documents unless requested by a trusted recruiter or employer.</td>
-                </tr>
-                <tr>
-                  <td>Work eligibility documents</td>
-                  <td>When relevant</td>
-                  <td>Depends on whether you are Maltese, EU, already resident, or non-EU.</td>
-                </tr>
-                <tr>
-                  <td>Certificates and licences</td>
-                  <td>Role-specific</td>
-                  <td>Important for regulated, technical, healthcare, food, driving, and skilled roles.</td>
-                </tr>
-                <tr>
-                  <td>References</td>
-                  <td>Shortlist or offer stage</td>
-                  <td>Prepare referee names, roles, and contact details, but ask permission first.</td>
-                </tr>
-                <tr>
-                  <td>Payroll details</td>
-                  <td>After offer</td>
-                  <td>Bank, tax, and social security details usually come after hiring, not at first application.</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="article-table-wrap">
+              <table class="check-table">
+                <thead>
+                  <tr>
+                    <th>Document</th>
+                    <th>When you need it</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Updated CV</td>
+                    <td>First application</td>
+                    <td>Keep it clear, recent, and tailored to the role.</td>
+                  </tr>
+                  <tr>
+                    <td>Cover letter or short message</td>
+                    <td>Optional, but helpful</td>
+                    <td>Useful for explaining why you fit the role or why you are moving to Malta.</td>
+                  </tr>
+                  <tr>
+                    <td>ID or passport</td>
+                    <td>Usually later in the process</td>
+                    <td>Do not send sensitive ID documents unless requested by a trusted recruiter or employer.</td>
+                  </tr>
+                  <tr>
+                    <td>Work eligibility documents</td>
+                    <td>When relevant</td>
+                    <td>Depends on whether you are Maltese, EU, already resident, or non-EU.</td>
+                  </tr>
+                  <tr>
+                    <td>Certificates and licences</td>
+                    <td>Role-specific</td>
+                    <td>Important for regulated, technical, healthcare, food, driving, and skilled roles.</td>
+                  </tr>
+                  <tr>
+                    <td>References</td>
+                    <td>Shortlist or offer stage</td>
+                    <td>Prepare referee names, roles, and contact details, but ask permission first.</td>
+                  </tr>
+                  <tr>
+                    <td>Payroll details</td>
+                    <td>After offer</td>
+                    <td>Bank, tax, and social security details usually come after hiring, not at first application.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section id="core-documents">
@@ -312,31 +341,51 @@
             </ul>
           </section>
 
-          <section id="faq">
+          <section id="faq" class="article-faq-section">
             <h2>FAQs</h2>
-            <div class="faq-item">
-              <h3>What documents do I need to apply for a job in Malta?</h3>
-              <p>Most candidates need an updated CV, contact details, proof of identity when requested, and role-specific certificates or licences. Work eligibility, references, tax details, social security details, and bank information are usually requested later, depending on the role and hiring stage.</p>
-            </div>
-            <div class="faq-item">
-              <h3>Do I need a work permit before applying for jobs in Malta?</h3>
-              <p>It depends on your nationality and current residence status. Maltese and EU candidates usually follow a different route from non-EU candidates. Non-EU candidates should be ready to discuss current authorisation status and should verify current requirements with official Maltese sources.</p>
-            </div>
-            <div class="faq-item">
-              <h3>Should I send my passport with every job application?</h3>
-              <p>No. For a first application, your CV is usually enough unless the recruiter specifically asks for proof of identity or eligibility. Share sensitive documents only through trusted channels and only when there is a clear reason.</p>
-            </div>
-            <div class="faq-item">
-              <h3>Do employers in Malta ask for references?</h3>
-              <p>Many employers ask for references after shortlisting or before making a final offer. Prepare referee names and contact details in advance, but ask each referee for permission before sharing their information.</p>
-            </div>
-            <div class="faq-item">
-              <h3>What documents do hospitality candidates need in Malta?</h3>
-              <p>Hospitality candidates should prepare a CV, references, proof of experience, and any food handling, hygiene, language, or role-specific certificates requested by the employer. Requirements vary by role and workplace.</p>
-            </div>
-            <div class="faq-item">
-              <h3>Can Outreach Recruitment help me apply for jobs in Malta?</h3>
-              <p>Yes. Outreach Recruitment can help candidates understand role requirements, prepare applications, and apply for suitable vacancies through the jobs section.</p>
+            <div class="faq-list" data-gsap-scroll="stagger">
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">What documents do I need to apply for a job in Malta?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Most candidates need an updated CV, contact details, proof of identity when requested, and role-specific certificates or licences. Work eligibility, references, tax details, social security details, and bank information are usually requested later, depending on the role and hiring stage.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">Do I need a work permit before applying for jobs in Malta?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">It depends on your nationality and current residence status. Maltese and EU candidates usually follow a different route from non-EU candidates. Non-EU candidates should be ready to discuss current authorisation status and should verify current requirements with official Maltese sources.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">Should I send my passport with every job application?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">No. For a first application, your CV is usually enough unless the recruiter specifically asks for proof of identity or eligibility. Share sensitive documents only through trusted channels and only when there is a clear reason.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">Do employers in Malta ask for references?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Many employers ask for references after shortlisting or before making a final offer. Prepare referee names and contact details in advance, but ask each referee for permission before sharing their information.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">What documents do hospitality candidates need in Malta?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Hospitality candidates should prepare a CV, references, proof of experience, and any food handling, hygiene, language, or role-specific certificates requested by the employer. Requirements vary by role and workplace.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-item-top">
+                  <h3 class="text-large strong">Can Outreach Recruitment help me apply for jobs in Malta?</h3>
+                  <div class="faq-button"><div class="button-circle small"><div class="icon small plus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path><path d="M8 3.33325V12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div><div class="icon small minus w-embed"><svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.33203 8L12.6654 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--_⚡️-icons---icon-stroke)"></path></svg></div></div></div>
+                </div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Yes. Outreach Recruitment can help candidates understand role requirements, prepare applications, and apply for suitable vacancies through the jobs section.</p></div></div>
+              </div>
             </div>
           </section>
               </div>
@@ -593,6 +642,12 @@ gsap.fromTo('[data-marquee="right"]',
   }
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.section.preview').forEach(initPreview);
+    document.querySelectorAll('.article-faq-section .faq-item-top').forEach(function(top) {
+      top.addEventListener('click', function() {
+        var item = top.closest('.faq-item');
+        if (item) item.classList.toggle('or-open');
+      });
+    });
   });
 })();
 </script>

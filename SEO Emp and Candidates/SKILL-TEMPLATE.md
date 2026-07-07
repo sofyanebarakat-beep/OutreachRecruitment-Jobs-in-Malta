@@ -306,6 +306,16 @@ For every publishable blog article HTML file:
 
 Create 4-8 FAQs. Answers must be concise, factual, and able to stand alone in Google snippets or AI-search answers.
 
+For publishable HTML pages or blog posts, render FAQs with the Outreach accordion FAQ component style:
+
+- Wrap FAQ items in `<div class="faq-list" data-gsap-scroll="stagger">`.
+- For each FAQ, use `<div class="faq-item">`, `<div class="faq-item-top">`, `<h3 class="text-large strong">Question text</h3>`, the existing `faq-button` / `button-circle small` plus-minus icon pattern, and `<div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Answer text</p></div></div>`.
+- Do not render FAQs as plain stacked `h3` and `p` blocks in final HTML.
+- Use the same plus and minus SVG pattern as existing Outreach FAQ components.
+- Ensure the page has the interaction needed to toggle `.faq-item.or-open`, either through the shared site interactions script or a page-local `.faq-item-top` click handler.
+- Keep `FAQPage` schema aligned with the same visible FAQ questions and answers.
+- Scope any page-local FAQ styling to the article or FAQ section, such as `.article-faq-section`, so unrelated FAQ blocks are not changed.
+
 Good employer FAQ examples:
 
 - How can a recruitment agency help employers in Malta?
