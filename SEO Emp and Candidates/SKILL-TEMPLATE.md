@@ -287,6 +287,21 @@ For every publishable page or blog article, include a complete image set before 
 - Use descriptive filenames based on the slug, such as `{slug}-og.jpg`, `{slug}-hero.webp`, and `{slug}-thumb.jpg`.
 - Update `og:image`, `twitter:image`, visible hero image, card thumbnail, JSON-LD image fields, image alt text, and captions so they match the final assets.
 
+### Blog HTML Layout
+
+For every publishable blog article HTML file:
+
+- Use the same site header and footer as the home page at `https://outreachrecruitment.net/`. In the workspace, source these from `components/header.html` and `components/footer.html`, which mirror `index.html`.
+- Do not create a custom, simplified, or standalone blog header/footer.
+- Include the home page post-footer utility markup and Webflow scripts from `index.html` after the footer so navigation, dropdowns, mobile menu, and footer interactions work.
+- Match the article format used by `blog/why-employers-in-malta-trust-outreach-recruitment.html`.
+- Use `<main class="main">`.
+- Start with `<section class="section page-header">`, including the blog back link, audience/topic tag, `h1.heading-h1`, `caption blue-caption` publish date, and `cms-featured-media` hero image.
+- Place article copy inside `<section class="section padding-top-extra-small">`, `container tight`, `cms-article`, and `w-richtext`.
+- Keep metadata, schema, canonical URL, hero image, OG image, alt text, category tag, and date aligned with the generated topic.
+- Add a `Read more` section using existing `article-card` markup when related posts are included.
+- When adding the post to `blog/index.html`, use the existing blog card/listing structure and generated thumbnail.
+
 ### FAQ Section
 
 Create 4-8 FAQs. Answers must be concise, factual, and able to stand alone in Google snippets or AI-search answers.
