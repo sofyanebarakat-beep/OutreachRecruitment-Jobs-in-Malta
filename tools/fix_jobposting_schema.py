@@ -257,6 +257,8 @@ def fallback_job_from_schema(path: Path, html: str, schema: dict) -> dict:
     address = ((schema.get("jobLocation") or {}).get("address") or {})
     org = schema.get("hiringOrganization") or {}
     employment = schema.get("employmentType") or "FULL_TIME"
+    if isinstance(employment, list):
+        employment = employment[0] if employment else "FULL_TIME"
     employment_label = employment.replace("_", "-").title()
     location = ", ".join(
         value for value in [address.get("addressLocality"), address.get("addressRegion")]
