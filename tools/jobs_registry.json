@@ -3796,5 +3796,33 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/beb11885-e494-4a3c-802f-70e679d8b70c/apply",
     "keywords": "customer care agent transport luqa, malta contact centre customer service maltese english luqa",
     "featured": true
+  },
+  {
+    "slug": "talent-acquisition-specialist",
+    "title": "Talent Acquisition Specialist",
+    "category": "HR & Recruitment",
+    "location": "Paola, Malta",
+    "location_slug": "paola, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-10",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3a0a3985-6036-4c0a-b349-e67191b59cef/apply",
+    "keywords": "talent acquisition specialist hr recruitment paola, malta recruiter sourcing talent acquisition",
+    "featured": true
+  },
+  {
+    "slug": "itsm-service-manager-hybrid",
+    "title": "ITSM Service Manager - Hybrid",
+    "category": "IT & Technology",
+    "location": "Valletta, Malta",
+    "location_slug": "valletta, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "Hybrid",
+    "date": "2026-07-10",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a9a53415-16a3-4aa9-978f-cebe8a8e6ef3/apply",
+    "keywords": "itsm service manager hybrid it technology valletta, malta itil jira atlassian service management",
+    "featured": true
   }
 ]
