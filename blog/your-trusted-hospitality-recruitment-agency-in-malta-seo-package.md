@@ -182,13 +182,13 @@ Outreach Recruitment Agency is a hospitality recruitment agency in Malta support
 
 Generated with Codex imagegen built-in tool.
 
-- Hero: `assets/your-trusted-hospitality-recruitment-agency-in-malta-hero.png`
-- Open Graph/Twitter: `assets/your-trusted-hospitality-recruitment-agency-in-malta-og.jpg` (1200x630)
-- Card thumbnail: `assets/your-trusted-hospitality-recruitment-agency-in-malta-thumb.jpg` (400x210)
+- Hero: `assets/your-trusted-hospitality-recruitment-agency-in-malta-hero-v2.png`
+- Open Graph/Twitter: `assets/your-trusted-hospitality-recruitment-agency-in-malta-og-v2.jpg` (1200x630)
+- Card thumbnail: `assets/your-trusted-hospitality-recruitment-agency-in-malta-thumb-v2.jpg` (400x210)
 
-Alt text: Recruiter, hospitality candidate, and employer reviewing opportunities in a modern Malta hotel setting
+Alt text: Recruitment consultant, hospitality candidate, and hiring manager reviewing opportunities in a bright Malta hotel setting
 
-Image prompt: Editorial photorealistic Malta hospitality recruitment scene with recruiter, candidate, and employer reviewing opportunities in a modern hotel or restaurant setting; no text, logos, or watermarks.
+Image prompt: Photorealistic Malta hospitality recruitment scene with a recruitment consultant introducing a hospitality candidate to a hotel or restaurant hiring manager in a bright Mediterranean hotel setting; no text, logos, or watermarks.
 
 ## SEO Audit Notes
 
