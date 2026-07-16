@@ -1,3 +1,20 @@
 {
-  "pillars": {}
+  "pillars": {
+    "Employer": {
+      "next_index": 1
+    },
+    "Candidate": {
+      "next_index": 1
+    },
+    "JobsInMalta": {
+      "next_index": 1
+    },
+    "StudyInMalta": {
+      "next_index": 1
+    },
+    "Brand": {
+      "next_index": 1
+    }
+  },
+  "last_run": "2026-07-16"
 }
