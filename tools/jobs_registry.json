@@ -3827,5 +3827,20 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a9a53415-16a3-4aa9-978f-cebe8a8e6ef3/apply",
     "keywords": "itsm service manager hybrid it technology valletta, malta itil jira atlassian service management",
     "featured": true
+  },
+  {
+    "slug": "commis-3",
+    "title": "Commis",
+    "category": "Hospitality",
+    "location": "Malta",
+    "location_slug": "malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-16",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8fbedf2e-6bc9-4a24-bb82-2c4b1ffcc8c8/apply",
+    "keywords": "commis kitchen entry-level hospitality malta",
+    "featured": true,
+    "lastmod": "2026-07-16"
   }
 ]
