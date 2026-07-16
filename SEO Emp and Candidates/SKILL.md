@@ -105,6 +105,16 @@ Avoid promising jobs, visas, work permits, salaries, accommodation, or employer 
 15. Apply the SEO Audit and Optimization Requirements when improving an existing page or before final publication.
 16. Keep all claims aligned with visible page content and provided facts.
 
+## Daily Draft Automation
+
+Use `automation/generate_daily_posts.py` when the user asks for recurring content. The
+scheduled GitHub workflow generates three Markdown drafts per day and opens a review pull
+request. Keep `status: draft` and `review_required: true` until a human checks claims,
+keyword cannibalization, links, and brand quality. Never treat draft generation as publication.
+
+Maintain the rotating queue in `automation/topics.json`. Add fresh employer and candidate
+topics before the queue wraps, and avoid primary keywords already targeted by live pages.
+
 ## SEO Output Requirements
 
 For every package, generate:
