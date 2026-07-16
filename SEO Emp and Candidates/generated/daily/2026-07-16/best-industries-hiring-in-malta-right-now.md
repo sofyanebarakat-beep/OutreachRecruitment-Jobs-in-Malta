@@ -47,7 +47,7 @@ Malta has positioned itself as a regional tech hub, attracting software companie
 - Demand drivers: Digital transformation, remote service providers
 - Popular job types: Software engineering, IT support, project management
 
-[Explore IT jobs in Malta](https://outreachrecruitment.net/jobs/it-jobs-in-malta.html)
+[Explore IT jobs in Malta](https://outreachrecruitment.net/it-jobs-in-malta.html)
 
 ---
 
@@ -58,7 +58,7 @@ The financial services industry remains a cornerstone of Malta’s economy, comp
 - Growth areas: Fintech innovation, regulatory services
 - Typical roles: Accountancy, actuarial, compliance
 
-[Browse finance jobs in Malta](https://outreachrecruitment.net/jobs/finance-jobs-in-malta.html)
+[Browse finance jobs in Malta](https://outreachrecruitment.net/finance-jobs-in-malta.html)
 
 ---
 
@@ -69,7 +69,7 @@ Malta’s popularity as a tourist destination sustains a constant need for hospi
 - Key roles: Hotel staff, restaurant workers, event managers
 - Seasonal hiring trends: Summer peaks, planning for winter tourism events
 
-[Discover hospitality jobs in Malta](https://outreachrecruitment.net/jobs/hospitality-jobs-in-malta/)
+[Discover hospitality jobs in Malta](https://outreachrecruitment.net/hospitality-jobs-in-malta.html)
 
 ---
 
@@ -80,7 +80,7 @@ Infrastructure projects and property development fuel demand for engineers, proj
 - Key positions: Civil engineers, site managers, electricians
 - Influencing factors: Government projects, residential and commercial builds
 
-[See construction jobs in Malta](https://outreachrecruitment.net/jobs/construction-jobs-in-malta.html)
+[See construction jobs in Malta](https://outreachrecruitment.net/construction-jobs-in-malta.html)
 
 ---
 
@@ -91,7 +91,7 @@ A growing population and increased healthcare investment underpin the demand for
 - Public and private sector roles
 - Increasing opportunities due to healthcare modernization
 
-[Find healthcare jobs in Malta](https://outreachrecruitment.net/jobs/healthcare-jobs-in-malta.html)
+[Browse all jobs in Malta, including healthcare roles](https://outreachrecruitment.net/jobs/)
 
 ---
 
