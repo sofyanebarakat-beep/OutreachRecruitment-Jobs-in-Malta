@@ -1,16 +1,19 @@
 ---
 name: employer-candidate-seo-generator
-description: Generate and audit SEO-optimized, AI-search-friendly content packages for Outreach Recruitment employer and candidate pages. Use when creating or improving employer service pages, recruitment landing pages, candidate career guides, job seeker content, hiring guides, meta tags, FAQs, schema recommendations, internal links, SEO audits, content refreshes, or conversion copy for Outreach Recruitment audiences.
+description: Generate and audit SEO-optimized, AI-search-friendly content packages for Outreach Recruitment across five content pillars — Employers, Candidates, Jobs in Malta (job market), Study in Malta (international students), and Brand (company trust content). Use when creating or improving employer service pages, recruitment landing pages, candidate career guides, job market/industry content, study-in-Malta content, brand/company pages, meta tags, FAQs, schema recommendations, internal links, SEO audits, content refreshes, or conversion copy for Outreach Recruitment audiences.
 ---
 
 # Employer and Candidate SEO Generator
 
 ## Overview
 
-Create complete SEO content packages for Outreach Recruitment pages that target either:
+Create complete SEO content packages for Outreach Recruitment pages that target one of five content pillars:
 
 - Employers looking for recruitment, staffing, HR, talent acquisition, or hiring support in Malta.
 - Candidates looking for jobs, career guidance, applications, interviews, relocation, or work opportunities in Malta.
+- Jobs in Malta: job-market and industry content that funnels traffic into the live jobs board (`/jobs/`) and category hubs, distinct from Candidate application/career guidance.
+- Study in Malta: content for international students considering studying in Malta.
+- Brand: company-story and trust content about Outreach Recruitment Ltd itself.
 
 Use this skill for service pages, landing pages, blog articles, guides, FAQ hubs, category pages, and conversion-focused SEO content.
 
@@ -19,7 +22,7 @@ Use this skill for service pages, landing pages, blog articles, guides, FAQ hubs
 Collect or infer the following from the user request:
 
 - Page or article topic
-- Target audience: `Employers`, `Candidates`, or `Both`
+- Target audience/pillar: `Employers`, `Candidates`, `Jobs in Malta`, `Study in Malta`, `Brand`, or `Both` (Employers + Candidates)
 - Primary keyword
 - Secondary keywords
 - Page type: service page, landing page, blog article, guide, FAQ page, category page, or comparison page
@@ -53,6 +56,9 @@ Use links naturally in the body copy where relevant. Do not force every link int
 | Contact page | `https://outreachrecruitment.net/contact-us.html` | Employer enquiries and general conversion CTAs |
 | Careers page | `https://outreachrecruitment.net/careers.html` | Candidate guidance and career support pages |
 | People Connector | `https://outreachrecruitment.net/jobs/people-connector.html` | Candidate registration or general application intent |
+| Study in Malta guide | `https://outreachrecruitment.net/study-in-malta` | Study in Malta pillar content |
+| Study in Malta apply | `https://apply.outreachstudy.eu/` | Study in Malta pillar CTAs |
+| About page | `https://outreachrecruitment.net/about.html` | Brand pillar content |
 
 ## Audience Rules
 
@@ -86,6 +92,44 @@ Focus on:
 
 Avoid promising jobs, visas, work permits, salaries, accommodation, or employer sponsorship unless explicitly supported.
 
+### Jobs in Malta (Market) Content
+
+Focus on:
+
+- Broader job-market and industry trends in Malta, not individual application steps
+- Which industries and job categories are hiring: hospitality, IT, finance, construction, engineering, healthcare, retail, customer service, admin, sales, insurance, marine
+- Overviews of job categories that link to the relevant category hub (e.g. `/hospitality-jobs-in-malta`, `/it-jobs-in-malta.html`, `/finance-jobs-in-malta.html`, `/construction-jobs-in-malta.html`, `/engineering-jobs-in-malta.html`, `/sales-jobs-in-malta.html`, `/insurance-jobs-in-malta.html`, `/marine-jobs-in-malta.html`)
+- Seasonal or cyclical hiring patterns in Malta when factually grounded
+- Clear CTAs to browse the live jobs board
+
+This pillar is distinct from Candidate content: Candidate content teaches an individual how to apply, prepare a CV, or interview; Jobs in Malta content maps the market and drives traffic into the jobs board and category hubs.
+
+Avoid inventing salary ranges, hiring volumes, or market statistics unless the source is provided.
+
+### Study in Malta Content
+
+Focus on:
+
+- International students considering studying in Malta: courses, universities, student visas, cost of living, accommodation, working while studying
+- EU and non-EU student pathways, framed carefully and factually
+- Mandatory CTAs: `Apply Now` to `https://apply.outreachstudy.eu/`, and links to `https://outreachrecruitment.net/study-in-malta` and `https://outreachrecruitment.net/webinar-study-in-malta.html` where relevant
+
+The daily automation for this pillar produces the same lightweight Markdown draft structure as the other pillars (see SEO Output Requirements), not the full publish-ready HTML build. When a Study in Malta draft is promoted to a live page, follow the full `STUDY IN MALTA SKILLS/SKILL-TEMPLATE.md` template (position-zero block, key takeaways, testimonials, sticky ToC, data-sources section, full schema) rather than publishing the lightweight draft as-is.
+
+Avoid inventing visa rules, tuition fees, scholarship amounts, or statistics; flag time-sensitive facts for verification against official Malta sources.
+
+### Brand / Company Content
+
+Focus on:
+
+- Who Outreach Recruitment Ltd is, how the agency works, its recruitment process, and its values
+- Why employers and candidates trust Outreach Recruitment
+- Explaining the agency's approach to matching candidates and employers in Malta
+
+Link to `about.html`, `employers.html`, `careers.html`, or `contact-us.html` depending on the angle.
+
+Do not invent client names, hiring statistics, testimonials, awards, or years-in-business claims. Keep claims limited to what is already stated on the live site or provided by the user.
+
 ## Workflow
 
 1. Identify whether the content is for employers, candidates, or both.
@@ -108,12 +152,18 @@ Avoid promising jobs, visas, work permits, salaries, accommodation, or employer 
 ## Daily Draft Automation
 
 Use `automation/generate_daily_posts.py` when the user asks for recurring content. The
-scheduled GitHub workflow generates three Markdown drafts per day and opens a review pull
-request. Keep `status: draft` and `review_required: true` until a human checks claims,
+scheduled GitHub workflow uses the free, rate-limited GitHub Models service, generates five
+Markdown drafts per day — one per pillar (`Employer`, `Candidate`, `JobsInMalta`, `StudyInMalta`,
+`Brand`) — and opens a review pull request. Keep `status: draft` and
+`review_required: true` until a human checks claims,
 keyword cannibalization, links, and brand quality. Never treat draft generation as publication.
+The Study in Malta draft stays in the same lightweight Markdown format as the other four pillars;
+it is expanded to the full `STUDY IN MALTA SKILLS/SKILL-TEMPLATE.md` build only when a human
+promotes it to a live page.
 
-Maintain the rotating queue in `automation/topics.json`. Add fresh employer and candidate
-topics before the queue wraps, and avoid primary keywords already targeted by live pages.
+Maintain the rotating per-pillar queues in `automation/topics.json`, where every topic carries a
+`pillar` field. Add fresh topics to each pillar's queue before it wraps, and avoid primary
+keywords already targeted by live pages.
 
 ## SEO Output Requirements
 
