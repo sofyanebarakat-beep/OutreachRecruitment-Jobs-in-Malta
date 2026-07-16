@@ -59,6 +59,19 @@ Use links naturally in the body copy where relevant. Do not force every link int
 | Study in Malta guide | `https://outreachrecruitment.net/study-in-malta` | Study in Malta pillar content |
 | Study in Malta apply | `https://apply.outreachstudy.eu/` | Study in Malta pillar CTAs |
 | About page | `https://outreachrecruitment.net/about.html` | Brand pillar content |
+| Hospitality jobs hub | `https://outreachrecruitment.net/hospitality-jobs-in-malta.html` | Jobs in Malta pillar content |
+| IT jobs hub | `https://outreachrecruitment.net/it-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Finance jobs hub | `https://outreachrecruitment.net/finance-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Construction jobs hub | `https://outreachrecruitment.net/construction-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Engineering jobs hub | `https://outreachrecruitment.net/engineering-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Sales jobs hub | `https://outreachrecruitment.net/sales-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Insurance jobs hub | `https://outreachrecruitment.net/insurance-jobs-in-malta.html` | Jobs in Malta pillar content |
+| Marine jobs hub | `https://outreachrecruitment.net/marine-jobs-in-malta.html` | Jobs in Malta pillar content |
+
+These category hub URLs are all root-level (no `/jobs/` prefix) — do not add one. There is no
+general healthcare jobs hub on the site (only a students-focused healthcare page under the Study
+in Malta pillar); do not invent one. For healthcare hiring content, link back to the main
+`https://outreachrecruitment.net/jobs/` board instead.
 
 ## Audience Rules
 
@@ -98,7 +111,7 @@ Focus on:
 
 - Broader job-market and industry trends in Malta, not individual application steps
 - Which industries and job categories are hiring: hospitality, IT, finance, construction, engineering, healthcare, retail, customer service, admin, sales, insurance, marine
-- Overviews of job categories that link to the relevant category hub (e.g. `/hospitality-jobs-in-malta`, `/it-jobs-in-malta.html`, `/finance-jobs-in-malta.html`, `/construction-jobs-in-malta.html`, `/engineering-jobs-in-malta.html`, `/sales-jobs-in-malta.html`, `/insurance-jobs-in-malta.html`, `/marine-jobs-in-malta.html`)
+- Overviews of job categories that link to the relevant category hub — use the exact URLs from the Mandatory Internal Links table above, never a `/jobs/`-prefixed guess
 - Seasonal or cyclical hiring patterns in Malta when factually grounded
 - Clear CTAs to browse the live jobs board
 
