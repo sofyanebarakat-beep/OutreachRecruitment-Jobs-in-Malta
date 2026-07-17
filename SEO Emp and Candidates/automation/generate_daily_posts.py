@@ -79,22 +79,11 @@ def choose_topics(count: int):
     return entries, pillar_state
 
 
-def extract_openai_text(payload: dict) -> str:
-    if payload.get("output_text"):
-        return payload["output_text"]
-    chunks = []
-    for item in payload.get("output", []):
-        for part in item.get("content", []):
-            if part.get("type") == "output_text":
-                chunks.append(part.get("text", ""))
-    return "\n".join(chunks).strip()
-
-
 def call_model(prompt: str, model: str) -> str:
     github_token = os.environ.get("GITHUB_TOKEN")
     openai_key = os.environ.get("OPENAI_API_KEY")
     if github_token:
-        endpoint = "https://models.github.com/inference/chat/completions"
+        endpoint = "https://models.github.ai/inference/chat/completions"
         body = json.dumps({
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
@@ -125,10 +114,7 @@ def call_model(prompt: str, model: str) -> str:
             # Increased timeout from 300s to 600s (10 minutes) for better resilience
             with urllib.request.urlopen(request, timeout=600) as response:
                 payload = json.load(response)
-                if github_token:
-                    text = payload["choices"][0]["message"]["content"].strip()
-                else:
-                    text = extract_openai_text(payload)
+                text = payload["choices"][0]["message"]["content"].strip()
             if len(text) < 1500:
                 raise SystemExit("Model returned an unexpectedly short article")
             return text
