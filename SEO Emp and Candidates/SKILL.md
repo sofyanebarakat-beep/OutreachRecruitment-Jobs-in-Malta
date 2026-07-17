@@ -162,21 +162,53 @@ Do not invent client names, hiring statistics, testimonials, awards, or years-in
 15. Apply the SEO Audit and Optimization Requirements when improving an existing page or before final publication.
 16. Keep all claims aligned with visible page content and provided facts.
 
-## Daily Draft Automation
+## Daily Draft Automation (Fully Automated Publishing)
 
-Use `automation/generate_daily_posts.py` when the user asks for recurring content. The
-scheduled GitHub workflow uses the free, rate-limited GitHub Models service, generates five
-Markdown drafts per day — one per pillar (`Employer`, `Candidate`, `JobsInMalta`, `StudyInMalta`,
-`Brand`) — and opens a review pull request. Keep `status: draft` and
-`review_required: true` until a human checks claims,
-keyword cannibalization, links, and brand quality. Never treat draft generation as publication.
-The Study in Malta draft stays in the same lightweight Markdown format as the other four pillars;
-it is expanded to the full `STUDY IN MALTA SKILLS/SKILL-TEMPLATE.md` build only when a human
-promotes it to a live page.
+The scheduled GitHub workflow (`.github/workflows/daily-seo-posts.yml`) runs unattended and
+**publishes live pages automatically, with no human review step**, by design (the site owner
+explicitly chose this over a review-gated flow, accepting the residual risk described below).
+Two scripts do this, in sequence:
+
+1. `automation/generate_daily_posts.py` calls the free, rate-limited GitHub Models service and
+   generates one Markdown draft per pillar (`Employer`, `Candidate`, `JobsInMalta`,
+   `StudyInMalta`, `Brand`) per day, into `automation/../generated/daily/<date>/`. The prompt
+   constrains the model to a strict, machine-parseable output contract — plain Markdown only, no
+   links, no images, no HTML, no CTAs — because the next step, not the model, owns everything
+   structural.
+2. `automation/publish_article.py` parses each draft and builds it straight into a live,
+   publish-ready HTML page: it injects all links, images, and CTAs itself from a fixed, hardcoded
+   per-pillar table (never from model output), HTML-escapes all model-derived text before use,
+   generates the FAQ accordion markup and matching `FAQPage` JSON-LD from the same source pair so
+   they can't drift apart, and updates `blog/index.html` and the relevant sitemap. It validates
+   the built page (balanced tags, valid JSON-LD, every local link/image resolves to a real file)
+   before writing it live — a draft that fails validation is left as Markdown only, not
+   published, and is never silently dropped (it stays committed for manual follow-up).
+
+**What this pipeline cannot catch**: factual accuracy of the article prose itself (invented
+claims, wrong emphasis, subtly misleading framing). The prompt's ACCURACY RULE instructs the
+model never to state specific unsourced numbers, but nothing downstream fact-checks free text.
+This is the accepted trade-off of running with no human review — if that risk profile changes,
+reintroduce a review step (e.g. revert to opening a draft PR instead of pushing straight to
+`main`) rather than trusting the pipeline to self-police content quality.
+
+The Study in Malta pillar publishes at the site's root URL (no `/blog/` prefix), per
+`STUDY IN MALTA SKILLS/README.md`'s routing rule, and is not added to `blog/index.html`, matching
+the existing precedent of that pillar's other root-level pages. It still uses the same
+lightweight page structure as the other four pillars, not the full
+`STUDY IN MALTA SKILLS/SKILL-TEMPLATE.md` build — that heavier template remains available for a
+human to apply by hand to any page that deserves the extra investment (testimonials, full data
+sources, sticky ToC), but it's not what daily automation produces.
 
 Maintain the rotating per-pillar queues in `automation/topics.json`, where every topic carries a
 `pillar` field. Add fresh topics to each pillar's queue before it wraps, and avoid primary
-keywords already targeted by live pages.
+keywords already targeted by live pages. `automation/publish_article.py`'s `IMAGE_POOL`,
+`CTA_MAP`, and `RELATED_POOL` constants are the other thing to keep current — add new hand-verified
+entries there (never let the model supply a link, image, or CTA) as new evergreen pages get
+published that later drafts should be able to cross-link to.
+
+If a user asks for a one-off page instead of daily automation, follow the rest of this skill file
+by hand as before (full SEO Output Requirements, Blog HTML Layout Requirements, human review) —
+this automated section only describes the unattended daily pipeline.
 
 ## SEO Output Requirements
 

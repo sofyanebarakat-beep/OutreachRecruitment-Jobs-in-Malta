@@ -155,8 +155,10 @@ def call_model(prompt: str, model: str) -> str:
 
 
 def prompt_for(topic: dict, skill: str, date: str) -> str:
-    return f"""Use the following Outreach Recruitment skill instructions to write ONE complete,
-review-ready SEO blog article in Markdown. Do not claim that it has been published.
+    return f"""Use the Audience Rules and tone from the Outreach Recruitment skill instructions
+below to write ONE article body for the Outreach Recruitment blog. This output feeds an
+automated publisher, not a human editor — follow the OUTPUT CONTRACT exactly so it can be
+parsed mechanically. Do not claim that it has been published.
 
 PILLAR: {topic['pillar']}
 TOPIC: {topic['topic']}
@@ -166,19 +168,42 @@ PUBLICATION DATE: {date}
 
 Apply the Audience Rules subsection for this PILLAR from the skill instructions below (Employer
 Content, Candidate Content, Jobs in Malta (Market) Content, Study in Malta Content, or Brand /
-Company Content). If PILLAR is StudyInMalta, still produce the same lightweight Markdown draft
-structure as every other pillar — do not attempt the full STUDY IN MALTA SKILLS HTML template.
+Company Content) for tone and subject focus only — ignore any instructions there about links,
+images, CTAs, schema, or HTML markup; the publisher injects all of those from a fixed, hardcoded
+set, not from your output.
 
-Return only Markdown. Begin with YAML frontmatter containing title, slug, pillar, audience,
-primary_keyword, seo_title, meta_description, date, status: draft, and review_required: true.
-Then include the full useful article, direct-answer box as a blockquote, key takeaways,
-logical H2/H3 sections, three audience-appropriate CTAs, 4-6 FAQs, related internal links,
-schema recommendations, image brief/alt text, and SEO Audit Notes. Do not invent statistics,
-clients, salaries, legal rules, visas, sponsorship, guarantees, or changing government facts.
-Flag any time-sensitive fact for human verification. Avoid duplicating these existing topics:
+OUTPUT CONTRACT — follow exactly, the response is parsed by a script, not read by a human:
+
+1. Output plain Markdown text only. No surrounding code fence (no ``` anywhere), no HTML tags,
+   no Markdown links, no images.
+2. Start with YAML frontmatter between two `---` lines containing exactly these keys: title,
+   slug (lowercase-hyphenated, no dates), pillar, audience, primary_keyword, seo_title (under 60
+   characters), meta_description (under 155 characters), date.
+3. Immediately after the frontmatter, one blockquote paragraph (starting with `>`) of 40-60
+   words that directly answers the primary keyword's implied question. No links, no bold.
+4. A `## Key Takeaways` section with 4-6 bullet points.
+5. 3-6 more `##` sections (with `###` subsections where useful) covering the topic in full,
+   using plain paragraphs, bullet lists, and Markdown pipe tables where a table communicates
+   better than prose. No links, no images, no HTML anywhere in this content.
+6. A final `## FAQs` section with exactly 5 items, each formatted as a `###` heading ending in
+   `?` followed by one plain-paragraph answer. No links inside FAQ answers.
+7. Do not include any other sections — no CTAs, no "Internal Links", no "Schema
+   Recommendations", no "Image Brief", no "Publishing Checklist", no "SEO Audit Notes", no
+   meta-commentary about the draft. The publisher generates all of that separately.
+
+ACCURACY RULE — this matters more than completeness: never state a specific number you were not
+given in this prompt — no prices, fees, percentages, salary figures, dates, durations, or
+quantities of any kind, even as a typical example or range. Where a number would normally go,
+describe the idea qualitatively instead (e.g. "costs vary depending on location and lifestyle"
+rather than inventing a euro figure). Do not invent client names, hiring statistics, legal
+outcomes, visa rules, or government rules. If a fact is genuinely time-sensitive or official
+(visas, permits, tax, employment law), say plainly that the reader should check the current
+official source, without naming or linking one.
+
+Avoid duplicating these existing topics:
 {existing_topics()}
 
-SKILL INSTRUCTIONS:
+SKILL INSTRUCTIONS (for tone and audience focus only):
 {skill}
 """
 
