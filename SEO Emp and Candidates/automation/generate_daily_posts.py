@@ -94,7 +94,7 @@ def call_model(prompt: str, model: str) -> str:
     github_token = os.environ.get("GITHUB_TOKEN")
     openai_key = os.environ.get("OPENAI_API_KEY")
     if github_token:
-        endpoint = "https://models.github.ai/inference/chat/completions"
+        endpoint = "https://models.github.com/inference/chat/completions"
         body = json.dumps({
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
@@ -107,11 +107,11 @@ def call_model(prompt: str, model: str) -> str:
         }
         provider = "GitHub Models"
     elif openai_key:
-        endpoint = "https://api.openai.com/v1/responses"
+        endpoint = "https://api.openai.com/v1/chat/completions"
         body = json.dumps({
             "model": model,
-            "input": prompt,
-            "max_output_tokens": 9000,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 6000,
         }).encode()
         headers = {"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"}
         provider = "OpenAI"
@@ -122,7 +122,8 @@ def call_model(prompt: str, model: str) -> str:
     for attempt in range(1, MAX_RETRIES + 1):
         request = urllib.request.Request(endpoint, data=body, headers=headers, method="POST")
         try:
-            with urllib.request.urlopen(request, timeout=300) as response:
+            # Increased timeout from 300s to 600s (10 minutes) for better resilience
+            with urllib.request.urlopen(request, timeout=600) as response:
                 payload = json.load(response)
                 if github_token:
                     text = payload["choices"][0]["message"]["content"].strip()
@@ -150,6 +151,20 @@ def call_model(prompt: str, model: str) -> str:
             )
             time.sleep(wait)
             delay = min(delay * 2, RETRY_MAX_DELAY_SECONDS)
+        except urllib.error.URLError as exc:
+            # Handle connection timeouts and other URL errors with retry logic
+            is_timeout = "timed out" in str(exc).lower() or "connection" in str(exc).lower()
+            if not is_timeout or attempt == MAX_RETRIES:
+                raise SystemExit(f"{provider} connection error: {str(exc)[:1000]}") from exc
+            wait = delay
+            print(
+                f"{provider} connection error (attempt {attempt}/{MAX_RETRIES}): {str(exc)[:100]}; "
+                f"retrying in {wait}s",
+                file=sys.stderr,
+            )
+            time.sleep(wait)
+            delay = min(delay * 2, RETRY_MAX_DELAY_SECONDS)
+
     raise SystemExit(f"{provider} API request failed after {MAX_RETRIES} attempts")
 
 
