@@ -54,6 +54,7 @@ jobs:
           git switch -c "$BRANCH"
           git add "SEO Emp and Candidates/generated/daily"
           git commit -m "content: generate SEO drafts for $DATE"
+          git fetch origin "$BRANCH" || true
           git push --force-with-lease origin "$BRANCH"
           PR_NUMBER="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')"
           if [ -z "$PR_NUMBER" ]; then
