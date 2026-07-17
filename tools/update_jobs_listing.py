@@ -184,7 +184,7 @@ def update_homepage(all_jobs: list[dict]) -> None:
     print(f"  index.html — {n_total} total, showing {n_display} on homepage")
 
 
-def update_jobs_page(all_jobs: list[dict]) -> None:
+def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
     path = ROOT / "jobs" / "index.html"
     html = path.read_text(encoding="utf-8")
     n        = len(all_jobs)
@@ -231,10 +231,10 @@ def update_jobs_page(all_jobs: list[dict]) -> None:
         rf'\g<1>{n} {role_word} available\2', html, count=1,
     )
 
-    # Open positions animated tag
+    # Open positions animated tag (true open count, excludes closed cards)
     html = re.sub(
-        r'(<span id="or-open-pos-num">)\+\d+ Open Positions(</span>)',
-        rf'\g<1>+{n} Open Positions\2', html, count=1,
+        r'(<span id="or-open-pos-num">)\+?\d+ Open Positions(</span>)',
+        rf'\g<1>+{open_n} Open Positions\2', html, count=1,
     )
 
     # Tab counts
@@ -339,7 +339,7 @@ def main() -> None:
     print(f"Updating listings ({today}) — {len(open_jobs)} open, {len(closed_jobs)} closed, {expired_count} expired/hidden")
     # Pass only open jobs for homepage + counters, but full list for jobs page grid
     update_homepage(open_jobs)
-    update_jobs_page(current_jobs)  # shows closed cards in grid too
+    update_jobs_page(current_jobs, len(open_jobs))  # shows closed cards in grid too
     update_jobs_sitemap(open_jobs, today)   # don't index closed pages in sitemap
     update_sitemap_indexes(today)
     print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
