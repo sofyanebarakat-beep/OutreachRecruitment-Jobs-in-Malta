@@ -39,6 +39,8 @@ jobs:
           else
             git add "SEO Emp and Candidates/automation/state.json"
             git commit -m "chore: advance SEO topic rotation state"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
       - name: Open or update the daily review PR
