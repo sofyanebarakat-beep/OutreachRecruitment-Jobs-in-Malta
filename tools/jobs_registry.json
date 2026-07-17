@@ -2269,7 +2269,7 @@
   },
   {
     "slug": "associate-tax-advisor",
-    "title": "Associate  Tax Advisor",
+    "title": "Associate Tax Advisor",
     "category": "Finance & Accounting",
     "location": "Msida, Malta",
     "location_slug": "msida, malta",
@@ -2278,7 +2278,7 @@
     "date": "2026-06-09",
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f4ddecbd-036b-4600-8225-d8e35bb7a738/apply",
-    "keywords": "associate  tax advisor finance & accounting msida, malta",
+    "keywords": "associate tax advisor finance & accounting msida, malta",
     "featured": true,
     "lastmod": "2026-07-09"
   },
@@ -3870,6 +3870,21 @@
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c4bb09d9-1341-41c9-9325-4a173fd75cde/apply",
     "keywords": "kitchen helper hospitality catering food service st. paul's bay, malta",
+    "featured": true,
+    "lastmod": "2026-07-17"
+  },
+  {
+    "slug": "ship-chandler",
+    "title": "Ship Chandler",
+    "category": "Marine",
+    "location": "Marsaxlokk, Malta",
+    "location_slug": "marsaxlokk, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-07-17",
+    "valid_through": "2026-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/84a61f1f-70d9-400c-84af-34aaed87cd7d/apply",
+    "keywords": "ship chandler marine procurement marsaxlokk, malta maritime",
     "featured": true,
     "lastmod": "2026-07-17"
   }
