@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -21,6 +22,12 @@ OUTPUT = ROOT / "SEO Emp and Candidates" / "generated" / "daily"
 
 # One article per pillar per day, in this fixed rotation order.
 PILLARS = ["Employer", "Candidate", "JobsInMalta", "StudyInMalta", "Brand"]
+
+# Spacing between sequential model calls to avoid tripping the free-tier rate limit.
+INTER_CALL_DELAY_SECONDS = 20
+MAX_RETRIES = 5
+RETRY_BASE_DELAY_SECONDS = 20
+RETRY_MAX_DELAY_SECONDS = 180
 
 
 def slugify(value: str) -> str:
@@ -38,6 +45,14 @@ def existing_topics() -> str:
 
 
 def choose_topics(count: int):
+    """Pick one topic per pillar in rotation order.
+
+    Returns (entries, pillar_state) where pillar_state is the *pre-run* per-pillar
+    index map. Each entry carries the index/count it was drawn from so the caller
+    can advance that pillar's index only after a successful generation — a topic
+    that fails (e.g. rate limited) is retried on the next run instead of being
+    skipped.
+    """
     topics = load_json(TOPICS, [])
     by_pillar: dict[str, list[dict]] = {}
     for topic in topics:
@@ -47,18 +62,21 @@ def choose_topics(count: int):
         raise SystemExit(f"topics.json is missing topics for pillar(s): {', '.join(missing)}")
 
     state = load_json(STATE, {})
-    pillar_state = state.get("pillars", {})
+    pillar_state = dict(state.get("pillars", {}))
 
-    chosen = []
+    entries = []
     for i in range(count):
         pillar = PILLARS[i % len(PILLARS)]
         pillar_topics = by_pillar[pillar]
-        next_index = int(pillar_state.get(pillar, {}).get("next_index", 0)) % len(pillar_topics)
-        chosen.append(pillar_topics[next_index])
-        pillar_state[pillar] = {"next_index": (next_index + 1) % len(pillar_topics)}
+        used_index = int(pillar_state.get(pillar, {}).get("next_index", 0)) % len(pillar_topics)
+        entries.append({
+            "pillar": pillar,
+            "topic": pillar_topics[used_index],
+            "index": used_index,
+            "count": len(pillar_topics),
+        })
 
-    state = {"pillars": pillar_state, "last_run": dt.date.today().isoformat()}
-    return chosen, state
+    return entries, pillar_state
 
 
 def extract_openai_text(payload: dict) -> str:
@@ -99,25 +117,40 @@ def call_model(prompt: str, model: str) -> str:
         provider = "OpenAI"
     else:
         raise SystemExit("GITHUB_TOKEN or OPENAI_API_KEY is required")
-    request = urllib.request.Request(
-        endpoint,
-        data=body,
-        headers=headers,
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=300) as response:
-            payload = json.load(response)
-            if github_token:
-                text = payload["choices"][0]["message"]["content"].strip()
-            else:
-                text = extract_openai_text(payload)
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", "replace")
-        raise SystemExit(f"{provider} API error {exc.code}: {detail[:1000]}") from exc
-    if len(text) < 1500:
-        raise SystemExit("Model returned an unexpectedly short article")
-    return text
+
+    delay = RETRY_BASE_DELAY_SECONDS
+    for attempt in range(1, MAX_RETRIES + 1):
+        request = urllib.request.Request(endpoint, data=body, headers=headers, method="POST")
+        try:
+            with urllib.request.urlopen(request, timeout=300) as response:
+                payload = json.load(response)
+                if github_token:
+                    text = payload["choices"][0]["message"]["content"].strip()
+                else:
+                    text = extract_openai_text(payload)
+            if len(text) < 1500:
+                raise SystemExit("Model returned an unexpectedly short article")
+            return text
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", "replace")
+            retryable = exc.code == 429 or exc.code >= 500
+            if not retryable or attempt == MAX_RETRIES:
+                raise SystemExit(f"{provider} API error {exc.code}: {detail[:1000]}") from exc
+            wait = delay
+            retry_after = exc.headers.get("Retry-After") if exc.headers else None
+            if retry_after:
+                try:
+                    wait = max(wait, int(float(retry_after)))
+                except ValueError:
+                    pass
+            print(
+                f"{provider} API error {exc.code} (attempt {attempt}/{MAX_RETRIES}); "
+                f"retrying in {wait}s",
+                file=sys.stderr,
+            )
+            time.sleep(wait)
+            delay = min(delay * 2, RETRY_MAX_DELAY_SECONDS)
+    raise SystemExit(f"{provider} API request failed after {MAX_RETRIES} attempts")
 
 
 def prompt_for(topic: dict, skill: str, date: str) -> str:
@@ -156,19 +189,43 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     today = dt.date.today().isoformat()
-    topics, state = choose_topics(args.count)
+    entries, pillar_state = choose_topics(args.count)
     if args.dry_run:
-        print(json.dumps(topics, indent=2))
+        print(json.dumps([e["topic"] for e in entries], indent=2))
         return 0
     skill = SKILL.read_text()
     day_dir = OUTPUT / today
     day_dir.mkdir(parents=True, exist_ok=True)
-    for topic in topics:
+
+    succeeded = 0
+    failed_pillars = []
+    for i, entry in enumerate(entries):
+        if i > 0:
+            time.sleep(INTER_CALL_DELAY_SECONDS)
+        topic = entry["topic"]
+        try:
+            text = call_model(prompt_for(topic, skill, today), args.model)
+        except SystemExit as exc:
+            print(f"WARNING: skipping {entry['pillar']} topic {topic['topic']!r}: {exc}", file=sys.stderr)
+            failed_pillars.append(entry["pillar"])
+            continue
         slug = slugify(topic["topic"])
         destination = day_dir / f"{slug}.md"
-        destination.write_text(call_model(prompt_for(topic, skill, today), args.model).rstrip() + "\n")
+        destination.write_text(text.rstrip() + "\n")
         print(destination.relative_to(ROOT))
-    STATE.write_text(json.dumps(state, indent=2) + "\n")
+        pillar_state[entry["pillar"]] = {"next_index": (entry["index"] + 1) % entry["count"]}
+        succeeded += 1
+
+    STATE.write_text(json.dumps({"pillars": pillar_state, "last_run": today}, indent=2) + "\n")
+
+    if failed_pillars:
+        print(
+            f"{len(failed_pillars)}/{len(entries)} pillar(s) failed and will retry next run: "
+            f"{', '.join(failed_pillars)}",
+            file=sys.stderr,
+        )
+    if succeeded == 0:
+        return 1
     return 0
 
 
