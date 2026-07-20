@@ -102,8 +102,17 @@
     #salary-calc-table th strong{color:inherit}
     .salary-calc-bonus-note{font-size:.9rem;color:#4b5563;margin:1.25rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(44,45,45,.1)}
     .salary-calc-live-note{font-size:.78rem;color:#6b7280;margin:.5rem 0 0;font-style:italic}
+    .salary-calc-jobs{width:100%;max-width:1360px;margin:3rem auto 0}
+    .salary-calc-jobs-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+    .salary-calc-jobs-head h2{margin:0}
+    .salary-calc-jobs-viewall{color:#442dfa;font-weight:700;font-size:.92rem;text-decoration:none;white-space:nowrap}
+    .salary-calc-jobs-viewall:hover{text-decoration:underline}
+    @media(min-width:768px) and (max-width:900px){
+      .salary-calc-jobs .opening-jobs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
     @media(max-width:900px){
       .salary-calc-app-col{padding:1.5rem}
+      .salary-calc-jobs{margin-top:2rem}
       .salary-calc-table-wrap{overflow-x:visible}
       #salary-calc-table{min-width:0}
       #salary-calc-table thead{display:none}
@@ -235,6 +244,24 @@
           </div>
             </form>
           </div>
+
+              <div class="salary-calc-jobs">
+                <div class="salary-calc-jobs-head">
+                  <h2 class="heading-h3">Currently open jobs in Malta</h2>
+                  <a href="/jobs/" class="salary-calc-jobs-viewall">View all open jobs &rarr;</a>
+                </div>
+                <div class="opening-jobs-grid">
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/baristas/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Baristas</h3><div class="opening-job-company">St. Julian's, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Hospitality</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/kitchen-helper/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Kitchen Helper</h3><div class="opening-job-company">St. Paul's Bay, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Hospitality</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/ship-chandler/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Ship Chandler</h3><div class="opening-job-company">Marsaxlokk, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Marine</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/fleet-mechanical-superintendent/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Fleet Mechanical Superintendent</h3><div class="opening-job-company">Marsaxlokk, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Marine</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/commis-3/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Commis</h3><div class="opening-job-company">Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Hospitality</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/customer-care-team-leader/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Customer Care Team Leader</h3><div class="opening-job-company">Luqa, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Transport</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/customer-care-agent/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Customer Care Agent</h3><div class="opening-job-company">Luqa, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>Transport</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/talent-acquisition-specialist/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">Talent Acquisition Specialist</h3><div class="opening-job-company">Paola, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>HR &amp; Recruitment</span></div></a></article>
+                  <article class="opening-job-card"><a class="opening-job-link" href="/jobs/itsm-service-manager-hybrid/"><div class="opening-card-day">New</div><img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/><h3 class="heading-h5">ITSM Service Manager - Hybrid</h3><div class="opening-job-company">Valletta, Malta</div><div class="opening-job-meta"><span>Full-Time</span><span>IT &amp; Technology</span></div></a></article>
+                </div>
+              </div>
 
         </div>
       </div>
