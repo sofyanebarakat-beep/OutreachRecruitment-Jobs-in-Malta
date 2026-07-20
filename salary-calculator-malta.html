@@ -63,7 +63,7 @@
     @media(max-width:767px){.related-grid{grid-template-columns:1fr}}
   </style>
   <style>
-    .salary-calc-hero{padding:1.5rem 1.25rem 3.5rem;overflow-x:hidden}
+    .salary-calc-hero{width:100%;margin-top:2.25rem;overflow-x:hidden}
     .salary-calc-app{display:grid;grid-template-columns:minmax(320px,480px) 1fr;gap:2.25rem;align-items:start;max-width:1360px;margin:0 auto}
     @media(max-width:960px){.salary-calc-app{grid-template-columns:1fr}}
     .salary-calc-app-col{background:#fff;border:1px solid rgba(44,45,45,.14);border-radius:16px;padding:2.25rem;min-width:0}
@@ -138,12 +138,8 @@
             <h1 class="heading-h1">Malta Salary Calculator</h1>
             <div class="caption blue-caption">Updated July 20, 2026</div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section class="section salary-calc-hero">
-      <div class="w-layout-blockcontainer container w-container">
-        <form id="salary-calc-form" class="salary-calc-app">
+          <div class="salary-calc-hero">
+            <form id="salary-calc-form" class="salary-calc-app">
           <div class="salary-calc-app-col salary-calc-app-inputs">
             <h2>Enter your details</h2>
             <div class="salary-calc-field">
@@ -205,10 +201,12 @@
             </div>
             <p class="salary-calc-bonus-note"><strong>Statutory bonus (not included above):</strong> roughly <span id="sc-bonus-total"></span>/year, paid separately across four quarterly payments.</p>
           </div>
-        </form>
+            </form>
+          </div>
+
+        </div>
       </div>
     </section>
-
     <section class="section padding-top-extra-small">
       <div class="w-layout-blockcontainer container tight w-container">
         <article class="cms-article">
