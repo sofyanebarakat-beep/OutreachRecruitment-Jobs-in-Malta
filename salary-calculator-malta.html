@@ -63,20 +63,25 @@
     @media(max-width:767px){.related-grid{grid-template-columns:1fr}}
   </style>
   <style>
-    .salary-calc-section{background:#fff;border:1px solid rgba(44,45,45,.14);border-radius:12px;padding:1.75rem;margin:2rem 0}
-    .salary-calc-section h2{margin-top:0}
-    .salary-calc-form{margin-top:1rem}
-    .salary-calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-    @media(max-width:640px){.salary-calc-row{grid-template-columns:1fr}}
+    .salary-calc-hero{background:#2c2d2d;padding:2.5rem 1.25rem 3rem;overflow-x:hidden}
+    .salary-calc-app{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:2rem;align-items:start;max-width:1100px;margin:0 auto}
+    @media(max-width:900px){.salary-calc-app{grid-template-columns:1fr}}
+    .salary-calc-app-col{background:#fff;border-radius:14px;padding:1.75rem;min-width:0}
+    .salary-calc-app-col h2{margin-top:0;font-size:1.35rem}
+    .salary-calc-field{margin-bottom:1.1rem}
     .salary-calc-field label{display:block;font-weight:600;font-size:.85rem;margin-bottom:.4rem;color:#2c2d2d}
     .salary-calc-field input,.salary-calc-field select{width:100%;padding:.7rem .85rem;border:1px solid rgba(44,45,45,.25);border-radius:8px;font-size:1rem;font-family:inherit;background:#f7f5ef}
     .salary-calc-field input:focus,.salary-calc-field select:focus{outline:2px solid #442dfa;outline-offset:1px}
-    .salary-calc-submit{border:none;cursor:pointer;background:#442dfa;color:#fff;border-radius:999px;padding:.85rem 1.6rem;font-weight:700;font-size:1rem;margin-top:.5rem}
+    .salary-calc-submit{border:none;cursor:pointer;background:#442dfa;color:#fff;border-radius:999px;padding:.85rem 1.6rem;font-weight:700;font-size:1rem;margin-top:.25rem;width:100%;text-align:center;display:block}
     .salary-calc-submit:hover{opacity:.9}
-    .salary-calc-results{margin-top:1.75rem}
-    #salary-calc-table td, #salary-calc-table th{font-variant-numeric:tabular-nums}
+    .salary-calc-app-results{display:flex;flex-direction:column}
+    .salary-calc-table-wrap{overflow-x:auto;margin-top:.5rem}
+    #salary-calc-table{width:100%;border-collapse:collapse;min-width:420px}
+    #salary-calc-table th,#salary-calc-table td{padding:.6rem .7rem;text-align:left;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(44,45,45,.1)}
+    #salary-calc-table thead th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#6b7280;font-weight:700;border-bottom:2px solid rgba(44,45,45,.2)}
     #salary-calc-table tbody tr:last-child{background:#f0fdf4}
-    #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-weight:700}
+    #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-weight:700;border-bottom:none}
+    .salary-calc-bonus-note{font-size:.85rem;color:#4b5563;margin:1.1rem 0 0;padding-top:1rem;border-top:1px solid rgba(44,45,45,.1)}
   </style>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "For most employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners. Students, under-18s, and a few other categories follow different rules not covered by this calculator."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
@@ -129,71 +134,70 @@
             <h1 class="heading-h1">Malta Salary Calculator</h1>
             <div class="caption blue-caption">Updated July 20, 2026</div>
           </div>
-          <div class="cms-featured-media" data-gsap-scroll="fade"><img src="/assets/jobs-malta-finance.png" alt="Calculating salary and tax figures for a job in Malta" class="media-fill" loading="lazy" sizes="100vw" srcset="/assets/jobs-malta-finance.png"/></div>
         </div>
       </div>
     </section>
+    <section class="section salary-calc-hero">
+      <div class="w-layout-blockcontainer container w-container">
+        <form id="salary-calc-form" class="salary-calc-app">
+          <div class="salary-calc-app-col salary-calc-app-inputs">
+            <h2>Enter your details</h2>
+            <div class="salary-calc-field">
+              <label for="sc-amount">Gross salary</label>
+              <input type="number" id="sc-amount" name="amount" min="0" step="0.01" value="30000" required inputmode="decimal"/>
+            </div>
+            <div class="salary-calc-field">
+              <label for="sc-frequency">Pay frequency</label>
+              <select id="sc-frequency" name="frequency">
+                <option value="annual" selected>Per year</option>
+                <option value="monthly">Per month</option>
+                <option value="weekly">Per week</option>
+              </select>
+            </div>
+            <div class="salary-calc-field">
+              <label for="sc-status">Tax status</label>
+              <select id="sc-status" name="status">
+                <option value="single" selected>Single</option>
+                <option value="married">Married</option>
+                <option value="parent">Parent</option>
+              </select>
+            </div>
+            <div class="salary-calc-field">
+              <label for="sc-children">Qualifying children</label>
+              <select id="sc-children" name="children">
+                <option value="0" selected>None</option>
+                <option value="1">One</option>
+                <option value="2">Two or more</option>
+              </select>
+            </div>
+            <button type="submit" class="button-primary animated w-inline-block salary-calc-submit"><div class="button-label">Calculate net salary</div></button>
+          </div>
+          <div class="salary-calc-app-col salary-calc-app-results" id="salary-calc-results" aria-live="polite">
+            <h2>Your estimated salary</h2>
+            <div class="salary-calc-table-wrap">
+              <table class="check-table" id="salary-calc-table">
+                <thead><tr><th>&nbsp;</th><th>Weekly</th><th>Monthly</th><th>Yearly</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Gross salary</th><td id="sc-gross-w"></td><td id="sc-gross-m"></td><td id="sc-gross-y"></td></tr>
+                  <tr><th scope="row">Income tax</th><td id="sc-tax-w"></td><td id="sc-tax-m"></td><td id="sc-tax-y"></td></tr>
+                  <tr><th scope="row">Social security (SSC)</th><td id="sc-ssc-w"></td><td id="sc-ssc-m"></td><td id="sc-ssc-y"></td></tr>
+                  <tr><th scope="row"><strong>Net salary</strong></th><td id="sc-net-w"><strong></strong></td><td id="sc-net-m"><strong></strong></td><td id="sc-net-y"><strong></strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="salary-calc-bonus-note"><strong>Statutory bonus (not included above):</strong> roughly <span id="sc-bonus-total"></span>/year, paid separately across four quarterly payments.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section class="section padding-top-extra-small">
       <div class="w-layout-blockcontainer container tight w-container">
         <article class="cms-article">
           <div class="w-richtext">
             <section>
-              <div class="answer-box"><strong>Quick answer:</strong> To estimate your net salary in Malta, enter your gross salary and select your tax status below. The calculator applies Malta's progressive income tax bands and standard Class 1 social security contributions to show your estimated weekly, monthly, and yearly take-home pay.</div>
+              <div class="answer-box"><strong>Quick answer:</strong> To estimate your net salary in Malta, enter your gross salary and select your tax status above. The calculator applies Malta's progressive income tax bands and standard Class 1 social security contributions to show your estimated weekly, monthly, and yearly take-home pay.</div>
               <div class="note-box"><strong>Estimate only:</strong> This calculator uses Malta's published 2026 tax bands and standard social security rates for general guidance. It does not cover every personal circumstance (student status, reduced hours, multiple employers, benefits in kind, or tax rebates) and is not tax, legal, or financial advice. Always confirm your exact figures with your employer's payroll department, an accountant, or the <a href="https://cfr.gov.mt" target="_blank" rel="noopener">Commissioner for Revenue</a>.</div>
-            </section>
-
-            <section id="calculator" class="salary-calc-section">
-              <h2>Malta Salary Calculator</h2>
-              <form id="salary-calc-form" class="salary-calc-form">
-                <div class="salary-calc-row">
-                  <div class="salary-calc-field">
-                    <label for="sc-amount">Gross salary</label>
-                    <input type="number" id="sc-amount" name="amount" min="0" step="0.01" value="30000" required inputmode="decimal"/>
-                  </div>
-                  <div class="salary-calc-field">
-                    <label for="sc-frequency">Pay frequency</label>
-                    <select id="sc-frequency" name="frequency">
-                      <option value="annual" selected>Per year</option>
-                      <option value="monthly">Per month</option>
-                      <option value="weekly">Per week</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="salary-calc-row">
-                  <div class="salary-calc-field">
-                    <label for="sc-status">Tax status</label>
-                    <select id="sc-status" name="status">
-                      <option value="single" selected>Single</option>
-                      <option value="married">Married</option>
-                      <option value="parent">Parent</option>
-                    </select>
-                  </div>
-                  <div class="salary-calc-field">
-                    <label for="sc-children">Qualifying children</label>
-                    <select id="sc-children" name="children">
-                      <option value="0" selected>None</option>
-                      <option value="1">One</option>
-                      <option value="2">Two or more</option>
-                    </select>
-                  </div>
-                </div>
-                <button type="submit" class="button-primary animated w-inline-block salary-calc-submit"><div class="button-label">Calculate net salary</div></button>
-              </form>
-
-              <div id="salary-calc-results" class="salary-calc-results" hidden aria-live="polite">
-                <div class="article-table-wrap">
-                  <table class="check-table" id="salary-calc-table">
-                    <thead><tr><th>&nbsp;</th><th>Weekly</th><th>Monthly</th><th>Yearly</th></tr></thead>
-                    <tbody>
-                      <tr><th scope="row">Gross salary</th><td id="sc-gross-w"></td><td id="sc-gross-m"></td><td id="sc-gross-y"></td></tr>
-                      <tr><th scope="row">Income tax</th><td id="sc-tax-w"></td><td id="sc-tax-m"></td><td id="sc-tax-y"></td></tr>
-                      <tr><th scope="row">Social security (SSC)</th><td id="sc-ssc-w"></td><td id="sc-ssc-m"></td><td id="sc-ssc-y"></td></tr>
-                      <tr><th scope="row"><strong>Net salary</strong></th><td id="sc-net-w"><strong></strong></td><td id="sc-net-m"><strong></strong></td><td id="sc-net-y"><strong></strong></td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="note-box" style="margin-top:1.25rem;"><strong>Statutory bonus (not included above):</strong> Malta pays a statutory government bonus on top of salary, roughly <span id="sc-bonus-total"></span>/year, split across four payments (end of March, June, September, December). This is paid and taxed separately from your regular salary and is shown here for reference only.</div>
-              </div>
             </section>
 
             <section>
@@ -395,10 +399,12 @@
       var bonusEl = document.getElementById("sc-bonus-total");
       if (bonusEl) bonusEl.textContent = eur(STATUTORY_BONUS_ANNUAL);
 
-      var results = document.getElementById("salary-calc-results");
-      if (results) {
-        results.hidden = false;
-        results.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      // Results column sits beside the form on desktop and is already visible;
+      // on narrow/stacked layouts (results follow the form in source order),
+      // scroll it into view so submitting doesn't feel like nothing happened.
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        var results = document.getElementById("salary-calc-results");
+        if (results) results.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
 
