@@ -16,7 +16,6 @@ Disallow: /clients-a
 Disallow: /clients-b
 Disallow: /clients-c
 Disallow: /clients/
-Disallow: /careers
 Disallow: /book-a-call
 Disallow: /licenses
 Disallow: /help
