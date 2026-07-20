@@ -75,7 +75,11 @@
     .salary-calc-amount-wrap{position:relative}
     .salary-calc-amount-prefix{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1.05rem;font-weight:700;color:#6b7280;pointer-events:none}
     .salary-calc-amount-wrap input{padding-left:2.15rem;font-variant-numeric:tabular-nums;font-weight:700}
-    .salary-calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:#e5e7eb;margin:1rem 0 .4rem;cursor:pointer;touch-action:pan-y}
+    .salary-calc-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}
+    .salary-calc-chip{border:1px solid rgba(44,45,45,.25);background:#f7f5ef;color:#2c2d2d;border-radius:999px;padding:.4rem .95rem;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit}
+    .salary-calc-chip:hover{border-color:#442dfa;color:#442dfa}
+    .salary-calc-chip.active{background:#442dfa;border-color:#442dfa;color:#fff}
+    .salary-calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:#e5e7eb;margin:1.1rem 0 .4rem;cursor:pointer;touch-action:pan-y}
     .salary-calc-slider:focus{outline:none}
     .salary-calc-slider:focus-visible{outline:2px solid #442dfa;outline-offset:3px}
     .salary-calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:#442dfa;border:3px solid #fff;box-shadow:0 1px 4px rgba(44,45,45,.35);cursor:grab;margin-top:0}
@@ -99,7 +103,7 @@
     .salary-calc-live-note{font-size:.78rem;color:#6b7280;margin:.5rem 0 0;font-style:italic}
   </style>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
+  {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) / National Insurance calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "Malta calls this Social Security Contributions (SSC) -- it's the same idea as National Insurance elsewhere. For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
   </script>
 </head>
 <body>
@@ -159,7 +163,13 @@
                 <span class="salary-calc-amount-prefix" aria-hidden="true">&euro;</span>
                 <input type="text" id="sc-amount" name="amount" inputmode="numeric" autocomplete="off" value="30,000" required aria-label="Gross annual salary in euros"/>
               </div>
-              <input type="range" id="sc-slider" class="salary-calc-slider" min="1000" max="300000" step="500" value="30000" aria-label="Gross annual salary slider" aria-valuemin="1000" aria-valuemax="300000"/>
+              <div class="salary-calc-chips" role="group" aria-label="Quick-pick salary presets">
+                <button type="button" class="salary-calc-chip" data-amount="25000">&euro;25k</button>
+                <button type="button" class="salary-calc-chip" data-amount="35000">&euro;35k</button>
+                <button type="button" class="salary-calc-chip" data-amount="50000">&euro;50k</button>
+                <button type="button" class="salary-calc-chip" data-amount="75000">&euro;75k</button>
+              </div>
+              <input type="range" id="sc-slider" class="salary-calc-slider" min="0" max="1000" step="1" value="596" aria-label="Gross annual salary slider" aria-valuemin="1000" aria-valuemax="300000" aria-valuenow="30000" aria-valuetext="&euro;30,000"/>
               <div class="salary-calc-slider-ticks"><span>&euro;1,000</span><span>&euro;300,000</span></div>
             </div>
             <div class="salary-calc-field">
@@ -202,7 +212,7 @@
                 <tbody>
                   <tr><th scope="row">Gross salary</th><td id="sc-gross-w"></td><td id="sc-gross-m"></td><td id="sc-gross-y"></td></tr>
                   <tr><th scope="row">Income tax</th><td id="sc-tax-w"></td><td id="sc-tax-m"></td><td id="sc-tax-y"></td></tr>
-                  <tr><th scope="row">Social security (SSC)</th><td id="sc-ssc-w"></td><td id="sc-ssc-m"></td><td id="sc-ssc-y"></td></tr>
+                  <tr><th scope="row">Social security / National Insurance (SSC)</th><td id="sc-ssc-w"></td><td id="sc-ssc-m"></td><td id="sc-ssc-y"></td></tr>
                   <tr><th scope="row"><strong>Net salary</strong></th><td id="sc-net-w"><strong></strong></td><td id="sc-net-m"><strong></strong></td><td id="sc-net-y"><strong></strong></td></tr>
                 </tbody>
               </table>
@@ -242,8 +252,8 @@
                   </tbody>
                 </table>
               </div>
-              <h3>Social Security Contributions (SSC)</h3>
-              <p>Class 1 social security depends on age, student status, and birth year, not just income. Standard adult employees pay 10% of gross weekly wage, with a floor of €22.94 for lower earners and a cap of €54.43 for higher earners; the cap is €45.19 for employees born on or before 31 December 1961. Under-18 employees pay a fixed €6.62 a week. Employees on the student-worker scheme pay 10% of wage capped at €4.38 (under 18) or €7.94 (18 and over) a week. Use the checkboxes above the calculator to match your own circumstances.</p>
+              <h3>Social Security Contributions (SSC) / National Insurance</h3>
+              <p>Malta's Class 1 social security contribution is the equivalent of what's called National Insurance in other countries, and depends on age, student status, and birth year, not just income. Standard adult employees pay 10% of gross weekly wage, with a floor of €22.94 for lower earners and a cap of €54.43 for higher earners; the cap is €45.19 for employees born on or before 31 December 1961. Under-18 employees pay a fixed €6.62 a week. Employees on the student-worker scheme pay 10% of wage capped at €4.38 (under 18) or €7.94 (18 and over) a week. Use the checkboxes above the calculator to match your own circumstances.</p>
             </section>
 
             <div class="cta-box"><h2>Comparing a job offer in Malta?</h2><p>See current vacancies and salary-relevant details across Malta's job market.</p><a href="/jobs/">Browse jobs in Malta</a></div>
@@ -264,8 +274,8 @@
                 <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total.</p></div></div>
               </div>
               <div class="faq-item">
-                <div class="faq-item-top"><h3 class="text-large strong">How is social security (SSC) calculated in Malta?</h3><div class="faq-button"><div class="button-circle small"><div class="plus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div><div class="minus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div></div></div></div>
-                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances.</p></div></div>
+                <div class="faq-item-top"><h3 class="text-large strong">How is social security (SSC) / National Insurance calculated in Malta?</h3><div class="faq-button"><div class="button-circle small"><div class="plus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div><div class="minus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div></div></div></div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">Malta calls this Social Security Contributions (SSC) -- it's the same idea as National Insurance elsewhere. For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances.</p></div></div>
               </div>
               <div class="faq-item">
                 <div class="faq-item-top"><h3 class="text-large strong">Where can I find jobs in Malta that match my target salary?</h3><div class="faq-button"><div class="button-circle small"><div class="plus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div><div class="minus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div></div></div></div>
@@ -417,6 +427,38 @@
         "linear-gradient(to right, #442dfa 0%, #442dfa " + pct + "%, #e5e7eb " + pct + "%, #e5e7eb 100%)";
     }
 
+    // The slider's own position is linear (0-1000), but we map it onto the
+    // salary range on a log curve so the low end (where most junior salaries
+    // sit) gets more of the draggable track instead of being squeezed into a
+    // sliver next to the €1,000 mark.
+    var SALARY_MIN = 1000, SALARY_MAX = 300000;
+    var LOG_MIN = Math.log(SALARY_MIN), LOG_MAX = Math.log(SALARY_MAX);
+
+    function sliderPosToSalary(pos) {
+      var t = pos / Number(slider.max);
+      var salary = Math.exp(LOG_MIN + t * (LOG_MAX - LOG_MIN));
+      return Math.round(salary / 100) * 100;
+    }
+
+    function salaryToSliderPos(salary) {
+      var clamped = Math.min(Math.max(salary, SALARY_MIN), SALARY_MAX);
+      var t = (Math.log(clamped) - LOG_MIN) / (LOG_MAX - LOG_MIN);
+      return Math.round(t * Number(slider.max));
+    }
+
+    function updateSliderAria(salary) {
+      slider.setAttribute("aria-valuenow", String(salary));
+      slider.setAttribute("aria-valuetext", "€" + salary.toLocaleString("en-MT"));
+    }
+
+    var chips = document.querySelectorAll(".salary-calc-chip");
+    function updateChipActiveState() {
+      var current = parseAmount(amountInput.value);
+      chips.forEach(function (chip) {
+        chip.classList.toggle("active", Number(chip.getAttribute("data-amount")) === current);
+      });
+    }
+
     function recalculate() {
       var grossAnnual = parseAmount(amountInput.value);
       var status = document.getElementById("sc-status").value;
@@ -455,20 +497,41 @@
     });
 
     // Live thousand-separator formatting on the amount field as you type, and
-    // keep the slider's handle position in sync with whatever was typed.
+    // keep the slider's handle position (on its log curve) in sync with
+    // whatever was typed.
     amountInput.addEventListener("input", function () {
       var digitsOnly = amountInput.value.replace(/[^\d]/g, "");
       amountInput.value = digitsOnly ? Number(digitsOnly).toLocaleString("en-MT") : "";
-      var clamped = Math.min(Math.max(parseAmount(amountInput.value), Number(slider.min)), Number(slider.max));
-      slider.value = clamped;
+      var amount = parseAmount(amountInput.value);
+      slider.value = salaryToSliderPos(amount);
       updateSliderFill();
+      updateSliderAria(amount);
+      updateChipActiveState();
     });
 
     // Dragging the slider updates the text field (with the same comma
-    // formatting) and the visual track fill.
+    // formatting) and the visual track fill. The slider's raw position is
+    // converted through the log curve to get the actual salary value.
     slider.addEventListener("input", function () {
-      amountInput.value = Number(slider.value).toLocaleString("en-MT");
+      var salary = sliderPosToSalary(Number(slider.value));
+      amountInput.value = salary.toLocaleString("en-MT");
       updateSliderFill();
+      updateSliderAria(salary);
+      updateChipActiveState();
+    });
+
+    // Quick-pick chips jump straight to a common salary figure -- handy on
+    // mobile where dragging to an exact value on a log-scaled track is fiddly.
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var amount = Number(chip.getAttribute("data-amount"));
+        amountInput.value = amount.toLocaleString("en-MT");
+        slider.value = salaryToSliderPos(amount);
+        updateSliderFill();
+        updateSliderAria(amount);
+        updateChipActiveState();
+        recalculate();
+      });
     });
 
     // Live updates: recalculate on every change, no button click required.
@@ -478,7 +541,11 @@
     form.addEventListener("change", recalculate);
 
     // Calculate once on load with the default values so the page isn't empty.
+    var initialAmount = parseAmount(amountInput.value);
+    slider.value = salaryToSliderPos(initialAmount);
     updateSliderFill();
+    updateSliderAria(initialAmount);
+    updateChipActiveState();
     recalculate();
   })();
   // Note: the FAQ accordion toggle script is already included via the shared
