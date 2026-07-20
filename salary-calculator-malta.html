@@ -63,28 +63,32 @@
     @media(max-width:767px){.related-grid{grid-template-columns:1fr}}
   </style>
   <style>
-    .salary-calc-hero{padding:1.5rem 1.25rem 3rem;overflow-x:hidden}
-    .salary-calc-app{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:2rem;align-items:start;max-width:1100px;margin:0 auto}
-    @media(max-width:900px){.salary-calc-app{grid-template-columns:1fr}}
-    .salary-calc-app-col{background:#fff;border:1px solid rgba(44,45,45,.14);border-radius:14px;padding:1.75rem;min-width:0}
-    .salary-calc-app-col h2{margin-top:0;font-size:1.35rem}
-    .salary-calc-field{margin-bottom:1.1rem}
-    .salary-calc-field label{display:block;font-weight:600;font-size:.85rem;margin-bottom:.4rem;color:#2c2d2d}
-    .salary-calc-field input,.salary-calc-field select{width:100%;padding:.7rem .85rem;border:1px solid rgba(44,45,45,.25);border-radius:8px;font-size:1rem;font-family:inherit;background:#f7f5ef}
+    .salary-calc-hero{padding:1.5rem 1.25rem 3.5rem;overflow-x:hidden}
+    .salary-calc-app{display:grid;grid-template-columns:minmax(320px,480px) 1fr;gap:2.25rem;align-items:start;max-width:1360px;margin:0 auto}
+    @media(max-width:960px){.salary-calc-app{grid-template-columns:1fr}}
+    .salary-calc-app-col{background:#fff;border:1px solid rgba(44,45,45,.14);border-radius:16px;padding:2.25rem;min-width:0}
+    .salary-calc-app-col h2{margin-top:0;font-size:1.6rem}
+    .salary-calc-field{margin-bottom:1.2rem}
+    .salary-calc-field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem;color:#2c2d2d}
+    .salary-calc-field input,.salary-calc-field select{width:100%;padding:.85rem 1rem;border:1px solid rgba(44,45,45,.25);border-radius:8px;font-size:1.05rem;font-family:inherit;background:#f7f5ef}
     .salary-calc-field input:focus,.salary-calc-field select:focus{outline:2px solid #442dfa;outline-offset:1px}
-    .salary-calc-submit{border:none;cursor:pointer;background:#442dfa;color:#fff;border-radius:999px;padding:.85rem 1.6rem;font-weight:700;font-size:1rem;margin-top:.25rem;width:100%;text-align:center;display:block}
+    .salary-calc-checkbox{margin-bottom:.9rem}
+    .salary-calc-checkbox label{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:#2c2d2d;cursor:pointer;font-weight:500}
+    .salary-calc-checkbox input{width:18px;height:18px;flex-shrink:0;accent-color:#442dfa}
+    .salary-calc-submit{border:none;cursor:pointer;background:#442dfa;color:#fff;border-radius:999px;padding:1rem 1.6rem;font-weight:700;font-size:1.05rem;margin-top:.5rem;width:100%;text-align:center;display:block}
     .salary-calc-submit:hover{opacity:.9}
     .salary-calc-app-results{display:flex;flex-direction:column}
     .salary-calc-table-wrap{overflow-x:auto;margin-top:.5rem}
-    #salary-calc-table{width:100%;border-collapse:collapse;min-width:420px}
-    #salary-calc-table th,#salary-calc-table td{padding:.6rem .7rem;text-align:left;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(44,45,45,.1)}
+    #salary-calc-table{width:100%;border-collapse:collapse;min-width:460px}
+    #salary-calc-table th,#salary-calc-table td{padding:.9rem .8rem;text-align:left;font-variant-numeric:tabular-nums;font-size:1.05rem;border-bottom:1px solid rgba(44,45,45,.1)}
     #salary-calc-table thead th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#6b7280;font-weight:700;border-bottom:2px solid rgba(44,45,45,.2)}
     #salary-calc-table tbody tr:last-child{background:#f0fdf4}
-    #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-weight:700;border-bottom:none}
-    .salary-calc-bonus-note{font-size:.85rem;color:#4b5563;margin:1.1rem 0 0;padding-top:1rem;border-top:1px solid rgba(44,45,45,.1)}
+    #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-weight:700;font-size:1.2rem;border-bottom:none}
+    .salary-calc-bonus-note{font-size:.9rem;color:#4b5563;margin:1.25rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(44,45,45,.1)}
+    .salary-calc-live-note{font-size:.78rem;color:#6b7280;margin:.5rem 0 0;font-style:italic}
   </style>
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "For most employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners. Students, under-18s, and a few other categories follow different rules not covered by this calculator."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
+  {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
   </script>
 </head>
 <body>
@@ -170,7 +174,21 @@
                 <option value="2">Two or more</option>
               </select>
             </div>
-            <button type="submit" class="button-primary animated w-inline-block salary-calc-submit"><div class="button-label">Calculate net salary</div></button>
+            <div class="salary-calc-field">
+              <label for="sc-student">Student status</label>
+              <select id="sc-student" name="student">
+                <option value="no" selected>Not a student</option>
+                <option value="yes">Student (student-worker scheme)</option>
+              </select>
+            </div>
+            <div class="salary-calc-checkbox">
+              <label><input type="checkbox" id="sc-under18" name="under18"/> I am under 18 years old</label>
+            </div>
+            <div class="salary-calc-checkbox">
+              <label><input type="checkbox" id="sc-senior" name="senior"/> I was born on or before 31 December 1961</label>
+            </div>
+            <button type="submit" class="button-primary animated w-inline-block salary-calc-submit"><div class="button-label">Recalculate</div></button>
+            <p class="salary-calc-live-note">Results update automatically as you change any field.</p>
           </div>
           <div class="salary-calc-app-col salary-calc-app-results" id="salary-calc-results" aria-live="polite">
             <h2>Your estimated salary</h2>
@@ -219,7 +237,7 @@
                 </table>
               </div>
               <h3>Social Security Contributions (SSC)</h3>
-              <p>For most employees, Class 1 social security is calculated as 10% of gross weekly wage, with a weekly floor of €22.94 for lower earners and a weekly cap of €54.43 for higher earners. This calculator uses the standard adult rate; students, under-18s, and a small number of other categories follow different rules.</p>
+              <p>Class 1 social security depends on age, student status, and birth year, not just income. Standard adult employees pay 10% of gross weekly wage, with a floor of €22.94 for lower earners and a cap of €54.43 for higher earners; the cap is €45.19 for employees born on or before 31 December 1961. Under-18 employees pay a fixed €6.62 a week. Employees on the student-worker scheme pay 10% of wage capped at €4.38 (under 18) or €7.94 (18 and over) a week. Use the checkboxes above the calculator to match your own circumstances.</p>
             </section>
 
             <div class="cta-box"><h2>Comparing a job offer in Malta?</h2><p>See current vacancies and salary-relevant details across Malta's job market.</p><a href="/jobs/">Browse jobs in Malta</a></div>
@@ -241,7 +259,7 @@
               </div>
               <div class="faq-item">
                 <div class="faq-item-top"><h3 class="text-large strong">How is social security (SSC) calculated in Malta?</h3><div class="faq-button"><div class="button-circle small"><div class="plus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div><div class="minus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div></div></div></div>
-                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">For most employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners. Students, under-18s, and a few other categories follow different rules not covered by this calculator.</p></div></div>
+                <div class="faq-item-bottom"><div class="faq-item-text-wrapper"><p class="text-medium">For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances.</p></div></div>
               </div>
               <div class="faq-item">
                 <div class="faq-item-top"><h3 class="text-large strong">Where can I find jobs in Malta that match my target salary?</h3><div class="faq-button"><div class="button-circle small"><div class="plus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M6 2V10M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div><div class="minus"><svg fill="none" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div></div></div></div>
@@ -324,13 +342,6 @@
       "parent-2": [[0, 18500, 0], [18500, 25500, 0.15], [25500, 60000, 0.25], [60000, Infinity, 0.35]]
     };
 
-    // Standard adult Class 1 SSC (weekly), born 1962 or later.
-    var SSC_FLOOR_WEEKLY = 22.94;
-    var SSC_CEILING_WEEKLY = 54.43;
-    var SSC_LOWER_WAGE_WEEKLY = 229.44;
-    var SSC_UPPER_WAGE_WEEKLY = 559.30;
-    var SSC_RATE = 0.10;
-
     var STATUTORY_BONUS_ANNUAL = 121.16 + 135.10 + 121.16 + 135.10;
 
     function calcAnnualTax(grossAnnual, status, children) {
@@ -346,10 +357,30 @@
       return tax;
     }
 
-    function calcWeeklySSC(grossWeekly) {
-      if (grossWeekly <= SSC_LOWER_WAGE_WEEKLY) return SSC_FLOOR_WEEKLY;
-      if (grossWeekly <= SSC_UPPER_WAGE_WEEKLY) return grossWeekly * SSC_RATE;
-      return SSC_CEILING_WEEKLY;
+    // Class 1 SSC weekly contribution (employee share), 2026 categories A-F.
+    // Source: see Data Sources section on this page.
+    function calcWeeklySSC(grossWeekly, opts) {
+      if (opts.student) {
+        // Category E (under 18) / F (18+): 10% of wage, capped low for student-worker scheme.
+        var cap = opts.under18 ? 4.38 : 7.94;
+        return Math.min(grossWeekly * 0.10, cap);
+      }
+      if (opts.under18) {
+        // Category A: fixed weekly rate regardless of wage.
+        return 6.62;
+      }
+      if (grossWeekly <= 229.44) {
+        // Category B: fixed weekly rate at/under national minimum wage.
+        return 22.94;
+      }
+      if (opts.senior) {
+        // Born on/before 31 Dec 1961: Category C1 (percentage band) / D1 (capped).
+        var upperC1 = 490.38, capD1 = 45.19;
+        return grossWeekly <= upperC1 ? grossWeekly * 0.10 : capD1;
+      }
+      // Born on/after 1 Jan 1962 (standard case): Category C2 (percentage band) / D2 (capped).
+      var upperC2 = 559.30, capD2 = 54.43;
+      return grossWeekly <= upperC2 ? grossWeekly * 0.10 : capD2;
     }
 
     function eur(n) {
@@ -364,31 +395,29 @@
     var form = document.getElementById("salary-calc-form");
     if (!form) return;
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    function recalculate() {
       var amount = parseFloat(document.getElementById("sc-amount").value) || 0;
       var frequency = document.getElementById("sc-frequency").value;
       var status = document.getElementById("sc-status").value;
       var children = document.getElementById("sc-children").value;
+      var student = document.getElementById("sc-student").value === "yes";
+      var under18 = document.getElementById("sc-under18").checked;
+      var senior = document.getElementById("sc-senior").checked;
 
       var grossAnnual;
       if (frequency === "monthly") grossAnnual = amount * 12;
       else if (frequency === "weekly") grossAnnual = amount * 52;
       else grossAnnual = amount;
 
+      // Age affects which SSC category applies, not income tax -- the tax bands
+      // apply the same way regardless of age.
       var annualTax = calcAnnualTax(grossAnnual, status, children);
-      var weeklyGrossForSSC = grossAnnual / 52;
-      var weeklySSC = calcWeeklySSC(weeklyGrossForSSC);
+      var weeklyGross = grossAnnual / 52;
+      var weeklySSC = calcWeeklySSC(weeklyGross, { student: student, under18: under18, senior: senior });
       var annualSSC = weeklySSC * 52;
       var annualNet = grossAnnual - annualTax - annualSSC;
 
-      var rows = {
-        gross: annualNet >= 0 ? grossAnnual : grossAnnual,
-        tax: annualTax,
-        ssc: annualSSC,
-        net: annualNet
-      };
-
+      var rows = { gross: grossAnnual, tax: annualTax, ssc: annualSSC, net: annualNet };
       ["gross", "tax", "ssc", "net"].forEach(function (row) {
         var yearly = rows[row];
         setCell("sc-" + row + "-y", yearly);
@@ -398,18 +427,25 @@
 
       var bonusEl = document.getElementById("sc-bonus-total");
       if (bonusEl) bonusEl.textContent = eur(STATUTORY_BONUS_ANNUAL);
+    }
 
-      // Results column sits beside the form on desktop and is already visible;
-      // on narrow/stacked layouts (results follow the form in source order),
-      // scroll it into view so submitting doesn't feel like nothing happened.
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      recalculate();
       if (window.matchMedia("(max-width: 900px)").matches) {
         var results = document.getElementById("salary-calc-results");
         if (results) results.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
 
+    // Live updates: recalculate on every change, no button click required.
+    // (The submit handler above still runs on Enter/button click, mainly for the
+    // mobile scroll-into-view behaviour -- recalculate() itself is idempotent.)
+    form.addEventListener("input", recalculate);
+    form.addEventListener("change", recalculate);
+
     // Calculate once on load with the default values so the page isn't empty.
-    form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event("submit", { cancelable: true }));
+    recalculate();
   })();
   // Note: the FAQ accordion toggle script is already included via the shared
   // footer boilerplate (extracted from an existing page) -- do not duplicate it
