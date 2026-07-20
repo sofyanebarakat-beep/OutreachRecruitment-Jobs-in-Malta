@@ -75,6 +75,14 @@
     .salary-calc-amount-wrap{position:relative}
     .salary-calc-amount-prefix{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1.05rem;font-weight:700;color:#6b7280;pointer-events:none}
     .salary-calc-amount-wrap input{padding-left:2.15rem;font-variant-numeric:tabular-nums;font-weight:700}
+    .salary-calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:#e5e7eb;margin:1rem 0 .4rem;cursor:pointer;touch-action:pan-y}
+    .salary-calc-slider:focus{outline:none}
+    .salary-calc-slider:focus-visible{outline:2px solid #442dfa;outline-offset:3px}
+    .salary-calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:#442dfa;border:3px solid #fff;box-shadow:0 1px 4px rgba(44,45,45,.35);cursor:grab;margin-top:0}
+    .salary-calc-slider::-webkit-slider-thumb:active{cursor:grabbing}
+    .salary-calc-slider::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:#442dfa;border:3px solid #fff;box-shadow:0 1px 4px rgba(44,45,45,.35);cursor:grab}
+    .salary-calc-slider::-moz-range-track{height:8px;border-radius:999px;background:transparent}
+    .salary-calc-slider-ticks{display:flex;justify-content:space-between;font-size:.78rem;color:#9ca3af;margin-bottom:.3rem}
     .salary-calc-checkbox{margin-bottom:.9rem}
     .salary-calc-checkbox label{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:#2c2d2d;cursor:pointer;font-weight:500}
     .salary-calc-checkbox input{width:18px;height:18px;flex-shrink:0;accent-color:#442dfa}
@@ -151,6 +159,8 @@
                 <span class="salary-calc-amount-prefix" aria-hidden="true">&euro;</span>
                 <input type="text" id="sc-amount" name="amount" inputmode="numeric" autocomplete="off" value="30,000" required aria-label="Gross annual salary in euros"/>
               </div>
+              <input type="range" id="sc-slider" class="salary-calc-slider" min="1000" max="300000" step="500" value="30000" aria-label="Gross annual salary slider" aria-valuemin="1000" aria-valuemax="300000"/>
+              <div class="salary-calc-slider-ticks"><span>&euro;1,000</span><span>&euro;300,000</span></div>
             </div>
             <div class="salary-calc-field">
               <label for="sc-status">Tax status</label>
@@ -391,12 +401,20 @@
     var form = document.getElementById("salary-calc-form");
     if (!form) return;
     var amountInput = document.getElementById("sc-amount");
+    var slider = document.getElementById("sc-slider");
 
     function parseAmount(raw) {
       // Strip everything except digits and a decimal point (drops thousand
       // separators typed or inserted by the live formatter below).
       var cleaned = String(raw).replace(/[^\d.]/g, "");
       return parseFloat(cleaned) || 0;
+    }
+
+    function updateSliderFill() {
+      var min = Number(slider.min), max = Number(slider.max);
+      var pct = ((Number(slider.value) - min) / (max - min)) * 100;
+      slider.style.background =
+        "linear-gradient(to right, #442dfa 0%, #442dfa " + pct + "%, #e5e7eb " + pct + "%, #e5e7eb 100%)";
     }
 
     function recalculate() {
@@ -436,10 +454,21 @@
       }
     });
 
-    // Live thousand-separator formatting on the amount field as you type.
+    // Live thousand-separator formatting on the amount field as you type, and
+    // keep the slider's handle position in sync with whatever was typed.
     amountInput.addEventListener("input", function () {
       var digitsOnly = amountInput.value.replace(/[^\d]/g, "");
       amountInput.value = digitsOnly ? Number(digitsOnly).toLocaleString("en-MT") : "";
+      var clamped = Math.min(Math.max(parseAmount(amountInput.value), Number(slider.min)), Number(slider.max));
+      slider.value = clamped;
+      updateSliderFill();
+    });
+
+    // Dragging the slider updates the text field (with the same comma
+    // formatting) and the visual track fill.
+    slider.addEventListener("input", function () {
+      amountInput.value = Number(slider.value).toLocaleString("en-MT");
+      updateSliderFill();
     });
 
     // Live updates: recalculate on every change, no button click required.
@@ -449,6 +478,7 @@
     form.addEventListener("change", recalculate);
 
     // Calculate once on load with the default values so the page isn't empty.
+    updateSliderFill();
     recalculate();
   })();
   // Note: the FAQ accordion toggle script is already included via the shared
