@@ -99,8 +99,22 @@
     #salary-calc-table thead th{font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#6b7280;font-weight:700;border-bottom:2px solid rgba(44,45,45,.2)}
     #salary-calc-table tbody tr:last-child{background:#f0fdf4}
     #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-weight:700;font-size:1.2rem;border-bottom:none}
+    #salary-calc-table th strong{color:inherit}
     .salary-calc-bonus-note{font-size:.9rem;color:#4b5563;margin:1.25rem 0 0;padding-top:1.1rem;border-top:1px solid rgba(44,45,45,.1)}
     .salary-calc-live-note{font-size:.78rem;color:#6b7280;margin:.5rem 0 0;font-style:italic}
+    @media(max-width:900px){
+      .salary-calc-app-col{padding:1.5rem}
+      .salary-calc-table-wrap{overflow-x:visible}
+      #salary-calc-table{min-width:0}
+      #salary-calc-table thead{display:none}
+      #salary-calc-table,#salary-calc-table tbody,#salary-calc-table tr,#salary-calc-table th,#salary-calc-table td{display:block;width:100%}
+      #salary-calc-table tr{padding:.85rem 0;border-bottom:1px solid rgba(44,45,45,.1)}
+      #salary-calc-table tbody tr:last-child{border-bottom:none}
+      #salary-calc-table th{padding:0 0 .5rem;font-size:1rem}
+      #salary-calc-table td{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;font-size:1rem}
+      #salary-calc-table td::before{content:attr(data-label);color:#6b7280;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
+      #salary-calc-table tbody tr:last-child td,#salary-calc-table tbody tr:last-child th{font-size:1.1rem}
+    }
   </style>
   <script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://outreachrecruitment.net/#organization", "name": "Outreach Recruitment Ltd", "url": "https://outreachrecruitment.net/", "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}}, {"@type": "WebPage", "@id": "https://outreachrecruitment.net/salary-calculator-malta#webpage", "url": "https://outreachrecruitment.net/salary-calculator-malta", "name": "Malta Salary Calculator 2026 — Estimate Your Net Salary", "description": "Estimate your net salary in Malta for 2026. Enter your gross pay to see income tax, social security, and take-home pay by week, month, and year.", "isPartOf": {"@id": "https://outreachrecruitment.net/#organization"}, "dateModified": "2026-07-20T00:00:00Z"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://outreachrecruitment.net/"}, {"@type": "ListItem", "position": 2, "name": "Malta Salary Calculator", "item": "https://outreachrecruitment.net/salary-calculator-malta"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How accurate is this salary calculator?", "acceptedAnswer": {"@type": "Answer", "text": "It gives a close estimate based on Malta's standard 2026 tax bands and social security rates for a typical employee. It doesn't account for every personal circumstance, so treat the result as a guide rather than an exact payslip figure."}}, {"@type": "Question", "name": "What's the difference between Single, Married, and Parent tax status?", "acceptedAnswer": {"@type": "Answer", "text": "These are Malta's three tax computation methods. Married and Parent rates have a wider 0% tax band than Single rates, and the band widens further if you have one or two-or-more qualifying children. Your actual eligibility depends on your personal circumstances -- check with the Commissioner for Revenue if you're unsure which applies to you."}}, {"@type": "Question", "name": "Is the statutory bonus included in my net salary?", "acceptedAnswer": {"@type": "Answer", "text": "No. The statutory government bonus is paid and taxed separately from your regular salary, four times a year. The calculator shows it as a separate reference figure rather than folding it into the net salary total."}}, {"@type": "Question", "name": "How is social security (SSC) calculated in Malta?", "acceptedAnswer": {"@type": "Answer", "text": "For most adult employees, it's 10% of gross weekly wage, with a minimum weekly contribution for lower earners and a maximum weekly cap for higher earners (a lower cap applies if you were born on or before 31 December 1961). Under-18s pay a fixed weekly amount, and students on the student-worker scheme pay a lower capped rate. The calculator's checkboxes let you match your own circumstances."}}, {"@type": "Question", "name": "Where can I find jobs in Malta that match my target salary?", "acceptedAnswer": {"@type": "Answer", "text": "Browse current vacancies on Outreach Recruitment's jobs board, or register your interest through our People Connector to get matched with suitable roles."}}]}]}
@@ -210,10 +224,10 @@
               <table class="check-table" id="salary-calc-table">
                 <thead><tr><th>&nbsp;</th><th>Weekly</th><th>Monthly</th><th>Yearly</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">Gross salary</th><td id="sc-gross-w"></td><td id="sc-gross-m"></td><td id="sc-gross-y"></td></tr>
-                  <tr><th scope="row">Income tax</th><td id="sc-tax-w"></td><td id="sc-tax-m"></td><td id="sc-tax-y"></td></tr>
-                  <tr><th scope="row">Social security (SSC)</th><td id="sc-ssc-w"></td><td id="sc-ssc-m"></td><td id="sc-ssc-y"></td></tr>
-                  <tr><th scope="row"><strong>Net salary</strong></th><td id="sc-net-w"><strong></strong></td><td id="sc-net-m"><strong></strong></td><td id="sc-net-y"><strong></strong></td></tr>
+                  <tr><th scope="row">Gross salary</th><td id="sc-gross-w" data-label="Weekly"></td><td id="sc-gross-m" data-label="Monthly"></td><td id="sc-gross-y" data-label="Yearly"></td></tr>
+                  <tr><th scope="row">Income tax</th><td id="sc-tax-w" data-label="Weekly"></td><td id="sc-tax-m" data-label="Monthly"></td><td id="sc-tax-y" data-label="Yearly"></td></tr>
+                  <tr><th scope="row">Social security (SSC)</th><td id="sc-ssc-w" data-label="Weekly"></td><td id="sc-ssc-m" data-label="Monthly"></td><td id="sc-ssc-y" data-label="Yearly"></td></tr>
+                  <tr><th scope="row"><strong>Net salary</strong></th><td id="sc-net-w" data-label="Weekly"><strong></strong></td><td id="sc-net-m" data-label="Monthly"><strong></strong></td><td id="sc-net-y" data-label="Yearly"><strong></strong></td></tr>
                 </tbody>
               </table>
             </div>
