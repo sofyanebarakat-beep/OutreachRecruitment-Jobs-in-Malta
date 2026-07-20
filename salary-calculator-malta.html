@@ -72,6 +72,9 @@
     .salary-calc-field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem;color:#2c2d2d}
     .salary-calc-field input,.salary-calc-field select{width:100%;padding:.85rem 1rem;border:1px solid rgba(44,45,45,.25);border-radius:8px;font-size:1.05rem;font-family:inherit;background:#f7f5ef}
     .salary-calc-field input:focus,.salary-calc-field select:focus{outline:2px solid #442dfa;outline-offset:1px}
+    .salary-calc-amount-wrap{position:relative}
+    .salary-calc-amount-prefix{position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:1.05rem;font-weight:700;color:#6b7280;pointer-events:none}
+    .salary-calc-amount-wrap input{padding-left:2.15rem;font-variant-numeric:tabular-nums;font-weight:700}
     .salary-calc-checkbox{margin-bottom:.9rem}
     .salary-calc-checkbox label{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:#2c2d2d;cursor:pointer;font-weight:500}
     .salary-calc-checkbox input{width:18px;height:18px;flex-shrink:0;accent-color:#442dfa}
@@ -143,16 +146,11 @@
           <div class="salary-calc-app-col salary-calc-app-inputs">
             <h2>Enter your details</h2>
             <div class="salary-calc-field">
-              <label for="sc-amount">Gross salary</label>
-              <input type="number" id="sc-amount" name="amount" min="0" step="0.01" value="30000" required inputmode="decimal"/>
-            </div>
-            <div class="salary-calc-field">
-              <label for="sc-frequency">Pay frequency</label>
-              <select id="sc-frequency" name="frequency">
-                <option value="annual" selected>Per year</option>
-                <option value="monthly">Per month</option>
-                <option value="weekly">Per week</option>
-              </select>
+              <label for="sc-amount">Gross annual salary</label>
+              <div class="salary-calc-amount-wrap">
+                <span class="salary-calc-amount-prefix" aria-hidden="true">&euro;</span>
+                <input type="text" id="sc-amount" name="amount" inputmode="numeric" autocomplete="off" value="30,000" required aria-label="Gross annual salary in euros"/>
+              </div>
             </div>
             <div class="salary-calc-field">
               <label for="sc-status">Tax status</label>
@@ -392,20 +390,22 @@
 
     var form = document.getElementById("salary-calc-form");
     if (!form) return;
+    var amountInput = document.getElementById("sc-amount");
+
+    function parseAmount(raw) {
+      // Strip everything except digits and a decimal point (drops thousand
+      // separators typed or inserted by the live formatter below).
+      var cleaned = String(raw).replace(/[^\d.]/g, "");
+      return parseFloat(cleaned) || 0;
+    }
 
     function recalculate() {
-      var amount = parseFloat(document.getElementById("sc-amount").value) || 0;
-      var frequency = document.getElementById("sc-frequency").value;
+      var grossAnnual = parseAmount(amountInput.value);
       var status = document.getElementById("sc-status").value;
       var children = document.getElementById("sc-children").value;
       var student = document.getElementById("sc-student").value === "yes";
       var under18 = document.getElementById("sc-under18").checked;
       var senior = document.getElementById("sc-senior").checked;
-
-      var grossAnnual;
-      if (frequency === "monthly") grossAnnual = amount * 12;
-      else if (frequency === "weekly") grossAnnual = amount * 52;
-      else grossAnnual = amount;
 
       // Age affects which SSC category applies, not income tax -- the tax bands
       // apply the same way regardless of age.
@@ -434,6 +434,12 @@
         var results = document.getElementById("salary-calc-results");
         if (results) results.scrollIntoView({ behavior: "smooth", block: "start" });
       }
+    });
+
+    // Live thousand-separator formatting on the amount field as you type.
+    amountInput.addEventListener("input", function () {
+      var digitsOnly = amountInput.value.replace(/[^\d]/g, "");
+      amountInput.value = digitsOnly ? Number(digitsOnly).toLocaleString("en-MT") : "";
     });
 
     // Live updates: recalculate on every change, no button click required.
