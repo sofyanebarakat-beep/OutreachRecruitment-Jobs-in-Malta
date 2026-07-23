@@ -2776,13 +2776,40 @@ body.opening-jobs-page .opening-board-count{
 }
 #programs-table .section-header{ margin-bottom: 2rem; }
 #programs-table .section-header .text{ max-width: 780px; }
+.or-prog-hero{
+  position: relative;
+  margin-bottom: 1rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
+  border-radius: 28px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 86% 15%, rgba(125,112,255,0.65), transparent 18rem),
+    linear-gradient(135deg, #17113d 0%, #30209d 58%, #442dfa 100%);
+  box-shadow: 0 28px 70px rgba(36,25,112,0.22);
+}
+.or-prog-hero::after{
+  content: "";
+  position: absolute;
+  right: -4rem;
+  bottom: -7rem;
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+}
+.or-prog-hero .section-header{ position: relative; z-index: 1; margin-bottom: 0 !important; }
+.or-prog-hero .heading-h2,
+.or-prog-hero .heading-h2 em,
+.or-prog-hero .text-medium{ color: #fff !important; }
+.or-prog-hero .text-medium{ max-width: 680px; opacity: 0.82; }
 .or-prog-eyebrow{
   display: inline-flex;
   align-items: center;
   align-self: center;
   gap: 0.45rem;
   margin-bottom: 0.8rem;
-  color: #442dfa;
+  color: #fff;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -2793,7 +2820,7 @@ body.opening-jobs-page .opening-board-count{
   width: 1.7rem;
   height: 2px;
   border-radius: 2px;
-  background: #442dfa;
+  background: #fff;
 }
 .or-prog-overview{
   display: grid;
@@ -2849,6 +2876,39 @@ body.opening-jobs-page .opening-board-count{
   font-size: 0.82rem;
   font-weight: 800;
   text-decoration: none;
+}
+.or-prog-quick-start{
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.25rem 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(68,45,250,0.12);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(31,25,96,0.06);
+}
+.or-prog-quick-start > span{
+  margin-right: auto;
+  color: #25203e;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.or-prog-quick-start button{
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(68,45,250,0.2);
+  border-radius: 999px;
+  background: #f7f6ff;
+  color: #442dfa;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.or-prog-quick-start button:hover,
+.or-prog-quick-start button.is-active{
+  border-color: #442dfa;
+  background: #442dfa;
+  color: #fff;
 }
 .or-prog-toolbar{
   position: sticky;
@@ -2926,6 +2986,45 @@ body.opening-jobs-page .opening-board-count{
   font-size: 0.78rem;
   font-weight: 700;
 }
+.or-prog-shortlist{
+  position: sticky;
+  top: 5.75rem;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 0.85rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(68,45,250,0.18);
+  border-radius: 15px;
+  background: rgba(241,239,255,0.97);
+  box-shadow: 0 12px 32px rgba(31,25,96,0.1);
+  backdrop-filter: blur(12px);
+}
+.or-prog-shortlist[hidden]{ display: none; }
+.or-prog-shortlist > div:first-child{ display: flex; flex-direction: column; }
+.or-prog-shortlist strong{ color: #17113d; font-size: 0.88rem; }
+.or-prog-shortlist span{ color: rgba(23,17,61,0.62); font-size: 0.72rem; }
+.or-prog-shortlist-items{ display: flex; gap: 0.45rem; overflow-x: auto; }
+.or-prog-shortlist-item{
+  flex: none;
+  max-width: 220px;
+  padding: 0.42rem 0.7rem;
+  border-radius: 9px;
+  background: #fff;
+  color: #25203e;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+#or-prog-shortlist-clear{
+  border: 0;
+  background: transparent;
+  color: #442dfa;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
 .or-prog-filters{
   display: flex;
   gap: 0.5rem;
@@ -2960,19 +3059,25 @@ body.opening-jobs-page .opening-board-count{
 /* 8-col: School | Course | Qual | Duration | Y1 | Y2 | Y3 | Apply */
 .or-prog-thead, .or-prog-row{
   display: grid;
-  grid-template-columns: 100px 1fr 110px 88px 68px 68px 68px 106px;
+  grid-template-columns: 100px minmax(170px,1fr) 100px 78px 62px 62px 62px 76px 112px;
   align-items: center;
   gap: 0.75rem;
 }
 .or-prog-thead{
+  position: sticky;
+  top: 5.9rem;
+  z-index: 3;
   background: #1b1642;
   border-bottom: 1px solid rgba(15,23,42,0.1);
   padding: 0.7rem 1.1rem;
   font-size: 0.72rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.72);
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+.or-prog-thead .or-prog-col{
+  color: #fff;
 }
 .or-prog-row{
   padding: 0.85rem 1.1rem;
@@ -3055,16 +3160,58 @@ body.opening-jobs-page .opening-board-count{
   border-radius: 999px;
   padding: 0.1rem 0.5rem;
 }
+.or-prog-benefits{ display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.35rem; }
+.or-prog-benefit{
+  display: inline-flex;
+  padding: 0.14rem 0.45rem;
+  border-radius: 999px;
+  background: #eef9f1;
+  color: #18723c;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+.or-prog-card-toggle{
+  display: none;
+  width: 100%;
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid rgba(68,45,250,0.18);
+  border-radius: 8px;
+  background: #f7f6ff;
+  color: #442dfa;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.or-prog-col--total{ color: #17113d; font-weight: 850; }
 
 /* School badges */
 .or-prog-school{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-size: 0.78rem;
   font-weight: 700;
   padding: 0.18rem 0.55rem;
   border-radius: 6px;
   line-height: 1.3;
 }
+.or-prog-school::before{
+  display: inline-grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.72);
+  color: inherit;
+  font-size: 0.56rem;
+  font-weight: 900;
+}
+.or-prog-school--outreach::before{ content: "EBS"; }
+.or-prog-school--gbs-malta::before{ content: "GBS"; }
+.or-prog-school--sba-malta::before{ content: "SBA"; }
+.or-prog-school--lsc-malta::before{ content: "LSC"; }
+.or-prog-school--english-path::before{ content: "EP"; }
 .or-prog-school--outreach{ background: rgba(68,45,250,0.1);  color: #442dfa; }
 .or-prog-school--gbs-malta{ background: rgba(34,139,34,0.1);  color: #1a7a1a; }
 .or-prog-school--sba-malta{ background: rgba(90,50,140,0.1);  color: #5a328c; }
@@ -3094,18 +3241,33 @@ body.opening-jobs-page .opening-board-count{
   transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 .or-prog-apply:hover{ opacity: 1; transform: translateY(-1px); box-shadow: 0 9px 20px rgba(68,45,250,0.27); }
+.or-prog-col--action{ display: flex; flex-direction: column; align-items: stretch; gap: 0.35rem; }
+.or-prog-shortlist-toggle{
+  border: 1px solid rgba(68,45,250,0.2);
+  border-radius: 999px;
+  background: #fff;
+  color: #442dfa;
+  padding: 0.32rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.or-prog-shortlist-toggle.is-selected{ background: #17113d; border-color: #17113d; color: #fff; }
 
 @media (max-width: 991px) {
   .or-prog-overview{ grid-template-columns: repeat(2, 1fr); }
   .or-prog-toolbar{ grid-template-columns: 1fr 180px; }
   .or-prog-expand-toggle{ grid-column: 1 / -1; }
-  .or-prog-thead, .or-prog-row{ grid-template-columns: 90px 1fr 95px 80px 60px 60px 60px 96px; gap: 0.5rem; }
+  .or-prog-thead, .or-prog-row{ grid-template-columns: 86px minmax(145px,1fr) 84px 70px 56px 56px 56px 68px 96px; gap: 0.45rem; }
 }
 @media (max-width: 767px) {
   #programs-table{ padding-top: 4rem; }
   #programs-table::before{ display: none; }
   .or-prog-overview{ gap: 0.55rem; }
+  .or-prog-hero{ padding: 2rem 1.1rem; border-radius: 20px; }
   .or-prog-overview-card{ min-height: 92px; padding: 0.9rem; border-radius: 13px; }
+  .or-prog-quick-start{ align-items: stretch; flex-direction: column; }
+  .or-prog-quick-start > span{ margin: 0 0 0.2rem; text-align: center; }
   .or-prog-help{ align-items: flex-start; flex-direction: column; }
   .or-prog-toolbar{
     position: relative;
@@ -3121,6 +3283,8 @@ body.opening-jobs-page .opening-board-count{
     mask-image: linear-gradient(to right, #000 88%, transparent);
   }
   .or-prog-thead{ display: none; }
+  .or-prog-shortlist{ position: relative; top: auto; grid-template-columns: 1fr auto; }
+  .or-prog-shortlist-items{ grid-column: 1 / -1; grid-row: 2; }
   .or-prog-row{
     grid-template-columns: 1fr 1fr;
     gap: 0.55rem 0.9rem;
@@ -3133,6 +3297,14 @@ body.opening-jobs-page .opening-board-count{
   .or-prog-divider{ margin-top: 0.2rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
   .or-prog-col--school{ grid-column: 1 / -1; }
   .or-prog-col--course{ grid-column: 1 / -1; }
+  .or-prog-card-toggle{ display: block; }
+  .or-prog-row:not(.is-card-open) .or-prog-col--qual,
+  .or-prog-row:not(.is-card-open) .or-prog-col--duration,
+  .or-prog-row:not(.is-card-open) .or-prog-col--year1,
+  .or-prog-row:not(.is-card-open) .or-prog-col--year2,
+  .or-prog-row:not(.is-card-open) .or-prog-col--year3,
+  .or-prog-row:not(.is-card-open) .or-prog-col--total{ display: none; }
+  .or-prog-col--total{ grid-column: 1 / -1; }
   .or-prog-col--action{ grid-column: 1 / -1; }
   .or-prog-label{ display: block; }
 }
