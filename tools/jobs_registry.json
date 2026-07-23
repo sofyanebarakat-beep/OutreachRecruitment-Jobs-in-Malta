@@ -12,7 +12,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7f491566-3151-46f1-8751-e0dcdc91058e/apply",
     "keywords": "deli counter assistant salumeria specialist hospitality italian deli food service st. julian's malta",
     "featured": true,
-    "lastmod": "2026-07-21"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "shop-assistant",
@@ -737,11 +737,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/81204227-ec7b-4bf5-b07c-b80a4e8c0d85/apply",
     "keywords": "cashier retail valletta, malta",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "fb-shift-leader",
@@ -946,7 +947,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/caf5b1c5-4eea-4b7a-8315-4f4a5e479442/apply",
     "keywords": "structural engineer engineering & maintenance mellie\u0127a, malta",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "customer-experience-supervisor",
@@ -1366,7 +1367,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f5044115-fea4-428c-810a-a319617566de/apply",
     "keywords": "housekeeping attendant general st. julian, malta",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "handyman",
@@ -3612,11 +3613,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-07-01",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2867b73e-5b67-497b-a9fe-4c17fcb66e53/apply",
     "keywords": "project manager general paola, malta",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "account-manager-2",
@@ -3627,11 +3629,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-07-01",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/466716df-6a34-46fd-ae46-7e3bb74681f3/apply",
     "keywords": "account manager general malta",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "crew-concierge",
@@ -3687,11 +3690,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-07-02",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/90f68320-fadd-4b21-83be-72d420f3e5af/apply",
     "keywords": "sales & events executive hospitality st. julian's, malta sales events executive private dining group bookings corporate events restaurant st julians",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "delivery-man",
@@ -3748,10 +3752,10 @@
     "work_mode": "On-Site",
     "date": "2026-07-02",
     "valid_through": "2027-07-02",
-    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/83970ed6-cde9-4a86-9db1-6a7ef305c0e5/apply",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6325581b-4e82-4efe-8143-dbf94de7d1e5/apply",
     "keywords": "head of hvac technicians engineering & maintenance qormi, malta hvac technician supervisor manager qormi malta engineering maintenance team leader hvac lead",
     "featured": true,
-    "lastmod": "2026-07-09"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "guest-service-agent",
@@ -3780,7 +3784,8 @@
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e469b3fc-0eb5-4465-a840-95341d9aa23b/apply",
     "keywords": "hotel maintenance hospitality st. julian's, malta hotel maintenance hospitality engineering hvac plumbing electrical st julians",
-    "featured": true
+    "featured": true,
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "customer-care-team-leader",
@@ -3794,7 +3799,8 @@
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/17ed63a0-3276-4755-9c31-90e1d0686b02/apply",
     "keywords": "customer care team leader transport luqa, malta contact centre customer service coaching team leader luqa",
-    "featured": true
+    "featured": true,
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "customer-care-agent",
@@ -3808,7 +3814,8 @@
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/beb11885-e494-4a3c-802f-70e679d8b70c/apply",
     "keywords": "customer care agent transport luqa, malta contact centre customer service maltese english luqa",
-    "featured": true
+    "featured": true,
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "talent-acquisition-specialist",
@@ -3822,7 +3829,8 @@
     "valid_through": "2026-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3a0a3985-6036-4c0a-b349-e67191b59cef/apply",
     "keywords": "talent acquisition specialist hr recruitment paola, malta recruiter sourcing talent acquisition",
-    "featured": true
+    "featured": true,
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "itsm-service-manager-hybrid",
@@ -3833,10 +3841,12 @@
     "employment_type": "Full-Time",
     "work_mode": "Hybrid",
     "date": "2026-07-10",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a9a53415-16a3-4aa9-978f-cebe8a8e6ef3/apply",
     "keywords": "itsm service manager hybrid it technology valletta, malta itil jira atlassian service management",
-    "featured": true
+    "featured": true,
+    "status": "expired",
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "commis-3",
@@ -3851,7 +3861,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8fbedf2e-6bc9-4a24-bb82-2c4b1ffcc8c8/apply",
     "keywords": "commis kitchen entry-level hospitality malta",
     "featured": true,
-    "lastmod": "2026-07-16"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "baristas",
@@ -3866,7 +3876,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/32ae6111-4deb-4c4d-85e2-78e49e173c2c/apply",
     "keywords": "baristas bartender bar hospitality st. julian's, malta italian restaurant",
     "featured": true,
-    "lastmod": "2026-07-17"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "kitchen-helper",
@@ -3881,7 +3891,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c4bb09d9-1341-41c9-9325-4a173fd75cde/apply",
     "keywords": "kitchen helper hospitality catering food service st. paul's bay, malta",
     "featured": true,
-    "lastmod": "2026-07-17"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "ship-chandler",
@@ -3896,7 +3906,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/84a61f1f-70d9-400c-84af-34aaed87cd7d/apply",
     "keywords": "ship chandler marine procurement marsaxlokk, malta maritime",
     "featured": true,
-    "lastmod": "2026-07-17"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "fleet-mechanical-superintendent",
@@ -3911,7 +3921,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b964142e-ab7f-4a8e-86c0-f6fc9d532eb9/apply",
     "keywords": "fleet mechanical superintendent marine engineering marsaxlokk, malta maritime",
     "featured": true,
-    "lastmod": "2026-07-17"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "application-developer-drupal-hybrid",
@@ -3926,7 +3936,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/59407154-0c35-48c8-99f4-04e618ff37af/apply",
     "keywords": "application developer (drupal) - hybrid information technology valletta, malta",
     "featured": false,
-    "lastmod": "2026-06-12"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "bartender-mellieha",
@@ -3941,7 +3951,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/373b9358-a441-4008-b1c3-0d06111a1400/apply",
     "keywords": "bartender hospitality mellie\u0127a, malta",
     "featured": false,
-    "lastmod": "2026-06-25"
+    "lastmod": "2026-07-23"
   },
   {
     "slug": "client-accountant-2",
@@ -3967,11 +3977,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/383c65f8-8e05-45c4-bf5c-dd4720d39f27/apply",
     "keywords": "crew concierge marine & hospitality services paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "dishwasher",
@@ -3997,11 +4008,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-25",
-    "valid_through": "2027-03-25",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a/apply",
     "keywords": "driver (licence b) construction \u017cebbu\u0121, malta",
     "featured": false,
-    "lastmod": "2026-06-25"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "fleet-tools-facility-manager",
@@ -4012,11 +4024,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-08-18",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e23b6a72-1104-41c7-9d7e-4b96886a79f0/apply",
     "keywords": "fleet, tools and facility manager marine & shipping paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "front-office-supervisor-2",
@@ -4042,11 +4055,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-08-18",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3abd2a84-9fa8-4b46-a244-1e8fca21bf9d/apply",
     "keywords": "marine mechanical foreman marine & shipping paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "marine-turner-malta",
@@ -4057,11 +4071,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-08-18",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ebda8d08-2e22-4c2a-9c69-85802cc2947b/apply",
     "keywords": "marine turner marine & shipping paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "plate-shop-foreman-malta",
@@ -4072,11 +4087,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-08-18",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/10070d19-7087-4905-a4fc-88dc95840c58/apply",
     "keywords": "plate shop foreman marine & shipping paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "quality-engineer-marine-malta",
@@ -4087,11 +4103,12 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-19",
-    "valid_through": "2026-12-31",
+    "valid_through": "2026-07-22",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b2c8272c-831e-47dd-869c-c6b69555090c/apply",
     "keywords": "quality engineer marine paola, malta",
     "featured": false,
-    "lastmod": "2026-06-19"
+    "lastmod": "2026-07-23",
+    "status": "expired"
   },
   {
     "slug": "chef-de-partie-4",
@@ -4106,6 +4123,6 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/04cdef53-63f9-41b2-9e2e-dcc8053ff95d/apply",
     "keywords": "chef de partie chefs de partie st. julian's, malta hospitality italian mediterranean cuisine",
     "featured": true,
-    "lastmod": "2026-07-21"
+    "lastmod": "2026-07-23"
   }
 ]
