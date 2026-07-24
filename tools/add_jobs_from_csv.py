@@ -74,9 +74,10 @@ CATEGORY_HUBS = {
     "Finance & Accounting":      ("finance-jobs-in-malta", "Finance Jobs in Malta"),
     "Insurance":                 ("insurance-jobs-in-malta", "Insurance Jobs in Malta"),
     "Insurance & Pension":       ("insurance-jobs-in-malta", "Insurance Jobs in Malta"),
+    "Retail":                    ("retail-jobs-in-malta", "Retail Jobs in Malta"),
 }
 # Categories with no live hub page yet (General, Administration, Logistics,
-# Healthcare, Marketing, HR & Recruitment, Management, Retail, ...) fall back
+# Healthcare, Marketing, HR & Recruitment, Management, ...) fall back
 # to a 3-level breadcrumb (Home > Jobs in Malta > Title) with no hub segment.
 
 # ── City → one-sentence neighbourhood blurb ──────────────────────────────────
