@@ -10,6 +10,7 @@ const slugs = fs.readdirSync(imageDir)
 const rel = (slug) => `/assets/blog-featured/${slug}.png`;
 const abs = (slug) => `https://outreachrecruitment.net${rel(slug)}`;
 const words = (slug) => `${slug.replaceAll("-", " ")} — Outreach Recruitment Malta`;
+const canonical = (slug) => `https://outreachrecruitment.net/blog/${slug}`;
 
 function setMeta(html, attribute, value, content) {
   const pattern = new RegExp(
@@ -54,6 +55,17 @@ for (const name of fs.readdirSync(blogDir).filter((name) => name.endsWith(".html
     html = setMeta(html, "property", "og:image", abs(slug));
     html = setMeta(html, "name", "twitter:image", abs(slug));
     html = setMeta(html, "property", "og:image:alt", words(slug));
+    html = setMeta(html, "property", "og:image:width", "1672");
+    html = setMeta(html, "property", "og:image:height", "941");
+    html = setMeta(html, "property", "og:image:type", "image/png");
+    html = html.replace(
+      /("@type":\s*"BlogPosting"[\s\S]*?"image":\s*)\{[\s\S]*?\}/i,
+      `$1{\n        "@type": "ImageObject",\n        "url": "${abs(slug)}",\n        "width": 1672,\n        "height": 941\n      }`,
+    );
+    html = html.replace(
+      /("@type":\s*"BlogPosting"[\s\S]*?"image":\s*)["'][^"']*["']/i,
+      `$1{\n    "@type": "ImageObject",\n    "url": "${abs(slug)}",\n    "width": 1672,\n    "height": 941\n  }`,
+    );
     html = html.replace(
       /(<div\b[^>]*class=["'][^"']*cms-featured-media[^"']*["'][^>]*>\s*<img\b)([^>]*)(>)/i,
       (_, start, attrs, end) => {
@@ -68,5 +80,27 @@ for (const name of fs.readdirSync(blogDir).filter((name) => name.endsWith(".html
 
   fs.writeFileSync(file, html);
 }
+
+const imageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${slugs
+  .sort()
+  .map(
+    (slug) => `  <url>
+    <loc>${canonical(slug)}</loc>
+    <lastmod>2026-07-24</lastmod>
+    <image:image>
+      <image:loc>${abs(slug)}</image:loc>
+    </image:image>
+  </url>`,
+  )
+  .join("\n")}
+</urlset>
+`;
+fs.writeFileSync(
+  path.join(__dirname, "..", "sitemaps", "sitemap-blog-images.xml"),
+  imageSitemap,
+);
 
 console.log(`Updated ${slugs.length} blog images.`);
