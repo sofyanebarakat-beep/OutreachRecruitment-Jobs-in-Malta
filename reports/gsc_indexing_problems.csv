@@ -1,6 +1,9 @@
 title,url,problem
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,URL is unknown to Google
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,Crawled - currently not indexed
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,URL is unknown to Google
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,URL is unknown to Google
 Cashier,https://outreachrecruitment.net/jobs/cashier-2,URL is unknown to Google
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper,URL is unknown to Google
 Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,URL is unknown to Google
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,URL is unknown to Google
 Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,Indexed page has zero impressions in selected GSC window
@@ -15,12 +18,11 @@ Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,URL
 Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,URL is unknown to Google
 HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,URL is unknown to Google
 Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,URL is unknown to Google
-Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,URL is unknown to Google
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,URL Inspection API error: Internal error encountered.
 Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,Alternate page with proper canonical tag
 General Labourer,https://outreachrecruitment.net/jobs/general-labourer,Target keyword not visible in top Search Console queries
 Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,Alternate page with proper canonical tag
 Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,Alternate page with proper canonical tag
-Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,Target keyword not visible in top Search Console queries
 Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,Alternate page with proper canonical tag
 Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,Target keyword not visible in top Search Console queries
 Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,Alternate page with proper canonical tag
@@ -32,7 +34,6 @@ Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,Target 
 Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,Indexed page has zero impressions in selected GSC window
 Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,Indexed page has zero impressions in selected GSC window
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,URL is unknown to Google
-"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-and-facility-manager,URL is unknown to Google
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,URL is unknown to Google
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,URL is unknown to Google
 Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,Indexed page has zero impressions in selected GSC window
@@ -47,7 +48,8 @@ Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-superv
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,Average position worse than 20 (23.7)
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,Target keyword not visible in top Search Console queries
 QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,Indexed page has zero impressions in selected GSC window
-Application Developer (Drupal) - Hybrid,https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid,Indexed page has zero impressions in selected GSC window
+Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,Target keyword not visible in top Search Console queries
+"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-facility-manager,Indexed page has zero impressions in selected GSC window
 Plumber,https://outreachrecruitment.net/jobs/plumber,Indexed page has zero impressions in selected GSC window
 Welder,https://outreachrecruitment.net/jobs/welder,Target keyword not visible in top Search Console queries
 Server (Spanish Speaker),https://outreachrecruitment.net/jobs/server-spanish-speaker,Target keyword not visible in top Search Console queries
@@ -56,7 +58,7 @@ Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technici
 Assistance Co-ordinator,https://outreachrecruitment.net/jobs/assistance-co-ordinator,Target keyword not visible in top Search Console queries
 Auditor Doctor,https://outreachrecruitment.net/jobs/auditor-doctor,Indexed page has zero impressions in selected GSC window
 Nurse Advisor,https://outreachrecruitment.net/jobs/nurse-advisor,Average position worse than 20 (25.1)
-Summer Waiter - Mellieha,https://outreachrecruitment.net/jobs/summer-waiter-mellieha,URL Inspection API error: Internal error encountered.
+Summer Waiter - Mellieha,https://outreachrecruitment.net/jobs/summer-waiter-mellieha,Indexed page has zero impressions in selected GSC window
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,Average position worse than 20 (25.5)
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,Target keyword not visible in top Search Console queries
 Project Manager,https://outreachrecruitment.net/jobs/project-manager,Indexed page has zero impressions in selected GSC window
@@ -83,7 +85,7 @@ Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Rich results verdict: F
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Average position worse than 20 (26.0)
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Target keyword not visible in top Search Console queries
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,Indexed page has zero impressions in selected GSC window
-Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,Target keyword not visible in top Search Console queries
+Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,Indexed page has zero impressions in selected GSC window
 Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,Target keyword not visible in top Search Console queries
 Customer Experience Supervisor,https://outreachrecruitment.net/jobs/customer-experience-supervisor,Indexed page has zero impressions in selected GSC window
 Senior Quantity Estimator (M&E),https://outreachrecruitment.net/jobs/senior-quantity-estimator-me,URL is unknown to Google
@@ -101,7 +103,6 @@ Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,Alterna
 Electrician Installer,https://outreachrecruitment.net/jobs/electrician-installer,Target keyword not visible in top Search Console queries
 Plumbers,https://outreachrecruitment.net/jobs/plumbers,Indexed page has zero impressions in selected GSC window
 General Maintenance Technician,https://outreachrecruitment.net/jobs/general-maintenance-technician,Indexed page has zero impressions in selected GSC window
-Spa Therapist,https://outreachrecruitment.net/jobs/spa-therapist,Target keyword not visible in top Search Console queries
 Front Office Assistant,https://outreachrecruitment.net/jobs/front-office-assistant,Indexed page has zero impressions in selected GSC window
 Kitchen Assistant - Chinese Cuisine,https://outreachrecruitment.net/jobs/kitchen-assistant-chinese-cuisine,Indexed page has zero impressions in selected GSC window
 Head Chef - Chinese Cuisine,https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine,Indexed page has zero impressions in selected GSC window
@@ -133,12 +134,11 @@ Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,Ave
 Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,Target keyword not visible in top Search Console queries
 Sales Assistant Manager,https://outreachrecruitment.net/jobs/sales-assistant-manager,Indexed page has zero impressions in selected GSC window
 Automotive Service Advisor,https://outreachrecruitment.net/jobs/automotive-service-advisor,Target keyword not visible in top Search Console queries
-Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,Average position worse than 20 (21.0)
+Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,Average position worse than 20 (22.0)
 Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,Target keyword not visible in top Search Console queries
 High Voltage Motor Vehicle Technician,https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician,Target keyword not visible in top Search Console queries
 Sales Engineer,https://outreachrecruitment.net/jobs/sales-engineer,Alternate page with proper canonical tag
 Logistics Officer,https://outreachrecruitment.net/jobs/logistics-officer,Indexed page has zero impressions in selected GSC window
-Hostess,https://outreachrecruitment.net/jobs/hostess,Target keyword not visible in top Search Console queries
 Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,Indexed page has zero impressions in selected GSC window
 Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,Indexed page has zero impressions in selected GSC window
 Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,Average position worse than 20 (26.0)
@@ -176,7 +176,7 @@ Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Target 
 Skilled Carpenters,https://outreachrecruitment.net/jobs/skilled-carpenters,Target keyword not visible in top Search Console queries
 Delivery Person with Driving Licence C1,https://outreachrecruitment.net/jobs/delivery-person-with-driving-licence-c1,Alternate page with proper canonical tag
 Real Estate Managers,https://outreachrecruitment.net/jobs/real-estate-managers,Indexed page has zero impressions in selected GSC window
-Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Average position worse than 20 (34.9)
+Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Average position worse than 20 (35.2)
 Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Target keyword not visible in top Search Console queries
 Servers in Gozo,https://outreachrecruitment.net/jobs/servers-in-gozo,Indexed page has zero impressions in selected GSC window
 Aluminum Install and Fabrication Foreman,https://outreachrecruitment.net/jobs/aluminum-install-and-fabrication-foreman,Target keyword not visible in top Search Console queries

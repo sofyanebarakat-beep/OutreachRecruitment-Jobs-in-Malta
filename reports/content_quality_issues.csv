@@ -1,26 +1,28 @@
 title,url,word_count,issue
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,2296,Missing offer/benefits section
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,2296,Salary/baseSalary missing or not specific
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper,2334,Missing offer/benefits section
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper,2334,Salary/baseSalary missing or not specific
-Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2471,Missing offer/benefits section
-Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2471,Salary/baseSalary missing or not specific
-Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,2633,Missing offer/benefits section
-Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,2633,Salary/baseSalary missing or not specific
-Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,3035,Salary/baseSalary missing or not specific
-Baristas,https://outreachrecruitment.net/jobs/baristas,2876,Missing offer/benefits section
-Baristas,https://outreachrecruitment.net/jobs/baristas,2876,Salary/baseSalary missing or not specific
-Kitchen Helper,https://outreachrecruitment.net/jobs/kitchen-helper,2834,Salary/baseSalary missing or not specific
-Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,2750,Missing offer/benefits section
-Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,2750,Salary/baseSalary missing or not specific
-Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,2915,Missing offer/benefits section
-Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,2915,Salary/baseSalary missing or not specific
-Commis,https://outreachrecruitment.net/jobs/commis-3,2717,Salary/baseSalary missing or not specific
-Customer Care Team Leader,https://outreachrecruitment.net/jobs/customer-care-team-leader,2855,Salary/baseSalary missing or not specific
-Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,2734,Salary/baseSalary missing or not specific
-Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,3061,Missing offer/benefits section
-Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,3061,Salary/baseSalary missing or not specific
-Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,2825,Salary/baseSalary missing or not specific
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,2200,Salary/baseSalary missing or not specific
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,2116,Salary/baseSalary missing or not specific
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,2256,Salary/baseSalary missing or not specific
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,2156,Salary/baseSalary missing or not specific
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,2226,Salary/baseSalary missing or not specific
+Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2273,Missing offer/benefits section
+Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2273,Salary/baseSalary missing or not specific
+Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,2410,Missing offer/benefits section
+Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,2410,Salary/baseSalary missing or not specific
+Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,2964,Missing offer/benefits section
+Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,2964,Salary/baseSalary missing or not specific
+Baristas,https://outreachrecruitment.net/jobs/baristas,2827,Missing offer/benefits section
+Baristas,https://outreachrecruitment.net/jobs/baristas,2827,Salary/baseSalary missing or not specific
+Kitchen Helper,https://outreachrecruitment.net/jobs/kitchen-helper,2819,Salary/baseSalary missing or not specific
+Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,2679,Missing offer/benefits section
+Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,2679,Salary/baseSalary missing or not specific
+Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,2819,Missing offer/benefits section
+Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,2819,Salary/baseSalary missing or not specific
+Commis,https://outreachrecruitment.net/jobs/commis-3,2722,Salary/baseSalary missing or not specific
+Customer Care Team Leader,https://outreachrecruitment.net/jobs/customer-care-team-leader,2830,Salary/baseSalary missing or not specific
+Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,2705,Salary/baseSalary missing or not specific
+Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,2839,Missing offer/benefits section
+Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,2839,Salary/baseSalary missing or not specific
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,2779,Salary/baseSalary missing or not specific
 Dishwasher,https://outreachrecruitment.net/jobs/dishwasher,2174,Salary/baseSalary missing or not specific
 Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,2186,Salary/baseSalary missing or not specific
 Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,2184,Salary/baseSalary missing or not specific
@@ -38,7 +40,6 @@ Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,2302,Sa
 Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,2181,Salary/baseSalary missing or not specific
 Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,2308,Salary/baseSalary missing or not specific
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,2521,Salary/baseSalary missing or not specific
-"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-and-facility-manager,2703,Salary/baseSalary missing or not specific
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,2315,Salary/baseSalary missing or not specific
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,2325,Salary/baseSalary missing or not specific
 Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,2411,Salary/baseSalary missing or not specific
@@ -51,7 +52,9 @@ Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,2296,
 Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor-2,2189,Salary/baseSalary missing or not specific
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,2108,Salary/baseSalary missing or not specific
 QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,2002,Salary/baseSalary missing or not specific
-Application Developer (Drupal) - Hybrid,https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid,2388,Salary/baseSalary missing or not specific
+Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,2157,Missing offer/benefits section
+Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,2157,Salary/baseSalary missing or not specific
+"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-facility-manager,2624,Salary/baseSalary missing or not specific
 Plumber,https://outreachrecruitment.net/jobs/plumber,2275,Salary/baseSalary missing or not specific
 Welder,https://outreachrecruitment.net/jobs/welder,2362,Salary/baseSalary missing or not specific
 Server (Spanish Speaker),https://outreachrecruitment.net/jobs/server-spanish-speaker,2224,Salary/baseSalary missing or not specific
@@ -88,7 +91,6 @@ Driver / Runner / Washer,https://outreachrecruitment.net/jobs/driver-runner-wash
 Level 2 Platform Ops Engineer,https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer,2919,Salary/baseSalary missing or not specific
 Sales Shift Manager,https://outreachrecruitment.net/jobs/sales-shift-manager,2606,Salary/baseSalary missing or not specific
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,2492,Salary/baseSalary missing or not specific
-Driver – Category C License,https://outreachrecruitment.net/jobs/driver-category-c-license,2129,Salary/baseSalary missing or not specific
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,1826,Salary/baseSalary missing or not specific
 Technical Systems Analyst,https://outreachrecruitment.net/jobs/technical-systems-analyst,2572,Salary/baseSalary missing or not specific
 Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,2392,Salary/baseSalary missing or not specific
@@ -108,7 +110,6 @@ Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,2289,Sa
 Electrician Installer,https://outreachrecruitment.net/jobs/electrician-installer,1941,Salary/baseSalary missing or not specific
 Plumbers,https://outreachrecruitment.net/jobs/plumbers,1928,Salary/baseSalary missing or not specific
 General Maintenance Technician,https://outreachrecruitment.net/jobs/general-maintenance-technician,2348,Salary/baseSalary missing or not specific
-Spa Therapist,https://outreachrecruitment.net/jobs/spa-therapist,1814,Salary/baseSalary missing or not specific
 Front Office Assistant,https://outreachrecruitment.net/jobs/front-office-assistant,2088,Salary/baseSalary missing or not specific
 Kitchen Assistant - Chinese Cuisine,https://outreachrecruitment.net/jobs/kitchen-assistant-chinese-cuisine,2304,Salary/baseSalary missing or not specific
 Head Chef - Chinese Cuisine,https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine,2441,Salary/baseSalary missing or not specific
@@ -120,7 +121,7 @@ Kitchen Assistant,https://outreachrecruitment.net/jobs/kitchen-assistant,1976,Sa
 Heavy Machine Operator,https://outreachrecruitment.net/jobs/heavy-machine-operator,2185,Salary/baseSalary missing or not specific
 Building Services Maintenance Helper,https://outreachrecruitment.net/jobs/building-services-maintenance-helper,2649,Salary/baseSalary missing or not specific
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant,2326,Salary/baseSalary missing or not specific
-Housekeeping Attendant,https://outreachrecruitment.net/jobs/housekeeping-attendant,2234,Salary/baseSalary missing or not specific
+Housekeeping Attendant,https://outreachrecruitment.net/jobs/housekeeping-attendant,2225,Salary/baseSalary missing or not specific
 Middle Officer - (Asset Management),https://outreachrecruitment.net/jobs/middle-officer-asset-management,2383,Salary/baseSalary missing or not specific
 Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor,2347,Salary/baseSalary missing or not specific
 Bartender & Front Office Agent,https://outreachrecruitment.net/jobs/bartender-front-office-agent,1869,Salary/baseSalary missing or not specific
@@ -145,7 +146,6 @@ Construction Site Foreman,https://outreachrecruitment.net/jobs/construction-site
 High Voltage Motor Vehicle Technician,https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician,2255,Salary/baseSalary missing or not specific
 Sales Engineer,https://outreachrecruitment.net/jobs/sales-engineer,1966,Salary/baseSalary missing or not specific
 Logistics Officer,https://outreachrecruitment.net/jobs/logistics-officer,1887,Salary/baseSalary missing or not specific
-Hostess,https://outreachrecruitment.net/jobs/hostess,2138,Salary/baseSalary missing or not specific
 Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,1900,Salary/baseSalary missing or not specific
 Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,2273,Salary/baseSalary missing or not specific
 Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,2286,Salary/baseSalary missing or not specific

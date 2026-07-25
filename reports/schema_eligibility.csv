@@ -1,6 +1,9 @@
 title,url,eligible,issue
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,False,Invalid validThrough: '2029-12-30T23:59:59+01:00'
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper,False,Invalid validThrough: '2029-12-30T23:59:59+01:00'
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,True,
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,True,
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,True,
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,True,
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,True,
 Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,True,
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,True,
 Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,True,
@@ -30,7 +33,6 @@ Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,True,
 Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,True,
 Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,True,
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,False,No JSON-LD schema found
-"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-and-facility-manager,False,No JSON-LD schema found
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,False,No JSON-LD schema found
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,True,
 Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,False,No JSON-LD schema found
@@ -43,7 +45,8 @@ Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,True,
 Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor-2,True,
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,True,
 QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,True,
-Application Developer (Drupal) - Hybrid,https://outreachrecruitment.net/jobs/application-developer-drupal-hybrid,True,
+Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,True,
+"Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-facility-manager,True,
 Plumber,https://outreachrecruitment.net/jobs/plumber,True,
 Welder,https://outreachrecruitment.net/jobs/welder,True,
 Server (Spanish Speaker),https://outreachrecruitment.net/jobs/server-spanish-speaker,True,
@@ -80,7 +83,6 @@ Driver / Runner / Washer,https://outreachrecruitment.net/jobs/driver-runner-wash
 Level 2 Platform Ops Engineer,https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer,True,
 Sales Shift Manager,https://outreachrecruitment.net/jobs/sales-shift-manager,True,
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,True,
-Driver – Category C License,https://outreachrecruitment.net/jobs/driver-category-c-license,True,
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,True,
 Technical Systems Analyst,https://outreachrecruitment.net/jobs/technical-systems-analyst,True,
 Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,True,
@@ -100,7 +102,6 @@ Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,True,
 Electrician Installer,https://outreachrecruitment.net/jobs/electrician-installer,True,
 Plumbers,https://outreachrecruitment.net/jobs/plumbers,True,
 General Maintenance Technician,https://outreachrecruitment.net/jobs/general-maintenance-technician,True,
-Spa Therapist,https://outreachrecruitment.net/jobs/spa-therapist,True,
 Front Office Assistant,https://outreachrecruitment.net/jobs/front-office-assistant,True,
 Kitchen Assistant - Chinese Cuisine,https://outreachrecruitment.net/jobs/kitchen-assistant-chinese-cuisine,True,
 Head Chef - Chinese Cuisine,https://outreachrecruitment.net/jobs/head-chef-chinese-cuisine,True,
@@ -137,7 +138,6 @@ Construction Site Foreman,https://outreachrecruitment.net/jobs/construction-site
 High Voltage Motor Vehicle Technician,https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician,True,
 Sales Engineer,https://outreachrecruitment.net/jobs/sales-engineer,True,
 Logistics Officer,https://outreachrecruitment.net/jobs/logistics-officer,True,
-Hostess,https://outreachrecruitment.net/jobs/hostess,True,
 Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,True,
 Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,True,
 Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,True,
