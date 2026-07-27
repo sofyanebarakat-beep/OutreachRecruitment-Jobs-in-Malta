@@ -1,10 +1,10 @@
 title,url,problem
 Bartender,https://outreachrecruitment.net/jobs/bartender-2,URL is unknown to Google
-Hostess,https://outreachrecruitment.net/jobs/hostess-2,Crawled - currently not indexed
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,URL is unknown to Google
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,Indexed page has zero impressions in selected GSC window
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,Indexed page has zero impressions in selected GSC window
 Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,URL is unknown to Google
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,URL is unknown to Google
-Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,URL is unknown to Google
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,Indexed page has zero impressions in selected GSC window
+Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,Indexed page has zero impressions in selected GSC window
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,URL is unknown to Google
 Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,Indexed page has zero impressions in selected GSC window
 Baristas,https://outreachrecruitment.net/jobs/baristas,Indexed page has zero impressions in selected GSC window
@@ -18,7 +18,7 @@ Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,URL
 Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,URL is unknown to Google
 HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,URL is unknown to Google
 Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,URL is unknown to Google
-Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,URL Inspection API error: Internal error encountered.
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,URL is unknown to Google
 Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,Alternate page with proper canonical tag
 General Labourer,https://outreachrecruitment.net/jobs/general-labourer,Target keyword not visible in top Search Console queries
 Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,Alternate page with proper canonical tag
@@ -26,11 +26,8 @@ Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner
 Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,Alternate page with proper canonical tag
 Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,Target keyword not visible in top Search Console queries
 Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,Alternate page with proper canonical tag
-Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,Target keyword not visible in top Search Console queries
 Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,URL is unknown to Google
 Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,Alternate page with proper canonical tag
-Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,Average position worse than 20 (24.5)
-Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,Target keyword not visible in top Search Console queries
 Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,Indexed page has zero impressions in selected GSC window
 Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,Indexed page has zero impressions in selected GSC window
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,URL is unknown to Google
@@ -56,8 +53,9 @@ Server (Spanish Speaker),https://outreachrecruitment.net/jobs/server-spanish-spe
 Sales Office Coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator,Target keyword not visible in top Search Console queries
 Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician,Target keyword not visible in top Search Console queries
 Assistance Co-ordinator,https://outreachrecruitment.net/jobs/assistance-co-ordinator,Target keyword not visible in top Search Console queries
+Customer Contact Agent,https://outreachrecruitment.net/jobs/customer-contact-agent,Target keyword not visible in top Search Console queries
 Auditor Doctor,https://outreachrecruitment.net/jobs/auditor-doctor,Indexed page has zero impressions in selected GSC window
-Nurse Advisor,https://outreachrecruitment.net/jobs/nurse-advisor,Average position worse than 20 (25.1)
+Nurse Advisor,https://outreachrecruitment.net/jobs/nurse-advisor,Average position worse than 20 (25.2)
 Summer Waiter - Mellieha,https://outreachrecruitment.net/jobs/summer-waiter-mellieha,Indexed page has zero impressions in selected GSC window
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,Average position worse than 20 (25.5)
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,Target keyword not visible in top Search Console queries
@@ -70,7 +68,7 @@ Cleaner,https://outreachrecruitment.net/jobs/cleaner,Indexed page has zero impre
 Assistant Pizza Chef,https://outreachrecruitment.net/jobs/assistant-pizza-chef,Target keyword not visible in top Search Console queries
 Production Chef,https://outreachrecruitment.net/jobs/production-chef,Alternate page with proper canonical tag
 Runners,https://outreachrecruitment.net/jobs/runners,Target keyword not visible in top Search Console queries
-Bar attendant,https://outreachrecruitment.net/jobs/bar-attendant,Target keyword not visible in top Search Console queries
+Bar attendant,https://outreachrecruitment.net/jobs/bar-attendant,Indexed page has zero impressions in selected GSC window
 Barista,https://outreachrecruitment.net/jobs/barista,Indexed page has zero impressions in selected GSC window
 Housekeeper,https://outreachrecruitment.net/jobs/housekeeper,Indexed page has zero impressions in selected GSC window
 Compliance Manager,https://outreachrecruitment.net/jobs/compliance-manager,Indexed page has zero impressions in selected GSC window
@@ -85,6 +83,7 @@ Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Rich results verdict: F
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Average position worse than 20 (26.0)
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Target keyword not visible in top Search Console queries
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,Indexed page has zero impressions in selected GSC window
+Technical Systems Analyst,https://outreachrecruitment.net/jobs/technical-systems-analyst,Indexed page has zero impressions in selected GSC window
 Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,Indexed page has zero impressions in selected GSC window
 Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,Target keyword not visible in top Search Console queries
 Customer Experience Supervisor,https://outreachrecruitment.net/jobs/customer-experience-supervisor,Indexed page has zero impressions in selected GSC window
@@ -118,6 +117,8 @@ Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-superv
 Bartender & Front Office Agent,https://outreachrecruitment.net/jobs/bartender-front-office-agent,Indexed page has zero impressions in selected GSC window
 Senior Sales & Marketing Executive - Airline Industry,https://outreachrecruitment.net/jobs/senior-sales-marketing-executive-airline-industry,Indexed page has zero impressions in selected GSC window
 Accounts Payable,https://outreachrecruitment.net/jobs/accounts-payable,Indexed page has zero impressions in selected GSC window
+Head Housekeeper,https://outreachrecruitment.net/jobs/head-housekeeper,Average position worse than 20 (32.0)
+Head Housekeeper,https://outreachrecruitment.net/jobs/head-housekeeper,Target keyword not visible in top Search Console queries
 QA Manager - Construction,https://outreachrecruitment.net/jobs/qa-manager-construction,Rich results verdict: FAIL
 QA Manager - Construction,https://outreachrecruitment.net/jobs/qa-manager-construction,Indexed page has zero impressions in selected GSC window
 Quality Assurance Officer/Engineer,https://outreachrecruitment.net/jobs/quality-assurance-officerengineer,Indexed page has zero impressions in selected GSC window
@@ -130,82 +131,77 @@ Project Manager - Construction,https://outreachrecruitment.net/jobs/project-mana
 Account Manager,https://outreachrecruitment.net/jobs/account-manager,Indexed page has zero impressions in selected GSC window
 Italian/Swedish Sales Team Leader,https://outreachrecruitment.net/jobs/italianswedish-sales-team-leader,Indexed page has zero impressions in selected GSC window
 Italian/Swedish Retention Team Leader,https://outreachrecruitment.net/jobs/italianswedish-retention-team-leader,Indexed page has zero impressions in selected GSC window
-Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,Average position worse than 20 (24.0)
-Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,Target keyword not visible in top Search Console queries
+Italian Media Buyer,https://outreachrecruitment.net/jobs/italian-media-buyer,Indexed page has zero impressions in selected GSC window
 Sales Assistant Manager,https://outreachrecruitment.net/jobs/sales-assistant-manager,Indexed page has zero impressions in selected GSC window
 Automotive Service Advisor,https://outreachrecruitment.net/jobs/automotive-service-advisor,Target keyword not visible in top Search Console queries
-Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,Average position worse than 20 (22.0)
-Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,Target keyword not visible in top Search Console queries
-High Voltage Motor Vehicle Technician,https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician,Target keyword not visible in top Search Console queries
-Sales Engineer,https://outreachrecruitment.net/jobs/sales-engineer,Alternate page with proper canonical tag
-Logistics Officer,https://outreachrecruitment.net/jobs/logistics-officer,Indexed page has zero impressions in selected GSC window
-Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,Indexed page has zero impressions in selected GSC window
-Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,Indexed page has zero impressions in selected GSC window
-Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,Average position worse than 20 (26.0)
-Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,Target keyword not visible in top Search Console queries
-Builders and Shutterers,https://outreachrecruitment.net/jobs/builders-and-shutterers,Indexed page has zero impressions in selected GSC window
-Driver - Malta C License,https://outreachrecruitment.net/jobs/driver-malta-c-license,Indexed page has zero impressions in selected GSC window
-Draughtsperson,https://outreachrecruitment.net/jobs/draughtsperson,Indexed page has zero impressions in selected GSC window
-Assistant Laboratory Manager - Construction Materials,https://outreachrecruitment.net/jobs/assistant-laboratory-manager-construction-materials,Alternate page with proper canonical tag
-Associate Tax Advisor,https://outreachrecruitment.net/jobs/associate-tax-advisor,Indexed page has zero impressions in selected GSC window
-Delivery Persons,https://outreachrecruitment.net/jobs/delivery-persons,Target keyword not visible in top Search Console queries
-Bar Attendand,https://outreachrecruitment.net/jobs/bar-attendand,Indexed page has zero impressions in selected GSC window
-Customer Care Associate,https://outreachrecruitment.net/jobs/customer-care-associate,Target keyword not visible in top Search Console queries
-Lead Azure Infrastructure Architect,https://outreachrecruitment.net/jobs/lead-azure-infrastructure-architect,Alternate page with proper canonical tag
-Sales Executive - Luxury Retail,https://outreachrecruitment.net/jobs/sales-executive-luxury-retail,Indexed page has zero impressions in selected GSC window
-Bartender in Gozo,https://outreachrecruitment.net/jobs/bartender-in-gozo,Indexed page has zero impressions in selected GSC window
-Bottling Operator,https://outreachrecruitment.net/jobs/bottling-operator,Indexed page has zero impressions in selected GSC window
-Restaurant Supervisor in Gozo,https://outreachrecruitment.net/jobs/restaurant-supervisor-in-gozo,Indexed page has zero impressions in selected GSC window
-Motor Vehicle Mechanic/Technician,https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician,Target keyword not visible in top Search Console queries
-Automotive Parts Personnel,https://outreachrecruitment.net/jobs/automotive-parts-personnel,Indexed page has zero impressions in selected GSC window
-Real Estate Agents,https://outreachrecruitment.net/jobs/real-estate-agents,Target keyword not visible in top Search Console queries
-Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,Average position worse than 20 (39.4)
-Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,Target keyword not visible in top Search Console queries
-Wood Painting & Finishing Specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist,Indexed page has zero impressions in selected GSC window
-Delivery Driver - Malta C License,https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license,Indexed page has zero impressions in selected GSC window
-Health Claims Associate,https://outreachrecruitment.net/jobs/health-claims-associate,Indexed page has zero impressions in selected GSC window
-Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,Indexed page has zero impressions in selected GSC window
-Auditor,https://outreachrecruitment.net/jobs/auditor,Average position worse than 20 (24.7)
-Auditor,https://outreachrecruitment.net/jobs/auditor,Target keyword not visible in top Search Console queries
-Junior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking,Indexed page has zero impressions in selected GSC window
-Room Attendents,https://outreachrecruitment.net/jobs/room-attendents,Indexed page has zero impressions in selected GSC window
-Kitchen Helpers in Gozo,https://outreachrecruitment.net/jobs/kitchen-helpers-in-gozo,Target keyword not visible in top Search Console queries
-Lead Microsoft 365 Architect Modern Work & Security,https://outreachrecruitment.net/jobs/lead-microsoft-365-architect-modern-work-security,Indexed page has zero impressions in selected GSC window
-Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Average position worse than 20 (34.2)
-Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Target keyword not visible in top Search Console queries
-Skilled Carpenters,https://outreachrecruitment.net/jobs/skilled-carpenters,Target keyword not visible in top Search Console queries
-Delivery Person with Driving Licence C1,https://outreachrecruitment.net/jobs/delivery-person-with-driving-licence-c1,Alternate page with proper canonical tag
-Real Estate Managers,https://outreachrecruitment.net/jobs/real-estate-managers,Indexed page has zero impressions in selected GSC window
-Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Average position worse than 20 (35.2)
-Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Target keyword not visible in top Search Console queries
-Servers in Gozo,https://outreachrecruitment.net/jobs/servers-in-gozo,Indexed page has zero impressions in selected GSC window
-Aluminum Install and Fabrication Foreman,https://outreachrecruitment.net/jobs/aluminum-install-and-fabrication-foreman,Target keyword not visible in top Search Console queries
-Bricklayers,https://outreachrecruitment.net/jobs/bricklayers,Target keyword not visible in top Search Console queries
-Audit Senior,https://outreachrecruitment.net/jobs/audit-senior,Indexed page has zero impressions in selected GSC window
-Product Owner - Hybrid,https://outreachrecruitment.net/jobs/product-owner-hybrid,Indexed page has zero impressions in selected GSC window
-Steel Shutterers & Steel Fixers,https://outreachrecruitment.net/jobs/steel-shutterers-steel-fixers,Target keyword not visible in top Search Console queries
-Volvo Penta Mechanic,https://outreachrecruitment.net/jobs/volvo-penta-mechanic,Indexed page has zero impressions in selected GSC window
-Sign Assembler & Installer,https://outreachrecruitment.net/jobs/sign-assembler-installer,Indexed page has zero impressions in selected GSC window
-Waiters,https://outreachrecruitment.net/jobs/waiters,Average position worse than 20 (41.0)
-Waiters,https://outreachrecruitment.net/jobs/waiters,Target keyword not visible in top Search Console queries
-Workshop Administrator,https://outreachrecruitment.net/jobs/workshop-administrator,Target keyword not visible in top Search Console queries
-Hotel Porter,https://outreachrecruitment.net/jobs/hotel-porter,Target keyword not visible in top Search Console queries
-Boat Maintenance,https://outreachrecruitment.net/jobs/boat-maintenance,Indexed page has zero impressions in selected GSC window
-Demi Chef de Partie (Breakfast Shift),https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift,Indexed page has zero impressions in selected GSC window
-Sales and Customer Executive,https://outreachrecruitment.net/jobs/sales-and-customer-executive,Target keyword not visible in top Search Console queries
-First Line Support - Hybrid,https://outreachrecruitment.net/jobs/first-line-support-hybrid,Alternate page with proper canonical tag
-Semi-Senior Accountant,https://outreachrecruitment.net/jobs/semi-senior-accountant,Average position worse than 20 (43.0)
-Semi-Senior Accountant,https://outreachrecruitment.net/jobs/semi-senior-accountant,Target keyword not visible in top Search Console queries
-Kitchen Porter,https://outreachrecruitment.net/jobs/kitchen-porter-2,Indexed page has zero impressions in selected GSC window
-Sales Executive,https://outreachrecruitment.net/jobs/sales-executive-2,Alternate page with proper canonical tag
-Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-2,Indexed page has zero impressions in selected GSC window
-Commis,https://outreachrecruitment.net/jobs/commis-2,Average position worse than 20 (31.0)
-Commis,https://outreachrecruitment.net/jobs/commis-2,Target keyword not visible in top Search Console queries
-Chef de Partie,https://outreachrecruitment.net/jobs/chef-de-partie-2,Alternate page with proper canonical tag
-Barista,https://outreachrecruitment.net/jobs/barista-3,Rich results verdict: FAIL
-Barista,https://outreachrecruitment.net/jobs/barista-3,Indexed page has zero impressions in selected GSC window
-Sales Executive,https://outreachrecruitment.net/jobs/sales-executive-3,Indexed page has zero impressions in selected GSC window
-IT Support Executive,https://outreachrecruitment.net/jobs/it-support-executive-2,Indexed page has zero impressions in selected GSC window
-Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer-2,Indexed page has zero impressions in selected GSC window
-Quantity surveyor,https://outreachrecruitment.net/jobs/quantity-surveyor-2,Duplicate without user-selected canonical
-Accounts Senior,https://outreachrecruitment.net/jobs/accounts-senior-2,Indexed page has zero impressions in selected GSC window
+Sales Executive B2B,https://outreachrecruitment.net/jobs/sales-executive-b2b,URL Inspection API error: Network error: The read operation timed out
+Construction Site Foreman,https://outreachrecruitment.net/jobs/construction-site-foreman,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+High Voltage Motor Vehicle Technician,https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Sales Engineer,https://outreachrecruitment.net/jobs/sales-engineer,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Logistics Officer,https://outreachrecruitment.net/jobs/logistics-officer,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Audit Senior Associate,https://outreachrecruitment.net/jobs/audit-senior-associate,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Assistance Coordinator (Contact Centre Agent),https://outreachrecruitment.net/jobs/assistance-coordinator-contact-centre-agent,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Customer Contact Centre Representative,https://outreachrecruitment.net/jobs/customer-contact-centre-representative,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Builders and Shutterers,https://outreachrecruitment.net/jobs/builders-and-shutterers,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Driver - Malta C License,https://outreachrecruitment.net/jobs/driver-malta-c-license,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Draughtsperson,https://outreachrecruitment.net/jobs/draughtsperson,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Assistant Laboratory Manager - Construction Materials,https://outreachrecruitment.net/jobs/assistant-laboratory-manager-construction-materials,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Barber,https://outreachrecruitment.net/jobs/barber,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Associate Tax Advisor,https://outreachrecruitment.net/jobs/associate-tax-advisor,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Delivery Persons,https://outreachrecruitment.net/jobs/delivery-persons,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Bar Attendand,https://outreachrecruitment.net/jobs/bar-attendand,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Customer Care Associate,https://outreachrecruitment.net/jobs/customer-care-associate,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Lead Azure Infrastructure Architect,https://outreachrecruitment.net/jobs/lead-azure-infrastructure-architect,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Sales Executive - Luxury Retail,https://outreachrecruitment.net/jobs/sales-executive-luxury-retail,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Bartender in Gozo,https://outreachrecruitment.net/jobs/bartender-in-gozo,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Bottling Operator,https://outreachrecruitment.net/jobs/bottling-operator,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Restaurant Supervisor in Gozo,https://outreachrecruitment.net/jobs/restaurant-supervisor-in-gozo,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Motor Vehicle Mechanic/Technician,https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Automotive Parts Personnel,https://outreachrecruitment.net/jobs/automotive-parts-personnel,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Real Estate Agents,https://outreachrecruitment.net/jobs/real-estate-agents,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Wood Painting & Finishing Specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Delivery Driver - Malta C License,https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Health Claims Associate,https://outreachrecruitment.net/jobs/health-claims-associate,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Auditor,https://outreachrecruitment.net/jobs/auditor,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Junior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+CNC Machine Operator,https://outreachrecruitment.net/jobs/cnc-machine-operator,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Room Attendents,https://outreachrecruitment.net/jobs/room-attendents,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Kitchen Helpers in Gozo,https://outreachrecruitment.net/jobs/kitchen-helpers-in-gozo,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Lead Microsoft 365 Architect Modern Work & Security,https://outreachrecruitment.net/jobs/lead-microsoft-365-architect-modern-work-security,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Skilled Carpenters,https://outreachrecruitment.net/jobs/skilled-carpenters,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Delivery Person with Driving Licence C1,https://outreachrecruitment.net/jobs/delivery-person-with-driving-licence-c1,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Real Estate Managers,https://outreachrecruitment.net/jobs/real-estate-managers,"URL Inspection API error: Network error: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Servers in Gozo,https://outreachrecruitment.net/jobs/servers-in-gozo,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Aluminum Install and Fabrication Foreman,https://outreachrecruitment.net/jobs/aluminum-install-and-fabrication-foreman,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Bricklayers,https://outreachrecruitment.net/jobs/bricklayers,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Audit Senior,https://outreachrecruitment.net/jobs/audit-senior,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Product Owner - Hybrid,https://outreachrecruitment.net/jobs/product-owner-hybrid,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Steel Shutterers & Steel Fixers,https://outreachrecruitment.net/jobs/steel-shutterers-steel-fixers,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Volvo Penta Mechanic,https://outreachrecruitment.net/jobs/volvo-penta-mechanic,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Sign Assembler & Installer,https://outreachrecruitment.net/jobs/sign-assembler-installer,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Waiters,https://outreachrecruitment.net/jobs/waiters,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Workshop Administrator,https://outreachrecruitment.net/jobs/workshop-administrator,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Senior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/senior-sales-assistant-maltese-speaking,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Hotel Porter,https://outreachrecruitment.net/jobs/hotel-porter,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Boat Maintenance,https://outreachrecruitment.net/jobs/boat-maintenance,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Demi Chef de Partie (Breakfast Shift),https://outreachrecruitment.net/jobs/demi-chef-de-partie-breakfast-shift,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Sales and Customer Executive,https://outreachrecruitment.net/jobs/sales-and-customer-executive,URL Inspection API error: Network error: [Errno 54] Connection reset by peer
+First Line Support - Hybrid,https://outreachrecruitment.net/jobs/first-line-support-hybrid,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Semi-Senior Accountant,https://outreachrecruitment.net/jobs/semi-senior-accountant,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Kitchen Porter,https://outreachrecruitment.net/jobs/kitchen-porter-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Barista,https://outreachrecruitment.net/jobs/barista-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Sales Executive,https://outreachrecruitment.net/jobs/sales-executive-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Kitchen Porter,https://outreachrecruitment.net/jobs/kitchen-porter-3,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Commis,https://outreachrecruitment.net/jobs/commis-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Chef de Partie,https://outreachrecruitment.net/jobs/chef-de-partie-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Barista,https://outreachrecruitment.net/jobs/barista-3,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Sales Executive,https://outreachrecruitment.net/jobs/sales-executive-3,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+IT Support Executive,https://outreachrecruitment.net/jobs/it-support-executive-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Quantity surveyor,https://outreachrecruitment.net/jobs/quantity-surveyor-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
+Accounts Senior,https://outreachrecruitment.net/jobs/accounts-senior-2,"URL Inspection API error: Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project."
