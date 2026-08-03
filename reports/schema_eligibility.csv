@@ -1,9 +1,14 @@
 title,url,eligible,issue
-Bartender,https://outreachrecruitment.net/jobs/bartender-2,True,
-Hostess,https://outreachrecruitment.net/jobs/hostess-2,True,
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,True,
-Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,True,
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,True,
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-4,True,
+Senior Waiter / Sommelier,https://outreachrecruitment.net/jobs/senior-waiter-sommelier,True,
+Head Chef - Steakhouse,https://outreachrecruitment.net/jobs/head-chef-steakhouse,True,
+Front Desk Agent,https://outreachrecruitment.net/jobs/front-desk-agent,True,
+Sales Agent,https://outreachrecruitment.net/jobs/sales-agent,True,
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,False,No JSON-LD schema found
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,False,No JSON-LD schema found
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,False,No JSON-LD schema found
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,False,No JSON-LD schema found
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,False,No JSON-LD schema found
 Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,True,
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,True,
 Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,True,
@@ -15,34 +20,33 @@ Commis,https://outreachrecruitment.net/jobs/commis-3,True,
 Customer Care Team Leader,https://outreachrecruitment.net/jobs/customer-care-team-leader,True,
 Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,True,
 Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,True,
-Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,True,
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,False,No JSON-LD schema found
 Dishwasher,https://outreachrecruitment.net/jobs/dishwasher,True,
-Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,True,
-Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,True,
-HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,True,
-Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,True,
-Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,True,
-Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,True,
-General Labourer,https://outreachrecruitment.net/jobs/general-labourer,True,
-Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,True,
-Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,True,
-Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,True,
-Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,True,
-Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,True,
-Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,True,
-Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,True,
-Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,True,
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,False,No JSON-LD schema found
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,False,No JSON-LD schema found
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,False,No JSON-LD schema found
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,False,No JSON-LD schema found
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,False,No JSON-LD schema found
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,False,No JSON-LD schema found
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,False,No JSON-LD schema found
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,False,No JSON-LD schema found
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,False,No JSON-LD schema found
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,False,No JSON-LD schema found
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,False,No JSON-LD schema found
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,False,No JSON-LD schema found
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,False,No JSON-LD schema found
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,False,No JSON-LD schema found
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,False,No JSON-LD schema found
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,False,No JSON-LD schema found
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,False,No JSON-LD schema found
-Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,True,
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,False,No JSON-LD schema found
 Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,False,No JSON-LD schema found
-Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,True,
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,False,No JSON-LD schema found
 Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,False,No JSON-LD schema found
-Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,True,
-Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,True,
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,False,No JSON-LD schema found
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,False,No JSON-LD schema found
 Bartender,https://outreachrecruitment.net/jobs/bartender-mellieha,True,
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,True,
-Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor-2,True,
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,True,
 QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,True,
 Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,True,

@@ -1,9 +1,39 @@
 title,url,word_count,issue
-Bartender,https://outreachrecruitment.net/jobs/bartender-2,2200,Salary/baseSalary missing or not specific
-Hostess,https://outreachrecruitment.net/jobs/hostess-2,2116,Salary/baseSalary missing or not specific
-Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,2256,Salary/baseSalary missing or not specific
-Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,2156,Salary/baseSalary missing or not specific
-Cashier,https://outreachrecruitment.net/jobs/cashier-2,2226,Salary/baseSalary missing or not specific
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-4,2756,Salary/baseSalary missing or not specific
+Senior Waiter / Sommelier,https://outreachrecruitment.net/jobs/senior-waiter-sommelier,2905,Salary/baseSalary missing or not specific
+Head Chef - Steakhouse,https://outreachrecruitment.net/jobs/head-chef-steakhouse,2842,Salary/baseSalary missing or not specific
+Front Desk Agent,https://outreachrecruitment.net/jobs/front-desk-agent,2867,Salary/baseSalary missing or not specific
+Sales Agent,https://outreachrecruitment.net/jobs/sales-agent,2918,Salary/baseSalary missing or not specific
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Job content is very short (30 words)
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Missing responsibilities section
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Missing requirements section
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Missing offer/benefits section
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Missing strong apply CTA
+Bartender,https://outreachrecruitment.net/jobs/bartender-2,30,Salary/baseSalary missing or not specific
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Job content is very short (30 words)
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Missing responsibilities section
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Missing requirements section
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Missing offer/benefits section
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Missing strong apply CTA
+Hostess,https://outreachrecruitment.net/jobs/hostess-2,30,Salary/baseSalary missing or not specific
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Job content is very short (28 words)
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Missing responsibilities section
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Missing requirements section
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Missing offer/benefits section
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Missing strong apply CTA
+Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-2,28,Salary/baseSalary missing or not specific
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Job content is very short (30 words)
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Missing responsibilities section
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Missing requirements section
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Missing offer/benefits section
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Missing strong apply CTA
+Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,30,Salary/baseSalary missing or not specific
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Job content is very short (28 words)
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Missing responsibilities section
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Missing requirements section
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Missing offer/benefits section
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Missing strong apply CTA
+Cashier,https://outreachrecruitment.net/jobs/cashier-2,28,Salary/baseSalary missing or not specific
 Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2273,Missing offer/benefits section
 Sales Representative,https://outreachrecruitment.net/jobs/sales-representative,2273,Salary/baseSalary missing or not specific
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,2410,Missing offer/benefits section
@@ -22,34 +52,153 @@ Customer Care Team Leader,https://outreachrecruitment.net/jobs/customer-care-tea
 Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,2705,Salary/baseSalary missing or not specific
 Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,2839,Missing offer/benefits section
 Talent Acquisition Specialist,https://outreachrecruitment.net/jobs/talent-acquisition-specialist,2839,Salary/baseSalary missing or not specific
-Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,2779,Salary/baseSalary missing or not specific
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Job content is very short (31 words)
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Missing responsibilities section
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Missing requirements section
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Missing offer/benefits section
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Missing strong apply CTA
+Hotel Maintenance,https://outreachrecruitment.net/jobs/hotel-maintenance,31,Salary/baseSalary missing or not specific
 Dishwasher,https://outreachrecruitment.net/jobs/dishwasher,2174,Salary/baseSalary missing or not specific
-Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,2186,Salary/baseSalary missing or not specific
-Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,2184,Salary/baseSalary missing or not specific
-HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,2199,Salary/baseSalary missing or not specific
-Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,2095,Salary/baseSalary missing or not specific
-Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,2296,Salary/baseSalary missing or not specific
-Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,2281,Salary/baseSalary missing or not specific
-General Labourer,https://outreachrecruitment.net/jobs/general-labourer,2243,Salary/baseSalary missing or not specific
-Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,2435,Salary/baseSalary missing or not specific
-Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,2480,Salary/baseSalary missing or not specific
-Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,2443,Salary/baseSalary missing or not specific
-Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,2431,Salary/baseSalary missing or not specific
-Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,2383,Salary/baseSalary missing or not specific
-Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,2302,Salary/baseSalary missing or not specific
-Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,2181,Salary/baseSalary missing or not specific
-Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,2308,Salary/baseSalary missing or not specific
-Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,2521,Salary/baseSalary missing or not specific
-Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,2315,Salary/baseSalary missing or not specific
-Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,2325,Salary/baseSalary missing or not specific
-Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,2411,Salary/baseSalary missing or not specific
-Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,2685,Salary/baseSalary missing or not specific
-Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,2423,Salary/baseSalary missing or not specific
-Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,2379,Salary/baseSalary missing or not specific
-Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,2378,Salary/baseSalary missing or not specific
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Job content is very short (33 words)
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Missing responsibilities section
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Missing requirements section
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Missing offer/benefits section
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Missing strong apply CTA
+Guest Service Agent,https://outreachrecruitment.net/jobs/guest-service-agent,33,Salary/baseSalary missing or not specific
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Job content is very short (37 words)
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Missing responsibilities section
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Missing requirements section
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Missing offer/benefits section
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Missing strong apply CTA
+Bartender (Full and Part Time),https://outreachrecruitment.net/jobs/bartender-full-and-part-time,37,Salary/baseSalary missing or not specific
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Job content is very short (29 words)
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Missing responsibilities section
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Missing requirements section
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Missing offer/benefits section
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Missing strong apply CTA
+HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,29,Salary/baseSalary missing or not specific
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Job content is very short (30 words)
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Missing responsibilities section
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Missing requirements section
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Missing offer/benefits section
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Missing strong apply CTA
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,30,Salary/baseSalary missing or not specific
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Job content is very short (33 words)
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Missing responsibilities section
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Missing requirements section
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Missing offer/benefits section
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Missing strong apply CTA
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,33,Salary/baseSalary missing or not specific
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Job content is very short (31 words)
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Missing responsibilities section
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Missing requirements section
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Missing offer/benefits section
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Missing strong apply CTA
+Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,31,Salary/baseSalary missing or not specific
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Job content is very short (29 words)
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Missing responsibilities section
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Missing requirements section
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Missing offer/benefits section
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Missing strong apply CTA
+General Labourer,https://outreachrecruitment.net/jobs/general-labourer,29,Salary/baseSalary missing or not specific
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Job content is very short (29 words)
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Missing responsibilities section
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Missing requirements section
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Missing offer/benefits section
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Missing strong apply CTA
+Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,29,Salary/baseSalary missing or not specific
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Job content is very short (33 words)
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Missing responsibilities section
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Missing requirements section
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Missing offer/benefits section
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Missing strong apply CTA
+Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,33,Salary/baseSalary missing or not specific
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Job content is very short (31 words)
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Missing responsibilities section
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Missing requirements section
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Missing offer/benefits section
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Missing strong apply CTA
+Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,31,Salary/baseSalary missing or not specific
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Job content is very short (29 words)
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Missing responsibilities section
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Missing requirements section
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Missing offer/benefits section
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Missing strong apply CTA
+Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,29,Salary/baseSalary missing or not specific
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Job content is very short (29 words)
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Missing responsibilities section
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Missing requirements section
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Missing offer/benefits section
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Missing strong apply CTA
+Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,29,Salary/baseSalary missing or not specific
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Job content is very short (29 words)
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Missing responsibilities section
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Missing requirements section
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Missing offer/benefits section
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Missing strong apply CTA
+Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,29,Salary/baseSalary missing or not specific
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Job content is very short (29 words)
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Missing responsibilities section
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Missing requirements section
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Missing offer/benefits section
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Missing strong apply CTA
+Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,29,Salary/baseSalary missing or not specific
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Job content is very short (29 words)
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Missing responsibilities section
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Missing requirements section
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Missing offer/benefits section
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Missing strong apply CTA
+Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,29,Salary/baseSalary missing or not specific
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Job content is very short (31 words)
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Missing responsibilities section
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Missing requirements section
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Missing offer/benefits section
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Missing strong apply CTA
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,31,Salary/baseSalary missing or not specific
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Job content is very short (30 words)
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Missing responsibilities section
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Missing requirements section
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Missing offer/benefits section
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Missing strong apply CTA
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,30,Salary/baseSalary missing or not specific
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Job content is very short (31 words)
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Missing responsibilities section
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Missing requirements section
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Missing offer/benefits section
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Missing strong apply CTA
+Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,31,Salary/baseSalary missing or not specific
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Job content is very short (32 words)
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Missing responsibilities section
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Missing requirements section
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Missing offer/benefits section
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Missing strong apply CTA
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,32,Salary/baseSalary missing or not specific
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Job content is very short (29 words)
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Missing responsibilities section
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Missing requirements section
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Missing offer/benefits section
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Missing strong apply CTA
+Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,29,Salary/baseSalary missing or not specific
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Job content is very short (30 words)
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Missing responsibilities section
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Missing requirements section
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Missing offer/benefits section
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Missing strong apply CTA
+Crew Concierge,https://outreachrecruitment.net/jobs/crew-concierge,30,Salary/baseSalary missing or not specific
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Job content is very short (31 words)
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Missing responsibilities section
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Missing requirements section
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Missing offer/benefits section
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Missing strong apply CTA
+Payables Finance Executive,https://outreachrecruitment.net/jobs/payables-finance-executive,31,Salary/baseSalary missing or not specific
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Job content is very short (30 words)
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Missing responsibilities section
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Missing requirements section
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Missing offer/benefits section
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Missing strong apply CTA
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-3,30,Salary/baseSalary missing or not specific
 Bartender,https://outreachrecruitment.net/jobs/bartender-mellieha,2155,Salary/baseSalary missing or not specific
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,2296,Salary/baseSalary missing or not specific
-Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor-2,2189,Salary/baseSalary missing or not specific
 Assistant Executive Housekeeper,https://outreachrecruitment.net/jobs/assistant-executive-housekeeper,2108,Salary/baseSalary missing or not specific
 QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,2002,Salary/baseSalary missing or not specific
 Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,2157,Missing offer/benefits section
@@ -120,7 +269,6 @@ Counter assistant,https://outreachrecruitment.net/jobs/counter-assistant,1947,Sa
 Kitchen Assistant,https://outreachrecruitment.net/jobs/kitchen-assistant,1976,Salary/baseSalary missing or not specific
 Heavy Machine Operator,https://outreachrecruitment.net/jobs/heavy-machine-operator,2185,Salary/baseSalary missing or not specific
 Building Services Maintenance Helper,https://outreachrecruitment.net/jobs/building-services-maintenance-helper,2649,Salary/baseSalary missing or not specific
-Client Accountant,https://outreachrecruitment.net/jobs/client-accountant,2326,Salary/baseSalary missing or not specific
 Housekeeping Attendant,https://outreachrecruitment.net/jobs/housekeeping-attendant,2225,Salary/baseSalary missing or not specific
 Middle Officer - (Asset Management),https://outreachrecruitment.net/jobs/middle-officer-asset-management,2383,Salary/baseSalary missing or not specific
 Front Office Supervisor,https://outreachrecruitment.net/jobs/front-office-supervisor,2347,Salary/baseSalary missing or not specific
