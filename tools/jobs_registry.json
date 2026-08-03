@@ -174,7 +174,7 @@
   {
     "slug": "assistance-co-ordinator",
     "title": "Assistance Co-ordinator",
-    "category": "General",
+    "category": "Insurance",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -182,15 +182,14 @@
     "date": "2026-06-09",
     "valid_through": "2030-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/82c38d7f-8613-408f-bf72-7686caaf5422/apply",
-    "keywords": "assistance co-ordinator general floriana, malta",
+    "keywords": "assistance co-ordinator insurance floriana, malta",
     "featured": false,
-    "lastmod": "2026-07-24",
-    "status": "closed"
+    "lastmod": "2026-08-04"
   },
   {
     "slug": "customer-contact-agent",
     "title": "Customer Contact Agent",
-    "category": "General",
+    "category": "Insurance",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -198,10 +197,9 @@
     "date": "2026-06-09",
     "valid_through": "2030-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1c894811-e5c4-4b98-be1f-9bb155171de7/apply",
-    "keywords": "customer contact agent general floriana, malta",
+    "keywords": "customer contact agent insurance floriana, malta",
     "featured": false,
-    "lastmod": "2026-07-24",
-    "status": "closed"
+    "lastmod": "2026-08-04"
   },
   {
     "slug": "auditor-doctor",
