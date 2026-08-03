@@ -1,9 +1,17 @@
 {
   "consecutive_extra": {
-    "Deli Counter Assistant / Salumeria Specialist": 3,
-    "Dishwasher": 3,
-    "Guest Service Agent": 3,
-    "Application Developer (Drupal)": 2
+    "Deli Counter Assistant / Salumeria Specialist": 4,
+    "Dishwasher": 4,
+    "Guest Service Agent": 4,
+    "Application Developer (Drupal)": 3,
+    "Head Chef - Steakhouse": 1,
+    "Talent Acquisition Specialist": 1,
+    "Administration Specialist": 1,
+    "Auditor Doctor": 1,
+    "Nurse Advisor": 1,
+    "Technical Systems Analyst": 1,
+    "Head Housekeeper": 1,
+    "Workshop Administrator": 1
   },
-  "last_run": "2026-07-27"
+  "last_run": "2026-08-03"
 }
