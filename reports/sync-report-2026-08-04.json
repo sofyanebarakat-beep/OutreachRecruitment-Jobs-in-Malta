@@ -1,0 +1,4199 @@
+{
+  "generated_at": "2026-08-04T10:30:49",
+  "careers_count_advertised": 204,
+  "careers_count_scraped": 100,
+  "website_count": 75,
+  "sync_score": 90.4,
+  "missing_jobs": [
+    "Night Hospitality Agent",
+    "Public Area Cleaner",
+    "Site Coordinator",
+    "Senior Waiter / Sommelier",
+    "Front Desk Agent",
+    "Sales Agent",
+    "Sales Representative",
+    "Deli Counter Assistant / Salumeria Specialis",
+    "Chefs de Partie",
+    "Kitchen Helper",
+    "Hotel Maintenance",
+    "Kitchen Porter Part-time and full-time",
+    "Guess Service Agent",
+    "Maintenance Technician",
+    "Client Accountant",
+    "Application Developer (Drupal) - Hybrid",
+    "Plumber",
+    "Housekeeper in Malta",
+    "Project Manager",
+    "HSSE Coordinator",
+    "Restaurant Supervisor",
+    "Chef de Partie",
+    "Bar attendant",
+    "Housekeeper",
+    "Pool Attendants",
+    "Sales Shift Manager",
+    "Customer Operations Associate",
+    "Sales Representative in Renewables",
+    "HVAC Project Manager",
+    "HVAC Sales Representative",
+    "Maintenance Technician - Electrical Licence A or B)",
+    "Sales Executive",
+    "Head Chef - Maltese Cuisine",
+    "Marketing Assistant",
+    "IT Support Executive"
+  ],
+  "extra_jobs": [
+    "Talent Acquisition Specialist",
+    "Administration Specialist",
+    "Plant Technician",
+    "Auditor Doctor",
+    "Nurse Advisor",
+    "Technical Systems Analyst",
+    "Wood Painting & Finishing Specialist"
+  ],
+  "title_mismatches": [],
+  "location_mismatches": [],
+  "broken_links": [],
+  "seo_issues": [],
+  "sitemap_missing": [],
+  "warnings": [
+    "Careers page advertises 204 jobs but scraper collected 100 — pagination may have been incomplete."
+  ],
+  "duplicates": [
+    {
+      "title_a": "Baristas",
+      "url_a": "https://outreachrecruitment.net/jobs/baristas",
+      "title_b": "Barista",
+      "url_b": "https://outreachrecruitment.net/jobs/barista",
+      "similarity": 0.93
+    },
+    {
+      "title_a": "Baristas",
+      "url_a": "https://outreachrecruitment.net/jobs/baristas",
+      "title_b": "Barista",
+      "url_b": "https://outreachrecruitment.net/jobs/barista-2",
+      "similarity": 0.93
+    },
+    {
+      "title_a": "Baristas",
+      "url_a": "https://outreachrecruitment.net/jobs/baristas",
+      "title_b": "Barista",
+      "url_b": "https://outreachrecruitment.net/jobs/barista-3",
+      "similarity": 0.93
+    },
+    {
+      "title_a": "HVAC Technician",
+      "url_a": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "title_b": "Head of HVAC Technicians",
+      "url_b": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "HVAC Technician",
+      "url_a": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "title_b": "Plant Technician",
+      "url_b": "https://outreachrecruitment.net/jobs/plant-technician",
+      "similarity": 0.77
+    },
+    {
+      "title_a": "Marine Carpenter",
+      "url_a": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "title_b": "Marine Turner",
+      "url_b": "https://outreachrecruitment.net/jobs/marine-turner",
+      "similarity": 0.76
+    },
+    {
+      "title_a": "Tank Cleaner",
+      "url_a": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "title_b": "Cleaner",
+      "url_b": "https://outreachrecruitment.net/jobs/cleaner",
+      "similarity": 0.74
+    },
+    {
+      "title_a": "Purchasing Manager",
+      "url_a": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "title_b": "Purchasing Officer",
+      "url_b": "https://outreachrecruitment.net/jobs/purchasing-officer",
+      "similarity": 0.72
+    }
+  ],
+  "schema_issues": [],
+  "auto_closed_this_run": [],
+  "auto_closed_jobs": [],
+  "auto_fixed_added_jobs": [],
+  "auto_fixed_removed_jobs": [],
+  "indexing_submissions": [],
+  "ranking_readiness": [
+    {
+      "title": "Marine Turner",
+      "slug": "marine-turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "category": "Marine & Shipping",
+      "score": 20,
+      "priority": "High",
+      "target_keyword": "Marine Turner jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Marine Turner jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "slug": "marine-carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "category": "Marine & Shipping",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Marine Carpenter jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Marine Carpenter jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "slug": "purchasing-manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "category": "Administration",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Purchasing Manager jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Purchasing Manager jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "slug": "tank-cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "category": "Marine & Shipping",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Tank Cleaner jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Tank Cleaner jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "slug": "crew-concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "category": "Marine & Shipping",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Crew Concierge jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Crew Concierge jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "slug": "plate-shop-foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "category": "Marine & Shipping",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Plate Shop Foreman jobs in Malta",
+      "word_count": 32,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Plate Shop Foreman jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (32 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "slug": "quality-engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "category": "Engineering & Maintenance",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Quality Engineer jobs in Malta",
+      "word_count": 31,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Quality Engineer jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "slug": "bartender-2",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "category": "Hospitality",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Bartender jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Bartender jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "slug": "bartender-full-and-part-time",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "category": "Hospitality",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Bartender (Full and Part Time) jobs in Malta",
+      "word_count": 37,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Bartender (Full and Part Time) jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (37 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "slug": "commercial-divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "category": "Marine & Shipping",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Commercial Divers jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Commercial Divers jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "category": "Logistics",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Driver License B jobs in Malta",
+      "word_count": 31,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Driver License B jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "slug": "electronic-technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Electronic Technician jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Electronic Technician jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "HVAC Technician",
+      "slug": "hvac-technician",
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "HVAC Technician jobs in Malta",
+      "word_count": 29,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: HVAC Technician jobs in Malta",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Head of HVAC Technicians",
+      "slug": "head-of-hvac-technicians",
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Head of HVAC Technicians jobs in Malta",
+      "word_count": 33,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Head of HVAC Technicians jobs in Malta",
+        "Job content is very short (33 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "slug": "hostess-2",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "category": "General",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Hostess jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Hostess jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Shipyard Sprayer / Painter",
+      "slug": "shipyard-sprayer-painter",
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter",
+      "category": "Marine & Shipping",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Shipyard Sprayer / Painter jobs in Malta",
+      "word_count": 31,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Shipyard Sprayer / Painter jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Trailer Drivers",
+      "slug": "trailer-drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers",
+      "category": "Logistics",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Trailer Drivers jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Trailer Drivers jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Welder / Burner / Pipe Fitter",
+      "slug": "welder-burner-pipe-fitter",
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter",
+      "category": "Marine & Shipping",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Welder / Burner / Pipe Fitter jobs in Malta",
+      "word_count": 33,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Welder / Burner / Pipe Fitter jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (33 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Administration Specialist",
+      "slug": "administration-specialist",
+      "url": "https://outreachrecruitment.net/jobs/administration-specialist",
+      "category": "Administration",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Administration Specialist jobs in Malta",
+      "word_count": 29,
+      "category_links": 2,
+      "category_sources": "finance-jobs-in-malta.html, insurance-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Administration Specialist jobs in Malta",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Cashier",
+      "slug": "cashier-2",
+      "url": "https://outreachrecruitment.net/jobs/cashier-2",
+      "category": "Retail",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Cashier jobs in Malta",
+      "word_count": 28,
+      "category_links": 1,
+      "category_sources": "retail-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Cashier jobs in Malta",
+        "Job content is very short (28 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Delivery Man",
+      "slug": "delivery-man",
+      "url": "https://outreachrecruitment.net/jobs/delivery-man",
+      "category": "Engineering & Maintenance",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Delivery Man jobs in Malta",
+      "word_count": 30,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Delivery Man jobs in Malta",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "General Labourer",
+      "slug": "general-labourer",
+      "url": "https://outreachrecruitment.net/jobs/general-labourer",
+      "category": "General",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "General Labourer jobs in Malta",
+      "word_count": 29,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: General Labourer jobs in Malta",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Marine Mechanical Foreman",
+      "slug": "marine-mechanical-foreman",
+      "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman",
+      "category": "Marine & Shipping",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Marine Mechanical Foreman jobs in Malta",
+      "word_count": 31,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Marine Mechanical Foreman jobs in Malta",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Payables Finance Executive",
+      "slug": "payables-finance-executive",
+      "url": "https://outreachrecruitment.net/jobs/payables-finance-executive",
+      "category": "Finance & Accounting",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Payables Finance Executive jobs in Malta",
+      "word_count": 31,
+      "category_links": 1,
+      "category_sources": "finance-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Payables Finance Executive jobs in Malta",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Storekeeper",
+      "slug": "storekeeper-2",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-2",
+      "category": "Retail",
+      "score": 46,
+      "priority": "High",
+      "target_keyword": "Storekeeper jobs in Malta",
+      "word_count": 28,
+      "category_links": 1,
+      "category_sources": "retail-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Storekeeper jobs in Malta",
+        "Job content is very short (28 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Baristas",
+      "slug": "baristas",
+      "url": "https://outreachrecruitment.net/jobs/baristas",
+      "category": "Hospitality",
+      "score": 70,
+      "priority": "Medium",
+      "target_keyword": "Baristas jobs in Malta",
+      "word_count": 2827,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Meta description missing Malta",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Senior Quantity Estimator (M&E)",
+      "slug": "senior-quantity-estimator-me",
+      "url": "https://outreachrecruitment.net/jobs/senior-quantity-estimator-me",
+      "category": "General",
+      "score": 73,
+      "priority": "Medium",
+      "target_keyword": "Senior Quantity Estimator (M&E) jobs in Malta",
+      "word_count": 2413,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Meta description does not include exact job title",
+        "Target phrase missing: Senior Quantity Estimator (M&E) jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Customer Experience Supervisor",
+      "slug": "customer-experience-supervisor",
+      "url": "https://outreachrecruitment.net/jobs/customer-experience-supervisor",
+      "category": "General",
+      "score": 77,
+      "priority": "Medium",
+      "target_keyword": "Customer Experience Supervisor jobs in Malta",
+      "word_count": 2364,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Customer Experience Supervisor jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Fleet, Tools and Facility Manager",
+      "slug": "fleet-tools-facility-manager",
+      "url": "https://outreachrecruitment.net/jobs/fleet-tools-facility-manager",
+      "category": "Marine & Shipping",
+      "score": 77,
+      "priority": "Medium",
+      "target_keyword": "Fleet, Tools and Facility Manager jobs in Malta",
+      "word_count": 2624,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Fleet, Tools and Facility Manager jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "HR Administration Officer",
+      "slug": "hr-administration-officer",
+      "url": "https://outreachrecruitment.net/jobs/hr-administration-officer",
+      "category": "HR & Recruitment",
+      "score": 77,
+      "priority": "Medium",
+      "target_keyword": "HR Administration Officer jobs in Malta",
+      "word_count": 2435,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: HR Administration Officer jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Fleet Mechanical Superintendent",
+      "slug": "fleet-mechanical-superintendent",
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent",
+      "category": "Marine",
+      "score": 78,
+      "priority": "Medium",
+      "target_keyword": "Fleet Mechanical Superintendent jobs in Malta",
+      "word_count": 2819,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Purchasing Officer",
+      "slug": "purchasing-officer",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-officer",
+      "category": "Administration",
+      "score": 78,
+      "priority": "Medium",
+      "target_keyword": "Purchasing Officer jobs in Malta",
+      "word_count": 2328,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Talent Acquisition Specialist",
+      "slug": "talent-acquisition-specialist",
+      "url": "https://outreachrecruitment.net/jobs/talent-acquisition-specialist",
+      "category": "HR & Recruitment",
+      "score": 79,
+      "priority": "Medium",
+      "target_keyword": "Talent Acquisition Specialist jobs in Malta",
+      "word_count": 2839,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Talent Acquisition Specialist jobs in Malta",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Assistant Executive Housekeeper",
+      "slug": "assistant-executive-housekeeper",
+      "url": "https://outreachrecruitment.net/jobs/assistant-executive-housekeeper",
+      "category": "Hospitality & Hotel Jobs",
+      "score": 82,
+      "priority": "Medium",
+      "target_keyword": "Assistant Executive Housekeeper jobs in Malta",
+      "word_count": 2108,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "slug": "barista",
+      "url": "https://outreachrecruitment.net/jobs/barista",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Barista jobs in Malta",
+      "word_count": 2136,
+      "category_links": 3,
+      "category_sources": "hospitality-jobs-in-malta.html, opening-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Barista jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "slug": "barista-2",
+      "url": "https://outreachrecruitment.net/jobs/barista-2",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Barista jobs in Malta",
+      "word_count": 1919,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Barista jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "slug": "barista-3",
+      "url": "https://outreachrecruitment.net/jobs/barista-3",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Barista jobs in Malta",
+      "word_count": 2250,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-09T09:38:14",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Barista jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "slug": "bartender-mellieha",
+      "url": "https://outreachrecruitment.net/jobs/bartender-mellieha",
+      "category": "Hospitality",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Bartender jobs in Malta",
+      "word_count": 2155,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Bartender jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Cleaner",
+      "slug": "cleaner",
+      "url": "https://outreachrecruitment.net/jobs/cleaner",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Cleaner jobs in Malta",
+      "word_count": 2054,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Cleaner jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Compliance Manager",
+      "slug": "compliance-manager",
+      "url": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Compliance Manager jobs in Malta",
+      "word_count": 3159,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Compliance Manager jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Estimator",
+      "slug": "estimator",
+      "url": "https://outreachrecruitment.net/jobs/estimator",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Estimator jobs in Malta",
+      "word_count": 2302,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Estimator jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hairdresser",
+      "slug": "hairdresser",
+      "url": "https://outreachrecruitment.net/jobs/hairdresser",
+      "category": "General",
+      "score": 83,
+      "priority": "Medium",
+      "target_keyword": "Hairdresser jobs in Malta",
+      "word_count": 1817,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Hairdresser jobs in Malta",
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Ship Chandler",
+      "slug": "ship-chandler",
+      "url": "https://outreachrecruitment.net/jobs/ship-chandler",
+      "category": "Marine",
+      "score": 84,
+      "priority": "Medium",
+      "target_keyword": "Ship Chandler jobs in Malta",
+      "word_count": 2679,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hospitality Staff – Malta",
+      "slug": "hospitality-staff-malta",
+      "url": "https://outreachrecruitment.net/jobs/hospitality-staff-malta",
+      "category": "General",
+      "score": 87,
+      "priority": "Low",
+      "target_keyword": "Hospitality Staff – Malta jobs in Malta",
+      "word_count": 1861,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Hospitality Staff – Malta jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Server (Spanish Speaker)",
+      "slug": "server-spanish-speaker",
+      "url": "https://outreachrecruitment.net/jobs/server-spanish-speaker",
+      "category": "Hospitality",
+      "score": 87,
+      "priority": "Low",
+      "target_keyword": "Server (Spanish Speaker) jobs in Malta",
+      "word_count": 2224,
+      "category_links": 7,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Server (Spanish Speaker) jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Summer Waiter - Mellieha",
+      "slug": "summer-waiter-mellieha",
+      "url": "https://outreachrecruitment.net/jobs/summer-waiter-mellieha",
+      "category": "Hospitality",
+      "score": 87,
+      "priority": "Low",
+      "target_keyword": "Summer Waiter - Mellieha jobs in Malta",
+      "word_count": 1937,
+      "category_links": 1,
+      "category_sources": "hospitality-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Summer Waiter - Mellieha jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "slug": "commis-3",
+      "url": "https://outreachrecruitment.net/jobs/commis-3",
+      "category": "Hospitality",
+      "score": 88,
+      "priority": "Low",
+      "target_keyword": "Commis jobs in Malta",
+      "word_count": 2722,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Plant Technician",
+      "slug": "plant-technician",
+      "url": "https://outreachrecruitment.net/jobs/plant-technician",
+      "category": "Engineering & Maintenance",
+      "score": 88,
+      "priority": "Low",
+      "target_keyword": "Plant Technician jobs in Malta",
+      "word_count": 2645,
+      "category_links": 6,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "QHSE Manager",
+      "slug": "qhse-manager-malta",
+      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta",
+      "category": "Marine & Shipping",
+      "score": 88,
+      "priority": "Low",
+      "target_keyword": "QHSE Manager jobs in Malta",
+      "word_count": 2002,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Not linked from a category jobs page",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Wood Painting & Finishing Specialist",
+      "slug": "wood-painting-finishing-specialist",
+      "url": "https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist",
+      "category": "Manufacturing Sector",
+      "score": 91,
+      "priority": "Low",
+      "target_keyword": "Wood Painting & Finishing Specialist jobs in Malta",
+      "word_count": 4748,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-25T07:34:04",
+      "issues": [
+        "Meta description does not include exact job title",
+        "Target phrase missing: Wood Painting & Finishing Specialist jobs in Malta"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "slug": "bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender",
+      "category": "Hospitality",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Bartender jobs in Malta",
+      "word_count": 2014,
+      "category_links": 7,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Bartender jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "slug": "commis",
+      "url": "https://outreachrecruitment.net/jobs/commis",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Commis jobs in Malta",
+      "word_count": 1879,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Commis jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "slug": "commis-2",
+      "url": "https://outreachrecruitment.net/jobs/commis-2",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Commis jobs in Malta",
+      "word_count": 1883,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Commis jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Head Chef",
+      "slug": "head-chef",
+      "url": "https://outreachrecruitment.net/jobs/head-chef",
+      "category": "Hospitality",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Head Chef jobs in Malta",
+      "word_count": 3394,
+      "category_links": 6,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Head Chef jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "slug": "kitchen-porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Kitchen Porter jobs in Malta",
+      "word_count": 2022,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Kitchen Porter jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "slug": "kitchen-porter-3",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-3",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Kitchen Porter jobs in Malta",
+      "word_count": 2021,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Kitchen Porter jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Runners",
+      "slug": "runners",
+      "url": "https://outreachrecruitment.net/jobs/runners",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Runners jobs in Malta",
+      "word_count": 1864,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Runners jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Sous Chef",
+      "slug": "sous-chef",
+      "url": "https://outreachrecruitment.net/jobs/sous-chef",
+      "category": "Hospitality",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Sous Chef jobs in Malta",
+      "word_count": 2492,
+      "category_links": 6,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-09T09:38:14",
+      "issues": [
+        "Target phrase missing: Sous Chef jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "slug": "structural-engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer",
+      "category": "Engineering & Maintenance",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Structural Engineer jobs in Malta",
+      "word_count": 2120,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Structural Engineer jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "slug": "structural-engineer-2",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer-2",
+      "category": "Engineering & Maintenance",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Structural Engineer jobs in Malta",
+      "word_count": 1953,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Structural Engineer jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Supervisor",
+      "slug": "supervisor",
+      "url": "https://outreachrecruitment.net/jobs/supervisor",
+      "category": "General",
+      "score": 93,
+      "priority": "Low",
+      "target_keyword": "Supervisor jobs in Malta",
+      "word_count": 1826,
+      "category_links": 1,
+      "category_sources": "hospitality-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Supervisor jobs in Malta",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Food & Beverage Staff",
+      "slug": "food-beverage-staff",
+      "url": "https://outreachrecruitment.net/jobs/food-beverage-staff",
+      "category": "Hospitality",
+      "score": 94,
+      "priority": "Low",
+      "target_keyword": "Food & Beverage Staff jobs in Malta",
+      "word_count": 2328,
+      "category_links": 6,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Meta description does not include exact job title",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Assistance Co-ordinator",
+      "slug": "assistance-co-ordinator",
+      "url": "https://outreachrecruitment.net/jobs/assistance-co-ordinator",
+      "category": "Insurance",
+      "score": 95,
+      "priority": "Low",
+      "target_keyword": "Assistance Co-ordinator jobs in Malta",
+      "word_count": 5151,
+      "category_links": 1,
+      "category_sources": "insurance-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Assistance Co-ordinator jobs in Malta"
+      ]
+    },
+    {
+      "title": "Customer Contact Agent",
+      "slug": "customer-contact-agent",
+      "url": "https://outreachrecruitment.net/jobs/customer-contact-agent",
+      "category": "Insurance",
+      "score": 95,
+      "priority": "Low",
+      "target_keyword": "Customer Contact Agent jobs in Malta",
+      "word_count": 4979,
+      "category_links": 1,
+      "category_sources": "insurance-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Target phrase missing: Customer Contact Agent jobs in Malta"
+      ]
+    },
+    {
+      "title": "Assistant Pizza Chef",
+      "slug": "assistant-pizza-chef",
+      "url": "https://outreachrecruitment.net/jobs/assistant-pizza-chef",
+      "category": "Hospitality",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Assistant Pizza Chef jobs in Malta",
+      "word_count": 2096,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Auditor Doctor",
+      "slug": "auditor-doctor",
+      "url": "https://outreachrecruitment.net/jobs/auditor-doctor",
+      "category": "Finance & Accounting",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Auditor Doctor jobs in Malta",
+      "word_count": 2739,
+      "category_links": 2,
+      "category_sources": "finance-jobs-in-malta.html, insurance-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Driver / Runner / Washer",
+      "slug": "driver-runner-washer",
+      "url": "https://outreachrecruitment.net/jobs/driver-runner-washer",
+      "category": "Logistics",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Driver / Runner / Washer jobs in Malta",
+      "word_count": 2273,
+      "category_links": 2,
+      "category_sources": "construction-jobs-in-malta.html, hospitality-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Front Office Supervisor",
+      "slug": "front-office-supervisor",
+      "url": "https://outreachrecruitment.net/jobs/front-office-supervisor",
+      "category": "Administration",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Front Office Supervisor jobs in Malta",
+      "word_count": 2347,
+      "category_links": 3,
+      "category_sources": "engineering-jobs-in-malta.html, hospitality-jobs-in-malta.html, insurance-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "slug": "kitchen-porter-2",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-2",
+      "category": "General",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Kitchen Porter jobs in Malta",
+      "word_count": 2181,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Level 2 Platform Ops Engineer",
+      "slug": "level-2-platform-ops-engineer",
+      "url": "https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer",
+      "category": "Engineering & Maintenance",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Level 2 Platform Ops Engineer jobs in Malta",
+      "word_count": 2919,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Nurse Advisor",
+      "slug": "nurse-advisor",
+      "url": "https://outreachrecruitment.net/jobs/nurse-advisor",
+      "category": "Healthcare",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Nurse Advisor jobs in Malta",
+      "word_count": 2787,
+      "category_links": 2,
+      "category_sources": "engineering-jobs-in-malta.html, insurance-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Production Chef",
+      "slug": "production-chef",
+      "url": "https://outreachrecruitment.net/jobs/production-chef",
+      "category": "Hospitality",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Production Chef jobs in Malta",
+      "word_count": 2098,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, subcontracting-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Sales Office Coordinator",
+      "slug": "sales-office-coordinator",
+      "url": "https://outreachrecruitment.net/jobs/sales-office-coordinator",
+      "category": "Sales",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Sales Office Coordinator jobs in Malta",
+      "word_count": 2385,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Technical Systems Analyst",
+      "slug": "technical-systems-analyst",
+      "url": "https://outreachrecruitment.net/jobs/technical-systems-analyst",
+      "category": "Engineering & Maintenance",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Technical Systems Analyst jobs in Malta",
+      "word_count": 2572,
+      "category_links": 1,
+      "category_sources": "construction-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Welder",
+      "slug": "welder",
+      "url": "https://outreachrecruitment.net/jobs/welder",
+      "category": "Engineering & Maintenance",
+      "score": 98,
+      "priority": "Low",
+      "target_keyword": "Welder jobs in Malta",
+      "word_count": 2362,
+      "category_links": 6,
+      "category_sources": "construction-jobs-in-malta.html, engineering-jobs-in-malta.html, finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html, sales-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    }
+  ],
+  "priority_jobs": [
+    {
+      "title": "Marine Turner",
+      "slug": "marine-turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "category": "Marine & Shipping",
+      "score": 20,
+      "priority": "High",
+      "target_keyword": "Marine Turner jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Marine Turner jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "slug": "marine-carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "category": "Marine & Shipping",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Marine Carpenter jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Marine Carpenter jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "slug": "purchasing-manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "category": "Administration",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Purchasing Manager jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Purchasing Manager jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "slug": "tank-cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "category": "Marine & Shipping",
+      "score": 26,
+      "priority": "High",
+      "target_keyword": "Tank Cleaner jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Tank Cleaner jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "slug": "crew-concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "category": "Marine & Shipping",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Crew Concierge jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Crew Concierge jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "slug": "plate-shop-foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "category": "Marine & Shipping",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Plate Shop Foreman jobs in Malta",
+      "word_count": 32,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Plate Shop Foreman jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (32 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "slug": "quality-engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "category": "Engineering & Maintenance",
+      "score": 30,
+      "priority": "High",
+      "target_keyword": "Quality Engineer jobs in Malta",
+      "word_count": 31,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "Canonical does not match clean job URL",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Quality Engineer jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "slug": "bartender-2",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "category": "Hospitality",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Bartender jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Bartender jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "slug": "bartender-full-and-part-time",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "category": "Hospitality",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Bartender (Full and Part Time) jobs in Malta",
+      "word_count": 37,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Bartender (Full and Part Time) jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (37 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "slug": "commercial-divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "category": "Marine & Shipping",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Commercial Divers jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Commercial Divers jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "category": "Logistics",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Driver License B jobs in Malta",
+      "word_count": 31,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Driver License B jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "slug": "electronic-technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Electronic Technician jobs in Malta",
+      "word_count": 29,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-07-01T10:39:37",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Electronic Technician jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "HVAC Technician",
+      "slug": "hvac-technician",
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "HVAC Technician jobs in Malta",
+      "word_count": 29,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: HVAC Technician jobs in Malta",
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Head of HVAC Technicians",
+      "slug": "head-of-hvac-technicians",
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "category": "Engineering & Maintenance",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Head of HVAC Technicians jobs in Malta",
+      "word_count": 33,
+      "category_links": 1,
+      "category_sources": "engineering-jobs-in-malta.html",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Head of HVAC Technicians jobs in Malta",
+        "Job content is very short (33 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "slug": "hostess-2",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "category": "General",
+      "score": 36,
+      "priority": "High",
+      "target_keyword": "Hostess jobs in Malta",
+      "word_count": 30,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": false,
+      "last_indexing_status": "Not recorded",
+      "last_indexing_date": "",
+      "issues": [
+        "Missing meta description",
+        "JobPosting schema needs fixes",
+        "Target phrase missing: Hostess jobs in Malta",
+        "Not linked from a category jobs page",
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    }
+  ],
+  "keyword_issues": [
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "target_keyword": "Bartender jobs in Malta",
+      "issues": [
+        "Target phrase missing: Bartender jobs in Malta"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "target_keyword": "Hostess jobs in Malta",
+      "issues": [
+        "Target phrase missing: Hostess jobs in Malta"
+      ]
+    },
+    {
+      "title": "Storekeeper",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-2",
+      "target_keyword": "Storekeeper jobs in Malta",
+      "issues": [
+        "Target phrase missing: Storekeeper jobs in Malta"
+      ]
+    },
+    {
+      "title": "Cashier",
+      "url": "https://outreachrecruitment.net/jobs/cashier-2",
+      "target_keyword": "Cashier jobs in Malta",
+      "issues": [
+        "Target phrase missing: Cashier jobs in Malta"
+      ]
+    },
+    {
+      "title": "Baristas",
+      "url": "https://outreachrecruitment.net/jobs/baristas",
+      "target_keyword": "Baristas jobs in Malta",
+      "issues": [
+        "Meta description missing Malta"
+      ]
+    },
+    {
+      "title": "Fleet Mechanical Superintendent",
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent",
+      "target_keyword": "Fleet Mechanical Superintendent jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title"
+      ]
+    },
+    {
+      "title": "Talent Acquisition Specialist",
+      "url": "https://outreachrecruitment.net/jobs/talent-acquisition-specialist",
+      "target_keyword": "Talent Acquisition Specialist jobs in Malta",
+      "issues": [
+        "Target phrase missing: Talent Acquisition Specialist jobs in Malta"
+      ]
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "target_keyword": "Bartender (Full and Part Time) jobs in Malta",
+      "issues": [
+        "Target phrase missing: Bartender (Full and Part Time) jobs in Malta"
+      ]
+    },
+    {
+      "title": "HVAC Technician",
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "target_keyword": "HVAC Technician jobs in Malta",
+      "issues": [
+        "Target phrase missing: HVAC Technician jobs in Malta"
+      ]
+    },
+    {
+      "title": "Delivery Man",
+      "url": "https://outreachrecruitment.net/jobs/delivery-man",
+      "target_keyword": "Delivery Man jobs in Malta",
+      "issues": [
+        "Target phrase missing: Delivery Man jobs in Malta"
+      ]
+    },
+    {
+      "title": "Head of HVAC Technicians",
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "target_keyword": "Head of HVAC Technicians jobs in Malta",
+      "issues": [
+        "Target phrase missing: Head of HVAC Technicians jobs in Malta"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "target_keyword": "Driver License B jobs in Malta",
+      "issues": [
+        "Target phrase missing: Driver License B jobs in Malta"
+      ]
+    },
+    {
+      "title": "General Labourer",
+      "url": "https://outreachrecruitment.net/jobs/general-labourer",
+      "target_keyword": "General Labourer jobs in Malta",
+      "issues": [
+        "Target phrase missing: General Labourer jobs in Malta"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "target_keyword": "Tank Cleaner jobs in Malta",
+      "issues": [
+        "Target phrase missing: Tank Cleaner jobs in Malta"
+      ]
+    },
+    {
+      "title": "Welder / Burner / Pipe Fitter",
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter",
+      "target_keyword": "Welder / Burner / Pipe Fitter jobs in Malta",
+      "issues": [
+        "Target phrase missing: Welder / Burner / Pipe Fitter jobs in Malta"
+      ]
+    },
+    {
+      "title": "Shipyard Sprayer / Painter",
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter",
+      "target_keyword": "Shipyard Sprayer / Painter jobs in Malta",
+      "issues": [
+        "Target phrase missing: Shipyard Sprayer / Painter jobs in Malta"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "target_keyword": "Marine Carpenter jobs in Malta",
+      "issues": [
+        "Target phrase missing: Marine Carpenter jobs in Malta"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "target_keyword": "Electronic Technician jobs in Malta",
+      "issues": [
+        "Target phrase missing: Electronic Technician jobs in Malta"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "target_keyword": "Commercial Divers jobs in Malta",
+      "issues": [
+        "Target phrase missing: Commercial Divers jobs in Malta"
+      ]
+    },
+    {
+      "title": "Trailer Drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers",
+      "target_keyword": "Trailer Drivers jobs in Malta",
+      "issues": [
+        "Target phrase missing: Trailer Drivers jobs in Malta"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "target_keyword": "Purchasing Manager jobs in Malta",
+      "issues": [
+        "Target phrase missing: Purchasing Manager jobs in Malta"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "target_keyword": "Quality Engineer jobs in Malta",
+      "issues": [
+        "Target phrase missing: Quality Engineer jobs in Malta"
+      ]
+    },
+    {
+      "title": "Marine Turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "target_keyword": "Marine Turner jobs in Malta",
+      "issues": [
+        "Target phrase missing: Marine Turner jobs in Malta"
+      ]
+    },
+    {
+      "title": "Marine Mechanical Foreman",
+      "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman",
+      "target_keyword": "Marine Mechanical Foreman jobs in Malta",
+      "issues": [
+        "Target phrase missing: Marine Mechanical Foreman jobs in Malta"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "target_keyword": "Plate Shop Foreman jobs in Malta",
+      "issues": [
+        "Target phrase missing: Plate Shop Foreman jobs in Malta"
+      ]
+    },
+    {
+      "title": "Administration Specialist",
+      "url": "https://outreachrecruitment.net/jobs/administration-specialist",
+      "target_keyword": "Administration Specialist jobs in Malta",
+      "issues": [
+        "Target phrase missing: Administration Specialist jobs in Malta"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "target_keyword": "Crew Concierge jobs in Malta",
+      "issues": [
+        "Target phrase missing: Crew Concierge jobs in Malta"
+      ]
+    },
+    {
+      "title": "Payables Finance Executive",
+      "url": "https://outreachrecruitment.net/jobs/payables-finance-executive",
+      "target_keyword": "Payables Finance Executive jobs in Malta",
+      "issues": [
+        "Target phrase missing: Payables Finance Executive jobs in Malta"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-mellieha",
+      "target_keyword": "Bartender jobs in Malta",
+      "issues": [
+        "Target phrase missing: Bartender jobs in Malta"
+      ]
+    },
+    {
+      "title": "Assistant Executive Housekeeper",
+      "url": "https://outreachrecruitment.net/jobs/assistant-executive-housekeeper",
+      "target_keyword": "Assistant Executive Housekeeper jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title"
+      ]
+    },
+    {
+      "title": "Fleet, Tools and Facility Manager",
+      "url": "https://outreachrecruitment.net/jobs/fleet-tools-facility-manager",
+      "target_keyword": "Fleet, Tools and Facility Manager jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Fleet, Tools and Facility Manager jobs in Malta"
+      ]
+    },
+    {
+      "title": "Server (Spanish Speaker)",
+      "url": "https://outreachrecruitment.net/jobs/server-spanish-speaker",
+      "target_keyword": "Server (Spanish Speaker) jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Server (Spanish Speaker) jobs in Malta"
+      ]
+    },
+    {
+      "title": "Assistance Co-ordinator",
+      "url": "https://outreachrecruitment.net/jobs/assistance-co-ordinator",
+      "target_keyword": "Assistance Co-ordinator jobs in Malta",
+      "issues": [
+        "Target phrase missing: Assistance Co-ordinator jobs in Malta"
+      ]
+    },
+    {
+      "title": "Customer Contact Agent",
+      "url": "https://outreachrecruitment.net/jobs/customer-contact-agent",
+      "target_keyword": "Customer Contact Agent jobs in Malta",
+      "issues": [
+        "Target phrase missing: Customer Contact Agent jobs in Malta"
+      ]
+    },
+    {
+      "title": "Summer Waiter - Mellieha",
+      "url": "https://outreachrecruitment.net/jobs/summer-waiter-mellieha",
+      "target_keyword": "Summer Waiter - Mellieha jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Summer Waiter - Mellieha jobs in Malta"
+      ]
+    },
+    {
+      "title": "HR Administration Officer",
+      "url": "https://outreachrecruitment.net/jobs/hr-administration-officer",
+      "target_keyword": "HR Administration Officer jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: HR Administration Officer jobs in Malta"
+      ]
+    },
+    {
+      "title": "Estimator",
+      "url": "https://outreachrecruitment.net/jobs/estimator",
+      "target_keyword": "Estimator jobs in Malta",
+      "issues": [
+        "Target phrase missing: Estimator jobs in Malta"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter",
+      "target_keyword": "Kitchen Porter jobs in Malta",
+      "issues": [
+        "Target phrase missing: Kitchen Porter jobs in Malta"
+      ]
+    },
+    {
+      "title": "Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/cleaner",
+      "target_keyword": "Cleaner jobs in Malta",
+      "issues": [
+        "Target phrase missing: Cleaner jobs in Malta"
+      ]
+    },
+    {
+      "title": "Runners",
+      "url": "https://outreachrecruitment.net/jobs/runners",
+      "target_keyword": "Runners jobs in Malta",
+      "issues": [
+        "Target phrase missing: Runners jobs in Malta"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista",
+      "target_keyword": "Barista jobs in Malta",
+      "issues": [
+        "Target phrase missing: Barista jobs in Malta"
+      ]
+    },
+    {
+      "title": "Food & Beverage Staff",
+      "url": "https://outreachrecruitment.net/jobs/food-beverage-staff",
+      "target_keyword": "Food & Beverage Staff jobs in Malta",
+      "issues": [
+        "Meta description does not include exact job title"
+      ]
+    },
+    {
+      "title": "Compliance Manager",
+      "url": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "target_keyword": "Compliance Manager jobs in Malta",
+      "issues": [
+        "Target phrase missing: Compliance Manager jobs in Malta"
+      ]
+    },
+    {
+      "title": "Hairdresser",
+      "url": "https://outreachrecruitment.net/jobs/hairdresser",
+      "target_keyword": "Hairdresser jobs in Malta",
+      "issues": [
+        "Target phrase missing: Hairdresser jobs in Malta"
+      ]
+    },
+    {
+      "title": "Head Chef",
+      "url": "https://outreachrecruitment.net/jobs/head-chef",
+      "target_keyword": "Head Chef jobs in Malta",
+      "issues": [
+        "Target phrase missing: Head Chef jobs in Malta"
+      ]
+    },
+    {
+      "title": "Hospitality Staff – Malta",
+      "url": "https://outreachrecruitment.net/jobs/hospitality-staff-malta",
+      "target_keyword": "Hospitality Staff – Malta jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Hospitality Staff – Malta jobs in Malta"
+      ]
+    },
+    {
+      "title": "Sous Chef",
+      "url": "https://outreachrecruitment.net/jobs/sous-chef",
+      "target_keyword": "Sous Chef jobs in Malta",
+      "issues": [
+        "Target phrase missing: Sous Chef jobs in Malta"
+      ]
+    },
+    {
+      "title": "Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/supervisor",
+      "target_keyword": "Supervisor jobs in Malta",
+      "issues": [
+        "Target phrase missing: Supervisor jobs in Malta"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer",
+      "target_keyword": "Structural Engineer jobs in Malta",
+      "issues": [
+        "Target phrase missing: Structural Engineer jobs in Malta"
+      ]
+    },
+    {
+      "title": "Customer Experience Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/customer-experience-supervisor",
+      "target_keyword": "Customer Experience Supervisor jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Target phrase missing: Customer Experience Supervisor jobs in Malta"
+      ]
+    },
+    {
+      "title": "Senior Quantity Estimator (M&E)",
+      "url": "https://outreachrecruitment.net/jobs/senior-quantity-estimator-me",
+      "target_keyword": "Senior Quantity Estimator (M&E) jobs in Malta",
+      "issues": [
+        "Meta title does not include exact job title",
+        "Meta description does not include exact job title",
+        "Target phrase missing: Senior Quantity Estimator (M&E) jobs in Malta"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis",
+      "target_keyword": "Commis jobs in Malta",
+      "issues": [
+        "Target phrase missing: Commis jobs in Malta"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender",
+      "target_keyword": "Bartender jobs in Malta",
+      "issues": [
+        "Target phrase missing: Bartender jobs in Malta"
+      ]
+    },
+    {
+      "title": "Wood Painting & Finishing Specialist",
+      "url": "https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist",
+      "target_keyword": "Wood Painting & Finishing Specialist jobs in Malta",
+      "issues": [
+        "Meta description does not include exact job title",
+        "Target phrase missing: Wood Painting & Finishing Specialist jobs in Malta"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-2",
+      "target_keyword": "Barista jobs in Malta",
+      "issues": [
+        "Target phrase missing: Barista jobs in Malta"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-3",
+      "target_keyword": "Kitchen Porter jobs in Malta",
+      "issues": [
+        "Target phrase missing: Kitchen Porter jobs in Malta"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-2",
+      "target_keyword": "Commis jobs in Malta",
+      "issues": [
+        "Target phrase missing: Commis jobs in Malta"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-3",
+      "target_keyword": "Barista jobs in Malta",
+      "issues": [
+        "Target phrase missing: Barista jobs in Malta"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer-2",
+      "target_keyword": "Structural Engineer jobs in Malta",
+      "issues": [
+        "Target phrase missing: Structural Engineer jobs in Malta"
+      ]
+    }
+  ],
+  "internal_link_issues": [
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Baristas",
+      "url": "https://outreachrecruitment.net/jobs/baristas",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Ship Chandler",
+      "url": "https://outreachrecruitment.net/jobs/ship-chandler",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Fleet Mechanical Superintendent",
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-3",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Talent Acquisition Specialist",
+      "url": "https://outreachrecruitment.net/jobs/talent-acquisition-specialist",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Welder / Burner / Pipe Fitter",
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Shipyard Sprayer / Painter",
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Trailer Drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Marine Turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-mellieha",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Assistant Executive Housekeeper",
+      "url": "https://outreachrecruitment.net/jobs/assistant-executive-housekeeper",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "QHSE Manager",
+      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Fleet, Tools and Facility Manager",
+      "url": "https://outreachrecruitment.net/jobs/fleet-tools-facility-manager",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "HR Administration Officer",
+      "url": "https://outreachrecruitment.net/jobs/hr-administration-officer",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Purchasing Officer",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-officer",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Estimator",
+      "url": "https://outreachrecruitment.net/jobs/estimator",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Compliance Manager",
+      "url": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Hairdresser",
+      "url": "https://outreachrecruitment.net/jobs/hairdresser",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Customer Experience Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/customer-experience-supervisor",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "Senior Quantity Estimator (M&E)",
+      "url": "https://outreachrecruitment.net/jobs/senior-quantity-estimator-me",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    }
+  ],
+  "content_quality_issues": [
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "word_count": 30,
+      "issues": [
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "word_count": 30,
+      "issues": [
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Storekeeper",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-2",
+      "word_count": 28,
+      "issues": [
+        "Job content is very short (28 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Cashier",
+      "url": "https://outreachrecruitment.net/jobs/cashier-2",
+      "word_count": 28,
+      "issues": [
+        "Job content is very short (28 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Baristas",
+      "url": "https://outreachrecruitment.net/jobs/baristas",
+      "word_count": 2827,
+      "issues": [
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Ship Chandler",
+      "url": "https://outreachrecruitment.net/jobs/ship-chandler",
+      "word_count": 2679,
+      "issues": [
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Fleet Mechanical Superintendent",
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent",
+      "word_count": 2819,
+      "issues": [
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-3",
+      "word_count": 2722,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Talent Acquisition Specialist",
+      "url": "https://outreachrecruitment.net/jobs/talent-acquisition-specialist",
+      "word_count": 2839,
+      "issues": [
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "word_count": 37,
+      "issues": [
+        "Job content is very short (37 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "HVAC Technician",
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Delivery Man",
+      "url": "https://outreachrecruitment.net/jobs/delivery-man",
+      "word_count": 30,
+      "issues": [
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Head of HVAC Technicians",
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "word_count": 33,
+      "issues": [
+        "Job content is very short (33 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "word_count": 31,
+      "issues": [
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "General Labourer",
+      "url": "https://outreachrecruitment.net/jobs/general-labourer",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Welder / Burner / Pipe Fitter",
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter",
+      "word_count": 33,
+      "issues": [
+        "Job content is very short (33 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Shipyard Sprayer / Painter",
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter",
+      "word_count": 31,
+      "issues": [
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Trailer Drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "word_count": 31,
+      "issues": [
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Marine Turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "word_count": 30,
+      "issues": [
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Marine Mechanical Foreman",
+      "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman",
+      "word_count": 31,
+      "issues": [
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "word_count": 32,
+      "issues": [
+        "Job content is very short (32 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Administration Specialist",
+      "url": "https://outreachrecruitment.net/jobs/administration-specialist",
+      "word_count": 29,
+      "issues": [
+        "Job content is very short (29 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "word_count": 30,
+      "issues": [
+        "Job content is very short (30 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Payables Finance Executive",
+      "url": "https://outreachrecruitment.net/jobs/payables-finance-executive",
+      "word_count": 31,
+      "issues": [
+        "Job content is very short (31 words)",
+        "Missing responsibilities section",
+        "Missing requirements section",
+        "Missing offer/benefits section",
+        "Missing strong apply CTA",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-mellieha",
+      "word_count": 2155,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Assistant Executive Housekeeper",
+      "url": "https://outreachrecruitment.net/jobs/assistant-executive-housekeeper",
+      "word_count": 2108,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "QHSE Manager",
+      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta",
+      "word_count": 2002,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Fleet, Tools and Facility Manager",
+      "url": "https://outreachrecruitment.net/jobs/fleet-tools-facility-manager",
+      "word_count": 2624,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Welder",
+      "url": "https://outreachrecruitment.net/jobs/welder",
+      "word_count": 2362,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Server (Spanish Speaker)",
+      "url": "https://outreachrecruitment.net/jobs/server-spanish-speaker",
+      "word_count": 2224,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Plant Technician",
+      "url": "https://outreachrecruitment.net/jobs/plant-technician",
+      "word_count": 2645,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Sales Office Coordinator",
+      "url": "https://outreachrecruitment.net/jobs/sales-office-coordinator",
+      "word_count": 2385,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Auditor Doctor",
+      "url": "https://outreachrecruitment.net/jobs/auditor-doctor",
+      "word_count": 2739,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Nurse Advisor",
+      "url": "https://outreachrecruitment.net/jobs/nurse-advisor",
+      "word_count": 2787,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Summer Waiter - Mellieha",
+      "url": "https://outreachrecruitment.net/jobs/summer-waiter-mellieha",
+      "word_count": 1937,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "HR Administration Officer",
+      "url": "https://outreachrecruitment.net/jobs/hr-administration-officer",
+      "word_count": 2435,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Purchasing Officer",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-officer",
+      "word_count": 2328,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Estimator",
+      "url": "https://outreachrecruitment.net/jobs/estimator",
+      "word_count": 2302,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter",
+      "word_count": 2022,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/cleaner",
+      "word_count": 2054,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Assistant Pizza Chef",
+      "url": "https://outreachrecruitment.net/jobs/assistant-pizza-chef",
+      "word_count": 2096,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Production Chef",
+      "url": "https://outreachrecruitment.net/jobs/production-chef",
+      "word_count": 2098,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Runners",
+      "url": "https://outreachrecruitment.net/jobs/runners",
+      "word_count": 1864,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista",
+      "word_count": 2136,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Food & Beverage Staff",
+      "url": "https://outreachrecruitment.net/jobs/food-beverage-staff",
+      "word_count": 2328,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Compliance Manager",
+      "url": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "word_count": 3159,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hairdresser",
+      "url": "https://outreachrecruitment.net/jobs/hairdresser",
+      "word_count": 1817,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Head Chef",
+      "url": "https://outreachrecruitment.net/jobs/head-chef",
+      "word_count": 3394,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Hospitality Staff – Malta",
+      "url": "https://outreachrecruitment.net/jobs/hospitality-staff-malta",
+      "word_count": 1861,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Driver / Runner / Washer",
+      "url": "https://outreachrecruitment.net/jobs/driver-runner-washer",
+      "word_count": 2273,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Level 2 Platform Ops Engineer",
+      "url": "https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer",
+      "word_count": 2919,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Sous Chef",
+      "url": "https://outreachrecruitment.net/jobs/sous-chef",
+      "word_count": 2492,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/supervisor",
+      "word_count": 1826,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Technical Systems Analyst",
+      "url": "https://outreachrecruitment.net/jobs/technical-systems-analyst",
+      "word_count": 2572,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer",
+      "word_count": 2120,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Customer Experience Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/customer-experience-supervisor",
+      "word_count": 2364,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Senior Quantity Estimator (M&E)",
+      "url": "https://outreachrecruitment.net/jobs/senior-quantity-estimator-me",
+      "word_count": 2413,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis",
+      "word_count": 1879,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender",
+      "word_count": 2014,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Front Office Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/front-office-supervisor",
+      "word_count": 2347,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-2",
+      "word_count": 2181,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-2",
+      "word_count": 1919,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-3",
+      "word_count": 2021,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-2",
+      "word_count": 1883,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-3",
+      "word_count": 2250,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer-2",
+      "word_count": 1953,
+      "issues": [
+        "Salary/baseSalary missing or not specific"
+      ]
+    }
+  ],
+  "category_ranking": [
+    {
+      "category": "Marine & Shipping",
+      "jobs": 11,
+      "average_score": 41.0,
+      "weak_jobs": 10
+    },
+    {
+      "category": "Retail",
+      "jobs": 2,
+      "average_score": 46.0,
+      "weak_jobs": 2
+    },
+    {
+      "category": "Logistics",
+      "jobs": 3,
+      "average_score": 56.7,
+      "weak_jobs": 2
+    },
+    {
+      "category": "Administration",
+      "jobs": 4,
+      "average_score": 62.0,
+      "weak_jobs": 3
+    },
+    {
+      "category": "Engineering & Maintenance",
+      "jobs": 11,
+      "average_score": 68.4,
+      "weak_jobs": 5
+    },
+    {
+      "category": "Finance & Accounting",
+      "jobs": 2,
+      "average_score": 72.0,
+      "weak_jobs": 1
+    },
+    {
+      "category": "HR & Recruitment",
+      "jobs": 2,
+      "average_score": 78.0,
+      "weak_jobs": 2
+    },
+    {
+      "category": "Marine",
+      "jobs": 2,
+      "average_score": 81.0,
+      "weak_jobs": 2
+    },
+    {
+      "category": "Hospitality",
+      "jobs": 13,
+      "average_score": 81.2,
+      "weak_jobs": 4
+    },
+    {
+      "category": "General",
+      "jobs": 19,
+      "average_score": 81.9,
+      "weak_jobs": 11
+    },
+    {
+      "category": "Hospitality & Hotel Jobs",
+      "jobs": 1,
+      "average_score": 82.0,
+      "weak_jobs": 1
+    },
+    {
+      "category": "Manufacturing Sector",
+      "jobs": 1,
+      "average_score": 91.0,
+      "weak_jobs": 0
+    },
+    {
+      "category": "Insurance",
+      "jobs": 2,
+      "average_score": 95.0,
+      "weak_jobs": 0
+    },
+    {
+      "category": "Healthcare",
+      "jobs": 1,
+      "average_score": 98.0,
+      "weak_jobs": 0
+    },
+    {
+      "category": "Sales",
+      "jobs": 1,
+      "average_score": 98.0,
+      "weak_jobs": 0
+    }
+  ],
+  "schema_eligibility": [
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-2",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Hostess",
+      "url": "https://outreachrecruitment.net/jobs/hostess-2",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Storekeeper",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-2",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Cashier",
+      "url": "https://outreachrecruitment.net/jobs/cashier-2",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Baristas",
+      "url": "https://outreachrecruitment.net/jobs/baristas",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Ship Chandler",
+      "url": "https://outreachrecruitment.net/jobs/ship-chandler",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Fleet Mechanical Superintendent",
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-3",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Talent Acquisition Specialist",
+      "url": "https://outreachrecruitment.net/jobs/talent-acquisition-specialist",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Bartender (Full and Part Time)",
+      "url": "https://outreachrecruitment.net/jobs/bartender-full-and-part-time",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "HVAC Technician",
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Delivery Man",
+      "url": "https://outreachrecruitment.net/jobs/delivery-man",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Head of HVAC Technicians",
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Driver License B",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "General Labourer",
+      "url": "https://outreachrecruitment.net/jobs/general-labourer",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Tank Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Welder / Burner / Pipe Fitter",
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Shipyard Sprayer / Painter",
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Marine Carpenter",
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Electronic Technician",
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Commercial Divers",
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Trailer Drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Purchasing Manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Quality Engineer",
+      "url": "https://outreachrecruitment.net/jobs/quality-engineer",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Marine Turner",
+      "url": "https://outreachrecruitment.net/jobs/marine-turner",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Marine Mechanical Foreman",
+      "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Plate Shop Foreman",
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Administration Specialist",
+      "url": "https://outreachrecruitment.net/jobs/administration-specialist",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Crew Concierge",
+      "url": "https://outreachrecruitment.net/jobs/crew-concierge",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Payables Finance Executive",
+      "url": "https://outreachrecruitment.net/jobs/payables-finance-executive",
+      "eligible": false,
+      "issues": [
+        "No JSON-LD schema found"
+      ]
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender-mellieha",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Assistant Executive Housekeeper",
+      "url": "https://outreachrecruitment.net/jobs/assistant-executive-housekeeper",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "QHSE Manager",
+      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Fleet, Tools and Facility Manager",
+      "url": "https://outreachrecruitment.net/jobs/fleet-tools-facility-manager",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Welder",
+      "url": "https://outreachrecruitment.net/jobs/welder",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Server (Spanish Speaker)",
+      "url": "https://outreachrecruitment.net/jobs/server-spanish-speaker",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Plant Technician",
+      "url": "https://outreachrecruitment.net/jobs/plant-technician",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Sales Office Coordinator",
+      "url": "https://outreachrecruitment.net/jobs/sales-office-coordinator",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Assistance Co-ordinator",
+      "url": "https://outreachrecruitment.net/jobs/assistance-co-ordinator",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Customer Contact Agent",
+      "url": "https://outreachrecruitment.net/jobs/customer-contact-agent",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Auditor Doctor",
+      "url": "https://outreachrecruitment.net/jobs/auditor-doctor",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Nurse Advisor",
+      "url": "https://outreachrecruitment.net/jobs/nurse-advisor",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Summer Waiter - Mellieha",
+      "url": "https://outreachrecruitment.net/jobs/summer-waiter-mellieha",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "HR Administration Officer",
+      "url": "https://outreachrecruitment.net/jobs/hr-administration-officer",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Purchasing Officer",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-officer",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Estimator",
+      "url": "https://outreachrecruitment.net/jobs/estimator",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Cleaner",
+      "url": "https://outreachrecruitment.net/jobs/cleaner",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Assistant Pizza Chef",
+      "url": "https://outreachrecruitment.net/jobs/assistant-pizza-chef",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Production Chef",
+      "url": "https://outreachrecruitment.net/jobs/production-chef",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Runners",
+      "url": "https://outreachrecruitment.net/jobs/runners",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Food & Beverage Staff",
+      "url": "https://outreachrecruitment.net/jobs/food-beverage-staff",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Compliance Manager",
+      "url": "https://outreachrecruitment.net/jobs/compliance-manager",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Hairdresser",
+      "url": "https://outreachrecruitment.net/jobs/hairdresser",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Head Chef",
+      "url": "https://outreachrecruitment.net/jobs/head-chef",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Hospitality Staff – Malta",
+      "url": "https://outreachrecruitment.net/jobs/hospitality-staff-malta",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Driver / Runner / Washer",
+      "url": "https://outreachrecruitment.net/jobs/driver-runner-washer",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Level 2 Platform Ops Engineer",
+      "url": "https://outreachrecruitment.net/jobs/level-2-platform-ops-engineer",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Sous Chef",
+      "url": "https://outreachrecruitment.net/jobs/sous-chef",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/supervisor",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Technical Systems Analyst",
+      "url": "https://outreachrecruitment.net/jobs/technical-systems-analyst",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Customer Experience Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/customer-experience-supervisor",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Senior Quantity Estimator (M&E)",
+      "url": "https://outreachrecruitment.net/jobs/senior-quantity-estimator-me",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Bartender",
+      "url": "https://outreachrecruitment.net/jobs/bartender",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Front Office Supervisor",
+      "url": "https://outreachrecruitment.net/jobs/front-office-supervisor",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Wood Painting & Finishing Specialist",
+      "url": "https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-2",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-2",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Kitchen Porter",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-porter-3",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Commis",
+      "url": "https://outreachrecruitment.net/jobs/commis-2",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Barista",
+      "url": "https://outreachrecruitment.net/jobs/barista-3",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Structural Engineer",
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer-2",
+      "eligible": true,
+      "issues": []
+    }
+  ],
+  "ranking_action_plan": [
+    "Fix 25 high-priority job page(s) below 70/100",
+    "Fix 59 job page(s) with keyword targeting gaps",
+    "Fix 32 job page(s) missing category-page internal links",
+    "Fix 72 job page(s) needing deeper content",
+    "Fix 25 job page(s) not fully eligible for JobPosting rich results",
+    "Fix 8 possible duplicate/cannibalization pair(s) to review"
+  ],
+  "gsc_url_inspection": [],
+  "gsc_search_performance": [],
+  "gsc_indexing_problems": [],
+  "gsc_canonical_conflicts": [],
+  "gsc_not_indexed_jobs": [],
+  "gsc_zero_impression_jobs": [],
+  "gsc_ranking_opportunities": [],
+  "gsc_query_match_issues": [],
+  "gsc_rich_result_issues": [],
+  "gsc_action_plan": [
+    "GSC skipped during dry run. Run with --with-gsc to test Search Console API."
+  ]
+}
