@@ -1,0 +1,17 @@
+.or-partner-carousel { overflow: hidden; }
+.or-partner-carousel .marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+  animation: or-partner-carousel var(--or-partner-carousel-duration, 20s) linear infinite;
+}
+.or-partner-carousel .marquee-list { flex: 0 0 auto; }
+.or-partner-carousel:hover .marquee-track { animation-play-state: paused; }
+@keyframes or-partner-carousel {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .or-partner-carousel .marquee-track { animation-play-state: paused; }
+}
