@@ -1,4 +1,5 @@
 title,url,problem
+Junior Revenue & Accounts Analyst,https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst,URL is unknown to Google
 Night Hospitality Agent,https://outreachrecruitment.net/jobs/night-hospitality-agent,Indexed page has zero impressions in selected GSC window
 Public Area Cleaner,https://outreachrecruitment.net/jobs/public-area-cleaner,Indexed page has zero impressions in selected GSC window
 Head Chef,https://outreachrecruitment.net/jobs/head-chef-steakhouse,Indexed page has zero impressions in selected GSC window
@@ -8,10 +9,10 @@ Sales Agent,https://outreachrecruitment.net/jobs/sales-agent,Indexed page has ze
 Bartender,https://outreachrecruitment.net/jobs/bartender-2,URL is unknown to Google
 Hostess,https://outreachrecruitment.net/jobs/hostess-2,Indexed page has zero impressions in selected GSC window
 Maintenance Technician,https://outreachrecruitment.net/jobs/maintenance-technician-2,URL is unknown to Google
-Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,URL is unknown to Google
+Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,Indexed page has zero impressions in selected GSC window
 Baristas,https://outreachrecruitment.net/jobs/baristas,Indexed page has zero impressions in selected GSC window
 Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,URL is unknown to Google
-Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,URL Inspection API error: Network error: The read operation timed out
+Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,Alternate page with proper canonical tag
 Commis,https://outreachrecruitment.net/jobs/commis-3,Indexed page has zero impressions in selected GSC window
 Customer Care Team Leader,https://outreachrecruitment.net/jobs/customer-care-team-leader,Indexed page has zero impressions in selected GSC window
 Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,Target keyword not visible in top Search Console queries
@@ -35,6 +36,7 @@ Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,URL is un
 "Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-and-facility-manager,URL is unknown to Google
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,URL is unknown to Google
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,Indexed page has zero impressions in selected GSC window
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,Google-selected canonical differs from user canonical
 Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,Indexed page has zero impressions in selected GSC window
 Project Manager,https://outreachrecruitment.net/jobs/project-manager-2,URL is unknown to Google
 Account Manager,https://outreachrecruitment.net/jobs/account-manager-2,Page with redirect
@@ -83,7 +85,6 @@ Sales Shift Manager,https://outreachrecruitment.net/jobs/sales-shift-manager,Ind
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Rich results verdict: FAIL
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Average position worse than 20 (27.4)
 Sous Chef,https://outreachrecruitment.net/jobs/sous-chef,Target keyword not visible in top Search Console queries
-Supervisor,https://outreachrecruitment.net/jobs/supervisor,URL Inspection API error: Network error: The read operation timed out
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,Target keyword not visible in top Search Console queries
 Customer Operations Associate,https://outreachrecruitment.net/jobs/customer-operations-associate,Indexed page has zero impressions in selected GSC window
 Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,Target keyword not visible in top Search Console queries
@@ -91,13 +92,14 @@ Customer Experience Supervisor,https://outreachrecruitment.net/jobs/customer-exp
 Senior Quantity Estimator (M&E),https://outreachrecruitment.net/jobs/senior-quantity-estimator-me,URL is unknown to Google
 Sales Representative in Renewables,https://outreachrecruitment.net/jobs/sales-representative-in-renewables,Rich results verdict: FAIL
 Sales Representative in Renewables,https://outreachrecruitment.net/jobs/sales-representative-in-renewables,Indexed page has zero impressions in selected GSC window
-HVAC Project Manager,https://outreachrecruitment.net/jobs/hvac-project-manager,URL Inspection API error: Network error: The read operation timed out
+HVAC Project Manager,https://outreachrecruitment.net/jobs/hvac-project-manager,Indexed page has zero impressions in selected GSC window
 HVAC Sales Representative,https://outreachrecruitment.net/jobs/hvac-sales-representative,Alternate page with proper canonical tag
-Maintenance Technician - Electrical Licence A or B),https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b,URL Inspection API error: Network error: The read operation timed out
-Sales Executive,https://outreachrecruitment.net/jobs/sales-executive,URL Inspection API error: Network error: The read operation timed out
+Maintenance Technician - Electrical Licence A or B),https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b,Rich results verdict: FAIL
+Maintenance Technician - Electrical Licence A or B),https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b,Indexed page has zero impressions in selected GSC window
+Sales Executive,https://outreachrecruitment.net/jobs/sales-executive,Alternate page with proper canonical tag
 Head Chef - Maltese Cuisine,https://outreachrecruitment.net/jobs/head-chef-maltese-cuisine,Indexed page has zero impressions in selected GSC window
 IT Support Executive,https://outreachrecruitment.net/jobs/it-support-executive,Indexed page has zero impressions in selected GSC window
-Commis,https://outreachrecruitment.net/jobs/commis,URL Inspection API error: Network error: The read operation timed out
+Commis,https://outreachrecruitment.net/jobs/commis,Indexed page has zero impressions in selected GSC window
 Labourer Mechanic,https://outreachrecruitment.net/jobs/labourer-mechanic,Alternate page with proper canonical tag
 Electrician Installer,https://outreachrecruitment.net/jobs/electrician-installer,Target keyword not visible in top Search Console queries
 Plumbers,https://outreachrecruitment.net/jobs/plumbers,Indexed page has zero impressions in selected GSC window
@@ -152,27 +154,27 @@ Bartender in Gozo,https://outreachrecruitment.net/jobs/bartender-in-gozo,Indexed
 Bottling Operator,https://outreachrecruitment.net/jobs/bottling-operator,Indexed page has zero impressions in selected GSC window
 Restaurant Supervisor in Gozo,https://outreachrecruitment.net/jobs/restaurant-supervisor-in-gozo,Indexed page has zero impressions in selected GSC window
 Motor Vehicle Mechanic/Technician,https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician,Indexed page has zero impressions in selected GSC window
-Automotive Parts Personnel,https://outreachrecruitment.net/jobs/automotive-parts-personnel,URL Inspection API error: Network error: The read operation timed out
+Automotive Parts Personnel,https://outreachrecruitment.net/jobs/automotive-parts-personnel,Indexed page has zero impressions in selected GSC window
 Real Estate Agents,https://outreachrecruitment.net/jobs/real-estate-agents,Indexed page has zero impressions in selected GSC window
-Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,Average position worse than 20 (40.0)
+Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,Average position worse than 20 (40.4)
 Corporate Insurance Associate,https://outreachrecruitment.net/jobs/corporate-insurance-associate,Target keyword not visible in top Search Console queries
 Wood Painting & Finishing Specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist,Target keyword not visible in top Search Console queries
 Delivery Driver - Malta C License,https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license,Indexed page has zero impressions in selected GSC window
 Health Claims Associate,https://outreachrecruitment.net/jobs/health-claims-associate,Indexed page has zero impressions in selected GSC window
 Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,Average position worse than 20 (42.0)
 Delivery Drivers - C1 Malta License,https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license,Target keyword not visible in top Search Console queries
-Auditor,https://outreachrecruitment.net/jobs/auditor,Average position worse than 20 (24.8)
+Auditor,https://outreachrecruitment.net/jobs/auditor,Average position worse than 20 (24.7)
 Auditor,https://outreachrecruitment.net/jobs/auditor,Target keyword not visible in top Search Console queries
 Junior Sales Assistant - Maltese Speaking,https://outreachrecruitment.net/jobs/junior-sales-assistant-maltese-speaking,Indexed page has zero impressions in selected GSC window
 Room Attendents,https://outreachrecruitment.net/jobs/room-attendents,Indexed page has zero impressions in selected GSC window
 Kitchen Helpers in Gozo,https://outreachrecruitment.net/jobs/kitchen-helpers-in-gozo,Indexed page has zero impressions in selected GSC window
 Lead Microsoft 365 Architect Modern Work & Security,https://outreachrecruitment.net/jobs/lead-microsoft-365-architect-modern-work-security,Indexed page has zero impressions in selected GSC window
-Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Average position worse than 20 (34.7)
+Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Average position worse than 20 (34.8)
 Finance Associate,https://outreachrecruitment.net/jobs/finance-associate,Target keyword not visible in top Search Console queries
 Skilled Carpenters,https://outreachrecruitment.net/jobs/skilled-carpenters,Target keyword not visible in top Search Console queries
 Delivery Person with Driving Licence C1,https://outreachrecruitment.net/jobs/delivery-person-with-driving-licence-c1,Alternate page with proper canonical tag
 Real Estate Managers,https://outreachrecruitment.net/jobs/real-estate-managers,Indexed page has zero impressions in selected GSC window
-Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Average position worse than 20 (34.8)
+Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Average position worse than 20 (34.6)
 Commercial Insurance Associate,https://outreachrecruitment.net/jobs/commercial-insurance-associate,Target keyword not visible in top Search Console queries
 Servers in Gozo,https://outreachrecruitment.net/jobs/servers-in-gozo,Indexed page has zero impressions in selected GSC window
 Aluminum Install and Fabrication Foreman,https://outreachrecruitment.net/jobs/aluminum-install-and-fabrication-foreman,Target keyword not visible in top Search Console queries
