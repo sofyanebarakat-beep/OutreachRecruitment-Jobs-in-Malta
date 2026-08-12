@@ -652,7 +652,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a520c1f5-c269-4afd-b42b-bc8bf1a35b72/apply",
     "keywords": "sales shift manager sales st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "head-of-spa",
@@ -1359,7 +1360,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6ed9c120-2d24-4858-b017-fdffd08025c5/apply",
     "keywords": "building services maintenance helper engineering & maintenance paola, malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "client-accountant",
@@ -1791,7 +1793,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/aea7e979-a834-4991-beca-e9336e751049/apply",
     "keywords": "italian/swedish sales team leader sales st. julian, malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "italianswedish-retention-team-leader",
@@ -1806,7 +1809,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/039f0982-54cf-4b06-8f4f-ec77d145c5cb/apply",
     "keywords": "italian/swedish retention team leader general st. julian, malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "italian-media-buyer",
@@ -1821,7 +1825,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f8760079-f20a-4711-96f4-db04df017688/apply",
     "keywords": "italian media buyer martech digital marketing media buyer malta bilingual italian english ppc affiliate campaign manager st julian",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "sales-assistant-manager",
@@ -2332,7 +2337,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/4135b4e3-3234-43a7-a97c-d4e21579a3d5/apply",
     "keywords": "delivery persons logistics malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "bar-attendand",
@@ -3410,7 +3416,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a/apply",
     "keywords": "driver license b general żebbuġ, malta",
     "featured": false,
-    "lastmod": "2026-07-24"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "general-labourer",
@@ -4048,7 +4055,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a/apply",
     "keywords": "driver (licence b) construction żebbuġ, malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-08-12",
+    "status": "expired"
   },
   {
     "slug": "fleet-tools-facility-manager",
@@ -4345,5 +4353,95 @@
     "keywords": "steel shutter installer engineering & maintenance santa venera, malta",
     "featured": true,
     "lastmod": "2026-08-11"
+  },
+  {
+    "slug": "payment-clearing-specialist",
+    "title": "Payment Clearing Specialist",
+    "category": "Finance & Accounting",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2ea3dca0-8a81-4327-9ef5-1742cf39f363/apply",
+    "keywords": "payment clearing specialist finance & accounting st. julian's, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
+  },
+  {
+    "slug": "commis-chef",
+    "title": "Commis Chef",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/20fe9ee3-fd41-49f6-aa0c-b23c21f01f60/apply",
+    "keywords": "commis chef hospitality st. julian's, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
+  },
+  {
+    "slug": "housekeeping-staff",
+    "title": "Housekeeping Staff",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/311f1fe2-8b9e-401e-99a4-04265e190124/apply",
+    "keywords": "housekeeping staff room attendant hospitality st. julian's, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
+  },
+  {
+    "slug": "site-coordinator",
+    "title": "Site Coordinator",
+    "category": "Engineering & Maintenance",
+    "location": "Mosta, Malta",
+    "location_slug": "mosta, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/741472ce-6c89-4e1c-b87c-90b3b2dcc7b6/apply",
+    "keywords": "site coordinator engineering & maintenance mosta, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
+  },
+  {
+    "slug": "housekeeper-in-malta",
+    "title": "Housekeeper in Malta",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e52ae216-afd8-42f5-950c-4ed936d6d97c/apply",
+    "keywords": "housekeeper hospitality st. julian's, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
+  },
+  {
+    "slug": "junior-revenue-accounts-analyst",
+    "title": "Junior Revenue & Accounts Analyst",
+    "category": "Finance & Accounting",
+    "location": "Luqa, Malta",
+    "location_slug": "luqa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-08-10",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/45602549-000a-4ffb-8987-dbd48d3f136a/apply",
+    "keywords": "junior revenue accounts analyst finance & accounting luqa, malta",
+    "featured": true,
+    "lastmod": "2026-08-12"
   }
 ]
