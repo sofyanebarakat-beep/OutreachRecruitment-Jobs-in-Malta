@@ -120,7 +120,8 @@ def call_model(prompt: str, model: str) -> str:
             return text
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")
-            retryable = exc.code == 429 or exc.code >= 500
+            # Treat 410 (Gone) as retryable — GitHub Models API brownout/maintenance
+            retryable = exc.code in (410, 429) or exc.code >= 500
             if not retryable or attempt == MAX_RETRIES:
                 raise SystemExit(f"{provider} API error {exc.code}: {detail[:1000]}") from exc
             wait = delay
