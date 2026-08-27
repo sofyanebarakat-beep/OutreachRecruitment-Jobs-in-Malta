@@ -275,27 +275,44 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         rf"\g<1>{html_esc(title)}\2", html, count=1
     )
 
-    # ── 7a. h1 without aria-label (hero section) ─────────────────────────────
+    # ── 7a. Visible page headline (job-header-card) ──────────────────────────
+    # Template drifted from <h1 class="heading-h1"> to
+    # <h1 class="heading-h1 job-header-title"> — the old regex was a silent no-op
+    # and every generated page kept the literal base-template title ("Plumber").
     html = re.sub(
-        r'<h1 class="heading-h1">([^<]*)<',
-        f'<h1 class="heading-h1">{html_esc(title)}<',
+        r'<h1 class="heading-h1 job-header-title">[^<]*</h1>',
+        f'<h1 class="heading-h1 job-header-title">{html_esc(title)}</h1>',
         html, count=1
     )
 
-    # ── 7b. h1 with aria-label (CTA section) ─────────────────────────────────
+    # ── 7b. h1 with aria-label (apply-panel header) ──────────────────────────
     html = re.sub(
         r'<h1 class="heading-h1" aria-label="[^"]*">[^<]*<',
         f'<h1 class="heading-h1" aria-label="{html_esc(title)}">{html_esc(title)}<',
         html, count=1
     )
 
-    # ── 8. Location caption (hero section) ────────────────────────────────────
+    # ── 8. job-header-card meta row (category / salary / emp-type / location) ─
+    # 4 <span class="job-meta-item"> chips: index 0 = category, 2 = employment
+    # type, 3 = location. Index 1 ("Negotiable") is left untouched on purpose —
+    # salary is out of scope and every existing rich page keeps it.
+    # NOTE: this whole block was previously hardcoded from the base template
+    # (e.g. "Engineering & Maintenance / Negotiable / Full-Time / Mellieħa").
+    def _fix_header_meta(block_match):
+        idx = [0]
+        repls = {0: cat_esc, 2: html_esc(emp_type), 3: loc_esc}
+        def _one(mm):
+            i = idx[0]
+            idx[0] += 1
+            return mm.group(1) + repls.get(i, mm.group(2)) + mm.group(3)
+        return re.sub(r'(</svg>)([^<]*)(</span>)', _one, block_match.group(0))
     html = re.sub(
-        r'(class="caption blue-caption">)[^<]*(</div>)',
-        rf"\g<1>{loc_esc}\2", html, count=1
+        r'<div class="job-header-meta">.*?</div><div class="job-header-actions">',
+        _fix_header_meta, html, count=1, flags=re.S
     )
-    # ── 8b. Location caption (apply-panel header — 2nd occurrence, right after
-    #        the aria-label h1 set in step 7b) ────────────────────────────────
+
+    # ── 8b. Location caption (apply-panel header — right after the aria-label
+    #        h1 set in step 7b) ───────────────────────────────────────────────
     html = re.sub(
         rf'(aria-label="{re.escape(html_esc(title))}">{re.escape(html_esc(title))}</h1><div class="caption blue-caption">)[^<]*(</div>)',
         rf"\g<1>{loc_esc}\2", html, count=1
@@ -364,11 +381,27 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         html, count=1, flags=re.S
     )
 
-    # ── 13. CTA heading ──────────────────────────────────────────────────────
+    # ── 13. CTA heading (old "Ready to apply for this <em>X</em>" — harmless
+    #        no-op on the current template) + base-template leftovers that the
+    #        generator never touched: success-panel confirmation, saved-jobs
+    #        JOB_REF, LinkedIn/WhatsApp share links, and the page CSS comment. ─
     html = re.sub(
         r"(apply for this <em>)[^<]*(</em>)",
         rf"\g<1>{html_esc(title)}\2", html, count=1
     )
+    html = re.sub(
+        r'(Your application for <em>)[^<]*(</em>)',
+        rf"\g<1>{html_esc(title)}\2", html, count=1
+    )
+    html = re.sub(r'(var JOB_REF = ")[^"]*(")', rf"\g<1>{slug}\2", html, count=1)
+    html = re.sub(r'(/\* )Plumber( page)', rf"\g<1>{title}\2", html, count=1)
+    from urllib.parse import quote as _urlquote
+    html = re.sub(
+        r'(share-offsite/\?url=)[^"]*(")',
+        rf'\g<1>{_urlquote(page_url, safe="")}\2', html, count=1
+    )
+    _wa_text = _urlquote(f"{title} role in {city}, Malta - {page_url}", safe="")
+    html = re.sub(r'(wa\.me/\?text=)[^"]*(")', rf"\g<1>{_wa_text}\2", html, count=1)
 
     # ── 15. JobPosting JSON-LD schema ─────────────────────────────────────────
     html = re.sub(r'"title":\s*"[^"]*"', f'"title": "{title}"', html, count=1)
@@ -422,19 +455,18 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         crumbs.append((hub_name, f"/{hub_slug}"))
     crumbs.append((title, f"/jobs/{slug}"))
 
+    # Visible breadcrumb — match the current template's <nav class="job-breadcrumb">
+    # structure (no inline styles), as used by the correctly-migrated rich pages.
     nav_parts = []
     for i, (name, href) in enumerate(crumbs):
         if i == len(crumbs) - 1:
-            nav_parts.append(f'<span aria-current="page" style="opacity:0.9;">{html_esc(name)}</span>')
+            nav_parts.append(f'<span aria-current="page">{html_esc(name)}</span>')
         else:
             nav_parts.append(
-                f'<a href="{href}" style="color:inherit;text-decoration:none;">{html_esc(name)}</a>'
-                f'<span aria-hidden="true">›</span>'
+                f'<a href="{href}">{html_esc(name)}</a><span aria-hidden="true">›</span>'
             )
     nav_html = (
-        '<nav aria-label="Breadcrumb" style="text-align:center;margin-bottom:0.5rem;">'
-        '<div style="display:inline-flex;align-items:center;gap:0.3rem;flex-wrap:wrap;'
-        'justify-content:center;font-size:0.75rem;opacity:0.6;">' + "".join(nav_parts) + "</div></nav>"
+        '<nav aria-label="Breadcrumb" class="job-breadcrumb">' + "".join(nav_parts) + "</nav>"
     )
     html = re.sub(
         r'<nav aria-label="Breadcrumb".*?</nav>',
@@ -462,7 +494,8 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
     )
 
     # ── 18. Similar Jobs — same category first, then same city, then latest ──
-    pool = [j for j in other_jobs if j.get("slug") != slug and j.get("status") != "expired"]
+    pool = [j for j in other_jobs
+            if j.get("slug") != slug and j.get("status") not in ("expired", "closed")]
     same_category = [j for j in pool if j.get("category") == category]
     same_city = [j for j in pool if j.get("location", "").split(",")[0].strip().lower() == city.lower()]
     seen_slugs: set[str] = set()
@@ -477,25 +510,51 @@ def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
         if len(similar) >= 4:
             break
 
+    # SVG glyphs copied verbatim from the base template's similar-job cards.
+    _SIM_PIN = ('<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                '<path d="M10 18s6-5.686 6-10.5A6 6 0 0 0 4 7.5C4 12.314 10 18 10 18Z" '
+                'stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path>'
+                '<circle cx="10" cy="7.5" r="2" stroke="currentColor" stroke-width="1.3"></circle></svg>')
+    _SIM_CLOCK = ('<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                  '<circle cx="10" cy="10" r="7.3" stroke="currentColor" stroke-width="1.3"></circle>'
+                  '<path d="M10 5.8V10l3 2" stroke="currentColor" stroke-width="1.3" '
+                  'stroke-linecap="round" stroke-linejoin="round"></path></svg>')
+    _SIM_ARROW = ('<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+                  '<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" '
+                  'stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>')
     similar_cards = []
     for j in similar:
+        j_slug = j["slug"]
+        j_title = html_esc(j["title"])
+        j_cat = html_esc(j.get("category", "General"))
         j_loc = html_esc(j.get("location", "Malta"))
         j_emp = html_esc(j.get("employment_type", "Full-Time"))
         similar_cards.append(
-            f'<a href="/jobs/{j["slug"]}" style="display:flex;flex-direction:column;padding:0.875rem 1rem;'
-            'border:1px solid #e2e8f0;border-radius:8px;text-decoration:none;color:inherit;background:#fff;'
-            f'transition:box-shadow .15s;"><span style="font-weight:600;color:#1a1a1a;font-size:0.95rem;">'
-            f'{html_esc(j["title"])}</span><span style="font-size:0.8rem;color:#666;margin-top:0.2rem;">'
-            f'\U0001F4CD {j_loc} &nbsp;·&nbsp; {j_emp}</span></a>'
+            f'<div class="similar-job-card"><a class="similar-job-card-link" href="/jobs/{j_slug}" '
+            f'aria-label="View {j_title} job details"></a><div class="similar-job-card-top">'
+            f'<img class="similar-job-logo" src="/assets/job-card-logo.jpg" alt=""/>'
+            f'<span class="similar-job-tag">{j_cat}</span></div>'
+            f'<span class="similar-job-title">{j_title}</span>'
+            f'<span class="similar-job-fields"><span class="similar-job-field">{_SIM_PIN}{j_loc}</span>'
+            f'<span class="similar-job-field">{_SIM_CLOCK}{j_emp}</span></span>'
+            f'<a class="similar-job-apply" href="/jobs/{j_slug}">View Job{_SIM_ARROW}</a></div>'
         )
-    similar_html = "\n".join(similar_cards) if similar_cards else (
-        '<p style="font-size:0.85rem;color:#666;">No similar roles open right now — '
-        '<a href="/jobs" style="color:#0070f3;">browse all jobs</a>.</p>'
-    )
+    similar_html = "".join(similar_cards)
+
+    # Heading "Similar Jobs in {Category}"
     html = re.sub(
-        r'(<section id="similar-jobs"[^>]*>\s*<h2[^>]*>Similar Jobs in Malta</h2>\s*<div style="display:grid;gap:0\.625rem;">)(.*?)(</div>)',
-        lambda m: m.group(1) + similar_html + m.group(3), html, count=1, flags=re.S
+        r'(<div class="similar-jobs-head"><h2 class="heading-h4">Similar Jobs in )[^<]*(</h2>)',
+        lambda m: m.group(1) + cat_esc + m.group(2), html, count=1
     )
+    # Carousel track — swap the base template's hardcoded cards for job-specific
+    # ones. (The old regex targeted a #similar-jobs <div style="display:grid"> that
+    # no longer exists, so every generated page shipped Plumber's similar jobs.)
+    if similar_cards:
+        html = re.sub(
+            r'(<div class="similar-jobs-track" id="similar-jobs-track">).*?'
+            r'(</div></div></div></div></section></main>)',
+            lambda m: m.group(1) + similar_html + m.group(2), html, count=1, flags=re.S
+        )
 
     return html
 
