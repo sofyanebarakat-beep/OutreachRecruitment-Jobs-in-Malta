@@ -27,6 +27,7 @@ jobs:
       - name: Generate article drafts
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           AI_MODEL: openai/gpt-4.1-mini
           COUNT: ${{ inputs.count || '5' }}
         run: python3 "SEO Emp and Candidates/automation/generate_daily_posts.py" --count "$COUNT"
@@ -77,7 +78,7 @@ jobs:
         run: |
           SKIPPED="$(echo "$PUBLISH_SUMMARY" | python3 -c 'import json,sys; print(json.load(sys.stdin)["skipped"])')"
           if [ "$SKIPPED" != "0" ]; then
-            echo "::warning::$SKIPPED draft(s) failed to build into a live page today and were left as Markdown only in SEO Emp and Candidates/generated/daily/ — see the 'Build and publish live pages' step log above for why."
+            echo "::warning::$SKIPPED draft(s) failed to build into a live page today and were left as Markdown only in SEO Emp and Candidates/generated/daily/ — see the 'Build and publish live [...]
           fi
 
       # Loud, visible signal if a run fails — so this can't silently stop for
