@@ -1,8 +1,11 @@
 name: Ping Google Sitemap
 
+# DISABLED on push (2026-08-27). Google retired the /ping?sitemap= endpoint in
+# 2023 and Bing's equivalent is deprecated too, so this did nothing useful while
+# still spending Actions minutes on every push. Manual-only now; real indexing
+# goes through the Google Indexing API in tools/ and Search Console.
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   ping:
