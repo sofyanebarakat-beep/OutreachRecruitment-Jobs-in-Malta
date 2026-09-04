@@ -1,7 +1,7 @@
 # SEO Package — Senior HR Coordinator (Spanish-Speaking)
 Generated 2026-09-04 · Outreach Recruitment · template: `jobs/client-accountant` (rich)
 
-> **Source of truth:** everything below is taken from the careers-page.com listing (`c7bdb3fe-4afc-40a9-b97c-55fc39332ffa`). The source **does not publish a salary**, so no `baseSalary` was added to the schema and the page shows "Competitive, based on experience" — per the site rule *"never hidden salary for SEO"*. If you have the real band, send it and I'll add it.
+> **Source of truth:** the responsibilities, requirements and benefits below are taken from the careers-page.com listing (`c7bdb3fe-4afc-40a9-b97c-55fc39332ffa`). The listing itself does not show a salary; the client-confirmed range **€25,000–€25,600 / year gross** was supplied by the user on 2026-09-04 and is now published on the page and in `baseSalary`.
 
 | | Value |
 |---|---|
@@ -9,7 +9,7 @@ Generated 2026-09-04 · Outreach Recruitment · template: `jobs/client-accountan
 | Source | careers-page.com `c7bdb3fe-4afc-40a9-b97c-55fc39332ffa` |
 | Location | Luqa, Malta |
 | Category | HR & Recruitment (client sector: Engineering) |
-| Salary (visible) | Not disclosed → "Competitive, based on experience"; **no `baseSalary` in schema** |
+| Salary (visible) | **€25,000 – €25,600 / year gross** — shown in the highlights, sidebar, "What We Offer" and FAQ, and in `baseSalary` (EUR, minValue 25000 / maxValue 25600, YEAR) |
 | Employment type | Full-Time · Direct Job · On-Site |
 | Shift pattern | Not stated → `workHours` = "Full-time, ~40 hours per week, Monday to Friday" |
 | Candidate origin | Residents in Malta |
@@ -21,7 +21,7 @@ Generated 2026-09-04 · Outreach Recruitment · template: `jobs/client-accountan
 
 ## 1 — SEO Package
 - **Meta title (58):** `Senior HR Coordinator (Spanish-Speaking) Job in Luqa, Malta` *(brand suffix dropped — full role name + "| Outreach Recruitment" exceeds 60 chars; H1 and OG carry the full title)*
-- **Meta description (152):** `Apply for a Senior HR Coordinator (Spanish-speaking) job in Luqa, Malta with a large engineering organisation. English essential, Spanish an asset. Apply now.`
+- **Meta description (143):** `Apply for a Senior HR Coordinator (Spanish-speaking) job in Luqa, Malta. €25,000–€25,600/year with a large engineering organisation. Apply now.`
 - **URL slug:** `senior-hr-coordinator-spanish-speaking`
 - **Canonical:** `https://outreachrecruitment.net/jobs/senior-hr-coordinator-spanish-speaking`
 - **Primary keyword:** senior HR coordinator jobs Malta
@@ -39,15 +39,15 @@ Generated 2026-09-04 · Outreach Recruitment · template: `jobs/client-accountan
   - B: `Senior HR Coordinator – Spanish Speaking | Luqa, Malta`
   - C: `HR Coordinator (Spanish/English) Job in Luqa, Malta – Engineering`
   - D: `Senior HR Coordinator Wanted – Luqa, Malta | Outreach Recruitment`
-- **Google Jobs notes:** `datePosted` 2026-09-04, `validThrough` 2029-12-30, `directApply: true`, **no `baseSalary`** (not on source), `applicantLocationRequirements` = Malta, `workHours` descriptive, one `JobPosting` per page, description mirrors visible copy.
+- **Google Jobs notes:** `datePosted` 2026-09-04, `validThrough` 2029-12-30, `directApply: true`, `baseSalary` EUR 25,000–25,600 / YEAR, `applicantLocationRequirements` = Malta, `workHours` descriptive, one `JobPosting` per page, description mirrors visible copy.
 - **Voice search:** "Are there HR coordinator jobs in Malta?" · "What HR jobs need Spanish in Malta?" · "How much HR experience do I need for a coordinator role in Malta?" · "HR jobs near Malta airport" · "What does a senior HR coordinator do?"
 
 ## 2 — Google Jobs Package
-Emitted in the `JobPosting` JSON-LD on the page: `title`, `description` (full), `datePosted`, `dateModified` (2026-09-04), `validThrough` (2029-12-30), `employmentType` FULL_TIME, `workHours` ("Full-time position, approximately 40 hours per week, Monday to Friday"), `occupationalCategory` `13-1071.00 Human Resources Specialists`, `industry` "Engineering, Human Resources", `identifier` (PropertyValue → value `senior-hr-coordinator-spanish-speaking`, name "Outreach Recruitment Ltd"), `hiringOrganization` (Outreach Recruitment Ltd, sameAs, logo SVG), `jobLocation` (Luqa / Malta / MT), `applicantLocationRequirements` Country = Malta, `educationRequirements` ("A-Level standard or equivalent"), `experienceRequirements` ("Minimum two years… Human Resources role"), `qualifications`, `responsibilities`, `skills`, `jobBenefits`, `directApply: true`, `applicationContact`.
+Emitted in the `JobPosting` JSON-LD on the page: `title`, `description` (full), `datePosted`, `dateModified` (2026-09-04), `validThrough` (2029-12-30), `employmentType` FULL_TIME, `workHours` ("Full-time position, approximately 40 hours per week, Monday to Friday"), `occupationalCategory` `13-1071.00 Human Resources Specialists`, `industry` "Engineering, Human Resources", `identifier` (PropertyValue → value `senior-hr-coordinator-spanish-speaking`, name "Outreach Recruitment Ltd"), `hiringOrganization` (Outreach Recruitment Ltd, sameAs, logo SVG), `jobLocation` (Luqa / Malta / MT), `applicantLocationRequirements` Country = Malta, `baseSalary` (EUR, minValue 25000 / maxValue 25600, unitText YEAR), `educationRequirements` ("A-Level standard or equivalent"), `experienceRequirements` ("Minimum two years… Human Resources role"), `qualifications`, `responsibilities`, `skills`, `jobBenefits`, `directApply: true`, `applicationContact`.
 - **BreadcrumbList:** Home → Jobs in Malta → Senior HR Coordinator - Spanish Speaking *(3-level — HR & Recruitment has no hub page; see §6)*
 - **FAQPage:** 6 Q&A, matches the visible FAQ block exactly.
 - **dateModified:** set to today (2026-09-04).
-- **Omitted:** `baseSalary` (not disclosed by employer), `jobImmediateStart` (not stated), `jobLocationType` (on-site).
+- **Omitted:** `jobImmediateStart` (not stated), `jobLocationType` (on-site).
 
 ## 3 — AI Search Package
 - **Direct answer (55 words):** Outreach Recruitment is hiring a Senior HR Coordinator (Spanish-speaking) in Luqa, Malta for an established organisation with large engineering operations. The role is the main HR contact for the engineering department — coordinating recruitment, onboarding, HR administration and compliance, employee relations, training and reporting. It needs a minimum of two years' HR experience and strong English; Spanish or Maltese is an advantage. Full-time, on-site. Open to candidates residing in Malta.
@@ -59,7 +59,7 @@ Emitted in the `JobPosting` JSON-LD on the page: `title`, `description` (full), 
 | Position | Senior HR Coordinator - Spanish Speaking |
 | Industry | Human Resources (client sector: Engineering) |
 | Location | Luqa, Malta |
-| Salary | Not disclosed — competitive, based on experience |
+| Salary | €25,000 – €25,600 / year gross |
 | Job Type | Direct Job |
 | Target Location | Residents in Malta |
 | Employment Type | Full-Time, On-Site |
@@ -79,7 +79,7 @@ Emitted in the `JobPosting` JSON-LD on the page: `title`, `description` (full), 
 Order on page: Highlights (HR & Recruitment, "Competitive, based on experience", Full-Time, Luqa, On-Site, Direct Job, Residents in Malta) → Badges (New · Direct Job · Full-Time · **Career Growth Opportunities**) → intro teaser → About the Role (3 paragraphs) → Key Responsibilities (14) → Requirements (13) → What's on Offer (5) → Skills Required (6) → Preferred Qualifications (3) → Languages (English required; Spanish strong advantage; Maltese advantage) → Career Growth Opportunities → About the Company (anonymised) → Location (Luqa sentence) → Interview Process → About Outreach Recruitment → How To Apply (apply link, **no reference number shown**) → GDPR + equal-opportunities note (template apply flow) → FAQ (6, auto-collapsing accordion) → Similar Jobs (HR Executive, HR Administration Officer, Learning & Development Executive – Hybrid, Legal Intern) → "Browse all Jobs in Malta" link.
 
 ## 5 — JobPosting JSON-LD
-Live on the page. **Fields flagged as omitted:** `baseSalary` — the employer does not publish a figure; per the site rule salary is never fabricated for SEO. `jobImmediateStart` (not stated). `jobLocationType` (role is on-site). `incentiveCompensation` / `estimatedSalary` (no data).
+Live on the page. **Fields flagged as omitted:** `jobImmediateStart` (not stated). `jobLocationType` (role is on-site). `incentiveCompensation` / `estimatedSalary` (no data). `baseSalary` is present (EUR 25,000–25,600 / YEAR, client-confirmed range).
 
 ## 6 — Internal Linking Plan
 - **Category hub:** none — **HR & Recruitment has no hub page.** Step skipped (noted). Consider creating `hr-jobs-in-malta` / `human-resources-jobs-in-malta` — there are now 4 open HR roles (HR Executive, HR Administration Officer, L&D Executive, this one) plus this page to anchor it.
@@ -116,6 +116,7 @@ Role: Senior HR Coordinator / HR Coordinator / HR Generalist / HR Officer. Locat
 - ✅ `sitemaps/sitemap-jobs.xml` — new URL added, `/jobs` lastmod → 2026-09-04; sitemap indexes refreshed.
 - ✅ `jobs/index.html` ItemList JSON-LD — inserted at position 1; `numberOfItems` 53 → 54.
 - ✅ Freshness text unchanged ("Browse 225+ current job vacancies in Malta — updated September 2026" — still accurate at 228 cards).
+- ✅ Salary €25,000–€25,600/year gross added (2026-09-04) to highlights, sidebar, "What We Offer", FAQ and `baseSalary`.
 - ✅ In-page "Browse all Jobs in Malta" link retained from template ("← Back to Jobs" + sidebar "View all open jobs").
 - ▶️ **Run after push:** `python3 tools/google_indexing_api.py update --slug senior-hr-coordinator-spanish-speaking`
 
@@ -146,12 +147,12 @@ Role: Senior HR Coordinator / HR Coordinator / HR Generalist / HR Officer. Locat
 - **Spanish keywords** (relevant given the role): coordinador de recursos humanos Malta · trabajo RRHH Malta · coordinador HR hispanohablante Malta · empleo recursos humanos Luqa Malta · trabajo HR ingeniería Malta
 
 ## 16 — SEO Quality Checklist
-✅ Title ≤60 · ✅ Meta description ~152 · ✅ One visible H1 (full role name; second H1 is the hidden apply-panel header, same as template) · ✅ Canonical · ✅ Valid JobPosting / BreadcrumbList / FAQPage JSON-LD · ✅ Visible FAQ = FAQPage schema (6) · ✅ Salary handled honestly ("Competitive, based on experience", no fabricated `baseSalary`) · ✅ Apply URL in 3 places · ✅ Breadcrumb (3-level — no HR hub) · ✅ Similar Jobs (4) · ✅ Neighbourhood sentence (Luqa) · ✅ Career Growth Opportunities badge (source offers "career development opportunities") · ✅ No invented visa / relocation / urgency / language bonus · ✅ Reference number & deadline kept private · ✅ OG + Twitter tags · ✅ FAQ accordion auto-closes other answers · ⚠️ Orphan risk — build an HR hub / add engineering-hub link (see §6).
+✅ Title ≤60 · ✅ Meta description ~152 · ✅ One visible H1 (full role name; second H1 is the hidden apply-panel header, same as template) · ✅ Canonical · ✅ Valid JobPosting / BreadcrumbList / FAQPage JSON-LD · ✅ Visible FAQ = FAQPage schema (6) · ✅ Salary published (€25,000–€25,600/year gross, client-confirmed) in highlights + `baseSalary` · ✅ Apply URL in 3 places · ✅ Breadcrumb (3-level — no HR hub) · ✅ Similar Jobs (4) · ✅ Neighbourhood sentence (Luqa) · ✅ Career Growth Opportunities badge (source offers "career development opportunities") · ✅ No invented visa / relocation / urgency / language bonus · ✅ Reference number & deadline kept private · ✅ OG + Twitter tags · ✅ FAQ accordion auto-closes other answers · ⚠️ Orphan risk — build an HR hub / add engineering-hub link (see §6).
 
 ---
 
 ## What was NOT done / needs your call
-1. **Salary** — no figure on the source, so none published (your rule + Google Jobs policy). Send the band if you want it added.
+1. **Salary** — ✅ done: €25,000–€25,600/year gross added on 2026-09-04.
 2. **HR hub** — HR & Recruitment has no category hub; this page (and 3 other open HR roles) would benefit from an `hr-jobs-in-malta` hub. It's lightly orphaned without one.
 3. **Spanish content block** — a short Spanish-language paragraph on the page could capture Spanish-speaking candidates already in Malta searching in their language.
 4. **Dedicated OG image** — reuses the shared HR/admin art; commission `senior-hr-coordinator-spanish-speaking-job-malta.jpg` (1200×630) for best CTR.
