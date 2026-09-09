@@ -21,6 +21,7 @@ Email config — set in tools/sync_config.json or as environment variables:
 from __future__ import annotations
 
 import csv
+import http.client
 import io
 import json
 import os
@@ -61,7 +62,13 @@ DELAY = 0.8  # seconds between requests
 STATE_PATH = ROOT / "tools" / "sync_state.json"
 DASHBOARD_PATH = ROOT / "sync-dashboard.html"
 GOOGLE_INDEXING_LOG_PATH = REPORT_DIR / "google_indexing_history.csv"
-AUTO_CLOSE_THRESHOLD = 3   # consecutive checks before auto-closing an extra job
+AUTO_CLOSE_THRESHOLD = 3   # consecutive checks before flagging an extra job for close
+# Master switch — the agent must NEVER close/expire a job on its own. The site
+# owner manages open/closed state manually against the live ATS (the "extra jobs"
+# list is unreliable when the ATS scrape is rate-limited — it has closed live
+# roles before, including brand-new ones). Step 5c only *reports* candidates now.
+# Flip to True only if the owner explicitly asks for auto-close back.
+AUTO_CLOSE_ENABLED = False
 DUPLICATE_THRESHOLD = 0.72  # similarity score to flag potential duplicate titles
 
 
@@ -178,10 +185,14 @@ def fetch(url: str, timeout: int = 25, retries: int = 4) -> tuple[str, int]:
                 time.sleep(10 * (attempt + 1))
                 continue
             raise
-        except URLError as exc:
+        except (URLError, OSError, http.client.HTTPException) as exc:
+            # URLError covers connect-time failures; OSError / HTTPException catch
+            # read-time failures urllib does not wrap (socket timeout mid-read,
+            # ConnectionResetError, RemoteDisconnected, IncompleteRead) — these
+            # are transient and were the main source of false "HTTP 0" alerts.
             last_error = exc
             if attempt < retries - 1:
-                time.sleep(2 * (attempt + 1))
+                time.sleep(3 * (attempt + 1))
                 continue
             raise
     raise last_error or RuntimeError(f"Could not fetch {url}")
@@ -195,8 +206,38 @@ def fetch_head(url: str, timeout: int = 15) -> int:
             return resp.status
     except HTTPError as exc:
         return exc.code
-    except URLError:
+    except (URLError, OSError, http.client.HTTPException):
         return 0
+
+
+def reverify_url(url: str, attempts: int = 3, pause: int = 6) -> int:
+    """Second-opinion reachability check for a URL that failed the main fetch.
+
+    Tries the URL and its trailing-slash variant with a full GET (following
+    redirects) and a real pause between tries. Returns 200 if any attempt is
+    reachable (2xx/3xx), 404 if a 404 is seen, else 0. Used to stop transient
+    network blips from being reported as broken pages.
+    """
+    candidates = [url] + ([url + "/"] if not url.endswith("/") else [])
+    best = 0
+    for cand in candidates:
+        for i in range(attempts):
+            try:
+                with urlopen(Request(cand, headers=HEADERS), timeout=30) as resp:
+                    if resp.status and resp.status < 400:
+                        return 200
+                    best = resp.status or best
+            except HTTPError as exc:
+                if exc.code and exc.code < 400:
+                    return 200
+                if exc.code == 404:
+                    return 404
+                best = exc.code or best
+            except (URLError, OSError, http.client.HTTPException):
+                pass
+            if i < attempts - 1:
+                time.sleep(pause)
+    return best
 
 
 def strip_tags(html: str) -> str:
@@ -526,6 +567,24 @@ def run_seo_checks(website_jobs: list[WebsiteJob]) -> None:
                 issues.append("noindex")
         print("OK" if not issues else " | ".join(issues))
         time.sleep(DELAY)
+
+    # Second pass — any page that errored (status 0) gets re-checked after a
+    # cool-down, then a final independent reachability probe. A page that is
+    # actually up (the usual case) clears here and never reaches the broken list.
+    stragglers = [j for j in website_jobs if j.status == 0 and j.url]
+    if stragglers:
+        print(f"\n[SEO] {len(stragglers)} page(s) errored — cooling down 20s then re-checking …")
+        time.sleep(20)
+        for job in stragglers:
+            check_job_page_seo(job)
+            if job.status == 0:
+                probe = reverify_url(job.url)
+                if probe == 200:
+                    job.status = 200
+                elif probe == 404:
+                    job.status = 404
+            print(f"  re-check {job.slug}: {job.status or 'ERR'}")
+            time.sleep(DELAY)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -3391,31 +3450,62 @@ def main() -> int:
     if report.schema_issues:
         print(f"\n  Schema issues: {len(report.schema_issues)} job(s)")
 
+    # Step 5b0: De-flake broken links. A real 404 is reported immediately. A
+    # network error (status 0) must recur on two consecutive runs before it is
+    # treated as broken — otherwise a single transient blip against GitHub Pages
+    # or the ATS fires a false "🚨 URGENT" alert (it did, repeatedly: the flagged
+    # pages changed every run and all resolved to HTTP 200 on manual check).
+    if not no_seo:
+        streak = sync_state.setdefault("broken_streak", {})
+        ok_urls = {j.url for j in website_jobs if j.status == 200}
+        for u in list(streak):
+            if u in ok_urls:
+                del streak[u]
+        confirmed = []
+        for bl in report.broken_links:
+            if bl["status"] == 404:
+                confirmed.append(bl)
+                streak.pop(bl["url"], None)
+                continue
+            streak[bl["url"]] = streak.get(bl["url"], 0) + 1
+            if streak[bl["url"]] >= 2:
+                confirmed.append(bl)
+            else:
+                print(f"  (transient) {bl['url']} — errored once, not alerting; will confirm next run")
+        report.broken_links = confirmed
+
     # Step 5b: Urgent 404 alert — send immediately, don't wait for scheduled report
     if report.broken_links and not no_email:
         print(f"\n  🚨 {len(report.broken_links)} broken page(s) — sending urgent 404 alert …")
         send_urgent_404_alert(report.broken_links)
 
-    # Step 5c: Auto-close check — update state, close jobs that hit threshold
+    # Step 5c: Track how long each job has been "extra" — but DO NOT close.
+    # Closing is the owner's manual decision (AUTO_CLOSE_ENABLED master switch).
     if not dry_run:
         jobs_to_close = update_auto_close_state(report.extra_jobs, sync_state)
         if jobs_to_close:
-            print(f"\n  [Auto-Close] {len(jobs_to_close)} job(s) hit {AUTO_CLOSE_THRESHOLD}-check threshold:")
-            for title in jobs_to_close:
-                print(f"    Closing: {title} …", end=" ", flush=True)
-                closed_slug = close_job_in_registry(title)
-                if closed_slug:
-                    report.auto_closed_this_run.append(title)
-                    report.auto_closed_jobs.append({
-                        "title": title,
-                        "slug": closed_slug,
-                        "url": f"{PUBLIC_BASE}/jobs/{closed_slug}",
-                    })
-                    print("updated in registry ✓")
-                else:
-                    print("not found in registry")
-            if report.auto_closed_this_run:
-                print(f"  Run python3 tools/update_jobs_listing.py && git add -A && git commit -m 'Auto-close filled jobs' && git push origin main")
+            if AUTO_CLOSE_ENABLED:
+                print(f"\n  [Auto-Close] {len(jobs_to_close)} job(s) hit {AUTO_CLOSE_THRESHOLD}-check threshold:")
+                for title in jobs_to_close:
+                    print(f"    Closing: {title} …", end=" ", flush=True)
+                    closed_slug = close_job_in_registry(title)
+                    if closed_slug:
+                        report.auto_closed_this_run.append(title)
+                        report.auto_closed_jobs.append({
+                            "title": title,
+                            "slug": closed_slug,
+                            "url": f"{PUBLIC_BASE}/jobs/{closed_slug}",
+                        })
+                        print("updated in registry ✓")
+                    else:
+                        print("not found in registry")
+                if report.auto_closed_this_run:
+                    print(f"  Run python3 tools/update_jobs_listing.py && git add -A && git commit -m 'Auto-close filled jobs' && git push origin main")
+            else:
+                print(f"\n  [Auto-Close DISABLED] {len(jobs_to_close)} job(s) have been 'extra' for "
+                      f"{AUTO_CLOSE_THRESHOLD}+ runs — review and close manually if genuinely filled:")
+                for title in jobs_to_close:
+                    print(f"    - {title}")
         save_sync_state(sync_state)
         print(f"  State saved — tracking {len(sync_state.get('consecutive_extra', {}))} extra job(s)")
 
