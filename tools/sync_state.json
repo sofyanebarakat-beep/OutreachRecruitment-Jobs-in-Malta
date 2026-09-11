@@ -1,4 +1,14 @@
 {
-  "consecutive_extra": {},
-  "last_run": "2026-09-09"
+  "consecutive_extra": {
+    "Senior HR Coordinator - Spanish Speaking": 1,
+    "Front Office Supervisor": 1,
+    "Front Desk Agent": 1,
+    "Hostess": 1,
+    "Deli Counter Assistant / Salumeria Specialist": 1,
+    "Baristas": 1,
+    "Assistant Executive Housekeeper": 1,
+    "Application Developer (Drupal)": 1
+  },
+  "last_run": "2026-09-11",
+  "broken_streak": {}
 }
