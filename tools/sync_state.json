@@ -1,14 +1,17 @@
 {
   "consecutive_extra": {
-    "Senior HR Coordinator - Spanish Speaking": 1,
-    "Front Office Supervisor": 1,
-    "Front Desk Agent": 1,
-    "Hostess": 1,
-    "Deli Counter Assistant / Salumeria Specialist": 1,
-    "Baristas": 1,
-    "Assistant Executive Housekeeper": 1,
-    "Application Developer (Drupal)": 1
+    "Senior HR Coordinator - Spanish Speaking": 4,
+    "Front Office Supervisor": 4,
+    "Front Desk Agent": 4,
+    "Hostess": 4,
+    "Deli Counter Assistant / Salumeria Specialist": 4,
+    "Baristas": 4,
+    "Assistant Executive Housekeeper": 4,
+    "Application Developer (Drupal)": 4,
+    "Kitchen Porter": 3,
+    "Food & Beverage Staff": 3,
+    "Pool Attendants": 3
   },
-  "last_run": "2026-09-11",
+  "last_run": "2026-09-14",
   "broken_streak": {}
 }
