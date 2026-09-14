@@ -1,5 +1,20 @@
 [
   {
+    "slug": "front-office-agent",
+    "title": "Front Office Agent",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-09-14",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c476604a-42ab-4253-91de-7e663cb484a8/apply",
+    "keywords": "front office agent front desk agent hotel receptionist st julians malta guest services opera pms",
+    "featured": true,
+    "lastmod": "2026-09-14"
+  },
+  {
     "slug": "head-of-spa-2",
     "title": "Head of Spa",
     "category": "Wellness",
@@ -2098,22 +2113,6 @@
     "keywords": "logistics officer logistics mosta, malta",
     "featured": false,
     "lastmod": "2026-08-27"
-  },
-  {
-    "slug": "front-office-agent",
-    "title": "Front Office Agent",
-    "category": "Administration",
-    "location": "St. Julian, Malta",
-    "location_slug": "st. julian, malta",
-    "employment_type": "Full-Time",
-    "work_mode": "On-Site",
-    "date": "2026-06-09",
-    "valid_through": "2026-08-03",
-    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/4ad528d5-10df-4340-8f96-1d43120eafaf/apply",
-    "keywords": "front office agent administration st. julian, malta",
-    "featured": false,
-    "lastmod": "2026-08-04",
-    "status": "expired"
   },
   {
     "slug": "sommeliers-junior-sommeliers",

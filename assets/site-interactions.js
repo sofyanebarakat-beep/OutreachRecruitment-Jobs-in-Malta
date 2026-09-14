@@ -249,7 +249,15 @@
       var top = item.querySelector('.faq-item-top');
       if (!top) return;
       top.addEventListener('click', function () {
-        item.classList.toggle('or-open');
+        var willOpen = !item.classList.contains('or-open');
+        var group = item.closest('.faq-list') || item.parentElement;
+        if (group) {
+          all('.faq-item', group).forEach(function (sibling) {
+            if (sibling !== item) sibling.classList.remove('or-open', 'is-open');
+          });
+        }
+        item.classList.toggle('or-open', willOpen);
+        item.classList.toggle('is-open', willOpen);
       });
     });
   }
