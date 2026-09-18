@@ -3583,13 +3583,12 @@
     "location_slug": "żebbuġ, malta",
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
-    "date": "2026-07-01",
+    "date": "2026-09-18",
     "valid_through": "2030-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a/apply",
-    "keywords": "driver license b general żebbuġ, malta",
-    "featured": false,
-    "lastmod": "2026-08-12",
-    "status": "expired"
+    "keywords": "driver license b driver logistics żebbuġ, malta construction",
+    "featured": true,
+    "lastmod": "2026-09-18"
   },
   {
     "slug": "general-labourer",
@@ -4769,5 +4768,20 @@
     "keywords": "heavy equipment mechanic engineering & maintenance żejtun, malta heavy equipment mechanic engineering & maintenance ejtun malta jobs in malta",
     "featured": false,
     "lastmod": "2026-08-27"
+  },
+  {
+    "slug": "forklift-operator",
+    "title": "Forklift Operator",
+    "category": "Logistics",
+    "location": "Żebbuġ, Malta",
+    "location_slug": "żebbuġ, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-09-18",
+    "valid_through": "2030-12-31",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6fa5fcfd-1bca-4efc-a910-ffbe9eabbac7/apply",
+    "keywords": "forklift operator warehouse logistics żebbuġ, malta",
+    "featured": true,
+    "lastmod": "2026-09-18"
   }
 ]
