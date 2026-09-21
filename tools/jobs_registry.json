@@ -4767,7 +4767,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/76fb6e10-9cff-48df-b669-297f8a4de1a4/apply",
     "keywords": "heavy equipment mechanic engineering & maintenance żejtun, malta heavy equipment mechanic engineering & maintenance ejtun malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-09-21"
   },
   {
     "slug": "forklift-operator",
@@ -4783,5 +4783,35 @@
     "keywords": "forklift operator warehouse logistics żebbuġ, malta",
     "featured": true,
     "lastmod": "2026-09-18"
+  },
+  {
+    "slug": "head-chef-in-gozo",
+    "title": "Head Chef in Gozo",
+    "category": "Hospitality",
+    "location": "Marsalforn, Gozo, Malta",
+    "location_slug": "marsalforn, gozo, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-09-21",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/41f598ba-97f3-4ac6-b5fa-c585dd6fc5bf/apply",
+    "keywords": "head chef in gozo hospitality marsalforn gozo malta gastropub chef",
+    "featured": true,
+    "lastmod": "2026-09-21"
+  },
+  {
+    "slug": "storekeeper-zebbug",
+    "title": "Storekeeper",
+    "category": "Logistics",
+    "location": "Żebbuġ, Malta",
+    "location_slug": "żebbuġ, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-09-21",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0094a7ce-72a7-44e6-8cd1-0ba1321bb783/apply",
+    "keywords": "storekeeper warehouse stock management logistics żebbuġ malta",
+    "featured": true,
+    "lastmod": "2026-09-21"
   }
 ]
