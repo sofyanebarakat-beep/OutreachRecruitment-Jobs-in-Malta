@@ -1,0 +1,69 @@
+{
+    "generated_at": "2026-09-22T08:00:00",
+    "data_source_note": "Careers platform inaccessible (403 Forbidden via proxy). Careers data from 2026-09-21 baseline.",
+    "careers_count_advertised": 157,
+    "careers_count_scraped": 0,
+    "careers_data_date": "2026-09-21",
+    "website_count": 191,
+    "sync_score": null,
+    "resolved_since_yesterday": [
+        "Head Chef in Gozo",
+        "Storekeeper"
+    ],
+    "missing_jobs_unconfirmed": [
+        "Chefs de Partie",
+        "Heavy equipment mech"
+    ],
+    "title_mismatches_carried": [
+        {
+            "careers_title": "Senior HR Coordinador - Spanish Speaking",
+            "website_title": "Senior HR Coordinator - Spanish Speaking",
+            "similarity": 0.97,
+            "action": "no action needed — same job, typo on careers platform"
+        },
+        {
+            "careers_title": "Application Developer (Drupal) - Hybrid",
+            "website_title": "Application Developer (Drupal)",
+            "similarity": 0.86,
+            "action": "review — may be distinct job"
+        }
+    ],
+    "extra_jobs": [
+        {"title": "Senior HR Coordinator - Spanish Speaking", "location": "Luqa, Malta", "days_extra": 12, "note": "Has fuzzy match on careers — review before closing"},
+        {"title": "Front Office Supervisor", "location": "St. Julian's, Malta", "days_extra": 12, "note": ""},
+        {"title": "Front Desk Agent", "location": "St. Julian's, Malta", "days_extra": 12, "note": ""},
+        {"title": "Hostess", "location": "St. Julian's, Malta", "days_extra": 12, "note": ""},
+        {"title": "Deli Counter Assistant / Salumeria Specialist", "location": "Birkirkara, Malta", "days_extra": 12, "note": ""},
+        {"title": "Baristas", "location": "St. Julian's, Malta", "days_extra": 12, "note": ""},
+        {"title": "Assistant Executive Housekeeper", "location": "St. Julian's, Malta", "days_extra": 12, "note": ""},
+        {"title": "Application Developer (Drupal)", "location": "Valletta, Malta", "days_extra": 12, "note": "Has fuzzy match on careers — review before closing"},
+        {"title": "Kitchen Porter", "location": "Msida, Malta", "days_extra": 11, "note": ""},
+        {"title": "Food & Beverage Staff", "location": "St. Julian's, Malta", "days_extra": 11, "note": ""},
+        {"title": "Pool Attendants", "location": "St. Julian's, Malta", "days_extra": 11, "note": ""},
+        {"title": "Associate Tax Advisor", "location": "Msida, Malta", "days_extra": 8, "note": ""},
+        {"title": "Sales Executive B2B", "location": "Birkirkara, Malta", "days_extra": 7, "note": ""},
+        {"title": "Front Office Assistant", "location": "Mellieħa, Malta", "days_extra": 5, "note": ""},
+        {"title": "Showroom Sales Executive", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Sales Engineer", "location": "Mosta, Malta", "days_extra": 5, "note": ""},
+        {"title": "Builders and Shutterers", "location": "Qormi, Malta", "days_extra": 5, "note": ""},
+        {"title": "Driver - Malta C License", "location": "Qormi, Malta", "days_extra": 5, "note": ""},
+        {"title": "Barber", "location": "Paola, Malta", "days_extra": 5, "note": ""},
+        {"title": "Lead Azure Infrastructure Architect", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Bartender in Gozo", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Restaurant Supervisor in Gozo", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Real Estate Agents", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Kitchen Helpers in Gozo", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Lead Microsoft 365 Architect  Modern Work & Security", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Real Estate Managers", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Servers in Gozo", "location": "Malta", "days_extra": 5, "note": ""},
+        {"title": "Waiters", "location": "Valletta, Malta", "days_extra": 4, "note": ""},
+        {"title": "Barista", "location": "Mellieħa, Malta", "days_extra": 5, "note": ""},
+        {"title": "Project Manager - Construction", "location": "Mosta, Malta", "days_extra": 4, "note": ""}
+    ],
+    "platform_error": "EGRESS_BLOCKED (403 Forbidden) — outreach-recruitment-agency.careers-page.com unreachable via proxy",
+    "action_required": [
+        "Unblock careers platform domain in egress proxy to resume full sync",
+        "Review and add 'Chefs de Partie' and 'Heavy equipment mech' once platform accessible",
+        "Review 'Application Developer (Drupal)' and 'Senior HR Coordinator' before closing"
+    ]
+}
