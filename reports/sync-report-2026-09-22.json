@@ -10,10 +10,8 @@
         "Head Chef in Gozo",
         "Storekeeper"
     ],
-    "missing_jobs_unconfirmed": [
-        "Chefs de Partie",
-        "Heavy equipment mech"
-    ],
+    "missing_jobs_unconfirmed": [],
+    "missing_jobs_resolved_note": "Chefs de Partie matches existing Chef de Partie pages; Heavy equipment mech matches existing Heavy Equipment Mechanic pages. All 157 careers jobs have website coverage.",
     "title_mismatches_carried": [
         {
             "careers_title": "Senior HR Coordinador - Spanish Speaking",
@@ -60,10 +58,20 @@
         {"title": "Barista", "location": "Mellieħa, Malta", "days_extra": 5, "note": ""},
         {"title": "Project Manager - Construction", "location": "Mosta, Malta", "days_extra": 4, "note": ""}
     ],
-    "platform_error": "EGRESS_BLOCKED (403 Forbidden) — outreach-recruitment-agency.careers-page.com unreachable via proxy",
+    "platform_error": "EGRESS_BLOCKED (403 Forbidden) — outreach-recruitment-agency.careers-page.com unreachable via proxy. List reconstructed from local repository.",
+    "location_flag": {
+        "title": "Storekeeper",
+        "careers_location": "Birkirkara",
+        "careers_uuid": "d36ec63f-6c1e-46b9-bf56-9e56c6f0bfc8",
+        "website_location": "Żebbuġ",
+        "website_uuid": "0094a7ce-72a7-44e6-8cd1-0ba1321bb783",
+        "note": "Verify if these are 2 separate positions or a location error on the new website page"
+    },
     "action_required": [
         "Unblock careers platform domain in egress proxy to resume full sync",
-        "Review and add 'Chefs de Partie' and 'Heavy equipment mech' once platform accessible",
-        "Review 'Application Developer (Drupal)' and 'Senior HR Coordinator' before closing"
+        "Process 28 confirmed CLOSE items",
+        "Review 'Application Developer (Drupal)' before closing — may match hybrid role",
+        "Do NOT close 'Senior HR Coordinator - Spanish Speaking' — careers has same job with typo",
+        "Verify Storekeeper location discrepancy (Birkirkara vs Żebbuġ)"
     ]
 }
