@@ -342,6 +342,11 @@ def main() -> None:
     update_jobs_page(current_jobs, len(open_jobs))  # shows closed cards in grid too
     update_jobs_sitemap(open_jobs, today)   # don't index closed pages in sitemap
     update_sitemap_indexes(today)
+    try:
+        import update_construction_hub
+        update_construction_hub.main()
+    except Exception as exc:  # hub refresh must never block the main listing update
+        print(f"  WARNING: construction hub not updated: {exc}")
     print("\nDone. Run: git add -A && git commit -m 'Update job listings' && git push origin main")
 
 

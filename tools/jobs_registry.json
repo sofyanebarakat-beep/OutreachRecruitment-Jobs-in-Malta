@@ -2739,17 +2739,17 @@
   {
     "slug": "wood-painting-finishing-specialist",
     "title": "Wood Painting & Finishing Specialist",
-    "category": "Manufacturing Sector",
+    "category": "Construction",
     "location": "San Ġwann, Malta",
     "location_slug": "san ġwann, malta",
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/d071e3f7-0e29-472e-bbb7-298393069639/apply",
-    "keywords": "wood painting &amp; finishing specialist manufacturing sector san ġwann, malta",
-    "featured": false,
-    "lastmod": "2026-08-27"
+    "keywords": "wood painting finishing specialist construction san ġwann malta spray painter wood finisher varnishing lacquering",
+    "featured": true,
+    "lastmod": "2026-09-29"
   },
   {
     "slug": "delivery-driver-malta-c-license",
@@ -2904,17 +2904,17 @@
   {
     "slug": "skilled-carpenters",
     "title": "Skilled Carpenters",
-    "category": "General",
-    "location": "Malta",
-    "location_slug": "malta",
+    "category": "Construction",
+    "location": "Żebbuġ, Malta",
+    "location_slug": "żebbuġ, malta",
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/65c6fe4b-2b76-475a-b20b-b412f571301e/apply",
-    "keywords": "skilled carpenters general malta",
-    "featured": false,
-    "lastmod": "2026-08-27"
+    "keywords": "skilled carpenters carpenter joiner joinery construction żebbuġ malta furniture stairways flooring timber",
+    "featured": true,
+    "lastmod": "2026-09-29"
   },
   {
     "slug": "delivery-person-with-driving-licence-c1",
@@ -4843,5 +4843,20 @@
     "keywords": "mini bus driver licence d license d bus driver passenger transport logistics sliema malta",
     "featured": true,
     "lastmod": "2026-09-28"
+  },
+  {
+    "slug": "gypsum-installers",
+    "title": "Gypsum Installers",
+    "category": "Construction",
+    "location": "Tarxien, Malta",
+    "location_slug": "tarxien, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-09-29",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/fa126d1f-f139-4c10-9b55-e99519b69edb/apply",
+    "keywords": "gypsum installers gypsum installer drywall partitions ceilings plasterboard construction tarxien malta",
+    "featured": true,
+    "lastmod": "2026-09-29"
   }
 ]
