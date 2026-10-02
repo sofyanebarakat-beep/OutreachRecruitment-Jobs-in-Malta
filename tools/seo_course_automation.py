@@ -320,7 +320,10 @@ def main() -> int:
         try: ga=pull_ga4(property_id); result["checks"]["ga4"]={"ok":True,"days":len(ga),"property_id":property_id}
         except Exception as exc: result["checks"]["ga4"]={"ok":False,"error":str(exc)}; result["warnings"].append(str(exc))
     else: result["checks"]["ga4"]={"ok":False,"error":"GA4_PROPERTY_ID is not configured"}
-    for row in gsc["daily"]: row.update(ga.get(row["date"],{}))
+    for row in gsc["daily"]:
+        row.update(ga.get(row["date"],{}))
+        for metric in ("organic_users","applications","employer_leads","ai_referrals"):
+            row.setdefault(metric,None)
     audit=[]
     if not args.no_audit:
         audit,_,_=audit_site(); result["checks"]["audit"]={"ok":True,"issues":len(audit)}

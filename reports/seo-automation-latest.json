@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T14:40:20.138273+02:00",
+  "generated_at": "2026-10-02T15:17:28.871816+02:00",
   "checks": {
     "gsc": {
       "ok": true,
@@ -9,8 +9,9 @@
       "pages": 468
     },
     "ga4": {
-      "ok": false,
-      "error": "GA4_PROPERTY_ID is not configured"
+      "ok": true,
+      "days": 6,
+      "property_id": "350506159"
     },
     "audit": {
       "ok": true,
@@ -25,14 +26,12 @@
       "rows": 116
     },
     "experiments": {
-      "new": 500
+      "new": 0
     },
     "supabase": {
       "ok": true,
       "alerts": 17
     }
   },
-  "warnings": [
-    "Opportunity table unavailable; rerun admin_schema.sql. Supabase upsert seo_opportunities 400: {'code': 'PGRST102', 'details': None, 'hint': None, 'message': 'All object keys must match'}"
-  ]
+  "warnings": []
 }
