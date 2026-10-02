@@ -279,6 +279,7 @@
         { k: "explanation", l: "Why it matters", t: "text", wide: true, hide: true },
         { k: "recommended_action", l: "Recommended action", t: "text", wide: true, hide: true },
       ],
+      computed: [{ l: "Score", f: (r) => r.impact && r.effort ? Math.round((+r.impact * 20) / Math.max(1, +r.effort)) : null, cls: (v) => v >= 40 ? "up" : v >= 20 ? "flat" : "down" }],
       sortRank: { priority: { Critical: 0, High: 1, Medium: 2, Low: 3 } },
     },
     seo_evidence: {
@@ -712,7 +713,7 @@
       ["seo_opportunities", "Opportunity inbox", counts.seo_opportunities, "Prioritised real-data practice ideas"],
       ["seo_evidence", "Evidence locker", counts.seo_evidence, "Proof saved from practical work"],
     ];
-    view().innerHTML = `<div class="page-head"><div><span class="badge info">Data</span><h1>SEO data centre</h1><p class="muted">One place for automated measurements, audits, opportunities and evidence used throughout the course.</p></div><a class="btn" href="#/settings">Settings &amp; backup</a></div>
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Analytics</span><h1>Analytics overview</h1><p class="muted">Automated measurements from Search Console, GA4, site audits and the jobs registry.</p></div><a class="btn" href="#/sync">Check integrations</a></div>
       <div class="stats-grid">
         <div class="stat-card"><span>Storage</span><strong>${Store.mode === "supabase" ? "Supabase" : "Local"}</strong><small>${Store.mode === "supabase" ? "Shared and protected by RLS" : "Only in this browser"}</small></div>
         <div class="stat-card"><span>Latest data date</span><strong>${esc(latest?.date || "No data")}</strong><small>${latest ? `${fmtInt(latest.clicks)} clicks · ${fmtInt(latest.impressions)} impressions` : "Run the automation or import a CSV"}</small></div>
@@ -722,6 +723,121 @@
       <div class="card"><div class="row spread"><h3>Explain this data</h3><span class="badge info">Evidence-based summary</span></div>${explain.length ? `<ul>${explain.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">Not enough comparable KPI data yet. Run the automation until both 28-day periods are complete.</p>`}<p class="small muted">This describes associations, not guaranteed causes. Use a focused experiment before attributing a change to SEO work.</p></div>
       <div class="course-grid">${cards.map(([t, title, count, desc]) => `<a class="week-card" href="#/t/${t}"><div class="row spread"><span class="badge">${fmtInt(count)}</span><span>Open →</span></div><h3>${esc(title)}</h3><p class="muted small">${esc(desc)}</p></a>`).join("")}</div>
       <div class="card"><h3>Other data sources</h3><div class="row"><a class="btn" href="#/live">Live site data</a><a class="btn" href="#/t/seo_content">Content</a><a class="btn" href="#/t/seo_backlinks">Backlinks</a><a class="btn" href="#/t/seo_local">Local</a><a class="btn" href="#/t/seo_ai_visibility">AI visibility</a></div></div>`;
+  }
+
+  // ── Organised Learn / Analytics / Workspace views ──
+  let AUTOMATION_REPORT = null;
+  async function loadAutomationReport(force = false) {
+    if (AUTOMATION_REPORT && !force) return AUTOMATION_REPORT;
+    const url = CFG.AUTOMATION_REPORT || "../reports/seo-automation-latest.json";
+    AUTOMATION_REPORT = await fetch(url + (url.includes("?") ? "&" : "?") + "v=" + Date.now(), { cache: "no-store" })
+      .then((r) => r.ok ? r.json() : null).catch(() => null);
+    return AUTOMATION_REPORT;
+  }
+
+  function freshness(dateValue, expectedDelay = 2) {
+    if (!dateValue) return { label: "Insufficient data", cls: "warn", note: "No dated record is available" };
+    const age = Math.max(0, Math.floor((parseDate(today()) - parseDate(String(dateValue).slice(0, 10))) / DAY));
+    if (age <= expectedDelay + 1) return { label: "Live", cls: "good", note: `${age} day${age === 1 ? "" : "s"} old` };
+    if (age <= expectedDelay + 4) return { label: "Delayed", cls: "warn", note: `${age} days old` };
+    return { label: "Tracking issue", cls: "bad", note: `${age} days old` };
+  }
+  const confidenceBadge = (x) => `<span class="badge ${x.cls}" title="${esc(x.note)}">${esc(x.label)}</span>`;
+  const opportunityScore = (x) => Math.round(((+x.impact || 1) * 20) / Math.max(1, +x.effort || 1));
+
+  async function renderToday() {
+    const ctx = await courseCtx();
+    const [kpi, opportunities, alerts, technical, experiments, evidence] = await Promise.all([
+      Store.list("seo_kpi_daily"), Store.list("seo_opportunities"), Store.list("seo_alerts"),
+      Store.list("seo_technical"), Store.list("seo_experiments"), Store.list("seo_evidence")]);
+    const latest = [...kpi].sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+    const priorities = opportunities.filter((x) => !["complete", "dismissed"].includes(x.status))
+      .sort((a, b) => opportunityScore(b) - opportunityScore(a)).slice(0, 5);
+    const urgentAlerts = alerts.filter((x) => !x.resolved).slice(0, 3);
+    const due = experiments.filter((x) => x.review_date && x.review_date <= today() && !x.conclusion);
+    const openTech = technical.filter((x) => !["fixed", "validated"].includes(x.status));
+    const check = [
+      { done: !!latest && latest.date >= addDays(today(), -3), text: "Read the newest Search Console and GA4 numbers", href: "#/analytics" },
+      { done: evidence.some((x) => +x.week === ctx.week && x.captured_at === today()), text: "Save evidence from today’s practical work", href: "#/t/seo_evidence?add=1" },
+      { done: !due.length, text: due.length ? `Review ${due.length} due experiment${due.length === 1 ? "" : "s"}` : "No experiment reviews are overdue", href: "#/t/seo_experiments" },
+      { done: !urgentAlerts.length, text: urgentAlerts.length ? `Investigate ${urgentAlerts.length} current alerts` : "No unresolved data alerts", href: "#/t/seo_alerts" },
+    ];
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Day ${ctx.day} of 120</span><h1>Today</h1><p class="muted">One focused place to learn, check the evidence and take action.</p></div><a class="btn primary" href="#/course/${ctx.week}">Continue Week ${ctx.week}</a></div>
+      <div class="grid c3">
+        <div class="card focus-card"><span class="eyebrow">Learn</span><h3>${esc(C.weeks[ctx.week - 1].title)}</h3><p>${esc(C.dailyRhythm[ctx.dayInWeek])}</p><a href="#/course/${ctx.week}">Open today’s lesson →</a></div>
+        <div class="card focus-card"><span class="eyebrow">Measure</span><div class="row spread"><h3>${esc(latest?.date || "No data")}</h3>${confidenceBadge(freshness(latest?.date))}</div><p>${fmtInt(latest?.clicks)} clicks · ${fmtInt(latest?.impressions)} impressions · ${fmtInt(latest?.organic_users)} organic users</p><a href="#/analytics">Open analytics →</a></div>
+        <div class="card focus-card"><span class="eyebrow">Act</span><h3>${priorities.length} ranked opportunities</h3><p>${openTech.length} open audit findings · ${due.length} experiment reviews due</p><a href="#/workspace">Open workspace →</a></div>
+      </div>
+      <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Today’s checklist</h3><ul class="checklist">${check.map((x) => `<li class="${x.done ? "done" : ""}"><span>${x.done ? "✅" : "⬜"}</span><a class="grow txt" href="${x.href}">${esc(x.text)}</a></li>`).join("")}</ul></div>
+      <div class="card"><div class="row spread"><h3>Top priorities</h3><a href="#/workspace">View all</a></div>${priorities.length ? `<ol class="priority-list">${priorities.map((x) => `<li><span class="priority-score">${opportunityScore(x)}</span><div><b>${esc(x.title)}</b><div class="small muted">${esc(x.category)} · impact ${x.impact || "–"}/5 · effort ${x.effort || "–"}/5</div><a href="#/practice">Use in Practice Mode →</a></div></li>`).join("")}</ol>` : `<p class="muted">No open opportunities.</p>`}</div></div>`;
+  }
+
+  async function renderSearchConsole() {
+    const [kpi, keywords, pages] = await Promise.all([Store.list("seo_kpi_daily"), Store.list("seo_keywords"), Store.list("seo_pages")]);
+    const sorted = [...kpi].filter((x) => x.clicks != null).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const latest = sorted.at(-1), status = freshness(latest?.date, 2);
+    const top10 = keywords.filter((x) => +x.current_position > 0 && +x.current_position <= 10).length;
+    const falling = keywords.filter((x) => x.previous_position != null && +x.current_position - +x.previous_position > 3).length;
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Analytics</span><h1>Google Search Console</h1><p class="muted">Search visibility, queries and landing-page performance.</p></div><div>${confidenceBadge(status)} <span class="small muted">${esc(status.note)}</span></div></div>
+      <div class="grid c4">${[["Clicks", latest?.clicks], ["Impressions", latest?.impressions], ["CTR", fmtPct(latest?.ctr)], ["Average position", fmt1(latest?.avg_position)]].map(([l, v]) => `<div class="card tile"><div class="label">${l}</div><div class="value">${typeof v === "number" ? fmtInt(v) : v}</div><div class="delta muted">${esc(latest?.date || "No data")}</div></div>`).join("")}</div>
+      <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Clicks trend</h3>${lineChart(sorted.slice(-90).map((r) => ({ x: r.date, y: +r.clicks })))}</div><div class="card"><h3>Impressions trend</h3>${lineChart(sorted.slice(-90).map((r) => ({ x: r.date, y: +r.impressions })))}</div></div>
+      <div class="grid c3"><a class="week-card" href="#/t/seo_keywords"><span class="badge good">${top10}</span><h3>Top-10 keywords</h3><p class="muted small">${falling} keywords dropped by more than three positions.</p></a><a class="week-card" href="#/t/seo_pages"><span class="badge">${pages.length}</span><h3>Landing pages</h3><p class="muted small">Compare impressions, clicks, CTR and position.</p></a><a class="week-card" href="#/t/seo_sector_opportunities"><span class="badge info">Opportunity</span><h3>Sectors &amp; locations</h3><p class="muted small">Connect search demand to current job supply.</p></a></div>`;
+  }
+
+  async function renderGA4() {
+    const kpi = [...await Store.list("seo_kpi_daily")].filter((x) => x.organic_users != null).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const latest = kpi.at(-1), status = freshness(latest?.date, 1);
+    const end = latest?.date || today(), total = aggregate(kpi, addDays(end, -27), end);
+    const conversion = total.organic_users ? ((total.applications || 0) / total.organic_users) * 100 : null;
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Analytics</span><h1>Google Analytics</h1><p class="muted">Organic audiences and the business actions generated on the website.</p></div><div>${confidenceBadge(status)} <span class="small muted">${esc(status.note)}</span></div></div>
+      <div class="grid c4"><div class="card tile"><div class="label">Organic users · 28d</div><div class="value">${fmtInt(total.organic_users)}</div></div><div class="card tile"><div class="label">Apply clicks · 28d</div><div class="value">${fmtInt(total.applications)}</div><div class="delta muted">GA4 event: apply_click</div></div><div class="card tile"><div class="label">Employer leads · 28d</div><div class="value">${fmtInt(total.employer_leads)}</div><div class="delta muted">GA4 event: employer_lead_submit</div></div><div class="card tile"><div class="label">Apply rate</div><div class="value">${conversion == null ? "–" : conversion.toFixed(1) + "%"}</div><div class="delta muted">Apply clicks / organic users</div></div></div>
+      <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Organic users</h3>${lineChart(kpi.slice(-90).map((r) => ({ x: r.date, y: +r.organic_users })))}</div><div class="card"><h3>Apply clicks</h3>${lineChart(kpi.slice(-90).filter((r) => r.applications != null).map((r) => ({ x: r.date, y: +r.applications })))}</div></div>
+      <div class="card"><h3>How to read this</h3><p>If organic users rise but apply clicks remain flat, check search intent, vacancy relevance and the Apply journey. If applications rise with stable traffic, inspect the pages and calls to action responsible, then test the pattern elsewhere.</p><p class="small muted">Apply clicks measure outbound intent; the external careers platform must provide completed-application data if you need confirmed applications.</p></div>`;
+  }
+
+  async function renderWorkspace() {
+    const [opportunities, alerts, technical, experiments] = await Promise.all([Store.list("seo_opportunities"), Store.list("seo_alerts"), Store.list("seo_technical"), Store.list("seo_experiments")]);
+    const queue = opportunities.filter((x) => !["complete", "dismissed"].includes(x.status)).sort((a, b) => opportunityScore(b) - opportunityScore(a));
+    const openAlerts = alerts.filter((x) => !x.resolved), openTech = technical.filter((x) => !["fixed", "validated"].includes(x.status));
+    const due = experiments.filter((x) => x.review_date && x.review_date <= today() && !x.conclusion);
+    const buckets = [
+      ["Immediate", queue.filter((x) => opportunityScore(x) >= 40), "good"],
+      ["Plan next", queue.filter((x) => opportunityScore(x) >= 20 && opportunityScore(x) < 40), "info"],
+      ["Backlog", queue.filter((x) => opportunityScore(x) < 20), ""],
+    ];
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">SEO Workspace</span><h1>Priorities</h1><p class="muted">Move from evidence to one focused change, then measure the result.</p></div><a class="btn primary" href="#/practice">Start Practice Mode</a></div>
+      <div class="grid c3"><a class="stat-card" href="#/t/seo_alerts"><span>Unresolved alerts</span><strong>${openAlerts.length}</strong><small>Investigate measurement and visibility changes</small></a><a class="stat-card" href="#/t/seo_technical"><span>Open audit findings</span><strong>${openTech.length}</strong><small>Fix Critical and High issues first</small></a><a class="stat-card" href="#/t/seo_experiments"><span>Reviews due</span><strong>${due.length}</strong><small>Complete before drawing conclusions</small></a></div>
+      <div class="priority-board">${buckets.map(([label, rows, cls]) => `<section class="priority-column"><div class="row spread"><h3>${label}</h3><span class="badge ${cls}">${rows.length}</span></div>${rows.slice(0, 12).map((x) => `<article class="priority-item"><div class="row spread"><span class="badge ${x.priority === "Critical" ? "bad" : x.priority === "High" ? "warn" : ""}">${esc(x.priority || "New")}</span><span class="priority-score">${opportunityScore(x)}</span></div><b>${esc(x.title)}</b><p class="small muted">${esc(x.recommended_action || x.explanation)}</p><div class="row spread"><span class="small">Impact ${x.impact || "–"} · Effort ${x.effort || "–"}</span><a href="#/practice">Practice →</a></div></article>`).join("") || `<p class="muted small">Nothing here.</p>`}</section>`).join("")}</div>
+      <div class="card"><h3>Workspace flow</h3><div class="workflow"><span>Alert or opportunity</span><b>→</b><span>Recommended action</span><b>→</b><span>Practice or experiment</span><b>→</b><span>7/30/60/90-day review</span><b>→</b><span>Lesson learned</span></div></div>`;
+  }
+
+  async function renderWeeklyReview() {
+    const ctx = await courseCtx(), data = await Store.getWeek(ctx.week);
+    data.resume = data.resume || { learned: [], issues: [], next: "" };
+    const [from, to] = weekRange(ctx.start, ctx.week), kpi = await Store.list("seo_kpi_daily");
+    const cur = aggregate(kpi, from, to), prev = aggregate(kpi, addDays(from, -7), addDays(from, -1));
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Week ${ctx.week}</span><h1>Weekly review</h1><p class="muted">Edit the automatic draft, record what the evidence means, and choose one next priority.</p></div><a class="btn" href="#/course/${ctx.week}">Open full week</a></div>
+      <div class="card"><h3>KPI movement</h3><div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Previous</th><th class="num">Current</th><th class="num">Change</th></tr></thead><tbody>${KPI_KEYS.map(([k, l, kind]) => { const d = delta(cur[k], prev[k], kind); return `<tr><td>${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${d.cls}">${d.txt}</td></tr>`; }).join("")}</tbody></table></div></div>
+      <div class="card"><h3>Editable weekly summary</h3><div class="form-grid">${[0, 1, 2].map((i) => `<label>Thing learned ${i + 1}<input data-review-learned="${i}" value="${esc(data.resume.learned?.[i])}"></label>`).join("")}${[0, 1, 2].map((i) => `<label>Issue or opportunity ${i + 1}<input data-review-issue="${i}" value="${esc(data.resume.issues?.[i])}"></label>`).join("")}<label class="wide">One measurable next priority<input id="review-next" value="${esc(data.resume.next)}"></label></div><div class="row spread"><span id="review-state" class="save-state"></span><button id="review-save" class="btn primary">Save weekly review</button></div></div>`;
+    $("#review-save").onclick = async () => {
+      data.resume.learned = $$('[data-review-learned]').map((x) => x.value); data.resume.issues = $$('[data-review-issue]').map((x) => x.value); data.resume.next = $("#review-next").value;
+      await Store.setWeek(ctx.week, data); $("#review-state").textContent = "Saved ✓"; toast("Weekly review saved");
+    };
+  }
+
+  async function renderSyncCentre() {
+    const report = await loadAutomationReport(true), checks = report?.checks || {};
+    const items = [
+      ["Google Search Console", checks.gsc, checks.gsc?.through ? `Final data through ${checks.gsc.through}` : "Clicks, impressions, queries and pages"],
+      ["Google Analytics", checks.ga4, checks.ga4?.property_id ? `Property ${checks.ga4.property_id}` : "Organic users and conversion events"],
+      ["Supabase", checks.supabase, Store.mode === "supabase" ? "Admin storage connected" : "Admin is using local browser storage"],
+      ["Site audit", checks.audit, checks.audit?.issues != null ? `${fmtInt(checks.audit.issues)} findings checked` : "Technical and on-page scan"],
+    ];
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Settings</span><h1>Integrations &amp; sync</h1><p class="muted">Connection health, data freshness and the last automation result.</p></div><button class="btn" id="sync-refresh">Refresh status</button></div>
+      <div class="sync-grid">${items.map(([name, check, note]) => `<div class="card sync-card"><span class="status-dot ${check?.ok ? "ok" : "error"}"></span><div><h3>${esc(name)}</h3><p>${check?.ok ? '<span class="badge good">Connected</span>' : '<span class="badge bad">Needs attention</span>'}</p><p class="small muted">${esc(note)}</p></div></div>`).join("")}</div>
+      <div class="card"><h3>Last automation run</h3><p><b>${esc(report?.generated_at ? new Date(report.generated_at).toLocaleString() : "No report available")}</b></p>${report?.warnings?.length ? `<ul>${report.warnings.map((x) => `<li class="error">${esc(x)}</li>`).join("")}</ul>` : `<p><span class="badge good">No warnings</span></p>`}<p class="small muted">Search Console final data is normally delayed by about two days. “Connected” means the latest automation call succeeded; it does not mean Google reports are real-time.</p></div>
+      <div class="card"><h3>Data confidence labels</h3><div class="row"><span class="badge good">Live</span><span>Expected fresh data is present.</span><span class="badge warn">Delayed</span><span>Data is older than expected.</span><span class="badge bad">Tracking issue</span><span>Investigate the connection or scheduled job.</span></div></div>`;
+    $("#sync-refresh").onclick = renderSyncCentre;
   }
 
   async function renderPractice() {
@@ -1049,13 +1165,19 @@
 
   // ─────────────────────────── Router ───────────────────────────
   async function route() {
-    const [path, qs] = (location.hash.replace(/^#\/?/, "") || "dashboard").split("?");
+    const [path, qs] = (location.hash.replace(/^#\/?/, "") || "today").split("?");
     const params = new URLSearchParams(qs || "");
     $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === path || (path.startsWith("course/") && a.dataset.route === "course/today" && path === "course/today")));
     window.scrollTo(0, 0);
     try {
+      if (path === "today") return await renderToday();
       if (path === "dashboard") return await renderDashboard();
-      if (path === "data") return await renderDataHub();
+      if (path === "data" || path === "analytics") return await renderDataHub();
+      if (path === "search-console") return await renderSearchConsole();
+      if (path === "ga4") return await renderGA4();
+      if (path === "workspace") return await renderWorkspace();
+      if (path === "weekly-review") return await renderWeeklyReview();
+      if (path === "sync") return await renderSyncCentre();
       if (path === "practice") return await renderPractice();
       if (path === "decisions") return await renderDecisions();
       if (path === "live") return await renderLive();
@@ -1065,7 +1187,7 @@
       if (path === "playbook") return renderPlaybook();
       if (path === "settings") return await renderSettings();
       if (path.startsWith("t/") && TRACKERS[path.slice(2)]) return await renderTracker(path.slice(2), params);
-      view().innerHTML = `<p>Page not found. <a href="#/dashboard">Dashboard</a></p>`;
+      view().innerHTML = `<p>Page not found. <a href="#/today">Today</a></p>`;
     } catch (e) {
       console.error(e);
       view().innerHTML = `<div class="card"><h3>Something went wrong</h3><p class="error">${esc(e.message || e)}</p></div>`;
