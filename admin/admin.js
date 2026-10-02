@@ -96,15 +96,16 @@
   };
 
   const ALL_TABLES = ["seo_settings", "seo_kpi_daily", "seo_keywords", "seo_pages", "seo_content", "seo_technical",
-    "seo_backlinks", "seo_local", "seo_ai_visibility", "seo_experiments", "seo_course_weeks"];
-  const CONFLICT = { seo_settings: "key", seo_kpi_daily: "date", seo_course_weeks: "week" };
+    "seo_backlinks", "seo_local", "seo_ai_visibility", "seo_experiments", "seo_sector_opportunities", "seo_alerts", "seo_course_weeks"];
+  const CONFLICT = { seo_settings: "key", seo_kpi_daily: "date", seo_keywords: "source_key", seo_pages: "source_key",
+    seo_technical: "source_key", seo_experiments: "source_key", seo_sector_opportunities: "sector", seo_alerts: "source_key", seo_course_weeks: "week" };
 
   // ─────────────────────────── Tracker definitions ───────────────────────────
   const SECTORS = C.sectors.map((s) => s[0]).concat(["General", "Employer", "Other"]);
   const TRACKERS = {
     seo_kpi_daily: {
       title: "Daily KPI tracking", tab: "02 Daily Tracking", weeks: [1, 16], sort: ["date", -1],
-      intro: "10–15 min daily check. Paste a Search Console “Dates” export (Performance → Export → CSV → Dates.csv) to bulk-fill clicks/impressions/CTR/position; add GA4 users, applications and employer leads by hand.",
+      intro: "Automatically filled each morning from Search Console and GA4. CSV import remains available as a fallback.",
       cols: [
         { k: "date", l: "Date", t: "date", req: true },
         { k: "clicks", l: "Clicks", t: "int" },
@@ -114,6 +115,7 @@
         { k: "organic_users", l: "Organic users", t: "int" },
         { k: "applications", l: "Applications", t: "int" },
         { k: "employer_leads", l: "Employer leads", t: "int" },
+        { k: "ai_referrals", l: "AI referrals", t: "int" },
         { k: "notes", l: "Notes", t: "text", wide: true },
       ],
       aliases: { date: "date", day: "date", clicks: "clicks", impressions: "impressions", ctr: "ctr", position: "avg_position", averageposition: "avg_position", users: "organic_users", totalusers: "organic_users", activeusers: "organic_users", applications: "applications", leads: "employer_leads", employerleads: "employer_leads" },
@@ -235,6 +237,29 @@
         { k: "conclusion", l: "Conclusion", t: "text", wide: true },
       ],
     },
+    seo_sector_opportunities: {
+      title: "Sector opportunities", tab: "Week 5 opportunity table", weeks: [5, 10], sort: ["impressions", -1],
+      intro: "Automatically combines open jobs with Search Console performance. Prioritise sectors with demand, enough vacancies and a weak/missing landing page.",
+      cols: [
+        { k: "sector", l: "Sector", t: "str", req: true },
+        { k: "open_jobs", l: "Open jobs", t: "int" },
+        { k: "sector_page_exists", l: "Sector page?", t: "bool" },
+        { k: "url", l: "Sector URL", t: "str" },
+        { k: "impressions", l: "Impressions", t: "int" },
+        { k: "avg_position", l: "Avg position", t: "num" },
+      ],
+    },
+    seo_alerts: {
+      title: "SEO alerts", tab: "Automatic alerts", weeks: [1, 4, 8, 16], sort: ["created_at", -1],
+      intro: "Automatic warnings for keyword drops, lost impressions and indexing delays. Mark resolved after investigating.",
+      cols: [
+        { k: "severity", l: "Severity", t: "sel", o: ["Critical", "High", "Medium", "Low"] },
+        { k: "type", l: "Type", t: "str" },
+        { k: "message", l: "Alert", t: "text", wide: true, req: true },
+        { k: "url", l: "URL", t: "str" },
+        { k: "resolved", l: "Resolved", t: "bool" },
+      ],
+    },
   };
 
   // ─────────────────────────── KPI helpers ───────────────────────────
@@ -242,6 +267,7 @@
     ["clicks", "Clicks", "sum"], ["impressions", "Impressions", "sum"], ["ctr", "CTR", "ctr"],
     ["avg_position", "Avg. position", "pos"], ["organic_users", "Organic users", "sum"],
     ["applications", "Applications", "sum"], ["employer_leads", "Employer leads", "sum"],
+    ["ai_referrals", "AI referral sessions", "sum"],
   ];
   function aggregate(rows, from, to) {
     const r = rows.filter((x) => x.date >= from && x.date <= to);
@@ -257,7 +283,7 @@
       days: r.length, clicks, impressions,
       ctr: clicks != null && impressions ? (clicks / impressions) * 100 : null,
       avg_position: pos, organic_users: sum("organic_users"),
-      applications: sum("applications"), employer_leads: sum("employer_leads"),
+      applications: sum("applications"), employer_leads: sum("employer_leads"), ai_referrals: sum("ai_referrals"),
     };
   }
   function delta(cur, prev, kind) {
@@ -700,6 +726,10 @@
     const w = C.weeks[n - 1];
     if (!w) return (view().innerHTML = `<p>Unknown week.</p>`);
     const d = await Store.getWeek(n);
+    const revisionWeek = n > 2 ? C.weeks[n - 3] : null;
+    const revisionData = revisionWeek ? await Store.getWeek(n - 2) : {};
+    const revisions = revisionWeek ? revisionWeek.qcm.map((q, i) => ({ q, mark: revisionData.qcm?.[i]?.mark }))
+      .filter((x) => x.mark === "wrong" || x.mark === "partial") : [];
     const kpi = await Store.list("seo_kpi_daily");
     const [from, to] = weekRange(ctx.start, n);
     const cur = aggregate(kpi, from, to), prev = aggregate(kpi, addDays(from, -7), addDays(from, -1));
@@ -731,6 +761,8 @@
           <div class="row" style="margin-top:6px"><span class="small muted">Self-mark after checking the guide:</span>
           <select data-qm="${i}" style="width:auto">${["", "correct", "partial", "wrong"].map((m) => `<option value="${m}" ${d.qcm[i]?.mark === m ? "selected" : ""}>${m || "—"}</option>`).join("")}</select></div></div>`).join("")}
         <div class="answer-guide" id="guide" hidden><b>Answer & revision guide:</b> ${esc(w.answers)}</div></div>
+
+      ${revisions.length ? `<div class="card"><h3>Two-week QCM revision</h3><p class="muted small">Questions marked wrong or partial in Week ${n - 2} are due again.</p><ol>${revisions.map((x) => `<li><b>${esc(x.q)}</b> <span class="badge warn">${esc(x.mark)}</span></li>`).join("")}</ol><a class="btn" href="#/course/${n - 2}">Revise Week ${n - 2} answers →</a></div>` : ""}
 
       <div class="card"><h3>Weekly KPI review <span class="muted small">(auto from Daily KPI tracking: ${from} → ${to} vs previous 7 days · ${cur.days}/7 days logged)</span></h3>
         <div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Previous</th><th class="num">Current</th><th class="num">Change</th><th>Action</th></tr></thead><tbody>

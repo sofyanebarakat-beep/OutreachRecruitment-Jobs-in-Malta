@@ -15,9 +15,17 @@ echo "Started: $(date)" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/job_sync_agent.py" 2>&1 | tee -a "$LOG_FILE"
 
 EXIT_CODE=${PIPESTATUS[0]}
+echo "" | tee -a "$LOG_FILE"
+echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/apply_analytics_tracking.py" 2>&1 | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/seo_course_automation.py" 2>&1 | tee -a "$LOG_FILE"
+SEO_EXIT_CODE=${PIPESTATUS[0]}
 echo "Finished: $(date) | Exit: $EXIT_CODE" | tee -a "$LOG_FILE"
 
 # Keep only last 20 logs
 ls -t "$LOG_DIR"/sync-*.log 2>/dev/null | tail -n +21 | xargs rm -f 2>/dev/null
 
-exit $EXIT_CODE
+if [ "$SEO_EXIT_CODE" -ne 0 ]; then
+  exit "$SEO_EXIT_CODE"
+fi
+exit "$EXIT_CODE"

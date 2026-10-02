@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-10-02T14:17:20.744621+02:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-09-30",
+      "days": 6,
+      "queries": 1000,
+      "pages": 468
+    },
+    "ga4": {
+      "ok": false,
+      "error": "GA4_PROPERTY_ID is not configured"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 2307
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 19
+    },
+    "experiments": {
+      "new": 500
+    },
+    "supabase": {
+      "ok": false,
+      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+    }
+  },
+  "warnings": []
+}

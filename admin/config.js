@@ -4,8 +4,8 @@
 // safe to commit: every table is locked by RLS to emails in public.admin_users
 // (see supabase/admin_schema.sql). NEVER put the service_role key here.
 window.ADMIN_CONFIG = {
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
+  SUPABASE_URL: "https://atcitaqyraeqngcsaeun.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY",
   // Real site data served from this repo (relative to /admin/)
   JOBS_REGISTRY: "../tools/jobs_registry.json",
   GSC_PAGES_CSV: "../reports/gsc_search_performance.csv",

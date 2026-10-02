@@ -54,6 +54,8 @@ create table if not exists public.seo_kpi_daily (
   organic_users integer,
   applications integer,
   employer_leads integer,
+  ai_referrals integer,
+  source text,
   notes text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -71,6 +73,8 @@ create table if not exists public.seo_keywords (
   target_position numeric,
   volume integer,
   notes text,
+  source_key text,
+  previous_position numeric,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -87,6 +91,7 @@ create table if not exists public.seo_pages (
   conversions integer,
   action text,
   notes text,
+  source_key text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -115,6 +120,7 @@ create table if not exists public.seo_technical (
   status text,            -- open / in progress / fixed / validated
   fix_date date,
   validation text,
+  source_key text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -175,6 +181,55 @@ create table if not exists public.seo_experiments (
   before_data text,
   after_data text,
   conclusion text,
+  source_key text,
+  commit_sha text,
+  status text,
+  review_schedule jsonb not null default '[]'::jsonb,
+  review_results jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Safe upgrades for projects created with an earlier version of this file.
+alter table public.seo_kpi_daily add column if not exists ai_referrals integer;
+alter table public.seo_kpi_daily add column if not exists source text;
+alter table public.seo_keywords add column if not exists source_key text;
+alter table public.seo_keywords add column if not exists previous_position numeric;
+alter table public.seo_pages add column if not exists source_key text;
+alter table public.seo_technical add column if not exists source_key text;
+alter table public.seo_experiments add column if not exists source_key text;
+alter table public.seo_experiments add column if not exists commit_sha text;
+alter table public.seo_experiments add column if not exists status text;
+alter table public.seo_experiments add column if not exists review_schedule jsonb not null default '[]'::jsonb;
+alter table public.seo_experiments add column if not exists review_results jsonb not null default '{}'::jsonb;
+
+drop index if exists public.seo_keywords_source_key_uidx;
+drop index if exists public.seo_pages_source_key_uidx;
+drop index if exists public.seo_technical_source_key_uidx;
+drop index if exists public.seo_experiments_source_key_uidx;
+create unique index seo_keywords_source_key_uidx on public.seo_keywords(source_key);
+create unique index seo_pages_source_key_uidx on public.seo_pages(source_key);
+create unique index seo_technical_source_key_uidx on public.seo_technical(source_key);
+create unique index seo_experiments_source_key_uidx on public.seo_experiments(source_key);
+
+create table if not exists public.seo_sector_opportunities (
+  sector text primary key,
+  open_jobs integer not null default 0,
+  sector_page_exists boolean not null default false,
+  url text,
+  impressions integer,
+  avg_position numeric,
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists public.seo_alerts (
+  id uuid primary key default gen_random_uuid(),
+  source_key text unique not null,
+  type text not null,
+  severity text not null,
+  message text not null,
+  url text,
+  resolved boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -193,7 +248,7 @@ begin
   foreach t in array array[
     'seo_settings','seo_kpi_daily','seo_keywords','seo_pages','seo_content',
     'seo_technical','seo_backlinks','seo_local','seo_ai_visibility',
-    'seo_experiments','seo_course_weeks'
+    'seo_experiments','seo_course_weeks','seo_sector_opportunities','seo_alerts'
   ] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists %I on public.%I', t || '_admin_all', t);
