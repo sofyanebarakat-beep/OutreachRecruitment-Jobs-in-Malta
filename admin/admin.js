@@ -1,0 +1,925 @@
+/* Outreach Recruitment — SEO Admin
+ * Static admin for the 120-Day SEO course + KPI tracking.
+ * Storage: Supabase when admin/config.js is filled in, otherwise localStorage.
+ */
+(() => {
+  "use strict";
+  const CFG = window.ADMIN_CONFIG || {};
+  const C = window.COURSE;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const DAY = 86400000;
+  const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const parseDate = (s) => { const [y, m, d] = String(s).slice(0, 10).split("-").map(Number); return new Date(y, m - 1, d); };
+  const addDays = (s, n) => iso(new Date(parseDate(s).getTime() + n * DAY));
+  const today = () => iso(new Date());
+  const fmtInt = (n) => (n == null || isNaN(n) ? "–" : Math.round(n).toLocaleString("en-GB"));
+  const fmt1 = (n) => (n == null || isNaN(n) ? "–" : (+n).toFixed(1));
+  const fmtPct = (n) => (n == null || isNaN(n) ? "–" : (+n).toFixed(2) + "%");
+  const num = (v) => { if (v === "" || v == null) return null; const n = Number(String(v).replace(/[%,\s]/g, "")); return isNaN(n) ? null : n; };
+
+  function toast(msg) {
+    const t = $("#toast"); t.textContent = msg; t.hidden = false;
+    clearTimeout(toast._t); toast._t = setTimeout(() => (t.hidden = true), 2600);
+  }
+
+  // ─────────────────────────── Storage ───────────────────────────
+  const Store = {
+    sb: null,
+    mode: "local",
+    cache: {},
+    init() {
+      if (CFG.SUPABASE_URL && CFG.SUPABASE_ANON_KEY && window.supabase) {
+        this.sb = window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
+        this.mode = "supabase";
+      }
+    },
+    lsKey: (t) => "seoadmin:" + t,
+    lsGet(t) { try { return JSON.parse(localStorage.getItem(this.lsKey(t)) || "[]"); } catch { return []; } },
+    lsSet(t, rows) { try { localStorage.setItem(this.lsKey(t), JSON.stringify(rows)); } catch (e) { toast("Browser storage full or blocked"); } },
+    async list(t, { force = false } = {}) {
+      if (!force && this.cache[t]) return this.cache[t];
+      let rows;
+      if (this.mode === "supabase") {
+        const { data, error } = await this.sb.from(t).select("*").limit(5000);
+        if (error) { toast(t + ": " + error.message); rows = []; } else rows = data;
+      } else rows = this.lsGet(t);
+      this.cache[t] = rows;
+      return rows;
+    },
+    // conflict = column name used to match existing rows (default id)
+    async upsert(t, row, conflict = "id") {
+      delete this.cache[t];
+      if (this.mode === "supabase") {
+        const clean = { ...row };
+        if (conflict === "id" && !clean.id) delete clean.id;
+        delete clean.created_at; delete clean.updated_at;
+        const q = clean.id || conflict !== "id"
+          ? this.sb.from(t).upsert(clean, { onConflict: conflict })
+          : this.sb.from(t).insert(clean);
+        const { data, error } = await q.select().single();
+        if (error) { toast("Save failed: " + error.message); throw error; }
+        return data;
+      }
+      const rows = this.lsGet(t);
+      const key = conflict === "id" ? "id" : conflict;
+      const i = row[key] != null ? rows.findIndex((r) => r[key] === row[key]) : -1;
+      const now = new Date().toISOString();
+      let out;
+      if (i >= 0) { out = { ...rows[i], ...row, updated_at: now }; rows[i] = out; }
+      else { out = { id: (crypto.randomUUID && crypto.randomUUID()) || String(Date.now() + Math.random()), created_at: now, ...row, updated_at: now }; rows.push(out); }
+      this.lsSet(t, rows);
+      return out;
+    },
+    async remove(t, id) {
+      delete this.cache[t];
+      if (this.mode === "supabase") {
+        const { error } = await this.sb.from(t).delete().eq("id", id);
+        if (error) { toast("Delete failed: " + error.message); throw error; }
+        return;
+      }
+      this.lsSet(t, this.lsGet(t).filter((r) => r.id !== id));
+    },
+    async getSetting(key, fallback) {
+      const rows = await this.list("seo_settings");
+      const r = rows.find((x) => x.key === key);
+      return r ? r.value : fallback;
+    },
+    async setSetting(key, value) { return this.upsert("seo_settings", { key, value }, "key"); },
+    async getWeek(n) {
+      const rows = await this.list("seo_course_weeks");
+      const r = rows.find((x) => x.week === n);
+      return r ? r.data || {} : {};
+    },
+    async setWeek(n, data) { return this.upsert("seo_course_weeks", { week: n, data }, "week"); },
+  };
+
+  const ALL_TABLES = ["seo_settings", "seo_kpi_daily", "seo_keywords", "seo_pages", "seo_content", "seo_technical",
+    "seo_backlinks", "seo_local", "seo_ai_visibility", "seo_experiments", "seo_course_weeks"];
+  const CONFLICT = { seo_settings: "key", seo_kpi_daily: "date", seo_course_weeks: "week" };
+
+  // ─────────────────────────── Tracker definitions ───────────────────────────
+  const SECTORS = C.sectors.map((s) => s[0]).concat(["General", "Employer", "Other"]);
+  const TRACKERS = {
+    seo_kpi_daily: {
+      title: "Daily KPI tracking", tab: "02 Daily Tracking", weeks: [1, 16], sort: ["date", -1],
+      intro: "10–15 min daily check. Paste a Search Console “Dates” export (Performance → Export → CSV → Dates.csv) to bulk-fill clicks/impressions/CTR/position; add GA4 users, applications and employer leads by hand.",
+      cols: [
+        { k: "date", l: "Date", t: "date", req: true },
+        { k: "clicks", l: "Clicks", t: "int" },
+        { k: "impressions", l: "Impr.", t: "int" },
+        { k: "ctr", l: "CTR %", t: "num" },
+        { k: "avg_position", l: "Avg pos.", t: "num" },
+        { k: "organic_users", l: "Organic users", t: "int" },
+        { k: "applications", l: "Applications", t: "int" },
+        { k: "employer_leads", l: "Employer leads", t: "int" },
+        { k: "notes", l: "Notes", t: "text", wide: true },
+      ],
+      aliases: { date: "date", day: "date", clicks: "clicks", impressions: "impressions", ctr: "ctr", position: "avg_position", averageposition: "avg_position", users: "organic_users", totalusers: "organic_users", activeusers: "organic_users", applications: "applications", leads: "employer_leads", employerleads: "employer_leads" },
+    },
+    seo_keywords: {
+      title: "Keywords", tab: "03 Keywords", weeks: [2], sort: ["current_position", 1],
+      intro: "One primary target page per important keyword. Paste a GSC “Queries” export to bulk-add (Top queries → keyword, Position → current position).",
+      cols: [
+        { k: "keyword", l: "Keyword", t: "str", req: true },
+        { k: "intent", l: "Intent", t: "sel", o: ["candidate", "employer", "commercial", "informational", "navigational"] },
+        { k: "sector", l: "Sector", t: "sel", o: SECTORS },
+        { k: "target_url", l: "Target URL", t: "str" },
+        { k: "volume", l: "Volume / impr.", t: "int" },
+        { k: "baseline_position", l: "Baseline pos.", t: "num" },
+        { k: "current_position", l: "Current pos.", t: "num" },
+        { k: "target_position", l: "Target pos.", t: "num" },
+        { k: "notes", l: "Notes", t: "text", wide: true, hide: true },
+      ],
+      computed: [{ l: "Δ pos.", f: (r) => (r.baseline_position != null && r.current_position != null ? +(r.baseline_position - r.current_position).toFixed(1) : null), cls: (v) => (v > 0 ? "up" : v < 0 ? "down" : "flat") }],
+      aliases: { topqueries: "keyword", query: "keyword", keyword: "keyword", position: "current_position", impressions: "volume", intent: "intent", sector: "sector", targeturl: "target_url" },
+      onImport: (r) => { if (r.current_position != null && r.baseline_position == null) r.baseline_position = r.current_position; return r; },
+    },
+    seo_pages: {
+      title: "Pages", tab: "04 Pages", weeks: [3, 5, 8], sort: ["impressions", -1],
+      intro: "Page-level performance and the decision for each page. Paste a GSC “Pages” export, or send opportunities here from Live site data.",
+      cols: [
+        { k: "url", l: "URL", t: "str", req: true },
+        { k: "target_query", l: "Target query", t: "str" },
+        { k: "clicks", l: "Clicks", t: "int" },
+        { k: "impressions", l: "Impr.", t: "int" },
+        { k: "ctr", l: "CTR %", t: "num" },
+        { k: "position", l: "Pos.", t: "num" },
+        { k: "conversions", l: "Conv.", t: "int" },
+        { k: "action", l: "Action", t: "sel", o: ["keep", "improve content", "improve title/CTR", "add internal links", "consolidate", "remove/redirect"] },
+        { k: "notes", l: "Notes", t: "text", wide: true, hide: true },
+      ],
+      aliases: { toppages: "url", page: "url", url: "url", clicks: "clicks", impressions: "impressions", ctr: "ctr", position: "position" },
+    },
+    seo_content: {
+      title: "Content", tab: "05 Content", weeks: [6, 7, 13, 14], sort: ["publish_date", -1],
+      intro: "Content ideas, clusters, AEO questions and GEO upgrades — from idea to published result.",
+      cols: [
+        { k: "idea", l: "Idea / question", t: "str", req: true },
+        { k: "cluster", l: "Cluster", t: "sel", o: ["Jobs in Malta pillar", ...C.sectors.map((s) => s[0] + " jobs"), "Employer / hiring", "CV & interview", "Relocation & permits", "AEO question", "GEO resource", "Other"] },
+        { k: "intent", l: "Intent", t: "sel", o: ["candidate", "employer", "informational", "commercial"] },
+        { k: "status", l: "Status", t: "sel", o: ["idea", "brief", "writing", "published", "refresh"] },
+        { k: "url", l: "URL", t: "str" },
+        { k: "publish_date", l: "Publish/update", t: "date" },
+        { k: "results", l: "Results", t: "text", wide: true },
+      ],
+    },
+    seo_technical: {
+      title: "Technical", tab: "06 Technical", weeks: [4], sort: ["severity", 1],
+      intro: "Technical issues by severity. Critical → High → Medium → Low.",
+      cols: [
+        { k: "issue", l: "Issue", t: "str", req: true },
+        { k: "severity", l: "Severity", t: "sel", o: ["Critical", "High", "Medium", "Low"] },
+        { k: "url", l: "Affected URL", t: "str" },
+        { k: "owner", l: "Owner", t: "str" },
+        { k: "status", l: "Status", t: "sel", o: ["open", "in progress", "fixed", "validated"] },
+        { k: "fix_date", l: "Fix date", t: "date" },
+        { k: "validation", l: "Validation", t: "text", wide: true },
+      ],
+      sortRank: { severity: { Critical: 0, High: 1, Medium: 2, Low: 3 } },
+    },
+    seo_backlinks: {
+      title: "Backlinks", tab: "07 Backlinks", weeks: [11, 12], sort: ["relevance", -1],
+      intro: "Relevant, legitimate prospects only. Score relevance and legitimacy 1–5.",
+      cols: [
+        { k: "prospect", l: "Prospect", t: "str", req: true },
+        { k: "site_url", l: "Site", t: "str" },
+        { k: "relevance", l: "Relevance", t: "sel", o: ["1", "2", "3", "4", "5"], int: true },
+        { k: "legitimacy", l: "Legitimacy", t: "sel", o: ["1", "2", "3", "4", "5"], int: true },
+        { k: "contact", l: "Contact", t: "str" },
+        { k: "status", l: "Status", t: "sel", o: ["prospect", "contacted", "replied", "acquired", "rejected"] },
+        { k: "target_url", l: "Target URL", t: "str" },
+        { k: "acquired_link", l: "Acquired link", t: "str" },
+        { k: "notes", l: "Notes", t: "text", wide: true, hide: true },
+      ],
+    },
+    seo_local: {
+      title: "Local", tab: "08 Local", weeks: [9, 10], sort: ["date", -1],
+      intro: "Profile, citation, review and location-page actions. Only real, accurate business information.",
+      cols: [
+        { k: "action", l: "Action", t: "str", req: true },
+        { k: "type", l: "Type", t: "sel", o: ["profile", "citation", "review", "NAP check", "location page"] },
+        { k: "platform", l: "Platform", t: "str" },
+        { k: "status", l: "Status", t: "sel", o: ["todo", "in progress", "done"] },
+        { k: "date", l: "Date", t: "date" },
+        { k: "url", l: "URL", t: "str" },
+        { k: "notes", l: "Notes", t: "text", wide: true },
+      ],
+    },
+    seo_ai_visibility: {
+      title: "AI visibility", tab: "09 AI Visibility", weeks: [15], sort: ["date", -1],
+      intro: "Fixed question set, dated observations. Repeat on the same schedule; one answer is an anecdote, not a trend.",
+      cols: [
+        { k: "date", l: "Date", t: "date", req: true },
+        { k: "question", l: "Question", t: "str", req: true },
+        { k: "engine", l: "Engine", t: "sel", o: ["Google AI Overview", "Google AI Mode", "ChatGPT", "Perplexity", "Gemini", "Copilot", "Claude"] },
+        { k: "surfaced", l: "Surfaced", t: "bool" },
+        { k: "cited", l: "Cited", t: "bool" },
+        { k: "referral_sessions", l: "Referral sessions", t: "int" },
+        { k: "competitors", l: "Competitors shown", t: "str" },
+        { k: "result", l: "Result / notes", t: "text", wide: true },
+      ],
+    },
+    seo_experiments: {
+      title: "Experiments", tab: "10 Experiments", weeks: [3, 8], sort: ["start_date", -1],
+      intro: "One change, one hypothesis, before/after data. Review at 7d / 30d / 60d / 90d.",
+      cols: [
+        { k: "change", l: "Change", t: "str", req: true },
+        { k: "hypothesis", l: "Hypothesis", t: "text", wide: true },
+        { k: "page", l: "Page", t: "str" },
+        { k: "start_date", l: "Start", t: "date" },
+        { k: "review_date", l: "Review", t: "date" },
+        { k: "before_data", l: "Before", t: "text", hide: true },
+        { k: "after_data", l: "After", t: "text", hide: true },
+        { k: "conclusion", l: "Conclusion", t: "text", wide: true },
+      ],
+    },
+  };
+
+  // ─────────────────────────── KPI helpers ───────────────────────────
+  const KPI_KEYS = [
+    ["clicks", "Clicks", "sum"], ["impressions", "Impressions", "sum"], ["ctr", "CTR", "ctr"],
+    ["avg_position", "Avg. position", "pos"], ["organic_users", "Organic users", "sum"],
+    ["applications", "Applications", "sum"], ["employer_leads", "Employer leads", "sum"],
+  ];
+  function aggregate(rows, from, to) {
+    const r = rows.filter((x) => x.date >= from && x.date <= to);
+    const sum = (k) => { const v = r.filter((x) => x[k] != null && x[k] !== ""); return v.length ? v.reduce((a, x) => a + +x[k], 0) : null; };
+    const clicks = sum("clicks"), impressions = sum("impressions");
+    let pos = null;
+    const pr = r.filter((x) => x.avg_position != null && x.avg_position !== "");
+    if (pr.length) {
+      const w = pr.reduce((a, x) => a + (+x.impressions || 1), 0);
+      pos = pr.reduce((a, x) => a + +x.avg_position * (+x.impressions || 1), 0) / w;
+    }
+    return {
+      days: r.length, clicks, impressions,
+      ctr: clicks != null && impressions ? (clicks / impressions) * 100 : null,
+      avg_position: pos, organic_users: sum("organic_users"),
+      applications: sum("applications"), employer_leads: sum("employer_leads"),
+    };
+  }
+  function delta(cur, prev, kind) {
+    if (cur == null || prev == null) return { txt: "–", cls: "flat" };
+    if (kind === "pos") { const d = prev - cur; return { txt: (d >= 0 ? "▲ " : "▼ ") + Math.abs(d).toFixed(1), cls: d > 0 ? "up" : d < 0 ? "down" : "flat" }; }
+    if (kind === "ctr") { const d = cur - prev; return { txt: (d >= 0 ? "+" : "") + d.toFixed(2) + " pts", cls: d > 0 ? "up" : d < 0 ? "down" : "flat" }; }
+    if (!prev) return { txt: cur ? "new" : "–", cls: cur ? "up" : "flat" };
+    const p = ((cur - prev) / prev) * 100;
+    return { txt: (p >= 0 ? "+" : "") + p.toFixed(1) + "%", cls: p > 0 ? "up" : p < 0 ? "down" : "flat" };
+  }
+  const fmtKpi = (v, kind) => (kind === "ctr" ? fmtPct(v) : kind === "pos" ? fmt1(v) : fmtInt(v));
+
+  // ─────────────────────────── Course helpers ───────────────────────────
+  async function courseCtx() {
+    const start = await Store.getSetting("course_start", today());
+    const day = Math.floor((parseDate(today()) - parseDate(start)) / DAY) + 1;
+    const week = Math.min(16, Math.max(1, Math.ceil(day / 7)));
+    return { start, day, week, dayInWeek: day >= 1 ? ((day - 1) % 7) : 0 };
+  }
+  const weekRange = (start, n) => [addDays(start, (n - 1) * 7), addDays(start, n * 7 - 1)];
+
+  async function courseScore() {
+    const weeks = await Store.list("seo_course_weeks");
+    const byW = Object.fromEntries(weeks.map((w) => [w.week, w.data || {}]));
+    let tasksTotal = 0, tasksDone = 0, qMarks = 0, qTotal = 0, reviewed = 0, delivered = 0;
+    C.weeks.forEach((w) => {
+      const d = byW[w.n] || {};
+      tasksTotal += w.tasks.length;
+      tasksDone += w.tasks.filter((_, i) => d.tasks?.[i]?.done).length;
+      qTotal += w.qcm.length;
+      w.qcm.forEach((_, i) => { const m = d.qcm?.[i]?.mark; qMarks += m === "correct" ? 1 : m === "partial" ? 0.5 : 0; });
+      if (d.resume?.next || Object.values(d.kpiActions || {}).some(Boolean)) reviewed++;
+      if (d.deliverable?.done) delivered++;
+    });
+    const ctx = await courseCtx();
+    const kpi = await Store.list("seo_kpi_daily");
+    const end = addDays(ctx.start, 119);
+    const elapsed = Math.min(120, Math.max(1, ctx.day));
+    const logged = kpi.filter((r) => r.date >= ctx.start && r.date <= end).length;
+    const trackingPct = Math.min(1, 0.6 * (logged / elapsed) + 0.4 * (reviewed / Math.max(1, Math.min(16, ctx.week))));
+    const w0 = byW[0] || {};
+    const monthsDone = [1, 2, 3, 4].filter((m) => w0.months?.[m]?.done).length;
+    const finalDone = w0.final?.done ? 1 : 0;
+    const parts = {
+      qcm: qTotal ? qMarks / qTotal : 0,
+      practical: tasksTotal ? tasksDone / tasksTotal : 0,
+      tracking: trackingPct,
+      monthly: monthsDone / 4,
+      final: finalDone,
+    };
+    const total = Object.entries(C.weights).reduce((a, [k, w]) => a + parts[k] * w, 0);
+    return { parts, total, tasksDone, tasksTotal, delivered, logged, elapsed, byW };
+  }
+
+  // ─────────────────────────── Charts ───────────────────────────
+  function lineChart(points, { format = fmtInt, invert = false } = {}) {
+    const id = "c" + Math.random().toString(36).slice(2, 8);
+    if (points.length < 2) return `<div class="empty">Need at least 2 days of data to draw a trend.</div>`;
+    const W = 640, H = 190, L = 44, R = 10, T = 10, B = 24;
+    const ys = points.map((p) => p.y);
+    let min = Math.min(...ys), max = Math.max(...ys);
+    if (!invert) min = Math.min(0, min);
+    if (max === min) max = min + 1;
+    const pad = (max - min) * 0.08; if (invert) { min -= pad; } max += pad;
+    const x = (i) => L + (i / (points.length - 1)) * (W - L - R);
+    const y = (v) => invert ? T + ((v - min) / (max - min)) * (H - T - B) : H - B - ((v - min) / (max - min)) * (H - T - B);
+    const ticks = [0, 0.5, 1].map((f) => min + f * (max - min));
+    const path = points.map((p, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(p.y).toFixed(1)).join("");
+    const area = invert ? "" : `<path class="area" d="${path}L${x(points.length - 1)},${H - B}L${x(0)},${H - B}Z"/>`;
+    const xl = [0, Math.floor((points.length - 1) / 2), points.length - 1];
+    const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="trend chart">
+      ${ticks.map((t) => `<line class="grid-line" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text class="axis-label" x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${esc(format(t))}</text>`).join("")}
+      ${area}<path class="line" d="${path}"/>
+      ${xl.map((i) => `<text class="axis-label" x="${x(i)}" y="${H - 6}" text-anchor="${i === 0 ? "start" : i === points.length - 1 ? "end" : "middle"}">${esc(points[i].x.slice(5))}</text>`).join("")}
+      <line class="cross" id="${id}-x" y1="${T}" y2="${H - B}" visibility="hidden"/>
+      <circle class="dot" id="${id}-d" r="4.5" visibility="hidden"/>
+      <rect id="${id}-hit" x="${L}" y="0" width="${W - L - R}" height="${H}" fill="transparent"/>
+    </svg>`;
+    setTimeout(() => {
+      const hit = document.getElementById(id + "-hit"); if (!hit) return;
+      const svgEl = hit.ownerSVGElement, wrap = svgEl.parentElement;
+      const tip = wrap.querySelector(".tooltip"), cx = document.getElementById(id + "-x"), dot = document.getElementById(id + "-d");
+      const move = (ev) => {
+        const rect = svgEl.getBoundingClientRect();
+        const px = ((ev.clientX - rect.left) / rect.width) * W;
+        const i = Math.max(0, Math.min(points.length - 1, Math.round(((px - L) / (W - L - R)) * (points.length - 1))));
+        const X = x(i), Y = y(points[i].y);
+        cx.setAttribute("x1", X); cx.setAttribute("x2", X); cx.setAttribute("visibility", "visible");
+        dot.setAttribute("cx", X); dot.setAttribute("cy", Y); dot.setAttribute("visibility", "visible");
+        tip.hidden = false; tip.textContent = points[i].x + " · " + format(points[i].y);
+        tip.style.left = (X / W) * rect.width + "px"; tip.style.top = (Y / H) * rect.height + "px";
+      };
+      const out = () => { tip.hidden = true; cx.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); };
+      hit.addEventListener("mousemove", move); hit.addEventListener("mouseleave", out);
+      hit.addEventListener("touchstart", (e) => move(e.touches[0]), { passive: true });
+    });
+    return `<div class="chart">${svg}<div class="tooltip" hidden></div></div>`;
+  }
+
+  // ─────────────────────────── CSV ───────────────────────────
+  function parseCSV(text) {
+    const rows = []; let row = [], cell = "", q = false;
+    text = text.replace(/^﻿/, "");
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+      else if (c === '"') q = true;
+      else if (c === "," || c === "\t") { row.push(cell); cell = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+      else cell += c;
+    }
+    if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+    const nonEmpty = rows.filter((r) => r.some((c) => c.trim() !== ""));
+    if (!nonEmpty.length) return [];
+    const head = nonEmpty[0].map((h) => h.trim());
+    return nonEmpty.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, (r[i] ?? "").trim()])));
+  }
+  const toCSV = (cols, rows) => [cols.map((c) => c.l).join(","), ...rows.map((r) => cols.map((c) => { const v = r[c.k] ?? ""; return /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v; }).join(","))].join("\n");
+  function download(name, text) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+    a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+  function coerce(col, v) {
+    if (v === "" || v == null) return null;
+    if (col.t === "int" || col.int) { const n = num(v); return n == null ? null : Math.round(n); }
+    if (col.t === "num") return num(v);
+    if (col.t === "bool") return v === true || /^(true|yes|1|y)$/i.test(String(v));
+    if (col.t === "date") { const d = new Date(v); return isNaN(d) ? String(v).slice(0, 10) : iso(d); }
+    return String(v);
+  }
+
+  // ─────────────────────────── Modal ───────────────────────────
+  function openModal(html, bind) {
+    $("#modal-body").innerHTML = html; $("#modal").hidden = false;
+    bind && bind($("#modal-body"));
+  }
+  const closeModal = () => { $("#modal").hidden = true; $("#modal-body").innerHTML = ""; };
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+  $("#modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
+
+  function fieldHTML(c, v) {
+    const name = `name="${c.k}"`, req = c.req ? "required" : "";
+    let input;
+    if (c.t === "text") input = `<textarea ${name}>${esc(v)}</textarea>`;
+    else if (c.t === "sel") input = `<select ${name}><option value=""></option>${c.o.map((o) => `<option ${String(v) === o ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
+    else if (c.t === "bool") return `<label><input type="checkbox" ${name} ${v ? "checked" : ""}> ${esc(c.l)}</label>`;
+    else {
+      const type = c.t === "date" ? "date" : c.t === "int" || c.t === "num" ? "number" : "text";
+      const step = c.t === "num" ? 'step="any"' : c.t === "int" ? 'step="1"' : "";
+      input = `<input type="${type}" ${step} ${name} ${req} value="${esc(v)}">`;
+    }
+    return `<label class="${c.wide ? "wide" : ""}">${esc(c.l)}${input}</label>`;
+  }
+  function editRow(table, row, after) {
+    const def = TRACKERS[table];
+    const isNew = !row.id;
+    openModal(`<form id="edit-form">
+      <div class="row spread"><h2>${isNew ? "Add" : "Edit"} · ${esc(def.title)}</h2><button type="button" class="btn ghost" data-close>✕</button></div>
+      <div class="form-grid">${def.cols.map((c) => fieldHTML(c, row[c.k])).join("")}</div>
+      <div class="row spread"><div>${isNew ? "" : '<button type="button" class="btn danger" data-del>Delete</button>'}</div>
+      <div class="row"><button type="button" class="btn" data-close>Cancel</button><button class="btn primary">Save</button></div></div>
+    </form>`, (el) => {
+      $$("[data-close]", el).forEach((b) => (b.onclick = closeModal));
+      const del = $("[data-del]", el);
+      if (del) del.onclick = async () => { if (!confirm("Delete this row?")) return; await Store.remove(table, row.id); closeModal(); toast("Deleted"); after(); };
+      $("#edit-form", el).onsubmit = async (e) => {
+        e.preventDefault();
+        const f = e.target, out = isNew ? {} : { id: row.id };
+        def.cols.forEach((c) => { const inp = f.elements[c.k]; out[c.k] = c.t === "bool" ? inp.checked : coerce(c, inp.value); });
+        const conflict = CONFLICT[table] && isNew ? CONFLICT[table] : "id";
+        await Store.upsert(table, out, conflict); closeModal(); toast("Saved"); after();
+      };
+    });
+  }
+
+  function importDialog(table, after) {
+    const def = TRACKERS[table];
+    openModal(`<div class="row spread"><h2>Import CSV · ${esc(def.title)}</h2><button class="btn ghost" data-close>✕</button></div>
+      <p class="muted">Upload or paste a CSV (Search Console / GA4 exports work). Matched columns: ${def.cols.map((c) => esc(c.l)).join(", ")}.${CONFLICT[table] ? ` Rows with an existing <b>${CONFLICT[table]}</b> are updated, not duplicated.` : ""}</p>
+      <input type="file" accept=".csv,.tsv,.txt" id="imp-file"><p></p>
+      <textarea id="imp-text" placeholder="…or paste CSV here" style="min-height:160px"></textarea>
+      <p id="imp-preview" class="muted small"></p>
+      <div class="row" style="justify-content:flex-end"><button class="btn" data-close>Cancel</button><button class="btn primary" id="imp-go">Import</button></div>`, (el) => {
+      $$("[data-close]", el).forEach((b) => (b.onclick = closeModal));
+      $("#imp-file", el).onchange = async (e) => { const f = e.target.files[0]; if (f) $("#imp-text", el).value = await f.text(); preview(); };
+      $("#imp-text", el).oninput = preview;
+      function mapRows() {
+        const raw = parseCSV($("#imp-text", el).value);
+        const norm = (h) => h.toLowerCase().replace(/[^a-z0-9]/g, "");
+        return raw.map((r) => {
+          const o = {};
+          for (const [h, v] of Object.entries(r)) {
+            const n = norm(h);
+            const k = def.aliases?.[n] || def.cols.find((c) => norm(c.k) === n || norm(c.l) === n)?.k;
+            if (!k) continue;
+            const col = def.cols.find((c) => c.k === k);
+            o[k] = coerce(col, v);
+          }
+          return def.onImport ? def.onImport(o) : o;
+        }).filter((o) => def.cols.filter((c) => c.req).every((c) => o[c.k] != null && o[c.k] !== ""));
+      }
+      function preview() { const rows = mapRows(); $("#imp-preview", el).textContent = rows.length ? `${rows.length} rows ready · columns: ${Object.keys(rows[0]).join(", ")}` : "No importable rows detected yet."; }
+      $("#imp-go", el).onclick = async () => {
+        const rows = mapRows(); if (!rows.length) return toast("Nothing to import");
+        $("#imp-go", el).disabled = true;
+        let n = 0;
+        for (const r of rows) { try { await Store.upsert(table, r, CONFLICT[table] || "id"); n++; } catch {} }
+        closeModal(); toast(`Imported ${n} rows`); after();
+      };
+    });
+  }
+
+  // ─────────────────────────── Views ───────────────────────────
+  const view = () => $("#view");
+
+  async function renderDashboard() {
+    const [kpi, ctx, score] = await Promise.all([Store.list("seo_kpi_daily"), courseCtx(), courseScore()]);
+    const sorted = [...kpi].sort((a, b) => (a.date < b.date ? -1 : 1));
+    const last = sorted.length ? sorted[sorted.length - 1].date : today();
+    const cur = aggregate(kpi, addDays(last, -27), last);
+    const prev = aggregate(kpi, addDays(last, -55), addDays(last, -28));
+    const wk = C.weeks[ctx.week - 1];
+    const loggedToday = kpi.some((r) => r.date === today());
+    const recent = sorted.filter((r) => r.date >= addDays(last, -89));
+    const B = CFG.BASELINE || {};
+    const pct = (v) => Math.round(v * 100);
+    const status = ctx.day < 1 ? `Starts ${ctx.start}` : ctx.day > 120 ? "Course complete — keep the monthly cycle" : `Day ${ctx.day} of 120`;
+
+    view().innerHTML = `
+      <div class="page-head"><div><h1>Dashboard</h1><p class="muted">${esc(C.principle)}</p></div>
+        <div class="row"><a class="btn primary" href="#/t/seo_kpi_daily?add=1">${loggedToday ? "Update" : "Log"} today's KPIs</a><a class="btn" href="#/course/${ctx.week}">Open week ${ctx.week}</a></div></div>
+
+      <div class="grid c3">
+        <div class="card"><div class="row spread"><h3>Course progress</h3><span class="badge info">${esc(status)}</span></div>
+          <div class="progress"><span style="width:${Math.min(100, Math.max(0, (ctx.day / 120) * 100))}%"></span></div>
+          <p class="small muted" style="margin-top:8px">Week ${ctx.week}: <b>${esc(wk.title)}</b><br>Today (${C.dailyRhythm.length ? "day " + (ctx.dayInWeek + 1) + " of week" : ""}): ${esc(C.dailyRhythm[ctx.dayInWeek])}</p></div>
+        <div class="card"><div class="row spread"><h3>Course score</h3><span class="badge ${score.total >= C.passMark ? "good" : "warn"}">${score.total.toFixed(0)}% · pass ${C.passMark}%</span></div>
+          ${Object.entries(C.weights).map(([k, w]) => `<div class="row spread small"><span>${{ qcm: "QCM / knowledge", practical: "Practical tasks", tracking: "Tracking & KPI", monthly: "Monthly projects", final: "Final case study" }[k]} <span class="muted">(${w}%)</span></span><span>${pct(score.parts[k])}%</span></div><div class="progress" style="margin-bottom:6px"><span style="width:${pct(score.parts[k])}%"></span></div>`).join("")}</div>
+        <div class="card"><h3>Today's checklist</h3><ul class="checklist">
+          <li class="${loggedToday ? "done" : ""}"><span>${loggedToday ? "✅" : "⬜"}</span><span class="txt grow">Daily SEO check — log clicks, impressions, users, applications, leads</span></li>
+          <li><span>📘</span><span class="grow">${esc(C.dailyRhythm[ctx.dayInWeek])} — <a href="#/course/${ctx.week}">week ${ctx.week}</a></span></li>
+          <li><span>📋</span><span class="grow">${score.tasksDone}/${score.tasksTotal} course tasks done · ${score.delivered}/16 deliverables</span></li>
+          <li><span>📈</span><span class="grow">${score.logged} KPI days logged since course start</span></li></ul></div>
+      </div>
+
+      <h2 style="margin-top:20px">Last 28 days <span class="muted small">(${addDays(last, -27)} → ${last}, vs previous 28)</span></h2>
+      ${kpi.length ? "" : `<div class="callout">No KPI data yet. Go to <a href="#/t/seo_kpi_daily">Daily KPI tracking</a> → <b>Import CSV</b> and paste your Search Console “Dates” export to fill the history in one go.</div>`}
+      <div class="grid c4">${KPI_KEYS.map(([k, l, kind]) => { const d = delta(cur[k], prev[k], kind); return `<div class="card tile"><div class="label">${l}</div><div class="value">${fmtKpi(cur[k], kind)}</div><div class="delta ${d.cls}">${d.txt}</div></div>`; }).join("")}
+        <div class="card tile"><div class="label">Baseline ${esc(B.date || "")} (28d)</div><div class="value">${fmtInt(B.clicks28)}</div><div class="delta muted">clicks · ${fmtInt(B.impressions28)} impr.</div></div></div>
+
+      <div class="grid c2" style="margin-top:16px">
+        <div class="card"><h3>Clicks per day</h3>${lineChart(recent.filter((r) => r.clicks != null).map((r) => ({ x: r.date, y: +r.clicks })))}</div>
+        <div class="card"><h3>Impressions per day</h3>${lineChart(recent.filter((r) => r.impressions != null).map((r) => ({ x: r.date, y: +r.impressions })))}</div>
+        <div class="card"><h3>Average position per day <span class="muted small">(lower is better)</span></h3>${lineChart(recent.filter((r) => r.avg_position != null).map((r) => ({ x: r.date, y: +r.avg_position })), { format: fmt1, invert: true })}</div>
+        <div class="card"><h3>Applications per day</h3>${lineChart(recent.filter((r) => r.applications != null).map((r) => ({ x: r.date, y: +r.applications })))}</div>
+      </div>
+      <div class="card" id="dash-signals"><h3>Decision signals</h3><p class="muted">Loading live site data…</p></div>`;
+
+    const signals = await decisionSignals(cur, prev);
+    const el = $("#dash-signals"); if (el) el.innerHTML = `<h3>Decision signals</h3>${signals}`;
+  }
+
+  async function decisionSignals(cur, prev) {
+    const out = [];
+    const live = await loadLive().catch(() => null);
+    if (live?.gsc) {
+      const g = live.gsc;
+      out.push(`<li><b>${g.p4_10.length}</b> job pages at position 4-10 → protect & strengthen (framework #2). <a href="#/live">See list</a></li>`);
+      out.push(`<li><b>${g.p11_20.length}</b> job pages at position 11-20 → growth candidates (framework #3).</li>`);
+      out.push(`<li><b>${g.lowCtr.length}</b> pages with high impressions and low CTR → check title/snippet (framework #1).</li>`);
+    }
+    if (cur.clicks != null && prev.clicks && cur.applications != null && prev.applications != null) {
+      const t = (cur.clicks - prev.clicks) / prev.clicks, a = prev.applications ? (cur.applications - prev.applications) / prev.applications : 0;
+      if (t > 0.1 && a <= 0.02) out.push(`<li><span class="badge warn">Watch</span> Traffic up ${(t * 100).toFixed(0)}% but applications flat → review audience fit and CTA path (framework #4).</li>`);
+      if (a > 0.1 && Math.abs(t) < 0.05) out.push(`<li><span class="badge good">Win</span> Applications up with flat traffic → find what lifted conversion and replicate (framework #5).</li>`);
+    }
+    const tech = (await Store.list("seo_technical")).filter((r) => !["fixed", "validated"].includes(r.status));
+    const crit = tech.filter((r) => r.severity === "Critical" || r.severity === "High").length;
+    if (tech.length) out.push(`<li><b>${tech.length}</b> open technical issues (${crit} Critical/High). <a href="#/t/seo_technical">Open tracker</a></li>`);
+    const exps = (await Store.list("seo_experiments")).filter((r) => r.review_date && r.review_date <= today() && !r.conclusion);
+    if (exps.length) out.push(`<li><span class="badge info">Due</span> ${exps.length} experiment(s) due for review. <a href="#/t/seo_experiments">Review</a></li>`);
+    return out.length ? `<ul>${out.join("")}</ul>` : `<p class="muted">No signals yet — add data to the trackers.</p>`;
+  }
+
+  // ── Live site data (real data from the repo) ──
+  let LIVE = null;
+  async function loadLive() {
+    if (LIVE) return LIVE;
+    const [reg, gscTxt, probTxt] = await Promise.all([
+      fetch(CFG.JOBS_REGISTRY, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      fetch(CFG.GSC_PAGES_CSV, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).catch(() => ""),
+      fetch(CFG.GSC_PROBLEMS_CSV, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).catch(() => ""),
+    ]);
+    const out = { reg, gsc: null, problems: null };
+    if (gscTxt) {
+      const rows = parseCSV(gscTxt).filter((r) => r.url).map((r) => ({ ...r, clicks: +r.clicks || 0, impressions: +r.impressions || 0, ctr: (+r.ctr || 0) * 100, position: +r.position || 0 }));
+      out.gsc = {
+        rows,
+        clicks: rows.reduce((a, r) => a + r.clicks, 0),
+        impressions: rows.reduce((a, r) => a + r.impressions, 0),
+        zero: rows.filter((r) => !r.impressions).length,
+        p4_10: rows.filter((r) => r.impressions && r.position >= 4 && r.position <= 10.9).sort((a, b) => b.impressions - a.impressions),
+        p11_20: rows.filter((r) => r.impressions && r.position >= 11 && r.position <= 20.9).sort((a, b) => b.impressions - a.impressions),
+        lowCtr: rows.filter((r) => r.impressions >= 30 && r.ctr < 2).sort((a, b) => b.impressions - a.impressions),
+      };
+    }
+    if (probTxt) {
+      const c = {}; parseCSV(probTxt).forEach((r) => (c[r.problem] = (c[r.problem] || 0) + 1));
+      out.problems = Object.entries(c).sort((a, b) => b[1] - a[1]);
+    }
+    return (LIVE = out);
+  }
+
+  async function renderLive() {
+    view().innerHTML = `<h1>Live site data</h1><p class="muted">Loading…</p>`;
+    LIVE = null;
+    const L = await loadLive();
+    const reg = L.reg || [];
+    const open = reg.filter((j) => !j.status);
+    const byCat = {}; open.forEach((j) => (byCat[j.category] = (byCat[j.category] || 0) + 1));
+    const cats = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+    const newest = [...open].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 10);
+    const g = L.gsc;
+    const pageTable = (rows, empty) => rows.length ? `<div class="table-wrap"><table><thead><tr><th>Page</th><th>Top queries</th><th class="num">Clicks</th><th class="num">Impr.</th><th class="num">CTR</th><th class="num">Pos.</th><th></th></tr></thead><tbody>
+      ${rows.slice(0, 25).map((r) => `<tr><td><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title || r.slug)}</a></td><td><span class="clip muted">${esc(r.queries || r.top_query)}</span></td><td class="num">${r.clicks}</td><td class="num">${r.impressions}</td><td class="num">${r.ctr.toFixed(1)}%</td><td class="num">${r.position.toFixed(1)}</td><td><button class="btn small" data-track="${esc(r.url)}">Track</button></td></tr>`).join("")}
+      </tbody></table></div>` : `<p class="muted">${empty}</p>`;
+
+    view().innerHTML = `
+      <div class="page-head"><div><h1>Live site data</h1><p class="muted">Read straight from the repo: <code>tools/jobs_registry.json</code> and the job-sync agent's Search Console exports in <code>reports/</code>. Refreshes whenever those files are pushed.</p></div><button class="btn" id="live-refresh">Reload</button></div>
+      <div class="grid c4">
+        <div class="card tile"><div class="label">Open jobs</div><div class="value">${fmtInt(open.length)}</div><div class="delta muted">${reg.length} in registry</div></div>
+        <div class="card tile"><div class="label">Closed / expired</div><div class="value">${fmtInt(reg.filter((j) => j.status).length)}</div><div class="delta muted">${reg.filter((j) => j.status === "closed").length} closed · ${reg.filter((j) => j.status === "expired").length} expired</div></div>
+        <div class="card tile"><div class="label">Featured jobs</div><div class="value">${fmtInt(open.filter((j) => j.featured).length)}</div></div>
+        ${g ? `<div class="card tile"><div class="label">Job pages in GSC export</div><div class="value">${fmtInt(g.rows.length)}</div><div class="delta muted">${fmtInt(g.clicks)} clicks · ${fmtInt(g.impressions)} impr.</div></div>
+        <div class="card tile"><div class="label">Job pages with 0 impressions</div><div class="value">${fmtInt(g.zero)}</div><div class="delta muted">${g.rows.length ? Math.round((g.zero / g.rows.length) * 100) : 0}% of tracked</div></div>` : ""}
+      </div>
+      ${g ? `
+      <div class="card" style="margin-top:16px"><h3>Position 4-10 — protect & strengthen <span class="badge info">${g.p4_10.length}</span></h3>${pageTable(g.p4_10, "None right now.")}</div>
+      <div class="card"><h3>Position 11-20 — near Top-10 growth candidates <span class="badge info">${g.p11_20.length}</span></h3>${pageTable(g.p11_20, "None right now.")}</div>
+      <div class="card"><h3>High impressions, low CTR (&lt;2%, ≥30 impr.) <span class="badge warn">${g.lowCtr.length}</span></h3>${pageTable(g.lowCtr, "None right now.")}</div>` : `<div class="card"><p class="muted">GSC export not found at ${esc(CFG.GSC_PAGES_CSV)}.</p></div>`}
+      <div class="grid c2">
+        <div class="card"><h3>Open jobs by category</h3><div class="table-wrap"><table><thead><tr><th>Category</th><th class="num">Open jobs</th><th>Sector page target</th></tr></thead><tbody>
+          ${cats.map(([c, n]) => { const s = C.sectors.find((x) => c.toLowerCase().includes(x[0].toLowerCase().split(" ")[0])); return `<tr><td>${esc(c)}</td><td class="num">${n}</td><td class="muted">${s ? esc(s[1]) : ""}</td></tr>`; }).join("")}</tbody></table></div></div>
+        <div class="card"><h3>Indexing / visibility problems</h3>${L.problems ? `<table><tbody>${L.problems.map(([p, n]) => `<tr><td>${esc(p)}</td><td class="num">${n}</td></tr>`).join("")}</tbody></table>` : `<p class="muted">No problems file.</p>`}</div>
+      </div>
+      <div class="card"><h3>Newest open jobs</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Job</th><th>Category</th><th>Location</th></tr></thead><tbody>
+        ${newest.map((j) => `<tr><td>${esc(j.date)}</td><td><a href="../jobs/${esc(j.slug)}/" target="_blank">${esc(j.title)}</a></td><td>${esc(j.category)}</td><td>${esc(j.location)}</td></tr>`).join("")}</tbody></table></div></div>`;
+
+    $("#live-refresh").onclick = renderLive;
+    $$("[data-track]").forEach((b) => (b.onclick = async () => {
+      const r = g.rows.find((x) => x.url === b.dataset.track);
+      const existing = (await Store.list("seo_pages")).find((p) => p.url === r.url);
+      await Store.upsert("seo_pages", { ...(existing ? { id: existing.id } : {}), url: r.url, target_query: r.top_query || r.target_keyword, clicks: r.clicks, impressions: r.impressions, ctr: +r.ctr.toFixed(2), position: r.position });
+      b.textContent = "✓ Tracked"; b.disabled = true; toast("Added to Pages tracker");
+    }));
+  }
+
+  // ── Generic tracker ──
+  async function renderTracker(table, params = new URLSearchParams()) {
+    const def = TRACKERS[table];
+    let rows = await Store.list(table, { force: true });
+    const [sk, dir] = def.sort || ["created_at", -1];
+    const rank = def.sortRank?.[sk];
+    rows = [...rows].sort((a, b) => {
+      let x = a[sk], y = b[sk];
+      if (rank) { x = rank[x] ?? 99; y = rank[y] ?? 99; }
+      if (x == null) return 1; if (y == null) return -1;
+      return (x < y ? -1 : x > y ? 1 : 0) * dir;
+    });
+    const cols = def.cols.filter((c) => !c.hide);
+    const weekLinks = (def.weeks || []).map((n) => `<a href="#/course/${n}">Week ${n}</a>`).join(", ");
+    view().innerHTML = `
+      <div class="page-head"><div><h1>${esc(def.title)} <span class="badge">${rows.length}</span></h1>
+        <p class="muted">${esc(def.intro)}<br><span class="small">Dashboard tab: ${esc(def.tab)} · used in ${weekLinks}</span></p></div>
+        <div class="row"><button class="btn primary" id="t-add">Add</button><button class="btn" id="t-imp">Import CSV</button><button class="btn" id="t-exp">Export CSV</button></div></div>
+      <div class="card"><input id="t-q" placeholder="Filter…" style="max-width:320px;margin-bottom:10px">
+      ${rows.length ? `<div class="table-wrap"><table><thead><tr>${cols.map((c) => `<th class="${["int", "num"].includes(c.t) ? "num" : ""}">${esc(c.l)}</th>`).join("")}${(def.computed || []).map((c) => `<th class="num">${esc(c.l)}</th>`).join("")}</tr></thead>
+      <tbody id="t-body">${rows.map((r) => `<tr data-id="${esc(r.id)}" style="cursor:pointer">${cols.map((c) => cell(c, r[c.k])).join("")}${(def.computed || []).map((c) => { const v = c.f(r); return `<td class="num ${c.cls ? c.cls(v) : ""}">${v == null ? "–" : v}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`
+        : `<div class="empty">No rows yet. Click <b>Add</b> or <b>Import CSV</b>.</div>`}</div>`;
+    const reload = () => renderTracker(table);
+    $("#t-add").onclick = () => editRow(table, table === "seo_kpi_daily" ? { date: today() } : table === "seo_ai_visibility" ? { date: today() } : {}, reload);
+    $("#t-imp").onclick = () => importDialog(table, reload);
+    $("#t-exp").onclick = () => download(table + "-" + today() + ".csv", toCSV(def.cols, rows));
+    $$("#t-body tr").forEach((tr) => (tr.onclick = () => editRow(table, rows.find((r) => r.id === tr.dataset.id), reload)));
+    $("#t-q").oninput = (e) => { const q = e.target.value.toLowerCase(); $$("#t-body tr").forEach((tr) => (tr.hidden = !tr.textContent.toLowerCase().includes(q))); };
+    if (params.get("add")) {
+      const existing = table === "seo_kpi_daily" ? rows.find((r) => r.date === today()) : null;
+      editRow(table, existing || { date: today() }, reload);
+    }
+  }
+  function cell(c, v) {
+    if (v == null || v === "") return `<td class="${["int", "num"].includes(c.t) ? "num" : ""} muted">–</td>`;
+    if (c.t === "bool") return `<td>${v ? "✅" : "—"}</td>`;
+    if (c.t === "int") return `<td class="num">${fmtInt(v)}</td>`;
+    if (c.t === "num") return `<td class="num">${(+v).toFixed(c.k === "ctr" ? 2 : 1)}</td>`;
+    if (c.k === "severity") return `<td><span class="badge ${v === "Critical" ? "bad" : v === "High" ? "warn" : ""}">${esc(v)}</span></td>`;
+    if (c.k === "status") return `<td><span class="badge ${/fixed|validated|done|acquired|published/.test(v) ? "good" : /progress|contacted|replied|writing|brief/.test(v) ? "info" : ""}">${esc(v)}</span></td>`;
+    if (/url|link/.test(c.k) && /^https?:/.test(v)) return `<td><a class="clip" href="${esc(v)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(v.replace(/^https?:\/\/(www\.)?/, ""))}</a></td>`;
+    return `<td><span class="clip">${esc(v)}</span></td>`;
+  }
+
+  // ── Course map ──
+  async function renderCourseMap() {
+    const [ctx, score] = await Promise.all([courseCtx(), courseScore()]);
+    const w0 = score.byW[0] || {};
+    view().innerHTML = `
+      <div class="page-head"><div><h1>Course map</h1><p class="muted">${esc(C.title)}</p></div>
+        <label style="max-width:220px">Course start date<input type="date" id="c-start" value="${esc(ctx.start)}"></label></div>
+      <div class="callout"><b>Main objective:</b> ${esc(C.objective)}<br><span class="small">Every module has five outputs: understanding, a real website task, a measurable KPI, a QCM, and a saved deliverable. A module is not complete until the real task is implemented and recorded.</span></div>
+      ${C.months.map((m) => `
+        <div class="row spread" style="margin-top:18px"><h2>Month ${m.n}</h2>
+          <label class="row" style="margin:0"><input type="checkbox" data-month="${m.n}" ${w0.months?.[m.n]?.done ? "checked" : ""}> Monthly project done</label></div>
+        <p class="muted">${esc(m.goal)}</p>
+        <div class="grid c4">${m.weeks.map((n) => {
+          const w = C.weeks[n - 1], d = score.byW[n] || {};
+          const done = w.tasks.filter((_, i) => d.tasks?.[i]?.done).length;
+          const [from, to] = weekRange(ctx.start, n);
+          return `<a class="card week-card ${n === ctx.week ? "current" : ""}" href="#/course/${n}">
+            <div class="row spread"><span class="badge ${d.deliverable?.done ? "good" : n === ctx.week ? "info" : ""}">Week ${n}</span><span class="small muted">${from.slice(5)} → ${to.slice(5)}</span></div>
+            <h3 style="margin-top:8px">${esc(w.title)}</h3>
+            <p class="small muted">${esc(w.track)} · ${esc(w.deliverable)}</p>
+            <div class="progress"><span style="width:${(done / w.tasks.length) * 100}%"></span></div>
+            <p class="small muted" style="margin:6px 0 0">${done}/${w.tasks.length} tasks${d.deliverable?.done ? " · deliverable ✓" : ""}</p></a>`;
+        }).join("")}</div>`).join("")}
+      <div class="card" style="margin-top:20px"><h3>Final competency checklist</h3><ul class="checklist">
+        ${C.competencies.map((c, i) => `<li class="${w0.competencies?.[i] ? "done" : ""}"><input type="checkbox" data-comp="${i}" ${w0.competencies?.[i] ? "checked" : ""}><span class="txt grow">${esc(c)}</span></li>`).join("")}</ul></div>`;
+
+    $("#c-start").onchange = async (e) => { await Store.setSetting("course_start", e.target.value); toast("Start date saved"); renderCourseMap(); };
+    const saveW0 = async (fn) => { const d = await Store.getWeek(0); fn(d); await Store.setWeek(0, d); toast("Saved"); };
+    $$("[data-month]").forEach((c) => (c.onchange = () => saveW0((d) => { d.months = d.months || {}; d.months[c.dataset.month] = { ...(d.months[c.dataset.month] || {}), done: c.checked }; })));
+    $$("[data-comp]").forEach((c) => (c.onchange = () => { c.closest("li").classList.toggle("done", c.checked); saveW0((d) => { d.competencies = d.competencies || {}; d.competencies[c.dataset.comp] = c.checked; }); }));
+  }
+
+  // ── Course week ──
+  async function renderWeek(n) {
+    const ctx = await courseCtx();
+    if (n === "today") n = ctx.week;
+    n = +n;
+    const w = C.weeks[n - 1];
+    if (!w) return (view().innerHTML = `<p>Unknown week.</p>`);
+    const d = await Store.getWeek(n);
+    const kpi = await Store.list("seo_kpi_daily");
+    const [from, to] = weekRange(ctx.start, n);
+    const cur = aggregate(kpi, from, to), prev = aggregate(kpi, addDays(from, -7), addDays(from, -1));
+    const tr = TRACKERS[w.tracker];
+    const trackerLink = tr ? `<a class="btn" href="#/t/${w.tracker}">Open ${esc(tr.title)} tracker →</a>` : w.tracker === "live" ? `<a class="btn" href="#/live">Open Live site data →</a>` : w.tracker === "final" ? `<a class="btn" href="#/final">Open Final case study →</a>` : "";
+    const isCurrent = n === ctx.week;
+    d.days = d.days || []; d.tasks = d.tasks || {}; d.worksheet = d.worksheet || []; d.qcm = d.qcm || {};
+    d.kpiActions = d.kpiActions || {}; d.deliverable = d.deliverable || {}; d.resume = d.resume || { learned: [], issues: [] };
+
+    view().innerHTML = `
+      <div class="page-head"><div>
+        <div class="row"><span class="badge info">Week ${n} of 16</span><span class="badge">${esc(w.track)}</span>${isCurrent ? '<span class="badge good">Current week</span>' : ""}<span class="small muted">${from} → ${to}</span></div>
+        <h1 style="margin-top:8px">${esc(w.title)}</h1></div>
+        <div class="row">${n > 1 ? `<a class="btn" href="#/course/${n - 1}">← Week ${n - 1}</a>` : ""}${n < 16 ? `<a class="btn" href="#/course/${n + 1}">Week ${n + 1} →</a>` : ""}<span class="save-state" id="save-state"></span></div></div>
+
+      <div class="callout"><b>Learning objective:</b> ${esc(w.objective)}</div>
+      <div class="card"><h3>What you need to understand</h3><p>${esc(w.understand)}</p></div>
+
+      <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
+
+      <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3>${trackerLink}</div>
+        <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div><input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
+
+      <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
+
+      <div class="card"><div class="row spread"><h3>QCM / Knowledge check</h3><button class="btn small" id="show-guide">Show answer guide</button></div>
+        ${w.qcm.map((q, i) => `<div class="qcm"><b>${i + 1}. ${esc(q)}</b>
+          <textarea data-qa="${i}" placeholder="Your answer in your own words">${esc(d.qcm[i]?.answer)}</textarea>
+          <div class="row" style="margin-top:6px"><span class="small muted">Self-mark after checking the guide:</span>
+          <select data-qm="${i}" style="width:auto">${["", "correct", "partial", "wrong"].map((m) => `<option value="${m}" ${d.qcm[i]?.mark === m ? "selected" : ""}>${m || "—"}</option>`).join("")}</select></div></div>`).join("")}
+        <div class="answer-guide" id="guide" hidden><b>Answer & revision guide:</b> ${esc(w.answers)}</div></div>
+
+      <div class="card"><h3>Weekly KPI review <span class="muted small">(auto from Daily KPI tracking: ${from} → ${to} vs previous 7 days · ${cur.days}/7 days logged)</span></h3>
+        <div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Previous</th><th class="num">Current</th><th class="num">Change</th><th>Action</th></tr></thead><tbody>
+        ${KPI_KEYS.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); return `<tr><td>${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-ka="${k}" value="${esc(d.kpiActions[k])}" placeholder="Action"></td></tr>`; }).join("")}
+        </tbody></table></div>
+        ${cur.days < 7 ? `<p class="small muted" style="margin-top:8px">Missing days? <a href="#/t/seo_kpi_daily">Import the GSC Dates export</a>.</p>` : ""}</div>
+
+      <div class="card"><h3>Required deliverable: ${esc(w.deliverable)}</h3>
+        <label class="row" style="margin-bottom:8px"><input type="checkbox" id="dl-done" ${d.deliverable.done ? "checked" : ""}> Deliverable completed and saved</label>
+        <div class="form-grid"><label>Link to deliverable (doc / sheet / commit / URL)<input id="dl-link" value="${esc(d.deliverable.link)}"></label>
+        <label>Notes<input id="dl-notes" value="${esc(d.deliverable.notes)}"></label></div></div>
+
+      <div class="card"><h3>Weekly résumé</h3><div class="form-grid">
+        ${[0, 1, 2].map((i) => `<label>Thing I learned ${i + 1}<input data-rl="${i}" value="${esc(d.resume.learned?.[i])}"></label>`).join("")}
+        ${[0, 1, 2].map((i) => `<label>Issue / opportunity ${i + 1}<input data-ri="${i}" value="${esc(d.resume.issues?.[i])}"></label>`).join("")}
+        <label class="wide">Next priority<input id="r-next" value="${esc(d.resume.next)}"></label></div></div>`;
+
+    const state = $("#save-state");
+    let timer;
+    const save = (immediate) => {
+      state.textContent = "Saving…";
+      clearTimeout(timer);
+      timer = setTimeout(async () => {
+        try { await Store.setWeek(n, d); state.textContent = "Saved ✓ " + new Date().toLocaleTimeString().slice(0, 5); }
+        catch { state.textContent = "Save failed"; }
+      }, immediate ? 0 : 700);
+    };
+    $$("[data-day]").forEach((el) => (el.onclick = () => { const i = +el.dataset.day; d.days[i] = !d.days[i]; el.classList.toggle("done", d.days[i]); save(true); }));
+    $$("[data-task]").forEach((el) => (el.onchange = () => { const i = el.dataset.task; d.tasks[i] = { ...(d.tasks[i] || {}), done: el.checked }; el.closest("li").classList.toggle("done", el.checked); save(true); }));
+    $$("[data-tasknote]").forEach((el) => (el.oninput = () => { const i = el.dataset.tasknote; d.tasks[i] = { ...(d.tasks[i] || {}), note: el.value }; save(); }));
+    $$("[data-ws]").forEach((el) => (el.oninput = () => { d.worksheet[el.dataset.ws] = el.value; save(); }));
+    $$("[data-qa]").forEach((el) => (el.oninput = () => { const i = el.dataset.qa; d.qcm[i] = { ...(d.qcm[i] || {}), answer: el.value }; save(); }));
+    $$("[data-qm]").forEach((el) => (el.onchange = () => { const i = el.dataset.qm; d.qcm[i] = { ...(d.qcm[i] || {}), mark: el.value }; save(true); }));
+    $$("[data-ka]").forEach((el) => (el.oninput = () => { d.kpiActions[el.dataset.ka] = el.value; save(); }));
+    $("#dl-done").onchange = (e) => { d.deliverable.done = e.target.checked; save(true); };
+    $("#dl-link").oninput = (e) => { d.deliverable.link = e.target.value; save(); };
+    $("#dl-notes").oninput = (e) => { d.deliverable.notes = e.target.value; save(); };
+    $$("[data-rl]").forEach((el) => (el.oninput = () => { d.resume.learned = d.resume.learned || []; d.resume.learned[el.dataset.rl] = el.value; save(); }));
+    $$("[data-ri]").forEach((el) => (el.oninput = () => { d.resume.issues = d.resume.issues || []; d.resume.issues[el.dataset.ri] = el.value; save(); }));
+    $("#r-next").oninput = (e) => { d.resume.next = e.target.value; save(); };
+    $("#show-guide").onclick = () => { const g = $("#guide"); g.hidden = !g.hidden; };
+  }
+
+  // ── Final case study ──
+  async function renderFinal() {
+    const ctx = await courseCtx();
+    const [kpi, kws, links, tech, w0] = await Promise.all([Store.list("seo_kpi_daily"), Store.list("seo_keywords"), Store.list("seo_backlinks"), Store.list("seo_technical"), Store.getWeek(0)]);
+    const day1 = aggregate(kpi, addDays(ctx.start, -28), addDays(ctx.start, -1));
+    const end = addDays(ctx.start, 119);
+    const day120 = aggregate(kpi, addDays(end, -27), end);
+    const top10Base = kws.filter((k) => k.baseline_position != null && k.baseline_position <= 10).length;
+    const top10Now = kws.filter((k) => k.current_position != null && k.current_position <= 10).length;
+    const acquired = links.filter((l) => l.status === "acquired").length;
+    const f = w0.final || {};
+    const rows = [...KPI_KEYS.map(([k, l, kind]) => [l, fmtKpi(day1[k], kind), fmtKpi(day120[k], kind), delta(day120[k], day1[k], kind), k]),
+      ["Top 10 keywords", top10Base, top10Now, delta(top10Now, top10Base, "sum"), "top10"],
+      ["Referring domains (acquired)", "0", acquired, delta(acquired, 0, "sum"), "rd"]];
+    view().innerHTML = `
+      <div class="page-head"><div><h1>Final project — 120-Day SEO Case Study</h1>
+        <p class="muted">Day 1 = 28 days before ${ctx.start}. Day 120 = 28 days ending ${end}. Numbers fill in automatically from your trackers.</p></div><span class="save-state" id="save-state"></span></div>
+      <div class="card"><h3>Part A — Before</h3><p class="muted small">Baseline Search Console + GA4 data, priority keyword positions, indexed pages and technical issues, applications and employer leads.</p>
+        <textarea data-f="partA" placeholder="Summarise the baseline">${esc(f.partA)}</textarea></div>
+      <div class="card"><h3>Part B — Work completed</h3>
+        <p class="small muted">Tracker totals: ${tech.filter((t) => ["fixed", "validated"].includes(t.status)).length} technical fixes · ${kws.length} keywords mapped · ${acquired} links acquired</p>
+        <div class="form-grid">${["Technical fixes", "On-page optimization", "Sector pages and content", "Internal linking", "Local SEO actions", "Backlinks/citations", "AEO/GEO improvements"].map((l, i) => `<label>${l}<textarea data-fb="${i}">${esc(f.partB?.[i])}</textarea></label>`).join("")}</div></div>
+      <div class="card"><h3>Part C — After</h3><div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Day 1</th><th class="num">Day 120</th><th class="num">Change</th><th>Interpretation</th></tr></thead><tbody>
+        ${rows.map(([l, a, b, dd, k]) => `<tr><td>${l}</td><td class="num">${a}</td><td class="num">${b}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-fi="${k}" value="${esc(f.interp?.[k])}"></td></tr>`).join("")}</tbody></table></div></div>
+      <div class="card"><h3>Part D — Your conclusion</h3><div class="form-grid">
+        ${[["worked", "What worked best?"], ["notWorked", "What did not work as expected?"], ["evidence", "What evidence supports the conclusion?"], ["priorities", "What are the next 5 priorities?"], ["objective", "Next 90-day objective"]].map(([k, l]) => `<label class="wide">${l}<textarea data-f="${k}">${esc(f[k])}</textarea></label>`).join("")}</div>
+        <label class="row"><input type="checkbox" id="f-done" ${f.done ? "checked" : ""}> Final case study complete</label></div>`;
+    const state = $("#save-state"); let timer;
+    const data = { ...w0, final: { ...f, partB: f.partB || [], interp: f.interp || {} } };
+    const save = () => { state.textContent = "Saving…"; clearTimeout(timer); timer = setTimeout(async () => { await Store.setWeek(0, data); state.textContent = "Saved ✓"; }, 600); };
+    $$("[data-f]").forEach((el) => (el.oninput = () => { data.final[el.dataset.f] = el.value; save(); }));
+    $$("[data-fb]").forEach((el) => (el.oninput = () => { data.final.partB[el.dataset.fb] = el.value; save(); }));
+    $$("[data-fi]").forEach((el) => (el.oninput = () => { data.final.interp[el.dataset.fi] = el.value; save(); }));
+    $("#f-done").onchange = (e) => { data.final.done = e.target.checked; save(); };
+  }
+
+  function renderPlaybook() {
+    view().innerHTML = `<h1>Playbook &amp; KPI decision framework</h1>
+      <div class="card"><h3>Sector SEO playbook</h3><p class="muted small">Use this page model for priority sectors. Sections change with search intent and real information — never clone the same text across sectors.</p>
+        <div class="table-wrap"><table><thead><tr><th>Sector</th><th>Primary target</th><th>Supporting topics</th></tr></thead><tbody>${C.sectors.map((s) => `<tr><td>${esc(s[0])}</td><td>${esc(s[1])}</td><td class="muted">${esc(s[2])}</td></tr>`).join("")}</tbody></table></div>
+        <h3 style="margin-top:14px">Sector page template</h3><ul>${["Primary keyword and search intent", "SEO title and meta description", "H1 and introductory direct answer", "Current vacancies", "Types of roles in the sector", "Skills/experience employers commonly request — only where supported", "Useful Malta-specific context", "Candidate FAQs", "Internal links to jobs and guides", "Application CTA", "Review/update date", "Baseline and follow-up KPI data"].map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      <div class="card"><h3>SEO KPI decision framework</h3>${C.decisionFramework.map((x, i) => `<p><b>${i + 1}. ${esc(x.t)}</b><br>${esc(x.d)}</p>`).join("")}</div>
+      <div class="card"><h3>Core formulas</h3><table><tbody>
+        <tr><td>CTR</td><td>Clicks / Impressions × 100</td></tr><tr><td>Organic conversion rate</td><td>Organic conversions / Organic sessions × 100</td></tr>
+        <tr><td>Traffic growth</td><td>(Current − Previous) / Previous × 100</td></tr><tr><td>Ranking improvement</td><td>Previous position − Current position (positive = improvement)</td></tr></tbody></table></div>
+      <div class="card"><h3>Tools</h3><p>Google Search Console · GA4 · Google Business Profile · PageSpeed Insights · Rich Results Test · Schema.org · Bing Webmaster Tools · Google Trends · Keyword Planner · Screaming Frog (free tier)</p>
+        <p class="muted small">Top-10 rankings are a target, not a guarantee. Don't overreact to one-day ranking changes: daily tracking is for observation; weekly and monthly comparisons are for decisions.</p></div>`;
+  }
+
+  async function renderSettings() {
+    const B = CFG.BASELINE || {};
+    view().innerHTML = `<h1>Settings &amp; data</h1>
+      <div class="card"><h3>Storage</h3>
+        ${Store.mode === "supabase"
+          ? `<p><span class="badge good">Supabase connected</span> ${esc(CFG.SUPABASE_URL)}</p><p class="muted">Data is shared across devices and protected by row-level security (admin emails only).</p>`
+          : `<p><span class="badge warn">Local mode</span> Data is saved in <b>this browser only</b>. Export a backup regularly.</p>
+             <p class="muted">To switch to Supabase: run <code>supabase/admin_schema.sql</code> in the Supabase SQL editor, then fill <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> in <code>admin/config.js</code>. Then use “Copy local data to Supabase” below once.</p>`}
+      </div>
+      <div class="card"><h3>Backup</h3><div class="row">
+        <button class="btn" id="s-export">Export everything (JSON)</button>
+        <label class="btn" style="margin:0">Import JSON backup<input type="file" id="s-import" accept=".json" hidden></label>
+        ${Store.mode === "supabase" ? `<button class="btn primary" id="s-migrate">Copy local browser data to Supabase</button>` : ""}
+      </div><p class="small muted" id="s-msg"></p></div>
+      <div class="card"><h3>Baseline (from config)</h3><p>${esc(B.date)} · ${fmtInt(B.clicks28)} clicks · ${fmtInt(B.impressions28)} impressions (28 days, sitewide)</p></div>
+      <div class="card"><h3>Theme</h3><div class="row">${["auto", "light", "dark"].map((t) => `<button class="btn" data-theme-set="${t}">${t}</button>`).join("")}</div></div>`;
+    $("#s-export").onclick = async () => {
+      const out = {}; for (const t of ALL_TABLES) out[t] = await Store.list(t, { force: true });
+      download("seo-admin-backup-" + today() + ".json", JSON.stringify(out, null, 2));
+    };
+    const importAll = async (data) => {
+      let n = 0;
+      for (const t of ALL_TABLES) for (const r of data[t] || []) {
+        const row = { ...r }; if (Store.mode === "supabase" && CONFLICT[t]) delete row.id;
+        if (Store.mode === "supabase" && !CONFLICT[t] && row.id && !/^[0-9a-f-]{36}$/i.test(row.id)) delete row.id;
+        try { await Store.upsert(t, row, CONFLICT[t] || "id"); n++; } catch {}
+      }
+      return n;
+    };
+    $("#s-import").onchange = async (e) => {
+      const f = e.target.files[0]; if (!f) return;
+      const n = await importAll(JSON.parse(await f.text())); $("#s-msg").textContent = `Imported ${n} rows.`;
+    };
+    const mig = $("#s-migrate");
+    if (mig) mig.onclick = async () => {
+      const data = {}; ALL_TABLES.forEach((t) => (data[t] = Store.lsGet(t)));
+      const total = Object.values(data).reduce((a, r) => a + r.length, 0);
+      if (!total) return ($("#s-msg").textContent = "No local data in this browser.");
+      if (!confirm(`Copy ${total} local rows to Supabase?`)) return;
+      const n = await importAll(data); $("#s-msg").textContent = `Copied ${n} rows to Supabase.`;
+    };
+    $$("[data-theme-set]").forEach((b) => (b.onclick = () => setTheme(b.dataset.themeSet)));
+  }
+
+  function setTheme(t) {
+    if (t === "auto") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem("seoadmin:theme", t); } catch {}
+  }
+
+  // ─────────────────────────── Router ───────────────────────────
+  async function route() {
+    const [path, qs] = (location.hash.replace(/^#\/?/, "") || "dashboard").split("?");
+    const params = new URLSearchParams(qs || "");
+    $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === path || (path.startsWith("course/") && a.dataset.route === "course/today" && path === "course/today")));
+    window.scrollTo(0, 0);
+    try {
+      if (path === "dashboard") return await renderDashboard();
+      if (path === "live") return await renderLive();
+      if (path === "course") return await renderCourseMap();
+      if (path.startsWith("course/")) return await renderWeek(path.split("/")[1]);
+      if (path === "final") return await renderFinal();
+      if (path === "playbook") return renderPlaybook();
+      if (path === "settings") return await renderSettings();
+      if (path.startsWith("t/") && TRACKERS[path.slice(2)]) return await renderTracker(path.slice(2), params);
+      view().innerHTML = `<p>Page not found. <a href="#/dashboard">Dashboard</a></p>`;
+    } catch (e) {
+      console.error(e);
+      view().innerHTML = `<div class="card"><h3>Something went wrong</h3><p class="error">${esc(e.message || e)}</p></div>`;
+    }
+  }
+
+  // ─────────────────────────── Boot ───────────────────────────
+  async function boot() {
+    try { const t = localStorage.getItem("seoadmin:theme"); if (t) setTheme(t); } catch {}
+    Store.init();
+    $("#mode-badge").textContent = Store.mode === "supabase" ? "Supabase" : "Local mode";
+    $("#mode-badge").className = "badge " + (Store.mode === "supabase" ? "good" : "warn");
+    if (Store.mode === "supabase") {
+      const { data } = await Store.sb.auth.getSession();
+      if (!data.session) {
+        $("#login").hidden = false;
+        $("#login-form").onsubmit = async (e) => {
+          e.preventDefault();
+          const f = e.target;
+          const { error } = await Store.sb.auth.signInWithPassword({ email: f.email.value, password: f.password.value });
+          if (error) return ($("#login-error").textContent = error.message);
+          location.reload();
+        };
+        return;
+      }
+      $("#logout").hidden = false;
+      $("#logout").onclick = async () => { await Store.sb.auth.signOut(); location.reload(); };
+    }
+    $("#app").hidden = false;
+    window.addEventListener("hashchange", route);
+    route();
+  }
+  boot();
+})();

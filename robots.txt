@@ -23,6 +23,7 @@ Disallow: /help.html
 Disallow: /jobs/people-connector-apply
 Disallow: /jobs/shop-assistant-apply
 Disallow: /opening-jobs-in-malta
+Disallow: /admin/
 
 Sitemap: https://outreachrecruitment.net/sitemap_index.xml
 Sitemap: https://outreachrecruitment.net/sitemaps/sitemap-jobs.xml

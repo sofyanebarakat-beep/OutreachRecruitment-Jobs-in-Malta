@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SEO Admin · Outreach Recruitment</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="login" class="login" hidden>
+    <form id="login-form" class="card login-card">
+      <h1>SEO Admin</h1>
+      <p class="muted">Outreach Recruitment · 120-Day SEO Course</p>
+      <label>Email<input type="email" name="email" required autocomplete="username"></label>
+      <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+      <button class="btn primary" type="submit">Sign in</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>SEO Admin</strong>
+        <span class="muted small">Outreach Recruitment</span>
+      </div>
+      <nav id="nav">
+        <div class="nav-group">Overview</div>
+        <a href="#/dashboard" data-route="dashboard">Dashboard</a>
+        <a href="#/t/seo_kpi_daily" data-route="t/seo_kpi_daily">Daily KPI tracking</a>
+        <a href="#/live" data-route="live">Live site data</a>
+        <div class="nav-group">Course</div>
+        <a href="#/course" data-route="course">Course map</a>
+        <a href="#/course/today" data-route="course/today">This week</a>
+        <a href="#/final" data-route="final">Final case study</a>
+        <a href="#/playbook" data-route="playbook">Playbook &amp; framework</a>
+        <div class="nav-group">Trackers</div>
+        <a href="#/t/seo_keywords" data-route="t/seo_keywords">Keywords</a>
+        <a href="#/t/seo_pages" data-route="t/seo_pages">Pages</a>
+        <a href="#/t/seo_content" data-route="t/seo_content">Content</a>
+        <a href="#/t/seo_technical" data-route="t/seo_technical">Technical</a>
+        <a href="#/t/seo_backlinks" data-route="t/seo_backlinks">Backlinks</a>
+        <a href="#/t/seo_local" data-route="t/seo_local">Local</a>
+        <a href="#/t/seo_ai_visibility" data-route="t/seo_ai_visibility">AI visibility</a>
+        <a href="#/t/seo_experiments" data-route="t/seo_experiments">Experiments</a>
+        <div class="nav-group">System</div>
+        <a href="#/settings" data-route="settings">Settings &amp; data</a>
+      </nav>
+      <div class="sidebar-foot">
+        <span id="mode-badge" class="badge"></span>
+        <button id="logout" class="btn ghost small" hidden>Sign out</button>
+      </div>
+    </aside>
+    <main id="view" class="view"></main>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card card">
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="course-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
