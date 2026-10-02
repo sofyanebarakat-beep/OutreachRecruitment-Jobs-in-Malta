@@ -186,6 +186,8 @@ def audit_site() -> tuple[list[dict], dict[str, dict], dict[str, int]]:
             targets|={SITE_URL.rstrip("/")+x.rstrip("/") for x in sector_page["links"] if x.startswith("/")}
             if job_url.rstrip("/") not in targets:
                 issues.append({"source_key":f"audit:sector-link:{job_url}","issue":"Sector page does not link to this open job","severity":"Low","url":job_url,"owner":"SEO automation","status":"open","validation":f"Cluster link audit {date.today()}"})
+    # PostgREST upserts require one row per conflict key in each request.
+    issues=list({item["source_key"]:item for item in issues}.values())
     return issues,pages,incoming
 
 
@@ -264,6 +266,30 @@ def sectors(gsc_pages: list[dict]) -> list[dict]:
     return rows
 
 
+def opportunities(gsc: dict, audit: list[dict], sector_rows: list[dict]) -> list[dict]:
+    """Turn measurements into a small, actionable learning queue."""
+    rows=[]
+    for item in gsc["queries"]:
+        pos=item.get("current_position") or 0; impressions=item.get("volume") or 0
+        if impressions>=20 and 8<=pos<=20:
+            rows.append({"source_key":"opp:keyword:"+item["keyword"],"category":"keyword","title":f"Move “{item['keyword']}” toward the Top 10","explanation":f"{impressions} impressions at average position {pos} shows existing demand and near-page-one visibility.","recommended_action":"Confirm intent and target page, then improve relevance, title and internal links.","course_week":2,"priority":"High" if impressions>=100 else "Medium","impact":5 if impressions>=100 else 4,"effort":2,"metrics":{"impressions":impressions,"position":pos}})
+    for item in gsc["pages"]:
+        impressions=item.get("impressions") or 0; ctr=item.get("ctr") or 0
+        if impressions>=50 and ctr<1.5:
+            rows.append({"source_key":"opp:ctr:"+item["url"],"category":"page","title":"Improve a high-impression, low-CTR page","explanation":f"This page earned {impressions} impressions but only {ctr:.2f}% CTR.","recommended_action":"Review query intent and test a clearer title and search-result promise.","course_week":3,"priority":"High" if impressions>=250 else "Medium","impact":5 if impressions>=250 else 4,"effort":2,"url":item["url"],"metrics":{"clicks":item.get("clicks"),"impressions":impressions,"ctr":ctr,"position":item.get("position")}})
+    for item in audit:
+        if item.get("severity") not in ("Critical","High"): continue
+        rows.append({"source_key":"opp:"+item["source_key"],"category":"technical","title":item["issue"],"explanation":"The automated site audit marked this as a high-impact technical finding.","recommended_action":"Investigate, fix, rerun the audit and save validation evidence.","course_week":4,"priority":item["severity"],"impact":5 if item["severity"]=="Critical" else 4,"effort":3,"url":item.get("url"),"metrics":{}})
+    for item in sector_rows:
+        if item["open_jobs"]>=3 and (not item["sector_page_exists"] or (item.get("avg_position") or 100)>15):
+            rows.append({"source_key":"opp:sector:"+item["sector"],"category":"sector","title":f"Sector opportunity: {item['sector']}","explanation":f"{item['open_jobs']} open jobs; sector page {'exists' if item['sector_page_exists'] else 'is missing'}; average position {item.get('avg_position') or 'not visible'}.","recommended_action":"Create or improve the sector page and link every relevant live job.","course_week":5,"priority":"High" if item["open_jobs"]>=8 else "Medium","impact":5 if item["open_jobs"]>=8 else 4,"effort":4,"url":item.get("url"),"metrics":{"open_jobs":item["open_jobs"],"impressions":item.get("impressions"),"position":item.get("avg_position")}})
+    rank={"Critical":0,"High":1,"Medium":2,"Low":3}
+    rows=list({item["source_key"]:item for item in rows}.values())
+    fields=("source_key","category","title","explanation","recommended_action","course_week","priority","impact","effort","url","metrics","status")
+    rows=[{key:item.get(key, "new" if key=="status" else None) for key in fields} for item in rows]
+    return sorted(rows,key=lambda x:(rank.get(x["priority"],9),-(x.get("impact") or 0),x.get("effort") or 9))[:300]
+
+
 def changed_experiments(gsc_pages: list[dict], since: str | None) -> tuple[list[dict],str]:
     latest=subprocess.run(["git","rev-parse","HEAD"],cwd=ROOT,text=True,capture_output=True,check=True).stdout.strip()
     if not since:
@@ -299,6 +325,7 @@ def main() -> int:
     if not args.no_audit:
         audit,_,_=audit_site(); result["checks"]["audit"]={"ok":True,"issues":len(audit)}
     sector_rows=sectors(gsc["pages"]); result["checks"]["sectors"]={"ok":True,"rows":len(sector_rows)}
+    opportunity_rows=opportunities(gsc,audit,sector_rows); result["checks"]["opportunities"]={"ok":True,"rows":len(opportunity_rows)}
     state={}
     if STATE.exists():
         try: state=json.loads(STATE.read_text())
@@ -335,6 +362,8 @@ def main() -> int:
                 sb.patch("seo_technical",f"id=eq.{row['id']}",{"status":"validated","fix_date":str(date.today()),"validation":f"Automatically rechecked and validated {date.today()}"})
         sb.upsert("seo_kpi_daily",gsc["daily"],"date"); sb.upsert("seo_keywords",gsc["queries"],"source_key"); sb.upsert("seo_pages",gsc["pages"],"source_key")
         sb.upsert("seo_technical",audit,"source_key"); sb.upsert("seo_sector_opportunities",sector_rows,"sector"); sb.upsert("seo_experiments",experiments,"source_key"); sb.upsert("seo_alerts",alerts,"source_key")
+        try: sb.upsert("seo_opportunities",opportunity_rows,"source_key")
+        except RuntimeError as exc: result["warnings"].append("Opportunity table unavailable; rerun admin_schema.sql. "+str(exc))
         # On each course Day 7, create an editable weekly-summary draft if those fields are empty.
         settings=sb.get("seo_settings","select=value&key=eq.course_start")
         if settings:

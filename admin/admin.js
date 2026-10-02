@@ -6,6 +6,8 @@
   "use strict";
   const CFG = window.ADMIN_CONFIG || {};
   const C = window.COURSE;
+  const G = window.COURSE_GUIDANCE || {};
+  const D = window.COURSE_DECISIONS || {};
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -96,9 +98,11 @@
   };
 
   const ALL_TABLES = ["seo_settings", "seo_kpi_daily", "seo_keywords", "seo_pages", "seo_content", "seo_technical",
-    "seo_backlinks", "seo_local", "seo_ai_visibility", "seo_experiments", "seo_sector_opportunities", "seo_alerts", "seo_course_weeks"];
+    "seo_backlinks", "seo_local", "seo_ai_visibility", "seo_experiments", "seo_sector_opportunities", "seo_alerts",
+    "seo_opportunities", "seo_evidence", "seo_decisions", "seo_course_weeks"];
   const CONFLICT = { seo_settings: "key", seo_kpi_daily: "date", seo_keywords: "source_key", seo_pages: "source_key",
-    seo_technical: "source_key", seo_experiments: "source_key", seo_sector_opportunities: "sector", seo_alerts: "source_key", seo_course_weeks: "week" };
+    seo_technical: "source_key", seo_experiments: "source_key", seo_sector_opportunities: "sector", seo_alerts: "source_key",
+    seo_opportunities: "source_key", seo_course_weeks: "week" };
 
   // ─────────────────────────── Tracker definitions ───────────────────────────
   const SECTORS = C.sectors.map((s) => s[0]).concat(["General", "Employer", "Other"]);
@@ -258,6 +262,36 @@
         { k: "message", l: "Alert", t: "text", wide: true, req: true },
         { k: "url", l: "URL", t: "str" },
         { k: "resolved", l: "Resolved", t: "bool" },
+      ],
+    },
+    seo_opportunities: {
+      title: "Opportunity inbox", tab: "Guided practice queue", weeks: [2, 3, 4, 5, 8], sort: ["priority", 1],
+      intro: "Automatically generated practice opportunities from real Search Console, audit, sector and job data. Choose one focused item, then open Guided practice.",
+      cols: [
+        { k: "priority", l: "Priority", t: "sel", o: ["Critical", "High", "Medium", "Low"] },
+        { k: "category", l: "Category", t: "str" },
+        { k: "title", l: "Opportunity", t: "str", req: true },
+        { k: "course_week", l: "Week", t: "int" },
+        { k: "impact", l: "Impact 1–5", t: "int" },
+        { k: "effort", l: "Effort 1–5", t: "int" },
+        { k: "url", l: "URL", t: "str" },
+        { k: "status", l: "Status", t: "sel", o: ["new", "selected", "in progress", "experiment", "complete", "dismissed"] },
+        { k: "explanation", l: "Why it matters", t: "text", wide: true, hide: true },
+        { k: "recommended_action", l: "Recommended action", t: "text", wide: true, hide: true },
+      ],
+      sortRank: { priority: { Critical: 0, High: 1, Medium: 2, Low: 3 } },
+    },
+    seo_evidence: {
+      title: "Evidence locker", tab: "Course evidence", weeks: [1, 16], sort: ["captured_at", -1],
+      intro: "Save proof of practical work here. Link every useful screenshot, export, test, document, published page or commit to its course week.",
+      cols: [
+        { k: "week", l: "Week", t: "int", req: true },
+        { k: "task_index", l: "Task", t: "int" },
+        { k: "type", l: "Evidence type", t: "sel", o: ["screenshot", "export", "report", "test", "commit", "published page", "document", "other"] },
+        { k: "title", l: "Evidence", t: "str", req: true },
+        { k: "url", l: "Link / file URL", t: "str" },
+        { k: "captured_at", l: "Date", t: "date" },
+        { k: "notes", l: "What this proves", t: "text", wide: true },
       ],
     },
   };
@@ -501,7 +535,7 @@
   const view = () => $("#view");
 
   async function renderDashboard() {
-    const [kpi, ctx, score] = await Promise.all([Store.list("seo_kpi_daily"), courseCtx(), courseScore()]);
+    const [kpi, ctx, score, evidence, experiments] = await Promise.all([Store.list("seo_kpi_daily"), courseCtx(), courseScore(), Store.list("seo_evidence"), Store.list("seo_experiments")]);
     const sorted = [...kpi].sort((a, b) => (a.date < b.date ? -1 : 1));
     const last = sorted.length ? sorted[sorted.length - 1].date : today();
     const cur = aggregate(kpi, addDays(last, -27), last);
@@ -512,6 +546,10 @@
     const B = CFG.BASELINE || {};
     const pct = (v) => Math.round(v * 100);
     const status = ctx.day < 1 ? `Starts ${ctx.start}` : ctx.day > 120 ? "Course complete — keep the monthly cycle" : `Day ${ctx.day} of 120`;
+    const learningScore = Math.round(((score.parts.qcm + score.parts.practical) / 2) * 100);
+    const practiceScore = Math.round(Math.min(1, (score.parts.tracking + score.parts.monthly + Math.min(1, evidence.length / 16) + Math.min(1, experiments.length / 8)) / 4) * 100);
+    const comparable = [[cur.clicks, prev.clicks, false], [cur.impressions, prev.impressions, false], [cur.avg_position, prev.avg_position, true], [cur.applications, prev.applications, false], [cur.employer_leads, prev.employer_leads, false]].filter(([a, b]) => a != null && b != null);
+    const businessScore = comparable.length ? Math.round(comparable.filter(([a, b, lower]) => lower ? a <= b : a >= b).length / comparable.length * 100) : 0;
 
     view().innerHTML = `
       <div class="page-head"><div><h1>Dashboard</h1><p class="muted">${esc(C.principle)}</p></div>
@@ -528,6 +566,12 @@
           <li><span>📘</span><span class="grow">${esc(C.dailyRhythm[ctx.dayInWeek])} — <a href="#/course/${ctx.week}">week ${ctx.week}</a></span></li>
           <li><span>📋</span><span class="grow">${score.tasksDone}/${score.tasksTotal} course tasks done · ${score.delivered}/16 deliverables</span></li>
           <li><span>📈</span><span class="grow">${score.logged} KPI days logged since course start</span></li></ul></div>
+      </div>
+
+      <div class="grid c3" style="margin-top:16px">
+        <div class="card tile"><div class="label">Learning score</div><div class="value">${learningScore}%</div><div class="delta muted">Knowledge checks and completed learning tasks</div></div>
+        <div class="card tile"><div class="label">Practice score</div><div class="value">${practiceScore}%</div><div class="delta muted">Tracking, evidence, deliverables and experiments</div></div>
+        <div class="card tile"><div class="label">Business signal</div><div class="value">${businessScore}%</div><div class="delta muted">Share of comparable KPIs moving in the desired direction</div></div>
       </div>
 
       <h2 style="margin-top:20px">Last 28 days <span class="muted small">(${addDays(last, -27)} → ${last}, vs previous 28)</span></h2>
@@ -642,6 +686,93 @@
     }));
   }
 
+  async function renderDataHub() {
+    const tables = ["seo_kpi_daily", "seo_keywords", "seo_pages", "seo_technical", "seo_experiments", "seo_sector_opportunities", "seo_alerts", "seo_opportunities", "seo_evidence"];
+    const rows = await Promise.all(tables.map((t) => Store.list(t)));
+    const counts = Object.fromEntries(tables.map((t, i) => [t, rows[i].length]));
+    const kpi = rows[0].slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    const latest = kpi[0];
+    const openAlerts = rows[6].filter((x) => !x.resolved).length;
+    const openTechnical = rows[3].filter((x) => !["fixed", "validated"].includes(x.status)).length;
+    const lastDate = latest?.date || today();
+    const cur = aggregate(rows[0], addDays(lastDate, -27), lastDate), prev = aggregate(rows[0], addDays(lastDate, -55), addDays(lastDate, -28));
+    const explain = [];
+    if (cur.clicks != null && prev.clicks != null) explain.push(`Clicks ${delta(cur.clicks, prev.clicks, "sum").txt} versus the previous comparable 28 days.`);
+    if (cur.impressions != null && prev.impressions != null) explain.push(`Impressions ${delta(cur.impressions, prev.impressions, "sum").txt}; compare this with clicks to separate visibility from CTR.`);
+    if (cur.applications != null && cur.clicks) explain.push(`${fmtInt(cur.applications)} tracked apply clicks from ${fmtInt(cur.clicks)} organic clicks; verify audience fit if clicks rise but applications do not.`);
+    if (openAlerts || openTechnical) explain.push(`${openAlerts} unresolved alerts and ${openTechnical} technical findings need prioritisation before starting lower-impact work.`);
+    const cards = [
+      ["seo_kpi_daily", "Daily KPIs", counts.seo_kpi_daily, "Search Console and GA4 measurements"],
+      ["seo_keywords", "Keywords", counts.seo_keywords, "Queries, intent and ranking movement"],
+      ["seo_pages", "Pages", counts.seo_pages, "Landing-page visibility and decisions"],
+      ["seo_technical", "Technical", openTechnical, "Open audit findings requiring action"],
+      ["seo_experiments", "Experiments", counts.seo_experiments, "Measured page changes and reviews"],
+      ["seo_sector_opportunities", "Sector opportunities", counts.seo_sector_opportunities, "Jobs combined with search demand"],
+      ["seo_alerts", "Open alerts", openAlerts, "Drops, visibility losses and indexing delays"],
+      ["seo_opportunities", "Opportunity inbox", counts.seo_opportunities, "Prioritised real-data practice ideas"],
+      ["seo_evidence", "Evidence locker", counts.seo_evidence, "Proof saved from practical work"],
+    ];
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Data</span><h1>SEO data centre</h1><p class="muted">One place for automated measurements, audits, opportunities and evidence used throughout the course.</p></div><a class="btn" href="#/settings">Settings &amp; backup</a></div>
+      <div class="stats-grid">
+        <div class="stat-card"><span>Storage</span><strong>${Store.mode === "supabase" ? "Supabase" : "Local"}</strong><small>${Store.mode === "supabase" ? "Shared and protected by RLS" : "Only in this browser"}</small></div>
+        <div class="stat-card"><span>Latest data date</span><strong>${esc(latest?.date || "No data")}</strong><small>${latest ? `${fmtInt(latest.clicks)} clicks · ${fmtInt(latest.impressions)} impressions` : "Run the automation or import a CSV"}</small></div>
+        <div class="stat-card"><span>Action needed</span><strong>${openAlerts + openTechnical}</strong><small>${openAlerts} alerts · ${openTechnical} technical issues</small></div>
+      </div>
+      <div class="card"><h3>Data workflow</h3><ol><li><b>Collect:</b> Search Console, GA4, the jobs registry, git history and site audits feed the trackers.</li><li><b>Interpret:</b> Use complete, comparable date ranges and connect visibility to applications and employer leads.</li><li><b>Act:</b> Turn one evidence-backed finding into a focused change.</li><li><b>Review:</b> Use Experiments at 7, 30, 60 and 90 days before deciding what worked.</li></ol></div>
+      <div class="card"><div class="row spread"><h3>Explain this data</h3><span class="badge info">Evidence-based summary</span></div>${explain.length ? `<ul>${explain.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">Not enough comparable KPI data yet. Run the automation until both 28-day periods are complete.</p>`}<p class="small muted">This describes associations, not guaranteed causes. Use a focused experiment before attributing a change to SEO work.</p></div>
+      <div class="course-grid">${cards.map(([t, title, count, desc]) => `<a class="week-card" href="#/t/${t}"><div class="row spread"><span class="badge">${fmtInt(count)}</span><span>Open →</span></div><h3>${esc(title)}</h3><p class="muted small">${esc(desc)}</p></a>`).join("")}</div>
+      <div class="card"><h3>Other data sources</h3><div class="row"><a class="btn" href="#/live">Live site data</a><a class="btn" href="#/t/seo_content">Content</a><a class="btn" href="#/t/seo_backlinks">Backlinks</a><a class="btn" href="#/t/seo_local">Local</a><a class="btn" href="#/t/seo_ai_visibility">AI visibility</a></div></div>`;
+  }
+
+  async function renderPractice() {
+    const ctx = await courseCtx(), week = C.weeks[ctx.week - 1], guide = G[ctx.week] || {};
+    const [data, opportunities, evidence] = await Promise.all([Store.getWeek(ctx.week), Store.list("seo_opportunities"), Store.list("seo_evidence")]);
+    const queue = opportunities.filter((x) => +x.course_week === ctx.week && !["complete", "dismissed"].includes(x.status));
+    const practice = data.practice || {};
+    const selected = queue.find((x) => x.id === practice.opportunity_id) || queue[0];
+    const stage = [practice.observation, practice.hypothesis, practice.decision, practice.implementation, practice.review].filter(Boolean).length;
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Week ${ctx.week} laboratory</span><h1>Guided practice</h1><p class="muted">Learn → observe real data → decide → implement → review.</p></div><a class="btn" href="#/course/${ctx.week}">Open lesson</a></div>
+      <div class="practice-stage"><span class="${stage >= 1 ? "done" : ""}">1 Observe</span><span class="${stage >= 2 ? "done" : ""}">2 Hypothesise</span><span class="${stage >= 3 ? "done" : ""}">3 Decide</span><span class="${stage >= 4 ? "done" : ""}">4 Implement</span><span class="${stage >= 5 ? "done" : ""}">5 Review</span></div>
+      <div class="card"><h3>${esc(week.title)}</h3><p>${esc(guide.why || week.objective)}</p></div>
+      <div class="card"><div class="row spread"><h3>Choose a real opportunity</h3><a href="#/t/seo_opportunities">Open full inbox</a></div>
+        ${queue.length ? `<select id="practice-opportunity">${queue.map((x) => `<option value="${esc(x.id)}" ${x.id === selected?.id ? "selected" : ""}>${esc(x.priority)} · ${esc(x.title)}</option>`).join("")}</select>
+          <div class="callout" style="margin-top:10px"><b>${esc(selected?.title)}</b><br>${esc(selected?.explanation)}<br><span class="small"><b>Recommended:</b> ${esc(selected?.recommended_action)}</span></div>` : `<p class="muted">No automatic Week ${ctx.week} opportunity yet. Use the lesson task or add one in the Opportunity inbox.</p>`}
+      </div>
+      <div class="card"><h3>Practice record</h3><div class="form-grid">
+        <label class="wide">1. What do you observe in the data?<textarea id="p-observation">${esc(practice.observation)}</textarea></label>
+        <label class="wide">2. Hypothesis — what do you expect and why?<textarea id="p-hypothesis">${esc(practice.hypothesis)}</textarea></label>
+        <label class="wide">3. Decision — what one focused action will you take?<textarea id="p-decision">${esc(practice.decision)}</textarea></label>
+        <label class="wide">4. Implementation notes / commit / changed URL<textarea id="p-implementation">${esc(practice.implementation)}</textarea></label>
+        <label>Review date<input type="date" id="p-review-date" value="${esc(practice.review_date || addDays(today(), 7))}"></label>
+        <label class="wide">5. Review — what happened and what did you learn?<textarea id="p-review">${esc(practice.review)}</textarea></label>
+      </div><div class="row spread"><span id="practice-save" class="save-state"></span><button class="btn primary" id="practice-save-btn">Save practice</button></div></div>
+      <div class="grid c2"><div class="card"><h3>Implementation checklist</h3><ol>${(guide.steps || week.tasks).map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>
+      <div class="card"><h3>Evidence</h3><p>${evidence.filter((x) => +x.week === ctx.week).length} item(s) saved for Week ${ctx.week}.</p><a class="btn" href="#/t/seo_evidence?add=1">Add evidence</a> <a class="btn" href="#/t/seo_evidence">Open locker</a></div></div>`;
+    $("#practice-opportunity")?.addEventListener("change", async (e) => { practice.opportunity_id = e.target.value; data.practice = practice; await Store.setWeek(ctx.week, data); renderPractice(); });
+    $("#practice-save-btn").onclick = async () => {
+      for (const k of ["observation", "hypothesis", "decision", "implementation", "review"]) practice[k] = $("#p-" + k).value;
+      practice.review_date = $("#p-review-date").value; practice.opportunity_id = $("#practice-opportunity")?.value || practice.opportunity_id;
+      data.practice = practice; await Store.setWeek(ctx.week, data);
+      if (selected) { selected.status = practice.implementation ? "in progress" : "selected"; await Store.upsert("seo_opportunities", selected, "source_key"); }
+      $("#practice-save").textContent = "Saved ✓"; toast("Practice saved");
+    };
+  }
+
+  async function renderDecisions() {
+    const ctx = await courseCtx(), item = D[ctx.week];
+    if (!item) return (view().innerHTML = `<p>No decision exercise for this week.</p>`);
+    const previous = (await Store.list("seo_decisions")).filter((x) => +x.week === ctx.week).sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))[0];
+    view().innerHTML = `<div class="page-head"><div><span class="badge info">Week ${ctx.week}</span><h1>Decision simulator</h1><p class="muted">Use evidence and course principles before seeing the answer.</p></div><a class="btn" href="#/course/${ctx.week}">Review lesson</a></div>
+      <div class="card"><h2>${esc(item.scenario)}</h2><div class="decision-options">${item.answers.map((a, i) => `<button class="btn decision-option" data-answer="${i}">${String.fromCharCode(65 + i)}. ${esc(a)}</button>`).join("")}</div><div id="decision-result" style="margin-top:14px">${previous ? `<div class="callout"><b>Previous answer:</b> ${esc(previous.selected_answer)}<br>${esc(previous.reasoning)}</div>` : ""}</div></div>
+      <div class="card"><h3>Apply the reasoning</h3><p>After answering, open <a href="#/practice">Guided practice</a> and use the same decision process on a real Outreach Recruitment opportunity.</p></div>`;
+    $$("[data-answer]").forEach((button) => button.onclick = async () => {
+      const i = +button.dataset.answer, correct = i === item.correct;
+      $("#decision-result").innerHTML = `<div class="callout"><b>${correct ? "Correct ✓" : "Not quite"}</b><br>${esc(item.reasoning)}</div>`;
+      await Store.upsert("seo_decisions", { week: ctx.week, scenario: item.scenario, selected_answer: item.answers[i], correct_answer: item.answers[item.correct], is_correct: correct, reasoning: item.reasoning });
+      toast("Decision saved");
+    });
+  }
+
   // ── Generic tracker ──
   async function renderTracker(table, params = new URLSearchParams()) {
     const def = TRACKERS[table];
@@ -726,6 +857,7 @@
     const w = C.weeks[n - 1];
     if (!w) return (view().innerHTML = `<p>Unknown week.</p>`);
     const d = await Store.getWeek(n);
+    const guide = G[n] || {};
     const revisionWeek = n > 2 ? C.weeks[n - 3] : null;
     const revisionData = revisionWeek ? await Store.getWeek(n - 2) : {};
     const revisions = revisionWeek ? revisionWeek.qcm.map((q, i) => ({ q, mark: revisionData.qcm?.[i]?.mark }))
@@ -747,6 +879,9 @@
 
       <div class="callout"><b>Learning objective:</b> ${esc(w.objective)}</div>
       <div class="card"><h3>What you need to understand</h3><p>${esc(w.understand)}</p></div>
+      ${guide.why ? `<div class="card"><h3>Why this week matters</h3><p>${esc(guide.why)}</p></div>` : ""}
+      ${guide.prepare?.length ? `<div class="card"><h3>Before you begin</h3><ul>${guide.prepare.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      ${guide.steps?.length ? `<div class="card"><h3>Step-by-step practical workflow</h3><ol class="lesson-steps">${guide.steps.map((x, i) => `<li><span class="step-num">${i + 1}</span><div>${esc(x)}</div></li>`).join("")}</ol></div>` : ""}
 
       <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
 
@@ -774,6 +909,13 @@
         <label class="row" style="margin-bottom:8px"><input type="checkbox" id="dl-done" ${d.deliverable.done ? "checked" : ""}> Deliverable completed and saved</label>
         <div class="form-grid"><label>Link to deliverable (doc / sheet / commit / URL)<input id="dl-link" value="${esc(d.deliverable.link)}"></label>
         <label>Notes<input id="dl-notes" value="${esc(d.deliverable.notes)}"></label></div></div>
+
+      ${(guide.evidence?.length || guide.pitfalls?.length) ? `<div class="lesson-columns">
+        <div class="card"><h3>Evidence to save</h3><p class="muted small">This proves the task was completed and makes the final case study easier.</p><ul>${(guide.evidence || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Common mistakes to avoid</h3><ul>${(guide.pitfalls || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+      </div>` : ""}
+
+      <div class="callout"><b>Definition of done:</b> Complete the practical tasks, attach evidence, answer the knowledge check in your own words, review the weekly KPI comparison and record one specific next action.</div>
 
       <div class="card"><h3>Weekly résumé</h3><div class="form-grid">
         ${[0, 1, 2].map((i) => `<label>Thing I learned ${i + 1}<input data-rl="${i}" value="${esc(d.resume.learned?.[i])}"></label>`).join("")}
@@ -913,6 +1055,9 @@
     window.scrollTo(0, 0);
     try {
       if (path === "dashboard") return await renderDashboard();
+      if (path === "data") return await renderDataHub();
+      if (path === "practice") return await renderPractice();
+      if (path === "decisions") return await renderDecisions();
       if (path === "live") return await renderLive();
       if (path === "course") return await renderCourseMap();
       if (path.startsWith("course/")) return await renderWeek(path.split("/")[1]);

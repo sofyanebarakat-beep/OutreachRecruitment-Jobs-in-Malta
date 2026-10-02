@@ -27,16 +27,19 @@
         <span class="muted small">Outreach Recruitment</span>
       </div>
       <nav id="nav">
-        <div class="nav-group">Overview</div>
-        <a href="#/dashboard" data-route="dashboard">Dashboard</a>
-        <a href="#/t/seo_kpi_daily" data-route="t/seo_kpi_daily">Daily KPI tracking</a>
-        <a href="#/live" data-route="live">Live site data</a>
         <div class="nav-group">Course</div>
+        <a href="#/dashboard" data-route="dashboard">Course dashboard</a>
         <a href="#/course" data-route="course">Course map</a>
         <a href="#/course/today" data-route="course/today">This week</a>
+        <a href="#/practice" data-route="practice">Guided practice</a>
+        <a href="#/decisions" data-route="decisions">Decision simulator</a>
+        <a href="#/t/seo_evidence" data-route="t/seo_evidence">Evidence locker</a>
         <a href="#/final" data-route="final">Final case study</a>
         <a href="#/playbook" data-route="playbook">Playbook &amp; framework</a>
-        <div class="nav-group">Trackers</div>
+        <div class="nav-group">Data</div>
+        <a href="#/data" data-route="data">Data overview</a>
+        <a href="#/t/seo_kpi_daily" data-route="t/seo_kpi_daily">Daily KPI tracking</a>
+        <a href="#/live" data-route="live">Live site data</a>
         <a href="#/t/seo_keywords" data-route="t/seo_keywords">Keywords</a>
         <a href="#/t/seo_pages" data-route="t/seo_pages">Pages</a>
         <a href="#/t/seo_content" data-route="t/seo_content">Content</a>
@@ -46,9 +49,9 @@
         <a href="#/t/seo_ai_visibility" data-route="t/seo_ai_visibility">AI visibility</a>
         <a href="#/t/seo_experiments" data-route="t/seo_experiments">Experiments</a>
         <a href="#/t/seo_sector_opportunities" data-route="t/seo_sector_opportunities">Sector opportunities</a>
+        <a href="#/t/seo_opportunities" data-route="t/seo_opportunities">Opportunity inbox</a>
         <a href="#/t/seo_alerts" data-route="t/seo_alerts">Alerts</a>
-        <div class="nav-group">System</div>
-        <a href="#/settings" data-route="settings">Settings &amp; data</a>
+        <a href="#/settings" data-route="settings">Data settings &amp; backup</a>
       </nav>
       <div class="sidebar-foot">
         <span id="mode-badge" class="badge"></span>
@@ -68,6 +71,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="course-data.js"></script>
+  <script src="course-guidance.js"></script>
+  <script src="course-decisions.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

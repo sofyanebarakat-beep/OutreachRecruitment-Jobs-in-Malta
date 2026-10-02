@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T14:17:20.744621+02:00",
+  "generated_at": "2026-10-02T14:40:20.138273+02:00",
   "checks": {
     "gsc": {
       "ok": true,
@@ -14,19 +14,25 @@
     },
     "audit": {
       "ok": true,
-      "issues": 2307
+      "issues": 1639
     },
     "sectors": {
       "ok": true,
       "rows": 19
     },
+    "opportunities": {
+      "ok": true,
+      "rows": 116
+    },
     "experiments": {
       "new": 500
     },
     "supabase": {
-      "ok": false,
-      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+      "ok": true,
+      "alerts": 17
     }
   },
-  "warnings": []
+  "warnings": [
+    "Opportunity table unavailable; rerun admin_schema.sql. Supabase upsert seo_opportunities 400: {'code': 'PGRST102', 'details': None, 'hint': None, 'message': 'All object keys must match'}"
+  ]
 }

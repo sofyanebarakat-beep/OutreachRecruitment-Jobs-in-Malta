@@ -234,6 +234,52 @@ create table if not exists public.seo_alerts (
   updated_at timestamptz not null default now()
 );
 
+-- Guided learning: automatically prioritised practice opportunities.
+create table if not exists public.seo_opportunities (
+  id uuid primary key default gen_random_uuid(),
+  source_key text unique not null,
+  category text not null,
+  title text not null,
+  explanation text,
+  recommended_action text,
+  course_week integer check (course_week between 1 and 16),
+  priority text,
+  impact integer check (impact between 1 and 5),
+  effort integer check (effort between 1 and 5),
+  url text,
+  metrics jsonb not null default '{}'::jsonb,
+  status text not null default 'new',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Evidence saved while completing practical course work.
+create table if not exists public.seo_evidence (
+  id uuid primary key default gen_random_uuid(),
+  week integer not null check (week between 1 and 16),
+  task_index integer,
+  type text,
+  title text not null,
+  url text,
+  notes text,
+  captured_at date not null default current_date,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Saved answers from the decision simulator.
+create table if not exists public.seo_decisions (
+  id uuid primary key default gen_random_uuid(),
+  week integer not null check (week between 1 and 16),
+  scenario text not null,
+  selected_answer text,
+  correct_answer text,
+  is_correct boolean,
+  reasoning text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 -- Course progress: one row per week (tasks, worksheet, QCM, KPI actions, résumé…)
 create table if not exists public.seo_course_weeks (
   week integer primary key check (week between 0 and 16),  -- 0 = course-level (monthly, final, competencies)
@@ -248,7 +294,8 @@ begin
   foreach t in array array[
     'seo_settings','seo_kpi_daily','seo_keywords','seo_pages','seo_content',
     'seo_technical','seo_backlinks','seo_local','seo_ai_visibility',
-    'seo_experiments','seo_course_weeks','seo_sector_opportunities','seo_alerts'
+    'seo_experiments','seo_course_weeks','seo_sector_opportunities','seo_alerts',
+    'seo_opportunities','seo_evidence','seo_decisions'
   ] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists %I on public.%I', t || '_admin_all', t);
