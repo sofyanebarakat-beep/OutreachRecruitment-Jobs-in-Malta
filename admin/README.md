@@ -8,7 +8,7 @@ Private admin at `/admin/` (noindex, blocked in robots.txt, not linked from the 
 - **SEO Workspace**: ranked priorities, opportunities, experiments, audits, content, links and alerts
 - **Integrations & sync**: connection health, latest automation run, warnings and data-freshness guidance
 - **Learning dashboard**: course day and score, 28-day KPIs vs the previous 28 days, trend charts and decision signals
-- **Daily KPI tracking**: import the Search Console "Dates" CSV, then add GA4 users, applications and employer leads
+- **Daily KPI tracking**: one-click automatic sync/refresh from connected Search Console, GA4 and Supabase data, with manual entry kept as a fallback
 - **Live site data**: reads `tools/jobs_registry.json` and `reports/gsc_search_performance.csv` (real repo data)
 - **Course**: all 16 weeks, with 7-day rhythm, tasks, worksheet, QCM + answer guide, auto weekly KPI review, deliverable and résumé
 - **Week-specific measurement help**: each course week identifies the business question, relevant KPIs, exact data sources, interpretation guidance and a one-click suggested review action
@@ -57,3 +57,9 @@ python3 tools/seo_course_automation.py
 
 The script always writes `reports/seo-automation-latest.json`; it writes Supabase only when
 the private server-side configuration is present.
+
+The Daily KPI page has a **Sync automatically** button. By default it refreshes the latest
+automation status and KPI rows from Supabase. If a protected server sync service is available,
+set its URL as `SYNC_ENDPOINT` in `admin/config.js`; the button will request a new automation
+run first and then refresh the table. The endpoint must keep Google and Supabase service
+credentials on the server—never place private credentials in the browser configuration.

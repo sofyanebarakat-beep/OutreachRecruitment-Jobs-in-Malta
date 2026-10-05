@@ -942,13 +942,42 @@
     view().innerHTML = `
       <div class="page-head"><div><h1>${esc(def.title)} <span class="badge">${rows.length}</span></h1>
         <p class="muted">${esc(def.intro)}<br><span class="small">Dashboard tab: ${esc(def.tab)} · used in ${weekLinks}</span></p></div>
-        <div class="row"><button class="btn primary" id="t-add">Add</button><button class="btn" id="t-imp">Import CSV</button><button class="btn" id="t-exp">Export CSV</button></div></div>
+        <div class="row">${table === "seo_kpi_daily" ? '<button class="btn primary" id="kpi-auto-sync">↻ Sync automatically</button>' : ""}<button class="btn ${table === "seo_kpi_daily" ? "" : "primary"}" id="t-add">${table === "seo_kpi_daily" ? "Add manually" : "Add"}</button><button class="btn" id="t-imp">Import CSV</button><button class="btn" id="t-exp">Export CSV</button></div></div>
+      ${table === "seo_kpi_daily" ? '<div class="card auto-sync-card" id="kpi-sync-status"><b>Automatic mode:</b> click “Sync automatically”. Connected Search Console and GA4 data will be loaded without manual entry.</div>' : ""}
       <div class="card"><input id="t-q" placeholder="Filter…" style="max-width:320px;margin-bottom:10px">
       ${rows.length ? `<div class="table-wrap"><table><thead><tr>${cols.map((c) => `<th class="${["int", "num"].includes(c.t) ? "num" : ""}">${esc(c.l)}</th>`).join("")}${(def.computed || []).map((c) => `<th class="num">${esc(c.l)}</th>`).join("")}</tr></thead>
       <tbody id="t-body">${rows.map((r) => `<tr data-id="${esc(r.id)}" style="cursor:pointer">${cols.map((c) => cell(c, r[c.k])).join("")}${(def.computed || []).map((c) => { const v = c.f(r); return `<td class="num ${c.cls ? c.cls(v) : ""}">${v == null ? "–" : v}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`
         : `<div class="empty">No rows yet. Click <b>Add</b> or <b>Import CSV</b>.</div>`}</div>`;
     const reload = () => renderTracker(table);
     $("#t-add").onclick = () => editRow(table, newRowDefaults(), reload);
+    if (table === "seo_kpi_daily") $("#kpi-auto-sync").onclick = async () => {
+      const button = $("#kpi-auto-sync"), status = $("#kpi-sync-status"), before = rows.length;
+      button.disabled = true; button.textContent = "Syncing…";
+      status.innerHTML = "Checking Search Console, GA4 and automatic storage…";
+      try {
+        if (CFG.SYNC_ENDPOINT) {
+          const response = await fetch(CFG.SYNC_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "sync_kpi" }) });
+          if (!response.ok) throw new Error(`Sync service returned ${response.status}`);
+        }
+        const report = await loadAutomationReport(true), checks = report?.checks || {};
+        delete Store.cache.seo_kpi_daily;
+        const fresh = await Store.list("seo_kpi_daily", { force: true });
+        const latest = [...fresh].sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+        if (!checks.gsc?.ok || !checks.ga4?.ok) {
+          status.innerHTML = `<span class="badge bad">Connection issue</span> Search Console or GA4 did not complete. <a href="#/sync">Check connection</a>.`;
+        } else if (!checks.supabase?.ok) {
+          status.innerHTML = `<span class="badge warn">Sources connected</span> Google data is ready through ${esc(checks.gsc?.through || "the latest run")}, but the latest automation could not save it to the admin database. Configure Supabase once; after that this button needs no manual entry. <a href="#/sync">Open connection status</a>.`;
+        } else {
+          status.innerHTML = `<span class="badge good">Synced</span> ${fresh.length - before > 0 ? `${fresh.length - before} new day(s) added.` : "Everything was already up to date."} Latest KPI date: <b>${esc(latest?.date || "No rows")}</b>.`;
+          toast("KPI data synced automatically");
+          setTimeout(() => renderTracker(table), 900);
+        }
+      } catch (error) {
+        status.innerHTML = `<span class="badge bad">Sync failed</span> ${esc(error.message)}. <a href="#/sync">Check connection</a>.`;
+      } finally {
+        button.disabled = false; button.textContent = "↻ Sync automatically";
+      }
+    };
     $("#t-imp").onclick = () => importDialog(table, reload);
     $("#t-exp").onclick = () => download(table + "-" + today() + ".csv", toCSV(def.cols, rows));
     $$("#t-body tr").forEach((tr) => (tr.onclick = () => editRow(table, rows.find((r) => r.id === tr.dataset.id), reload)));

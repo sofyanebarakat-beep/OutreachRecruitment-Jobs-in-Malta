@@ -87,6 +87,7 @@ p { margin: 0 0 .75rem; }
   padding: 16px 18px; box-shadow: var(--shadow); margin-bottom: 16px; min-width: 0;
 }
 .card > h2:first-child, .card > h3:first-child { margin-top: 0; }
+.auto-sync-card { border-left: 4px solid var(--accent); background: var(--accent-soft); }
 .grid { display: grid; gap: 16px; }
 .grid.c2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 .grid.c3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }

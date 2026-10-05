@@ -12,6 +12,8 @@ window.ADMIN_CONFIG = {
   GSC_PAGES_CSV: "../reports/gsc_search_performance.csv",
   GSC_PROBLEMS_CSV: "../reports/gsc_indexing_problems.csv",
   AUTOMATION_REPORT: "../reports/seo-automation-latest.json",
+  // Optional protected server endpoint. When provided, the KPI page's Sync button POSTs {action:"sync_kpi"} before refreshing Supabase.
+  SYNC_ENDPOINT: "",
   // Baseline recorded 2026-09-09 (28-day sitewide GSC)
   BASELINE: { date: "2026-09-09", clicks28: 1251, impressions28: 31700 },
 };
