@@ -471,6 +471,19 @@
     a.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
     a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
+  async function copyPlainText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = text; area.style.position = "fixed"; area.style.opacity = "0";
+      document.body.appendChild(area); area.select();
+      const copied = document.execCommand("copy");
+      area.remove();
+      return copied;
+    }
+  }
   function coerce(col, v) {
     if (v === "" || v == null) return null;
     if (col.t === "int" || col.int) { const n = num(v); return n == null ? null : Math.round(n); }
@@ -1056,7 +1069,8 @@
       <section data-stage-panel="do">
       <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
 
-      <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3>${trackerLink}</div>
+      <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3><div class="row"><button class="btn small" type="button" id="copy-task-column">Copy one column</button><button class="btn small" type="button" id="download-task-column">Download CSV</button>${trackerLink}</div></div>
+        <p class="small muted">Copy or download a single “Task” column for Google Sheets or a Notion table.</p>
         <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div>${how.tasks?.[i] ? `<details class="howto"><summary>How to do this</summary><p>${esc(how.tasks[i])}</p></details>` : ""}<input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
@@ -1163,6 +1177,15 @@
       const show = secondaryRows.some((row) => row.hidden);
       secondaryRows.forEach((row) => (row.hidden = !show));
       e.currentTarget.textContent = show ? "Show focused metrics" : "Show all metrics";
+    };
+    const taskColumn = w.tasks.map((task, i) => `Task ${i + 1}. ${task}`);
+    $("#copy-task-column").onclick = async () => {
+      const copied = await copyPlainText(taskColumn.join("\n"));
+      toast(copied ? "Task column copied — paste into Sheets or Notion" : "Copy failed; use Download CSV instead");
+    };
+    $("#download-task-column").onclick = () => {
+      const csv = ["Task", ...taskColumn].map((value) => `"${value.replace(/"/g, '""')}"`).join("\n");
+      download(`course-week-${n}-tasks.csv`, csv);
     };
     $$("[data-day]").forEach((el) => (el.onclick = () => { const i = +el.dataset.day; d.days[i] = !d.days[i]; el.classList.toggle("done", d.days[i]); save(true); }));
     $$("[data-task]").forEach((el) => (el.onchange = () => { const i = el.dataset.task; d.tasks[i] = { ...(d.tasks[i] || {}), done: el.checked }; el.closest("li").classList.toggle("done", el.checked); save(true); }));
