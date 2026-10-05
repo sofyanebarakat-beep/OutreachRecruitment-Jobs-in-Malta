@@ -237,3 +237,16 @@ td .clip { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-sp
 .measurement-notes p { margin-bottom: 5px; }
 tr.kpi-focus td { background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface)); }
 .focus-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--accent); vertical-align: 1px; }
+.course-stage-nav { position: sticky; top: 0; z-index: 8; display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 16px; padding: 9px; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 9px; }
+[data-stage-panel] { scroll-margin-top: 76px; }
+.pattern-insight { margin: 12px 0; padding: 10px 12px; border-left: 3px solid var(--accent); background: var(--surface-2); }
+.week-gates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 8px; }
+.week-gates span { padding: 3px 4px; border-radius: 5px; background: var(--surface-2); color: var(--muted); text-align: center; font-size: 10px; }
+.week-gates span.done { background: var(--good-soft); color: var(--good); font-weight: 700; }
+.example-grid { margin-bottom: 16px; }
+.example-grid .card p { margin: 10px 0 0; }
+@media (max-width: 700px) {
+  .course-stage-nav { top: 0; overflow-x: auto; flex-wrap: nowrap; }
+  .course-stage-nav .btn { white-space: nowrap; }
+  .metric-action p { min-height: 0; }
+}

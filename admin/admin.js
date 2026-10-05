@@ -341,6 +341,24 @@
     if (change < 0) return `Investigate the ${label.toLowerCase()} decline by page, query and date; choose one focused corrective action and set a review date.`;
     return `No clear ${label.toLowerCase()} movement yet; keep the test stable, check data completeness and review again at the planned interval.`;
   }
+  const REVIEW_DAYS = [7, 30, 30, 21, 30, 30, 30, 30, 30, 60, 60, 60, 30, 30, 30, 90];
+  function dataConfidence(cur, prev, keys) {
+    const missing = keys.some((k) => cur[k] == null || prev[k] == null);
+    const small = keys.some((k) => ["applications", "employer_leads", "ai_referrals"].includes(k) && ((cur[k] || 0) + (prev[k] || 0) < 10));
+    if (missing || cur.days < 5 || prev.days < 5) return { label: "Low confidence", cls: "bad", note: "Missing days or KPI values. Complete both periods before making a change." };
+    if (cur.days < 7 || prev.days < 7 || small) return { label: "Medium confidence", cls: "warn", note: small ? "Comparable data, but the conversion sample is small." : "One period is incomplete; treat the result as directional." };
+    return { label: "High confidence", cls: "good", note: "Both periods contain seven days of comparable data." };
+  }
+  function patternInsight(cur, prev) {
+    if ([cur.impressions, prev.impressions, cur.clicks, prev.clicks].some((v) => v == null)) return "Complete the Search Console comparison before interpreting the pattern.";
+    const imp = cur.impressions - prev.impressions, clicks = cur.clicks - prev.clicks;
+    const conv = (cur.applications || 0) + (cur.employer_leads || 0) - (prev.applications || 0) - (prev.employer_leads || 0);
+    if (imp > 0 && clicks <= 0) return "Visibility increased without more clicks. Inspect ranking position, query intent, title and description.";
+    if (clicks > 0 && conv <= 0) return "Clicks increased without more recorded conversions. Inspect landing-page relevance, CTA clarity and tracking.";
+    if (clicks <= 0 && conv > 0) return "Conversions improved without more clicks. Identify the pages or journeys with better conversion quality.";
+    if (imp > 0 && clicks > 0 && conv > 0) return "Visibility, clicks and conversions moved together. Preserve the change and test it on one comparable page.";
+    return "No decisive combined pattern yet. Keep the test stable and review at the recommended interval.";
+  }
 
   // ─────────────────────────── Course helpers ───────────────────────────
   async function courseCtx() {
@@ -913,6 +931,10 @@
       return (x < y ? -1 : x > y ? 1 : 0) * dir;
     });
     const cols = def.cols.filter((c) => !c.hide);
+    const newRowDefaults = () => table === "seo_kpi_daily" ? { date: today() }
+      : table === "seo_ai_visibility" ? { date: today() }
+      : table === "seo_evidence" ? { captured_at: today(), week: num(params.get("week")) }
+      : {};
     const weekLinks = (def.weeks || []).map((n) => `<a href="#/course/${n}">Week ${n}</a>`).join(", ");
     view().innerHTML = `
       <div class="page-head"><div><h1>${esc(def.title)} <span class="badge">${rows.length}</span></h1>
@@ -923,14 +945,14 @@
       <tbody id="t-body">${rows.map((r) => `<tr data-id="${esc(r.id)}" style="cursor:pointer">${cols.map((c) => cell(c, r[c.k])).join("")}${(def.computed || []).map((c) => { const v = c.f(r); return `<td class="num ${c.cls ? c.cls(v) : ""}">${v == null ? "–" : v}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`
         : `<div class="empty">No rows yet. Click <b>Add</b> or <b>Import CSV</b>.</div>`}</div>`;
     const reload = () => renderTracker(table);
-    $("#t-add").onclick = () => editRow(table, table === "seo_kpi_daily" ? { date: today() } : table === "seo_ai_visibility" ? { date: today() } : {}, reload);
+    $("#t-add").onclick = () => editRow(table, newRowDefaults(), reload);
     $("#t-imp").onclick = () => importDialog(table, reload);
     $("#t-exp").onclick = () => download(table + "-" + today() + ".csv", toCSV(def.cols, rows));
     $$("#t-body tr").forEach((tr) => (tr.onclick = () => editRow(table, rows.find((r) => r.id === tr.dataset.id), reload)));
     $("#t-q").oninput = (e) => { const q = e.target.value.toLowerCase(); $$("#t-body tr").forEach((tr) => (tr.hidden = !tr.textContent.toLowerCase().includes(q))); };
     if (params.get("add")) {
       const existing = table === "seo_kpi_daily" ? rows.find((r) => r.date === today()) : null;
-      editRow(table, existing || { date: today() }, reload);
+      editRow(table, existing || newRowDefaults(), reload);
     }
   }
   function cell(c, v) {
@@ -946,7 +968,7 @@
 
   // ── Course map ──
   async function renderCourseMap() {
-    const [ctx, score] = await Promise.all([courseCtx(), courseScore()]);
+    const [ctx, score, evidence, experiments] = await Promise.all([courseCtx(), courseScore(), Store.list("seo_evidence"), Store.list("seo_experiments")]);
     const w0 = score.byW[0] || {};
     view().innerHTML = `
       <div class="page-head"><div><h1>Course map</h1><p class="muted">${esc(C.title)}</p></div>
@@ -959,13 +981,19 @@
         <div class="grid c4">${m.weeks.map((n) => {
           const w = C.weeks[n - 1], d = score.byW[n] || {};
           const done = w.tasks.filter((_, i) => d.tasks?.[i]?.done).length;
+          const hasAction = !!(d.actionPlan?.action || Object.values(d.kpiActions || {}).some(Boolean));
+          const hasEvidence = !!(d.deliverable?.link || evidence.some((x) => +x.week === n));
+          const hasReview = !!(d.finalDecision?.choice && d.finalDecision?.reason);
+          const hasExperiment = experiments.some((x) => String(x.source_key || "").startsWith(`course-week-${n}-`)) || !!d.actionPlan?.experimentId;
+          const gates = [done === w.tasks.length, hasAction, hasEvidence, hasReview];
           const [from, to] = weekRange(ctx.start, n);
           return `<a class="card week-card ${n === ctx.week ? "current" : ""}" href="#/course/${n}">
             <div class="row spread"><span class="badge ${d.deliverable?.done ? "good" : n === ctx.week ? "info" : ""}">Week ${n}</span><span class="small muted">${from.slice(5)} → ${to.slice(5)}</span></div>
             <h3 style="margin-top:8px">${esc(w.title)}</h3>
             <p class="small muted">${esc(w.track)} · ${esc(w.deliverable)}</p>
-            <div class="progress"><span style="width:${(done / w.tasks.length) * 100}%"></span></div>
-            <p class="small muted" style="margin:6px 0 0">${done}/${w.tasks.length} tasks${d.deliverable?.done ? " · deliverable ✓" : ""}</p></a>`;
+            <div class="progress"><span style="width:${(gates.filter(Boolean).length / gates.length) * 100}%"></span></div>
+            <div class="week-gates"><span class="${gates[0] ? "done" : ""}">Learn</span><span class="${hasAction ? "done" : ""}">Action</span><span class="${hasEvidence ? "done" : ""}">Evidence</span><span class="${hasReview ? "done" : ""}">Review</span></div>
+            <p class="small muted" style="margin:6px 0 0">${done}/${w.tasks.length} tasks${hasExperiment ? " · experiment ✓" : ""}${d.deliverable?.done ? " · deliverable ✓" : ""}</p></a>`;
         }).join("")}</div>`).join("")}
       <div class="card" style="margin-top:20px"><h3>Final competency checklist</h3><ul class="checklist">
         ${C.competencies.map((c, i) => `<li class="${w0.competencies?.[i] ? "done" : ""}"><input type="checkbox" data-comp="${i}" ${w0.competencies?.[i] ? "checked" : ""}><span class="txt grow">${esc(c)}</span></li>`).join("")}</ul></div>`;
@@ -997,10 +1025,14 @@
     const how = H[n] || {};
     const metricPlan = M[n] || { kpis: KPI_KEYS.map(([k]) => k), question: "What does the data say, and what one action should follow?", source: "Daily KPI tracking", action: "Choose one evidence-based action and set a review date." };
     const focusedKpis = metricPlan.kpis.map((key) => kpiDef(key));
+    const confidence = dataConfidence(cur, prev, metricPlan.kpis);
+    const reviewDays = REVIEW_DAYS[n - 1] || 30;
     const trackerLink = tr ? `<a class="btn" href="#/t/${trKey}">Open ${esc(tr.title)} tracker →</a>` : w.tracker === "live" ? `<a class="btn" href="#/live">Open Live site data →</a>` : w.tracker === "final" ? `<a class="btn" href="#/final">Open Final case study →</a>` : "";
     const isCurrent = n === ctx.week;
     d.days = d.days || []; d.tasks = d.tasks || {}; d.worksheet = d.worksheet || []; d.qcm = d.qcm || {};
     d.kpiActions = d.kpiActions || {}; d.deliverable = d.deliverable || {}; d.resume = d.resume || { learned: [], issues: [] };
+    d.actionPlan = d.actionPlan || { observation: "", segment: "", audience: "", hypothesis: "", action: "", owner: "", reviewDate: addDays(today(), reviewDays), target: "", confidence: "", page: "", query: "" };
+    d.finalDecision = d.finalDecision || { choice: "", reason: "" };
 
     view().innerHTML = `
       <div class="page-head"><div>
@@ -1009,27 +1041,35 @@
         <div class="row">${n > 1 ? `<a class="btn" href="#/course/${n - 1}">← Week ${n - 1}</a>` : ""}${n < 16 ? `<a class="btn" href="#/course/${n + 1}">Week ${n + 1} →</a>` : ""}<span class="save-state" id="save-state"></span></div></div>
 
       <div class="callout"><b>Learning objective:</b> ${esc(w.objective)}</div>
+      <nav class="course-stage-nav" aria-label="Course week sections">
+        ${[["all", "All"], ["learn", "1. Learn"], ["do", "2. Do"], ["measure", "3. Measure"], ["decide", "4. Decide"], ["evidence", "5. Evidence"]].map(([key, label]) => `<button class="btn ${key === "all" ? "primary" : ""}" type="button" data-stage="${key}">${label}</button>`).join("")}
+      </nav>
+      <section data-stage-panel="learn">
       ${how.plain ? `<div class="card howto-plain"><h3>In simple words</h3><p>${esc(how.plain)}</p>${how.time ? `<p class="small muted">⏱ ${esc(how.time)}</p>` : ""}</div>` : ""}
       ${how.days?.length ? `<div class="card"><h3>What to do each day this week</h3><ol class="lesson-steps">${how.days.map((x, i) => `<li><span class="step-num">${i + 1}</span><div><b>Day ${i + 1}${isCurrent && ctx.dayInWeek === i ? " — today" : ""}:</b> ${esc(x)}</div></li>`).join("")}</ol></div>` : ""}
       <div class="card"><h3>What you need to understand</h3><p>${esc(w.understand)}</p></div>
       ${guide.why ? `<div class="card"><h3>Why this week matters</h3><p>${esc(guide.why)}</p></div>` : ""}
       ${guide.prepare?.length ? `<div class="card"><h3>Before you begin</h3><ul>${guide.prepare.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
       ${guide.steps?.length ? `<div class="card"><h3>Step-by-step practical workflow</h3><ol class="lesson-steps">${guide.steps.map((x, i) => `<li><span class="step-num">${i + 1}</span><div>${esc(x)}</div></li>`).join("")}</ol></div>` : ""}
+      </section>
 
+      <section data-stage-panel="do">
       <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
 
       <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3>${trackerLink}</div>
         <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div>${how.tasks?.[i] ? `<details class="howto"><summary>How to do this</summary><p>${esc(how.tasks[i])}</p></details>` : ""}<input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
+      </section>
 
+      <section data-stage-panel="measure">
       <div class="card measurement-plan">
         <div class="row spread"><div><span class="eyebrow">Use data → decide → act</span><h3>Measurement &amp; action guide for Week ${n}</h3></div><a class="btn" href="#/t/seo_kpi_daily">Open KPI data →</a></div>
         <p class="measurement-question"><b>Business question:</b> ${esc(metricPlan.question)}</p>
         <div class="measurement-grid">
           ${focusedKpis.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); const suggestion = suggestedKpiAction(k, cur[k], prev[k]); return `<article class="metric-action"><div class="row spread"><b>${esc(l)}</b><span class="${dd.cls}">${dd.txt}</span></div><div class="metric-values"><span>Previous <b>${fmtKpi(prev[k], kind)}</b></span><span>Current <b>${fmtKpi(cur[k], kind)}</b></span></div><p>${esc(suggestion)}</p><button class="btn small" type="button" data-use-action="${esc(k)}" data-suggestion="${esc(suggestion)}">Use this action</button></article>`; }).join("")}
         </div>
-        <div class="measurement-notes"><p><b>Get the data from:</b> ${esc(metricPlan.source)}</p><p><b>Recommended next move:</b> ${esc(metricPlan.action)}</p><p class="small muted"><b>Decision rule:</b> compare equal periods, check page/query detail, and change one main variable at a time. A KPI movement is a signal to investigate, not proof of cause.</p></div>
+        <div class="measurement-notes"><p><b>Get the data from:</b> ${esc(metricPlan.source)}</p><p><b>Recommended next move:</b> ${esc(metricPlan.action)}</p><p><b>Recommended review:</b> ${reviewDays} days after implementation</p><p class="small muted"><b>Decision rule:</b> compare equal periods, check page/query detail, and change one main variable at a time. A KPI movement is a signal to investigate, not proof of cause.</p></div>
       </div>
 
       <div class="card"><div class="row spread"><h3>QCM / Knowledge check</h3><button class="btn small" id="show-guide">Show answer guide</button></div>
@@ -1042,11 +1082,43 @@
       ${revisions.length ? `<div class="card"><h3>Two-week QCM revision</h3><p class="muted small">Questions marked wrong or partial in Week ${n - 2} are due again.</p><ol>${revisions.map((x) => `<li><b>${esc(x.q)}</b> <span class="badge warn">${esc(x.mark)}</span></li>`).join("")}</ol><a class="btn" href="#/course/${n - 2}">Revise Week ${n - 2} answers →</a></div>` : ""}
 
       <div class="card"><h3>Weekly KPI review <span class="muted small">(auto from Daily KPI tracking: ${from} → ${to} vs previous 7 days · ${cur.days}/7 days logged)</span></h3>
-        <p class="small muted">The highlighted rows are this week’s focus. Use the guide above to turn the signal into one specific, measurable action.</p>
+        <div class="row"><span class="badge ${confidence.cls}">${confidence.label}</span><span class="small muted">${esc(confidence.note)}</span><button class="btn small" type="button" id="toggle-all-kpis">Show all metrics</button></div>
+        <p class="pattern-insight"><b>Combined signal:</b> ${esc(patternInsight(cur, prev))}</p>
         <div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Previous</th><th class="num">Current</th><th class="num">Change</th><th>Action</th></tr></thead><tbody>
-        ${KPI_KEYS.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); const focused = metricPlan.kpis.includes(k); return `<tr class="${focused ? "kpi-focus" : ""}"><td>${focused ? '<span class="focus-dot" title="Week focus"></span>' : ""}${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-ka="${k}" value="${esc(d.kpiActions[k])}" placeholder="${focused ? "Record this week's action" : "Optional action"}"></td></tr>`; }).join("")}
+        ${KPI_KEYS.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); const focused = metricPlan.kpis.includes(k); return `<tr class="${focused ? "kpi-focus" : "kpi-secondary"}"><td>${focused ? '<span class="focus-dot" title="Week focus"></span>' : ""}${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-ka="${k}" value="${esc(d.kpiActions[k])}" placeholder="${focused ? "Record this week's action" : "Optional action"}"></td></tr>`; }).join("")}
         </tbody></table></div>
         ${cur.days < 7 ? `<p class="small muted" style="margin-top:8px">Missing days? <a href="#/t/seo_kpi_daily">Import the GSC Dates export</a>.</p>` : ""}</div>
+      </section>
+
+      <section data-stage-panel="decide">
+        <div class="card"><div class="row spread"><div><span class="eyebrow">Structured action builder</span><h3>Turn the evidence into one measurable action</h3></div><span class="badge">Review in ${reviewDays} days</span></div>
+          <div class="form-grid">
+            <label class="wide">Observation — what changed?<textarea data-ap="observation">${esc(d.actionPlan.observation)}</textarea></label>
+            <label>Target page<input data-ap="page" value="${esc(d.actionPlan.page)}" placeholder="/page-or-job/"></label>
+            <label>Target query<input data-ap="query" value="${esc(d.actionPlan.query)}" placeholder="hospitality jobs Malta"></label>
+            <label>Segment / sector<input data-ap="segment" value="${esc(d.actionPlan.segment)}" placeholder="Hospitality, employer, mobile…"></label>
+            <label>Audience<select data-ap="audience">${["", "Candidate", "Employer", "Both"].map((x) => `<option ${d.actionPlan.audience === x ? "selected" : ""}>${x || "Select…"}</option>`).join("")}</select></label>
+            <label class="wide">Hypothesis — why might it have changed?<textarea data-ap="hypothesis">${esc(d.actionPlan.hypothesis)}</textarea></label>
+            <label class="wide">Focused action<textarea data-ap="action">${esc(d.actionPlan.action)}</textarea></label>
+            <label>Owner<input data-ap="owner" value="${esc(d.actionPlan.owner)}"></label>
+            <label>Review date<input type="date" data-ap="reviewDate" value="${esc(d.actionPlan.reviewDate)}"></label>
+            <label>Success target<input data-ap="target" value="${esc(d.actionPlan.target)}" placeholder="e.g. CTR improves by 0.5 points"></label>
+            <label>Decision confidence<select data-ap="confidence">${["", "Low", "Medium", "High"].map((x) => `<option ${d.actionPlan.confidence === x ? "selected" : ""}>${x || "Select…"}</option>`).join("")}</select></label>
+          </div>
+          <div class="row spread"><p class="small muted" id="action-sentence">Complete the fields to create a clear action statement.</p><div class="row"><button class="btn" type="button" id="build-action">Build action sentence</button><button class="btn primary" type="button" id="create-experiment">Create experiment</button></div></div>
+        </div>
+
+        <div class="grid c2 example-grid">
+          <div class="card"><span class="badge good">Good action</span><p>${esc(metricPlan.action)}</p></div>
+          <div class="card"><span class="badge bad">Avoid</span><p>“Improve SEO.” It has no page, evidence, owner, success target or review date.</p></div>
+          <div class="card"><span class="badge warn">Misleading interpretation</span><p>A percentage increase from a tiny sample proves the change worked. Always inspect the absolute values and data confidence.</p></div>
+          <div class="card"><span class="badge info">Worked example</span><p>${esc(how.example || `Choose one ${focusedKpis[0]?.[1] || "KPI"} signal, make one focused change and review it after ${reviewDays} days.`)}</p></div>
+        </div>
+
+        <div class="card"><h3>End-of-week decision</h3><div class="form-grid"><label>Decision<select id="final-choice">${["", "Keep", "Improve", "Expand", "Wait", "Reverse", "Investigate"].map((x) => `<option ${d.finalDecision.choice === x ? "selected" : ""}>${x || "Select…"}</option>`).join("")}</select></label><label class="wide">Evidence-based reason<textarea id="final-reason" placeholder="What evidence supports this decision?">${esc(d.finalDecision.reason)}</textarea></label></div></div>
+      </section>
+
+      <section data-stage-panel="evidence">
 
       <div class="card"><h3>Required deliverable: ${esc(w.deliverable)}</h3>
         <label class="row" style="margin-bottom:8px"><input type="checkbox" id="dl-done" ${d.deliverable.done ? "checked" : ""}> Deliverable completed and saved</label>
@@ -1054,18 +1126,19 @@
         <label>Notes<input id="dl-notes" value="${esc(d.deliverable.notes)}"></label></div></div>
 
       ${(guide.evidence?.length || guide.pitfalls?.length) ? `<div class="lesson-columns">
-        <div class="card"><h3>Evidence to save</h3><p class="muted small">This proves the task was completed and makes the final case study easier.</p><ul>${(guide.evidence || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="card"><div class="row spread"><h3>Evidence to save</h3><a class="btn small" href="#/t/seo_evidence?add=1&week=${n}">Add evidence →</a></div><p class="muted small">This proves the task was completed and makes the final case study easier.</p><ul>${(guide.evidence || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
         <div class="card"><h3>Common mistakes to avoid</h3><ul>${(guide.pitfalls || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
       </div>` : ""}
 
       ${how.example ? `<div class="card"><h3>Worked example</h3><p>${esc(how.example)}</p></div>` : ""}
       ${how.done ? `<div class="callout"><b>This week is finished when:</b> ${esc(how.done)}</div>` : ""}
-      <div class="callout"><b>Definition of done:</b> Complete the practical tasks, attach evidence, answer the knowledge check in your own words, review the weekly KPI comparison and record one specific next action.</div>
+      <div class="callout"><b>Definition of done:</b> Complete the practical tasks, implement one action, attach evidence, set a review date, and record an evidence-based end-of-week decision.</div>
 
       <div class="card"><h3>Weekly résumé</h3><div class="form-grid">
         ${[0, 1, 2].map((i) => `<label>Thing I learned ${i + 1}<input data-rl="${i}" value="${esc(d.resume.learned?.[i])}"></label>`).join("")}
         ${[0, 1, 2].map((i) => `<label>Issue / opportunity ${i + 1}<input data-ri="${i}" value="${esc(d.resume.issues?.[i])}"></label>`).join("")}
-        <label class="wide">Next priority<input id="r-next" value="${esc(d.resume.next)}"></label></div></div>`;
+        <label class="wide">Next priority<input id="r-next" value="${esc(d.resume.next)}"></label></div></div>
+      </section>`;
 
     const state = $("#save-state");
     let timer;
@@ -1076,6 +1149,20 @@
         try { await Store.setWeek(n, d); state.textContent = "Saved ✓ " + new Date().toLocaleTimeString().slice(0, 5); }
         catch { state.textContent = "Save failed"; }
       }, immediate ? 0 : 700);
+    };
+    $$("[data-stage]").forEach((button) => (button.onclick = () => {
+      const stage = button.dataset.stage;
+      $$("[data-stage]").forEach((b) => b.classList.toggle("primary", b === button));
+      $$("[data-stage-panel]").forEach((panel) => (panel.hidden = stage !== "all" && panel.dataset.stagePanel !== stage));
+      const target = stage === "all" ? $('[data-stage-panel="learn"]') : $(`[data-stage-panel="${stage}"]`);
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }));
+    const secondaryRows = $$(".kpi-secondary");
+    secondaryRows.forEach((row) => (row.hidden = true));
+    $("#toggle-all-kpis").onclick = (e) => {
+      const show = secondaryRows.some((row) => row.hidden);
+      secondaryRows.forEach((row) => (row.hidden = !show));
+      e.currentTarget.textContent = show ? "Show focused metrics" : "Show all metrics";
     };
     $$("[data-day]").forEach((el) => (el.onclick = () => { const i = +el.dataset.day; d.days[i] = !d.days[i]; el.classList.toggle("done", d.days[i]); save(true); }));
     $$("[data-task]").forEach((el) => (el.onchange = () => { const i = el.dataset.task; d.tasks[i] = { ...(d.tasks[i] || {}), done: el.checked }; el.closest("li").classList.toggle("done", el.checked); save(true); }));
@@ -1089,9 +1176,48 @@
       if (!input) return;
       input.value = el.dataset.suggestion;
       d.kpiActions[el.dataset.useAction] = el.dataset.suggestion;
+      d.actionPlan.observation = `${kpiDef(el.dataset.useAction)[1]}: ${input.closest("tr").children[3].textContent.trim()} versus the previous period.`;
+      d.actionPlan.action = el.dataset.suggestion;
+      $('[data-ap="observation"]').value = d.actionPlan.observation;
+      $('[data-ap="action"]').value = d.actionPlan.action;
       save(true);
-      input.scrollIntoView({ behavior: "smooth", block: "center" });
+      $('[data-stage="decide"]').click();
     }));
+    $$("[data-ap]").forEach((el) => {
+      const update = () => { d.actionPlan[el.dataset.ap] = el.value; save(); };
+      el.oninput = update;
+      if (el.tagName === "SELECT") el.onchange = update;
+    });
+    const actionSentence = () => {
+      const a = d.actionPlan;
+      return `${a.observation || "The selected KPI changed"} We will ${a.action || "take one focused action"}${a.page ? ` on ${a.page}` : ""}${a.owner ? ` (owner: ${a.owner})` : ""} and review on ${a.reviewDate || addDays(today(), reviewDays)}${a.target ? `; success means ${a.target}` : ""}.`;
+    };
+    $("#build-action").onclick = () => { $("#action-sentence").textContent = actionSentence(); d.resume.next = actionSentence(); $("#r-next").value = d.resume.next; save(true); };
+    $("#create-experiment").onclick = async () => {
+      const a = d.actionPlan;
+      if (!a.action || !a.hypothesis || !a.reviewDate) return toast("Add an action, hypothesis and review date first");
+      const baseline = focusedKpis.map(([k, l, kind]) => `${l}: ${fmtKpi(cur[k], kind)} (previous ${fmtKpi(prev[k], kind)})`).join("; ");
+      try {
+        const experiment = await Store.upsert("seo_experiments", {
+          source_key: `course-week-${n}-${Date.now()}`,
+          change: a.action,
+          hypothesis: a.hypothesis,
+          page: a.page,
+          start_date: today(),
+          review_date: a.reviewDate,
+          before_data: baseline,
+          status: "monitoring",
+          review_schedule: [a.reviewDate],
+          conclusion: `Week ${n}; ${a.audience || "audience not set"}; target: ${a.target || "not set"}`
+        }, "source_key");
+        d.actionPlan.experimentId = experiment.id || experiment.source_key;
+        await Store.setWeek(n, d);
+        toast("Experiment created and linked to this week");
+        $("#create-experiment").textContent = "Experiment created ✓";
+      } catch { toast("Could not create experiment"); }
+    };
+    $("#final-choice").onchange = (e) => { d.finalDecision.choice = e.target.value; save(true); };
+    $("#final-reason").oninput = (e) => { d.finalDecision.reason = e.target.value; save(); };
     $("#dl-done").onchange = (e) => { d.deliverable.done = e.target.checked; save(true); };
     $("#dl-link").oninput = (e) => { d.deliverable.link = e.target.value; save(); };
     $("#dl-notes").oninput = (e) => { d.deliverable.notes = e.target.value; save(); };
