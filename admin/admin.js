@@ -790,29 +790,18 @@
 
   async function renderToday() {
     const ctx = await courseCtx();
-    const [kpi, opportunities, alerts, technical, experiments, evidence] = await Promise.all([
-      Store.list("seo_kpi_daily"), Store.list("seo_opportunities"), Store.list("seo_alerts"),
-      Store.list("seo_technical"), Store.list("seo_experiments"), Store.list("seo_evidence")]);
+    const [kpi, weekData] = await Promise.all([Store.list("seo_kpi_daily"), Store.getWeek(ctx.week)]);
+    const week = C.weeks[ctx.week - 1], how = H[ctx.week] || {};
     const latest = [...kpi].sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
-    const priorities = opportunities.filter((x) => !["complete", "dismissed"].includes(x.status))
-      .sort((a, b) => opportunityScore(b) - opportunityScore(a)).slice(0, 5);
-    const urgentAlerts = alerts.filter((x) => !x.resolved).slice(0, 3);
-    const due = experiments.filter((x) => x.review_date && x.review_date <= today() && !x.conclusion);
-    const openTech = technical.filter((x) => !["fixed", "validated"].includes(x.status));
-    const check = [
-      { done: !!latest && latest.date >= addDays(today(), -3), text: "Read the newest Search Console and GA4 numbers", href: "#/analytics" },
-      { done: evidence.some((x) => +x.week === ctx.week && x.captured_at === today()), text: "Save evidence from today’s practical work", href: "#/t/seo_evidence?add=1" },
-      { done: !due.length, text: due.length ? `Review ${due.length} due experiment${due.length === 1 ? "" : "s"}` : "No experiment reviews are overdue", href: "#/t/seo_experiments" },
-      { done: !urgentAlerts.length, text: urgentAlerts.length ? `Investigate ${urgentAlerts.length} current alerts` : "No unresolved data alerts", href: "#/t/seo_alerts" },
-    ];
-    view().innerHTML = `<div class="page-head"><div><span class="badge info">Day ${ctx.day} of 120</span><h1>Today</h1><p class="muted">One focused place to learn, check the evidence and take action.</p></div><a class="btn primary" href="#/course/${ctx.week}">Continue Week ${ctx.week}</a></div>
-      <div class="grid c3">
-        <div class="card focus-card"><span class="eyebrow">Learn</span><h3>${esc(C.weeks[ctx.week - 1].title)}</h3><p>${esc(C.dailyRhythm[ctx.dayInWeek])}</p><a href="#/course/${ctx.week}">Open today’s lesson →</a></div>
-        <div class="card focus-card"><span class="eyebrow">Measure</span><div class="row spread"><h3>${esc(latest?.date || "No data")}</h3>${confidenceBadge(freshness(latest?.date))}</div><p>${fmtInt(latest?.clicks)} clicks · ${fmtInt(latest?.impressions)} impressions · ${fmtInt(latest?.organic_users)} organic users</p><a href="#/analytics">Open analytics →</a></div>
-        <div class="card focus-card"><span class="eyebrow">Act</span><h3>${priorities.length} ranked opportunities</h3><p>${openTech.length} open audit findings · ${due.length} experiment reviews due</p><a href="#/workspace">Open workspace →</a></div>
-      </div>
-      <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Today’s checklist</h3><ul class="checklist">${check.map((x) => `<li class="${x.done ? "done" : ""}"><span>${x.done ? "✅" : "⬜"}</span><a class="grow txt" href="${x.href}">${esc(x.text)}</a></li>`).join("")}</ul></div>
-      <div class="card"><div class="row spread"><h3>Top priorities</h3><a href="#/workspace">View all</a></div>${priorities.length ? `<ol class="priority-list">${priorities.map((x) => `<li><span class="priority-score">${opportunityScore(x)}</span><div><b>${esc(x.title)}</b><div class="small muted">${esc(x.category)} · impact ${x.impact || "–"}/5 · effort ${x.effort || "–"}/5</div><a href="#/practice">Use in Practice Mode →</a></div></li>`).join("")}</ol>` : `<p class="muted">No open opportunities.</p>`}</div></div>`;
+    const next = week.tasks.findIndex((_, i) => !weekData.tasks?.[i]?.done);
+    const taskIndex = next < 0 ? week.tasks.length - 1 : next;
+    view().innerHTML = `<div class="simple-home">
+      <div class="page-head"><div><span class="badge info">Week ${ctx.week}</span><h1>Today</h1><p class="muted">Only one idea and one practical task.</p></div></div>
+      <div class="card simple-idea"><span class="eyebrow">The idea</span><h2>${esc(week.title)}</h2><p>${esc(how.plain || week.objective)}</p></div>
+      <div class="card simple-action"><span class="eyebrow">Do this now</span><h2>${next < 0 ? "Weekly tasks complete" : `Task ${taskIndex + 1}`}</h2><p>${esc(next < 0 ? "Open the week and write one short result note." : week.tasks[taskIndex])}</p><a class="btn primary" href="#/course/${ctx.week}">${next < 0 ? "Review this week" : "Start this task"} →</a></div>
+      <div class="card simple-optional"><b>Optional today:</b> ${latest?.date === today() ? "Results already recorded ✓" : `<a href="#/t/seo_kpi_daily?add=1">Record today’s clicks and applications</a>`}</div>
+      <p class="simple-stop">That is enough for today. Do not open the advanced tools unless you need them.</p>
+    </div>`;
   }
 
   async function renderSearchConsole() {
@@ -1002,12 +991,11 @@
           const gates = [done === w.tasks.length, hasAction, hasEvidence, hasReview];
           const [from, to] = weekRange(ctx.start, n);
           return `<a class="card week-card ${n === ctx.week ? "current" : ""}" href="#/course/${n}">
-            <div class="row spread"><span class="badge ${d.deliverable?.done ? "good" : n === ctx.week ? "info" : ""}">Week ${n}</span><span class="small muted">${from.slice(5)} → ${to.slice(5)}</span></div>
+            <div class="row spread"><span class="badge ${d.deliverable?.done ? "good" : n === ctx.week ? "info" : ""}">Week ${n}</span>${n === ctx.week ? '<span class="small up">Do this week</span>' : ""}</div>
             <h3 style="margin-top:8px">${esc(w.title)}</h3>
-            <p class="small muted">${esc(w.track)} · ${esc(w.deliverable)}</p>
+            <p class="small muted">${esc(w.objective)}</p>
             <div class="progress"><span style="width:${(gates.filter(Boolean).length / gates.length) * 100}%"></span></div>
-            <div class="week-gates"><span class="${gates[0] ? "done" : ""}">Learn</span><span class="${hasAction ? "done" : ""}">Action</span><span class="${hasEvidence ? "done" : ""}">Evidence</span><span class="${hasReview ? "done" : ""}">Review</span></div>
-            <p class="small muted" style="margin:6px 0 0">${done}/${w.tasks.length} tasks${hasExperiment ? " · experiment ✓" : ""}${d.deliverable?.done ? " · deliverable ✓" : ""}</p></a>`;
+            <p class="small muted" style="margin:6px 0 0">${done}/${w.tasks.length} simple tasks complete</p></a>`;
         }).join("")}</div>`).join("")}
       <div class="card" style="margin-top:20px"><h3>Final competency checklist</h3><ul class="checklist">
         ${C.competencies.map((c, i) => `<li class="${w0.competencies?.[i] ? "done" : ""}"><input type="checkbox" data-comp="${i}" ${w0.competencies?.[i] ? "checked" : ""}><span class="txt grow">${esc(c)}</span></li>`).join("")}</ul></div>`;
@@ -1203,11 +1191,8 @@
     $("#show-full-course").onclick = () => {
       $("#simple-course").hidden = true;
       $("#full-course").hidden = false;
-      localStorage.setItem("seoadmin:course-view", "full");
       $("#full-course").scrollIntoView({ behavior: "smooth", block: "start" });
     };
-    const savedCourseView = localStorage.getItem("seoadmin:course-view");
-    if (savedCourseView === "full") { $("#simple-course").hidden = true; $("#full-course").hidden = false; }
     const returnToSimple = document.createElement("button");
     returnToSimple.className = "btn small simple-return";
     returnToSimple.type = "button";
@@ -1215,7 +1200,6 @@
     returnToSimple.onclick = () => {
       $("#full-course").hidden = true;
       $("#simple-course").hidden = false;
-      localStorage.setItem("seoadmin:course-view", "simple");
       $("#simple-course").scrollIntoView({ behavior: "smooth", block: "start" });
     };
     $("#full-course").prepend(returnToSimple);
@@ -1487,6 +1471,16 @@
   // ─────────────────────────── Boot ───────────────────────────
   async function boot() {
     try { const t = localStorage.getItem("seoadmin:theme"); if (t) setTheme(t); } catch {}
+    let advancedOpen = false;
+    try { advancedOpen = localStorage.getItem("seoadmin:advanced-tools") === "open"; } catch {}
+    const setAdvanced = (open) => {
+      advancedOpen = open;
+      $("#advanced-nav").hidden = !open;
+      $("#advanced-toggle").textContent = open ? "Hide advanced tools" : "Show advanced tools";
+      try { localStorage.setItem("seoadmin:advanced-tools", open ? "open" : "closed"); } catch {}
+    };
+    $("#advanced-toggle").onclick = () => setAdvanced(!advancedOpen);
+    setAdvanced(advancedOpen);
     Store.init();
     $("#mode-badge").textContent = Store.mode === "supabase" ? "Supabase" : "Local mode";
     $("#mode-badge").className = "badge " + (Store.mode === "supabase" ? "good" : "warn");

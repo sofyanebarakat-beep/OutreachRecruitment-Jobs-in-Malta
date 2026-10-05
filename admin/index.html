@@ -28,13 +28,16 @@
       </div>
       <nav id="nav">
         <a href="#/today" data-route="today" class="nav-primary">Today</a>
-        <div class="nav-group">Learn</div>
-        <a href="#/dashboard" data-route="dashboard">Learning dashboard</a>
-        <a href="#/course/today" data-route="course/today">Current week</a>
-        <a href="#/course" data-route="course">All 16 weeks</a>
+        <a href="#/course/today" data-route="course/today">My next task</a>
+        <a href="#/course" data-route="course">Course weeks</a>
+        <a href="#/t/seo_kpi_daily?add=1" data-route="t/seo_kpi_daily">Record results</a>
+        <a href="#/t/seo_evidence" data-route="t/seo_evidence">My notes &amp; proof</a>
+        <button class="btn ghost advanced-toggle" type="button" id="advanced-toggle">Show advanced tools</button>
+        <div id="advanced-nav" hidden>
+        <div class="nav-group">Advanced course tools</div>
+        <a href="#/dashboard" data-route="dashboard">Full dashboard</a>
         <a href="#/practice" data-route="practice">Practice mode</a>
         <a href="#/decisions" data-route="decisions">QCM &amp; decisions</a>
-        <a href="#/t/seo_evidence" data-route="t/seo_evidence">Evidence &amp; progress</a>
         <a href="#/weekly-review" data-route="weekly-review">Weekly review</a>
         <a href="#/final" data-route="final">Final case study</a>
         <div class="nav-group">Analytics</div>
@@ -59,6 +62,7 @@
         <a href="#/sync" data-route="sync">Integrations &amp; sync</a>
         <a href="#/playbook" data-route="playbook">Playbook</a>
         <a href="#/settings" data-route="settings">Settings &amp; backup</a>
+        </div>
       </nav>
       <div class="sidebar-foot">
         <span id="mode-badge" class="badge"></span>

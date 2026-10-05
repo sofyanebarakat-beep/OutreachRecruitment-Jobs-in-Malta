@@ -67,6 +67,9 @@ p { margin: 0 0 .75rem; }
 #nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .nav-primary { margin-top: 8px; border: 1px solid var(--border); font-weight: 700; }
 .nav-group { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 14px 10px 4px; }
+.advanced-toggle { width: 100%; margin-top: 12px; color: var(--muted); text-align: left; }
+#advanced-nav { flex-direction: column; }
+#advanced-nav:not([hidden]) { display: flex; }
 .sidebar-foot { margin-top: auto; padding: 14px 18px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .view { padding: 24px 28px 60px; max-width: 1280px; width: 100%; min-width: 0; }
 
@@ -261,6 +264,14 @@ tr.kpi-focus td { background: color-mix(in srgb, var(--accent-soft) 55%, var(--s
 .simple-steps .btn[href] { display: inline-block; text-decoration: none; }
 .simple-rule { text-align: center; background: var(--good-soft); border-color: var(--good); }
 .simple-return { position: sticky; top: 8px; z-index: 9; margin-bottom: 10px; box-shadow: var(--shadow); }
+.simple-home { max-width: 720px; margin: 0 auto; }
+.simple-home .card { padding: 22px; }
+.simple-home h2 { font-size: 1.3rem; }
+.simple-idea { border-top: 4px solid var(--accent); }
+.simple-action { border-top: 4px solid var(--good); }
+.simple-action p { font-size: 16px; line-height: 1.6; }
+.simple-optional { background: var(--surface-2); }
+.simple-stop { text-align: center; color: var(--muted); padding: 10px; }
 @media (max-width: 700px) {
   .course-stage-nav { top: 0; overflow-x: auto; flex-wrap: nowrap; }
   .course-stage-nav .btn { white-space: nowrap; }
