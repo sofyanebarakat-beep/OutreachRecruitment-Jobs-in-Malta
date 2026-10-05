@@ -14,6 +14,7 @@ Private admin at `/admin/` (noindex, blocked in robots.txt, not linked from the 
 - **Week-specific measurement help**: each course week identifies the business question, relevant KPIs, exact data sources, interpretation guidance and a one-click suggested review action
 - **Decision-coach workflow**: Learn → Do → Measure → Decide → Evidence stage filters, focused KPI scorecards, data-confidence labels, combined-signal explanations, structured actions, appropriate 7–90 day review timing, one-click experiments, examples/warnings and evidence-based completion gates
 - **Notion and Sheets exports**: copy tasks, daily plans, note questions, evidence, KPI actions, reviews, unfinished work, action plans, portfolio entries or all 16 weeks as a single column; copy a complete Notion-ready Markdown page or download a weekly Markdown + CSV pack
+- **Notion database pack**: import-ready Tasks, KPI, Experiments and Evidence databases with stable IDs, relationship instructions, formulas and recommended views in `admin/notion-templates/`
 - **Trackers**: keywords, pages, content, technical, backlinks, local, AI visibility, experiments (the PDF's dashboard tabs 03–10)
 - **Practice mode**: choose a real data opportunity, record the observation, hypothesis, decision, implementation and review
 - **Opportunity inbox**: automatic keyword, CTR, technical and sector exercises ranked by impact and effort

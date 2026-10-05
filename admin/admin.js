@@ -1085,7 +1085,9 @@
           <button class="btn small" type="button" data-copy-export="portfolio">Portfolio log</button>
           <button class="btn small" type="button" id="copy-all-weeks">All 16 weeks</button>
           <button class="btn small" type="button" id="download-task-column">Tasks CSV</button>
-        </div><p class="small muted">Each option copies one item per row. Paste directly into one Google Sheets column or a Notion database column.</p></details>
+          <a class="btn small" href="notion-templates/outreach-notion-course-pack.zip" download>Download Notion database pack</a>
+          <a class="btn small" href="notion-templates/NOTION_IMPORT_GUIDE.md" download>Import guide</a>
+        </div><p class="small muted">Each copy option uses one item per row. The database pack includes linked templates for tasks, KPIs, experiments and evidence.</p></details>
       </div>
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
