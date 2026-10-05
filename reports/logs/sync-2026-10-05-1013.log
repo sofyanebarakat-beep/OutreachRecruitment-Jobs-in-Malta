@@ -125,4 +125,273 @@ Started: Mon Oct  5 10:13:41 CEST 2026
   [95/194] level-2-platform-ops-engineer … OK
   [96/194] sous-chef … OK
   [97/194] supervisor … OK
-  [98/194] customer-operations-associate … 
+  [98/194] customer-operations-associate … OK
+  [99/194] structural-engineer … OK
+  [100/194] senior-quantity-estimator-me … OK
+  [101/194] sales-representative-in-renewables … OK
+  [102/194] hvac-project-manager … OK
+  [103/194] hvac-sales-representative … OK
+  [104/194] maintenance-technician-electrical-licence-a-or-b … OK
+  [105/194] sales-executive … OK
+  [106/194] head-chef-maltese-cuisine … OK
+  [107/194] it-support-executive … OK
+  [108/194] labourer-mechanic … OK
+  [109/194] electrician-installer … OK
+  [110/194] plumbers … OK
+  [111/194] general-maintenance-technician … OK
+  [112/194] front-office-assistant … OK
+  [113/194] kitchen-assistant-chinese-cuisine … OK
+  [114/194] head-chef-chinese-cuisine … OK
+  [115/194] showroom-sales-executive … OK
+  [116/194] counter-assistant … OK
+  [117/194] kitchen-assistant … OK
+  [118/194] heavy-machine-operator … OK
+  [119/194] client-accountant … OK
+  [120/194] housekeeping-attendant … OK
+  [121/194] middle-officer-asset-management … OK
+  [122/194] front-office-supervisor … OK
+  [123/194] senior-sales-marketing-executive-airline-industry … OK
+  [124/194] accounts-payable … OK
+  [125/194] qa-manager-construction … OK
+  [126/194] quality-assurance-officerengineer … OK
+  [127/194] tax-manager … OK
+  [128/194] client-accounting-manager … OK
+  [129/194] skilled-worker-for-outdoor-civil-works … OK
+  [130/194] project-manager-construction … OK
+  [131/194] airline-sales-reservations-and-ticketing-officer … OK
+  [132/194] sales-assistant-manager … OK
+  [133/194] automotive-service-advisor … OK
+  [134/194] sales-executive-b2b … OK
+  [135/194] construction-site-foreman … OK
+  [136/194] high-voltage-motor-vehicle-technician … OK
+  [137/194] sales-engineer … OK
+  [138/194] logistics-officer … OK
+  [139/194] audit-senior-associate … OK
+  [140/194] customer-contact-centre-representative … OK
+  [141/194] builders-and-shutterers … OK
+  [142/194] driver-malta-c-license … OK
+  [143/194] draughtsperson … OK
+  [144/194] assistant-laboratory-manager-construction-materials … OK
+  [145/194] barber … OK
+  [146/194] associate-tax-advisor … OK
+  [147/194] customer-care-associate … OK
+  [148/194] lead-azure-infrastructure-architect … OK
+  [149/194] sales-executive-luxury-retail … OK
+  [150/194] bartender-in-gozo … OK
+  [151/194] bottling-operator … OK
+  [152/194] restaurant-supervisor-in-gozo … OK
+  [153/194] motor-vehicle-mechanictechnician … OK
+  [154/194] automotive-parts-personnel … OK
+  [155/194] real-estate-agents … OK
+  [156/194] corporate-insurance-associate … OK
+  [157/194] wood-painting-finishing-specialist … OK
+  [158/194] delivery-driver-malta-c-license … OK
+  [159/194] health-claims-associate … OK
+  [160/194] delivery-drivers-c1-malta-license … OK
+  [161/194] auditor … OK
+  [162/194] junior-sales-assistant-maltese-speaking … OK
+  [163/194] cnc-machine-operator … OK
+  [164/194] room-attendents … OK
+  [165/194] kitchen-helpers-in-gozo … OK
+  [166/194] lead-microsoft-365-architect-modern-work-security … OK
+  [167/194] finance-associate … OK
+  [168/194] skilled-carpenters … OK
+  [169/194] delivery-person-with-driving-licence-c1 … OK
+  [170/194] real-estate-managers … OK
+  [171/194] commercial-insurance-associate … OK
+  [172/194] servers-in-gozo … OK
+  [173/194] aluminum-install-and-fabrication-foreman … OK
+  [174/194] bricklayers … OK
+  [175/194] audit-senior … OK
+  [176/194] product-owner-hybrid … OK
+  [177/194] steel-shutterers-steel-fixers … OK
+  [178/194] volvo-penta-mechanic … OK
+  [179/194] sign-assembler-installer … OK
+  [180/194] waiters … OK
+  [181/194] senior-sales-assistant-maltese-speaking … OK
+  [182/194] hotel-porter … OK
+  [183/194] boat-maintenance … OK
+  [184/194] first-line-support-hybrid … OK
+  [185/194] semi-senior-accountant … OK
+  [186/194] sales-executive-2 … OK
+  [187/194] housekeeper-2 … OK
+  [188/194] chef-de-partie-2 … OK
+  [189/194] barista-3 … OK
+  [190/194] sales-executive-3 … OK
+  [191/194] it-support-executive-2 … OK
+  [192/194] structural-engineer-2 … OK
+  [193/194] quantity-surveyor-2 … OK
+  [194/194] accounts-senior-2 … OK
+
+[4/5] Checking sitemap …
+  Found 194 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 83.9%
+============================================================
+  Careers page: 120 advertised, 120 scraped
+  Website:      194 jobs
+  Missing jobs: 7
+    + Restaurant Manager - Italian Speaking
+    + Mini Bus Drivers License D
+    + Junior Administrative Executive
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    + Heavy equipment mech
+  Extra jobs:   68
+    - Mini Bus Driver – Licence D
+    - Senior HR Coordinator - Spanish Speaking
+    - Restaurant Supervisor
+    - Front Office Supervisor
+    - Legal Intern
+    - Accounts Billing Officer
+    - Finance Officer
+    - Site Coordinator
+    - Front Desk Agent
+    - Sales Agent
+  Title diffs:  3
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   74
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 57
+    'Junior Sales Assistant - Maltese Speaking' ≈ 'Senior Sales Assistant - Maltese Speaking' (95%)
+    'Baristas' ≈ 'Barista' (93%)
+    'Plumber' ≈ 'Plumbers' (93%)
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Site Coordinator' ≈ 'HSSE Coordinator' (88%)
+
+  Schema issues: 4 job(s)
+
+  [Auto-Close DISABLED] 58 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Senior HR Coordinator - Spanish Speaking
+    - Front Office Supervisor
+    - Front Desk Agent
+    - Hostess
+    - Deli Counter Assistant / Salumeria Specialist
+    - Baristas
+    - Assistant Executive Housekeeper
+    - Application Developer (Drupal)
+    - Kitchen Porter
+    - Food & Beverage Staff
+    - Pool Attendants
+    - Sales Executive B2B
+    - Front Office Assistant
+    - Showroom Sales Executive
+    - Sales Engineer
+    - Builders and Shutterers
+    - Driver - Malta C License
+    - Barber
+    - Lead Azure Infrastructure Architect
+    - Bartender in Gozo
+    - Restaurant Supervisor in Gozo
+    - Real Estate Agents
+    - Kitchen Helpers in Gozo
+    - Lead Microsoft 365 Architect Modern Work & Security
+    - Real Estate Managers
+    - Servers in Gozo
+    - Barista
+    - Project Manager - Construction
+    - Waiters
+    - Head Chef - Maltese Cuisine
+    - Labourer Mechanic
+    - Kitchen Assistant - Chinese Cuisine
+    - Head Chef - Chinese Cuisine
+    - Senior Sales & Marketing Executive - Airline Industry
+    - QA Manager - Construction
+    - Quality Assurance Officer/Engineer
+    - Client Accounting Manager
+    - Airline Sales, Reservations, and Ticketing Officer
+    - Sales Assistant Manager
+    - Construction Site Foreman
+    - Logistics Officer
+    - Assistant Laboratory Manager - Construction Materials
+    - Junior Sales Assistant - Maltese Speaking
+    - Bricklayers
+    - Steel Shutterers & Steel Fixers
+    - Senior Sales Assistant - Maltese Speaking
+    - Quantity surveyor
+    - Restaurant Supervisor
+    - Site Coordinator
+    - Bartender
+    - Plumber
+    - Welder
+    - Compliance Manager
+    - Hairdresser
+    - Sous Chef
+    - Electrician Installer
+    - Plumbers
+    - Middle Officer - (Asset Management)
+  State saved — tracking 68 extra job(s)
+
+  Fetching details for 7 missing job(s) …
+    Restaurant Manager - Italian Speaking … OK
+    Mini Bus Drivers License D … OK
+    Junior Administrative Executive … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+OK
+
+[GSC] Checking 194 job URL(s) with Search Console …
+  WARN: Google Search Console API skipped: No Google service account JSON found. Put one JSON file in tools/private/.
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-05.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-05.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-05.html
+
+  Sending email to sbarakat@outreachrecruitment.net …
+  Email sent to sbarakat@outreachrecruitment.net
+
+=== SEO Course Automation ===
+GA4 added to 0 content pages; conversion events added to 0 pages.
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-10-05T10:20:28.141731+02:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-10-03",
+      "days": 6,
+      "queries": 1000,
+      "pages": 464
+    },
+    "ga4": {
+      "ok": true,
+      "days": 6,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 1639
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 19
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 115
+    },
+    "experiments": {
+      "new": 0
+    },
+    "supabase": {
+      "ok": false,
+      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+    }
+  },
+  "warnings": []
+}
+Finished: Mon Oct  5 10:20:34 CEST 2026 | Exit: 1

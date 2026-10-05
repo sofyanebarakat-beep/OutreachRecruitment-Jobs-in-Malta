@@ -11,6 +11,7 @@ Private admin at `/admin/` (noindex, blocked in robots.txt, not linked from the 
 - **Daily KPI tracking**: import the Search Console "Dates" CSV, then add GA4 users, applications and employer leads
 - **Live site data**: reads `tools/jobs_registry.json` and `reports/gsc_search_performance.csv` (real repo data)
 - **Course**: all 16 weeks, with 7-day rhythm, tasks, worksheet, QCM + answer guide, auto weekly KPI review, deliverable and résumé
+- **Week-specific measurement help**: each course week identifies the business question, relevant KPIs, exact data sources, interpretation guidance and a one-click suggested review action
 - **Trackers**: keywords, pages, content, technical, backlinks, local, AI visibility, experiments (the PDF's dashboard tabs 03–10)
 - **Practice mode**: choose a real data opportunity, record the observation, hypothesis, decision, implementation and review
 - **Opportunity inbox**: automatic keyword, CTR, technical and sector exercises ranked by impact and effort

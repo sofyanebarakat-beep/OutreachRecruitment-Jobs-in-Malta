@@ -226,3 +226,14 @@ td .clip { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-sp
 .howto summary { cursor: pointer; color: var(--accent); font-size: 13px; font-weight: 600; }
 .howto p { margin: 6px 0 2px; font-size: 14px; line-height: 1.5; }
 .howto-plain p:first-of-type { font-size: 15px; line-height: 1.6; }
+.measurement-plan { border-top: 3px solid var(--accent); }
+.measurement-question { font-size: 15px; margin: 10px 0 14px; }
+.measurement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+.metric-action { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--surface-2); }
+.metric-action p { min-height: 4.5em; margin: 10px 0; font-size: 13px; }
+.metric-values { display: flex; gap: 14px; margin-top: 7px; color: var(--muted); font-size: 12px; }
+.metric-values b { color: var(--text); margin-left: 3px; }
+.measurement-notes { margin-top: 12px; padding: 11px 13px; border-radius: 8px; background: var(--accent-soft); }
+.measurement-notes p { margin-bottom: 5px; }
+tr.kpi-focus td { background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface)); }
+.focus-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--accent); vertical-align: 1px; }

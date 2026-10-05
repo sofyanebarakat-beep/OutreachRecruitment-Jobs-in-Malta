@@ -7,6 +7,7 @@
   const CFG = window.ADMIN_CONFIG || {};
   const C = window.COURSE;
   const G = window.COURSE_GUIDANCE || {};
+  const M = window.COURSE_METRICS || {};
   const D = window.COURSE_DECISIONS || {};
   const H = window.COURSE_HOWTO || {};
   const $ = (s, el = document) => el.querySelector(s);
@@ -331,6 +332,15 @@
     return { txt: (p >= 0 ? "+" : "") + p.toFixed(1) + "%", cls: p > 0 ? "up" : p < 0 ? "down" : "flat" };
   }
   const fmtKpi = (v, kind) => (kind === "ctr" ? fmtPct(v) : kind === "pos" ? fmt1(v) : fmtInt(v));
+  const kpiDef = (key) => KPI_KEYS.find(([k]) => k === key) || [key, key, "sum"];
+  function suggestedKpiAction(key, cur, prev) {
+    const [, label, kind] = kpiDef(key);
+    if (cur == null || prev == null) return `Add complete ${label.toLowerCase()} data for both 7-day periods before deciding.`;
+    const change = kind === "pos" ? prev - cur : cur - prev;
+    if (change > 0) return `Identify what contributed to the ${label.toLowerCase()} improvement; preserve it and test the same pattern on one comparable page.`;
+    if (change < 0) return `Investigate the ${label.toLowerCase()} decline by page, query and date; choose one focused corrective action and set a review date.`;
+    return `No clear ${label.toLowerCase()} movement yet; keep the test stable, check data completeness and review again at the planned interval.`;
+  }
 
   // ─────────────────────────── Course helpers ───────────────────────────
   async function courseCtx() {
@@ -985,6 +995,8 @@
     const trKey = { technical_issues: "seo_technical", content_items: "seo_content", local_actions: "seo_local" }[w.tracker] || (TRACKERS[w.tracker] ? w.tracker : "seo_" + w.tracker);
     const tr = TRACKERS[trKey];
     const how = H[n] || {};
+    const metricPlan = M[n] || { kpis: KPI_KEYS.map(([k]) => k), question: "What does the data say, and what one action should follow?", source: "Daily KPI tracking", action: "Choose one evidence-based action and set a review date." };
+    const focusedKpis = metricPlan.kpis.map((key) => kpiDef(key));
     const trackerLink = tr ? `<a class="btn" href="#/t/${trKey}">Open ${esc(tr.title)} tracker →</a>` : w.tracker === "live" ? `<a class="btn" href="#/live">Open Live site data →</a>` : w.tracker === "final" ? `<a class="btn" href="#/final">Open Final case study →</a>` : "";
     const isCurrent = n === ctx.week;
     d.days = d.days || []; d.tasks = d.tasks || {}; d.worksheet = d.worksheet || []; d.qcm = d.qcm || {};
@@ -1011,6 +1023,15 @@
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
 
+      <div class="card measurement-plan">
+        <div class="row spread"><div><span class="eyebrow">Use data → decide → act</span><h3>Measurement &amp; action guide for Week ${n}</h3></div><a class="btn" href="#/t/seo_kpi_daily">Open KPI data →</a></div>
+        <p class="measurement-question"><b>Business question:</b> ${esc(metricPlan.question)}</p>
+        <div class="measurement-grid">
+          ${focusedKpis.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); const suggestion = suggestedKpiAction(k, cur[k], prev[k]); return `<article class="metric-action"><div class="row spread"><b>${esc(l)}</b><span class="${dd.cls}">${dd.txt}</span></div><div class="metric-values"><span>Previous <b>${fmtKpi(prev[k], kind)}</b></span><span>Current <b>${fmtKpi(cur[k], kind)}</b></span></div><p>${esc(suggestion)}</p><button class="btn small" type="button" data-use-action="${esc(k)}" data-suggestion="${esc(suggestion)}">Use this action</button></article>`; }).join("")}
+        </div>
+        <div class="measurement-notes"><p><b>Get the data from:</b> ${esc(metricPlan.source)}</p><p><b>Recommended next move:</b> ${esc(metricPlan.action)}</p><p class="small muted"><b>Decision rule:</b> compare equal periods, check page/query detail, and change one main variable at a time. A KPI movement is a signal to investigate, not proof of cause.</p></div>
+      </div>
+
       <div class="card"><div class="row spread"><h3>QCM / Knowledge check</h3><button class="btn small" id="show-guide">Show answer guide</button></div>
         ${w.qcm.map((q, i) => `<div class="qcm"><b>${i + 1}. ${esc(q)}</b>
           <textarea data-qa="${i}" placeholder="Your answer in your own words">${esc(d.qcm[i]?.answer)}</textarea>
@@ -1021,8 +1042,9 @@
       ${revisions.length ? `<div class="card"><h3>Two-week QCM revision</h3><p class="muted small">Questions marked wrong or partial in Week ${n - 2} are due again.</p><ol>${revisions.map((x) => `<li><b>${esc(x.q)}</b> <span class="badge warn">${esc(x.mark)}</span></li>`).join("")}</ol><a class="btn" href="#/course/${n - 2}">Revise Week ${n - 2} answers →</a></div>` : ""}
 
       <div class="card"><h3>Weekly KPI review <span class="muted small">(auto from Daily KPI tracking: ${from} → ${to} vs previous 7 days · ${cur.days}/7 days logged)</span></h3>
+        <p class="small muted">The highlighted rows are this week’s focus. Use the guide above to turn the signal into one specific, measurable action.</p>
         <div class="table-wrap"><table><thead><tr><th>KPI</th><th class="num">Previous</th><th class="num">Current</th><th class="num">Change</th><th>Action</th></tr></thead><tbody>
-        ${KPI_KEYS.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); return `<tr><td>${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-ka="${k}" value="${esc(d.kpiActions[k])}" placeholder="Action"></td></tr>`; }).join("")}
+        ${KPI_KEYS.map(([k, l, kind]) => { const dd = delta(cur[k], prev[k], kind); const focused = metricPlan.kpis.includes(k); return `<tr class="${focused ? "kpi-focus" : ""}"><td>${focused ? '<span class="focus-dot" title="Week focus"></span>' : ""}${l}</td><td class="num">${fmtKpi(prev[k], kind)}</td><td class="num">${fmtKpi(cur[k], kind)}</td><td class="num ${dd.cls}">${dd.txt}</td><td><input data-ka="${k}" value="${esc(d.kpiActions[k])}" placeholder="${focused ? "Record this week's action" : "Optional action"}"></td></tr>`; }).join("")}
         </tbody></table></div>
         ${cur.days < 7 ? `<p class="small muted" style="margin-top:8px">Missing days? <a href="#/t/seo_kpi_daily">Import the GSC Dates export</a>.</p>` : ""}</div>
 
@@ -1062,6 +1084,14 @@
     $$("[data-qa]").forEach((el) => (el.oninput = () => { const i = el.dataset.qa; d.qcm[i] = { ...(d.qcm[i] || {}), answer: el.value }; save(); }));
     $$("[data-qm]").forEach((el) => (el.onchange = () => { const i = el.dataset.qm; d.qcm[i] = { ...(d.qcm[i] || {}), mark: el.value }; save(true); }));
     $$("[data-ka]").forEach((el) => (el.oninput = () => { d.kpiActions[el.dataset.ka] = el.value; save(); }));
+    $$("[data-use-action]").forEach((el) => (el.onclick = () => {
+      const input = $(`[data-ka="${el.dataset.useAction}"]`);
+      if (!input) return;
+      input.value = el.dataset.suggestion;
+      d.kpiActions[el.dataset.useAction] = el.dataset.suggestion;
+      save(true);
+      input.scrollIntoView({ behavior: "smooth", block: "center" });
+    }));
     $("#dl-done").onchange = (e) => { d.deliverable.done = e.target.checked; save(true); };
     $("#dl-link").oninput = (e) => { d.deliverable.link = e.target.value; save(); };
     $("#dl-notes").oninput = (e) => { d.deliverable.notes = e.target.value; save(); };

@@ -42,7 +42,14 @@ def default_credentials_path() -> Path | None:
     if not PRIVATE_CREDENTIALS_DIR.exists():
         return None
 
-    candidates = sorted(PRIVATE_CREDENTIALS_DIR.glob("*.json"))
+    # Only service-account keys count; other JSON (e.g. seo-automation-state.json) lives here too.
+    candidates = []
+    for path in sorted(PRIVATE_CREDENTIALS_DIR.glob("*.json")):
+        try:
+            if json.loads(path.read_text()).get("type") == "service_account":
+                candidates.append(path)
+        except (OSError, ValueError, AttributeError):
+            continue
     if not candidates:
         return None
     if len(candidates) > 1:
