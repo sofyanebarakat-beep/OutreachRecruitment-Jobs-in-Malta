@@ -1047,6 +1047,9 @@
     d.kpiActions = d.kpiActions || {}; d.deliverable = d.deliverable || {}; d.resume = d.resume || { learned: [], issues: [] };
     d.actionPlan = d.actionPlan || { observation: "", segment: "", audience: "", hypothesis: "", action: "", owner: "", reviewDate: addDays(today(), reviewDays), target: "", confidence: "", page: "", query: "" };
     d.finalDecision = d.finalDecision || { choice: "", reason: "" };
+    const nextTaskIndex = w.tasks.findIndex((_, i) => !d.tasks[i]?.done);
+    const simpleTaskIndex = nextTaskIndex < 0 ? w.tasks.length - 1 : nextTaskIndex;
+    const completedTasks = w.tasks.filter((_, i) => d.tasks[i]?.done).length;
 
     view().innerHTML = `
       <div class="page-head"><div>
@@ -1054,6 +1057,21 @@
         <h1 style="margin-top:8px">${esc(w.title)}</h1></div>
         <div class="row">${n > 1 ? `<a class="btn" href="#/course/${n - 1}">← Week ${n - 1}</a>` : ""}${n < 16 ? `<a class="btn" href="#/course/${n + 1}">Week ${n + 1} →</a>` : ""}<span class="save-state" id="save-state"></span></div></div>
 
+      <section id="simple-course" class="simple-course">
+        <div class="simple-progress"><span style="width:${(completedTasks / w.tasks.length) * 100}%"></span></div>
+        <div class="row spread"><p class="muted">${completedTasks} of ${w.tasks.length} practical tasks complete</p><button class="btn small" type="button" id="show-full-course">Show full course details</button></div>
+        <div class="card simple-start"><span class="eyebrow">Start here — one step at a time</span><h2>${nextTaskIndex < 0 ? "You completed the practical tasks" : `Your next task: ${simpleTaskIndex + 1}`}</h2>
+          <div class="simple-steps">
+            <div><span>1</span><section><b>Learn this</b><p>${esc(how.plain || w.understand)}</p></section></div>
+            <div><span>2</span><section><b>Do this now</b><p>${esc(nextTaskIndex < 0 ? "Review your result and add the final evidence for this week." : w.tasks[simpleTaskIndex])}</p>${how.tasks?.[simpleTaskIndex] ? `<details class="howto"><summary>Show exactly how</summary><p>${esc(how.tasks[simpleTaskIndex])}</p></details>` : ""}${trackerLink}</section></div>
+            <div><span>3</span><section><b>Write one short note</b><p class="small muted">What did you do? Paste a page, screenshot, document or result link if you have one.</p><textarea id="simple-task-note" placeholder="Example: Updated the hospitality page title. Screenshot: …">${esc(d.tasks[simpleTaskIndex]?.note)}</textarea></section></div>
+            <div><span>4</span><section><b>Finish this step</b><p class="small muted">You do not need to study every KPI now. The course will ask you to review ${focusedKpis.map(([, label]) => label).join(", ")} after ${reviewDays} days.</p><button class="btn primary" type="button" id="complete-simple-task">${d.tasks[simpleTaskIndex]?.done ? "Completed ✓" : "Mark task complete"}</button></section></div>
+          </div>
+        </div>
+        <div class="card simple-rule"><b>Your simple rule:</b> learn one idea → do one real task → write one note → stop for today. Return tomorrow for the next task.</div>
+      </section>
+
+      <section id="full-course" hidden>
       <div class="callout"><b>Learning objective:</b> ${esc(w.objective)}</div>
       <nav class="course-stage-nav" aria-label="Course week sections">
         ${[["all", "All"], ["learn", "1. Learn"], ["do", "2. Do"], ["measure", "3. Measure"], ["decide", "4. Decide"], ["evidence", "5. Evidence"]].map(([key, label]) => `<button class="btn ${key === "all" ? "primary" : ""}" type="button" data-stage="${key}">${label}</button>`).join("")}
@@ -1169,6 +1187,7 @@
         ${[0, 1, 2].map((i) => `<label>Thing I learned ${i + 1}<input data-rl="${i}" value="${esc(d.resume.learned?.[i])}"></label>`).join("")}
         ${[0, 1, 2].map((i) => `<label>Issue / opportunity ${i + 1}<input data-ri="${i}" value="${esc(d.resume.issues?.[i])}"></label>`).join("")}
         <label class="wide">Next priority<input id="r-next" value="${esc(d.resume.next)}"></label></div></div>
+      </section>
       </section>`;
 
     const state = $("#save-state");
@@ -1180,6 +1199,38 @@
         try { await Store.setWeek(n, d); state.textContent = "Saved ✓ " + new Date().toLocaleTimeString().slice(0, 5); }
         catch { state.textContent = "Save failed"; }
       }, immediate ? 0 : 700);
+    };
+    $("#show-full-course").onclick = () => {
+      $("#simple-course").hidden = true;
+      $("#full-course").hidden = false;
+      localStorage.setItem("seoadmin:course-view", "full");
+      $("#full-course").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const savedCourseView = localStorage.getItem("seoadmin:course-view");
+    if (savedCourseView === "full") { $("#simple-course").hidden = true; $("#full-course").hidden = false; }
+    const returnToSimple = document.createElement("button");
+    returnToSimple.className = "btn small simple-return";
+    returnToSimple.type = "button";
+    returnToSimple.textContent = "← Simple view";
+    returnToSimple.onclick = () => {
+      $("#full-course").hidden = true;
+      $("#simple-course").hidden = false;
+      localStorage.setItem("seoadmin:course-view", "simple");
+      $("#simple-course").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    $("#full-course").prepend(returnToSimple);
+    $("#simple-task-note").oninput = (e) => {
+      d.tasks[simpleTaskIndex] = { ...(d.tasks[simpleTaskIndex] || {}), note: e.target.value };
+      const detailedNote = $(`[data-tasknote="${simpleTaskIndex}"]`);
+      if (detailedNote) detailedNote.value = e.target.value;
+      save();
+    };
+    $("#complete-simple-task").onclick = () => {
+      if (d.tasks[simpleTaskIndex]?.done) return toast("This task is already complete. Return tomorrow or open full details for the weekly review.");
+      d.tasks[simpleTaskIndex] = { ...(d.tasks[simpleTaskIndex] || {}), done: true };
+      save(true);
+      toast("Task complete — well done. The next task will appear when you reopen the week.");
+      setTimeout(() => renderWeek(n), 500);
     };
     $$("[data-stage]").forEach((button) => (button.onclick = () => {
       const stage = button.dataset.stage;

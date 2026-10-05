@@ -249,6 +249,18 @@ tr.kpi-focus td { background: color-mix(in srgb, var(--accent-soft) 55%, var(--s
 .notion-exports summary { cursor: pointer; color: var(--accent); font-weight: 650; }
 .export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 7px; margin: 10px 0; }
 .export-grid .btn { text-align: left; }
+.simple-course { max-width: 820px; margin: 0 auto; }
+.simple-progress { height: 10px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+.simple-progress span { display: block; height: 100%; border-radius: inherit; background: var(--good); }
+.simple-start { border-top: 4px solid var(--accent); padding: 22px; }
+.simple-start h2 { font-size: 1.35rem; margin-bottom: 18px; }
+.simple-steps { display: grid; gap: 10px; }
+.simple-steps > div { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 14px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); }
+.simple-steps > div > span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: #fff; background: var(--accent); font-weight: 750; }
+.simple-steps section p { margin: 5px 0 10px; }
+.simple-steps .btn[href] { display: inline-block; text-decoration: none; }
+.simple-rule { text-align: center; background: var(--good-soft); border-color: var(--good); }
+.simple-return { position: sticky; top: 8px; z-index: 9; margin-bottom: 10px; box-shadow: var(--shadow); }
 @media (max-width: 700px) {
   .course-stage-nav { top: 0; overflow-x: auto; flex-wrap: nowrap; }
   .course-stage-nav .btn { white-space: nowrap; }
