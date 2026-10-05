@@ -466,11 +466,12 @@
     return nonEmpty.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, (r[i] ?? "").trim()])));
   }
   const toCSV = (cols, rows) => [cols.map((c) => c.l).join(","), ...rows.map((r) => cols.map((c) => { const v = r[c.k] ?? ""; return /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v; }).join(","))].join("\n");
-  function download(name, text) {
+  function download(name, text, type = "text/plain") {
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+    a.href = URL.createObjectURL(new Blob([text], { type }));
     a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
+  const oneColumnCSV = (heading, rows) => [heading, ...rows].map((value) => `"${String(value ?? "").replace(/"/g, '""')}"`).join("\n");
   async function copyPlainText(text) {
     try {
       await navigator.clipboard.writeText(text);
@@ -1069,9 +1070,23 @@
       <section data-stage-panel="do">
       <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
 
-      <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3><div class="row"><button class="btn small" type="button" id="copy-task-column">Copy one column</button><button class="btn small" type="button" id="download-task-column">Download CSV</button>${trackerLink}</div></div>
+      <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3><div class="row"><button class="btn small" type="button" id="copy-task-column">Copy tasks</button><button class="btn small" type="button" id="copy-notion-page">Copy Notion page</button><button class="btn small" type="button" id="download-week-pack">Download weekly pack</button>${trackerLink}</div></div>
         <p class="small muted">Copy or download a single “Task” column for Google Sheets or a Notion table.</p>
-        <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div>${how.tasks?.[i] ? `<details class="howto"><summary>How to do this</summary><p>${esc(how.tasks[i])}</p></details>` : ""}<input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
+        <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div>${how.tasks?.[i] ? `<details class="howto"><summary>How to do this</summary><p>${esc(how.tasks[i])}</p></details>` : ""}<input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul>
+        <details class="notion-exports"><summary>More Google Sheets &amp; Notion exports</summary><div class="export-grid">
+          <button class="btn small" type="button" data-copy-export="tasks">Tasks</button>
+          <button class="btn small" type="button" data-copy-export="days">Daily plan</button>
+          <button class="btn small" type="button" data-copy-export="questions">Questions for notes</button>
+          <button class="btn small" type="button" data-copy-export="evidence">Evidence checklist</button>
+          <button class="btn small" type="button" data-copy-export="kpis">KPI actions</button>
+          <button class="btn small" type="button" data-copy-export="review">Weekly review</button>
+          <button class="btn small" type="button" data-copy-export="unfinished">Unfinished tasks</button>
+          <button class="btn small" type="button" data-copy-export="action">Action plan</button>
+          <button class="btn small" type="button" data-copy-export="portfolio">Portfolio log</button>
+          <button class="btn small" type="button" id="copy-all-weeks">All 16 weeks</button>
+          <button class="btn small" type="button" id="download-task-column">Tasks CSV</button>
+        </div><p class="small muted">Each option copies one item per row. Paste directly into one Google Sheets column or a Notion database column.</p></details>
+      </div>
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
       </section>
@@ -1178,14 +1193,50 @@
       secondaryRows.forEach((row) => (row.hidden = !show));
       e.currentTarget.textContent = show ? "Show focused metrics" : "Show all metrics";
     };
-    const taskColumn = w.tasks.map((task, i) => `Task ${i + 1}. ${task}`);
+    const taskStatus = (i) => d.tasks[i]?.done ? "Complete" : d.tasks[i]?.note ? "In progress" : "To do";
+    const taskColumn = w.tasks.map((task, i) => `Week ${n} · Task ${i + 1} · ${taskStatus(i)} · ${task}`);
+    const exportRows = () => ({
+      tasks: taskColumn,
+      days: C.dailyRhythm.map((item, i) => `Week ${n} · Day ${i + 1} · ${d.days[i] ? "Complete" : "To do"} · ${addDays(from, i)} · ${item}`),
+      questions: [...C.worksheet.map((item, i) => `Week ${n} · Note question ${i + 1} · ${item}`), ...w.qcm.map((item, i) => `Week ${n} · Knowledge question ${i + 1} · ${item}`)],
+      evidence: (guide.evidence || []).map((item, i) => `Week ${n} · Evidence ${i + 1} · ${item}`),
+      kpis: focusedKpis.map(([k, label, kind]) => `Week ${n} · KPI · ${label} · Previous ${fmtKpi(prev[k], kind)} · Current ${fmtKpi(cur[k], kind)} · ${delta(cur[k], prev[k], kind).txt} · Action: ${d.kpiActions[k] || "Waiting for data"}`),
+      review: [`Week ${n} · Decision · ${d.finalDecision.choice || "Waiting for data"}`, `Week ${n} · Decision reason · ${d.finalDecision.reason || "Not recorded"}`, `Week ${n} · Next priority · ${d.resume.next || "Not recorded"}`, `Week ${n} · Review date · ${d.actionPlan.reviewDate || addDays(today(), reviewDays)}`],
+      unfinished: w.tasks.map((task, i) => ({ task, i })).filter(({ i }) => !d.tasks[i]?.done).map(({ task, i }) => `Week ${n} · Task ${i + 1} · ${taskStatus(i)} · ${task}`),
+      action: [`Week ${n} · Observation · ${d.actionPlan.observation || "Not recorded"}`, `Week ${n} · Page · ${d.actionPlan.page || "Not selected"}`, `Week ${n} · Query · ${d.actionPlan.query || "Not selected"}`, `Week ${n} · Hypothesis · ${d.actionPlan.hypothesis || "Not recorded"}`, `Week ${n} · Action · ${d.actionPlan.action || metricPlan.action}`, `Week ${n} · Owner · ${d.actionPlan.owner || "Not assigned"}`, `Week ${n} · Review date · ${d.actionPlan.reviewDate}`, `Week ${n} · Success target · ${d.actionPlan.target || "Not set"}`],
+      portfolio: [...w.tasks.map((task, i) => ({ task, i })).filter(({ i }) => d.tasks[i]?.done).map(({ task, i }) => `Week ${n} · Completed task ${i + 1} · ${task}${d.tasks[i]?.note ? ` · Evidence: ${d.tasks[i].note}` : ""}`), ...(d.deliverable.done ? [`Week ${n} · Deliverable · ${w.deliverable} · ${d.deliverable.link || d.deliverable.notes || "Completed"}`] : []), ...(d.finalDecision.choice ? [`Week ${n} · Outcome · ${d.finalDecision.choice} · ${d.finalDecision.reason || "No reason recorded"}`] : [])]
+    });
+    const notionPage = () => {
+      const rows = exportRows();
+      const checks = w.tasks.map((task, i) => `- [${d.tasks[i]?.done ? "x" : " "}] ${task}${d.tasks[i]?.note ? ` — ${d.tasks[i].note}` : ""}`).join("\n");
+      return `# Week ${n} — ${w.title}\n\n## Objective\n${w.objective}\n\n## Tasks\n${checks}\n\n## Daily plan\n${rows.days.map((x) => `- ${x}`).join("\n")}\n\n## KPI focus\n${rows.kpis.map((x) => `- ${x}`).join("\n")}\n\n## Action\n${rows.action.map((x) => `- ${x}`).join("\n")}\n\n## Evidence\n${rows.evidence.map((x) => `- [ ] ${x}`).join("\n") || "- [ ] Add evidence"}\n\n## Weekly decision\n${rows.review.join("\n")}\n`;
+    };
     $("#copy-task-column").onclick = async () => {
       const copied = await copyPlainText(taskColumn.join("\n"));
       toast(copied ? "Task column copied — paste into Sheets or Notion" : "Copy failed; use Download CSV instead");
     };
+    $("#copy-notion-page").onclick = async () => toast(await copyPlainText(notionPage()) ? "Notion page copied" : "Copy failed");
+    $$("[data-copy-export]").forEach((button) => (button.onclick = async () => {
+      const rows = exportRows()[button.dataset.copyExport] || [];
+      if (!rows.length) return toast("Nothing to export yet");
+      toast(await copyPlainText(rows.join("\n")) ? `${button.textContent} copied as one column` : "Copy failed");
+    }));
+    $("#copy-all-weeks").onclick = async () => {
+      const saved = Object.fromEntries((await Store.list("seo_course_weeks")).map((row) => [+row.week, row.data || {}]));
+      const rows = C.weeks.flatMap((week) => week.tasks.map((task, i) => {
+        const wd = saved[week.n] || {}, status = wd.tasks?.[i]?.done ? "Complete" : wd.tasks?.[i]?.note ? "In progress" : "To do";
+        return `Week ${week.n} · ${week.title} · Task ${i + 1} · ${status} · ${task}`;
+      }));
+      toast(await copyPlainText(rows.join("\n")) ? "All 16 weeks copied as one column" : "Copy failed");
+    };
+    $("#download-week-pack").onclick = () => {
+      const rows = exportRows(), combined = Object.values(rows).flat();
+      download(`course-week-${n}-notion-pack.md`, notionPage(), "text/markdown");
+      setTimeout(() => download(`course-week-${n}-one-column.csv`, oneColumnCSV("Item", combined), "text/csv"), 250);
+      toast("Weekly Markdown and one-column CSV prepared");
+    };
     $("#download-task-column").onclick = () => {
-      const csv = ["Task", ...taskColumn].map((value) => `"${value.replace(/"/g, '""')}"`).join("\n");
-      download(`course-week-${n}-tasks.csv`, csv);
+      download(`course-week-${n}-tasks.csv`, oneColumnCSV("Task", taskColumn), "text/csv");
     };
     $$("[data-day]").forEach((el) => (el.onclick = () => { const i = +el.dataset.day; d.days[i] = !d.days[i]; el.classList.toggle("done", d.days[i]); save(true); }));
     $$("[data-task]").forEach((el) => (el.onchange = () => { const i = el.dataset.task; d.tasks[i] = { ...(d.tasks[i] || {}), done: el.checked }; el.closest("li").classList.toggle("done", el.checked); save(true); }));

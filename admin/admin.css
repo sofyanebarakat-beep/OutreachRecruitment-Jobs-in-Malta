@@ -245,6 +245,10 @@ tr.kpi-focus td { background: color-mix(in srgb, var(--accent-soft) 55%, var(--s
 .week-gates span.done { background: var(--good-soft); color: var(--good); font-weight: 700; }
 .example-grid { margin-bottom: 16px; }
 .example-grid .card p { margin: 10px 0 0; }
+.notion-exports { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.notion-exports summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+.export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 7px; margin: 10px 0; }
+.export-grid .btn { text-align: left; }
 @media (max-width: 700px) {
   .course-stage-nav { top: 0; overflow-x: auto; flex-wrap: nowrap; }
   .course-stage-nav .btn { white-space: nowrap; }
