@@ -11,7 +11,20 @@
     if (!link) return;
     var href = link.href || "";
     var label = (link.textContent || "").trim().replace(/\s+/g, " ").slice(0, 120);
-    if (/careers-page\.com\/jobs\/.+\/apply/i.test(href)) {
+    // Job pages open the careers-page form in an on-page iframe panel, so the
+    // "Apply now" click itself is the trackable apply intent.
+    if (link.hasAttribute("data-job-apply-trigger")) {
+      // The iframe sits inside a <template> until the panel is first opened.
+      var tpl = document.getElementById("job-apply-frame-template");
+      var frame = document.querySelector(".outreach-apply-frame") ||
+        (tpl && tpl.content && tpl.content.querySelector(".outreach-apply-frame"));
+      send("apply_click", {
+        event_category: "Jobs",
+        event_label: document.title,
+        job_url: frame ? (frame.getAttribute("data-src") || frame.src || "") : "",
+        page_location: location.href
+      });
+    } else if (/careers-page\.com\/jobs\/.+\/apply/i.test(href)) {
       send("apply_click", {
         event_category: "Jobs",
         event_label: label || document.title,

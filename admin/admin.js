@@ -8,6 +8,7 @@
   const C = window.COURSE;
   const G = window.COURSE_GUIDANCE || {};
   const D = window.COURSE_DECISIONS || {};
+  const H = window.COURSE_HOWTO || {};
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -981,8 +982,10 @@
     const kpi = await Store.list("seo_kpi_daily");
     const [from, to] = weekRange(ctx.start, n);
     const cur = aggregate(kpi, from, to), prev = aggregate(kpi, addDays(from, -7), addDays(from, -1));
-    const tr = TRACKERS[w.tracker];
-    const trackerLink = tr ? `<a class="btn" href="#/t/${w.tracker}">Open ${esc(tr.title)} tracker →</a>` : w.tracker === "live" ? `<a class="btn" href="#/live">Open Live site data →</a>` : w.tracker === "final" ? `<a class="btn" href="#/final">Open Final case study →</a>` : "";
+    const trKey = { technical_issues: "seo_technical", content_items: "seo_content", local_actions: "seo_local" }[w.tracker] || (TRACKERS[w.tracker] ? w.tracker : "seo_" + w.tracker);
+    const tr = TRACKERS[trKey];
+    const how = H[n] || {};
+    const trackerLink = tr ? `<a class="btn" href="#/t/${trKey}">Open ${esc(tr.title)} tracker →</a>` : w.tracker === "live" ? `<a class="btn" href="#/live">Open Live site data →</a>` : w.tracker === "final" ? `<a class="btn" href="#/final">Open Final case study →</a>` : "";
     const isCurrent = n === ctx.week;
     d.days = d.days || []; d.tasks = d.tasks || {}; d.worksheet = d.worksheet || []; d.qcm = d.qcm || {};
     d.kpiActions = d.kpiActions || {}; d.deliverable = d.deliverable || {}; d.resume = d.resume || { learned: [], issues: [] };
@@ -994,6 +997,8 @@
         <div class="row">${n > 1 ? `<a class="btn" href="#/course/${n - 1}">← Week ${n - 1}</a>` : ""}${n < 16 ? `<a class="btn" href="#/course/${n + 1}">Week ${n + 1} →</a>` : ""}<span class="save-state" id="save-state"></span></div></div>
 
       <div class="callout"><b>Learning objective:</b> ${esc(w.objective)}</div>
+      ${how.plain ? `<div class="card howto-plain"><h3>In simple words</h3><p>${esc(how.plain)}</p>${how.time ? `<p class="small muted">⏱ ${esc(how.time)}</p>` : ""}</div>` : ""}
+      ${how.days?.length ? `<div class="card"><h3>What to do each day this week</h3><ol class="lesson-steps">${how.days.map((x, i) => `<li><span class="step-num">${i + 1}</span><div><b>Day ${i + 1}${isCurrent && ctx.dayInWeek === i ? " — today" : ""}:</b> ${esc(x)}</div></li>`).join("")}</ol></div>` : ""}
       <div class="card"><h3>What you need to understand</h3><p>${esc(w.understand)}</p></div>
       ${guide.why ? `<div class="card"><h3>Why this week matters</h3><p>${esc(guide.why)}</p></div>` : ""}
       ${guide.prepare?.length ? `<div class="card"><h3>Before you begin</h3><ul>${guide.prepare.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
@@ -1002,7 +1007,7 @@
       <div class="card"><h3>7-day rhythm</h3><div class="days">${C.dailyRhythm.map((t, i) => `<div class="day ${d.days[i] ? "done" : ""} ${isCurrent && ctx.dayInWeek === i ? "today" : ""}" data-day="${i}"><b>Day ${i + 1}</b><span>${esc(t)}</span><span class="small muted">${addDays(from, i).slice(5)}</span></div>`).join("")}</div></div>
 
       <div class="card"><div class="row spread"><h3>Hands-on Outreach Recruitment tasks</h3>${trackerLink}</div>
-        <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div><input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
+        <ul class="checklist">${w.tasks.map((t, i) => `<li class="${d.tasks[i]?.done ? "done" : ""}"><input type="checkbox" data-task="${i}" ${d.tasks[i]?.done ? "checked" : ""}><div class="grow"><div class="txt">Task ${i + 1}. ${esc(t)}</div>${how.tasks?.[i] ? `<details class="howto"><summary>How to do this</summary><p>${esc(how.tasks[i])}</p></details>` : ""}<input class="small" data-tasknote="${i}" placeholder="Notes / evidence / link" value="${esc(d.tasks[i]?.note)}" style="margin-top:4px"></div></li>`).join("")}</ul></div>
 
       <div class="card"><h3>Practice worksheet</h3><div class="form-grid">${C.worksheet.map((q, i) => `<label class="wide">${esc(q)}<textarea data-ws="${i}">${esc(d.worksheet[i])}</textarea></label>`).join("")}</div></div>
 
@@ -1031,6 +1036,8 @@
         <div class="card"><h3>Common mistakes to avoid</h3><ul>${(guide.pitfalls || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
       </div>` : ""}
 
+      ${how.example ? `<div class="card"><h3>Worked example</h3><p>${esc(how.example)}</p></div>` : ""}
+      ${how.done ? `<div class="callout"><b>This week is finished when:</b> ${esc(how.done)}</div>` : ""}
       <div class="callout"><b>Definition of done:</b> Complete the practical tasks, attach evidence, answer the knowledge check in your own words, review the weekly KPI comparison and record one specific next action.</div>
 
       <div class="card"><h3>Weekly résumé</h3><div class="form-grid">
