@@ -9,7 +9,7 @@ Private deadline (schema `validThrough` only, NOT displayed): `2029-12-30`
 ## Section 1 — SEO Package
 
 - SEO title: `Italian Restaurant Manager Job in St. Julian's, Malta` (53 chars). The full title "Restaurant Manager - Italian Speaking Job in St. Julian's, Malta" is 63 chars, over the 60 limit; "Italian Restaurant Manager" keeps both the language and the cuisine intent.
-- Meta description: `Apply now for an Italian-speaking Restaurant Manager job in St. Julian's, Malta. Full-time role leading the front-of-house team at an Italian restaurant.` (153 chars)
+- Meta description: `Apply now for an Italian-speaking Restaurant Manager job in St. Julian's, Malta. From €25,000 per year, full-time front-of-house leadership role.` (145 chars)
 - URL slug: `restaurant-manager-italian-speaking`
 - Canonical: `https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking`
 - Candidate search intent: Italian-speaking restaurant managers and assistant managers in Malta looking for a front-of-house leadership role in an Italian restaurant.
@@ -26,7 +26,7 @@ Private deadline (schema `validThrough` only, NOT displayed): `2029-12-30`
 - Open Graph / Twitter title: same as SEO title
 - Open Graph / Twitter description: same as meta description
 - Open Graph image: https://outreachrecruitment.net/assets/jobs-malta-hospitality.png
-- Google Jobs optimisation notes: full `JobPosting` with `directApply: true` and a private `validThrough`. `baseSalary` is omitted because the source publishes no salary.
+- Google Jobs optimisation notes: full `JobPosting` with `baseSalary` (from €25,000 per year, EUR), `directApply: true` and a private `validThrough`.
 - Urgency / relocation / visa keywords: omitted — none is stated in the source listing.
 
 ## Section 2 — Google Jobs Package
@@ -35,7 +35,7 @@ Private deadline (schema `validThrough` only, NOT displayed): `2029-12-30`
 - Employment type: FULL_TIME · Work mode: On-Site · Job type: Direct Job
 - Location: St. Julian's, Malta (MT) · Region: Malta
 - Industry: Hospitality · Occupational category: 11-9051.00 Food Service Managers
-- Salary: **not published in the source**. The page shows "Competitive salary" in the header chip, sidebar and offer list. No `baseSalary` in the schema.
+- Salary: from €25,000 per year (confirmed by the user 2026-10-07; the source listing has no salary). Shown in the header chip, sidebar, About the Role, offer list, FAQ, meta description and `baseSalary` (`minValue: 25000`, `unitText: YEAR`, EUR).
 - Target Location (grid): Residents in Malta & Europeans (default — the source does not restrict applicants)
 - Date posted / modified: 2026-10-07 (source listing posted 2026-10-02)
 - Valid through (private, schema only): 2029-12-30
@@ -51,7 +51,7 @@ Private deadline (schema `validThrough` only, NOT displayed): `2029-12-30`
 
 Direct answer: Restaurant Manager - Italian Speaking is a full-time, on-site vacancy at a well-established Italian restaurant in St. Julian's, Malta, advertised by Outreach Recruitment Ltd. The manager runs daily operations and leads the front-of-house team. Fluent Italian, good English and previous restaurant management or supervisory experience are required. Apply online.
 
-Key facts: Position: Restaurant Manager - Italian Speaking · Industry: Hospitality · Location: St. Julian's, Malta · Salary: competitive (not published) · Job type: Direct Job · Target location: Residents in Malta & Europeans · Employment: Full-Time, shifts incl. evenings, weekends and public holidays · Languages: Italian and English · Employer: Outreach Recruitment Ltd · Application: online.
+Key facts: Position: Restaurant Manager - Italian Speaking · Industry: Hospitality · Location: St. Julian's, Malta · Salary: from €25,000 per year · Job type: Direct Job · Target location: Residents in Malta & Europeans · Employment: Full-Time, shifts incl. evenings, weekends and public holidays · Languages: Italian and English · Employer: Outreach Recruitment Ltd · Application: online.
 
 Candidate fit: Italian-speaking restaurant managers, assistant managers and senior supervisors who want to lead front of house in an authentic Italian and Sicilian restaurant in St. Julian's.
 
@@ -63,7 +63,7 @@ Implemented on the page using the rich job template (cloned from `jobs/head-chef
 
 ### About the Role
 Our client, a well-established Italian restaurant in St. Julian's, is looking for an experienced and motivated Restaurant Manager who speaks fluent Italian to join their team. The restaurant is part of an established restaurant group and runs an authentic Italian and Sicilian concept.
-You will oversee the daily operations of the restaurant, lead the front-of-house team and keep service, guest satisfaction and team performance at a consistently high standard. The role covers reservations and service flow, staff training, guest feedback, stock and ordering, and close coordination with the kitchen and management team.
+You will oversee the daily operations of the restaurant, lead the front-of-house team and keep service, guest satisfaction and team performance at a consistently high standard. The role covers reservations and service flow, staff training, guest feedback, stock and ordering, and close coordination with the kitchen and management team. The salary starts from €25,000 per year.
 It suits a hands-on restaurant professional with experience as a Restaurant Manager, Assistant Restaurant Manager or in a similar supervisory role, who speaks fluent Italian and good English and is flexible to work evenings, weekends and public holidays.
 
 ### Key Responsibilities
@@ -92,7 +92,7 @@ It suits a hands-on restaurant professional with experience as a Restaurant Mana
 - Flexibility to work shifts, including evenings, weekends and public holidays
 
 ### What's on Offer
-- Competitive salary
+- Salary starting from €25,000 per year
 - Full-time employment with an established restaurant group
 - A dynamic and professional working environment
 - Opportunity to work within an authentic Italian and Sicilian restaurant concept
@@ -112,7 +112,7 @@ It suits a hands-on restaurant professional with experience as a Restaurant Mana
 - English – good (essential)
 
 ### FAQ
-- **What does the Restaurant Manager role pay?** The salary is not stated in the job listing. Our team shares the full package details with shortlisted candidates.
+- **What does the Restaurant Manager role pay?** The salary for this role starts from €25,000 per year.
 - **Do I need to speak Italian for this job?** Yes. Fluent Italian and good English are both essential for this Restaurant Manager role.
 - **Where is the Restaurant Manager job based?** On-site at a well-established Italian restaurant in St. Julian's, Malta, with an authentic Italian and Sicilian concept.
 - **What experience do I need?** Previous experience as a Restaurant Manager, Assistant Restaurant Manager or in a similar supervisory role, with good knowledge of restaurant operations and service standards.
@@ -123,9 +123,11 @@ It suits a hands-on restaurant professional with experience as a Restaurant Mana
 
 Included: title, HTML description (matches visible content), identifier (slug), url, datePosted, dateModified, validThrough (private), employmentType, workHours, industry, occupationalCategory, hiringOrganization, jobLocation, experienceRequirements, qualifications, responsibilities, skills, jobBenefits, directApply, applicationContact. Supporting blocks: BreadcrumbList (Home → Jobs in Malta → Hospitality Jobs in Malta → Restaurant Manager - Italian Speaking), FAQPage (identical to the visible FAQ), ImageObject.
 
-Omitted (unsupported by source): baseSalary, educationRequirements, applicantLocationRequirements (no restriction stated), visa sponsorship, relocation, jobImmediateStart, remote status.
+Included salary: baseSalary from €25,000 per year (EUR, YEAR).
 
-Warnings: if the client confirms a salary, add it to the header chip, sidebar, offer list, FAQ, meta description and `baseSalary` at the same time.
+Omitted (unsupported by source): educationRequirements, applicantLocationRequirements (no restriction stated), visa sponsorship, relocation, jobImmediateStart, remote status.
+
+Warnings: if the salary changes, update the header chip, sidebar, About the Role, offer list, FAQ, meta description and `baseSalary` together.
 
 ## Section 6 — Internal Linking Plan
 
@@ -138,7 +140,7 @@ Warnings: if the client confirms a salary, add it to the header chip, sidebar, o
 ## Section 7 — SERP and Competitor Plan
 
 - Competing result types: Indeed Malta, JobsinMalta, Keepmeposted, LinkedIn Jobs and restaurant-group career pages. Most restaurant manager listings in Malta do not state language requirements or shift patterns clearly.
-- How this page competes: language requirement in the title and H1, St. Julian's location, explicit shift-pattern and "who can apply" answers, six FAQs and full JobPosting data.
+- How this page competes: salary shown (from €25,000 per year), language requirement in the title and H1, St. Julian's location, explicit shift-pattern and "who can apply" answers, six FAQs and full JobPosting data.
 - Content gaps filled: Italian + English requirement, Italian and Sicilian concept, shift pattern, and eligibility (Malta residents and Europeans).
 - Structured-data opportunity: Google for Jobs rich result via `JobPosting` (+ FAQ rich result eligibility).
 
@@ -174,7 +176,7 @@ Use naturally: Restaurant Manager, Assistant Restaurant Manager, Italian, Sicili
 - [x] SEO title ≤ 60 chars, contains "Job", Malta and the city
 - [x] Meta description 120–155 chars with title, location and "Apply now"
 - [x] Slug lowercase/hyphenated; canonical self-referencing
-- [x] Salary not invented: source has none → "Competitive salary" shown, no `baseSalary`
+- [x] Salary from €25,000 per year shown consistently (page, FAQ, meta, `baseSalary`) — figure supplied by the user
 - [x] Reference number and application deadline NOT visible (private)
 - [x] JobPosting, BreadcrumbList, FAQPage, ImageObject valid JSON; FAQPage matches visible FAQ
 - [x] FAQ closed by default and auto-closes when another item opens (tested in Chrome)
