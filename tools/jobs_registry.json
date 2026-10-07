@@ -1,5 +1,50 @@
 [
   {
+    "slug": "front-office-executive",
+    "title": "Front Office Executive",
+    "category": "Hospitality",
+    "location": "Valletta, Malta",
+    "location_slug": "valletta, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-07",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/9f872fcf-15f8-4e4e-aed4-9a2c83df6f7c/apply",
+    "keywords": "front office executive hospitality valletta malta hotel receptionist front desk guest relations check-in",
+    "featured": true,
+    "lastmod": "2026-10-07"
+  },
+  {
+    "slug": "italian-restaurant-hospitality-positions-dubai",
+    "title": "Italian Restaurant – Multiple Hospitality Positions",
+    "category": "Hospitality",
+    "location": "Dubai, United Arab Emirates",
+    "location_slug": "dubai, united arab emirates",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-07",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/029a3d07-71e6-44a2-af75-54091f4461ee/apply",
+    "keywords": "italian restaurant hospitality positions dubai uae servers bartender hostess commis chef luxury hotel visa accommodation",
+    "featured": true,
+    "lastmod": "2026-10-07"
+  },
+  {
+    "slug": "junior-administrative-executive",
+    "title": "Junior Administrative Executive",
+    "category": "Administration",
+    "location": "Birkirkara, Malta",
+    "location_slug": "birkirkara, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-07",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a4d59892-763f-4fb1-ac99-24f7212445e0/apply",
+    "keywords": "junior administrative executive administration birkirkara malta office administrator salon admin beauty aesthetics",
+    "featured": true,
+    "lastmod": "2026-10-07"
+  },
+  {
     "slug": "crane-installer",
     "title": "Crane Installer",
     "category": "Construction",
@@ -147,7 +192,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c7bdb3fe-4afc-40a9-b97c-55fc39332ffa/apply",
     "keywords": "senior hr coordinator spanish speaking hr & recruitment luqa malta jobs in malta human resources coordinator hr generalist hris recruitment onboarding employee relations engineering hr spanish english",
     "featured": true,
-    "lastmod": "2026-09-04"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "assistance-operations-coordinator",
@@ -192,7 +238,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/75ec6882-a4dd-4e32-9c47-0a6f8bfdb27b/apply",
     "keywords": "hr executive human resources hr & recruitment st. julian's malta hr officer people operations recruitment onboarding payroll employee relations wellness",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "spa-receptionist",
@@ -207,7 +254,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/5aedf3df-eff0-4d0a-b678-6847e5b58c62/apply",
     "keywords": "spa receptionist wellness st. julian's malta front of house reservations guest service",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "spa-sales-promotional-staff",
@@ -222,7 +270,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0b2d02ae-ceaa-400f-b481-b83c7492982d/apply",
     "keywords": "spa sales promotional staff wellness mellieħa malta promoter sales representative spa packages",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "spa-supervisor",
@@ -237,7 +286,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/97c5c72a-1fa8-4a52-99ca-7280c4cf6dbb/apply",
     "keywords": "spa supervisor wellness st. julian's malta spa team leader operations therapist coordinator",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "sales-representative",
@@ -299,7 +349,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/42b8f29a-855b-494c-916c-10b71e9d162d/apply",
     "keywords": "plumber plumbing engineering maintenance hospitality hotel facilities",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "welder",
@@ -314,7 +365,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1d27aeab-ef4d-4800-b734-ef6c2b516f03/apply",
     "keywords": "welder welding fabrication metal engineering maintenance mig tig arc hospitality hotel",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "server-spanish-speaker",
@@ -408,7 +460,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/829f7fa5-c71e-467d-b35b-638c56761cb5/apply",
     "keywords": "maintenance technician engineering & maintenance mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "assistance-co-ordinator",
@@ -423,7 +476,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/82c38d7f-8613-408f-bf72-7686caaf5422/apply",
     "keywords": "assistance co-ordinator insurance floriana, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "customer-contact-agent",
@@ -592,7 +646,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8f35bc34-8a3d-4e5f-926c-e5354ca53e6b/apply",
     "keywords": "restaurant supervisor hospitality st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "kitchen-porter",
@@ -607,7 +662,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/685b1dd6-b31d-4a57-adf1-14b0e9a982e3/apply",
     "keywords": "kitchen porter general msida, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "chef-de-partie",
@@ -622,7 +678,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3b2f714e-7f77-4414-af3c-ce4674dad0f6/apply",
     "keywords": "chef de partie hospitality mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "contact-centre-team-leader",
@@ -780,7 +837,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/11b154e1-badc-44e4-b0b7-a947c300f50b/apply",
     "keywords": "food & beverage staff hospitality st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "compliance-manager",
@@ -795,7 +853,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/99748729-dcc6-40c5-bf41-51eddca4a21a/apply",
     "keywords": "compliance manager general qormi, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "hairdresser",
@@ -810,7 +869,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7c1ceeb4-7a92-466a-b2b8-c7b92e982d9c/apply",
     "keywords": "hairdresser general żabbar, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "pool-attendants",
@@ -825,7 +885,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e0274514-7233-4f8e-9c6c-7721790ec340/apply",
     "keywords": "pool attendants general st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "head-chef",
@@ -840,7 +901,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6d2b94c2-2460-403a-ad20-85dd8f7ebab9/apply",
     "keywords": "head chef hospitality st. paul's bay, malta",
     "featured": false,
-    "lastmod": "2026-07-24"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "hospitality-staff-malta",
@@ -886,7 +948,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1ec49e22-c090-4e60-8676-9f95d2eb1781/apply",
     "keywords": "level 2 platform ops engineer engineering & maintenance floriana, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "sales-shift-manager",
@@ -965,7 +1028,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/d1e88622-1fe6-48c6-a66a-950a7667262e/apply",
     "keywords": "sous chef hospitality st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "driver-category-c-license",
@@ -1324,7 +1388,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/89a397d0-2d40-418c-9b25-47160af21d9d/apply",
     "keywords": "sales executive sales mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "head-chef-maltese-cuisine",
@@ -1339,7 +1404,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/4fc9e1b0-513a-4393-97de-2df7e1491f99/apply",
     "keywords": "head chef - maltese cuisine hospitality st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "marketing-assistant",
@@ -1401,7 +1467,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2accfc63-91d7-4668-9413-dd139f61ddda/apply",
     "keywords": "labourer mechanic engineering & maintenance sliema, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "electrician-installer",
@@ -1416,7 +1483,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/bdecc464-274a-4102-9e47-3b997ed3073d/apply",
     "keywords": "electrician installer engineering & maintenance mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "plumbers",
@@ -1431,7 +1499,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c3928a2c-3e0d-403a-87d8-b45f7a5d9247/apply",
     "keywords": "plumbers engineering & maintenance mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "general-maintenance-technician",
@@ -1477,7 +1546,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/798a6a65-5a8c-4021-b78f-556885e2d483/apply",
     "keywords": "front office assistant administration mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "kitchen-assistant-chinese-cuisine",
@@ -1492,7 +1562,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f58fc67b-3ccb-4e18-b9e0-0bb8ee01300e/apply",
     "keywords": "kitchen assistant - chinese cuisine administration malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "head-chef-chinese-cuisine",
@@ -1507,7 +1578,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/128cf118-298f-4487-acf0-23ad51bbcfc4/apply",
     "keywords": "head chef - chinese cuisine hospitality malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "showroom-sales-executive",
@@ -1522,7 +1594,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/43fc85cb-cc4e-4487-bb62-7636a45f9671/apply",
     "keywords": "showroom sales executive sales malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "bartender",
@@ -1630,7 +1703,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7dac46c7-8c5c-4fa0-afca-ca5051aacf01/apply",
     "keywords": "client accountant finance & accounting msida, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "housekeeping-attendant",
@@ -1676,7 +1750,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/9d596e44-74c6-4cb0-8473-72eb5ac1e919/apply",
     "keywords": "middle officer - (asset management) administration valletta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "front-office-supervisor",
@@ -1691,7 +1766,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/237d741c-32a6-40b4-98ef-385b8cdddd3f/apply",
     "keywords": "front office supervisor administration st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "bartender-front-office-agent",
@@ -1722,7 +1798,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1cc4a97a-44fc-4dd5-9689-f32213d5b27c/apply",
     "keywords": "senior sales &amp; marketing executive - airline industry sales mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "head-chef-greek-cuisine",
@@ -1896,7 +1973,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b6100a7a-bba9-4a88-a9d2-6b940761ea8c/apply",
     "keywords": "qa manager - construction general mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "quality-assurance-officerengineer",
@@ -1911,7 +1989,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c2da6f02-a3c3-4abe-b050-58ae8b793380/apply",
     "keywords": "quality assurance officer/engineer engineering & maintenance mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "tax-manager",
@@ -1941,7 +2020,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a50bb3c8-d361-4098-9cef-5fbf20d50a2c/apply",
     "keywords": "client accounting manager finance & accounting naxxar, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "skilled-worker-for-outdoor-civil-works",
@@ -1956,7 +2036,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ebf5b6b9-fa54-4e26-afae-6c337da2509a/apply",
     "keywords": "skilled worker for outdoor &amp; civil works general st. julian, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "project-manager-construction",
@@ -1971,7 +2052,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e8b63fa4-a2d7-4495-8637-dc0e46ad36ca/apply",
     "keywords": "project manager - construction management mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "sushi-chef",
@@ -2018,7 +2100,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3abb8d25-de69-4167-926f-940f97eb49a0/apply",
     "keywords": "airline sales, reservations, and ticketing officer sales luqa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "account-manager",
@@ -2097,7 +2180,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/067be012-2b55-4586-bd03-c0bb6247eac4/apply",
     "keywords": "sales assistant manager sales birkirkara, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "automotive-service-advisor",
@@ -2127,7 +2211,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e3e5b79a-9025-4c64-9ca2-7f9071b3a283/apply",
     "keywords": "sales executive  b2b sales birkirkara, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "construction-site-foreman",
@@ -2142,7 +2227,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e17b8ee0-0fbe-4684-91e2-47aa67a4c27c/apply",
     "keywords": "construction site foreman general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "high-voltage-motor-vehicle-technician",
@@ -2172,7 +2258,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6368460a-f32e-4f98-9a7c-7798709b7746/apply",
     "keywords": "sales engineer engineering & maintenance mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "logistics-officer",
@@ -2187,7 +2274,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7ab4b381-c5a5-4a19-b1fd-d64fc653313d/apply",
     "keywords": "logistics officer logistics mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "sommeliers-junior-sommeliers",
@@ -2503,7 +2591,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c1197eb3-f703-47bf-ba20-2bccb4ec18c4/apply",
     "keywords": "driver - malta c license logistics qormi, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "draughtsperson",
@@ -2533,7 +2622,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7551884d-c6f9-423a-a7a0-5e3076170c3f/apply",
     "keywords": "assistant laboratory manager - construction materials administration mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "barber",
@@ -2548,7 +2638,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/5d97202f-fb38-4209-9467-cb4b41b77e9d/apply",
     "keywords": "barber general paola, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "associate-tax-advisor",
@@ -2625,7 +2716,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/20b28d1a-437f-4093-9656-f82772b1ee19/apply",
     "keywords": "lead azure infrastructure architect general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "electrician-or-instrumentation-technician-licence-a",
@@ -2703,7 +2795,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/66261916-f259-4366-8df9-6d27afe64ae7/apply",
     "keywords": "bartender in gozo hospitality malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "bottling-operator",
@@ -2733,7 +2826,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/9d761ae8-5e0f-43cd-b319-234878498409/apply",
     "keywords": "restaurant supervisor in gozo hospitality malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "motor-vehicle-mechanictechnician",
@@ -2794,7 +2888,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/721dbf18-e086-40db-bb58-ec8c5bcd0f26/apply",
     "keywords": "real estate agents general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "corporate-insurance-associate",
@@ -2899,7 +2994,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/63b57ac6-ec75-47b6-a31e-6ee6baad1876/apply",
     "keywords": "junior sales assistant - maltese speaking sales birkirkara, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "cnc-machine-operator",
@@ -2944,7 +3040,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2c466d90-e6a2-42d5-bbc8-754e460bebc1/apply",
     "keywords": "kitchen helpers in gozo general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "lead-microsoft-365-architect-modern-work-security",
@@ -2959,7 +3056,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b68420ee-d2e5-4607-bf08-014ad18762db/apply",
     "keywords": "lead microsoft 365 architect  modern work &amp; security general malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "finance-associate",
@@ -3019,7 +3117,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/eaf37d85-f43f-4e84-a785-3af8e9517c15/apply",
     "keywords": "real estate managers general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "commercial-insurance-associate",
@@ -3049,7 +3148,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/32655391-813e-495c-b0b2-08690427a3b9/apply",
     "keywords": "servers in gozo hospitality malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "aluminum-install-and-fabrication-foreman",
@@ -3079,7 +3179,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/4ee14af9-7264-49b7-ac85-39a467136895/apply",
     "keywords": "bricklayers general mosta, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "audit-senior",
@@ -3124,7 +3225,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f2ad4642-af0a-45f9-bff4-5f1754a9cb29/apply",
     "keywords": "steel shutterers &amp; steel fixers general mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "volvo-penta-mechanic",
@@ -3169,7 +3271,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/47daf5bb-14c0-410e-9bcc-31fab11a53bd/apply",
     "keywords": "waiters hospitality valletta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "shop-assistant-safi-and-tarxien",
@@ -3216,7 +3319,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ef4e45b5-2c67-40ef-ad3c-720db4b29ec9/apply",
     "keywords": "senior sales assistant - maltese speaking sales birkirkara, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "hotel-porter",
@@ -3417,7 +3521,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/af015fcc-c615-4874-9836-892d7aca2dc3/apply",
     "keywords": "chef de partie hospitality floriana, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "barista-3",
@@ -3432,7 +3537,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a03b4256-313f-4c3b-a2ec-7da4942d569b/apply",
     "keywords": "barista general mellieħa, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "head-chef-2",
@@ -3463,7 +3569,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b449d023-9406-4e23-9c82-6d743f476d7e/apply",
     "keywords": "sales executive sales mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "spa-therapist-2",
@@ -3558,7 +3665,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ef783bfa-54fd-4c09-a28a-f09430347318/apply",
     "keywords": "it support executive it & technology malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "structural-engineer-2",
@@ -3573,7 +3681,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/5641c8ff-d0db-4f95-b3ce-fb8159052a96/apply",
     "keywords": "structural engineer engineering & maintenance mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "quantity-surveyor-2",
@@ -3588,7 +3697,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/37b19d83-e0a1-4e56-933c-af1df2a30479/apply",
     "keywords": "quantity surveyor general mosta, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "accounts-senior-2",
@@ -3633,7 +3743,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/68e57d00-dd70-40fb-b0bb-75a9ec94cc17/apply",
     "keywords": "assistant executive housekeeper hospitality hotel st julian's malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "application-developer-drupal",
@@ -3678,7 +3789,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1680d633-f221-43c8-8ecc-ead2b8684ada/apply",
     "keywords": "general labourer general żebbuġ, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "tank-cleaner",
@@ -3936,7 +4048,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/383c65f8-8e05-45c4-bf5c-dd4720d39f27/apply",
     "keywords": "crew concierge general paola, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "payables-finance-executive",
@@ -3951,7 +4064,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/ed60123a-fd7e-4109-a25d-b50ec1c91fa2/apply",
     "keywords": "payables finance executive general mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "housekeeper-3",
@@ -4091,7 +4205,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/17ed63a0-3276-4755-9c31-90e1d0686b02/apply",
     "keywords": "customer care team leader transport luqa, malta contact centre customer service coaching team leader luqa",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "customer-care-agent",
@@ -4169,7 +4284,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/32ae6111-4deb-4c4d-85e2-78e49e173c2c/apply",
     "keywords": "baristas bartender bar hospitality st. julian's, malta italian restaurant",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "kitchen-helper",
@@ -4245,7 +4361,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/373b9358-a441-4008-b1c3-0d06111a1400/apply",
     "keywords": "bartender hospitality mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-07-24"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "client-accountant-2",
@@ -4416,7 +4533,9 @@
     "valid_through": "2030-12-31",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/58933972-ba7c-4f01-bece-251bdf05cf54/apply",
     "keywords": "bartender hospitality st. julian's, malta",
-    "featured": false
+    "featured": false,
+    "status": "closed",
+    "lastmod": "2026-10-07"
   },
   {
     "slug": "hostess-2",
@@ -4431,7 +4550,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6fabcaa7-f9d7-43c6-ad4c-15799907a78c/apply",
     "keywords": "hostess general st. julian's, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "storekeeper-2",
@@ -4461,7 +4581,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f32426e8-0e92-4b2e-b902-8b6574791198/apply",
     "keywords": "maintenance technician engineering & maintenance mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "cashier-2",
@@ -4507,7 +4628,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c9883463-1602-46a1-a4aa-fe00c569cb7b/apply",
     "keywords": "front desk agent hospitality st. julian's malta",
     "featured": false,
-    "lastmod": "2026-08-04"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "senior-waiter-sommelier",
@@ -4537,7 +4659,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/1185f0ff-56a6-4140-b1d7-4e7a6cd57626/apply",
     "keywords": "sales agent transport luqa malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "night-hospitality-agent",
@@ -4675,7 +4798,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/741472ce-6c89-4e1c-b87c-90b3b2dcc7b6/apply",
     "keywords": "site coordinator engineering & maintenance mosta, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "housekeeper-in-malta",
@@ -4721,7 +4845,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/401c719f-1d98-482c-8d65-a4b08ccae3a3/apply",
     "keywords": "legal intern administration luqa malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "accounts-billing-officer",
@@ -4736,7 +4861,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f58baa49-af76-4470-8d8a-4ff632f855e7/apply",
     "keywords": "accounts billing officer finance & accounting melliea malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "finance-officer",
@@ -4751,7 +4877,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6ac6be66-b95d-42f0-8262-61ffb69bd68a/apply",
     "keywords": "finance officer finance & accounting melliea malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "learning-development-executive-hybrid",
@@ -4781,7 +4908,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/53ad770a-8f40-4b33-a0d2-15987cec7b23/apply",
     "keywords": "senior claims executive insurance floriana malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "operations-supervisor",
@@ -4811,7 +4939,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/92b52052-2560-4295-8d4b-eb2f514369cf/apply",
     "keywords": "restaurant supervisor hospitality st. julian's, malta restaurant supervisor hospitality st julians malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "front-office-supervisor-2",
@@ -4826,7 +4955,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/629d6cab-991a-4ccb-9c85-d3a7a43dde9f/apply",
     "keywords": "front office supervisor hospitality st. julian's, malta front office supervisor hospitality st julians malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-07",
+    "status": "closed"
   },
   {
     "slug": "heavy-equipment-mechanic-2",

@@ -221,14 +221,15 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
 
     # Counters
     word = "job" if n == 1 else "jobs"
+    open_word = "job" if open_n == 1 else "jobs"
     html = re.sub(
         r'(<div class="opening-results-summary"[^>]*>)Showing \d+ jobs?(</div>)',
-        rf'\g<1>Showing {n} {word}\2', html, count=1,
+        rf'\g<1>Showing {open_n} {open_word}\2', html, count=1,
     )
-    role_word = "role" if n == 1 else "roles"
+    role_word = "role" if open_n == 1 else "roles"
     html = re.sub(
         r'(<div class="opening-board-count">)\d+ roles? available(</div>)',
-        rf'\g<1>{n} {role_word} available\2', html, count=1,
+        rf'\g<1>{open_n} {role_word} available\2', html, count=1,
     )
 
     # Open positions animated tag (true open count, excludes closed cards)
@@ -243,7 +244,7 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
     html = re.sub(r'(data-opening-tab="latest"[^>]*>Latest <span>)\d+(</span>)',
                   rf'\g<1>{n}\2', html, count=1)
     html = re.sub(r'(data-opening-tab="all"[^>]*>Open positions <span>)\d+(</span>)',
-                  rf'\g<1>{n}\2', html, count=1)
+                  rf'\g<1>{open_n}\2', html, count=1)
 
     # Category filter
     cats = sorted({j["category"] for j in all_jobs})
