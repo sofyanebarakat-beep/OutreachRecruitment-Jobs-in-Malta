@@ -7,7 +7,7 @@ ROOT = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().pare
 SRC = ROOT / "hospitality-jobs-in-malta.html"
 SLUG = "customer-service-jobs-in-malta"
 URL = f"https://outreachrecruitment.net/{SLUG}"
-IMG = "https://outreachrecruitment.net/assets/jobs-malta-customer-support.webp"
+IMG = "https://outreachrecruitment.net/assets/customer-service-malta-call-centre-hero.webp"
 TITLE = "Customer Service Jobs in Malta | Call Centre & Call Agent Jobs"
 H1 = "Customer Service Jobs in Malta"
 DESC = ("Customer service jobs in Malta: call centre, call agent and service client roles in Floriana. "
@@ -161,7 +161,7 @@ t = t.replace('alt="Hospitality jobs in Malta" class="media-fill"', 'alt="Call a
 t = t.replace('<h1 class="heading-h1">Hospitality Jobs in Malta</h1>', f'<h1 class="heading-h1">{H1}</h1>')
 
 # ---------- page speed: responsive LCP hero, visible before JS ----------
-B = "https://outreachrecruitment.net/assets/jobs-malta-customer-support"
+B = "https://outreachrecruitment.net/assets/customer-service-malta-call-centre-hero"
 SRCSET = f"{B}-600.webp 600w, {B}-900.webp 900w, {B}-1200.webp 1200w"
 SIZES = "(max-width: 767px) 100vw, 50vw"
 old_pre = f'<link rel="preload" as="image" href="{IMG}" fetchpriority="high"/>'
@@ -226,10 +226,10 @@ guide_html = f'''<section class="section padding-top-large" aria-labelledby="cus
 <p><strong>Call agent jobs in Malta</strong> go well beyond answering the phone. In the roles we recruit for, you handle inbound calls, emails and chats, open and update cases in the company's systems, explain policy terms and procedures, and work with internal teams or external contractors to resolve each request. Many positions follow service level agreements, so accuracy, calm under pressure and clear communication matter more than a long CV. Assistance and insurance contact centres often run extended or 24/7 hours, which is why shift patterns, weekend work and shift allowances are common.</p>
 
 <h3>Call Center Service Client in Malta for French, Italian and Arabic Speakers</h3>
-<p>If you are searching for a <strong>call center service client in Malta</strong>, your languages are your biggest advantage. The Customer Contact Agent role is open to candidates fluent in English plus French, English plus Italian, or English, Arabic and French, supporting insured customers who need help while travelling abroad. Experience in customer service, travel assistance or claims handling is an asset, and students of nursing or healthcare-related courses are encouraged to apply.</p>
-<p lang="fr"><em>Vous cherchez un poste en service client ou en centre d'appels &agrave; Malte&nbsp;? Si vous parlez couramment fran&ccedil;ais et anglais, postulez en ligne pour le poste de Customer Contact Agent &agrave; Floriana.</em></p>
+<p>If you are searching for a <strong>call center service client in Malta</strong>, your languages are your biggest advantage. The Customer Contact Agent role is open to candidates fluent in English plus French, English plus Italian, or English, Arabic and French, supporting insured customers who need help while travelling abroad. Experience in customer service, travel assistance or claims handling is an asset, and students of nursing or healthcare-related courses are encouraged to apply. Not sure your level is enough? Read our guide to <a href="/blog/language-requirements-customer-service-jobs-malta">language requirements for customer service jobs</a>.</p>
+<p lang="fr"><em>Vous cherchez un poste en service client ou en centre d'appels &agrave; Malte&nbsp;? Si vous parlez couramment fran&ccedil;ais et anglais, postulez en ligne pour le poste de Customer Contact Agent &agrave; Floriana. Lisez notre <a href="/blog/emploi-centre-appels-malte-francophones">guide pour travailler dans un centre d'appels &agrave; Malte</a>.</em></p>
 
-<p lang="it"><em>Cerchi lavoro a Malta in un call center o nel servizio clienti? Se parli fluentemente italiano e inglese, candidati online per il ruolo di Customer Contact Agent a Floriana.</em></p>
+<p lang="it"><em>Cerchi lavoro a Malta in un call center o nel servizio clienti? Se parli fluentemente italiano e inglese, candidati online per il ruolo di Customer Contact Agent a Floriana. Leggi la nostra <a href="/blog/lavoro-call-center-malta-italiani">guida al lavoro nei call center a Malta</a>.</em></p>
 
 <h3>Customer Care &amp; Contact Centre Jobs in Malta</h3>
 <p><strong>Customer care jobs in Malta</strong> and <strong>contact centre jobs</strong> are concentrated in insurance, travel assistance and roadside assistance &mdash; services that support customers across Europe from a single Maltese hub. The roles on this page cover the full range: inbound call handling and case creation (Customer Contact Agent), first-line support and insurance sales (Customer Contact Centre Representative), and dispatch and contractor coordination on a 24/7 operations floor (Assistance Operations Coordinator).</p>
@@ -241,7 +241,7 @@ guide_html = f'''<section class="section padding-top-large" aria-labelledby="cus
 <p>Fluent Maltese and English speakers can apply for the Customer Contact Centre Representative role, providing first-line support on insurance queries, issuing quotations and documentation, and closing sales. Insurance experience is an asset but not required &mdash; full on-the-job training and a dedicated buddy system are provided, with health insurance, a production bonus and hybrid working added after probation.</p>
 
 <h3>Customer Service Jobs in Malta Salary: What to Expect</h3>
-<p>Salaries depend on the role, languages and shift pattern. On this page, the Customer Contact Agent role pays <strong>&euro;19,000 &ndash; &euro;22,000 per year</strong>, while the Assistance Operations Coordinator role combines a base salary with a shift allowance and performance bonus. The Customer Contact Centre Representative and Administration Specialist packages are negotiable. Across Malta's contact centres, multilingual skills, night or weekend shifts and performance bonuses are the main drivers of higher pay. Estimate your take-home pay with our <a href="/salary-calculator-malta">Malta Salary Calculator</a>.</p>
+<p>Salaries depend on the role, languages and shift pattern. On this page, the Customer Contact Agent role pays <strong>&euro;19,000 &ndash; &euro;22,000 per year</strong>, while the Assistance Operations Coordinator role combines a base salary with a shift allowance and performance bonus. The Customer Contact Centre Representative and Administration Specialist packages are negotiable. Across Malta's contact centres, multilingual skills, night or weekend shifts and performance bonuses are the main drivers of higher pay. Estimate your take-home pay with our <a href="/salary-calculator-malta">Malta Salary Calculator</a>, or see our full breakdown of <a href="/blog/call-centre-salary-malta">call centre salaries in Malta</a>.</p>
 
 <h3>Skills Employers Look For</h3>
 <ul>
@@ -253,7 +253,7 @@ guide_html = f'''<section class="section padding-top-large" aria-labelledby="cus
 </ul>
 
 <h3>How to Apply for Customer Service Jobs in Malta</h3>
-<p>Choose the role that matches your languages and experience above, open the listing and apply online. Outreach Recruitment reviews every application personally, runs a short phone screen, and arranges your interview with the client. Check the &ldquo;who can apply&rdquo; details for each role before applying, as some positions are open only to candidates already living in Malta. You can also browse all <a href="/jobs">jobs in Malta</a> or our <a href="/insurance-jobs-in-malta">insurance jobs in Malta</a>.</p>
+<p>Choose the role that matches your languages and experience above, open the listing and apply online. Outreach Recruitment reviews every application personally, runs a short phone screen, and arranges your interview with the client &mdash; prepare with our <a href="/blog/call-centre-interview-questions-malta">call centre interview questions and sample answers</a>. Check the &ldquo;who can apply&rdquo; details for each role before applying, as some positions are open only to candidates already living in Malta. You can also browse all <a href="/jobs">jobs in Malta</a> or our <a href="/insurance-jobs-in-malta">insurance jobs in Malta</a>.</p>
 
 </div></div></div></div></div></section>'''
 
@@ -275,7 +275,40 @@ popular_html = ('<section class="section padding-top-small padding-bottom-small"
                 '<div class="w-layout-blockcontainer container w-container"><p class="text-small" style="color:#565e6d;line-height:1.9;">'
                 'Popular searches: ' + ", ".join(f"<strong>{H.escape(k)}</strong>" for k in keywords) + '.</p></div></section>')
 
-t = t[:s_jobs] + jobs_html + faq_html + guide_html + popular_html + t[main_end:]
+GUIDES = [  # blog cluster built by tools/build_customer_service_blog.py
+    ("call-centre-salary-malta", "Call centre salary in Malta 2026", "Real published pay, shift allowances and gross vs net."),
+    ("call-centre-interview-questions-malta", "Call centre interview questions", "Common questions with sample answers and the language check."),
+    ("language-requirements-customer-service-jobs-malta", "Language requirements", "Which languages each role needs and what &ldquo;fluent&rdquo; means."),
+    ("emploi-centre-appels-malte-francophones", "Guide pour francophones", "Travailler dans un centre d'appels &agrave; Malte (en fran&ccedil;ais)."),
+    ("lavoro-call-center-malta-italiani", "Guida per italiani", "Lavorare in un call center a Malta (in italiano)."),
+]
+guides_html = ('<style id="cs-guides-css">.cs-guides{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:24px}'
+               '.cs-guide{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#fff;border:1px solid #1c26231f;color:inherit;text-decoration:none;transition:transform .15s}'
+               '.cs-guide:hover{transform:translateY(-2px)}.cs-guide img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block}'
+               '.cs-guide div{padding:14px 16px}.cs-guide strong{display:block;font-size:17px;margin-bottom:4px}.cs-guide span{font-size:14px;color:#565e6d;line-height:1.45}</style>'
+               '<section class="section padding-top-large" aria-labelledby="customer-service-guides"><div class="w-layout-blockcontainer container w-container"><div class="w-layout-vflex section-content">'
+               '<h2 class="heading-h2" id="customer-service-guides">Customer Service Career Guides</h2>'
+               '<p class="text-medium">Salaries, interviews and language tips for call centre jobs in Malta.</p><div class="cs-guides">'
+               + "".join(f'<a class="cs-guide" href="/blog/{s}"><img src="/assets/blog-featured/{s}.jpg" alt="{plain(t)}" loading="lazy" width="1600" height="900"/>'
+                         f'<div><strong>{t}</strong><span>{d}</span></div></a>' for s, t, d in GUIDES if (ROOT / "blog" / f"{s}.html").exists())
+               + '</div></div></div></section>')
+
+t = t[:s_jobs] + jobs_html + faq_html + guide_html + guides_html + popular_html + t[main_end:]
+
+# ---------- page speed: drop JS a listing page doesn't need ----------
+# Lenis smooth scroll, SplitText, the GSAP marquee and the infinite-slider clone script.
+# Keep gsap + ScrollTrigger (Webflow IX3 needs them to reveal headings) and every
+# webflow.schunk (the webpack runtime stops if one chunk is missing).
+for old in ('<link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css" rel="stylesheet"/>',
+            '<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>',
+            '<script defer src="https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js" type="text/javascript"></script>'):
+    assert old in t, old
+    t = t.replace(old, "")
+t = t.replace("gsap.registerPlugin(SplitText,ScrollTrigger)", "gsap.registerPlugin(ScrollTrigger)")
+for marker in ("108™ Smooth Scroll", "GSAP Marquee", "108™ Infinite Slider"):
+    m = re.search(r"<script>(?:(?!</script>).)*?" + re.escape(marker) + r".*?</script>", t, re.S)
+    assert m, marker
+    t = t[:m.start()] + t[m.end():]
 
 # ---------- FAQ accordion fix (same as manufacturing hub) ----------
 man = (ROOT / "manufacturing-jobs-in-malta.html").read_text()
