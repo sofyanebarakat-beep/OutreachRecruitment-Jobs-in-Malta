@@ -11,9 +11,9 @@ IMG = "https://outreachrecruitment.net/assets/customer-service-malta-call-centre
 TITLE = "Customer Service Jobs in Malta | Call Centre & Call Agent Jobs"
 H1 = "Customer Service Jobs in Malta"
 DESC = ("Customer service jobs in Malta: call centre, call agent and service client roles in Floriana. "
-        "Salaries from &euro;19,000, training provided. EU nationals. Apply online today.")
+        "Salaries from &euro;19,000. EU nationals. Apply online today.")
 INTRO = ("Call centre, call agent and customer contact roles in Floriana, Malta &mdash; for English speakers "
-         "with Italian, French or Arabic. Training provided. Apply directly through Outreach Recruitment.")
+         "with Italian, French or Arabic. Apply directly through Outreach Recruitment.")
 
 LANGS = "Good English plus Italian, French or Arabic"
 ELIGIBLE = "EU nationals only"
