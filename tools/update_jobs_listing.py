@@ -130,7 +130,8 @@ def jobs_page_card(job: dict) -> str:
             '<div class="opening-job-meta">'
             f'<span>{escape(job["employment_type"])}</span>'
             f'<span>{escape(cat)}</span>'
-            '</div></a>'
+            + (f'<span>Salary Range: {escape(job["salary"])}</span>' if job.get("salary") else '')
+            + '</div></a>'
         )
 
     return (
