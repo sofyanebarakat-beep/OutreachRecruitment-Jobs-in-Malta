@@ -17,3 +17,7 @@ __pycache__/
 .pytest_cache/
 STUDY IN MALTA SKILLS/image-api-keys.json
 images/image-log.json
+
+# daily_job_sync.py
+reports/daily-sync/rejected/
+tools/.daily_job_sync.lock

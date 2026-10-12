@@ -10,23 +10,35 @@ Every run:
      pages if anything is still missing). Jobs are matched by ATS UUID — the UUID
      in each registry job's apply_url — never by title (titles repeat).
   2. CLOSE  site jobs whose UUID is gone from the ATS *and* whose ATS page
-     /jobs/<uuid> returns 404. A job that is merely unseen in the listing
-     (rate-limit, unstable pagination) but still answers 200 stays open.
-  3. REOPEN registry jobs (closed/expired) whose UUID is open again on the ATS.
-  4. CREATE pages for brand-new ATS jobs with the /job-seo-generator skill
-     (headless `claude -p`, spec in "Jobs Skills/job-seo-generator/").
-  5. Rebuild /jobs listing + sitemap, verify, commit + push to main.
-  6. Email the report (optionally held until --send-at HH:MM local time).
+     /jobs/<uuid> returns 404. Unseen-but-still-200 jobs stay open.
+  3. Build a fact sheet for every open ATS job (tools/ats_facts.py →
+     tools/ats_snapshots/<uuid>.json): city, type, dates, salary, work mode,
+     languages, experience, description. Nothing on a page is guessed.
+  4. REOPEN registry jobs (closed/expired) whose UUID is open again.
+     CREATE pages for brand-new jobs with the /job-seo-generator skill (headless
+     `claude -p`), working from the fact sheet. Address = title, or title-city
+     when the title is taken.
+     UPDATE pages whose title / city / salary / type / description changed
+     since yesterday's fact sheet.
+  5. Every created or updated page must pass tools/verify_job_page.py (schema,
+     salary, apply link, template leftovers, private data, FAQ, Chrome render).
+     Failures are rolled back and listed under "Needs your attention".
+  6. Rebuild /jobs, sitemaps, hubs, similar-jobs carousels and the /jobs ItemList
+     (update_jobs_listing.py + sync_job_listings.py); commit + push; notify Google.
+  7. ~10 min after the push, check the live site (open count, new/closed pages).
+  8. Email the report (held until --send-at HH:MM). A crash emails an alert instead.
 
 Usage:
   python3 tools/daily_job_sync.py                  # full run
   python3 tools/daily_job_sync.py --dry-run        # compare + report only, change nothing
-  python3 tools/daily_job_sync.py --no-create      # open/close only, list new jobs
-  python3 tools/daily_job_sync.py --no-push --no-email
+  python3 tools/daily_job_sync.py --no-create      # no Claude page building/updating
+  python3 tools/daily_job_sync.py --no-push --no-email --no-live-check
   python3 tools/daily_job_sync.py --send-at 09:00  # hold the email until 09:00
+  python3 tools/daily_job_sync.py --resend         # email today's saved report again
 """
 from __future__ import annotations
 
+import fcntl
 import html as htmllib
 import json
 import re
@@ -36,6 +48,8 @@ import ssl
 import subprocess
 import sys
 import time
+import traceback
+import unicodedata
 from datetime import date, datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -45,21 +59,27 @@ from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+
 REGISTRY_PATH = ROOT / "tools" / "jobs_registry.json"
 CONFIG_PATH = ROOT / "tools" / "sync_config.json"
 REPORT_DIR = ROOT / "reports" / "daily-sync"
-SKILL_DIR = ROOT / "Jobs Skills" / "job-seo-generator"
+REJECTED_DIR = REPORT_DIR / "rejected"
+LOCK_PATH = ROOT / "tools" / ".daily_job_sync.lock"
 
 ATS = "https://outreach-recruitment-agency.careers-page.com"
 SITE = "https://outreachrecruitment.net"
 REPORT_RECIPIENT = "sbarakat@outreachrecruitment.net"
 
-LIST_DELAY = 6          # seconds between ATS listing requests
-DETAIL_DELAY = 4        # seconds between ATS /jobs/<uuid> checks
+LIST_DELAY = 6           # seconds between ATS listing requests
+DETAIL_DELAY = 4         # seconds between ATS /jobs/<uuid> requests
 MAX_CLOSES_PER_RUN = 25  # safety brake: more than this in one day = something is wrong
 MAX_CREATES_PER_RUN = 10
+MAX_UPDATES_PER_RUN = 10
 OPEN_VALID_THROUGH = "2029-12-30"
 CLAUDE_TIMEOUT = 75 * 60
+LIVE_FIRST_WAIT = 10 * 60
+LIVE_MAX_WAIT = 25 * 60
 
 UUID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
 CARD_RE = re.compile(r"<a\b[^>]*\bdata-job-id=\"[^\"]+\"[^>]*>", re.S)
@@ -77,7 +97,7 @@ def log(msg: str = "") -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# HTTP
+# HTTP + ATS scraping
 # ─────────────────────────────────────────────────────────────────────────────
 
 def fetch(url: str, retries: int = 6) -> tuple[int, str]:
@@ -92,7 +112,7 @@ def fetch(url: str, retries: int = 6) -> tuple[int, str]:
             if attempt == retries:
                 return e.code, ""
             wait = 30 * attempt if e.code == 429 else 5 * attempt
-        except (URLError, OSError) as e:
+        except (URLError, OSError):
             if attempt == retries:
                 return 0, ""
             wait = 10 * attempt
@@ -153,8 +173,8 @@ def scrape_ats() -> tuple[dict[str, dict], int, list[str]]:
             scrape_listing(f"{ATS}/?cities={quote(city)}", found)
         log(f"  after city pass: {len(found)} / {advertised}")
     if advertised and len(found) != advertised:
-        notes.append(f"ATS advertises {advertised} but {len(found)} unique jobs were collected "
-                     f"(the ATS listing pages are not always consistent).")
+        notes.append(f"The careers page advertises {advertised} jobs but {len(found)} unique jobs were "
+                     f"collected (its listing pages are not always consistent).")
     return found, advertised, notes
 
 
@@ -169,8 +189,11 @@ def ats_job_is_live(uid: str) -> bool | None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Registry + page edits
+# Registry + page helpers
 # ─────────────────────────────────────────────────────────────────────────────
+
+TOUCHED: set[str] = set()
+
 
 def is_open(job: dict) -> bool:
     return job.get("status", "active").lower() not in ("closed", "expired")
@@ -194,24 +217,60 @@ def page_files(slug: str) -> list[Path]:
     return [p for p in (ROOT / "jobs" / slug / "index.html", ROOT / "jobs" / f"{slug}.html") if p.exists()]
 
 
+def rel(p: Path) -> str:
+    return str(p.relative_to(ROOT))
+
+
 def set_page_valid_through(slug: str, value: str) -> None:
     for path in page_files(slug):
-        TOUCHED.add(str(path.relative_to(ROOT)))
+        TOUCHED.add(rel(path))
         text = path.read_text(encoding="utf-8")
         new = re.sub(r'("validThrough"\s*:\s*)"[^"]*"', rf'\1"{value}"', text)
         if new != text:
             path.write_text(new, encoding="utf-8")
 
 
-TOUCHED: set[str] = set()
-
-
 def site_url(slug: str) -> str:
     return f"{SITE}/jobs/{slug}/"
 
 
+def slugify(text: str) -> str:
+    text = unicodedata.normalize("NFKD", text.replace("&", " and ")).encode("ascii", "ignore").decode()
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-")
+
+
+def choose_slug(title: str, city: str, taken: set[str]) -> str:
+    """Title first; when that address is taken, title-city (housekeeper-rabat), then -2, -3 …"""
+    base = slugify(title)
+    if base not in taken:
+        return base
+    c = slugify(city)
+    cand = f"{base}-{c}" if c and not base.endswith(c) else base
+    slug, n = cand, 2
+    while slug in taken:
+        slug, n = f"{cand}-{n}", n + 1
+    return slug
+
+
+def taken_slugs(registry: list[dict]) -> set[str]:
+    taken = {j["slug"] for j in registry}
+    taken |= {p.name for p in (ROOT / "jobs").iterdir() if p.is_dir()}
+    taken |= {p.stem for p in (ROOT / "jobs").glob("*.html")}
+    return taken
+
+
+def page_salary(slug: str) -> str:
+    """The salary currently in a page's JobPosting schema (the owner's figure), as 'min–max'."""
+    for path in page_files(slug):
+        m = re.search(r'"baseSalary"\s*:\s*\{.*?"minValue"\s*:\s*([\d.]+).*?"maxValue"\s*:\s*([\d.]+)',
+                      path.read_text(encoding="utf-8"), re.S)
+        if m:
+            return f"{m.group(1)}–{m.group(2)}"
+    return ""
+
+
 # ─────────────────────────────────────────────────────────────────────────────
-# New jobs via the /job-seo-generator skill (headless Claude Code)
+# Headless Claude: create / update pages with the job-seo-generator skill
 # ─────────────────────────────────────────────────────────────────────────────
 
 def claude_bin() -> str | None:
@@ -220,92 +279,173 @@ def claude_bin() -> str | None:
                      "/usr/local/bin/claude") if Path(p).exists()), None)
 
 
-def create_jobs_prompt(new_jobs: list[dict]) -> str:
-    lines = "\n".join(f"- {j['title']} ({j['city'] or 'city: see ATS page'}) — {ATS}/jobs/{j['uuid']}"
-                      for j in new_jobs)
-    return f"""You are the unattended daily job-sync agent for this repo (Outreach Recruitment).
-These jobs are OPEN on the ATS (careers-page.com) but have no page on outreachrecruitment.net:
-
-{lines}
-
-For EACH job, run the /job-seo-generator skill exactly as specified in
-"Jobs Skills/job-seo-generator/SKILL.md" (+ its references/) and publish it on the site:
-1. Fetch the ATS job page (and its ld+json) to get the real description, city, employment
-   type and salary. Never invent a salary — if the source has none, write "Competitive salary".
-2. Apply the saved defaults from your project memory (feedback_job_skill_defaults): Full-time
-   unless the source says otherwise, On-site, Apply online, reference number and deadline kept
-   PRIVATE (validThrough {OPEN_VALID_THROUGH} in schema + registry only, never visible text),
-   FAQ closed by default, schema FAQ == visible FAQ.
-3. Build the page by cloning a current rich job page (e.g. jobs/head-chef-in-gozo/index.html or
-   jobs/client-accountant/index.html — NOT jobs/plumber via add_jobs_from_csv.py) and regenerate
-   every job-specific part (head/meta, all JSON-LD blocks, header chips, sidebar, body sections,
-   FAQ, similar jobs, share links, apply panel/iframe, JOB_REF). Write BOTH jobs/<slug>/index.html
-   and jobs/<slug>.html with identical content.
-4. The apply_url MUST be {ATS}/jobs/<that job's uuid>/apply — double-check every job's uuid.
-5. Add the job to tools/jobs_registry.json (no "status" key = open; valid_through {OPEN_VALID_THROUGH}),
-   then run: python3 tools/update_jobs_listing.py
-6. Check there are no leaks from the template page (old title, city, slug, uuid, salary) and no
-   private data (reference number, deadline, 2029) in visible text.
-7. Save the 12-section package to reports/job-seo-<slug>-{date.today().isoformat()}.md.
-
-Rules: do NOT git commit or push (the sync script verifies and pushes). Do NOT close, expire or
-edit any other job. If a job cannot be built properly, skip it and say why.
-End with one line per job: CREATED <uuid> <slug>  or  SKIPPED <uuid> <reason>.
+COMMON_RULES = f"""Rules for every page (the sync script checks all of these with tools/verify_job_page.py
+and rolls the page back if any fails):
+- Work ONLY from the fact sheet tools/ats_snapshots/<uuid>.json (it was read from the careers page
+  minutes ago). Do not guess city, type, salary, languages or experience.
+- Salary: if the fact sheet has a salary, show exactly that amount and unit (header chip, sidebar,
+  offer list, FAQ, meta description) and put the same min/max in JobPosting baseSalary. If it has
+  none, write "Competitive salary" and put NO baseSalary in the schema. Never write "gross" unless
+  the source says so.
+- Defaults (project memory feedback_job_skill_defaults): On-site unless the fact sheet says
+  Hybrid/Remote, Apply online, English. Reference number and deadline stay PRIVATE: validThrough
+  {OPEN_VALID_THROUGH} in the schema + registry only, never in visible text; the reference only in an
+  HTML comment.
+- FAQ: closed by default; FAQPage schema questions must equal the visible FAQ questions.
+- The apply link MUST be the fact sheet's apply_url. No other careers-page job link on the page.
+- No text left over from the template page you cloned (old title, city, slug, uuid, salary).
+- Write the page to jobs/<slug>/index.html AND jobs/<slug>.html (identical).
+- Do NOT git commit or push. Do NOT close, expire or edit any other job.
 """
 
 
-def create_new_jobs(new_jobs: list[dict], log_path: Path) -> tuple[list[dict], list[dict]]:
-    """Returns (created, failed). Success is verified from the registry, not Claude's words."""
+def run_claude(prompt: str, log_path: Path) -> None:
     exe = claude_bin()
     if not exe:
-        return [], [dict(j, reason="claude CLI not found") for j in new_jobs]
-    log(f"  running /job-seo-generator via headless Claude for {len(new_jobs)} job(s) …")
+        raise RuntimeError("claude CLI not found")
     try:
         result = subprocess.run(
-            [exe, "-p", create_jobs_prompt(new_jobs), "--dangerously-skip-permissions",
-             "--max-turns", "400", "--output-format", "text"],
+            [exe, "-p", prompt, "--dangerously-skip-permissions", "--max-turns", "400",
+             "--output-format", "text"],
             cwd=str(ROOT), capture_output=True, text=True, timeout=CLAUDE_TIMEOUT,
         )
         log_path.write_text(result.stdout + "\n--- stderr ---\n" + result.stderr, encoding="utf-8")
     except subprocess.TimeoutExpired:
         log_path.write_text("Claude run timed out", encoding="utf-8")
 
+
+def create_prompt(jobs: list[dict]) -> str:
+    lines = "\n".join(
+        f"- {j['title']} — slug: {j['slug']} — fact sheet: tools/ats_snapshots/{j['uuid']}.json"
+        f" — salary to show: {j['salary_label']}" for j in jobs)
+    return f"""You are the unattended daily job-sync agent for this repo (Outreach Recruitment).
+These jobs are OPEN on the careers page but have no page on outreachrecruitment.net yet:
+
+{lines}
+
+For EACH job run the /job-seo-generator skill exactly as specified in
+"Jobs Skills/job-seo-generator/SKILL.md" (+ references/) and publish it:
+1. Read the fact sheet. Use the slug given above exactly (do not invent another).
+2. Build the page by cloning a current rich job page (jobs/head-chef-in-gozo/index.html or
+   jobs/client-accountant/index.html — NOT jobs/plumber / add_jobs_from_csv.py) and regenerate every
+   job-specific part: head/meta, all JSON-LD blocks, header chips, sidebar, body sections, FAQ,
+   similar jobs (open jobs only), share links, apply panel/iframe, JOB_REF.
+3. Add the job to tools/jobs_registry.json (slug as given, no "status" key, valid_through
+   {OPEN_VALID_THROUGH}, apply_url from the fact sheet, salary only if the fact sheet has one).
+4. Save the 12-section package to reports/job-seo-<slug>-{date.today().isoformat()}.md.
+
+{COMMON_RULES}
+If a job cannot be built properly, skip it and say why.
+End with one line per job: CREATED <uuid> <slug>  or  SKIPPED <uuid> <reason>.
+"""
+
+
+def update_prompt(jobs: list[dict]) -> str:
+    lines = "\n".join(
+        f"- {j['title']} — page: jobs/{j['slug']}/ — fact sheet: tools/ats_snapshots/{j['uuid']}.json — "
+        f"changed: {'; '.join(j['changes'])}"
+        + (f" — KEEP the owner's salary {j['owner_salary']} (the careers page gives none)"
+           if j.get("owner_salary") else "")
+        for j in jobs)
+    return f"""You are the unattended daily job-sync agent for this repo (Outreach Recruitment).
+These OPEN jobs changed on the careers page since yesterday:
+
+{lines}
+
+For EACH job, update its existing page (both jobs/<slug>/index.html and jobs/<slug>.html when
+present) and its tools/jobs_registry.json entry so they match the new fact sheet, following the
+/job-seo-generator skill ("Jobs Skills/job-seo-generator/SKILL.md"). Change only what the change
+affects (e.g. a new salary → header chip, sidebar, offer list, FAQ answer, meta description and
+baseSalary; a new city → location everywhere incl. schema and meta; new description → body
+sections, FAQ, schema description). Keep the slug / URL unchanged.
+
+{COMMON_RULES}
+End with one line per job: UPDATED <uuid> <slug>  or  SKIPPED <uuid> <reason>.
+"""
+
+
+def reject_new_page(slug: str) -> None:
+    """Move a failed new page out of the site (kept for review, never published)."""
+    dest = REJECTED_DIR / date.today().isoformat() / slug
+    dest.mkdir(parents=True, exist_ok=True)
+    for p in page_files(slug):
+        shutil.move(str(p), str(dest / ("index.html" if p.name == "index.html" else p.name)))
+    folder = ROOT / "jobs" / slug
+    if folder.is_dir() and not any(folder.iterdir()):
+        folder.rmdir()
+
+
+def create_new_jobs(new_jobs: list[dict], facts: dict[str, dict]) -> tuple[list[dict], list[dict]]:
+    from verify_job_page import verify
+    log(f"  /job-seo-generator (headless Claude): creating {len(new_jobs)} job(s) …")
+    run_claude(create_prompt(new_jobs), REPORT_DIR / f"claude-create-{date.today().isoformat()}.log")
+
     registry = load_registry()
-    by_uuid = {job_uuid(j): j for j in registry if is_open(j)}
     created, failed = [], []
     for j in new_jobs:
-        reg = by_uuid.get(j["uuid"])
+        reg = next((x for x in registry if job_uuid(x) == j["uuid"] and is_open(x)), None)
         if not reg:
-            failed.append(dict(j, reason="not added to registry"))
+            failed.append(dict(j, reason="the page was not built (not added to the registry)"))
+            if page_files(j["slug"]):
+                reject_new_page(j["slug"])
             continue
-        pages = page_files(reg["slug"])
-        problems = []
-        if len(pages) < 2:
-            problems.append("missing jobs/<slug>/index.html or jobs/<slug>.html")
-        for p in pages:
-            text = p.read_text(encoding="utf-8")
-            if j["uuid"] not in text:
-                problems.append(f"{p.name} does not contain the ATS uuid")
+        problems = verify(reg, facts.get(j["uuid"]))
         if problems:
-            # Keep a half-built page off the live listing: drop it from the registry.
             registry.remove(reg)
-            failed.append(dict(j, slug=reg["slug"], reason="; ".join(problems) + " — not published"))
+            reject_new_page(reg["slug"])
+            failed.append(dict(j, slug=reg["slug"],
+                               reason="failed the pre-publish check: " + "; ".join(problems[:4])))
+            log(f"    ✗ {j['title']}: {problems}")
         else:
-            TOUCHED.update(str(p.relative_to(ROOT)) for p in pages)
-            TOUCHED.update(str(p.relative_to(ROOT))
-                           for p in (ROOT / "reports").glob(f"job-seo-{reg['slug']}-*.md"))
+            sheet = facts.get(j["uuid"]) or {}
+            if sheet.get("salary") and not reg.get("salary"):  # so the /jobs card shows it too
+                reg["salary"] = j["salary_label"]
+            TOUCHED.update(rel(p) for p in page_files(reg["slug"]))
+            TOUCHED.update(rel(p) for p in (ROOT / "reports").glob(f"job-seo-{reg['slug']}-*.md"))
             created.append(dict(j, slug=reg["slug"], url=site_url(reg["slug"])))
+            log(f"    ✓ {j['title']} → {reg['slug']}")
     save_registry(registry)
-    subprocess.run([sys.executable, str(ROOT / "tools" / "update_jobs_listing.py")], cwd=str(ROOT))
     return created, failed
+
+
+def update_jobs(changed: list[dict], facts: dict[str, dict]) -> tuple[list[dict], list[dict]]:
+    from verify_job_page import verify
+    log(f"  /job-seo-generator (headless Claude): updating {len(changed)} changed job(s) …")
+    backup_pages = {rel(p): p.read_text(encoding="utf-8") for j in changed for p in page_files(j["slug"])}
+    backup_entries = {j["uuid"]: json.dumps(next(x for x in load_registry() if job_uuid(x) == j["uuid"]))
+                      for j in changed}
+    run_claude(update_prompt(changed), REPORT_DIR / f"claude-update-{date.today().isoformat()}.log")
+
+    registry = load_registry()
+    updated, failed = [], []
+    for j in changed:
+        idx = next((i for i, x in enumerate(registry) if job_uuid(x) == j["uuid"]), None)
+        reg = registry[idx] if idx is not None else json.loads(backup_entries[j["uuid"]])
+        problems = verify(dict(reg, owner_salary=j.get("owner_salary", "")), facts.get(j["uuid"]))
+        if problems:
+            # Roll back: the page keeps yesterday's (still valid) content.
+            for path_s, text in backup_pages.items():
+                if path_s.startswith(f"jobs/{j['slug']}"):
+                    (ROOT / path_s).write_text(text, encoding="utf-8")
+            if idx is not None:
+                registry[idx] = json.loads(backup_entries[j["uuid"]])
+            failed.append(dict(j, reason="update failed the pre-publish check, page left as it was: "
+                                         + "; ".join(problems[:4])))
+            log(f"    ✗ {j['title']}: {problems}")
+        else:
+            TOUCHED.update(rel(p) for p in page_files(j["slug"]))
+            updated.append(dict(j, url=site_url(j["slug"])))
+            log(f"    ✓ {j['title']}")
+    save_registry(registry)
+    return updated, failed
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Git
 # ─────────────────────────────────────────────────────────────────────────────
 
-def git(*args: str, check: bool = False) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=str(ROOT), capture_output=True, text=True, check=check)
+def git(*args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", *args], cwd=str(ROOT), capture_output=True, text=True)
 
 
 def git_preflight() -> str | None:
@@ -323,34 +463,90 @@ def git_preflight() -> str | None:
 
 
 LISTING_FILES = ["tools/jobs_registry.json", "jobs/index.html", "index.html", "sitemaps/sitemap-jobs.xml",
-                 "sitemap_index.xml", "sitemap.xml"]
+                 "sitemap_index.xml", "sitemap.xml", "construction-jobs-in-malta.html", "tools/ats_snapshots",
+                 "reports/google_indexing_history.csv"]
 
 
-def git_commit_push(message: str, push: bool, touched: set[str]) -> str:
+def git_commit_push(message: str, push: bool) -> tuple[str, bool]:
     # Stage only what this run touched — never sweep in other people's uncommitted edits.
-    paths = set(LISTING_FILES) | touched | {"reports/daily-sync"}
+    today = date.today().isoformat()
+    paths = set(LISTING_FILES) | TOUCHED | {rel(p) for p in REPORT_DIR.glob(f"*{today}*") if p.is_file()}
     git("add", "--", *sorted(p for p in paths if (ROOT / p).exists()))
     if not git("diff", "--cached", "--quiet").returncode:
-        return "nothing to commit"
+        return "nothing to commit", False
     commit = git("commit", "-m", message + "\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
     if commit.returncode != 0:
-        return f"commit failed: {commit.stderr.strip()[:200]}"
+        return f"commit failed: {commit.stderr.strip()[:200]}", False
     if not push:
-        return "committed (push skipped)"
+        return "committed (push skipped)", False
     for _ in range(3):
         git("fetch", "origin", "main")
-        merge = git("merge", "--no-edit", "origin/main")
-        if merge.returncode != 0:
+        if git("merge", "--no-edit", "origin/main").returncode != 0:
             git("merge", "--abort")
-            return "committed locally — merge with origin/main had conflicts, NOT pushed"
+            return "committed locally — merge with origin/main had conflicts, NOT pushed", False
         if git("push", "origin", "main").returncode == 0:
-            return "pushed to GitHub (main)"
+            return "pushed to GitHub (main)", True
         time.sleep(20)
-    return "committed locally — push failed 3 times"
+    return "committed locally — push failed 3 times", False
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Report
+# Google + live site
+# ─────────────────────────────────────────────────────────────────────────────
+
+def notify_google(r: dict) -> dict:
+    """URL_UPDATED for every page whose job status/content changed (closed pages carry an
+    expired validThrough, so a recrawl drops them from Google for Jobs)."""
+    rows = [{"title": j["title"], "slug": j.get("slug", ""), "url": j["url"], "type": "URL_UPDATED",
+             "source": f"daily_sync_{kind}"}
+            for kind in ("created", "reopened", "updated", "closed") for j in r[kind] if j.get("url")]
+    if not rows:
+        return {"sent": 0, "ok": 0}
+    try:
+        from job_sync_agent import submit_google_indexing
+        res = submit_google_indexing(rows)
+    except Exception as e:
+        return {"sent": len(rows), "ok": 0, "error": str(e)[:200]}
+    ok = sum(1 for x in res if x.get("ok"))
+    err = next((str(x.get("response"))[:160] for x in res if not x.get("ok")), "")
+    return {"sent": len(rows), "ok": ok, "error": err}
+
+
+def live_open_count() -> int | None:
+    status, body = fetch(f"{SITE}/jobs/?sync={int(time.time())}", retries=3)
+    m = re.search(r"\+(\d+)\s+Open Positions", body) if status == 200 else None
+    return int(m.group(1)) if m else None
+
+
+def live_check(r: dict, pushed: bool) -> dict:
+    expected = r["site_open_after"]
+    if pushed:
+        log(f"  waiting {LIVE_FIRST_WAIT // 60} min for GitHub Pages to deploy …")
+        time.sleep(LIVE_FIRST_WAIT)
+    deadline = time.time() + (LIVE_MAX_WAIT - LIVE_FIRST_WAIT if pushed else 0)
+    count = live_open_count()
+    while count != expected and time.time() < deadline:
+        time.sleep(60)
+        count = live_open_count()
+    problems = []
+    for j in r["created"] + r["reopened"] + r["updated"]:
+        status, body = fetch(j["url"] + f"?sync={int(time.time())}", retries=3)
+        if status != 200:
+            problems.append(f"{j['title']}: live page answers HTTP {status}")
+        elif j.get("uuid") and j["uuid"] not in body:
+            problems.append(f"{j['title']}: live page is not the new version yet")
+    today = date.today().isoformat()
+    for j in r["closed"]:
+        status, body = fetch(j["url"] + f"?sync={int(time.time())}", retries=3)
+        m = re.search(r'"validThrough"\s*:\s*"([^"]+)"', body)
+        if status == 200 and (not m or m.group(1)[:10] >= today):
+            problems.append(f"{j['title']}: live page still looks open")
+    return {"count": count, "expected": expected, "ok": count == expected and not problems,
+            "problems": problems}
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Report + email
 # ─────────────────────────────────────────────────────────────────────────────
 
 def esc(s: object) -> str:
@@ -362,13 +558,25 @@ def job_list_html(rows: list[dict], empty: str, link_key: str = "url", extra: st
         return f'<p style="color:#666;margin:4px 0 12px">{empty}</p>'
     items = []
     for r in rows:
-        title = esc(r.get("title", ""))
-        link = r.get(link_key)
-        label = f'<a href="{esc(link)}">{title}</a>' if link else title
+        link = r.get(link_key) or r.get("ats_url")
+        label = f'<a href="{esc(link)}">{esc(r.get("title", ""))}</a>' if link else esc(r.get("title", ""))
         city = f' <span style="color:#777">— {esc(r["city"])}</span>' if r.get("city") else ""
-        why = f' <span style="color:#b45309">({esc(r[extra])})</span>' if extra and r.get(extra) else ""
-        items.append(f"<li>{label}{city}{why}</li>")
+        sal = f' <span style="color:#555">· {esc(r["salary_label"])}</span>' if r.get("salary_label") else ""
+        why = (f'<br><span style="color:#b45309;font-size:13px">{esc(r[extra] if isinstance(r[extra], str) else "; ".join(r[extra]))}</span>'
+               if extra and r.get(extra) else "")
+        items.append(f'<li style="margin-bottom:4px">{label}{city}{sal}{why}</li>')
     return '<ul style="margin:4px 0 12px;padding-left:20px">' + "".join(items) + "</ul>"
+
+
+def live_line(r: dict) -> tuple[str, str]:
+    lv = r.get("live")
+    if not lv:
+        return "", ""
+    if lv["ok"]:
+        return f"Live site: {lv['count']} ✅", "#15803d"
+    shown = lv["count"] if lv["count"] is not None else "?"
+    return (f"Live site shows {shown}, expected {lv['expected']} ⚠️ — GitHub Pages may still be "
+            f"deploying; if it is still wrong later today, the deploy failed and needs a look."), "#b45309"
 
 
 def build_report(r: dict) -> tuple[str, str, str]:
@@ -376,17 +584,36 @@ def build_report(r: dict) -> tuple[str, str, str]:
     badge = "✅ In sync" if in_sync else "⚠️ Not in sync"
     if r.get("dry_run"):
         badge += " (report only — nothing was changed; lists show what WOULD happen)"
-    subject = (f"Job sync {r['date']}: {badge} — ATS {r['ats_advertised']} / website "
-               f"{r['site_open_after']} (+{len(r['created']) + len(r['reopened'])} opened, "
-               f"-{len(r['closed'])} closed)")
+    opened = len(r["created"]) + len(r["reopened"])
+    subject = (f"Job sync {r['date']}: {badge.split(' (')[0]} — careers page {r['ats_advertised']} / website "
+               f"{r['site_open_after']} (+{opened} opened, -{len(r['closed'])} closed"
+               + (f", {len(r['updated'])} updated" if r["updated"] else "") + ")")
     color = "#15803d" if in_sync else "#b45309"
     stat = lambda n, label: (f'<td style="padding:10px 14px;border:1px solid #e5e7eb;text-align:center">'
                              f'<div style="font-size:24px;font-weight:700">{esc(n)}</div>'
                              f'<div style="font-size:12px;color:#555">{label}</div></td>')
-    notes = "".join(f"<li>{esc(n)}</li>" for n in r["notes"])
+    live_txt, live_color = live_line(r)
+    attention = r["failed"] + r["held"]
+    ls = r.get("listings") or {}
+    hub_rep = sum(v.get("replaced", 0) for v in ls.get("hub_cards", {}).values())
+    hub_rem = sum(v.get("removed", 0) for v in ls.get("hub_cards", {}).values())
+    housekeeping = []
+    if hub_rep or hub_rem:
+        housekeeping.append(f"Hub/homepage cards for closed jobs: {hub_rep} replaced with open jobs, {hub_rem} removed")
+    if ls.get("carousel_swaps"):
+        housekeeping.append(f"'Similar jobs' links to closed jobs replaced: {ls['carousel_swaps']}")
+    if ls.get("itemlist_items"):
+        housekeeping.append(f"Google job list on /jobs (ItemList) rebuilt: {ls['itemlist_items']} open jobs")
+    g = r.get("google") or {}
+    if g.get("sent"):
+        housekeeping.append(f"Google notified about {g['ok']}/{g['sent']} changed page(s)"
+                            + (f" — error: {g['error']}" if g.get("error") and g["ok"] < g["sent"] else ""))
+    notes = r["notes"] + r.get("salary_notes", [])
+    li = lambda xs: "".join(f"<li>{esc(x)}</li>" for x in xs)
     html = f"""<div style="font-family:-apple-system,Segoe UI,Arial,sans-serif;max-width:720px;color:#111">
 <h2 style="margin:0 0 4px">Daily Job Sync — {esc(r['date'])}</h2>
-<p style="margin:0 0 14px;color:{color};font-weight:700">{badge}</p>
+<p style="margin:0 0 6px;color:{color};font-weight:700">{esc(badge)}</p>
+{f'<p style="margin:0 0 14px;color:{live_color};font-weight:600">{esc(live_txt)}</p>' if live_txt else ''}
 <table style="border-collapse:collapse;margin-bottom:16px"><tr>
 {stat(r['ats_advertised'], 'Open on careers page')}
 {stat(r['site_open_before'], 'Website before')}
@@ -398,23 +625,30 @@ def build_report(r: dict) -> tuple[str, str, str]:
 {job_list_html(r['reopened'], 'None today.')}
 <h3 style="margin:14px 0 4px">🔒 Closed ({len(r['closed'])})</h3>
 {job_list_html(r['closed'], 'None today.')}
-<h3 style="margin:14px 0 4px">⚠️ Needs your attention ({len(r['failed']) + len(r['held'])})</h3>
-{job_list_html(r['failed'] + r['held'], 'Nothing.', link_key='ats_url', extra='reason')}
-{f'<h3 style="margin:14px 0 4px">Notes</h3><ul style="padding-left:20px">{notes}</ul>' if notes else ''}
-<p style="color:#555;font-size:13px;margin-top:18px">Git: {esc(r['git'])}.
-{'Changes are in GitHub/Lovable — if the live site does not show them, click <b>Publish → Update</b>.' if 'pushed' in r['git'] else ''}<br>
+<h3 style="margin:14px 0 4px">✏️ Updated ({len(r['updated'])})</h3>
+{job_list_html(r['updated'], 'No job changed on the careers page.', extra='changes')}
+<h3 style="margin:14px 0 4px">⚠️ Needs your attention ({len(attention)})</h3>
+{job_list_html(attention, 'Nothing.', extra='reason')}
+{f'<h3 style="margin:14px 0 4px">Notes</h3><ul style="padding-left:20px">{li(notes)}</ul>' if notes else ''}
+{f'<h3 style="margin:14px 0 4px">Site housekeeping</h3><ul style="padding-left:20px;color:#444">{li(housekeeping)}</ul>' if housekeeping else ''}
+<p style="color:#555;font-size:13px;margin-top:18px">Git: {esc(r['git'])}.<br>
 Careers page: <a href="{ATS}/">{ATS}</a> · Website: <a href="{SITE}/jobs/">{SITE}/jobs/</a></p>
 </div>"""
-    md = [f"# Daily Job Sync — {r['date']}", "", f"**{badge}** — ATS {r['ats_advertised']}, "
+    md = [f"# Daily Job Sync — {r['date']}", "", f"**{badge}** — careers page {r['ats_advertised']}, "
           f"website {r['site_open_before']} → {r['site_open_after']}", ""]
+    if live_txt:
+        md += [live_txt, ""]
     for key, label in (("created", "New jobs published"), ("reopened", "Reopened"), ("closed", "Closed"),
-                       ("failed", "Failed to create"), ("held", "Held back (safety)")):
+                       ("updated", "Updated"), ("failed", "Failed"), ("held", "Held back")):
         md.append(f"## {label} ({len(r[key])})")
         md += [f"- {j.get('title')} — {j.get('url') or j.get('ats_url', '')}"
-               + (f" ({j['reason']})" if j.get("reason") else "") for j in r[key]] or ["- none"]
+               + (f" ({j['reason']})" if j.get("reason") else "")
+               + (f" ({'; '.join(j['changes'])})" if j.get("changes") else "") for j in r[key]] or ["- none"]
         md.append("")
-    if r["notes"]:
-        md += ["## Notes"] + [f"- {n}" for n in r["notes"]] + [""]
+    if notes:
+        md += ["## Notes"] + [f"- {n}" for n in notes] + [""]
+    if housekeeping:
+        md += ["## Site housekeeping"] + [f"- {h}" for h in housekeeping] + [""]
     md.append(f"Git: {r['git']}")
     return subject, html, "\n".join(md) + "\n"
 
@@ -427,14 +661,15 @@ def send_email(subject: str, html_body: str) -> str:
     msg = MIMEMultipart("alternative")
     msg["Subject"], msg["From"], msg["To"] = subject, cfg["smtp_user"], REPORT_RECIPIENT
     msg.attach(MIMEText(html_body, "html", "utf-8"))
-    for attempt in range(3):
+    err = ""
+    for _ in range(3):
         try:
             with smtplib.SMTP(cfg["smtp_host"], int(cfg["smtp_port"]), timeout=60) as s:
                 s.starttls(context=ssl.create_default_context())
                 s.login(cfg["smtp_user"], cfg["smtp_pass"])
                 s.sendmail(cfg["smtp_user"], [REPORT_RECIPIENT], msg.as_string())
             return f"email sent to {REPORT_RECIPIENT}"
-        except Exception as e:  # network blips at wake-up are common
+        except Exception as e:  # network blips right after wake-up are common
             err = str(e)
             time.sleep(60)
     return f"email FAILED: {err[:200]}"
@@ -449,26 +684,43 @@ def wait_until(hhmm: str) -> None:
         time.sleep(secs)
 
 
+def save_report_files(r: dict) -> tuple[str, str, str]:
+    subject, html_body, md = build_report(r)
+    today = r["date"] + ("-dryrun" if r.get("dry_run") else "")
+    (REPORT_DIR / f"{today}.md").write_text(md, encoding="utf-8")
+    (REPORT_DIR / f"{today}.json").write_text(json.dumps(r, indent=2, ensure_ascii=False), encoding="utf-8")
+    (REPORT_DIR / f"{today}.html").write_text(html_body, encoding="utf-8")
+    return subject, html_body, md
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main() -> int:
-    args = sys.argv[1:]
+def main(args: list[str]) -> int:
+    from ats_facts import changes_between, load_snapshot, parse_job_page, salary_label, save_snapshot
+    import sync_job_listings
+
     dry = "--dry-run" in args
     push = not dry and "--no-push" not in args
     email = not dry and "--no-email" not in args
     create = not dry and "--no-create" not in args
+    do_live = "--no-live-check" not in args
     send_at = args[args.index("--send-at") + 1] if "--send-at" in args else None
 
     today = date.today().isoformat()
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
+    if "--resend" in args:
+        r = json.loads((REPORT_DIR / f"{today}.json").read_text(encoding="utf-8"))
+        subject, html_body, _ = build_report(r)
+        log("  " + send_email(subject, html_body))
+        return 0
+
     log(f"=== Daily job sync {datetime.now():%Y-%m-%d %H:%M} {'(DRY RUN)' if dry else ''} ===")
+    r: dict = {"date": today, "created": [], "reopened": [], "closed": [], "updated": [], "failed": [],
+               "held": [], "notes": [], "salary_notes": [], "git": "no changes", "dry_run": dry}
 
-    r: dict = {"date": today, "created": [], "reopened": [], "closed": [], "failed": [],
-               "held": [], "notes": [], "git": "no changes"}
-
-    r["dry_run"] = dry
     if not dry:
         err = git_preflight()
         if err:
@@ -477,7 +729,7 @@ def main() -> int:
             r["dry_run"] = True
             log(f"  PREFLIGHT: {err} — running report-only")
 
-    # 1. ATS
+    # 1. Careers page listing
     log("\n[1] Scraping careers page …")
     try:
         ats, advertised, notes = scrape_ats()
@@ -494,9 +746,8 @@ def main() -> int:
         u = job_uuid(j)
         if u and (u not in all_by_uuid or j.get("lastmod", "") >= all_by_uuid[u].get("lastmod", "")):
             all_by_uuid[u] = j
-    r["site_open_before"] = sum(1 for j in registry if is_open(j))
-    log(f"  ATS: {len(ats)} collected / {advertised} advertised · website open: {r['site_open_before']}")
-
+    r["site_open_before"] = len([j for j in registry if is_open(j)])
+    log(f"  careers page: {len(ats)} collected / {advertised} advertised · website open: {r['site_open_before']}")
     if not ats or not advertised:
         r["site_open_after"] = r["site_open_before"]
         dry, push, create = True, False, False
@@ -504,7 +755,7 @@ def main() -> int:
 
     # 2. Close — only on a confirmed ATS 404
     to_check = [u for u in open_jobs if u not in ats] if ats else []
-    log(f"\n[2] {len(to_check)} website job(s) not in the ATS listing — checking each ATS page …")
+    log(f"\n[2] {len(to_check)} website job(s) not in the careers-page listing — checking each …")
     to_close = []
     for u in to_check:
         live = ats_job_is_live(u)
@@ -514,92 +765,163 @@ def main() -> int:
             to_close.append(j)
         elif live is None:
             r["held"].append({"title": j["title"], "ats_url": f"{ATS}/jobs/{u}",
-                              "reason": "ATS page did not answer — left open, will retry tomorrow"})
+                              "reason": "careers page did not answer — left open, will retry tomorrow"})
         time.sleep(DETAIL_DELAY)
-
     if len(to_close) > MAX_CLOSES_PER_RUN:
         r["notes"].append(f"{len(to_close)} jobs look closed — more than the safety limit of "
                           f"{MAX_CLOSES_PER_RUN}/day, so none were closed. Please check manually.")
         r["held"] += [{"title": j["title"], "ats_url": f"{ATS}/jobs/{job_uuid(j)}",
-                       "reason": "closed on ATS, held by safety limit"} for j in to_close]
+                       "reason": "closed on the careers page, held by the daily safety limit"} for j in to_close]
         to_close = []
 
-    yesterday = (date.today() - timedelta(days=1)).isoformat()
-    for j in to_close:
-        r["closed"].append({"title": j["title"], "url": site_url(j["slug"]), "city": j.get("location", "")})
-        if not dry:
-            j["status"] = "closed"
-            j["lastmod"] = today
-            set_page_valid_through(j["slug"], f"{yesterday}T23:59:59")
+    # 3. Fact sheets for every open careers-page job
+    log(f"\n[3] Reading {len(ats)} job pages for fact sheets …")
+    facts: dict[str, dict] = {}
+    for i, u in enumerate(ats, 1):
+        status, body = fetch(f"{ATS}/jobs/{u}")
+        if status == 200:
+            facts[u] = parse_job_page(u, body)
+            facts[u]["title"] = facts[u]["title"] or ats[u]["title"]
+            facts[u]["city"] = facts[u]["city"] or ats[u]["city"]
+        if i % 20 == 0:
+            log(f"  {i}/{len(ats)}")
+        time.sleep(DETAIL_DELAY)
+    log(f"  {len(facts)} fact sheets read")
 
-    # 3. Reopen / new
-    new_uuids = [u for u in ats if u not in open_jobs]
-    new_jobs = []
-    log(f"\n[3] {len(new_uuids)} ATS job(s) not open on the website")
-    for u in new_uuids:
+    # 4. Reopen / new / changed
+    taken = taken_slugs(registry)
+    new_jobs, changed = [], []
+    for u in ats:
+        f = facts.get(u, {})
         prev = all_by_uuid.get(u)
+        if u in open_jobs:
+            old = load_snapshot(u)
+            diffs = changes_between(old, f) if old and f else []
+            if diffs:
+                job = open_jobs[u]
+                owner = "" if f.get("salary") else (job.get("salary") or page_salary(job["slug"]))
+                changed.append({"uuid": u, "title": f.get("title") or job["title"], "slug": job["slug"],
+                                "city": f.get("city", ""), "changes": diffs, "owner_salary": owner})
+            continue
         if prev and page_files(prev["slug"]):
             log(f"  reopen: {prev['title']} ({prev['slug']})")
-            r["reopened"].append({"title": prev["title"], "url": site_url(prev["slug"]),
-                                  "city": prev.get("location", "")})
+            r["reopened"].append({"title": prev["title"], "slug": prev["slug"], "uuid": u,
+                                  "url": site_url(prev["slug"]), "city": prev.get("location", "")})
             if not dry:
                 prev.pop("status", None)
                 prev["valid_through"] = OPEN_VALID_THROUGH
                 prev["lastmod"] = today
                 set_page_valid_through(prev["slug"], OPEN_VALID_THROUGH)
-        else:
-            log(f"  new: {ats[u]['title']} ({ats[u]['city']})")
-            new_jobs.append(dict(ats[u], ats_url=f"{ATS}/jobs/{u}"))
+            continue
+        title, city = f.get("title") or ats[u]["title"], f.get("city") or ats[u]["city"]
+        slug = choose_slug(title, city, taken)
+        taken.add(slug)
+        sal = salary_label(f.get("salary")) if f else "Competitive salary"
+        log(f"  new: {title} ({city}) → {slug} · {sal}")
+        new_jobs.append({"uuid": u, "title": title, "city": city, "slug": slug, "salary_label": sal,
+                         "ats_url": f"{ATS}/jobs/{u}"})
+        if f and not f.get("salary"):
+            r["salary_notes"].append(f"{title}: no salary given on the careers page — page says 'Competitive salary'.")
+        if not f:
+            r["held"].append({"title": title, "ats_url": f"{ATS}/jobs/{u}",
+                              "reason": "could not read the job's careers page — will retry tomorrow"})
+    new_jobs = [j for j in new_jobs if j["uuid"] in facts]
+    log(f"  {len(new_jobs)} new, {len(r['reopened'])} to reopen, {len(changed)} changed")
 
-    if not dry and (r["closed"] or r["reopened"]):
+    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    for j in to_close:
+        r["closed"].append({"title": j["title"], "slug": j["slug"], "url": site_url(j["slug"]),
+                            "city": j.get("location", "")})
+        if not dry:
+            j["status"] = "closed"
+            j["lastmod"] = today
+            set_page_valid_through(j["slug"], f"{yesterday}T23:59:59")
+    if not dry:
         save_registry(registry)
-        subprocess.run([sys.executable, str(ROOT / "tools" / "update_jobs_listing.py")], cwd=str(ROOT))
 
-    # 4. New jobs via the skill
+    # Fact sheets the skill reads (saved before Claude runs). Changed-job sheets are saved
+    # only after a successful update, so a failed update is retried tomorrow.
+    changed_uuids = {c["uuid"] for c in changed}
+    if not dry:
+        for u, f in facts.items():
+            if u not in changed_uuids:
+                save_snapshot(f)
+
+    # 5. Create / update with the skill, each page verified before it can go live
     if new_jobs and create:
         batch, overflow = new_jobs[:MAX_CREATES_PER_RUN], new_jobs[MAX_CREATES_PER_RUN:]
-        created, failed = create_new_jobs(batch, REPORT_DIR / f"claude-{today}.log")
+        created, failed = create_new_jobs(batch, facts)
         r["created"] += created
         r["failed"] += failed
         r["held"] += [dict(j, reason="queued for tomorrow (daily creation limit)") for j in overflow]
     elif new_jobs:
         r["held"] += [dict(j, reason="new job — not created (report-only run)") for j in new_jobs]
 
-    # 5. Recount, commit, push
-    r["site_open_after"] = sum(1 for j in load_registry() if is_open(j))
+    if changed and create:
+        batch, overflow = changed[:MAX_UPDATES_PER_RUN], changed[MAX_UPDATES_PER_RUN:]
+        updated, failed = update_jobs(batch, facts)
+        r["updated"] += updated
+        r["failed"] += failed
+        for j in updated:  # failed / queued changes keep yesterday's sheet and are retried tomorrow
+            save_snapshot(facts[j["uuid"]])
+        r["held"] += [dict(j, reason="change queued for tomorrow (daily update limit)") for j in overflow]
+    elif changed:
+        r["updated"] = [dict(j, url=site_url(j["slug"])) for j in changed] if dry else []
+        if not dry:
+            r["held"] += [dict(j, reason="changed on the careers page — not updated (--no-create)") for j in changed]
+
+    # 6. Listings everywhere
+    if not dry and (r["closed"] or r["reopened"] or r["created"] or r["updated"]):
+        subprocess.run([sys.executable, str(ROOT / "tools" / "update_jobs_listing.py")], cwd=str(ROOT))
+    if not dry:
+        res = sync_job_listings.run()
+        TOUCHED.update(res.pop("touched"))
+        r["listings"] = res
+    r["site_open_after"] = len([j for j in load_registry() if is_open(j)])
+    if dry:
+        r["site_open_after"] = r["site_open_before"] - len(r["closed"]) + len(r["reopened"]) + len(
+            [j for j in r["held"] if j.get("reason", "").startswith("new job")])
     if r["site_open_after"] != r["ats_advertised"] and r["ats_advertised"]:
         r["notes"].append(f"Website shows {r['site_open_after']} open jobs vs {r['ats_advertised']} on the "
-                          f"careers page — see 'Needs your attention' above.")
+                          f"careers page — see 'Needs your attention'.")
 
-    subject, html_body, md = build_report(r)
-    (REPORT_DIR / f"{today}.md").write_text(md, encoding="utf-8")
-    (REPORT_DIR / f"{today}.json").write_text(json.dumps(r, indent=2, ensure_ascii=False), encoding="utf-8")
-    (REPORT_DIR / f"{today}.html").write_text(html_body, encoding="utf-8")
-
-    if not dry and (r["closed"] or r["reopened"] or r["created"]):
+    # 7. Commit + push, Google, live check
+    pushed = False
+    if not dry:
         parts = [f"{len(r[k])} {label}" for k, label in
-                 (("created", "added"), ("reopened", "reopened"), ("closed", "closed")) if r[k]]
-        r["git"] = git_commit_push(f"[Daily Sync] {', '.join(parts)} — {r['site_open_after']} open "
-                                   f"(ATS {r['ats_advertised']})", push, TOUCHED)
-        subject, html_body, md = build_report(r)
-        (REPORT_DIR / f"{today}.md").write_text(md, encoding="utf-8")
-        (REPORT_DIR / f"{today}.html").write_text(html_body, encoding="utf-8")
-    # A second run on the same day keeps the first run's changes in the report.
+                 (("created", "added"), ("reopened", "reopened"), ("closed", "closed"), ("updated", "updated"))
+                 if r[k]]
+        save_report_files(r)
+        r["git"], pushed = git_commit_push(
+            f"[Daily Sync] {', '.join(parts) or 'listings + fact sheets'} — {r['site_open_after']} open "
+            f"(careers page {r['ats_advertised']})", push)
+        if pushed:
+            r["google"] = notify_google(r)
+    if do_live and not dry:
+        log("\n[7] Checking the live site …")
+        r["live"] = live_check(r, pushed)
+        log(f"  live: {r['live']}")
+
+    # Same-day re-runs keep the earlier run's changes in the report.
     first = REPORT_DIR / f"{today}-first.json"
     if not r["dry_run"]:
         if first.exists():
             prev = json.loads(first.read_text(encoding="utf-8"))
-            for k in ("created", "reopened", "closed"):
-                r[k] = prev[k] + r[k]
+            for k in ("created", "reopened", "closed", "updated"):
+                seen = {j.get("url") for j in r[k]}
+                r[k] = [j for j in prev.get(k, []) if j.get("url") not in seen] + r[k]
             r["site_open_before"] = prev["site_open_before"]
-            subject, html_body, md = build_report(r)
-            (REPORT_DIR / f"{today}.md").write_text(md, encoding="utf-8")
-            (REPORT_DIR / f"{today}.html").write_text(html_body, encoding="utf-8")
         else:
             first.write_text(json.dumps(r, indent=2, ensure_ascii=False), encoding="utf-8")
+    subject, html_body, md = save_report_files(r)
+    if pushed:  # the report files themselves, one small follow-up commit
+        git("add", "--", *[rel(p) for p in REPORT_DIR.glob(f"{today}*")])
+        if git("diff", "--cached", "--quiet").returncode:
+            git("commit", "-m", f"[Daily Sync] report {today}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
+            git("push", "origin", "main")
     log("\n" + md)
 
-    # 6. Email
+    # 8. Email
     if email:
         if send_at:
             wait_until(send_at)
@@ -607,5 +929,28 @@ def main() -> int:
     return 0
 
 
+def alert(exc_text: str) -> None:
+    body = (f'<div style="font-family:Arial,sans-serif"><h2 style="color:#b91c1c">⚠️ Daily job sync failed</h2>'
+            f"<p>The run on {datetime.now():%Y-%m-%d %H:%M} crashed before finishing. No report was produced; "
+            f"jobs may not be in sync today. Details:</p><pre style='background:#f3f4f6;padding:10px;"
+            f"white-space:pre-wrap;font-size:12px'>{esc(exc_text[-4000:])}</pre></div>")
+    log(send_email(f"⚠️ Daily job sync FAILED — {date.today().isoformat()}", body))
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    lock = open(LOCK_PATH, "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        log("Another daily_job_sync run is in progress — exiting.")
+        sys.exit(0)
+    try:
+        sys.exit(main(sys.argv[1:]))
+    except SystemExit:
+        raise
+    except BaseException:
+        tb = traceback.format_exc()
+        log(tb)
+        if "--dry-run" not in sys.argv and "--no-email" not in sys.argv:
+            alert(tb)
+        sys.exit(2)

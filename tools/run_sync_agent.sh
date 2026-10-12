@@ -17,6 +17,12 @@ echo "Started: $(date)" | tee -a "$LOG_FILE"
 echo "=== Daily Job Sync (open/close) ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/daily_job_sync.py" --send-at 09:00 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=${PIPESTATUS[0]}
+# Exit 2 = the sync caught its own crash and already emailed an alert. Anything else
+# non-zero (syntax/import error, killed) gets a plain alert from here.
+if [ "$EXIT_CODE" -ne 0 ] && [ "$EXIT_CODE" -ne 2 ]; then
+  python3 "$SCRIPT_DIR/send_alert.py" "⚠️ Daily job sync FAILED — $(date +%Y-%m-%d) (exit $EXIT_CODE)" \
+    "$(tail -n 60 "$LOG_FILE")" 2>&1 | tee -a "$LOG_FILE"
+fi
 
 # 2) The older SEO/GSC analysis report — saved to reports/, no second email.
 echo "" | tee -a "$LOG_FILE"
