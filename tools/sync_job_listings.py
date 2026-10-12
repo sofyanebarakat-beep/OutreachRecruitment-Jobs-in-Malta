@@ -195,6 +195,8 @@ def rebuild_itemlist(jobs: dict[str, dict], dry: bool) -> tuple[int, set[str]]:
 def run(dry: bool = False) -> dict:
     import job_categories
     import job_page_state
+    import merge_duplicate_jobs
+    merged = merge_duplicate_jobs.run(dry)  # one careers-page job = one entry = one address
     cats = job_categories.run(dry)
     jobs = {j["slug"]: j for j in json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))}
     removed, emptied, t1 = clean_hubs(jobs, dry)
@@ -202,9 +204,10 @@ def run(dry: bool = False) -> dict:
     n_items, t3 = rebuild_itemlist(jobs, dry)
     states = job_page_state.sync_all() if not dry else {"closed": 0, "opened": 0, "touched": []}
     return {"hub_cards": removed, "hubs_now_empty": emptied, "carousel_swaps": swaps,
-            "itemlist_items": n_items, "categorised": cats["changed"],
+            "itemlist_items": n_items, "categorised": cats["changed"], "merged": merged["merged"],
             "pages_marked_closed": states["closed"], "pages_reopened": states["opened"],
-            "touched": sorted(t1 | t2 | t3 | set(cats["touched"]) | set(states["touched"]))}
+            "touched": sorted(t1 | t2 | t3 | set(cats["touched"]) | set(states["touched"])
+                              | set(merged["touched"]))}
 
 
 if __name__ == "__main__":

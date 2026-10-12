@@ -67,6 +67,26 @@ def _guess_unit(value: float) -> str:
     return "HOUR" if value < 100 else "MONTH" if value < 10000 else "YEAR"
 
 
+def plausible_unit(salary: dict | None) -> dict | None:
+    """Fix an obviously wrong unit (the ATS has e.g. '€30,000 per MONTH'): judge by the amount.
+    Sets unit_corrected = 'MONTH→YEAR' so the report can ask the owner to fix the careers page."""
+    if not salary:
+        return salary
+    hi, unit = salary["max"], salary["unit"]
+    right = unit
+    if unit == "MONTH" and hi > 15000:
+        right = "YEAR"
+    elif unit == "HOUR" and hi > 200:
+        right = _guess_unit(hi)
+    elif unit == "YEAR" and hi < 3000:
+        right = "MONTH" if hi >= 100 else "HOUR"
+    elif unit in ("DAY", "WEEK") and hi > 5000:
+        right = _guess_unit(hi)
+    if right != unit:
+        salary = dict(salary, unit=right, unit_corrected=f"{unit}→{right}")
+    return salary
+
+
 def salary_from_text(text: str) -> dict | None:
     """Find a € salary written in the description. Returns None when there is none."""
     candidates = []
@@ -167,7 +187,7 @@ def parse_job_page(uuid: str, page_html: str) -> dict:
     address = (posting.get("jobLocation") or {}).get("address", {}) if isinstance(
         posting.get("jobLocation"), dict) else {}
     title = htmllib.unescape(posting.get("title", "")).strip()
-    salary = salary_from_schema(posting) or salary_from_text(text)
+    salary = plausible_unit(salary_from_schema(posting) or salary_from_text(text))
     etype = posting.get("employmentType", "")
     etype = etype[0] if isinstance(etype, list) and etype else etype
     return {

@@ -478,7 +478,8 @@ def git_preflight() -> str | None:
 
 LISTING_FILES = ["tools/jobs_registry.json", "jobs/index.html", "index.html", "sitemaps/sitemap-jobs.xml",
                  "sitemap_index.xml", "sitemap.xml", "construction-jobs-in-malta.html", "tools/ats_snapshots",
-                 "reports/google_indexing_history.csv", "tools/page_audit.json"]
+                 "reports/google_indexing_history.csv", "tools/page_audit.json", "tools/rich_results.json",
+                 "tools/job_redirects.json"]
 
 
 def git_commit_push(message: str, push: bool) -> tuple[str, bool]:
@@ -655,6 +656,26 @@ def build_report(r: dict) -> tuple[str, str, str]:
                        f'are indexed and showing in Google Jobs ✅</p>'
                        + (job_list_html(gc["flagged"], "", extra="reason") if gc.get("flagged") else "")
                        + (f'<p style="color:#b45309">{esc(gc["error"])}</p>' if gc.get("error") else ""))
+    sc = r.get("salary_coverage") or {}
+    if sc.get("open"):
+        housekeeping.insert(0, f"Salary shown on {sc['with_salary']} of {sc['open']} open jobs "
+                               f"({round(100 * sc['with_salary'] / sc['open'])}%) — all salaries come from the careers page")
+    if r.get("salary_synced"):
+        housekeeping.append("Salary updated from the careers page: " + "; ".join(r["salary_synced"][:10])
+                            + (f" (+{len(r['salary_synced']) - 10} more)" if len(r["salary_synced"]) > 10 else ""))
+    if ls.get("merged"):
+        housekeeping.append("Duplicate entries merged (old address now redirects): " + ", ".join(
+            f"{', '.join(m['dropped'])} → {m['keep']}" for m in ls["merged"]))
+    try:
+        rr = json.loads((ROOT / "tools" / "rich_results.json").read_text(encoding="utf-8"))
+        if (date.fromisoformat(r["date"]) - date.fromisoformat(rr["last_run"])).days <= 1:
+            sm = rr.get("summary", {})
+            bad = [s_ for s_, p_ in rr.get("pages", {}).items() if p_.get("indexed") and (not p_.get("job_posting") or p_.get("errors"))]
+            housekeeping.insert(0, f"Monthly Google check: {sm.get('job_posting_ok', 0)} of {sm.get('checked', 0)} job pages show in "
+                                   f"Google Jobs with no errors; {len(bad)} queued for repair"
+                                   + (f"; {sm.get('not_indexed')} not indexed yet" if sm.get("not_indexed") else ""))
+    except Exception:
+        pass
     pc = r.get("page_check") or {}
     if pc.get("open_checked"):
         housekeeping.insert(0, f"Daily page check: {pc['ok']} of {pc['open_checked']} open job pages pass every check"
@@ -868,6 +889,22 @@ def main(args: list[str]) -> int:
         time.sleep(DETAIL_DELAY)
     log(f"  {len(facts)} fact sheets read")
 
+    # 3b. The careers page is the source of every salary: keep the registry (→ /jobs cards,
+    #     page check, Google data) in step with it. A salary the careers page does not give
+    #     is the owner's and is left alone.
+    r["salary_synced"] = []
+    for u, job in open_jobs.items():
+        sal = (facts.get(u) or {}).get("salary")
+        if sal and sal.get("unit_corrected"):
+            r["salary_notes"].append(f"{job['title']}: the careers page lists {salary_label(dict(sal, unit=sal['unit_corrected'].split('→')[0]))}"
+                                     f" — shown as {salary_label(sal)}. Please correct the unit on the careers page.")
+        if sal and job.get("salary") != salary_label(sal):
+            r["salary_synced"].append(f"{job['title']}: {job.get('salary') or 'none'} → {salary_label(sal)}")
+            if not dry:
+                job["salary"] = salary_label(sal)
+    with_salary = sum(1 for u, j in open_jobs.items() if (facts.get(u) or {}).get("salary") or j.get("salary"))
+    r["salary_coverage"] = {"with_salary": with_salary, "open": len(open_jobs)}
+
     # 4. Reopen / new / changed
     taken = taken_slugs(registry)
     new_jobs, changed = [], []
@@ -938,6 +975,9 @@ def main(args: list[str]) -> int:
             continue
         owner = "" if f.get("salary") else (job.get("salary") or page_salary(job["slug"]))
         problems = verify(dict(job, owner_salary=owner), f, render=False)
+        from verify_job_page import real_slug as _rs
+        google = (audit_state.get(job["slug"]) or audit_state.get(_rs(job["slug"])) or {}).get("google_issues", [])
+        problems += [g for g in google if g not in problems]
         if not problems:
             audit_ok += 1
             audit_state.pop(job["slug"], None)
@@ -951,7 +991,7 @@ def main(args: list[str]) -> int:
                            "changes": problems, "owner_salary": owner, "audit": True})
     def severity(item: dict) -> int:  # wrong apply link / salary first, cosmetic last
         text = " ".join(item["changes"]).lower()
-        if "apply link" in text or "other ats job" in text:
+        if "apply link" in text or "other ats job" in text or "google" in text:
             return 0
         if "does not match the careers page" in text or "is not shown on the page" in text:
             return 1
@@ -982,6 +1022,8 @@ def main(args: list[str]) -> int:
         if not dry:
             j["status"] = "closed"
             j["lastmod"] = today
+            if job_uuid(j) in retitled:  # a different job now uses this ID — never merge the two
+                j["replaced_by"] = next((n["slug"] for n in new_jobs if n["uuid"] == job_uuid(j)), "")
             set_page_valid_through(j["slug"], f"{yesterday}T23:59:59")
     if not dry:
         save_registry(registry)
@@ -1034,7 +1076,7 @@ def main(args: list[str]) -> int:
         for j in updated:  # failed / queued changes keep yesterday's sheet and are retried tomorrow
             save_snapshot(facts[j["uuid"]])
             if j.get("audit"):
-                audit_state.pop(j["slug"], None)
+                audit_state.pop(j["slug"], None)  # incl. google_issues — next monthly check re-verifies
         for j in failed:
             if j.get("audit") and j["slug"] in audit_state:
                 audit_state[j["slug"]]["attempts"] = audit_state[j["slug"]].get("attempts", 0) + 1
@@ -1125,6 +1167,27 @@ def main(args: list[str]) -> int:
         if send_at:
             wait_until(send_at)
         log("  " + send_email(subject, html_body))
+
+    # 9. Monthly Google rich-result check (after the email, it takes ~15 min). Problem pages
+    #    go into tools/page_audit.json and are repaired by the following days' page checks.
+    if not dry:
+        import rich_results_check
+        if rich_results_check.due():
+            log("\n[9] Monthly Google rich-result check …")
+            try:
+                rr = rich_results_check.run()
+                log(f"  checked {rr['checked']}, Job Posting OK {rr['job_posting_ok']}, problems {len(rr['problems'])}")
+                git("add", "--", "tools/rich_results.json", "tools/page_audit.json")
+                if git("diff", "--cached", "--quiet").returncode:
+                    git("commit", "-m", f"[Daily Sync] monthly Google rich-result check {today}\n\n"
+                                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
+                    git("fetch", "origin", "main")
+                    if git("merge", "--no-edit", "origin/main").returncode == 0:
+                        git("push", "origin", "main")
+                    else:
+                        git("merge", "--abort")
+            except Exception as e:
+                log(f"  rich-result check failed: {e}")
     return 0
 
 

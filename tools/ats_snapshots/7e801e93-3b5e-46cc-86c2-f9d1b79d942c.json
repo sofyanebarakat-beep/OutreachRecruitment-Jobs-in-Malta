@@ -10,9 +10,10 @@
     "min": 30000.0,
     "max": 30000.0,
     "currency": "EUR",
-    "unit": "MONTH",
+    "unit": "YEAR",
     "text": "",
-    "source": "ats_schema"
+    "source": "ats_schema",
+    "unit_corrected": "MONTH→YEAR"
   },
   "salary_note": "",
   "work_mode": "On-site",
