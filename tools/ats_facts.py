@@ -215,10 +215,36 @@ def load_snapshot(uuid: str) -> dict | None:
 
 
 def save_snapshot(facts: dict) -> Path:
+    """Write the fact sheet — only when its content changed, so git does not churn daily."""
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
     path = snapshot_path(facts["uuid"])
+    old = load_snapshot(facts["uuid"])
+    if old and {k: v for k, v in old.items() if k != "fetched_at"} == {
+            k: v for k, v in facts.items() if k != "fetched_at"}:
+        return path
     path.write_text(json.dumps(facts, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
+
+
+GENERIC_TITLE_WORDS = {"and", "the", "of", "de", "for", "in", "with", "a", "an", "malta", "gozo", "senior", "junior",
+                       "assistant", "manager", "officer", "specialist", "executive", "staff", "worker", "lead",
+                       "head", "team", "leader", "supervisor", "associate", "coordinator", "trainee", "full",
+                       "time", "part", "hybrid", "remote", "multiple", "positions", "position", "role", "job",
+                       "jobs", "licence", "license", "general"}
+
+
+def is_new_role(old_title: str, new_title: str) -> bool:
+    """True when a careers-page job kept its ID but the title now describes a different job
+    (e.g. "Kitchen Helper" → "Bar Manager"). Spelling / plural / wording tweaks such as
+    "Chefs de Partie" → "Chef De Partie" or "Purchasing Officer" → "Purchasing Manager" are not."""
+    from difflib import SequenceMatcher
+    a, b = normalize(old_title), normalize(new_title)
+    if not a or not b or a == b:
+        return False
+    if SequenceMatcher(None, a, b).ratio() >= 0.6:
+        return False
+    words = lambda t: {w[:5] for w in re.findall(r"[a-z]+", t) if w not in GENERIC_TITLE_WORDS and len(w) > 2}
+    return not (words(a) & words(b))
 
 
 def changes_between(old: dict, new: dict) -> list[str]:

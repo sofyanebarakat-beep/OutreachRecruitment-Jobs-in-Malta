@@ -66,6 +66,7 @@ CONFIG_PATH = ROOT / "tools" / "sync_config.json"
 REPORT_DIR = ROOT / "reports" / "daily-sync"
 REJECTED_DIR = REPORT_DIR / "rejected"
 LOCK_PATH = ROOT / "tools" / ".daily_job_sync.lock"
+RUNNER = "cloud" if __import__("os").environ.get("DAILY_SYNC_RUNNER") == "cloud" else "mac"
 
 ATS = "https://outreach-recruitment-agency.careers-page.com"
 SITE = "https://outreachrecruitment.net"
@@ -302,7 +303,8 @@ and rolls the page back if any fails):
 def run_claude(prompt: str, log_path: Path) -> None:
     exe = claude_bin()
     if not exe:
-        raise RuntimeError("claude CLI not found")
+        log_path.write_text("claude CLI not found — page building skipped", encoding="utf-8")
+        return
     try:
         result = subprocess.run(
             [exe, "-p", prompt, "--dangerously-skip-permissions", "--max-turns", "400",
@@ -608,6 +610,14 @@ def build_report(r: dict) -> tuple[str, str, str]:
     if g.get("sent"):
         housekeeping.append(f"Google notified about {g['ok']}/{g['sent']} changed page(s)"
                             + (f" — error: {g['error']}" if g.get("error") and g["ok"] < g["sent"] else ""))
+    gc = r.get("google_check") or {}
+    google_html = ""
+    if gc.get("checked") or gc.get("error"):
+        google_html = (f'<h3 style="margin:14px 0 4px">🔎 Google check — new jobs, 2+ days after publishing</h3>'
+                       f'<p style="margin:4px 0;color:#444">{len(gc.get("ok", []))} of {gc.get("checked", 0)} checked '
+                       f'are indexed and showing in Google Jobs ✅</p>'
+                       + (job_list_html(gc["flagged"], "", extra="reason") if gc.get("flagged") else "")
+                       + (f'<p style="color:#b45309">{esc(gc["error"])}</p>' if gc.get("error") else ""))
     notes = r["notes"] + r.get("salary_notes", [])
     li = lambda xs: "".join(f"<li>{esc(x)}</li>" for x in xs)
     html = f"""<div style="font-family:-apple-system,Segoe UI,Arial,sans-serif;max-width:720px;color:#111">
@@ -629,6 +639,7 @@ def build_report(r: dict) -> tuple[str, str, str]:
 {job_list_html(r['updated'], 'No job changed on the careers page.', extra='changes')}
 <h3 style="margin:14px 0 4px">⚠️ Needs your attention ({len(attention)})</h3>
 {job_list_html(attention, 'Nothing.', extra='reason')}
+{google_html}
 {f'<h3 style="margin:14px 0 4px">Notes</h3><ul style="padding-left:20px">{li(notes)}</ul>' if notes else ''}
 {f'<h3 style="margin:14px 0 4px">Site housekeeping</h3><ul style="padding-left:20px;color:#444">{li(housekeeping)}</ul>' if housekeeping else ''}
 <p style="color:#555;font-size:13px;margin-top:18px">Git: {esc(r['git'])}.<br>
@@ -647,17 +658,34 @@ Careers page: <a href="{ATS}/">{ATS}</a> · Website: <a href="{SITE}/jobs/">{SIT
         md.append("")
     if notes:
         md += ["## Notes"] + [f"- {n}" for n in notes] + [""]
+    if gc.get("checked"):
+        md += [f"## Google check ({len(gc.get('ok', []))}/{gc['checked']} indexed + in Google Jobs)"]
+        md += [f"- {x['title']} — {x['reason']}" for x in gc.get("flagged", [])] + [""]
     if housekeeping:
         md += ["## Site housekeeping"] + [f"- {h}" for h in housekeeping] + [""]
     md.append(f"Git: {r['git']}")
     return subject, html, "\n".join(md) + "\n"
 
 
-def send_email(subject: str, html_body: str) -> str:
+def smtp_config() -> dict | None:
+    """tools/sync_config.json on the Mac; SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS env vars in the cloud."""
+    import os
     try:
-        cfg = json.loads(CONFIG_PATH.read_text())
+        return json.loads(CONFIG_PATH.read_text())
     except Exception:
-        return "email skipped — tools/sync_config.json missing"
+        pass
+    if os.environ.get("SMTP_PASS"):
+        return {"smtp_host": os.environ.get("SMTP_HOST", "smtp.gmail.com"),
+                "smtp_port": os.environ.get("SMTP_PORT", "587"),
+                "smtp_user": os.environ.get("SMTP_USER", REPORT_RECIPIENT),
+                "smtp_pass": os.environ["SMTP_PASS"]}
+    return None
+
+
+def send_email(subject: str, html_body: str) -> str:
+    cfg = smtp_config()
+    if not cfg:
+        return "email skipped — no tools/sync_config.json and no SMTP_PASS environment variable"
     msg = MIMEMultipart("alternative")
     msg["Subject"], msg["From"], msg["To"] = subject, cfg["smtp_user"], REPORT_RECIPIENT
     msg.attach(MIMEText(html_body, "html", "utf-8"))
@@ -698,7 +726,9 @@ def save_report_files(r: dict) -> tuple[str, str, str]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main(args: list[str]) -> int:
-    from ats_facts import changes_between, load_snapshot, parse_job_page, salary_label, save_snapshot
+    from ats_facts import (changes_between, is_new_role, load_snapshot, parse_job_page, salary_label,
+                           save_snapshot)
+    import indexing_followup
     import sync_job_listings
 
     dry = "--dry-run" in args
@@ -728,6 +758,14 @@ def main(args: list[str]) -> int:
             dry, push, create = True, False, False
             r["dry_run"] = True
             log(f"  PREFLIGHT: {err} — running report-only")
+
+    # Tell the cloud backup (09:30) that today's run has started, so it never runs alongside us.
+    if not dry and push:
+        marker = REPORT_DIR / f"{today}-started.txt"
+        marker.write_text(f"{datetime.now().isoformat(timespec='seconds')} {RUNNER}\n", encoding="utf-8")
+        git("add", "--", rel(marker))
+        git("commit", "-m", f"[Daily Sync] run started {today} ({RUNNER})\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
+        git("push", "origin", "main")
 
     # 1. Careers page listing
     log("\n[1] Scraping careers page …")
@@ -791,14 +829,27 @@ def main(args: list[str]) -> int:
     # 4. Reopen / new / changed
     taken = taken_slugs(registry)
     new_jobs, changed = [], []
+    retitled: dict[str, dict] = {}  # uuid -> old registry job, for a same-ID job that became a new role
     for u in ats:
         f = facts.get(u, {})
         prev = all_by_uuid.get(u)
         if u in open_jobs:
             old = load_snapshot(u)
             diffs = changes_between(old, f) if old and f else []
+            job = open_jobs[u]
+            if diffs and is_new_role(old.get("title") or job["title"], f.get("title", "")):
+                # Same careers-page ID, different job: close the old page, publish a new one.
+                log(f"  new role on the same ID: '{old.get('title') or job['title']}' → '{f['title']}'")
+                retitled[u] = job
+                to_close.append(job)
+                title, city = f["title"], f.get("city") or ats[u]["city"]
+                slug = choose_slug(title, city, taken)
+                taken.add(slug)
+                new_jobs.append({"uuid": u, "title": title, "city": city, "slug": slug,
+                                 "salary_label": salary_label(f.get("salary")), "ats_url": f"{ATS}/jobs/{u}",
+                                 "replaces": job["title"]})
+                continue
             if diffs:
-                job = open_jobs[u]
                 owner = "" if f.get("salary") else (job.get("salary") or page_salary(job["slug"]))
                 changed.append({"uuid": u, "title": f.get("title") or job["title"], "slug": job["slug"],
                                 "city": f.get("city", ""), "changes": diffs, "owner_salary": owner})
@@ -831,7 +882,9 @@ def main(args: list[str]) -> int:
     yesterday = (date.today() - timedelta(days=1)).isoformat()
     for j in to_close:
         r["closed"].append({"title": j["title"], "slug": j["slug"], "url": site_url(j["slug"]),
-                            "city": j.get("location", "")})
+                            "city": j.get("location", ""),
+                            **({"reason": "replaced by a new role on the same careers-page ID"}
+                               if job_uuid(j) in retitled else {})})
         if not dry:
             j["status"] = "closed"
             j["lastmod"] = today
@@ -849,10 +902,29 @@ def main(args: list[str]) -> int:
 
     # 5. Create / update with the skill, each page verified before it can go live
     if new_jobs and create:
+        overflow: list[dict] = []
         batch, overflow = new_jobs[:MAX_CREATES_PER_RUN], new_jobs[MAX_CREATES_PER_RUN:]
         created, failed = create_new_jobs(batch, facts)
+        for c in created:
+            if c.get("replaces"):
+                c["reason"] = f"new role — replaces '{c['replaces']}' (same careers-page ID)"
         r["created"] += created
         r["failed"] += failed
+        # A same-ID role change whose new page failed: put the old page back so the job stays listed.
+        failed_uuids = {j["uuid"] for j in failed + overflow}
+        restore = [old for u, old in retitled.items() if u in failed_uuids]
+        if restore:
+            reg_now = load_registry()
+            for old in restore:
+                for x in reg_now:
+                    if x["slug"] == old["slug"]:
+                        x.pop("status", None)
+                        x["lastmod"] = today
+                set_page_valid_through(old["slug"], OPEN_VALID_THROUGH)
+                r["closed"] = [c for c in r["closed"] if c["slug"] != old["slug"]]
+                r["notes"].append(f"'{old['title']}' changed into a different job on the careers page, but the "
+                                  f"new page could not be built — the old page stays open for now.")
+            save_registry(reg_now)
         r["held"] += [dict(j, reason="queued for tomorrow (daily creation limit)") for j in overflow]
     elif new_jobs:
         r["held"] += [dict(j, reason="new job — not created (report-only run)") for j in new_jobs]
@@ -917,12 +989,30 @@ def main(args: list[str]) -> int:
         r["live"] = live_check(r, pushed)
         log(f"  live: {r['live']}")
 
+    if not dry:
+        log("\n[8] Google follow-up (jobs published 2+ days ago) …")
+        try:
+            r["google_check"] = indexing_followup.run()
+        except Exception as e:
+            r["google_check"] = {"checked": 0, "ok": [], "flagged": [], "error": str(e)[:200]}
+        log(f"  checked {r['google_check']['checked']}, flagged {len(r['google_check']['flagged'])}")
+
     subject, html_body, md = save_report_files(r)
-    if pushed:  # the report files themselves, one small follow-up commit
-        git("add", "--", *[rel(p) for p in REPORT_DIR.glob(f"{today}*")])
+    if not dry and push:
+        # Always publish the day's report: the cloud backup looks for it on GitHub to know
+        # the Mac run happened.
+        paths = [rel(p) for p in REPORT_DIR.glob(f"{today}*")] + ["tools/indexing_followup.json"]
+        git("add", "--", *[p for p in paths if (ROOT / p).exists()])
         if git("diff", "--cached", "--quiet").returncode:
             git("commit", "-m", f"[Daily Sync] report {today}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
-            git("push", "origin", "main")
+        for _ in range(3):
+            git("fetch", "origin", "main")
+            if git("merge", "--no-edit", "origin/main").returncode != 0:
+                git("merge", "--abort")
+                break
+            if git("push", "origin", "main").returncode == 0:
+                break
+            time.sleep(20)
     log("\n" + md)
 
     # 8. Email
