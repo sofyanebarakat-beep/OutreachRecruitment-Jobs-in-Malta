@@ -871,7 +871,7 @@ def main(args: list[str]) -> int:
             r["held"] += [dict(j, reason="changed on the careers page — not updated (--no-create)") for j in changed]
 
     # 6. Listings everywhere
-    if not dry and (r["closed"] or r["reopened"] or r["created"] or r["updated"]):
+    if not dry:  # idempotent — also picks up registry edits made since the last run
         subprocess.run([sys.executable, str(ROOT / "tools" / "update_jobs_listing.py")], cwd=str(ROOT))
     if not dry:
         res = sync_job_listings.run()
