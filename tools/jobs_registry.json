@@ -603,7 +603,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/cef84af4-8e98-4eac-8661-707d78a0ba99/apply",
     "keywords": "purchasing officer administration paola, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-12",
+    "status": "closed"
   },
   {
     "slug": "estimator",
@@ -3730,7 +3731,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/be0fe55d-6750-4b26-8cc1-17db0af3c9bb/apply",
     "keywords": "qhse manager quality health safety environment marine shipping paola malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-12",
+    "status": "closed"
   },
   {
     "slug": "assistant-executive-housekeeper",
@@ -3912,7 +3914,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c5ec0360-493f-4f9b-a4b4-d08f86c521f1/apply",
     "keywords": "purchasing manager general paola, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-12",
+    "status": "closed"
   },
   {
     "slug": "quality-engineer",
@@ -4303,7 +4306,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c4bb09d9-1341-41c9-9325-4a173fd75cde/apply",
     "keywords": "kitchen helper hospitality catering food service st. paul's bay, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-12",
+    "status": "closed"
   },
   {
     "slug": "ship-chandler",
@@ -4754,7 +4758,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2ea3dca0-8a81-4327-9ef5-1742cf39f363/apply",
     "keywords": "payment clearing specialist finance & accounting st. julian's, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-12",
+    "status": "closed"
   },
   {
     "slug": "commis-chef",
@@ -5065,5 +5070,35 @@
     "keywords": "gypsum installers gypsum installer drywall partitions ceilings plasterboard construction tarxien malta",
     "featured": true,
     "lastmod": "2026-09-29"
+  },
+  {
+    "slug": "hotel-maintenance-assistant",
+    "title": "Hotel Maintenance Assistant",
+    "category": "Hospitality",
+    "location": "St. Paul's Bay, Malta",
+    "location_slug": "st. paul's bay, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6a9f1e06-545e-4cd0-9d42-1472f1fea3dd/apply",
+    "keywords": "hotel maintenance assistant hospitality st. paul's bay, malta",
+    "featured": false,
+    "lastmod": "2026-10-12"
+  },
+  {
+    "slug": "housekeeper-rabat",
+    "title": "Housekeeper",
+    "category": "Hospitality",
+    "location": "Rabat, Malta",
+    "location_slug": "rabat, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-12",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a80eda89-20ac-432b-8ce9-48512b5ff8ef/apply",
+    "keywords": "housekeeper hospitality rabat, malta",
+    "featured": false,
+    "lastmod": "2026-10-12"
   }
 ]

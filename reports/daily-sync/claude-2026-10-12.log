@@ -1,0 +1,17 @@
+Both jobs built, verified, and registered. Final summary:
+
+**CREATED 6a9f1e06-545e-4cd0-9d42-1472f1fea3dd hotel-maintenance-assistant**
+**CREATED a80eda89-20ac-432b-8ce9-48512b5ff8ef housekeeper-rabat**
+
+What was done for each:
+- Cloned the current rich template (`jobs/kitchen-helper/index.html`, same pattern as `client-accountant`) and rewrote every job-specific part: meta/OG tags, all three JSON-LD blocks, header chips, sidebar grid, body sections, FAQ scaffold, similar-jobs cards, apply iframe, and `JOB_REF`.
+- Wrote identical `jobs/<slug>/index.html` and `jobs/<slug>.html` for both.
+- Hotel Maintenance Assistant: no salary in source → "Competitive salary" everywhere, `baseSalary` correctly omitted; Candidate Origin left Open (source didn't restrict).
+- Housekeeper (Rabat): real €1,400/month from the ATS → shown in the chip and in schema `baseSalary`/`salaryCurrency: EUR`; source explicitly requires Malta residency → Candidate Origin set to Malta residents, Target Location "Residents in Malta", no EU/relocation language added. Slug carries the `-rabat` differentiator since "Housekeeper" is already used by 4 other pages (schema title stays clean, matching the site's existing convention e.g. `maintenance-manager-mellieha`).
+- Reference numbers (`OR-MAINT-2026-001`, `OR-HSKP-2026-001`) and `validThrough: 2029-12-30` are private — only in an HTML comment / the JSON-LD script, never visible text. Confirmed via leak checks (no old title/uuid/salary/city strings left in either file).
+- Added both to `tools/jobs_registry.json` (no `status` key) and ran `tools/update_jobs_listing.py` — open count went 114→116, both cards inserted first/newest, `jobs/index.html`, homepage, and all sitemaps updated automatically.
+- Full 12+ section SEO packages saved to `reports/job-seo-hotel-maintenance-assistant-2026-10-12.md` and `reports/job-seo-housekeeper-rabat-2026-10-12.md`.
+
+No commits or pushes were made, and no other job was touched. One note: partway through, I noticed other files (`tools/daily_job_sync.py`, `.gitignore`, etc.) changing in git status that I didn't touch myself — consistent with the known concurrent auto-sync automation on this repo. I verified afterward that both registry entries and job page files are still intact, so nothing of mine was clobbered.
+
+--- stderr ---
