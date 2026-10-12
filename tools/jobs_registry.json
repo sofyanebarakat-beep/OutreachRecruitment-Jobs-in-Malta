@@ -609,7 +609,7 @@
   {
     "slug": "estimator",
     "title": "Estimator",
-    "category": "General",
+    "category": "Construction",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -655,7 +655,7 @@
   {
     "slug": "kitchen-porter",
     "title": "Kitchen Porter",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Msida, Malta",
     "location_slug": "msida, malta",
     "employment_type": "Full-Time",
@@ -687,7 +687,7 @@
   {
     "slug": "contact-centre-team-leader",
     "title": "Contact Centre Team Leader",
-    "category": "General",
+    "category": "Customer Service",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -703,7 +703,7 @@
   {
     "slug": "cleaner",
     "title": "Cleaner",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -751,7 +751,7 @@
   {
     "slug": "runners",
     "title": "Runners",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -767,7 +767,7 @@
   {
     "slug": "bar-attendant",
     "title": "Bar attendant",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -783,7 +783,7 @@
   {
     "slug": "barista",
     "title": "Barista",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -799,7 +799,7 @@
   {
     "slug": "housekeeper",
     "title": "Housekeeper",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Paul's Bay, Malta",
     "location_slug": "st. paul's bay, malta",
     "employment_type": "Full-Time",
@@ -814,7 +814,7 @@
   {
     "slug": "outlet-manager",
     "title": "Outlet Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -846,7 +846,7 @@
   {
     "slug": "compliance-manager",
     "title": "Compliance Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "Qormi, Malta",
     "location_slug": "qormi, malta",
     "employment_type": "Full-Time",
@@ -862,7 +862,7 @@
   {
     "slug": "hairdresser",
     "title": "Hairdresser",
-    "category": "General",
+    "category": "Wellness",
     "location": "Żabbar, Malta",
     "location_slug": "żabbar, malta",
     "employment_type": "Full-Time",
@@ -878,7 +878,7 @@
   {
     "slug": "pool-attendants",
     "title": "Pool Attendants",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -910,7 +910,7 @@
   {
     "slug": "hospitality-staff-malta",
     "title": "Hospitality Staff – Malta",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -973,7 +973,7 @@
   {
     "slug": "head-of-spa",
     "title": "Head of Spa",
-    "category": "General",
+    "category": "Wellness",
     "location": "Birkirkara, Malta",
     "location_slug": "birkirkara, malta",
     "employment_type": "Full-Time",
@@ -1053,7 +1053,7 @@
   {
     "slug": "supervisor",
     "title": "Supervisor",
-    "category": "General",
+    "category": "Administration",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -1180,7 +1180,7 @@
   {
     "slug": "executive-operations-manager",
     "title": "Executive Operations Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "Birkirkara, Malta",
     "location_slug": "birkirkara, malta",
     "employment_type": "Full-Time",
@@ -1196,7 +1196,7 @@
   {
     "slug": "kitchen-manager",
     "title": "Kitchen Manager",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -1228,7 +1228,7 @@
   {
     "slug": "netsuite-specialist",
     "title": "NetSuite Specialist",
-    "category": "General",
+    "category": "IT & Technology",
     "location": "Birkirkara, Malta",
     "location_slug": "birkirkara, malta",
     "employment_type": "Full-Time",
@@ -1260,7 +1260,7 @@
   {
     "slug": "customer-operations-associate",
     "title": "Customer Operations Associate",
-    "category": "General",
+    "category": "Customer Service",
     "location": "Ta' Xbiex, Malta",
     "location_slug": "ta' xbiex, malta",
     "employment_type": "Full-Time",
@@ -1290,7 +1290,7 @@
   {
     "slug": "customer-experience-supervisor",
     "title": "Customer Experience Supervisor",
-    "category": "General",
+    "category": "Customer Service",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -1306,7 +1306,7 @@
   {
     "slug": "senior-quantity-estimator-me",
     "title": "Senior Quantity Estimator (M&E)",
-    "category": "General",
+    "category": "Construction",
     "location": "Qormi, Malta",
     "location_slug": "qormi, malta",
     "employment_type": "Full-Time",
@@ -1444,7 +1444,7 @@
   {
     "slug": "commis",
     "title": "Commis",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -1619,7 +1619,7 @@
   {
     "slug": "housekeeping-supervisor",
     "title": "Housekeeping supervisor",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -1712,7 +1712,7 @@
   {
     "slug": "housekeeping-attendant",
     "title": "Housekeeping Attendant",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -1727,7 +1727,7 @@
   {
     "slug": "handyman",
     "title": "Handyman",
-    "category": "General",
+    "category": "Administration",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -1918,7 +1918,7 @@
   {
     "slug": "payroll-executive",
     "title": "Payroll Executive",
-    "category": "General",
+    "category": "Finance & Accounting",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -1934,7 +1934,7 @@
   {
     "slug": "quantity-surveyor",
     "title": "Quantity Surveyor",
-    "category": "General",
+    "category": "Construction",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -1950,7 +1950,7 @@
   {
     "slug": "head-housekeeper",
     "title": "Head Housekeeper",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -1966,7 +1966,7 @@
   {
     "slug": "qa-manager-construction",
     "title": "QA Manager - Construction",
-    "category": "General",
+    "category": "Construction",
     "location": "Mosta, Malta",
     "location_slug": "mosta, malta",
     "employment_type": "Full-Time",
@@ -2029,7 +2029,7 @@
   {
     "slug": "skilled-worker-for-outdoor-civil-works",
     "title": "Skilled Worker for Outdoor & Civil Works",
-    "category": "General",
+    "category": "Construction",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2077,7 +2077,7 @@
   {
     "slug": "reservations-agent",
     "title": "Reservations Agent",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2141,7 +2141,7 @@
   {
     "slug": "italianswedish-retention-team-leader",
     "title": "Italian/Swedish Retention Team Leader",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2189,7 +2189,7 @@
   {
     "slug": "automotive-service-advisor",
     "title": "Automotive Service Advisor",
-    "category": "General",
+    "category": "Engineering & Maintenance",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2220,7 +2220,7 @@
   {
     "slug": "construction-site-foreman",
     "title": "Construction Site Foreman",
-    "category": "General",
+    "category": "Construction",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2299,7 +2299,7 @@
   {
     "slug": "room-attendants",
     "title": "Room Attendants",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2331,7 +2331,7 @@
   {
     "slug": "hostess",
     "title": "Hostess",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2379,7 +2379,7 @@
   {
     "slug": "financial-controller",
     "title": "Financial controller",
-    "category": "General",
+    "category": "Finance & Accounting",
     "location": "Birkirkara, Malta",
     "location_slug": "birkirkara, malta",
     "employment_type": "Full-Time",
@@ -2395,7 +2395,7 @@
   {
     "slug": "cost-controller",
     "title": "Cost Controller",
-    "category": "General",
+    "category": "Finance & Accounting",
     "location": "Birkirkara, Malta",
     "location_slug": "birkirkara, malta",
     "employment_type": "Full-Time",
@@ -2427,7 +2427,7 @@
   {
     "slug": "steward",
     "title": "Steward",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2459,7 +2459,7 @@
   {
     "slug": "bar-manager",
     "title": "Bar Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2475,7 +2475,7 @@
   {
     "slug": "general-manager",
     "title": "General Manager",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -2554,7 +2554,7 @@
   {
     "slug": "customer-contact-centre-representative",
     "title": "Customer Contact Centre Representative",
-    "category": "General",
+    "category": "Customer Service",
     "location": "Floriana, Malta",
     "location_slug": "floriana, malta",
     "employment_type": "Full-Time",
@@ -2569,7 +2569,7 @@
   {
     "slug": "builders-and-shutterers",
     "title": "Builders and Shutterers",
-    "category": "General",
+    "category": "Construction",
     "location": "Qormi, Malta",
     "location_slug": "qormi, malta",
     "employment_type": "Full-Time",
@@ -2600,7 +2600,7 @@
   {
     "slug": "draughtsperson",
     "title": "Draughtsperson",
-    "category": "General",
+    "category": "Construction",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2631,7 +2631,7 @@
   {
     "slug": "barber",
     "title": "Barber",
-    "category": "General",
+    "category": "Administration",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -2678,7 +2678,7 @@
   {
     "slug": "bar-attendand",
     "title": "Bar Attendand",
-    "category": "General",
+    "category": "Hospitality",
     "location": "San Ġiljan, Malta",
     "location_slug": "san ġiljan, malta",
     "employment_type": "Full-Time",
@@ -2709,7 +2709,7 @@
   {
     "slug": "lead-azure-infrastructure-architect",
     "title": "Lead Azure Infrastructure Architect",
-    "category": "General",
+    "category": "Administration",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2804,7 +2804,7 @@
   {
     "slug": "bottling-operator",
     "title": "Bottling Operator",
-    "category": "General",
+    "category": "Manufacturing",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -2850,7 +2850,7 @@
   {
     "slug": "automotive-parts-personnel",
     "title": "Automotive Parts Personnel",
-    "category": "General",
+    "category": "Engineering & Maintenance",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2865,7 +2865,7 @@
   {
     "slug": "call-center-representative",
     "title": "Call Center Representative",
-    "category": "General",
+    "category": "Customer Service",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2881,7 +2881,7 @@
   {
     "slug": "real-estate-agents",
     "title": "Real Estate Agents",
-    "category": "General",
+    "category": "Administration",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -2897,7 +2897,7 @@
   {
     "slug": "corporate-insurance-associate",
     "title": "Corporate Insurance Associate",
-    "category": "General",
+    "category": "Insurance",
     "location": "Qormi, Malta",
     "location_slug": "qormi, malta",
     "employment_type": "Full-Time",
@@ -3003,7 +3003,7 @@
   {
     "slug": "cnc-machine-operator",
     "title": "CNC Machine Operator",
-    "category": "General",
+    "category": "Manufacturing",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3018,7 +3018,7 @@
   {
     "slug": "room-attendents",
     "title": "Room Attendents",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St Julian's, Malta",
     "location_slug": "st julian's, malta",
     "employment_type": "Full-Time",
@@ -3033,7 +3033,7 @@
   {
     "slug": "kitchen-helpers-in-gozo",
     "title": "Kitchen Helpers in Gozo",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3049,7 +3049,7 @@
   {
     "slug": "lead-microsoft-365-architect-modern-work-security",
     "title": "Lead Microsoft 365 Architect  Modern Work & Security",
-    "category": "General",
+    "category": "Administration",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3110,7 +3110,7 @@
   {
     "slug": "real-estate-managers",
     "title": "Real Estate Managers",
-    "category": "General",
+    "category": "Administration",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3126,7 +3126,7 @@
   {
     "slug": "commercial-insurance-associate",
     "title": "Commercial Insurance Associate",
-    "category": "General",
+    "category": "Insurance",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3172,7 +3172,7 @@
   {
     "slug": "bricklayers",
     "title": "Bricklayers",
-    "category": "General",
+    "category": "Administration",
     "location": "Mosta, Malta",
     "location_slug": "mosta, malta",
     "employment_type": "Full-Time",
@@ -3203,7 +3203,7 @@
   {
     "slug": "product-owner-hybrid",
     "title": "Product Owner - Hybrid",
-    "category": "General",
+    "category": "IT & Technology",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3218,7 +3218,7 @@
   {
     "slug": "steel-shutterers-steel-fixers",
     "title": "Steel Shutterers & Steel Fixers",
-    "category": "General",
+    "category": "Construction",
     "location": "Mosta, Malta",
     "location_slug": "mosta, malta",
     "employment_type": "Full-Time",
@@ -3249,7 +3249,7 @@
   {
     "slug": "sign-assembler-installer",
     "title": "Sign Assembler & Installer",
-    "category": "General",
+    "category": "Manufacturing",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3328,7 +3328,7 @@
   {
     "slug": "hotel-porter",
     "title": "Hotel Porter",
-    "category": "General",
+    "category": "Hospitality",
     "location": "San Ġiljan, Malta",
     "location_slug": "san ġiljan, malta",
     "employment_type": "Full-Time",
@@ -3390,7 +3390,7 @@
   {
     "slug": "first-line-support-hybrid",
     "title": "First Line Support - Hybrid",
-    "category": "General",
+    "category": "IT & Technology",
     "location": "Malta",
     "location_slug": "malta",
     "employment_type": "Full-Time",
@@ -3420,7 +3420,7 @@
   {
     "slug": "kitchen-porter-2",
     "title": "Kitchen Porter",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -3436,7 +3436,7 @@
   {
     "slug": "barista-2",
     "title": "Barista",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -3467,7 +3467,7 @@
   {
     "slug": "housekeeper-2",
     "title": "Housekeeper",
-    "category": "General",
+    "category": "Hospitality",
     "location": "St. Julian, Malta",
     "location_slug": "st. julian, malta",
     "employment_type": "Full-Time",
@@ -3482,7 +3482,7 @@
   {
     "slug": "kitchen-porter-3",
     "title": "Kitchen Porter",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -3498,7 +3498,7 @@
   {
     "slug": "commis-2",
     "title": "Commis",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -3530,7 +3530,7 @@
   {
     "slug": "barista-3",
     "title": "Barista",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Mellieħa, Malta",
     "location_slug": "mellieħa, malta",
     "employment_type": "Full-Time",
@@ -3642,7 +3642,7 @@
   {
     "slug": "barista-4",
     "title": "Barista",
-    "category": "General",
+    "category": "Hospitality",
     "location": "Naxxar, Malta",
     "location_slug": "naxxar, malta",
     "employment_type": "Full-Time",
@@ -3690,7 +3690,7 @@
   {
     "slug": "quantity-surveyor-2",
     "title": "Quantity surveyor",
-    "category": "General",
+    "category": "Construction",
     "location": "Mosta, Malta",
     "location_slug": "mosta, malta",
     "employment_type": "Full-Time",
@@ -3753,7 +3753,7 @@
   {
     "slug": "application-developer-drupal",
     "title": "Application Developer (Drupal)",
-    "category": "IT",
+    "category": "IT & Technology",
     "location": "Valletta, Malta",
     "location_slug": "valletta, malta",
     "employment_type": "Full-Time",
@@ -3783,7 +3783,7 @@
   {
     "slug": "general-labourer",
     "title": "General Labourer",
-    "category": "General",
+    "category": "Construction",
     "location": "Żebbuġ, Malta",
     "location_slug": "żebbuġ, malta",
     "employment_type": "Full-Time",
@@ -4201,7 +4201,7 @@
   {
     "slug": "customer-care-team-leader",
     "title": "Customer Care Team Leader",
-    "category": "Transport",
+    "category": "Logistics",
     "location": "Luqa, Malta",
     "location_slug": "luqa, malta",
     "employment_type": "Full-Time",
@@ -4217,7 +4217,7 @@
   {
     "slug": "customer-care-agent",
     "title": "Customer Care Agent",
-    "category": "Transport",
+    "category": "Logistics",
     "location": "Luqa, Malta",
     "location_slug": "luqa, malta",
     "employment_type": "Full-Time",
@@ -4312,7 +4312,7 @@
   {
     "slug": "ship-chandler",
     "title": "Ship Chandler",
-    "category": "Marine",
+    "category": "Marine & Shipping",
     "location": "Marsaxlokk, Malta",
     "location_slug": "marsaxlokk, malta",
     "employment_type": "Full-Time",
@@ -4327,7 +4327,7 @@
   {
     "slug": "fleet-mechanical-superintendent",
     "title": "Fleet Mechanical Superintendent",
-    "category": "Marine",
+    "category": "Marine & Shipping",
     "location": "Marsaxlokk, Malta",
     "location_slug": "marsaxlokk, malta",
     "employment_type": "Full-Time",
@@ -4500,7 +4500,7 @@
   {
     "slug": "quality-engineer-marine-malta",
     "title": "Quality Engineer",
-    "category": "Marine",
+    "category": "Marine & Shipping",
     "location": "Paola, Malta",
     "location_slug": "paola, malta",
     "employment_type": "Full-Time",
@@ -4547,7 +4547,7 @@
   {
     "slug": "hostess-2",
     "title": "Hostess",
-    "category": "General",
+    "category": "Administration",
     "location": "St. Julian's, Malta",
     "location_slug": "st. julian's, malta",
     "employment_type": "Full-Time",
@@ -4656,7 +4656,7 @@
   {
     "slug": "sales-agent",
     "title": "Sales Agent",
-    "category": "Transport",
+    "category": "Logistics",
     "location": "Luqa, Malta",
     "location_slug": "luqa, malta",
     "employment_type": "Full-Time",

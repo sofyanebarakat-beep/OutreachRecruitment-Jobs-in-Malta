@@ -158,6 +158,12 @@ def check_static(path: Path, job: dict, facts: dict | None) -> list[str]:
     if leaks:
         p.append("left over from the template: " + ", ".join(leaks))
 
+    # An open job must not carry the closed-page treatment; it must have a real category.
+    if "<!-- job-closed:head -->" in page:
+        p.append("page is still marked 'Position Closed'")
+    if (job.get("category") or "General").strip().lower() in ("", "general"):
+        p.append("job has no real category (still 'General')")
+
     # Private data
     if re.search(r"\bOR-[A-Z]{2,8}-\d{4}-\d{2,4}\b", text):
         p.append("reference number is visible")

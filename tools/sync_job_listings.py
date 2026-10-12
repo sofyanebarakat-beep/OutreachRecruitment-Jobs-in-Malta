@@ -8,6 +8,9 @@ sync_job_listings.py — make every place that lists jobs show only open jobs.
   2. "Similar jobs" carousels on job pages: swap cards that point to a closed/expired
      job for an open job, same category first.
   3. /jobs ItemList JSON-LD (the job list Google reads): rebuilt from the open jobs.
+  4. Categories: every job gets a real category (tools/job_categories.py) — run first.
+  5. Closed job pages show "Position Closed" with apply disabled; reopened pages are
+     restored (tools/job_page_state.py).
 
 Idempotent. Usage:
   python3 tools/sync_job_listings.py [--dry-run]
@@ -21,6 +24,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
 REGISTRY_PATH = ROOT / "tools" / "jobs_registry.json"
 SITE = "https://outreachrecruitment.net"
 
@@ -141,7 +145,14 @@ def fix_carousels(jobs: dict[str, dict], dry: bool) -> tuple[int, set[str]]:
         new_text, n = text, 0
         for card in cards:
             m = JOB_HREF_RE.search(card)
-            if not m or m.group(1) not in jobs or is_open(jobs[m.group(1)]):
+            if m and m.group(1) in jobs and is_open(jobs[m.group(1)]):
+                cat = jobs[m.group(1)].get("category") or "General"
+                fixed = re.sub(r'(<span class="similar-job-tag">)[^<]*(</span>)', rf"\g<1>{esc(cat)}\g<2>", card)
+                if fixed != card:  # keep the tag in step with the job's category
+                    new_text = new_text.replace(card, fixed, 1)
+                    n += 1
+                continue
+            if not m or m.group(1) not in jobs:
                 continue
             pool = [j for j in open_jobs if j["slug"] not in in_track and j["slug"] != own]
             pick = next((j for j in pool if j.get("category") == own_cat), pool[0] if pool else None)
@@ -182,12 +193,18 @@ def rebuild_itemlist(jobs: dict[str, dict], dry: bool) -> tuple[int, set[str]]:
 
 
 def run(dry: bool = False) -> dict:
+    import job_categories
+    import job_page_state
+    cats = job_categories.run(dry)
     jobs = {j["slug"]: j for j in json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))}
     removed, emptied, t1 = clean_hubs(jobs, dry)
     swaps, t2 = fix_carousels(jobs, dry)
     n_items, t3 = rebuild_itemlist(jobs, dry)
+    states = job_page_state.sync_all() if not dry else {"closed": 0, "opened": 0, "touched": []}
     return {"hub_cards": removed, "hubs_now_empty": emptied, "carousel_swaps": swaps,
-            "itemlist_items": n_items, "touched": sorted(t1 | t2 | t3)}
+            "itemlist_items": n_items, "categorised": cats["changed"],
+            "pages_marked_closed": states["closed"], "pages_reopened": states["opened"],
+            "touched": sorted(t1 | t2 | t3 | set(cats["touched"]) | set(states["touched"]))}
 
 
 if __name__ == "__main__":

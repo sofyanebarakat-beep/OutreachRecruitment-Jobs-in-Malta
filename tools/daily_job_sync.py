@@ -333,7 +333,11 @@ For EACH job run the /job-seo-generator skill exactly as specified in
    job-specific part: head/meta, all JSON-LD blocks, header chips, sidebar, body sections, FAQ,
    similar jobs (open jobs only), share links, apply panel/iframe, JOB_REF.
 3. Add the job to tools/jobs_registry.json (slug as given, no "status" key, valid_through
-   {OPEN_VALID_THROUGH}, apply_url from the fact sheet, salary only if the fact sheet has one).
+   {OPEN_VALID_THROUGH}, apply_url from the fact sheet, salary only if the fact sheet has one,
+   and a real "category" — one of: Construction, Customer Service, Engineering & Maintenance,
+   Finance & Accounting, Hospitality, Insurance, IT & Technology, Manufacturing, Marine & Shipping,
+   Retail, Sales, Logistics, Administration, HR & Recruitment, Healthcare, Wellness. Never "General").
+   Use the same category on the page (header chip, sidebar, schema industry/occupationalCategory).
 4. Save the 12-section package to reports/job-seo-<slug>-{date.today().isoformat()}.md.
 
 {COMMON_RULES}
@@ -511,7 +515,24 @@ def notify_google(r: dict) -> dict:
         return {"sent": len(rows), "ok": 0, "error": str(e)[:200]}
     ok = sum(1 for x in res if x.get("ok"))
     err = next((str(x.get("response"))[:160] for x in res if not x.get("ok")), "")
-    return {"sent": len(rows), "ok": ok, "error": err}
+    return {"sent": len(rows), "ok": ok, "error": err, "sitemap": submit_sitemap()}
+
+
+def submit_sitemap() -> str:
+    """Resubmit the jobs sitemap in Search Console so Google re-reads the job list."""
+    try:
+        from google.auth.transport.requests import Request as GoogleRequest
+        from google.oauth2 import service_account
+        from job_sync_agent import google_credentials_path
+        creds = service_account.Credentials.from_service_account_file(
+            str(google_credentials_path()), scopes=["https://www.googleapis.com/auth/webmasters"])
+        creds.refresh(GoogleRequest())
+        url = (f"https://www.googleapis.com/webmasters/v3/sites/{quote(SITE + '/', safe='')}/sitemaps/"
+               f"{quote(SITE + '/sitemaps/sitemap-jobs.xml', safe='')}")
+        with urlopen(Request(url, method="PUT", headers={"Authorization": f"Bearer {creds.token}"}), timeout=30) as resp:
+            return "submitted" if resp.status in (200, 204) else f"HTTP {resp.status}"
+    except Exception as e:
+        return f"not submitted ({str(e)[:80]})"
 
 
 def live_open_count() -> int | None:
@@ -609,7 +630,15 @@ def build_report(r: dict) -> tuple[str, str, str]:
     g = r.get("google") or {}
     if g.get("sent"):
         housekeeping.append(f"Google notified about {g['ok']}/{g['sent']} changed page(s)"
-                            + (f" — error: {g['error']}" if g.get("error") and g["ok"] < g["sent"] else ""))
+                            + (f" — error: {g['error']}" if g.get("error") and g["ok"] < g["sent"] else "")
+                            + (f"; jobs sitemap {g['sitemap']}" if g.get("sitemap") else ""))
+    if ls.get("pages_marked_closed") or ls.get("pages_reopened"):
+        housekeeping.append(f"Job pages switched to 'Position Closed' (apply disabled): {ls.get('pages_marked_closed', 0)}"
+                            f"; closed look removed from reopened pages: {ls.get('pages_reopened', 0)}")
+    if ls.get("categorised"):
+        housekeeping.append("Category set automatically: " + ", ".join(
+            f"{c['title']} → {c['to']}" for c in ls["categorised"][:12])
+            + (f" (+{len(ls['categorised']) - 12} more)" if len(ls["categorised"]) > 12 else ""))
     gc = r.get("google_check") or {}
     google_html = ""
     if gc.get("checked") or gc.get("error"):
