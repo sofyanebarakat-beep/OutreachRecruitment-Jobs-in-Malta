@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-10T09:03:12.920522+02:00",
+  "generated_at": "2026-10-12T06:18:29.118862+02:00",
   "checks": {
     "gsc": {
       "ok": true,
-      "through": "2026-10-08",
-      "days": 5,
+      "through": "2026-10-10",
+      "days": 6,
       "queries": 1000,
-      "pages": 458
+      "pages": 472
     },
     "ga4": {
       "ok": true,
@@ -23,7 +23,7 @@
     },
     "opportunities": {
       "ok": true,
-      "rows": 107
+      "rows": 108
     },
     "experiments": {
       "new": 500

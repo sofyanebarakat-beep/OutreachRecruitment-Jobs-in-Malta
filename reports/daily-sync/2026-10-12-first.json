@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-12",
+  "created": [
+    {
+      "uuid": "6a9f1e06-545e-4cd0-9d42-1472f1fea3dd",
+      "title": "Hotel Maintenance Assistant",
+      "city": "St. Paul's Bay",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6a9f1e06-545e-4cd0-9d42-1472f1fea3dd",
+      "slug": "hotel-maintenance-assistant",
+      "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/"
+    },
+    {
+      "uuid": "a80eda89-20ac-432b-8ce9-48512b5ff8ef",
+      "title": "Housekeeper",
+      "city": "Rabat",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a80eda89-20ac-432b-8ce9-48512b5ff8ef",
+      "slug": "housekeeper-rabat",
+      "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/"
+    }
+  ],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Purchasing Officer",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-officer/",
+      "city": "Paola, Malta"
+    },
+    {
+      "title": "QHSE Manager",
+      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta/",
+      "city": "Paola, Malta"
+    },
+    {
+      "title": "Purchasing Manager",
+      "url": "https://outreachrecruitment.net/jobs/purchasing-manager/",
+      "city": "Paola, Malta"
+    },
+    {
+      "title": "Kitchen Helper",
+      "url": "https://outreachrecruitment.net/jobs/kitchen-helper/",
+      "city": "St. Paul's Bay, Malta"
+    },
+    {
+      "title": "Payment Clearing Specialist",
+      "url": "https://outreachrecruitment.net/jobs/payment-clearing-specialist/",
+      "city": "St. Julian's, Malta"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "git": "pushed to GitHub (main)",
+  "dry_run": false,
+  "ats_advertised": 116,
+  "site_open_before": 119,
+  "site_open_after": 116
+}

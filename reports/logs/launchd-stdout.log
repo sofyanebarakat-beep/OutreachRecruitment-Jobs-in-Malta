@@ -1870,4 +1870,103 @@ OK
   [70/119] structural-engineer … 1 issue(s)
   [71/119] senior-quantity-estimator-me … 1 issue(s)
   [72/119] sales-representative-in-renewables … 1 issue(s)
-  [73/119] hvac-project-manager … 
+  [73/119] hvac-project-manager … 1 issue(s)
+  [74/119] hvac-sales-representative … 1 issue(s)
+  [75/119] maintenance-technician-electrical-licence-a-or-b … 2 issue(s)
+  [76/119] it-support-executive … 2 issue(s)
+  [77/119] general-maintenance-technician … 1 issue(s)
+  [78/119] counter-assistant … 1 issue(s)
+  [79/119] kitchen-assistant … 2 issue(s)
+  [80/119] heavy-machine-operator … OK
+  [81/119] housekeeping-attendant … 1 issue(s)
+  [82/119] accounts-payable … 1 issue(s)
+  [83/119] tax-manager … 1 issue(s)
+  [84/119] automotive-service-advisor … 1 issue(s)
+  [85/119] high-voltage-motor-vehicle-technician … 1 issue(s)
+  [86/119] audit-senior-associate … 1 issue(s)
+  [87/119] customer-contact-centre-representative … 1 issue(s)
+  [88/119] builders-and-shutterers … 2 issue(s)
+  [89/119] draughtsperson … 1 issue(s)
+  [90/119] associate-tax-advisor … 1 issue(s)
+  [91/119] customer-care-associate … 1 issue(s)
+  [92/119] sales-executive-luxury-retail … 1 issue(s)
+  [93/119] bottling-operator … 1 issue(s)
+  [94/119] motor-vehicle-mechanictechnician … 1 issue(s)
+  [95/119] automotive-parts-personnel … 1 issue(s)
+  [96/119] corporate-insurance-associate … 1 issue(s)
+  [97/119] wood-painting-finishing-specialist … 1 issue(s)
+  [98/119] delivery-driver-malta-c-license … 1 issue(s)
+  [99/119] health-claims-associate … 1 issue(s)
+  [100/119] delivery-drivers-c1-malta-license … 2 issue(s)
+  [101/119] auditor … 2 issue(s)
+  [102/119] cnc-machine-operator … OK
+  [103/119] room-attendents … 1 issue(s)
+  [104/119] finance-associate … 1 issue(s)
+  [105/119] skilled-carpenters … 1 issue(s)
+  [106/119] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [107/119] commercial-insurance-associate … 2 issue(s)
+  [108/119] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [109/119] audit-senior … 1 issue(s)
+  [110/119] product-owner-hybrid … 1 issue(s)
+  [111/119] volvo-penta-mechanic … 1 issue(s)
+  [112/119] sign-assembler-installer … 1 issue(s)
+  [113/119] hotel-porter … 1 issue(s)
+  [114/119] boat-maintenance … 1 issue(s)
+  [115/119] first-line-support-hybrid … 1 issue(s)
+  [116/119] semi-senior-accountant … 1 issue(s)
+  [117/119] sales-executive-2 … 1 issue(s)
+  [118/119] housekeeper-2 … 1 issue(s)
+  [119/119] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-12.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-12.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-12.html
+
+  Sending email to sbarakat@outreachrecruitment.net …
+  Email sent to sbarakat@outreachrecruitment.net
+
+=== SEO Course Automation ===
+GA4 added to 0 content pages; conversion events added to 0 pages.
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-10-12T06:18:29.118862+02:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-10-10",
+      "days": 6,
+      "queries": 1000,
+      "pages": 472
+    },
+    "ga4": {
+      "ok": true,
+      "days": 6,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 1644
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 18
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 108
+    },
+    "experiments": {
+      "new": 500
+    },
+    "supabase": {
+      "ok": false,
+      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+    }
+  },
+  "warnings": []
+}
+Finished: Mon Oct 12 06:18:34 CEST 2026 | Exit: 1

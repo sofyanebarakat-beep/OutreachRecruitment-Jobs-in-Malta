@@ -2946,3 +2946,45 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-12T06:54:07,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-12T06:54:07,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
+2026-10-12T06:54:07,Purchasing Officer,purchasing-officer,https://outreachrecruitment.net/jobs/purchasing-officer/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/purchasing-officer/""
+  }
+}
+"
+2026-10-12T06:54:07,QHSE Manager,qhse-manager-malta,https://outreachrecruitment.net/jobs/qhse-manager-malta/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/qhse-manager-malta/""
+  }
+}
+"
+2026-10-12T06:54:07,Purchasing Manager,purchasing-manager,https://outreachrecruitment.net/jobs/purchasing-manager/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/purchasing-manager/""
+  }
+}
+"
+2026-10-12T06:54:07,Kitchen Helper,kitchen-helper,https://outreachrecruitment.net/jobs/kitchen-helper/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/kitchen-helper/""
+  }
+}
+"
+2026-10-12T06:54:07,Payment Clearing Specialist,payment-clearing-specialist,https://outreachrecruitment.net/jobs/payment-clearing-specialist/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/payment-clearing-specialist/""
+  }
+}
+"
