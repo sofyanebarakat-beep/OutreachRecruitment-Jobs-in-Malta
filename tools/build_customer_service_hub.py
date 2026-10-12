@@ -36,6 +36,12 @@ JOBS = [
          hours="24/7 shift rota incl. weekends and nights",
          summary=("Take roadside, motor and home assistance requests by phone and digital channels, dispatch "
                   "the right contractor and stay with each case until the customer is looked after.")),
+    dict(slug="customer-contact-centre-representative", title="Customer Contact Centre Representative",
+         cat="Insurance", date="2026-06-09", salary="Negotiable",
+         target=ELIGIBLE, langs="Fluent Maltese and English (written and spoken)",
+         hours="Full-time, hybrid after probation",
+         summary=("Provide first-line support on insurance queries by phone, chat and email, issue quotations "
+                  "and documents, and close sales. Full on-the-job training and a buddy system included.")),
 ]
 NOTICE = "Due to the urgent hiring requirements for these positions, only EU nationals will be considered."
 SUBTITLE = "Good communication skills in English and at least one additional language: Italian, French, or Arabic."
@@ -48,14 +54,14 @@ FAQS = [
     ("What is a call center service client job in Malta?",
      "A call center service client job (customer service in a call centre) means helping customers by phone, email and chat &mdash; answering questions, opening and following up cases, and solving problems. In Malta these roles are common in insurance and assistance companies serving customers across Europe. Our current openings in Floriana are for candidates with good English plus Italian, French or Arabic."),
     ("What customer service jobs in Malta are open right now?",
-     "We are currently recruiting for three customer service roles in Floriana, Malta: Customer Contact Agent, "
-     "Administration Specialist and Assistance Operations Coordinator. All three are full-time direct jobs with our clients."),
+     "We are currently recruiting for four customer service roles in Floriana, Malta: Customer Contact Agent, "
+     "Administration Specialist, Assistance Operations Coordinator and Customer Contact Centre Representative. All four are full-time direct jobs with our clients."),
     ("How much do customer service and call centre jobs in Malta pay?",
      "Salary ranges are: Customer Contact Agent &euro;19,000&ndash;&euro;22,000, Administration Specialist "
-     "&euro;40,000&ndash;&euro;50,000, and Assistance Operations Coordinator &euro;19,200&ndash;&euro;20,000 per year. You can estimate take-home pay with our <a href=\"/salary-calculator-malta\">Malta Salary Calculator</a>."),
+     "&euro;40,000&ndash;&euro;50,000, and Assistance Operations Coordinator &euro;19,200&ndash;&euro;20,000 per year. Salary for the Customer Contact Centre Representative is negotiable. You can estimate take-home pay with our <a href=\"/salary-calculator-malta\">Malta Salary Calculator</a>."),
     ("Which languages do I need for these customer service jobs?",
      "Good communication skills in English and at least one additional language: Italian, French, or Arabic. "
-     "Maltese is not required. The Customer Contact Agent role needs English plus French, English plus Italian, "
+     "The Customer Contact Centre Representative role needs fluent Maltese and English. The Customer Contact Agent role needs English plus French, English plus Italian, "
      "or English, Arabic and French."),
     ("Do I need previous call centre experience?",
      "Not always. Previous experience in customer service, a contact centre, insurance, hospitality or retail is an "
@@ -71,7 +77,7 @@ FAQS = [
     ("Who can apply for these positions?",
      "Due to the urgent hiring requirements for these positions, only EU nationals will be considered."),
     ("Where are these customer service jobs located?",
-     "All three roles are based in Floriana, just outside Valletta's main gate, with a major bus interchange on the "
+     "All four roles are based in Floriana, just outside Valletta's main gate, with a major bus interchange on the "
      "doorstep &mdash; practical for shift workers travelling at all hours."),
     ("How do I apply for customer service jobs in Malta?",
      "Click the role that fits your profile and apply online through the listing. Our recruitment team reviews every "
@@ -88,7 +94,7 @@ def card(j):
             f'data-date="{j["date"]}"><a class="opening-job-link" href="/jobs/{j["slug"]}"><div class="opening-card-day">New</div>'
             f'<img class="opening-job-logo" src="/assets/job-card-logo.jpg" alt="Outreach Recruitment job logo"/>'
             f'<h3 class="heading-h5">{j["title"]}</h3><div class="opening-job-company">Floriana, Malta</div>'
-            f'<div class="opening-job-meta"><span>Full-Time</span><span>{j["cat"]}</span><span>Salary Range: {j["salary"]}</span></div></a></article>')
+            f'<div class="opening-job-meta"><span>Full-Time</span><span>{j["cat"]}</span><span>{"Salary Range: " if j["salary"].startswith("&euro;") else ""}{j["salary"]}</span></div></a></article>')
 
 def faq_item(q, a, tpl_item):
     return tpl_item.replace("@@Q@@", q).replace("@@A@@", a)
@@ -198,7 +204,7 @@ guide_html = f'''<section class="section padding-top-large" aria-labelledby="cus
 <p>Malta is one of Europe's busiest hubs for multilingual customer support. International insurers, assistance companies and service providers run their contact centres from the island because English is an official language and the workforce speaks many European languages. That makes <strong>customer service jobs in Malta</strong> one of the most accessible ways to start or grow a career here &mdash; whether you are a first-time call agent or an experienced contact centre professional. Outreach Recruitment places candidates directly with these employers.</p>
 
 <h3>Open Customer Service Roles in Floriana</h3>
-<p>All three roles below are full-time direct jobs with our clients in Floriana, just outside Valletta:</p>
+<p>All four roles below are full-time direct jobs with our clients in Floriana, just outside Valletta:</p>
 <ul>
 {role_rows}
 </ul>
