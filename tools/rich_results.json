@@ -1,0 +1,1016 @@
+{
+  "last_run": "2026-10-12",
+  "summary": {
+    "checked": 116,
+    "job_posting_ok": 99,
+    "warnings": 209,
+    "not_indexed": 17,
+    "error": ""
+  },
+  "pages": {
+    "front-office-executive": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "italian-restaurant-hospitality-positions-dubai": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"postalCode\""
+      ]
+    },
+    "junior-administrative-executive": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "crane-installer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "beauty-specialist-nail-technician": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "marine-mechanical-engineer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "maintenance-manager-mellieha": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "restaurant-manager-italian-speaking": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"maxValue\""
+      ]
+    },
+    "front-office-agent": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "head-of-spa-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "night-cleaner": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "banqueting-fb-supervisor": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "assistance-operations-coordinator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "procurement-officer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "deli-counter-assistant-salumeria-specialist": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "sales-office-coordinator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "customer-contact-agent": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "hr-administration-officer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "project-manager": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "estimator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "hsse-coordinator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "housekeeper": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "driver-runner-washer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "supervisor": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "customer-operations-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "structural-engineer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "senior-quantity-estimator-me": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "sales-representative-in-renewables": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "hvac-project-manager": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "hvac-sales-representative": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "maintenance-technician-electrical-licence-a-or-b": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "it-support-executive": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "general-maintenance-technician": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "counter-assistant": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "kitchen-assistant": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "heavy-machine-operator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "housekeeping-attendant": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "accounts-payable": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "tax-manager": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "automotive-service-advisor": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "high-voltage-motor-vehicle-technician": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "audit-senior-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "customer-contact-centre-representative": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "builders-and-shutterers": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "draughtsperson": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "associate-tax-advisor": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "customer-care-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "sales-executive-luxury-retail": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "bottling-operator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "motor-vehicle-mechanictechnician": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "automotive-parts-personnel": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "corporate-insurance-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "wood-painting-finishing-specialist": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"maxValue\""
+      ]
+    },
+    "delivery-driver-malta-c-license": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "health-claims-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "delivery-drivers-c1-malta-license": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "auditor": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "cnc-machine-operator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "room-attendents": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "finance-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "skilled-carpenters": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "delivery-person-with-driving-licence-c1": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "commercial-insurance-associate": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "aluminum-install-and-fabrication-foreman": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "audit-senior": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "product-owner-hybrid": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "volvo-penta-mechanic": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "sign-assembler-installer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "hotel-porter": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "boat-maintenance": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "first-line-support-hybrid": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "semi-senior-accountant": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "sales-executive-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "housekeeper-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "accounts-senior-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "application-developer-drupal": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "driver-license-b": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "tank-cleaner": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "welder-burner-pipe-fitter": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "shipyard-sprayer-painter": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "marine-carpenter": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "electronic-technician": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "commercial-divers": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "trailer-drivers": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "marine-mechanical-foreman": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "administration-specialist": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "delivery-man": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "hvac-technician": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "head-of-hvac-technicians": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "customer-care-agent": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "ship-chandler": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "fleet-mechanical-superintendent": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "client-accountant-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "fleet-tools-facility-manager": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "marine-turner-malta": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "plate-shop-foreman-malta": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "quality-engineer-marine-malta": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "chef-de-partie-4": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "head-chef-steakhouse": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "senior-waiter-sommelier": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "public-area-cleaner": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "auto-electrician-heavy-vehicles": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "heavy-equipment-mechanic": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "steel-shutter-installer": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "junior-revenue-accounts-analyst": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "learning-development-executive-hybrid": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "operations-supervisor": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "heavy-equipment-mechanic-2": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "forklift-operator": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "head-chef-in-gozo": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "storekeeper-zebbug": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "proposal-engineer-energy-solutions": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "mini-bus-driver-licence-d": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "gypsum-installers": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
+      ]
+    },
+    "hotel-maintenance-assistant": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "housekeeper-rabat": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    }
+  }
+}

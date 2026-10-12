@@ -96,6 +96,16 @@ def run(force: bool = False, dry: bool = False) -> dict | None:
             if slug in audit:
                 audit[slug].pop("google_issues", None)
         time.sleep(0.3)
+    # Ask Google to (re)crawl every open job page it has not indexed (quota ~200/day).
+    not_indexed = [{"title": "", "slug": s_, "url": f"{SITE}/jobs/{s_}/", "type": "URL_UPDATED",
+                    "source": "monthly_rich_results"} for s_, p_ in pages.items() if not p_["indexed"]]
+    if not_indexed and not dry:
+        try:
+            from job_sync_agent import submit_google_indexing
+            out["reindex_requested"] = sum(1 for x in submit_google_indexing(not_indexed[:150]) if x.get("ok"))
+        except Exception as e:
+            out["reindex_requested"] = 0
+            out["error"] = f"re-index request failed: {e}"[:200]
     if not dry:
         AUDIT_PATH.write_text(json.dumps(audit, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         STATE_PATH.write_text(json.dumps({"last_run": date.today().isoformat(), "summary": {
