@@ -1,57 +1,71 @@
 {
   "date": "2026-10-12",
-  "created": [
-    {
-      "uuid": "6a9f1e06-545e-4cd0-9d42-1472f1fea3dd",
-      "title": "Hotel Maintenance Assistant",
-      "city": "St. Paul's Bay",
-      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/6a9f1e06-545e-4cd0-9d42-1472f1fea3dd",
-      "slug": "hotel-maintenance-assistant",
-      "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/"
-    },
-    {
-      "uuid": "a80eda89-20ac-432b-8ce9-48512b5ff8ef",
-      "title": "Housekeeper",
-      "city": "Rabat",
-      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a80eda89-20ac-432b-8ce9-48512b5ff8ef",
-      "slug": "housekeeper-rabat",
-      "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/"
-    }
-  ],
+  "created": [],
   "reopened": [],
-  "closed": [
-    {
-      "title": "Purchasing Officer",
-      "url": "https://outreachrecruitment.net/jobs/purchasing-officer/",
-      "city": "Paola, Malta"
-    },
-    {
-      "title": "QHSE Manager",
-      "url": "https://outreachrecruitment.net/jobs/qhse-manager-malta/",
-      "city": "Paola, Malta"
-    },
-    {
-      "title": "Purchasing Manager",
-      "url": "https://outreachrecruitment.net/jobs/purchasing-manager/",
-      "city": "Paola, Malta"
-    },
-    {
-      "title": "Kitchen Helper",
-      "url": "https://outreachrecruitment.net/jobs/kitchen-helper/",
-      "city": "St. Paul's Bay, Malta"
-    },
-    {
-      "title": "Payment Clearing Specialist",
-      "url": "https://outreachrecruitment.net/jobs/payment-clearing-specialist/",
-      "city": "St. Julian's, Malta"
-    }
-  ],
+  "closed": [],
+  "updated": [],
   "failed": [],
   "held": [],
   "notes": [],
+  "salary_notes": [],
   "git": "no changes",
   "dry_run": false,
   "ats_advertised": 116,
-  "site_open_before": 119,
+  "site_open_before": 116,
+  "listings": {
+    "hub_cards": {
+      "engineering-jobs-in-malta.html": {
+        "replaced": 2,
+        "removed": 0
+      },
+      "finance-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 3
+      },
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 33,
+        "removed": 34
+      },
+      "index.html": {
+        "replaced": 10,
+        "removed": 0
+      },
+      "insurance-jobs-in-malta.html": {
+        "replaced": 5,
+        "removed": 0
+      },
+      "it-jobs-in-malta.html": {
+        "replaced": 0,
+        "removed": 6
+      },
+      "jobs-in-malta-top-15-opening-jobs.html": {
+        "replaced": 7,
+        "removed": 0
+      },
+      "opening-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "retail-jobs-in-malta.html": {
+        "replaced": 4,
+        "removed": 0
+      },
+      "salary-calculator-malta.html": {
+        "replaced": 6,
+        "removed": 0
+      },
+      "sales-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 23
+      },
+      "subcontracting-jobs-in-malta.html": {
+        "replaced": 26,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 612,
+    "itemlist_items": 116
+  },
   "site_open_after": 116
 }
