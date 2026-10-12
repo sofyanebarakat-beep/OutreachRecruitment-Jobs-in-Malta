@@ -3,7 +3,8 @@
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
   launchd plist for Outreach Recruitment Job Sync Agent
-  Runs every day at 08:00 Malta time (06:00 UTC summer / 07:00 UTC winter)
+  Runs every day at 07:30 Malta time (launchd uses the Mac's local clock, Europe/Paris = Malta).
+  The open/close report email is held until 09:00.
 
   Install:
     cp tools/net.outreachrecruitment.job-sync.plist ~/Library/LaunchAgents/
@@ -27,11 +28,11 @@
     <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/tools/run_sync_agent.sh</string>
   </array>
 
-  <!-- Run every day at 06:00 UTC (= 08:00 Malta summer time) -->
+  <!-- Every day at 07:30 local (Malta) time; report email goes out at 09:00 -->
   <key>StartCalendarInterval</key>
   <dict>
-    <key>Hour</key><integer>6</integer>
-    <key>Minute</key><integer>0</integer>
+    <key>Hour</key><integer>7</integer>
+    <key>Minute</key><integer>30</integer>
   </dict>
 
   <key>StandardOutPath</key>
@@ -45,7 +46,7 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+    <string>/Users/sof/.local/bin:/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
   </dict>
 </dict>
 </plist>

@@ -12,9 +12,16 @@ mkdir -p "$LOG_DIR"
 echo "=== Job Sync Agent ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"
 
-python3 "$SCRIPT_DIR/job_sync_agent.py" 2>&1 | tee -a "$LOG_FILE"
-
+# 1) Open/close jobs to match the careers page, build new jobs with the
+#    /job-seo-generator skill, push, and email the report at 09:00 Malta time.
+echo "=== Daily Job Sync (open/close) ===" | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/daily_job_sync.py" --send-at 09:00 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=${PIPESTATUS[0]}
+
+# 2) The older SEO/GSC analysis report — saved to reports/, no second email.
+echo "" | tee -a "$LOG_FILE"
+echo "=== SEO / GSC analysis (job_sync_agent.py, no email) ===" | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/job_sync_agent.py" --no-email 2>&1 | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/apply_analytics_tracking.py" 2>&1 | tee -a "$LOG_FILE"
