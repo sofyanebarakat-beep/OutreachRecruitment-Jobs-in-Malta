@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
 REGISTRY_PATH = ROOT / "tools" / "jobs_registry.json"
 
 TITLE_TAG = '<span class="job-closed-tag"><!-- job-closed:h1 --> — Position Closed<!-- /job-closed:h1 --></span>'
@@ -62,13 +63,8 @@ BANNER = ('<!-- job-closed:banner --><div class="job-closed-banner" role="status
 
 
 def pages(slug: str) -> list[Path]:
-    out = []
-    for f in (ROOT / "jobs" / f"{slug}.html", ROOT / "jobs" / slug / "index.html"):
-        if f.exists():
-            text = f.read_text(encoding="utf-8", errors="replace")
-            if len(text) > 5000 and 'http-equiv="refresh"' not in text[:3000].lower():
-                out.append(f)
-    return out
+    from verify_job_page import real_pages  # follows old redirect stubs to the real page
+    return real_pages(slug)
 
 
 def is_marked(text: str) -> bool:
@@ -123,10 +119,12 @@ def set_state(slug: str, closed: bool) -> list[str]:
 def sync_all() -> dict:
     """Make every job page match its registry status. Returns {closed: n, opened: n, touched: [...]}"""
     jobs = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+    from verify_job_page import real_slug
     status_by_slug: dict[str, bool] = {}
-    for j in jobs:  # a slug that is open anywhere in the registry counts as open
+    for j in jobs:  # a page is closed only if EVERY job that resolves to it is closed
         closed = j.get("status", "").lower() in ("closed", "expired")
-        status_by_slug[j["slug"]] = status_by_slug.get(j["slug"], True) and closed
+        page = real_slug(j["slug"])
+        status_by_slug[page] = status_by_slug.get(page, True) and closed
     res = {"closed": 0, "opened": 0, "touched": []}
     for slug, closed in status_by_slug.items():
         t = set_state(slug, closed)

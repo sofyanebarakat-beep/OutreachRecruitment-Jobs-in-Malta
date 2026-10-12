@@ -77,6 +77,9 @@ DETAIL_DELAY = 4         # seconds between ATS /jobs/<uuid> requests
 MAX_CLOSES_PER_RUN = 25  # safety brake: more than this in one day = something is wrong
 MAX_CREATES_PER_RUN = 10
 MAX_UPDATES_PER_RUN = 10
+MAX_AUDIT_FIXES_PER_RUN = 5   # existing pages repaired per day by the daily page check
+AUDIT_MAX_ATTEMPTS = 2        # after this many failed repairs a page is flagged once and left alone
+AUDIT_STATE_PATH = ROOT / "tools" / "page_audit.json"
 OPEN_VALID_THROUGH = "2029-12-30"
 CLAUDE_TIMEOUT = 75 * 60
 LIVE_FIRST_WAIT = 10 * 60
@@ -215,6 +218,9 @@ def save_registry(jobs: list[dict]) -> None:
 
 def page_files(slug: str) -> list[Path]:
     # GitHub Pages serves jobs/<slug>.html over jobs/<slug>/index.html — keep both in step.
+    # Older jobs keep only a redirect stub at <slug>; the page itself lives at the stub's target.
+    from verify_job_page import real_slug
+    slug = real_slug(slug)
     return [p for p in (ROOT / "jobs" / slug / "index.html", ROOT / "jobs" / f"{slug}.html") if p.exists()]
 
 
@@ -349,12 +355,14 @@ End with one line per job: CREATED <uuid> <slug>  or  SKIPPED <uuid> <reason>.
 def update_prompt(jobs: list[dict]) -> str:
     lines = "\n".join(
         f"- {j['title']} — page: jobs/{j['slug']}/ — fact sheet: tools/ats_snapshots/{j['uuid']}.json — "
-        f"changed: {'; '.join(j['changes'])}"
+        f"{'TO FIX (daily page check)' if j.get('audit') else 'changed'}: {'; '.join(j['changes'])}"
         + (f" — KEEP the owner's salary {j['owner_salary']} (the careers page gives none)"
            if j.get("owner_salary") else "")
         for j in jobs)
     return f"""You are the unattended daily job-sync agent for this repo (Outreach Recruitment).
-These OPEN jobs changed on the careers page since yesterday:
+These OPEN job pages need updating — either the job changed on the careers page since yesterday,
+or the daily page check found something on the page that does not match the careers page /
+the publishing rules ("TO FIX"):
 
 {lines}
 
@@ -470,7 +478,7 @@ def git_preflight() -> str | None:
 
 LISTING_FILES = ["tools/jobs_registry.json", "jobs/index.html", "index.html", "sitemaps/sitemap-jobs.xml",
                  "sitemap_index.xml", "sitemap.xml", "construction-jobs-in-malta.html", "tools/ats_snapshots",
-                 "reports/google_indexing_history.csv"]
+                 "reports/google_indexing_history.csv", "tools/page_audit.json"]
 
 
 def git_commit_push(message: str, push: bool) -> tuple[str, bool]:
@@ -647,6 +655,11 @@ def build_report(r: dict) -> tuple[str, str, str]:
                        f'are indexed and showing in Google Jobs ✅</p>'
                        + (job_list_html(gc["flagged"], "", extra="reason") if gc.get("flagged") else "")
                        + (f'<p style="color:#b45309">{esc(gc["error"])}</p>' if gc.get("error") else ""))
+    pc = r.get("page_check") or {}
+    if pc.get("open_checked"):
+        housekeeping.insert(0, f"Daily page check: {pc['ok']} of {pc['open_checked']} open job pages pass every check"
+                               + (f"; repairing {pc['fixing_today']} today" if pc.get("fixing_today") else "")
+                               + (f", {pc['queued']} queued for the next days" if pc.get("queued") else ""))
     notes = r["notes"] + r.get("salary_notes", [])
     li = lambda xs: "".join(f"<li>{esc(x)}</li>" for x in xs)
     html = f"""<div style="font-family:-apple-system,Segoe UI,Arial,sans-serif;max-width:720px;color:#111">
@@ -908,6 +921,58 @@ def main(args: list[str]) -> int:
     new_jobs = [j for j in new_jobs if j["uuid"] in facts]
     log(f"  {len(new_jobs)} new, {len(r['reopened'])} to reopen, {len(changed)} changed")
 
+    # 4b. Daily page check: every open page vs its fact sheet and the publishing rules.
+    #     Safe problems are repaired (via the same skill-driven update + pre-publish check);
+    #     a salary on the page that the careers page does not give is the owner's and is kept.
+    from verify_job_page import verify
+    audit_state = {}
+    try:
+        audit_state = json.loads(AUDIT_STATE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    busy = {c["uuid"] for c in changed} | {j["uuid"] for j in new_jobs} | set(retitled)
+    audit_ok, audit_todo, audit_given_up = 0, [], []
+    for u, job in open_jobs.items():
+        f = facts.get(u)
+        if not f or u in busy or job in to_close:
+            continue
+        owner = "" if f.get("salary") else (job.get("salary") or page_salary(job["slug"]))
+        problems = verify(dict(job, owner_salary=owner), f, render=False)
+        if not problems:
+            audit_ok += 1
+            audit_state.pop(job["slug"], None)
+            continue
+        st = audit_state.setdefault(job["slug"], {"first_seen": today, "attempts": 0})
+        st["problems"] = problems
+        if st["attempts"] >= AUDIT_MAX_ATTEMPTS:
+            audit_given_up.append(job)
+            continue
+        audit_todo.append({"uuid": u, "title": job["title"], "slug": job["slug"], "city": f.get("city", ""),
+                           "changes": problems, "owner_salary": owner, "audit": True})
+    def severity(item: dict) -> int:  # wrong apply link / salary first, cosmetic last
+        text = " ".join(item["changes"]).lower()
+        if "apply link" in text or "other ats job" in text:
+            return 0
+        if "does not match the careers page" in text or "is not shown on the page" in text:
+            return 1
+        if "competitive salary" in text and len(item["changes"]) == 1:
+            return 3
+        return 2
+    audit_todo.sort(key=severity)
+    audit_fix = audit_todo[:MAX_AUDIT_FIXES_PER_RUN] if create else []
+    changed += audit_fix
+    r["page_check"] = {"open_checked": audit_ok + len(audit_todo) + len(audit_given_up), "ok": audit_ok,
+                       "to_fix": len(audit_todo), "fixing_today": len(audit_fix),
+                       "queued": len(audit_todo) - len(audit_fix)}
+    for job in audit_given_up:  # flagged once, then left for the owner
+        st = audit_state[job["slug"]]
+        if not st.get("flagged"):
+            st["flagged"] = today
+            r["held"].append({"title": job["title"], "url": site_url(job["slug"]),
+                              "reason": "page check keeps failing after automatic repair attempts: "
+                                        + "; ".join(st["problems"][:3])})
+    log(f"  page check: {audit_ok} ok, {len(audit_todo)} to fix ({len(audit_fix)} today)")
+
     yesterday = (date.today() - timedelta(days=1)).isoformat()
     for j in to_close:
         r["closed"].append({"title": j["title"], "slug": j["slug"], "url": site_url(j["slug"]),
@@ -963,8 +1028,16 @@ def main(args: list[str]) -> int:
         updated, failed = update_jobs(batch, facts)
         r["updated"] += updated
         r["failed"] += failed
+        for j in updated:
+            if j.get("audit"):
+                j["changes"] = ["page repaired — " + c for c in j["changes"]]
         for j in updated:  # failed / queued changes keep yesterday's sheet and are retried tomorrow
             save_snapshot(facts[j["uuid"]])
+            if j.get("audit"):
+                audit_state.pop(j["slug"], None)
+        for j in failed:
+            if j.get("audit") and j["slug"] in audit_state:
+                audit_state[j["slug"]]["attempts"] = audit_state[j["slug"]].get("attempts", 0) + 1
         r["held"] += [dict(j, reason="change queued for tomorrow (daily update limit)") for j in overflow]
     elif changed:
         r["updated"] = [dict(j, url=site_url(j["slug"])) for j in changed] if dry else []
@@ -985,6 +1058,9 @@ def main(args: list[str]) -> int:
     if r["site_open_after"] != r["ats_advertised"] and r["ats_advertised"]:
         r["notes"].append(f"Website shows {r['site_open_after']} open jobs vs {r['ats_advertised']} on the "
                           f"careers page — see 'Needs your attention'.")
+
+    if not dry:
+        AUDIT_STATE_PATH.write_text(json.dumps(audit_state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # Same-day re-runs keep the earlier runs' changes in the report (merged before the report
     # is first saved, so an interrupted run cannot leave an empty report behind). Only this

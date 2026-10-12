@@ -96,13 +96,9 @@ def choose(job: dict, description: str = "") -> str:
 
 
 def page_files(slug: str) -> list[Path]:
-    out = []
-    for f in (ROOT / "jobs" / f"{slug}.html", ROOT / "jobs" / slug / "index.html"):
-        if f.exists():
-            text = f.read_text(encoding="utf-8", errors="replace")
-            if len(text) > 5000 and 'http-equiv="refresh"' not in text[:3000].lower():
-                out.append(f)
-    return out
+    sys.path.insert(0, str(ROOT / "tools"))
+    from verify_job_page import real_pages  # follows old redirect stubs to the real page
+    return real_pages(slug)
 
 
 def update_page(path: Path, old: str, new: str) -> bool:

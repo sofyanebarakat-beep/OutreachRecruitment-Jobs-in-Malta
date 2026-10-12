@@ -217,9 +217,29 @@ def check_render(slug: str, title: str) -> list[str]:
     return p
 
 
+STUB_TARGET_RE = re.compile(r'url=https?://outreachrecruitment\.net/jobs/([a-z0-9-]+)|'
+                            r'location\.replace\(["\']https?://outreachrecruitment\.net/jobs/([a-z0-9-]+)')
+
+
+def real_slug(slug: str, _hops: int = 0) -> str:
+    """Older jobs keep only a small redirect stub at jobs/<slug>; the page lives at the target."""
+    if _hops > 2:
+        return slug
+    for f in (ROOT / "jobs" / f"{slug}.html", ROOT / "jobs" / slug / "index.html"):
+        if f.exists():
+            text = f.read_text(encoding="utf-8", errors="replace")
+            if len(text) > 5000:
+                return slug
+            m = STUB_TARGET_RE.search(text)
+            if m and (m.group(1) or m.group(2)) != slug:
+                return real_slug(m.group(1) or m.group(2), _hops + 1)
+    return slug
+
+
 def real_pages(slug: str) -> list[Path]:
     """jobs/<slug>/index.html and/or the flat jobs/<slug>.html (GitHub Pages serves the flat
-    file first), skipping small redirect stubs."""
+    file first), skipping redirect stubs — following a stub to the page it points to."""
+    slug = real_slug(slug)
     out = []
     for f in (ROOT / "jobs" / slug / "index.html", ROOT / "jobs" / f"{slug}.html"):
         if f.exists():
@@ -230,6 +250,7 @@ def real_pages(slug: str) -> list[Path]:
 
 
 def verify(job: dict, facts: dict | None = None, render: bool = True) -> list[str]:
+    job = dict(job, slug=real_slug(job["slug"]))
     slug = job["slug"]
     files = real_pages(slug)
     problems = [] if files else [f"no page found for jobs/{slug}"]
