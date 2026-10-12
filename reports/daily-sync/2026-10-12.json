@@ -13,58 +13,9 @@
   "ats_advertised": 116,
   "site_open_before": 116,
   "listings": {
-    "hub_cards": {
-      "engineering-jobs-in-malta.html": {
-        "replaced": 2,
-        "removed": 0
-      },
-      "finance-jobs-in-malta.html": {
-        "replaced": 1,
-        "removed": 3
-      },
-      "hospitality-jobs-in-malta.html": {
-        "replaced": 33,
-        "removed": 34
-      },
-      "index.html": {
-        "replaced": 10,
-        "removed": 0
-      },
-      "insurance-jobs-in-malta.html": {
-        "replaced": 5,
-        "removed": 0
-      },
-      "it-jobs-in-malta.html": {
-        "replaced": 0,
-        "removed": 6
-      },
-      "jobs-in-malta-top-15-opening-jobs.html": {
-        "replaced": 7,
-        "removed": 0
-      },
-      "opening-jobs-in-malta.html": {
-        "replaced": 1,
-        "removed": 0
-      },
-      "retail-jobs-in-malta.html": {
-        "replaced": 4,
-        "removed": 0
-      },
-      "salary-calculator-malta.html": {
-        "replaced": 6,
-        "removed": 0
-      },
-      "sales-jobs-in-malta.html": {
-        "replaced": 1,
-        "removed": 23
-      },
-      "subcontracting-jobs-in-malta.html": {
-        "replaced": 26,
-        "removed": 0
-      }
-    },
+    "hub_cards": {},
     "hubs_now_empty": [],
-    "carousel_swaps": 612,
+    "carousel_swaps": 0,
     "itemlist_items": 116
   },
   "site_open_after": 116
