@@ -885,34 +885,38 @@ def main(args: list[str]) -> int:
         r["notes"].append(f"Website shows {r['site_open_after']} open jobs vs {r['ats_advertised']} on the "
                           f"careers page — see 'Needs your attention'.")
 
-    # 7. Commit + push, Google, live check
-    pushed = False
-    if not dry:
-        parts = [f"{len(r[k])} {label}" for k, label in
-                 (("created", "added"), ("reopened", "reopened"), ("closed", "closed"), ("updated", "updated"))
-                 if r[k]]
-        save_report_files(r)
-        r["git"], pushed = git_commit_push(
-            f"[Daily Sync] {', '.join(parts) or 'listings + fact sheets'} — {r['site_open_after']} open "
-            f"(careers page {r['ats_advertised']})", push)
-        if pushed:
-            r["google"] = notify_google(r)
-    if do_live and not dry:
-        log("\n[7] Checking the live site …")
-        r["live"] = live_check(r, pushed)
-        log(f"  live: {r['live']}")
-
-    # Same-day re-runs keep the earlier run's changes in the report.
+    # Same-day re-runs keep the earlier runs' changes in the report (merged before the report
+    # is first saved, so an interrupted run cannot leave an empty report behind). Only this
+    # run's own changes are committed and sent to Google.
+    run_changes = {k: list(r[k]) for k in ("created", "reopened", "closed", "updated")}
     first = REPORT_DIR / f"{today}-first.json"
     if not r["dry_run"]:
         if first.exists():
             prev = json.loads(first.read_text(encoding="utf-8"))
-            for k in ("created", "reopened", "closed", "updated"):
+            for k in run_changes:
                 seen = {j.get("url") for j in r[k]}
                 r[k] = [j for j in prev.get(k, []) if j.get("url") not in seen] + r[k]
             r["site_open_before"] = prev["site_open_before"]
         else:
             first.write_text(json.dumps(r, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    # 7. Commit + push, Google, live check
+    pushed = False
+    if not dry:
+        parts = [f"{len(run_changes[k])} {label}" for k, label in
+                 (("created", "added"), ("reopened", "reopened"), ("closed", "closed"), ("updated", "updated"))
+                 if run_changes[k]]
+        save_report_files(r)
+        r["git"], pushed = git_commit_push(
+            f"[Daily Sync] {', '.join(parts) or 'listings + fact sheets'} — {r['site_open_after']} open "
+            f"(careers page {r['ats_advertised']})", push)
+        if pushed:
+            r["google"] = notify_google(dict(r, **run_changes))
+    if do_live and not dry:
+        log("\n[7] Checking the live site …")
+        r["live"] = live_check(r, pushed)
+        log(f"  live: {r['live']}")
+
     subject, html_body, md = save_report_files(r)
     if pushed:  # the report files themselves, one small follow-up commit
         git("add", "--", *[rel(p) for p in REPORT_DIR.glob(f"{today}*")])
