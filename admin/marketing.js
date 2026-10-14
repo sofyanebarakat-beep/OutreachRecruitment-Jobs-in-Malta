@@ -343,6 +343,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       $("#mk-img-mode", root).textContent = I.mode === "online" ? "Saved online" : "Saved in this browser";
       $("#mk-img-note", root).textContent = current && !current.online
         ? "This picture is saved in this browser, so it is not included in “Copy for email” — use Copy picture or Download, then add it in your email tool."
+          + (window.AdminStore?.mode === "supabase" ? " To save pictures online, run supabase/marketing_storage.sql once in Supabase → SQL Editor." : "")
         : current ? "Included at the top of “Copy for email”." : I.note;
       $$(".mk-thumb-pick", root).forEach((b) => (b.onclick = () => { I.setPick(key, b.dataset.id); paint(); }));
       $$(".mk-thumb-del", root).forEach((b) => (b.onclick = async () => {

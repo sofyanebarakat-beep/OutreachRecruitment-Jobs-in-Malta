@@ -41,9 +41,14 @@
     async init() {
       const S = window.AdminStore;
       if (S?.mode === "supabase" && S.sb) {
+        // list() can return an empty list without an error when the bucket does not exist, so ask for
+        // the bucket itself; a signed-in admin may not be allowed to read bucket metadata, in which
+        // case the first upload decides (see add()).
         const { error } = await S.sb.storage.from(BUCKET).list("", { limit: 1 });
-        if (!error) { this.mode = "online"; this.note = ""; return; }
-        this.note = "Pictures are saved in this browser. To keep them online (any device, and inside emails), run supabase/marketing_storage.sql in Supabase once.";
+        const bucket = await S.sb.storage.getBucket(BUCKET);
+        const missing = /not found/i.test(error?.message || "") || /not found/i.test(bucket.error?.message || "");
+        if (!error && !missing) { this.mode = "online"; this.note = ""; return; }
+        this.note = "The online picture folder is not set up yet, so pictures are saved in this browser. To keep them online (any device, and inside emails), run supabase/marketing_storage.sql once in Supabase → SQL Editor.";
       } else {
         this.note = "Pictures are saved in this browser until you sign in.";
       }
@@ -67,8 +72,11 @@
       if (this.mode === "online") {
         const path = `posts/${Date.now()}-${slugName(file.name)}.${f.type === "image/png" ? "png" : f.type === "image/gif" ? "gif" : f.type === "image/webp" ? "webp" : "jpg"}`;
         const { error } = await window.AdminStore.sb.storage.from(BUCKET).upload(path, f, { contentType: f.type, cacheControl: "31536000" });
-        if (error) throw error;
-        return path;
+        if (!error) return path;
+        if (!/bucket not found|not found/i.test(error.message || "")) throw error;
+        // Bucket missing: fall back to this browser so the picture is still saved.
+        this.mode = "local";
+        this.note = "The online picture folder is not set up yet, so pictures are saved in this browser. To keep them online (any device, and inside emails), run supabase/marketing_storage.sql once in Supabase → SQL Editor.";
       }
       const id = `local-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
       await tx("readwrite", (st) => st.put({ id, name: file.name, type: f.type, blob: f, created: Date.now() }));
