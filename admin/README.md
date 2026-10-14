@@ -1,6 +1,12 @@
 # Outreach Admin — Course & KPI
 
-Private admin at `/admin/` (noindex, not linked from the site). Two sections:
+Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
+
+- **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline
+  ("✅ In sync — careers page N / website N (+x opened, -y closed, z updated)"), counts, live-site check,
+  new / closed / reopened / updated jobs with what changed, items needing attention, notes, the Google
+  indexing check, site housekeeping, and every earlier day (`#/jobsync/<date>`). Reads
+  `reports/daily-sync/index.json` + `<date>.json`, which `tools/daily_job_sync.py` pushes every morning.
 
 - **Course** — the 30-day *Outreach Recruitment — SEO & KPI Course* (1 hour daily: theory, practice,
   QCM, KPI tracking): today's lesson, a 30-day progress grid with notes per day, the 4-week plan with
@@ -8,7 +14,7 @@ Private admin at `/admin/` (noindex, not linked from the site). Two sections:
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
 
-Files: `index.html`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
+Files: `index.html`, `jobsync.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 
 ## Data
 Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to emails in `public.admin_users`

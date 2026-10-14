@@ -49,25 +49,33 @@
 
   <!-- App -->
   <div id="app" class="app" hidden>
-    <header class="topbar">
+    <aside class="sidebar">
       <div class="brand"><span class="brand-mark">⇋</span> Outreach Admin</div>
       <nav id="nav" aria-label="Admin sections">
-        <a href="#/course" data-route="course">Course</a>
-        <a href="#/kpi" data-route="kpi">KPI</a>
+        <div class="nav-group">Marketing</div>
+        <a href="#/jobsync" data-route="jobsync"><span aria-hidden="true">🔄</span> Job Sync</a>
+        <div class="nav-group">Learning</div>
+        <a href="#/course" data-route="course"><span aria-hidden="true">📘</span> Course</a>
+        <a href="#/kpi" data-route="kpi"><span aria-hidden="true">📈</span> KPI</a>
       </nav>
-      <div class="topbar-right">
+      <div class="sidebar-foot">
         <span id="mode-badge" class="badge"></span>
-        <button class="btn ghost small" id="theme-toggle" type="button" aria-label="Switch light/dark">◐</button>
-        <button class="btn ghost small" id="sign-out" type="button">Sign out</button>
+        <div class="sidebar-actions">
+          <button class="btn ghost small" id="theme-toggle" type="button" aria-label="Switch light/dark">◐</button>
+          <button class="btn ghost small" id="sign-out" type="button">Sign out</button>
+        </div>
       </div>
-    </header>
-    <div id="banner" class="banner" hidden></div>
-    <main id="view" tabindex="-1"></main>
+    </aside>
+    <div class="main-col">
+      <div id="banner" class="banner" hidden></div>
+      <main id="view" tabindex="-1"></main>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="config.js"></script>
   <script src="course30-data.js"></script>
+  <script src="jobsync.js"></script>
   <script src="course30.js"></script>
 </body>
 </html>

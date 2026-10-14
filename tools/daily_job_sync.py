@@ -775,12 +775,33 @@ def wait_until(hhmm: str) -> None:
         time.sleep(secs)
 
 
+def write_report_index() -> None:
+    """reports/daily-sync/index.json — one line per day, read by the admin's Job Sync section."""
+    rows = []
+    for p in sorted(REPORT_DIR.glob("????-??-??.json"), reverse=True):
+        try:
+            r = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        rows.append({
+            "date": r.get("date", p.stem), "ats": r.get("ats_advertised"),
+            "site_before": r.get("site_open_before"), "site_after": r.get("site_open_after"),
+            "in_sync": r.get("site_open_after") == r.get("ats_advertised"),
+            "opened": len(r.get("created", [])) + len(r.get("reopened", [])), "closed": len(r.get("closed", [])),
+            "updated": len(r.get("updated", [])), "attention": len(r.get("failed", [])) + len(r.get("held", [])),
+            "live_ok": (r.get("live") or {}).get("ok"),
+        })
+    (REPORT_DIR / "index.json").write_text(json.dumps(rows, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def save_report_files(r: dict) -> tuple[str, str, str]:
     subject, html_body, md = build_report(r)
     today = r["date"] + ("-dryrun" if r.get("dry_run") else "")
     (REPORT_DIR / f"{today}.md").write_text(md, encoding="utf-8")
     (REPORT_DIR / f"{today}.json").write_text(json.dumps(r, indent=2, ensure_ascii=False), encoding="utf-8")
     (REPORT_DIR / f"{today}.html").write_text(html_body, encoding="utf-8")
+    if not r.get("dry_run"):
+        write_report_index()
     return subject, html_body, md
 
 
@@ -1150,7 +1171,8 @@ def main(args: list[str]) -> int:
     if not dry and push:
         # Always publish the day's report: the cloud backup looks for it on GitHub to know
         # the Mac run happened.
-        paths = [rel(p) for p in REPORT_DIR.glob(f"{today}*")] + ["tools/indexing_followup.json"]
+        paths = [rel(p) for p in REPORT_DIR.glob(f"{today}*")] + ["tools/indexing_followup.json",
+                                                                  "reports/daily-sync/index.json"]
         git("add", "--", *[p for p in paths if (ROOT / p).exists()])
         if git("diff", "--cached", "--quiet").returncode:
             git("commit", "-m", f"[Daily Sync] report {today}\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")

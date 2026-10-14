@@ -477,9 +477,10 @@
   function route() {
     const h = location.hash;
     if (h && !h.startsWith("#/")) return; // auth tokens in the hash — leave them to Supabase
-    const r = (h.slice(2) || "course").split("?")[0];
+    const [r, param] = (h.slice(2) || "jobsync").split("?")[0].split("/");
     $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === r));
-    (r === "kpi" ? renderKPI : renderCourse)();
+    if (r === "jobsync") window.renderJobSync($("#view"), param);
+    else (r === "kpi" ? renderKPI : renderCourse)();
     $("#view").focus({ preventScroll: true });
     window.scrollTo(0, 0);
   }
@@ -492,7 +493,7 @@
     $("#sign-out").hidden = Store.mode !== "supabase";
     try { await Store.load(); }
     catch (e) { $("#view").innerHTML = `<div class="card"><h2>Could not load your data</h2><p>${esc(e.message || e)}</p></div>`; return; }
-    if (!location.hash.startsWith("#/")) history.replaceState(null, "", "#/course");
+    if (!location.hash.startsWith("#/")) history.replaceState(null, "", "#/jobsync");
     route();
   }
   function initTheme() {
@@ -557,7 +558,7 @@
       const m = $("#reset-msg");
       const { error } = await Store.sb.auth.updateUser({ password: e.target.password.value });
       if (error) { m.className = "msg error"; m.textContent = error.message; return; }
-      history.replaceState(null, "", location.pathname + "#/course");
+      history.replaceState(null, "", location.pathname + "#/jobsync");
       enterIfAdmin();
     };
     $("#sign-out").onclick = async () => { await Store.sb.auth.signOut(); show("screen-login"); };
