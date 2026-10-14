@@ -202,8 +202,9 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
   }
 
   // ── copy ──────────────────────────────────────────────────────────────────
-  async function copyRich(text, btn) {
-    const html = toHTML(text), plain = toPlain(text);
+  async function copyRich(text, btn, imgUrl = "") {
+    const pic = imgUrl ? `<p style="margin:0 0 14px"><img src="${esc(imgUrl)}" alt="" style="max-width:100%;height:auto;border-radius:8px;display:block"></p>` : "";
+    const html = pic ? toHTML(text).replace(/^(<div[^>]*>)/, `$1${pic}`) : toHTML(text), plain = toPlain(text);
     try {
       await navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([html], { type: "text/html" }), "text/plain": new Blob([plain], { type: "text/plain" }) })]);
     } catch {
@@ -269,7 +270,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         const set = new Set(state.picks); cb.checked ? set.add(cb.value) : set.delete(cb.value);
         state.picks = jobs.map((j) => j.slug).filter((s) => set.has(s)).slice(0, 10); window.renderMarketing(view);
       }));
-      wireFilter(body); wirePreview(body);
+      wireFilter(body); wirePreview(body, "generic");
       return;
     }
 
@@ -293,7 +294,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         ${previewCard(text)}
       </section>`;
     $$("[data-slug]", body).forEach((b) => (b.onclick = () => { state.slug = b.dataset.slug; window.renderMarketing(view); }));
-    wireFilter(body); wirePreview(body);
+    wireFilter(body); wirePreview(body, job.slug);
   };
 
   function previewCard(text) {
@@ -303,17 +304,71 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         <button class="btn primary" id="mk-copy-email">📧 Copy for email</button>
         <button class="btn" id="mk-copy-social">📱 Copy for social media</button>
       </div>
-      <div class="mk-preview" id="mk-preview">${toHTML(text)}</div>
+      <div class="mk-image-panel">
+        <div class="section-title"><h3>🖼️ Picture</h3><span class="muted small" id="mk-img-mode"></span></div>
+        <div class="mk-actions">
+          <label class="btn small" for="mk-upload">⬆️ Upload picture</label>
+          <input type="file" id="mk-upload" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
+          <button class="btn small" id="mk-img-copy" hidden>📋 Copy picture</button>
+          <a class="btn small" id="mk-img-download" hidden download>⬇️ Download</a>
+          <button class="btn small ghost" id="mk-img-none" hidden>No picture</button>
+        </div>
+        <div class="mk-library" id="mk-library"><span class="muted small">Loading your pictures…</span></div>
+        <p class="small muted" id="mk-img-note" style="margin:6px 0 0"></p>
+      </div>
+      <div class="mk-preview" id="mk-preview"><div id="mk-preview-img"></div><div id="mk-preview-text">${toHTML(text)}</div></div>
       <details><summary class="small">Edit text (use **double stars** for bold)</summary>
         <textarea id="mk-text" rows="16" style="margin-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(text)}</textarea></details>
       <p class="small muted" style="margin:8px 0 0"><span id="mk-count">${toSocial(text).length}</span> characters · LinkedIn limit 3,000 · Instagram 2,200</p>
     </div>`;
   }
-  function wirePreview(root) {
-    const ta = $("#mk-text", root), pv = $("#mk-preview", root), cnt = $("#mk-count", root);
+  function wirePreview(root, key) {
+    const ta = $("#mk-text", root), pv = $("#mk-preview-text", root), cnt = $("#mk-count", root);
+    const I = window.AdminImages;
+    let images = [], current = null;
     ta.oninput = () => { pv.innerHTML = toHTML(ta.value); cnt.textContent = toSocial(ta.value).length; };
-    $("#mk-copy-email", root).onclick = (e) => copyRich(ta.value, e.currentTarget);
+    $("#mk-copy-email", root).onclick = (e) => copyRich(ta.value, e.currentTarget, current?.online ? current.url : "");
     $("#mk-copy-social", root).onclick = (e) => copyText(toSocial(ta.value), e.currentTarget);
+
+    const paint = () => {
+      current = images.find((im) => im.id === I.pickFor(key)) || null;
+      $("#mk-library", root).innerHTML = images.length
+        ? images.map((im) => `<div class="mk-thumb ${current?.id === im.id ? "active" : ""}">
+            <button class="mk-thumb-pick" data-id="${esc(im.id)}" title="Use this picture"><img src="${esc(im.url)}" alt="${esc(im.name)}" loading="lazy"></button>
+            <button class="mk-thumb-del" data-del="${esc(im.id)}" aria-label="Delete ${esc(im.name)}">✕</button></div>`).join("")
+        : `<span class="muted small">No pictures yet — upload one and it's saved for next time.</span>`;
+      $("#mk-preview-img", root).innerHTML = current ? `<img src="${esc(current.url)}" alt="" class="mk-preview-pic">` : "";
+      for (const id of ["#mk-img-copy", "#mk-img-download", "#mk-img-none"]) $(id, root).hidden = !current;
+      if (current) { const a = $("#mk-img-download", root); a.href = current.url; a.download = current.name || "picture"; }
+      $("#mk-img-mode", root).textContent = I.mode === "online" ? "Saved online" : "Saved in this browser";
+      $("#mk-img-note", root).textContent = current && !current.online
+        ? "This picture is saved in this browser, so it is not included in “Copy for email” — use Copy picture or Download, then add it in your email tool."
+        : current ? "Included at the top of “Copy for email”." : I.note;
+      $$(".mk-thumb-pick", root).forEach((b) => (b.onclick = () => { I.setPick(key, b.dataset.id); paint(); }));
+      $$(".mk-thumb-del", root).forEach((b) => (b.onclick = async () => {
+        if (!confirm("Delete this picture from your library?")) return;
+        try { await I.remove(b.dataset.del); images = await I.list(); paint(); } catch (e) { alert("Could not delete: " + (e.message || e)); }
+      }));
+    };
+    $("#mk-upload", root).onchange = async (e) => {
+      const files = [...e.target.files]; if (!files.length) return;
+      $("#mk-img-note", root).textContent = `Saving ${files.length} picture(s)…`;
+      try {
+        let last = null;
+        for (const f of files) last = await I.add(f);
+        images = await I.list(); I.setPick(key, last); paint();
+      } catch (err) { $("#mk-img-note", root).textContent = "Could not save the picture: " + (err.message || err); }
+      e.target.value = "";
+    };
+    $("#mk-img-none", root).onclick = () => { I.setPick(key, null); paint(); };
+    $("#mk-img-copy", root).onclick = async (e) => {
+      try { await navigator.clipboard.write([new ClipboardItem({ "image/png": I.pngBlob(current.url) })]); flash(e.currentTarget); }
+      catch (err) { alert("Your browser blocked copying the picture — use Download instead."); }
+    };
+    (async () => {
+      try { await I.init(); images = await I.list(); } catch (err) { I.note = "Picture library unavailable: " + (err.message || err); }
+      paint();
+    })();
   }
   function wireFilter(root) {
     const f = $("#mk-filter", root);

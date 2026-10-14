@@ -192,3 +192,15 @@ details summary { cursor: pointer; font-weight: 600; }
   max-height: 640px; overflow-y: auto; }
 .mk-preview a { color: #442dfa; word-break: break-all; }
 @media (max-width: 860px) { .mk-layout { grid-template-columns: minmax(0, 1fr); } .mk-picklist { max-height: 280px; } }
+
+.mk-image-panel { border: 1px dashed var(--border); border-radius: 12px; padding: 12px; margin-bottom: 12px; display: grid; gap: 8px; }
+.mk-image-panel h3 { margin: 0; }
+.mk-library { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.mk-thumb { position: relative; border-radius: 10px; border: 2px solid transparent; overflow: hidden; background: var(--surface-2); aspect-ratio: 1; }
+.mk-thumb.active { border-color: var(--brand); }
+.mk-thumb-pick { all: unset; cursor: pointer; display: block; width: 100%; height: 100%; }
+.mk-thumb-pick img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mk-thumb-del { position: absolute; top: 4px; right: 4px; border: 0; border-radius: 999px; width: 22px; height: 22px; font-size: 12px;
+  background: rgba(0,0,0,.6); color: #fff; cursor: pointer; line-height: 22px; padding: 0; }
+.mk-preview-pic { width: 100%; height: auto; border-radius: 8px; display: block; margin-bottom: 14px; }
+label.btn { font-weight: 600; }

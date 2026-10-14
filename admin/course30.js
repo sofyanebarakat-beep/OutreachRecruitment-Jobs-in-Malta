@@ -79,6 +79,7 @@
       }
     },
   };
+  window.AdminStore = Store; // shared with marketing.js / images.js (same signed-in Supabase client)
   const save = async (msg) => {
     try { await Store.save(); if (msg) toast(msg); }
     catch (e) { toast("Could not save: " + (e.message || e), true); }

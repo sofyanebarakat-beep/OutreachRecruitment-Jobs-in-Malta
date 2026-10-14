@@ -13,6 +13,10 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   adjectives taken from the careers page), the role in one sentence ("You'll …"), "✨ What's in it for
   you", a call to action, "🌐 Apply now:" the job's page on the website, "💼 More Jobs:", hashtags.
   Bullet lists are still available as template placeholders.
+  **Picture library** (`images.js`): upload pictures to a post; they are saved for next time and the
+  picture chosen for each job is remembered. Signed in + bucket set up → saved online in Supabase Storage
+  (bucket `marketing`, run `supabase/marketing_storage.sql` once) and embedded in "Copy for email";
+  otherwise saved in the browser (IndexedDB) with Copy picture / Download. Large pictures are resized to 1600px.
   "Copy for email" = rich text with real bold; "Copy for social media" = Unicode bold. Also a Generic
   round-up post and editable templates (`{title}`, `{apply_url}` … saved in the browser). Today's new jobs
   (from the latest sync report) are shown first. Code: `marketing.js`.
@@ -23,7 +27,7 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
 
-Files: `index.html`, `jobsync.js`, `marketing.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
+Files: `index.html`, `jobsync.js`, `marketing.js`, `images.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 
 ## Data
 Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to emails in `public.admin_users`
