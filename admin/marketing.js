@@ -13,27 +13,17 @@
   const SITE = "https://outreachrecruitment.net";
   const MORE_JOBS = SITE + "/jobs";
   const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
-  const TPL_KEY = "admin:marketing-template", GEN_KEY = "admin:marketing-generic-template";
+  const TPL_KEY = "admin:marketing-template:v2", GEN_KEY = "admin:marketing-generic-template";
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
                   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
 
   const DEFAULT_TEMPLATE = `🚨 **WE'RE HIRING: {title}** 🚨
-
-📍 **Location:** {city}, Malta
-🕒 **Job type:** {job_type}
-💶 **Salary:** {salary}
+📍 {city}, Malta · 🕒 {job_type} · 💶 {salary}
 
 {intro}
 
-✅ **What you'll do**
-{responsibilities}
-
-🎯 **What we're looking for**
-{requirements}
-
-🎁 **What's on offer**
-{offer}
+👉 **Ready for your next step? Apply today!**
 
 🌐 **Apply now:** {apply_url}
 💼 **More Jobs:** {more_jobs_url}
@@ -127,6 +117,49 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     }).filter((b) => b !== null).join("\n\n").replace(/\n{3,}/g, "\n\n").trim();
   }
 
+  const reEsc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const sentencesOf = (t) => String(t).replace(/\s+/g, " ").trim().match(/[^.!?]+[.!?]+/g) || (t ? [String(t)] : []);
+  const SECTOR_CLIENT = {
+    "Hospitality": "a well-established hospitality business in Malta", "Construction": "a leading construction company in Malta",
+    "Marine & Shipping": "a respected marine company in Malta", "Finance & Accounting": "an established finance firm in Malta",
+    "Insurance": "a well-known insurance company in Malta", "IT & Technology": "a growing technology company in Malta",
+    "Customer Service": "an international company based in Malta", "Logistics": "an established logistics company in Malta",
+    "Retail": "a well-known retail business in Malta", "Sales": "a growing company in Malta",
+    "Wellness": "a premium wellness business in Malta", "Healthcare": "a respected healthcare provider in Malta",
+  };
+
+  // A short, impactful introduction: who is hiring (Outreach Recruitment on behalf of our client),
+  // the role in one sentence addressed to the candidate, and what's in it for them.
+  function introText(job, facts, d) {
+    const title = job.title, city = cityOf(job, facts);
+    const intro = sentencesOf(d.intro.join(" "));
+    const all = [...intro, ...sentencesOf(d.responsibilities.join(". "))];
+    const first = intro[0] || "";
+
+    let client = (first.match(/^our client,?\s+(.+?),\s+(?:is|are)\s+(?:currently\s+)?(?:looking|seeking|searching|hiring|recruiting)/i) || [])[1]
+      || (d.intro.join(" ").match(/our client(?: is|,)\s+(an?\s+[^,.;]+)/i) || [])[1] || "";
+    client = client.trim() || SECTOR_CLIENT[job.category] || "a well-established company in Malta";
+    let qual = (first.match(new RegExp("(an?\\s+[^.,]{0,60}?)\\s*" + reEsc(title), "i")) || [])[1] || "";
+    if (!qual || /our client/i.test(qual) || qual.split(" ").length > 8) qual = /^[aeiou]/i.test(title) ? "an" : "a";
+    const where = city && !new RegExp(reEsc(city), "i").test(client) ? ` in ${city}` : "";
+    const p1 = `**Outreach Recruitment** is recruiting on behalf of our client, ${client}, who is looking for ${qual.trim()} **${title}** to join their team${where}.`;
+
+    const roleRaw = all.find((t) => /successful candidate|you will|will be responsible|responsible for|will assist|will support|will join/i.test(t) && t !== first);
+    let p2 = roleRaw ? roleRaw.trim()
+      .replace(/^the successful candidates? will be/i, "You'll be").replace(/^the successful candidates? will/i, "You'll")
+      .replace(/^the (?:role|position) (?:will )?(?:involves?|includes?)/i, "You'll be").replace(/^you will/i, "You'll") : "";
+    if (!p2 && d.responsibilities.length) {
+      const lc = (t) => t.replace(/\s*[.;]$/, "").replace(/\s+-\s+(\w)/g, (_, c) => ", " + c.toLowerCase()).replace(/^\w/, (c) => c.toLowerCase());
+      p2 = "Your role will include " + d.responsibilities.slice(0, 2).map(lc).join(" and ") + ".";
+    }
+    if (p2.length > 240) p2 = p2.slice(0, 237).replace(/\s+\S*$/, "") + "…";
+
+    const perks = d.offer.filter((o) => !/full[- ]time|salary|employment with|interested candidates/i.test(o)).slice(0, 2)
+      .map((o) => o.replace(/\s*[.;]$/, "").replace(/^\w/, (c) => c.toLowerCase()).replace(/^(opportunit(?:y|ies))\b/, "the $1"));
+    const p3 = perks.length ? `✨ **What's in it for you:** ${perks.join(" and ")}.` : "";
+    return [p1, p2, p3].filter(Boolean).join("\n\n");
+  }
+
   function jobValues(job, facts) {
     const d = parseDescription(facts?.description_html, facts?.description_text);
     const salary = job.salary || salaryLabel(facts?.salary) || "Competitive salary";
@@ -134,7 +167,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       .filter(Boolean).join(" · ");
     return {
       title: job.title, city: cityOf(job, facts), job_type: type, salary,
-      intro: firstSentences(d.intro.join(" ")),
+      intro: introText(job, facts, d), short_intro: firstSentences(d.intro.join(" ")),
       responsibilities: bullets(d.responsibilities), requirements: bullets(d.requirements), offer: bullets(d.offer, 4),
       apply_url: `${SITE}/jobs/${job.slug}/`, more_jobs_url: MORE_JOBS, hashtags: hashtags(job, facts),
       category: job.category || "",
@@ -292,7 +325,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     body.innerHTML = `
       <section class="grid-2">
         <div class="card"><h2>Job post template</h2>
-          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
+          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "intro", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
             A paragraph whose placeholders are all empty is left out. <code>**text**</code> = bold.</p>
           <textarea id="tpl-job" rows="22" style="font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(store.get(TPL_KEY) || DEFAULT_TEMPLATE)}</textarea>
           <div class="form-actions"><button class="btn primary" id="tpl-job-save">Save</button><button class="btn" id="tpl-job-reset">Reset to default</button></div></div>

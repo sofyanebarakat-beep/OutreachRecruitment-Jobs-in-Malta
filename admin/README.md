@@ -8,8 +8,11 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   indexing check, site housekeeping, and every earlier day (`#/jobsync/<date>`). Reads
   `reports/daily-sync/index.json` + `<date>.json`, which `tools/daily_job_sync.py` pushes every morning.
 - **Marketing › Email Marketing** — ready-to-paste job posts built from the careers-page description
-  (fact sheet `tools/ats_snapshots/<uuid>.json`): title, city, type, salary, intro, up to 5 duties /
-  requirements / offer bullets, "🌐 Apply now:" the job's page on the website, "💼 More Jobs:", hashtags.
+  (fact sheet `tools/ats_snapshots/<uuid>.json`). Default job post = a short introduction only: title,
+  city · type · salary, "Outreach Recruitment is recruiting on behalf of our client, …" (client and
+  adjectives taken from the careers page), the role in one sentence ("You'll …"), "✨ What's in it for
+  you", a call to action, "🌐 Apply now:" the job's page on the website, "💼 More Jobs:", hashtags.
+  Bullet lists are still available as template placeholders.
   "Copy for email" = rich text with real bold; "Copy for social media" = Unicode bold. Also a Generic
   round-up post and editable templates (`{title}`, `{apply_url}` … saved in the browser). Today's new jobs
   (from the latest sync report) are shown first. Code: `marketing.js`.
