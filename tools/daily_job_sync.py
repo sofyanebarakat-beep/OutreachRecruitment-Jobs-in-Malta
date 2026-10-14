@@ -902,8 +902,6 @@ def main(args: list[str]) -> int:
             r["salary_synced"].append(f"{job['title']}: {job.get('salary') or 'none'} → {salary_label(sal)}")
             if not dry:
                 job["salary"] = salary_label(sal)
-    with_salary = sum(1 for u, j in open_jobs.items() if (facts.get(u) or {}).get("salary") or j.get("salary"))
-    r["salary_coverage"] = {"with_salary": with_salary, "open": len(open_jobs)}
 
     # 4. Reopen / new / changed
     taken = taken_slugs(registry)
@@ -1094,6 +1092,10 @@ def main(args: list[str]) -> int:
         TOUCHED.update(res.pop("touched"))
         r["listings"] = res
     r["site_open_after"] = len([j for j in load_registry() if is_open(j)])
+    # Salary coverage from the FINAL open list (after closes / new jobs), so it matches "Website now".
+    final_open = [j for j in load_registry() if is_open(j)]
+    r["salary_coverage"] = {"open": len(final_open), "with_salary": sum(
+        1 for j in final_open if j.get("salary") or (facts.get(job_uuid(j)) or {}).get("salary"))}
     if dry:
         r["site_open_after"] = r["site_open_before"] - len(r["closed"]) + len(r["reopened"]) + len(
             [j for j in r["held"] if j.get("reason", "").startswith("new job")])
