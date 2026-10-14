@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-12T06:18:29.118862+02:00",
+  "generated_at": "2026-10-14T10:23:17.594758+02:00",
   "checks": {
     "gsc": {
       "ok": true,
-      "through": "2026-10-10",
+      "through": "2026-10-12",
       "days": 6,
       "queries": 1000,
       "pages": 472
@@ -15,11 +15,11 @@
     },
     "audit": {
       "ok": true,
-      "issues": 1644
+      "issues": 1704
     },
     "sectors": {
       "ok": true,
-      "rows": 18
+      "rows": 16
     },
     "opportunities": {
       "ok": true,

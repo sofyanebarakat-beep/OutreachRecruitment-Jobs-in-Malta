@@ -1,4 +1,6 @@
 title,url,eligible,issue
+Hotel Maintenance Assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant,True,
+Housekeeper,https://outreachrecruitment.net/jobs/housekeeper-rabat,True,
 Front Office Executive,https://outreachrecruitment.net/jobs/front-office-executive,True,
 Italian Restaurant – Multiple Hospitality Positions,https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai,True,
 Junior Administrative Executive,https://outreachrecruitment.net/jobs/junior-administrative-executive,True,
@@ -10,7 +12,6 @@ Restaurant Manager - Italian Speaking,https://outreachrecruitment.net/jobs/resta
 Gypsum Installers,https://outreachrecruitment.net/jobs/gypsum-installers,True,
 Mini Bus Driver – Licence D,https://outreachrecruitment.net/jobs/mini-bus-driver-licence-d,True,
 Proposal Engineer – Energy Solutions,https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions,True,
-Head Chef in Gozo,https://outreachrecruitment.net/jobs/head-chef-in-gozo,True,
 Storekeeper,https://outreachrecruitment.net/jobs/storekeeper-zebbug,True,
 Driver License B,https://outreachrecruitment.net/jobs/driver-license-b,True,
 Forklift Operator,https://outreachrecruitment.net/jobs/forklift-operator,True,
@@ -23,7 +24,6 @@ Procurement Officer,https://outreachrecruitment.net/jobs/procurement-officer,Tru
 Operations Supervisor,https://outreachrecruitment.net/jobs/operations-supervisor,True,
 Heavy Equipment Mechanic,https://outreachrecruitment.net/jobs/heavy-equipment-mechanic-2,True,
 Learning & Development Executive - Hybrid,https://outreachrecruitment.net/jobs/learning-development-executive-hybrid,True,
-Payment Clearing Specialist,https://outreachrecruitment.net/jobs/payment-clearing-specialist,True,
 Auto Electrician (Heavy Vehicles),https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles,True,
 Heavy Equipment Mechanic,https://outreachrecruitment.net/jobs/heavy-equipment-mechanic,True,
 Steel Shutter Installer,https://outreachrecruitment.net/jobs/steel-shutter-installer,True,
@@ -33,13 +33,12 @@ Head Chef,https://outreachrecruitment.net/jobs/head-chef-steakhouse,True,
 Senior Waiter / Sommelier,https://outreachrecruitment.net/jobs/senior-waiter-sommelier,True,
 Deli Counter Assistant / Salumeria Specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist,True,
 Chef De Partie,https://outreachrecruitment.net/jobs/chef-de-partie-4,True,
-Kitchen Helper,https://outreachrecruitment.net/jobs/kitchen-helper,True,
 Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,True,
 Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,True,
 Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,True,
 HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,False,No JSON-LD schema found
 Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,False,No JSON-LD schema found
-Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,False,No JSON-LD schema found
+Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,True,
 Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,False,No JSON-LD schema found
 Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,False,No JSON-LD schema found
 Shipyard Sprayer / Painter,https://outreachrecruitment.net/jobs/shipyard-sprayer-painter,False,No JSON-LD schema found
@@ -47,21 +46,18 @@ Marine Carpenter,https://outreachrecruitment.net/jobs/marine-carpenter,False,No 
 Electronic Technician,https://outreachrecruitment.net/jobs/electronic-technician,False,No JSON-LD schema found
 Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,False,No JSON-LD schema found
 Trailer Drivers,https://outreachrecruitment.net/jobs/trailer-drivers,False,No JSON-LD schema found
-Purchasing Manager,https://outreachrecruitment.net/jobs/purchasing-manager,False,No JSON-LD schema found
-Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer,False,No JSON-LD schema found
-Marine Turner,https://outreachrecruitment.net/jobs/marine-turner,False,No JSON-LD schema found
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,False,No JSON-LD schema found
-Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman,False,No JSON-LD schema found
 Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,False,No JSON-LD schema found
+Marine Turner,https://outreachrecruitment.net/jobs/marine-turner-malta,True,
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman-malta,True,
+Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer-marine-malta,True,
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,True,
-QHSE Manager,https://outreachrecruitment.net/jobs/qhse-manager-malta,True,
 Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,True,
 "Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-facility-manager,True,
 Sales Office Coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator,True,
 Customer Contact Agent,https://outreachrecruitment.net/jobs/customer-contact-agent,True,
 HR Administration Officer,https://outreachrecruitment.net/jobs/hr-administration-officer,True,
 Project Manager,https://outreachrecruitment.net/jobs/project-manager,True,
-Purchasing Officer,https://outreachrecruitment.net/jobs/purchasing-officer,True,
 Estimator,https://outreachrecruitment.net/jobs/estimator,True,
 HSSE Coordinator,https://outreachrecruitment.net/jobs/hsse-coordinator,True,
 Housekeeper,https://outreachrecruitment.net/jobs/housekeeper,True,
