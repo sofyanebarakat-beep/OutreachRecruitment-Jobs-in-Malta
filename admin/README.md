@@ -1,4 +1,35 @@
-# SEO Admin — Learn, Analytics and SEO Workspace
+# Outreach Admin — Course & KPI
+
+Private admin at `/admin/` (noindex, not linked from the site). Two sections:
+
+- **Course** — the 30-day *Outreach Recruitment — SEO & KPI Course* (1 hour daily: theory, practice,
+  QCM, KPI tracking): today's lesson, a 30-day progress grid with notes per day, the 4-week plan with
+  its KPIs, Day 1 keyword progress, success KPIs, tools and the next step. Content: `course30-data.js`.
+- **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
+  the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
+
+Files: `index.html`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
+
+## Data
+Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to emails in `public.admin_users`
+(schema: `supabase/admin_schema.sql`).
+- `seo_settings` key `course30` — progress, day notes, baseline, priority keywords, KPI check-ins
+- `seo_kpi_daily` (read) — daily Search Console totals from `tools/seo_course_automation.py`; the KPI page
+  turns them into rolling 28-day totals automatically
+- `seo_keywords` (read) — live positions, `source_key = "gsc:<keyword>"`
+
+If the database cannot be reached (e.g. the free project is paused), the admin offers browser-only mode;
+**KPI → History → Copy browser data to the database** moves that data across later.
+Password reset emails return to `/admin/` — add `https://outreachrecruitment.net/admin/` to
+Supabase → Authentication → URL configuration → Redirect URLs.
+
+Local preview without a database: `python3 -m http.server` then open `http://localhost:8000/admin/?local`.
+
+---
+
+## Previous SEO admin (not loaded)
+`admin.js`, `admin.css`, `course-*.js` are the earlier 16-week SEO admin; kept for reference.
+
 
 Private admin at `/admin/` (noindex, blocked in robots.txt, not linked from the site).
 

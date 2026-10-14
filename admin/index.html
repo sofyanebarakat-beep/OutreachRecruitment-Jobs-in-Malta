@@ -6,28 +6,68 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Admin · Outreach Recruitment</title>
   <link rel="icon" href="data:,">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      color: #161616;
-      background: #f7f7f5;
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 7vw, 4rem);
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="course30.css">
 </head>
 <body>
-  <main>
-    <h1>Coming soon</h1>
-  </main>
+  <!-- Sign in -->
+  <div id="screen-login" class="screen" hidden>
+    <form id="login-form" class="card auth-card">
+      <div class="brand"><span class="brand-mark">⇋</span> Outreach Admin</div>
+      <h1>Sign in</h1>
+      <label>Email<input type="email" name="email" required autocomplete="username"></label>
+      <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+      <button class="btn primary" type="submit">Sign in</button>
+      <button class="btn link" type="button" id="forgot">Forgot password? Email me a link</button>
+      <p id="login-msg" class="msg" role="status"></p>
+    </form>
+  </div>
+
+  <!-- Set a new password (from the email link) -->
+  <div id="screen-reset" class="screen" hidden>
+    <form id="reset-form" class="card auth-card">
+      <div class="brand"><span class="brand-mark">⇋</span> Outreach Admin</div>
+      <h1>Set a new password</h1>
+      <label>New password<input type="password" name="password" required minlength="10" autocomplete="new-password"></label>
+      <button class="btn primary" type="submit">Save password</button>
+      <p id="reset-msg" class="msg" role="status"></p>
+    </form>
+  </div>
+
+  <!-- Database unreachable -->
+  <div id="screen-offline" class="screen" hidden>
+    <div class="card auth-card">
+      <div class="brand"><span class="brand-mark">⇋</span> Outreach Admin</div>
+      <h1>Database is offline</h1>
+      <p>The admin database (Supabase project <code>atcitaqyraeqngcsaeun</code>) cannot be reached — it is most likely
+        <strong>paused</strong>. Open the Supabase dashboard and click <strong>Restore project</strong>, then reload this page.</p>
+      <a class="btn primary" href="https://supabase.com/dashboard/project/atcitaqyraeqngcsaeun" target="_blank" rel="noopener">Open Supabase dashboard</a>
+      <button class="btn" type="button" id="use-local">Continue in this browser only</button>
+      <p class="muted small">In browser-only mode your entries stay on this device. When the database is back, use
+        “Copy browser data to the database” in the KPI section.</p>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">⇋</span> Outreach Admin</div>
+      <nav id="nav" aria-label="Admin sections">
+        <a href="#/course" data-route="course">Course</a>
+        <a href="#/kpi" data-route="kpi">KPI</a>
+      </nav>
+      <div class="topbar-right">
+        <span id="mode-badge" class="badge"></span>
+        <button class="btn ghost small" id="theme-toggle" type="button" aria-label="Switch light/dark">◐</button>
+        <button class="btn ghost small" id="sign-out" type="button">Sign out</button>
+      </div>
+    </header>
+    <div id="banner" class="banner" hidden></div>
+    <main id="view" tabindex="-1"></main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="course30-data.js"></script>
+  <script src="course30.js"></script>
 </body>
 </html>
