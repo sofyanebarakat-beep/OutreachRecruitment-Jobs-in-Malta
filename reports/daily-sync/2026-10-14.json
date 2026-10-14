@@ -87,7 +87,7 @@
     "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
     "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 115,
   "site_open_before": 116,
@@ -122,5 +122,144 @@
     "pages_marked_closed": 1,
     "pages_reopened": 0
   },
-  "site_open_after": 115
+  "site_open_after": 115,
+  "google": {
+    "sent": 6,
+    "ok": 6,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 115,
+    "expected": 115,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 13,
+    "ok": [
+      {
+        "title": "Front Office Executive",
+        "slug": "front-office-executive",
+        "url": "https://outreachrecruitment.net/jobs/front-office-executive/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Italian Restaurant – Multiple Hospitality Positions",
+        "slug": "italian-restaurant-hospitality-positions-dubai",
+        "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Junior Administrative Executive",
+        "slug": "junior-administrative-executive",
+        "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Crane Installer",
+        "slug": "crane-installer",
+        "url": "https://outreachrecruitment.net/jobs/crane-installer/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Beauty Specialist / Nail Technician",
+        "slug": "beauty-specialist-nail-technician",
+        "url": "https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Marine Mechanical Engineer",
+        "slug": "marine-mechanical-engineer",
+        "url": "https://outreachrecruitment.net/jobs/marine-mechanical-engineer/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Maintenance Manager",
+        "slug": "maintenance-manager-mellieha",
+        "url": "https://outreachrecruitment.net/jobs/maintenance-manager-mellieha/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Restaurant Manager - Italian Speaking",
+        "slug": "restaurant-manager-italian-speaking",
+        "url": "https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking/",
+        "age_days": 7,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Proposal Engineer – Energy Solutions",
+        "slug": "proposal-engineer-energy-solutions",
+        "url": "https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions/",
+        "age_days": 20,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Mini Bus Driver – Licence D",
+        "slug": "mini-bus-driver-licence-d",
+        "url": "https://outreachrecruitment.net/jobs/mini-bus-driver-licence-d/",
+        "age_days": 16,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Gypsum Installers",
+        "slug": "gypsum-installers",
+        "url": "https://outreachrecruitment.net/jobs/gypsum-installers/",
+        "age_days": 15,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      }
+    ],
+    "flagged": [
+      {
+        "title": "Hotel Maintenance Assistant",
+        "slug": "hotel-maintenance-assistant",
+        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Housekeeper",
+        "slug": "housekeeper-rabat",
+        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
+  }
 }
