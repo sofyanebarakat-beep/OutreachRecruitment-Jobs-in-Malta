@@ -480,6 +480,7 @@
     const [r, param] = (h.slice(2) || "jobsync").split("?")[0].split("/");
     $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === r));
     if (r === "jobsync") window.renderJobSync($("#view"), param);
+    else if (r === "marketing") window.renderMarketing($("#view"));
     else (r === "kpi" ? renderKPI : renderCourse)();
     $("#view").focus({ preventScroll: true });
     window.scrollTo(0, 0);

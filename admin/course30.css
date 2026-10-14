@@ -169,3 +169,26 @@ details summary { cursor: pointer; font-weight: 600; }
   h1 { font-size: 1.35rem; }
   .kpi-card .value { font-size: 1.6rem; }
 }
+
+/* email marketing */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab { font: inherit; font-weight: 600; border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.tab.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.mk-layout { display: grid; gap: 16px; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); align-items: start; }
+.mk-picklist { display: grid; gap: 4px; max-height: 560px; overflow-y: auto; padding-right: 4px; }
+.mk-job { font: inherit; text-align: left; display: grid; gap: 1px; border: 1px solid transparent; background: none; color: var(--text);
+  padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+.mk-job:hover { background: var(--surface-2); }
+.mk-job.active { background: var(--brand-soft); border-color: var(--brand); }
+.mk-pick { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; padding: 6px 4px; }
+.mk-pick input { width: auto; margin-top: 4px; }
+.mk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-btn { font: inherit; font-weight: 600; font-size: .9rem; border: 1px solid var(--brand); color: var(--brand); background: var(--surface);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.chip-btn.active { background: var(--brand); color: #fff; }
+.mk-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.mk-preview { background: #fff; color: #161616; border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 10px;
+  max-height: 640px; overflow-y: auto; }
+.mk-preview a { color: #442dfa; word-break: break-all; }
+@media (max-width: 860px) { .mk-layout { grid-template-columns: minmax(0, 1fr); } .mk-picklist { max-height: 280px; } }

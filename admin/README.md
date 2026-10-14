@@ -7,6 +7,12 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   new / closed / reopened / updated jobs with what changed, items needing attention, notes, the Google
   indexing check, site housekeeping, and every earlier day (`#/jobsync/<date>`). Reads
   `reports/daily-sync/index.json` + `<date>.json`, which `tools/daily_job_sync.py` pushes every morning.
+- **Marketing › Email Marketing** — ready-to-paste job posts built from the careers-page description
+  (fact sheet `tools/ats_snapshots/<uuid>.json`): title, city, type, salary, intro, up to 5 duties /
+  requirements / offer bullets, "🌐 Apply now:" the job's page on the website, "💼 More Jobs:", hashtags.
+  "Copy for email" = rich text with real bold; "Copy for social media" = Unicode bold. Also a Generic
+  round-up post and editable templates (`{title}`, `{apply_url}` … saved in the browser). Today's new jobs
+  (from the latest sync report) are shown first. Code: `marketing.js`.
 
 - **Course** — the 30-day *Outreach Recruitment — SEO & KPI Course* (1 hour daily: theory, practice,
   QCM, KPI tracking): today's lesson, a 30-day progress grid with notes per day, the 4-week plan with
@@ -14,7 +20,7 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
 
-Files: `index.html`, `jobsync.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
+Files: `index.html`, `jobsync.js`, `marketing.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 
 ## Data
 Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to emails in `public.admin_users`
