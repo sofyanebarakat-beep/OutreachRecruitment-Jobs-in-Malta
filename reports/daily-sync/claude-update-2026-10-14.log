@@ -1,0 +1,15 @@
+Clean: exactly the 5 intended job pages (plus `head-of-hvac-technicians.html`, its flat-file twin) and the registry were modified, nothing committed/pushed, and the pre-existing unrelated changes (`head-chef-in-gozo`, log files) are untouched.
+
+All 5 jobs fixed and verified:
+
+```
+UPDATED 59407154-0c35-48c8-99f4-04e618ff37af application-developer-drupal
+UPDATED 6325581b-4e82-4efe-8143-dbf94de7d1e5 head-of-hvac-technicians
+UPDATED 33484fe4-61b6-4e82-b5e7-dd16455ed6fc restaurant-manager-italian-speaking
+UPDATED 61286c44-1419-49e4-b3a3-f1a9fac21510 builders-and-shutterers
+UPDATED f4ddecbd-036b-4600-8225-d8e35bb7a738 associate-tax-advisor
+```
+
+Nothing has been committed or pushed — that's your call next.
+
+--- stderr ---

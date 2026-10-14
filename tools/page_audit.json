@@ -1,1 +1,301 @@
-{}
+{
+  "beauty-specialist-nail-technician": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "<title> does not mention the job",
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "night-cleaner": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "deli-counter-assistant-salumeria-specialist": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "sales-office-coordinator": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "driver-runner-washer": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "customer-operations-associate": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "structural-engineer": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "hvac-sales-representative": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "heavy-machine-operator": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "customer-contact-centre-representative": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "bottling-operator": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "motor-vehicle-mechanictechnician": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "wood-painting-finishing-specialist": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema has a baseSalary but the careers page gives none (invented salary)",
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "cnc-machine-operator": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (8.6–8.6)"
+    ]
+  },
+  "delivery-person-with-driving-licence-c1": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "product-owner-hybrid": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "first-line-support-hybrid": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "sales-executive-2": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "driver-license-b": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'",
+      "driver-license-b.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "tank-cleaner": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "tank-cleaner.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "welder-burner-pipe-fitter": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "welder-burner-pipe-fitter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "shipyard-sprayer-painter": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "shipyard-sprayer-painter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "marine-carpenter": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "marine-carpenter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "electronic-technician": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "electronic-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "commercial-divers": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "commercial-divers.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "marine-mechanical-foreman": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "marine-mechanical-foreman.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "delivery-man": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "delivery-man.html: schema has a baseSalary but the careers page gives none (invented salary)",
+      "delivery-man.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "hvac-technician": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "hvac-technician.html: schema has a baseSalary but the careers page gives none (invented salary)",
+      "hvac-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "customer-care-agent": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (18614–18614)",
+      "salary 18614 is not shown on the page"
+    ]
+  },
+  "ship-chandler": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (30000–30000)"
+    ]
+  },
+  "fleet-mechanical-superintendent": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (43000–47000)",
+      "salary 43000 is not shown on the page"
+    ]
+  },
+  "client-accountant-2": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "marine-turner-malta": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "plate-shop-foreman-malta": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "chef-de-partie-4": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "head-chef-steakhouse": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (3500–3500)",
+      "salary 3500 is not shown on the page"
+    ]
+  },
+  "senior-waiter-sommelier": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (15–15)"
+    ]
+  },
+  "public-area-cleaner": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "junior-revenue-accounts-analyst": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (30000–30000)"
+    ]
+  },
+  "learning-development-executive-hybrid": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "no salary on the careers page, but the page does not say 'Competitive salary'"
+    ]
+  },
+  "operations-supervisor": {
+    "first_seen": "2026-10-14",
+    "attempts": 0,
+    "problems": [
+      "schema baseSalary (None, None) does not match the careers page (25000–30000)",
+      "salary 25000 is not shown on the page",
+      "operations-supervisor.html: <h1> does not contain the job title",
+      "operations-supervisor.html: schema baseSalary (None, None) does not match the careers page (25000–30000)",
+      "operations-supervisor.html: salary 25000 is not shown on the page"
+    ]
+  }
+}

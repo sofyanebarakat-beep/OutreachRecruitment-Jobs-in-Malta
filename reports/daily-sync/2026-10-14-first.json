@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-14",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Head Chef in Gozo",
+      "slug": "head-chef-in-gozo",
+      "url": "https://outreachrecruitment.net/jobs/head-chef-in-gozo/",
+      "city": "Marsalforn, Gozo, Malta"
+    }
+  ],
+  "updated": [
+    {
+      "uuid": "59407154-0c35-48c8-99f4-04e618ff37af",
+      "title": "Application Developer (Drupal)",
+      "slug": "application-developer-drupal",
+      "city": "Valletta",
+      "changes": [
+        "page repaired — apply link with this job's ATS uuid not found",
+        "page repaired — reference number is visible",
+        "page repaired — no FAQPage schema"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/application-developer-drupal/"
+    },
+    {
+      "uuid": "6325581b-4e82-4efe-8143-dbf94de7d1e5",
+      "title": "Head of HVAC Technicians",
+      "slug": "head-of-hvac-technicians",
+      "city": "Qormi",
+      "changes": [
+        "page repaired — head-of-hvac-technicians.html: apply link with this job's ATS uuid not found",
+        "page repaired — head-of-hvac-technicians.html: page links other ATS job(s): 83970ed6-cde9-4a86-9db1-6a7ef305c0e5",
+        "page repaired — head-of-hvac-technicians.html: schema has a baseSalary but the careers page gives none (invented salary)",
+        "page repaired — head-of-hvac-technicians.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians/"
+    },
+    {
+      "uuid": "33484fe4-61b6-4e82-b5e7-dd16455ed6fc",
+      "title": "Restaurant Manager - Italian Speaking",
+      "slug": "restaurant-manager-italian-speaking",
+      "city": "St. Julian's",
+      "changes": [
+        "page repaired — schema baseSalary (25000, None) does not match the careers page (2500–2800)",
+        "page repaired — salary 2500 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking/"
+    },
+    {
+      "uuid": "61286c44-1419-49e4-b3a3-f1a9fac21510",
+      "title": "Builders and Shutterers",
+      "slug": "builders-and-shutterers",
+      "city": "Qormi",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (8–12)",
+        "page repaired — salary 8 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/builders-and-shutterers/"
+    },
+    {
+      "uuid": "f4ddecbd-036b-4600-8225-d8e35bb7a738",
+      "title": "Associate Tax Advisor",
+      "slug": "associate-tax-advisor",
+      "city": "Msida",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (35000–40000)",
+        "page repaired — salary 35000 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
+    "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 115,
+  "site_open_before": 116,
+  "salary_synced": [],
+  "salary_coverage": {
+    "with_salary": 27,
+    "open": 116
+  },
+  "page_check": {
+    "open_checked": 115,
+    "ok": 69,
+    "to_fix": 46,
+    "fixing_today": 5,
+    "queued": 41
+  },
+  "listings": {
+    "hub_cards": {
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 0,
+        "removed": 1
+      },
+      "subcontracting-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 115,
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 115
+}
