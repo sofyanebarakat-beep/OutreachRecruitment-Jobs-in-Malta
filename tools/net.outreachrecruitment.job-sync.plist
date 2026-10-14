@@ -22,12 +22,11 @@
   <key>Label</key>
   <string>net.outreachrecruitment.job-sync</string>
 
-  <!-- caffeinate -i keeps the Mac from idle-sleeping until the run ends (on 2026-10-12 it
-       slept 3 min into the run on battery and the report was 2 hours late). -->
+  <!-- Launch with /bin/bash directly: macOS privacy (TCC) blocks ~/Documents for other
+       launchers — wrapping it in /usr/bin/caffeinate failed every run with "Operation not
+       permitted" (2026-10-13/14). run_sync_agent.sh starts caffeinate itself. -->
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/caffeinate</string>
-    <string>-i</string>
     <string>/bin/bash</string>
     <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/tools/run_sync_agent.sh</string>
   </array>

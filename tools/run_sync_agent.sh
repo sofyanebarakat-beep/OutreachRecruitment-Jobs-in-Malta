@@ -9,6 +9,9 @@ LOG_FILE="$LOG_DIR/sync-$(date +%Y-%m-%d-%H%M).log"
 
 mkdir -p "$LOG_DIR"
 
+# Keep the Mac awake until this script ends (it idle-slept mid-run on battery once).
+/usr/bin/caffeinate -i -w $$ &
+
 echo "=== Job Sync Agent ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"
 
