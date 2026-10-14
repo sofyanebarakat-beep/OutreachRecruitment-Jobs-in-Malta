@@ -3090,3 +3090,51 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-14T09:53:21,Application Developer (Drupal),application-developer-drupal,https://outreachrecruitment.net/jobs/application-developer-drupal/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/application-developer-drupal/""
+  }
+}
+"
+2026-10-14T09:53:21,Head of HVAC Technicians,head-of-hvac-technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/head-of-hvac-technicians/""
+  }
+}
+"
+2026-10-14T09:53:21,Restaurant Manager - Italian Speaking,restaurant-manager-italian-speaking,https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking/""
+  }
+}
+"
+2026-10-14T09:53:21,Builders and Shutterers,builders-and-shutterers,https://outreachrecruitment.net/jobs/builders-and-shutterers/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/builders-and-shutterers/""
+  }
+}
+"
+2026-10-14T09:53:21,Associate Tax Advisor,associate-tax-advisor,https://outreachrecruitment.net/jobs/associate-tax-advisor/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/associate-tax-advisor/""
+  }
+}
+"
+2026-10-14T09:53:21,Head Chef in Gozo,head-chef-in-gozo,https://outreachrecruitment.net/jobs/head-chef-in-gozo/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/head-chef-in-gozo/""
+  }
+}
+"
+2026-10-14T10:05:03,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-14T10:05:03,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
