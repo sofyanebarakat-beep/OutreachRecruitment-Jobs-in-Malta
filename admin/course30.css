@@ -221,3 +221,15 @@ label.btn { font-weight: 600; }
 .mk-canvas-wrap[data-format="linkedin"] { width: min(100%, 760px); }
 .mk-canvas-wrap canvas { display: block; width: 100%; height: auto; }
 @media (max-width: 620px) { .mk-format-picker { grid-template-columns: 1fr; } }
+
+/* social media */
+.so-fields { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.so-field { display: grid; gap: 6px; align-content: start; background: var(--surface-2); border-radius: 12px; padding: 12px; }
+.so-field .btn { justify-self: start; }
+.so-label { font-weight: 700; font-size: .9rem; }
+.so-title, .so-subtitle { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; outline: none; }
+.so-title { font-size: 1.25rem; font-weight: 800; line-height: 1.25; }
+.so-subtitle { color: var(--text-2); }
+.so-title:focus, .so-subtitle:focus { border-color: var(--brand); }
+.chip-btn.small { font-size: .8rem; padding: 4px 10px; }
+@media (max-width: 640px) { .so-fields { grid-template-columns: minmax(0, 1fr); } }

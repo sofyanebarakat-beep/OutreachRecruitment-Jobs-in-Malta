@@ -621,4 +621,6 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
 
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  // Shared with social.js
+  window.MarketingKit = { toSocial, toHTML, toPlain, copyRich, copyText, camel, esc };
 })();
