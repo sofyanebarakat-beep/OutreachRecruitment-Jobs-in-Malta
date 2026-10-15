@@ -106,7 +106,7 @@
     "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
     "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 117,
   "site_open_before": 115,
@@ -137,5 +137,21 @@
   "salary_coverage": {
     "open": 117,
     "with_salary": 27
+  },
+  "google": {
+    "sent": 0,
+    "ok": 0
+  },
+  "live": {
+    "count": 117,
+    "expected": 117,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 0,
+    "ok": [],
+    "flagged": [],
+    "error": ""
   }
 }
