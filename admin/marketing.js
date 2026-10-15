@@ -264,7 +264,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
             <div class="mk-picklist">${jobs.map((j) => `<label class="mk-pick"><input type="checkbox" value="${esc(j.slug)}" ${state.picks.includes(j.slug) ? "checked" : ""}>
               <span>${esc(j.title)} <span class="muted small">— ${esc(String(j.location || "").split(",")[0])}</span>${isNew(j.slug) ? ' <span class="status good">New today</span>' : ""}</span></label>`).join("")}</div>
           </div>
-          ${previewCard(text)}
+          ${previewCard(text, "the generic round-up")}
         </section>`;
       $$(".mk-pick input", body).forEach((cb) => (cb.onchange = () => {
         const set = new Set(state.picks); cb.checked ? set.add(cb.value) : set.delete(cb.value);
@@ -291,13 +291,13 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
           <p class="small muted" style="margin-top:10px">Source: <a href="${esc((facts?.ats_url) || "#")}" target="_blank" rel="noopener">careers-page description</a>${facts ? "" : " (not available — basic post)"}
             · Website: <a href="${SITE}/jobs/${esc(job.slug)}/" target="_blank" rel="noopener">/jobs/${esc(job.slug)}/</a></p>
         </div>
-        ${previewCard(text)}
+        ${previewCard(text, job.title)}
       </section>`;
     $$("[data-slug]", body).forEach((b) => (b.onclick = () => { state.slug = b.dataset.slug; window.renderMarketing(view); }));
     wireFilter(body); wirePreview(body, job.slug);
   };
 
-  function previewCard(text) {
+  function previewCard(text, pictureFor) {
     return `<div class="card mk-preview-card">
       <div class="section-title"><h2>Post</h2><span class="muted small">Edit below — the preview updates</span></div>
       <div class="mk-actions">
@@ -305,7 +305,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         <button class="btn" id="mk-copy-social">📱 Copy for social media</button>
       </div>
       <div class="mk-image-panel">
-        <div class="section-title"><h3>🖼️ Picture</h3><span class="muted small" id="mk-img-mode"></span></div>
+        <div class="section-title"><h3>🖼️ Picture for ${esc(pictureFor)}</h3><span class="muted small" id="mk-img-mode"></span></div>
         <div class="mk-actions">
           <label class="btn small" for="mk-upload">⬆️ Upload picture</label>
           <input type="file" id="mk-upload" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
@@ -326,11 +326,15 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     const ta = $("#mk-text", root), pv = $("#mk-preview-text", root), cnt = $("#mk-count", root);
     const I = window.AdminImages;
     let images = [], current = null;
+    // The body element is reused when another job is selected. Ignore a previous job's
+    // image request if it finishes after its preview has already been replaced.
+    const isCurrentPreview = () => ta.isConnected && $("#mk-text", root) === ta;
     ta.oninput = () => { pv.innerHTML = toHTML(ta.value); cnt.textContent = toSocial(ta.value).length; };
     $("#mk-copy-email", root).onclick = (e) => copyRich(ta.value, e.currentTarget, current?.online ? current.url : "");
     $("#mk-copy-social", root).onclick = (e) => copyText(toSocial(ta.value), e.currentTarget);
 
     const paint = () => {
+      if (!isCurrentPreview()) return;
       current = images.find((im) => im.id === I.pickFor(key)) || null;
       $("#mk-library", root).innerHTML = images.length
         ? images.map((im) => `<div class="mk-thumb ${current?.id === im.id ? "active" : ""}">
@@ -357,8 +361,12 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       try {
         let last = null;
         for (const f of files) last = await I.add(f);
-        images = await I.list(); I.setPick(key, last); paint();
-      } catch (err) { $("#mk-img-note", root).textContent = "Could not save the picture: " + (err.message || err); }
+        images = await I.list();
+        if (!isCurrentPreview()) return;
+        I.setPick(key, last); paint();
+      } catch (err) {
+        if (isCurrentPreview()) $("#mk-img-note", root).textContent = "Could not save the picture: " + (err.message || err);
+      }
       e.target.value = "";
     };
     $("#mk-img-none", root).onclick = () => { I.setPick(key, null); paint(); };
