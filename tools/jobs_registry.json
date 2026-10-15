@@ -1,5 +1,21 @@
 [
   {
+    "slug": "host-receptionist",
+    "title": "Host / Receptionist",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "job_type": "Subcontracting",
+    "date": "2026-10-15",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/373103d8-ea25-4de5-adcf-245224df8cd1/apply",
+    "keywords": "host receptionist hostess restaurant host front of house rooftop restaurant st julians malta hospitality subcontracting",
+    "featured": true,
+    "lastmod": "2026-10-15"
+  },
+  {
     "slug": "front-office-executive",
     "title": "Front Office Executive",
     "category": "Hospitality",
@@ -818,7 +834,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/37f933db-ef0e-48bb-a2ed-0c1a37b4ccad/apply",
     "keywords": "housekeeper general st. paul's bay, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-08-27",
+    "job_type": "Subcontracting"
   },
   {
     "slug": "outlet-manager",
@@ -1684,7 +1701,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e4d306a4-66b3-456b-8723-48e66d1ef3dc/apply",
     "keywords": "heavy machine operator construction excavator bulldozer loader heavy equipment worldwide hiring zejtun malta skillspass",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-08-27",
+    "job_type": "Subcontracting"
   },
   {
     "slug": "building-services-maintenance-helper",
@@ -1731,7 +1749,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f5044115-fea4-428c-810a-a319617566de/apply",
     "keywords": "housekeeping attendant general st. julian, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-08-27",
+    "job_type": "Subcontracting"
   },
   {
     "slug": "handyman",
@@ -3025,7 +3044,8 @@
     "keywords": "cnc machine operator general malta",
     "featured": false,
     "lastmod": "2026-08-27",
-    "salary": "€8.60 per hour"
+    "salary": "€8.60 per hour",
+    "job_type": "Subcontracting"
   },
   {
     "slug": "room-attendents",
@@ -3489,7 +3509,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/63c68ced-996e-4730-a903-0889575d9e63/apply",
     "keywords": "housekeeper general st. julian, malta",
     "featured": true,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-08-27",
+    "job_type": "Subcontracting"
   },
   {
     "slug": "kitchen-porter-3",

@@ -37,7 +37,10 @@ SKIP_ROOT_PAGES = {"home-test.html"}
 # Pages that list jobs from every category: a closed card becomes the newest open job.
 # On category hubs it becomes an open job of the same category, or is removed.
 GENERAL_PAGES = {"index.html", "jobs-in-malta-top-15-opening-jobs.html", "opening-jobs-in-malta.html",
-                 "salary-calculator-malta.html", "careers.html", "subcontracting-jobs-in-malta.html"}
+                 "salary-calculator-malta.html", "careers.html"}
+# Pages whose cards are rebuilt from a registry flag instead (never filled with unrelated jobs):
+#   subcontracting-jobs-in-malta.html ← open jobs with "job_type": "Subcontracting"
+FLAG_PAGES = {"subcontracting-jobs-in-malta.html": ("job_type", "Subcontracting")}
 
 
 def is_open(job: dict) -> bool:
@@ -72,7 +75,7 @@ def clean_hubs(jobs: dict[str, dict], dry: bool) -> tuple[dict[str, dict], list[
     emptied: list[str] = []
     touched: set[str] = set()
     for path in sorted(ROOT.glob("*.html")):
-        if path.name in SKIP_ROOT_PAGES:
+        if path.name in SKIP_ROOT_PAGES or path.name in FLAG_PAGES:
             continue
         text = path.read_text(encoding="utf-8")
         cards = ARTICLE_RE.findall(text)
@@ -115,6 +118,51 @@ def clean_hubs(jobs: dict[str, dict], dry: bool) -> tuple[dict[str, dict], list[
             if not dry:
                 path.write_text(new, encoding="utf-8")
     return changed, emptied, touched
+
+
+def rebuild_flag_pages(jobs: dict[str, dict], dry: bool) -> tuple[dict[str, int], set[str]]:
+    """Cards (and the ItemList JSON-LD) of FLAG_PAGES = exactly the open jobs carrying the flag, newest first."""
+    out, touched = {}, set()
+    for name, (field, value) in FLAG_PAGES.items():
+        path = ROOT / name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        cards = list(ARTICLE_RE.finditer(text))
+        if not cards:
+            continue
+        flagged = sorted((j for j in jobs.values() if is_open(j) and j.get(field) == value),
+                         key=lambda j: j.get("date", ""), reverse=True)
+        template = cards[0].group(0)
+        new_cards = "".join(hub_card(template, j) + "\n" for j in flagged)
+        new = text[:cards[0].start()] + new_cards + text[cards[-1].end():]
+        for m in re.finditer(r'(<script[^>]+application/ld\+json[^>]*>)(.*?)(</script>)', new, re.S):
+            if '"ItemList"' not in m.group(2):
+                continue
+            try:
+                data = json.loads(m.group(2))
+            except Exception:
+                break
+            def walk(node):  # the ItemList can sit anywhere (e.g. CollectionPage.mainEntity)
+                if isinstance(node, dict):
+                    if node.get("@type") == "ItemList":
+                        node["numberOfItems"] = len(flagged)
+                        node["itemListElement"] = [{"@type": "ListItem", "position": i, "url": f"{SITE}/jobs/{j['slug']}", "name": j["title"]}
+                                                   for i, j in enumerate(flagged, 1)]
+                    for v in node.values():
+                        walk(v)
+                elif isinstance(node, list):
+                    for v in node:
+                        walk(v)
+            walk(data)
+            new = new[:m.start()] + m.group(1) + "\n" + json.dumps(data, indent=2, ensure_ascii=False) + "\n" + m.group(3) + new[m.end():]
+            break
+        if new != text:
+            touched.add(name)
+            if not dry:
+                path.write_text(new, encoding="utf-8")
+        out[name] = len(flagged)
+    return out, touched
 
 
 def fill_card(card: str, job: dict) -> str:
@@ -202,9 +250,11 @@ def run(dry: bool = False) -> dict:
     removed, emptied, t1 = clean_hubs(jobs, dry)
     swaps, t2 = fix_carousels(jobs, dry)
     n_items, t3 = rebuild_itemlist(jobs, dry)
+    flagged, t4 = rebuild_flag_pages(jobs, dry)
+    t3 = t3 | t4
     states = job_page_state.sync_all() if not dry else {"closed": 0, "opened": 0, "touched": []}
     return {"hub_cards": removed, "hubs_now_empty": emptied, "carousel_swaps": swaps,
-            "itemlist_items": n_items, "categorised": cats["changed"], "merged": merged["merged"],
+            "itemlist_items": n_items, "flag_pages": flagged, "categorised": cats["changed"], "merged": merged["merged"],
             "pages_marked_closed": states["closed"], "pages_reopened": states["opened"],
             "touched": sorted(t1 | t2 | t3 | set(cats["touched"]) | set(states["touched"])
                               | set(merged["touched"]))}
