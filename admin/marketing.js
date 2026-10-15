@@ -242,6 +242,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
 
       <div class="tabs" role="tablist">
         <button class="tab ${state.tab === "job" ? "active" : ""}" data-tab="job" role="tab">Job post</button>
+        <button class="tab ${state.tab === "picture" ? "active" : ""}" data-tab="picture" role="tab">Generate picture</button>
         <button class="tab ${state.tab === "generic" ? "active" : ""}" data-tab="generic" role="tab">Generic post</button>
         <button class="tab ${state.tab === "template" ? "active" : ""}" data-tab="template" role="tab">Templates</button>
       </div>
@@ -250,6 +251,29 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     const body = $("#mk-body", view);
 
     if (state.tab === "template") return renderTemplates(body, view);
+
+    if (state.tab === "picture") {
+      const job = jobs.find((j) => j.slug === state.slug) || jobs[0];
+      const facts = await factsFor(job);
+      const details = jobValues(job, facts);
+      const parsed = parseDescription(facts?.description_html, facts?.description_text);
+      const requirements = [...new Set([...parsed.requirements, ...parsed.responsibilities])].slice(0, 5);
+      body.innerHTML = `
+        <section class="mk-layout">
+          <div class="card">
+            <h2>Choose a job</h2>
+            <p class="muted small">The title, job details and 4–5 requirements update automatically.</p>
+            <input id="mk-filter" placeholder="Search ${jobs.length} open jobs…" style="margin-bottom:8px">
+            <div class="mk-picklist">${jobs.map((j) => `<button class="mk-job ${j.slug === job.slug ? "active" : ""}" data-slug="${esc(j.slug)}">
+              <span>${esc(j.title)}</span><span class="muted small">${esc(String(j.location || "").split(",")[0])}${isNew(j.slug) ? " · New today" : ""}</span></button>`).join("")}</div>
+          </div>
+          ${pictureGeneratorCard(job, details, requirements)}
+        </section>`;
+      $$("[data-slug]", body).forEach((b) => (b.onclick = () => { state.slug = b.dataset.slug; window.renderMarketing(view); }));
+      wireFilter(body);
+      wirePictureGenerator(body, job, details, requirements);
+      return;
+    }
 
     if (state.tab === "generic") {
       const picked = state.picks.map((s) => jobs.find((j) => j.slug === s)).filter(Boolean);
@@ -321,6 +345,132 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         <textarea id="mk-text" rows="16" style="margin-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(text)}</textarea></details>
       <p class="small muted" style="margin:8px 0 0"><span id="mk-count">${toSocial(text).length}</span> characters · LinkedIn limit 3,000 · Instagram 2,200</p>
     </div>`;
+  }
+
+  function pictureGeneratorCard(job, details, requirements) {
+    return `<div class="card mk-picture-card">
+      <div class="section-title"><div><h2>Social media picture</h2><p class="muted small" style="margin:3px 0 0">Square 1080 × 1080 · fixed Outreach format</p></div></div>
+      <div class="mk-actions">
+        <label class="btn small" for="mk-gen-upload">⬆️ Add background</label>
+        <input type="file" id="mk-gen-upload" accept="image/png,image/jpeg,image/webp" hidden>
+        <button class="btn small" id="mk-gen-copy">📋 Copy picture</button>
+        <button class="btn primary small" id="mk-gen-download">⬇️ Download PNG</button>
+      </div>
+      <div class="mk-gen-backgrounds" id="mk-gen-backgrounds"><span class="muted small">Loading job backgrounds…</span></div>
+      <p class="small muted" id="mk-gen-note">The selected background is saved for ${esc(job.title)} only.</p>
+      <div class="mk-canvas-wrap"><canvas id="mk-gen-canvas" width="1080" height="1080" aria-label="Generated social media post for ${esc(job.title)}"></canvas></div>
+      ${requirements.length ? "" : `<p class="status warn">No detailed requirements were found, so the design will use the available role details.</p>`}
+    </div>`;
+  }
+
+  const loadCanvasImage = (url) => new Promise((resolve, reject) => {
+    const im = new Image();
+    if (!url.startsWith("blob:")) im.crossOrigin = "anonymous";
+    im.onload = () => resolve(im); im.onerror = () => reject(new Error("Could not load this image")); im.src = url;
+  });
+  const roundRect = (ctx, x, y, w, h, r) => {
+    ctx.beginPath(); ctx.roundRect(x, y, w, h, r); return ctx;
+  };
+  function canvasLines(ctx, text, maxWidth, maxLines = 2) {
+    const words = String(text).replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").split(/\s+/).filter(Boolean), lines = [];
+    let line = "";
+    for (const word of words) {
+      const next = line ? line + " " + word : word;
+      if (ctx.measureText(next).width <= maxWidth || !line) line = next;
+      else { lines.push(line); line = word; if (lines.length === maxLines - 1) break; }
+    }
+    if (line && lines.length < maxLines) lines.push(line);
+    if (lines.length === maxLines && words.join(" ").length > lines.join(" ").length) {
+      while (ctx.measureText(lines[maxLines - 1] + "…").width > maxWidth) lines[maxLines - 1] = lines[maxLines - 1].replace(/\s+\S*$/, "");
+      lines[maxLines - 1] += "…";
+    }
+    return lines;
+  }
+  function fitCanvasFont(ctx, text, maxWidth, start, min, weight = 800) {
+    let size = start;
+    do { ctx.font = `${weight} ${size}px Arial, Helvetica, sans-serif`; size -= 2; } while (ctx.measureText(text).width > maxWidth && size >= min);
+  }
+  async function drawSocialPicture(canvas, job, details, requirements, background) {
+    const ctx = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    if (background) {
+      const scale = Math.max(W / background.width, H / background.height), dw = background.width * scale, dh = background.height * scale;
+      ctx.drawImage(background, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    } else { ctx.fillStyle = "#f4f0ee"; ctx.fillRect(0, 0, W, H); }
+    const fade = ctx.createLinearGradient(0, 0, W, H);
+    fade.addColorStop(0, "rgba(255,255,255,.98)"); fade.addColorStop(.62, "rgba(255,255,255,.92)"); fade.addColorStop(1, "rgba(255,255,255,.38)");
+    ctx.fillStyle = fade; ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = "rgba(255,255,255,.93)"; roundRect(ctx, 44, 34, 992, 1012, 34).fill();
+    try {
+      const logo = await loadCanvasImage("../assets/outreach-recruitment-logo.svg");
+      const lh = 74, lw = Math.min(360, logo.width * (lh / logo.height)); ctx.drawImage(logo, 58, 52, lw, lh);
+    } catch { ctx.fillStyle = "#4527f5"; ctx.font = "900 45px Arial"; ctx.fillText("OUTREACH", 58, 108); }
+
+    ctx.fillStyle = "#14121a"; ctx.font = "900 49px Arial, Helvetica, sans-serif"; ctx.fillText("WE ARE HIRING IN MALTA 🇲🇹", 58, 180);
+    ctx.fillStyle = "#fb2427"; roundRect(ctx, 54, 206, 972, 104, 5).fill();
+    ctx.fillStyle = "#fff"; fitCanvasFont(ctx, job.title.toUpperCase(), 900, 47, 27, 900);
+    ctx.fillText(job.title.toUpperCase(), 84, 274);
+
+    let y = 365;
+    const reqs = requirements.slice(0, 5);
+    ctx.font = "700 23px Arial, Helvetica, sans-serif";
+    for (const requirement of reqs) {
+      ctx.fillStyle = "#4727fa"; ctx.beginPath(); ctx.moveTo(72, y - 15); ctx.lineTo(100, y); ctx.lineTo(72, y + 15); ctx.lineTo(82, y); ctx.lineTo(61, y + 15); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = "#20202a";
+      const lines = canvasLines(ctx, requirement.replace(/\s*[.;]$/, ""), 855, 2);
+      lines.forEach((line, i) => ctx.fillText(line, 118, y + i * 28 + 8));
+      y += lines.length > 1 ? 64 : 50;
+    }
+
+    const detailY = 755, purple = "#4727fa";
+    const badges = [`📍 ${details.city}, Malta`, details.salary, details.job_type].filter(Boolean).slice(0, 3);
+    badges.forEach((label, i) => {
+      ctx.font = "800 25px Arial, Helvetica, sans-serif";
+      const width = Math.min(900, ctx.measureText(label).width + 48);
+      ctx.fillStyle = purple; roundRect(ctx, 58, detailY + i * 63, width, 50, 3).fill();
+      ctx.fillStyle = "#fff"; ctx.fillText(label, 78, detailY + 34 + i * 63);
+    });
+
+    ctx.fillStyle = "#fb2427"; roundRect(ctx, 44, 968, 992, 78, 8).fill();
+    ctx.fillStyle = "#fff"; ctx.font = "800 23px Arial, Helvetica, sans-serif"; ctx.fillText("More information: outreachrecruitment.net", 70, 1017);
+    ctx.fillStyle = purple; roundRect(ctx, 770, 982, 238, 51, 28).fill();
+    ctx.fillStyle = "#fff"; ctx.font = "italic 900 28px Arial, Helvetica, sans-serif"; ctx.fillText("APPLY NOW", 806, 1017);
+  }
+  function wirePictureGenerator(root, job, details, requirements) {
+    const I = window.AdminImages, canvas = $("#mk-gen-canvas", root), note = $("#mk-gen-note", root), key = job.slug;
+    let images = [], background = null, drawVersion = 0;
+    const isCurrent = () => canvas.isConnected && $("#mk-gen-canvas", root) === canvas;
+    const draw = async () => {
+      const version = ++drawVersion;
+      let bitmap = null;
+      try { if (background) bitmap = await loadCanvasImage(background.url); }
+      catch (e) { if (isCurrent()) note.textContent = e.message + ". Choose another background."; }
+      if (isCurrent() && version === drawVersion) await drawSocialPicture(canvas, job, details, requirements, bitmap);
+    };
+    const paintBackgrounds = () => {
+      if (!isCurrent()) return;
+      background = images.find((im) => im.id === I.pickFor(key)) || null;
+      $("#mk-gen-backgrounds", root).innerHTML = images.length ? images.map((im) => `<button class="mk-gen-bg ${background?.id === im.id ? "active" : ""}" data-id="${esc(im.id)}" title="Use ${esc(im.name)} as the background"><img src="${esc(im.url)}" alt="${esc(im.name)}"></button>`).join("") : `<span class="muted small">Add the first background for this job.</span>`;
+      $$(".mk-gen-bg", root).forEach((button) => (button.onclick = () => { I.setPick(key, button.dataset.id); paintBackgrounds(); }));
+      note.textContent = background ? `Using “${background.name}” for ${job.title}.` : `Add or choose a background for ${job.title}.`;
+      draw();
+    };
+    $("#mk-gen-upload", root).onchange = async (e) => {
+      const file = e.target.files[0]; if (!file) return;
+      note.textContent = "Saving the background…";
+      try { const id = await I.add(file); images = await I.list(); if (!isCurrent()) return; I.setPick(key, id); paintBackgrounds(); }
+      catch (err) { if (isCurrent()) note.textContent = "Could not save the background: " + (err.message || err); }
+      e.target.value = "";
+    };
+    $("#mk-gen-download", root).onclick = () => {
+      const a = Object.assign(document.createElement("a"), { download: `${job.slug}-social-post.png`, href: canvas.toDataURL("image/png") }); a.click();
+    };
+    $("#mk-gen-copy", root).onclick = async (e) => {
+      try { const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png")); await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]); flash(e.currentTarget); }
+      catch { alert("Your browser blocked copying the picture — use Download PNG instead."); }
+    };
+    (async () => { try { await I.init(); images = await I.list(); } catch (err) { note.textContent = "Picture library unavailable: " + (err.message || err); } paintBackgrounds(); })();
   }
   function wirePreview(root, key) {
     const ta = $("#mk-text", root), pv = $("#mk-preview-text", root), cnt = $("#mk-count", root);
