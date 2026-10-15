@@ -233,3 +233,13 @@ label.btn { font-weight: 600; }
 .so-title:focus, .so-subtitle:focus { border-color: var(--brand); }
 .chip-btn.small { font-size: .8rem; padding: 4px 10px; }
 @media (max-width: 640px) { .so-fields { grid-template-columns: minmax(0, 1fr); } }
+
+.cal-list { display: grid; gap: 6px; margin-bottom: 14px; }
+.cal-item { font: inherit; display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 10px; padding: 9px 12px; cursor: pointer; }
+.cal-item:hover { border-color: var(--brand); }
+.cal-item.active { background: var(--brand-soft); border-color: var(--brand); }
+.cal-when { font-weight: 700; color: var(--brand); font-size: .85rem; }
+.cal-name { font-weight: 600; }
+.cal-kind { font-size: .75rem; color: var(--muted); }
+@media (max-width: 640px) { .cal-item { grid-template-columns: 80px minmax(0, 1fr); } .cal-kind { display: none; } }

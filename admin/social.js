@@ -172,8 +172,15 @@
     { id: "quotes", label: "💬 Quotes", hint: "Motivational quotes for Monday posts and stories." },
     { id: "myths", label: "💡 Myth vs Fact", hint: "Bust a common job-search or hiring myth." },
     { id: "polls", label: "📊 Poll", hint: "An engagement question with answer options (use the platform's poll feature)." },
+    { id: "holidays", label: "📅 Malta holidays & events", hint: "Every month: Malta public holidays, recurring events, international days and hiring moments — each with a ready post." },
   ];
-  const state = { tab: "employers", idx: {}, salary: 24000, status: "single", sector: "" };
+  const now = new Date();
+  const state = { tab: "employers", idx: {}, salary: 24000, status: "single", sector: "",
+    year: now.getFullYear(), month: now.getMonth() + 1, cal: 0 };
+  const KIND = { holiday: ["🇲🇹", "Public holiday"], event: ["🎉", "Malta event"], day: ["🌍", "International day"], season: ["📌", "This month"] };
+  const monthName = (y, m) => new Date(Date.UTC(y, m - 1, 15)).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+  const niceDate = (d) => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+  const calItems = () => window.MaltaCalendar.forMonth(state.year, state.month);
 
   function bankPost(bank, key, tagKey, vars) {
     const i = state.idx[key] ?? 0, it = bank[i];
@@ -260,6 +267,19 @@
           pos: `${i + 1} / ${MYTHS.length}`,
         };
       }
+      case "holidays": {
+        const items = calItems();
+        if (!items.length) return { title: "", subtitle: "", caption: "", pick: "Nothing this month" };
+        const it = items[Math.min(state.cal, items.length - 1)];
+        const v = { ...vars, year: state.year };
+        const cta = it.url === "/jobs" ? "🌐 Open jobs in Malta:" : it.url === "/employers" ? "📩 Hire with us:" : "📖 Read more:";
+        return {
+          title: fillVars(it.title, v), subtitle: fillVars(it.subtitle, v),
+          caption: caption([`**${fillVars(it.title, v)}**`, fillVars(it.body, v), `${cta} ${SITE}${it.url}`, tagsFor(it.tags)]),
+          pick: it.date ? `${KIND[it.kind][1]} · ${niceDate(it.date)}` : `${KIND[it.kind][1]} · ${it.when}`,
+          warn: it.kind === "event" ? `Dates change every year (${it.when}). Confirm the date before posting.` : "",
+        };
+      }
       case "polls": {
         const i = state.idx.polls ?? 0, it = POLLS[i];
         return {
@@ -290,6 +310,20 @@
             .map(([v, l]) => `<option value="${v}" ${v === state.status ? "selected" : ""}>${l}</option>`).join("")}</select></label>
           <div class="form-actions" style="align-self:end">${[18000, 24000, 30000, 40000, 55000].map((v) => `<button class="chip-btn small" data-sal="${v}">${eur(v)}</button>`).join("")}</div>
         </div>`
+      : state.tab === "holidays"
+      ? (() => {
+          const items = calItems();
+          return `<div class="form-actions" style="margin-bottom:10px">
+              <button class="btn small" id="cal-prev" aria-label="Previous month">‹</button>
+              <strong style="min-width:150px;text-align:center">${esc(monthName(state.year, state.month))}</strong>
+              <button class="btn small" id="cal-next" aria-label="Next month">›</button>
+              <button class="btn small ghost" id="cal-today">This month</button></div>
+            <div class="cal-list">${items.length ? items.map((it, i) => `<button class="cal-item ${i === Math.min(state.cal, items.length - 1) ? "active" : ""}" data-cal="${i}">
+                <span class="cal-when">${it.date ? esc(niceDate(it.date)) : it.kind === "event" ? "Date varies" : "Any day"}</span>
+                <span class="cal-name">${KIND[it.kind][0]} ${esc(it.name)}</span>
+                <span class="cal-kind">${KIND[it.kind][1]}</span></button>`).join("")
+              : `<div class="empty">No holidays or events this month.</div>`}</div>`;
+        })()
       : state.tab === "sector"
       ? `<div class="mk-chips" style="margin-bottom:12px">${secs.map(([c, n]) => `<button class="chip-btn ${c === state.sector ? "active" : ""}" data-sector="${esc(c)}">${esc(c)} (${n})</button>`).join("")}</div>`
       : "";
@@ -306,6 +340,7 @@
           <div class="form-actions">${post.pos || post.pick ? `<span class="muted small">${esc(post.pos ? "Idea " + post.pos : post.pick)}</span>` : ""}
             ${BANK_SIZE[state.tab] ? `<button class="btn small" id="so-next">🔀 Generate another</button>` : ""}</div></div>
         <p class="muted small">${tab.hint}</p>
+        ${post.warn ? `<p class="status warn" style="margin:0 0 10px">⚠ ${esc(post.warn)}</p>` : ""}
         ${controls}
         <div class="so-fields">
           <div class="so-field"><div class="so-label">Title <span class="muted small">(headline on the picture)</span></div>
@@ -330,6 +365,12 @@
     $$(".tab", view).forEach((b) => (b.onclick = () => { state.tab = b.dataset.tab; window.renderSocial(view); }));
     const next = $("#so-next", view);
     if (next) next.onclick = () => { state.idx[state.tab] = pickIndex(BANK_SIZE[state.tab], state.idx[state.tab] ?? 0); window.renderSocial(view); };
+    const go = (dm) => { let m = state.month + dm, y = state.year; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } state.month = m; state.year = y; state.cal = 0; window.renderSocial(view); };
+    if ($("#cal-prev", view)) {
+      $("#cal-prev", view).onclick = () => go(-1); $("#cal-next", view).onclick = () => go(1);
+      $("#cal-today", view).onclick = () => { state.year = now.getFullYear(); state.month = now.getMonth() + 1; state.cal = 0; window.renderSocial(view); };
+      $$("[data-cal]", view).forEach((b) => (b.onclick = () => { state.cal = +b.dataset.cal; window.renderSocial(view); }));
+    }
     $$("[data-sector]", view).forEach((b) => (b.onclick = () => { state.sector = b.dataset.sector; window.renderSocial(view); }));
     $$("[data-sal]", view).forEach((b) => (b.onclick = () => { state.salary = +b.dataset.sal; window.renderSocial(view); }));
     const sal = $("#so-salary", view), st = $("#so-status", view);

@@ -20,7 +20,12 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 - **Marketing › Social Media** (`social.js`) — tabs that generate a picture **title**, **subtitle** and a
   ready **caption** (link + hashtags): Employers, Candidates, Study in Malta, Salary calculator (same 2026
   tax bands / SSC as `/salary-calculator-malta`), New jobs this week, Jobs by sector (live counts, hub
-  links), Quotes, Myth vs Fact, Poll. "Generate another" cycles ideas; everything is editable before copying.
+  links), Quotes, Myth vs Fact, Poll, Malta holidays & events. "Generate another" cycles ideas; everything is
+  editable before copying.
+- **Malta holidays & events** (`calendar-malta.js`) — month by month: the 14 Malta public holidays (Good Friday
+  from the Easter date), Easter Sunday, recurring events whose dates vary (Carnival — computed from Ash
+  Wednesday —, Fireworks Festival, festa season, Notte Bianca, Birgufest, Middle Sea Race…, flagged "confirm
+  the date"), relevant international days and a hiring / study moment per month. Each item has a ready post.
   **Generate picture** creates a square 1080×1080 social post in the fixed Outreach format. Selecting a job
   automatically fills its title, location, salary, employment type and the first 4–5 requirements from the
   careers-page description. The logo and layout stay fixed while each job remembers its own chosen background.
@@ -36,7 +41,7 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
 
-Files: `index.html`, `jobsync.js`, `marketing.js`, `images.js`, `social.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
+Files: `index.html`, `jobsync.js`, `marketing.js`, `images.js`, `social.js`, `calendar-malta.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 
 ## Data
 Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to emails in `public.admin_users`
