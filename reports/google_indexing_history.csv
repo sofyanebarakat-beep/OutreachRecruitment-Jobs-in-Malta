@@ -3198,3 +3198,9 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-15T12:22:51,Receptionist,receptionist,https://outreachrecruitment.net/jobs/receptionist/,URL_UPDATED,salary_update,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/receptionist/""
+  }
+}
+"
