@@ -243,3 +243,17 @@ label.btn { font-weight: 600; }
 .cal-name { font-weight: 600; }
 .cal-kind { font-size: .75rem; color: var(--muted); }
 @media (max-width: 640px) { .cal-item { grid-template-columns: 80px minmax(0, 1fr); } .cal-kind { display: none; } }
+
+.today-card { border: 2px solid var(--brand); }
+.today-main { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: var(--brand-soft); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+.week-strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+.week-day { font: inherit; display: grid; gap: 2px; text-align: center; border: 1px solid var(--border); background: var(--surface);
+  color: var(--text-2); border-radius: 10px; padding: 7px 4px; cursor: pointer; font-size: .78rem; }
+.week-day span:first-child { font-weight: 800; color: var(--text); }
+.week-day.today { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+.coming-up { display: grid; gap: 6px; margin-top: 12px; }
+.hash-pick { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+.hash-pick select { width: auto; padding: 5px 8px; }
+.own-idea { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; }
+@media (max-width: 640px) { .week-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); } }

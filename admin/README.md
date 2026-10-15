@@ -22,6 +22,13 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   tax bands / SSC as `/salary-calculator-malta`), New jobs this week, Jobs by sector (live counts, hub
   links), Quotes, Myth vs Fact, Poll, Malta holidays & events. "Generate another" cycles ideas; everything is
   editable before copying.
+- **Social Media extras** — *Today's post* card (weekly plan Mon quote · Tue new jobs · Wed candidate tip ·
+  Thu employer post · Fri poll · Sat job of the day · Sun study; a holiday/international day on the date goes
+  first) with "Coming up (next 7 days)"; *Job of the day* (fair daily rotation through all open jobs, intro from
+  the careers page); *FAQ posts* from `admin/faq-posts.json` (built daily by `tools/build_social_faqs.py`:
+  general questions + job-specific questions of open jobs); *hashtag sets* per tab (candidates, employers,
+  students, jobs, each sector, none); *your own ideas* per tab (Supabase `seo_settings` key `social_ideas`
+  when signed in, else this browser).
 - **Malta holidays & events** (`calendar-malta.js`) — month by month: the 14 Malta public holidays (Good Friday
   from the Easter date), Easter Sunday, recurring events whose dates vary (Carnival — computed from Ash
   Wednesday —, Fireworks Festival, festa season, Notte Bianca, Birgufest, Middle Sea Race…, flagged "confirm

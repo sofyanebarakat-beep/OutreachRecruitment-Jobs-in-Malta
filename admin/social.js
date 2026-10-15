@@ -161,61 +161,136 @@
   const tagsFor = (...keys) => [...new Set(keys.flatMap((k) => (TAGS[k] || k).split(" ")).concat(TAGS.base.split(" ")))].join(" ");
   const caption = (lines) => lines.filter((l) => l !== null && l !== undefined && l !== "").join("\n\n");
 
-  // ── generators ────────────────────────────────────────────────────────────
+  // ── your own ideas (Supabase seo_settings "social_ideas" when signed in, else this browser) ──
+  const IDEAS_KEY = "social_ideas", LS_IDEAS = "admin:social-ideas";
+  let ideas = null;
+  async function loadIdeas() {
+    if (ideas) return ideas;
+    const S = window.AdminStore;
+    try {
+      if (S?.mode === "supabase" && S.sb) {
+        const { data, error } = await S.sb.from("seo_settings").select("value").eq("key", IDEAS_KEY).maybeSingle();
+        if (!error) { ideas = data?.value || {}; return ideas; }
+      }
+    } catch {}
+    try { ideas = JSON.parse(localStorage.getItem(LS_IDEAS) || "{}"); } catch { ideas = {}; }
+    return ideas;
+  }
+  async function saveIdeas() {
+    const S = window.AdminStore;
+    if (S?.mode === "supabase" && S.sb) {
+      const { error } = await S.sb.from("seo_settings").upsert({ key: IDEAS_KEY, value: ideas, updated_at: new Date().toISOString() });
+      if (!error) return "online";
+    }
+    try { localStorage.setItem(LS_IDEAS, JSON.stringify(ideas)); } catch {}
+    return "this browser";
+  }
+  const BUILTIN = { employers: EMPLOYERS, candidates: CANDIDATES, study: STUDY, quotes: QUOTES, myths: MYTHS, polls: POLLS };
+  const bankFor = (tab) => [...(BUILTIN[tab] || []), ...((ideas || {})[tab] || []).map((x) => ({ ...x, own: true }))];
+
+  // ── FAQ questions from the site (built daily by tools/build_social_faqs.py) ──
+  let faqData = null;
+  async function loadFaqs() {
+    if (faqData) return faqData;
+    try { faqData = await (await fetch("faq-posts.json?t=" + Date.now(), { cache: "no-store" })).json(); }
+    catch { faqData = { general: [], jobs: [] }; }
+    return faqData;
+  }
+
+  // ── hashtag sets ──────────────────────────────────────────────────────────
+  const HS_KEY = "admin:social-hashsets";
+  const hashChoice = () => { try { return JSON.parse(localStorage.getItem(HS_KEY) || "{}"); } catch { return {}; } };
+  function hashSets(js) {
+    const sets = [["auto", "Default for this tab", ""], ["candidates", "Candidates", TAGS.candidates], ["employers", "Employers", TAGS.employers],
+      ["students", "Students", TAGS.study], ["jobs", "Jobs", TAGS.jobs]];
+    for (const [c] of sectorsOf(js)) {
+      const w = c.split("&")[0].trim();
+      sets.push(["sector:" + c, `Sector: ${c}`, `#${K().camel(w)}Jobs #${K().camel(w)}Malta #JobsInMalta #MaltaJobs #Hiring #WorkInMalta`]);
+    }
+    sets.push(["none", "No hashtags", ""]);
+    return sets;
+  }
+  function applyHashSet(text, key, js) {
+    if (!key || key === "auto") return text;
+    const set = hashSets(js).find(([k]) => k === key);
+    if (!set) return text;
+    const blocks = text.split(/\n{2,}/);
+    if (blocks.length && blocks[blocks.length - 1].trim().startsWith("#")) blocks.pop();
+    if (key !== "none") blocks.push(tagsFor(set[2]));
+    return blocks.join("\n\n");
+  }
+
+  // ── dates ─────────────────────────────────────────────────────────────────
+  const now = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const ymd = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const todayISO = ymd(now);
+  const dayNumber = Math.floor(new Date(todayISO + "T00:00:00Z").getTime() / 864e5);
+  const KIND = { holiday: ["🇲🇹", "Public holiday"], event: ["🎉", "Malta event"], day: ["🌍", "International day"], season: ["📌", "This month"] };
+  const monthName = (y, m) => new Date(Date.UTC(y, m - 1, 15)).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+  const niceDate = (d) => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+  function comingUp(days = 7) {
+    const out = [], end = ymd(new Date(now.getTime() + days * 864e5));
+    const months = new Set([`${now.getFullYear()}-${now.getMonth() + 1}`, `${new Date(now.getTime() + days * 864e5).getFullYear()}-${new Date(now.getTime() + days * 864e5).getMonth() + 1}`]);
+    for (const ym of months) {
+      const [y, m] = ym.split("-").map(Number);
+      window.MaltaCalendar.forMonth(y, m).forEach((it, i) => { if (it.date && it.date >= todayISO && it.date <= end) out.push({ ...it, y, m, i }); });
+    }
+    return out.sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  // ── tabs + weekly plan ────────────────────────────────────────────────────
   const TABS = [
     { id: "employers", label: "👔 Employers", hint: "Hiring tips and your services for businesses in Malta." },
     { id: "candidates", label: "🙋 Candidates", hint: "CV, interview and job-search tips — each linking to a blog guide." },
     { id: "study", label: "🎓 Study in Malta", hint: "Student visa, cost of living and why Malta — linking to your study guides." },
-    { id: "salary", label: "💶 Salary calculator", hint: "“€X gross = €Y net per month” — same maths as /salary-calculator-malta." },
+    { id: "jobday", label: "⭐ Job of the day", hint: "One open job a day, rotating so every job gets promoted in turn." },
     { id: "newjobs", label: "🆕 New jobs this week", hint: "A round-up of the jobs published in the last 7 days (or the latest ones)." },
     { id: "sector", label: "🏭 Jobs by sector", hint: "Open jobs in one sector, linking to its hub page." },
+    { id: "salary", label: "💶 Salary calculator", hint: "“€X gross = €Y net per month” — same maths as /salary-calculator-malta." },
+    { id: "faq", label: "❓ FAQ posts", hint: "Quick Q&A posts from the questions on your website (refreshed daily)." },
     { id: "quotes", label: "💬 Quotes", hint: "Motivational quotes for Monday posts and stories." },
     { id: "myths", label: "💡 Myth vs Fact", hint: "Bust a common job-search or hiring myth." },
     { id: "polls", label: "📊 Poll", hint: "An engagement question with answer options (use the platform's poll feature)." },
     { id: "holidays", label: "📅 Malta holidays & events", hint: "Every month: Malta public holidays, recurring events, international days and hiring moments — each with a ready post." },
   ];
-  const now = new Date();
-  const state = { tab: "employers", idx: {}, salary: 24000, status: "single", sector: "",
-    year: now.getFullYear(), month: now.getMonth() + 1, cal: 0 };
-  const KIND = { holiday: ["🇲🇹", "Public holiday"], event: ["🎉", "Malta event"], day: ["🌍", "International day"], season: ["📌", "This month"] };
-  const monthName = (y, m) => new Date(Date.UTC(y, m - 1, 15)).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
-  const niceDate = (d) => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
-  const calItems = () => window.MaltaCalendar.forMonth(state.year, state.month);
+  // Sunday = 0 … Saturday = 6
+  const PLAN = { 1: "quotes", 2: "newjobs", 3: "candidates", 4: "employers", 5: "polls", 6: "jobday", 0: "study" };
+  const DAYNAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const tabLabel = (id) => TABS.find((t) => t.id === id)?.label || id;
+  const state = { tab: null, idx: {}, salary: 24000, status: "single", sector: "", year: now.getFullYear(), month: now.getMonth() + 1,
+    cal: 0, jobShift: 0, faqMode: "general", faqIdx: 0 };
 
-  function bankPost(bank, key, tagKey, vars) {
-    const i = state.idx[key] ?? 0, it = bank[i];
-    return {
-      title: fillVars(it.t, vars), subtitle: fillVars(it.s, vars),
-      caption: caption([`**${fillVars(it.t, vars)}**`, fillVars(it.b, vars), `${it.cta} ${SITE}${it.url}`, tagsFor(tagKey)]),
-      pos: `${i + 1} / ${bank.length}`,
-    };
+  // ── generators ────────────────────────────────────────────────────────────
+  function bankPost(tab, tagKey, vars) {
+    const bank = bankFor(tab);
+    const i = Math.min(state.idx[tab] ?? 0, bank.length - 1), it = bank[i];
+    const t = fillVars(it.t, vars), sub = fillVars(it.s || "", vars), url = it.url || "/jobs";
+    return { title: t, subtitle: sub, own: it.own, ownIndex: it.own ? i - (BUILTIN[tab] || []).length : -1,
+      caption: caption([`**${t}**`, fillVars(it.b || "", vars), `${it.cta || "👉 Learn more:"} ${url.startsWith("http") ? url : SITE + url}`, tagsFor(tagKey)]),
+      pos: `${i + 1} / ${bank.length}${it.own ? " · your idea" : ""}` };
   }
 
-  function generate(js) {
+  async function generate(js) {
     const vars = { open: js.length, sectors: sectorsOf(js).length };
     switch (state.tab) {
-      case "employers": return bankPost(EMPLOYERS, "employers", "employers", vars);
-      case "candidates": return bankPost(CANDIDATES, "candidates", "candidates", vars);
-      case "study": return bankPost(STUDY, "study", "study", vars);
-      case "salary": {
-        const g = +state.salary || 0, r = netSalary(g, state.status);
-        const statusLabel = { single: "single", married: "married", parent: "parent" }[state.status];
-        const matching = js.filter((j) => j.salary).slice(0, 3);
+      case "employers": return bankPost("employers", "employers", vars);
+      case "candidates": return bankPost("candidates", "candidates", vars);
+      case "study": return bankPost("study", "study", vars);
+      case "jobday": {
+        const order = [...js].sort((a, b) => a.slug.localeCompare(b.slug));
+        const i = (((dayNumber + state.jobShift) % order.length) + order.length) % order.length, job = order[i];
+        const v = await K().jobValues(job);
         return {
-          title: `${eur(g)} gross = ${eur(r.netMonth)} net/month`,
-          subtitle: `Your estimated take-home pay in Malta (2026, ${statusLabel} rates)`,
-          caption: caption([
-            `💶 **How much is ${eur(g)} a year in Malta — after tax?**`,
-            `Gross: **${eur(r.grossMonth)}/month**\nIncome tax: −${eur(r.tax / 12)}/month\nSocial security: −${eur(r.ssc / 12)}/month\n👉 **Net: ${eur(r.netMonth)}/month** (${eur(r.net)} a year)`,
-            "Estimate based on Malta's 2026 tax bands and standard Class 1 social security. Your exact payslip may differ.",
-            `🧮 Try your own salary: ${SITE}/salary-calculator-malta`,
-            matching.length ? `💼 Jobs with a published salary: ${SITE}/jobs` : "",
-            tagsFor("salary"),
-          ]),
+          title: `Job of the day: ${job.title}`, subtitle: `📍 ${v.city}, Malta · 💶 ${v.salary}`,
+          caption: caption([`⭐ **JOB OF THE DAY: ${job.title}**`, `📍 ${v.city}, Malta · 🕒 ${v.job_type} · 💶 ${v.salary}`, v.intro,
+            `🌐 **Apply now:** ${v.apply_url}`, `💼 **More Jobs:** ${v.more_jobs_url}`, v.hashtags]),
+          pick: state.jobShift ? `Another job (${i + 1} of ${order.length})`
+            : `Today's pick — ${i + 1} of ${order.length}; every open job is featured once every ${order.length} days`,
         };
       }
       case "newjobs": {
-        const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+        const weekAgo = ymd(new Date(now.getTime() - 7 * 864e5));
         let list = js.filter((j) => String(j.date || "") >= weekAgo).sort((a, b) => String(b.date).localeCompare(String(a.date)));
         const thisWeek = list.length > 0;
         if (!thisWeek) list = [...js].sort((a, b) => String(b.date || "").localeCompare(String(a.date || ""))).slice(0, 6);
@@ -223,110 +298,163 @@
         return {
           title: thisWeek ? `${list.length} new job${list.length > 1 ? "s" : ""} this week` : "Latest jobs in Malta",
           subtitle: list.slice(0, 3).map((j) => j.title).join(" · ") + (list.length > 3 ? " & more" : ""),
-          caption: caption([
-            `🆕 **${thisWeek ? "NEW JOBS THIS WEEK" : "LATEST JOBS"} IN MALTA** 🇲🇹`,
+          caption: caption([`🆕 **${thisWeek ? "NEW JOBS THIS WEEK" : "LATEST JOBS"} IN MALTA** 🇲🇹`,
             list.map((j) => `▶️ **${j.title}** — ${cityOf(j)}${j.salary ? ` · ${j.salary}` : ""}\n${SITE}/jobs/${j.slug}/`).join("\n\n"),
-            `💼 **More Jobs:** ${SITE}/jobs`,
-            tagsFor("jobs"),
-          ]),
+            `💼 **More Jobs:** ${SITE}/jobs`, tagsFor("jobs")]),
           pick: thisWeek ? `${list.length} published since ${weekAgo}` : "No jobs published in the last 7 days — showing the latest",
         };
       }
       case "sector": {
         const secs = sectorsOf(js);
         if (!state.sector || !secs.some(([c]) => c === state.sector)) state.sector = secs[0]?.[0] || "";
-        const inSec = js.filter((j) => j.category === state.sector);
-        const word = state.sector.split("&")[0].trim();
+        const inSec = js.filter((j) => j.category === state.sector), word = state.sector.split("&")[0].trim();
         const url = SITE + (HUBS[state.sector] || "/jobs");
         return {
           title: `${inSec.length} open ${word} job${inSec.length > 1 ? "s" : ""} in Malta`,
           subtitle: inSec.slice(0, 3).map((j) => j.title).join(" · ") + (inSec.length > 3 ? " & more" : ""),
-          caption: caption([
-            `🏭 **${word.toUpperCase()} JOBS IN MALTA**`,
+          caption: caption([`🏭 **${word.toUpperCase()} JOBS IN MALTA**`,
             `**Outreach Recruitment** is hiring for **${inSec.length} ${word.toLowerCase()} role${inSec.length > 1 ? "s" : ""}** right now:`,
             inSec.slice(0, 6).map((j) => `▶️ ${j.title} — ${cityOf(j)}${j.salary ? ` · ${j.salary}` : ""}`).join("\n"),
-            `🌐 **See all ${word.toLowerCase()} jobs:** ${url}`,
-            tagsFor("jobs", "#" + K().camel(word) + "Jobs"),
-          ]),
+            `🌐 **See all ${word.toLowerCase()} jobs:** ${url}`, tagsFor("jobs", "#" + K().camel(word) + "Jobs")]),
+        };
+      }
+      case "salary": {
+        const g = +state.salary || 0, r = netSalary(g, state.status);
+        return {
+          title: `${eur(g)} gross = ${eur(r.netMonth)} net/month`,
+          subtitle: `Your estimated take-home pay in Malta (2026, ${state.status} rates)`,
+          caption: caption([`💶 **How much is ${eur(g)} a year in Malta — after tax?**`,
+            `Gross: **${eur(r.grossMonth)}/month**\nIncome tax: −${eur(r.tax / 12)}/month\nSocial security: −${eur(r.ssc / 12)}/month\n👉 **Net: ${eur(r.netMonth)}/month** (${eur(r.net)} a year)`,
+            "Estimate based on Malta's 2026 tax bands and standard Class 1 social security. Your exact payslip may differ.",
+            `🧮 Try your own salary: ${SITE}/salary-calculator-malta`, tagsFor("salary")]),
+        };
+      }
+      case "faq": {
+        const d = await loadFaqs(), list = state.faqMode === "job" ? d.jobs : d.general;
+        if (!list.length) return { title: "", subtitle: "", caption: "", pick: "No questions found" };
+        const i = state.faqIdx % list.length, it = list[i];
+        let first = "";  // at least ~50 characters of the answer ("Yes." alone is not a subtitle)
+        for (const sn of it.a.match(/[^.!?]+[.!?]+/g) || [it.a]) { first += sn; if (first.trim().length >= 50) break; }
+        first = first.trim();
+        const isJob = state.faqMode === "job";
+        const link = isJob ? `${SITE}/jobs/${it.slug}/` : SITE + it.url;
+        return {
+          title: it.q, subtitle: first.length > 110 ? first.slice(0, 107).replace(/\s+\S*$/, "") + "…" : first,
+          caption: caption([`❓ **${it.q}**`, `✅ ${it.a}`, isJob ? `💼 **${it.title}** — 🌐 **Apply now:** ${link}` : `👉 **Find out more:** ${link}`,
+            tagsFor(isJob ? "jobs" : /stud/i.test(it.q) ? "study" : /hire|business|source/i.test(it.q) ? "employers" : "candidates")]),
+          pos: `${i + 1} / ${list.length}${isJob ? ` · ${it.title}` : it.pages ? ` · on ${it.pages} pages` : ""}`,
         };
       }
       case "quotes": {
-        const i = state.idx.quotes ?? 0, it = QUOTES[i];
-        return {
-          title: `“${it.q}”`, subtitle: it.a ? `— ${it.a}` : "— Outreach Recruitment",
-          caption: caption([`💬 “${it.q}”${it.a ? `\n— ${it.a}` : ""}`, "Ready for your next step? We're here to help. 🙌",
-            `🌐 **Open jobs:** ${SITE}/jobs`, tagsFor("quotes")]),
-          pos: `${i + 1} / ${QUOTES.length}`,
-        };
+        const bank = bankFor("quotes"), i = Math.min(state.idx.quotes ?? 0, bank.length - 1), it = bank[i];
+        return { title: `“${it.q}”`, subtitle: it.a ? `— ${it.a}` : "— Outreach Recruitment", own: it.own, ownIndex: it.own ? i - QUOTES.length : -1,
+          caption: caption([`💬 “${it.q}”${it.a ? `\n— ${it.a}` : ""}`, "Ready for your next step? We're here to help. 🙌", `🌐 **Open jobs:** ${SITE}/jobs`, tagsFor("quotes")]),
+          pos: `${i + 1} / ${bank.length}${it.own ? " · your idea" : ""}` };
       }
       case "myths": {
-        const i = state.idx.myths ?? 0, it = MYTHS[i];
-        return {
-          title: "Myth vs Fact", subtitle: `❌ ${it.m}`,
-          caption: caption([`💡 **MYTH vs FACT**`, `❌ **Myth:** ${it.m}\n✅ **Fact:** ${it.f}`, `📖 Learn more: ${SITE}${it.url}`, tagsFor("myths", it.tags)]),
-          pos: `${i + 1} / ${MYTHS.length}`,
-        };
-      }
-      case "holidays": {
-        const items = calItems();
-        if (!items.length) return { title: "", subtitle: "", caption: "", pick: "Nothing this month" };
-        const it = items[Math.min(state.cal, items.length - 1)];
-        const v = { ...vars, year: state.year };
-        const cta = it.url === "/jobs" ? "🌐 Open jobs in Malta:" : it.url === "/employers" ? "📩 Hire with us:" : "📖 Read more:";
-        return {
-          title: fillVars(it.title, v), subtitle: fillVars(it.subtitle, v),
-          caption: caption([`**${fillVars(it.title, v)}**`, fillVars(it.body, v), `${cta} ${SITE}${it.url}`, tagsFor(it.tags)]),
-          pick: it.date ? `${KIND[it.kind][1]} · ${niceDate(it.date)}` : `${KIND[it.kind][1]} · ${it.when}`,
-          warn: it.kind === "event" ? `Dates change every year (${it.when}). Confirm the date before posting.` : "",
-        };
+        const bank = bankFor("myths"), i = Math.min(state.idx.myths ?? 0, bank.length - 1), it = bank[i];
+        return { title: "Myth vs Fact", subtitle: `❌ ${it.m}`, own: it.own, ownIndex: it.own ? i - MYTHS.length : -1,
+          caption: caption([`💡 **MYTH vs FACT**`, `❌ **Myth:** ${it.m}\n✅ **Fact:** ${it.f}`, `📖 Learn more: ${SITE}${it.url || "/jobs"}`, tagsFor("myths", it.tags || "")]),
+          pos: `${i + 1} / ${bank.length}${it.own ? " · your idea" : ""}` };
       }
       case "polls": {
-        const i = state.idx.polls ?? 0, it = POLLS[i];
-        return {
-          title: it.q, subtitle: it.o.join("  ·  "),
-          caption: caption([`📊 **${it.q}**`, it.o.map((o, n) => `${String.fromCharCode(65 + n)}) ${o}`).join("\n"),
-            "Vote in the poll or tell us in the comments 👇", tagsFor("polls")]),
-          pos: `${i + 1} / ${POLLS.length}`,
-        };
+        const bank = bankFor("polls"), i = Math.min(state.idx.polls ?? 0, bank.length - 1), it = bank[i];
+        return { title: it.q, subtitle: it.o.join("  ·  "), own: it.own, ownIndex: it.own ? i - POLLS.length : -1,
+          caption: caption([`📊 **${it.q}**`, it.o.map((o, n) => `${String.fromCharCode(65 + n)}) ${o}`).join("\n"), "Vote in the poll or tell us in the comments 👇", tagsFor("polls")]),
+          pos: `${i + 1} / ${bank.length}${it.own ? " · your idea" : ""}` };
+      }
+      case "holidays": {
+        const items = window.MaltaCalendar.forMonth(state.year, state.month);
+        if (!items.length) return { title: "", subtitle: "", caption: "", pick: "Nothing this month" };
+        const it = items[Math.min(state.cal, items.length - 1)], v = { ...vars, year: state.year };
+        const cta = it.url === "/jobs" ? "🌐 Open jobs in Malta:" : it.url === "/employers" ? "📩 Hire with us:" : "📖 Read more:";
+        return { title: fillVars(it.title, v), subtitle: fillVars(it.subtitle, v),
+          caption: caption([`**${fillVars(it.title, v)}**`, fillVars(it.body, v), `${cta} ${SITE}${it.url}`, tagsFor(it.tags)]),
+          pick: it.date ? `${KIND[it.kind][1]} · ${niceDate(it.date)}` : `${KIND[it.kind][1]} · ${it.when}`,
+          warn: it.kind === "event" ? `Dates change every year (${it.when}). Confirm the date before posting.` : "" };
       }
     }
+    return { title: "", subtitle: "", caption: "" };
   }
-  const BANK_SIZE = { employers: EMPLOYERS.length, candidates: CANDIDATES.length, study: STUDY.length, quotes: QUOTES.length, myths: MYTHS.length, polls: POLLS.length };
+  const ROTATE = { employers: 1, candidates: 1, study: 1, quotes: 1, myths: 1, polls: 1 };
+  const OWN_FIELDS = {
+    employers: [["t", "Title"], ["s", "Subtitle"], ["b", "Caption text", "textarea"], ["url", "Link (e.g. /employers)"]],
+    candidates: [["t", "Title"], ["s", "Subtitle"], ["b", "Caption text", "textarea"], ["url", "Link (e.g. /jobs)"]],
+    study: [["t", "Title"], ["s", "Subtitle"], ["b", "Caption text", "textarea"], ["url", "Link (e.g. /study-in-malta-complete-guide)"]],
+    quotes: [["q", "Quote"], ["a", "Author (optional)"]],
+    myths: [["m", "Myth"], ["f", "Fact"], ["url", "Link (optional)"]],
+    polls: [["q", "Question"], ["o", "Options — one per line", "textarea"]],
+  };
+
+  // ── today card ────────────────────────────────────────────────────────────
+  function todayCard() {
+    const dow = now.getDay();
+    const special = window.MaltaCalendar.forMonth(now.getFullYear(), now.getMonth() + 1)
+      .map((it, i) => ({ ...it, i })).filter((it) => it.date === todayISO);
+    const up = comingUp(7).filter((it) => it.date > todayISO);
+    const order = [1, 2, 3, 4, 5, 6, 0];
+    return `<section class="card today-card">
+      <div class="section-title"><h2>📌 Today's post · ${DAYNAMES[dow]} ${esc(niceDate(todayISO).replace(/^\w+ /, ""))}</h2></div>
+      ${special.length
+        ? special.map((it) => `<div class="today-main"><span>${KIND[it.kind][0]} <strong>${esc(it.name)}</strong> today — post this first.</span>
+            <button class="btn primary small" data-open-cal="${now.getFullYear()}-${now.getMonth() + 1}-${it.i}">Open the post</button></div>`).join("")
+          + `<p class="small muted" style="margin:6px 0 0">Planned for ${DAYNAMES[dow]}: ${tabLabel(PLAN[dow])} — <a href="#" data-open-tab="${PLAN[dow]}">open</a> if you also want to post it.</p>`
+        : `<div class="today-main"><span>Planned for ${DAYNAMES[dow]}: <strong>${tabLabel(PLAN[dow])}</strong></span>
+            <button class="btn primary small" data-open-tab="${PLAN[dow]}">Open today's post</button></div>`}
+      <div class="week-strip">${order.map((d) => `<button class="week-day ${d === dow ? "today" : ""}" data-open-tab="${PLAN[d]}">
+        <span>${DAYNAMES[d].slice(0, 3)}</span><span>${tabLabel(PLAN[d])}</span></button>`).join("")}</div>
+      ${up.length ? `<div class="coming-up"><strong class="small">Coming up (next 7 days)</strong>${up.map((it) => `
+        <button class="cal-item" data-open-cal="${it.y}-${it.m}-${it.i}"><span class="cal-when">${esc(niceDate(it.date))}</span>
+          <span class="cal-name">${KIND[it.kind][0]} ${esc(it.name)}</span><span class="cal-kind">Prepare →</span></button>`).join("")}</div>`
+        : `<p class="small muted" style="margin:8px 0 0">No Malta holidays or international days in the next 7 days.</p>`}
+    </section>`;
+  }
 
   // ── view ──────────────────────────────────────────────────────────────────
   window.renderSocial = async function (view) {
     view.innerHTML = `<div class="card"><p class="muted" style="margin:0">Loading…</p></div>`;
     let js;
-    try { js = await loadJobs(); }
+    try { js = await loadJobs(); await loadIdeas(); }
     catch (e) { view.innerHTML = `<div class="card"><h2>Could not load the jobs</h2><p class="muted">${esc(e.message)}</p></div>`; return; }
+    if (!state.tab) state.tab = PLAN[now.getDay()];
     const tab = TABS.find((t) => t.id === state.tab);
-    const post = generate(js);
+    const post = await generate(js);
+    const hsKey = hashChoice()[state.tab] || "auto";
+    post.caption = applyHashSet(post.caption, hsKey, js);
     const secs = sectorsOf(js);
 
-    const controls = state.tab === "salary"
-      ? `<div class="form-grid" style="margin-bottom:12px">
-          <label>Gross salary per year (€)<input type="number" id="so-salary" min="1000" step="500" value="${state.salary}"></label>
-          <label>Tax status<select id="so-status">${[["single", "Single"], ["married", "Married"], ["parent", "Parent"]]
-            .map(([v, l]) => `<option value="${v}" ${v === state.status ? "selected" : ""}>${l}</option>`).join("")}</select></label>
-          <div class="form-actions" style="align-self:end">${[18000, 24000, 30000, 40000, 55000].map((v) => `<button class="chip-btn small" data-sal="${v}">${eur(v)}</button>`).join("")}</div>
-        </div>`
-      : state.tab === "holidays"
-      ? (() => {
-          const items = calItems();
-          return `<div class="form-actions" style="margin-bottom:10px">
-              <button class="btn small" id="cal-prev" aria-label="Previous month">‹</button>
-              <strong style="min-width:150px;text-align:center">${esc(monthName(state.year, state.month))}</strong>
-              <button class="btn small" id="cal-next" aria-label="Next month">›</button>
-              <button class="btn small ghost" id="cal-today">This month</button></div>
-            <div class="cal-list">${items.length ? items.map((it, i) => `<button class="cal-item ${i === Math.min(state.cal, items.length - 1) ? "active" : ""}" data-cal="${i}">
-                <span class="cal-when">${it.date ? esc(niceDate(it.date)) : it.kind === "event" ? "Date varies" : "Any day"}</span>
-                <span class="cal-name">${KIND[it.kind][0]} ${esc(it.name)}</span>
-                <span class="cal-kind">${KIND[it.kind][1]}</span></button>`).join("")
-              : `<div class="empty">No holidays or events this month.</div>`}</div>`;
-        })()
-      : state.tab === "sector"
-      ? `<div class="mk-chips" style="margin-bottom:12px">${secs.map(([c, n]) => `<button class="chip-btn ${c === state.sector ? "active" : ""}" data-sector="${esc(c)}">${esc(c)} (${n})</button>`).join("")}</div>`
-      : "";
+    let controls = "";
+    if (state.tab === "salary") controls = `<div class="form-grid" style="margin-bottom:12px">
+        <label>Gross salary per year (€)<input type="number" id="so-salary" min="1000" step="500" value="${state.salary}"></label>
+        <label>Tax status<select id="so-status">${[["single", "Single"], ["married", "Married"], ["parent", "Parent"]]
+          .map(([v, l]) => `<option value="${v}" ${v === state.status ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+        <div class="form-actions" style="align-self:end">${[18000, 24000, 30000, 40000, 55000].map((v) => `<button class="chip-btn small" data-sal="${v}">${eur(v)}</button>`).join("")}</div></div>`;
+    else if (state.tab === "sector") controls = `<div class="mk-chips" style="margin-bottom:12px">${secs.map(([c, n]) => `<button class="chip-btn ${c === state.sector ? "active" : ""}" data-sector="${esc(c)}">${esc(c)} (${n})</button>`).join("")}</div>`;
+    else if (state.tab === "faq") controls = `<div class="mk-chips" style="margin-bottom:12px">
+        <button class="chip-btn ${state.faqMode === "general" ? "active" : ""}" data-faq="general">General questions</button>
+        <button class="chip-btn ${state.faqMode === "job" ? "active" : ""}" data-faq="job">Questions about open jobs</button></div>`;
+    else if (state.tab === "holidays") {
+      const items = window.MaltaCalendar.forMonth(state.year, state.month), up = comingUp(7);
+      controls = `${up.length ? `<div class="coming-up" style="margin-bottom:12px"><strong class="small">⏰ Coming up (next 7 days)</strong>${up.map((it) => `
+          <button class="cal-item" data-open-cal="${it.y}-${it.m}-${it.i}"><span class="cal-when">${esc(niceDate(it.date))}</span>
+          <span class="cal-name">${KIND[it.kind][0]} ${esc(it.name)}</span><span class="cal-kind">Prepare →</span></button>`).join("")}</div>` : ""}
+        <div class="form-actions" style="margin-bottom:10px">
+          <button class="btn small" id="cal-prev" aria-label="Previous month">‹</button>
+          <strong style="min-width:150px;text-align:center">${esc(monthName(state.year, state.month))}</strong>
+          <button class="btn small" id="cal-next" aria-label="Next month">›</button>
+          <button class="btn small ghost" id="cal-today">This month</button></div>
+        <div class="cal-list">${items.length ? items.map((it, i) => `<button class="cal-item ${i === Math.min(state.cal, items.length - 1) ? "active" : ""}" data-cal="${i}">
+            <span class="cal-when">${it.date ? esc(niceDate(it.date)) : it.kind === "event" ? "Date varies" : "Any day"}</span>
+            <span class="cal-name">${KIND[it.kind][0]} ${esc(it.name)}</span><span class="cal-kind">${KIND[it.kind][1]}</span></button>`).join("")
+          : `<div class="empty">No holidays or events this month.</div>`}</div>`;
+    }
+    const canNext = ROTATE[state.tab] || state.tab === "faq" || state.tab === "jobday";
+    const ownForm = OWN_FIELDS[state.tab] ? `<details class="own-idea"><summary class="small">➕ Add your own idea to this tab</summary>
+        <form id="own-form" class="form-grid" style="margin-top:10px">${OWN_FIELDS[state.tab].map(([k, l, type]) => type === "textarea"
+          ? `<label style="grid-column:1/-1">${l}<textarea name="${k}" rows="4" ${k === "url" ? "" : "required"}></textarea></label>`
+          : `<label ${k === "b" || k === "q" || k === "m" || k === "f" ? 'style="grid-column:1/-1"' : ""}>${l}<input name="${k}" ${/url|^a$/.test(k) ? "" : "required"}></label>`).join("")}
+          <div class="form-actions" style="grid-column:1/-1"><button class="btn primary" type="submit">Save idea</button>
+            <span class="small muted">Saved ${window.AdminStore?.mode === "supabase" ? "online" : "in this browser"}; it appears with the built-in ideas.</span></div></form></details>` : "";
 
     view.innerHTML = `
       <section class="card hero">
@@ -334,11 +462,13 @@
         <h1>Social media posts</h1>
         <p>Pick a content type, then copy the title and subtitle for your picture and the caption for the post.</p>
       </section>
+      ${todayCard()}
       <div class="tabs" role="tablist">${TABS.map((t) => `<button class="tab ${t.id === state.tab ? "active" : ""}" data-tab="${t.id}" role="tab">${t.label}</button>`).join("")}</div>
       <section class="card">
         <div class="section-title"><h2>${tab.label}</h2>
           <div class="form-actions">${post.pos || post.pick ? `<span class="muted small">${esc(post.pos ? "Idea " + post.pos : post.pick)}</span>` : ""}
-            ${BANK_SIZE[state.tab] ? `<button class="btn small" id="so-next">🔀 Generate another</button>` : ""}</div></div>
+            ${post.own ? `<button class="btn small ghost" id="own-del">🗑 Delete this idea</button>` : ""}
+            ${canNext ? `<button class="btn small" id="so-next">🔀 ${state.tab === "jobday" ? "Another job" : "Generate another"}</button>` : ""}</div></div>
         <p class="muted small">${tab.hint}</p>
         ${post.warn ? `<p class="status warn" style="margin:0 0 10px">⚠ ${esc(post.warn)}</p>` : ""}
         ${controls}
@@ -350,7 +480,8 @@
             <div class="so-subtitle" id="so-subtitle" contenteditable="true">${esc(post.subtitle)}</div>
             <button class="btn small" data-copy="subtitle">Copy subtitle</button></div>
         </div>
-        <div class="so-label" style="margin-top:14px">Caption</div>
+        <div class="section-title" style="margin-top:14px"><div class="so-label">Caption</div>
+          <label class="hash-pick small">Hashtags <select id="so-hash">${hashSets(js).map(([k, l]) => `<option value="${esc(k)}" ${k === hsKey ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label></div>
         <div class="mk-actions">
           <button class="btn primary" id="so-copy-social">📱 Copy caption for social media</button>
           <button class="btn" id="so-copy-email">📧 Copy for email</button>
@@ -360,22 +491,60 @@
         <details><summary class="small">Edit caption (use **double stars** for bold)</summary>
           <textarea id="so-caption" rows="14" style="margin-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(post.caption)}</textarea></details>
         <p class="small muted" style="margin:8px 0 0"><span id="so-count">${K().toSocial(post.caption).length}</span> characters · LinkedIn 3,000 · Instagram 2,200 · X 280</p>
+        ${ownForm}
       </section>`;
 
-    $$(".tab", view).forEach((b) => (b.onclick = () => { state.tab = b.dataset.tab; window.renderSocial(view); }));
+    const rerender = () => window.renderSocial(view);
+    const openTab = (t) => { state.tab = t; rerender(); };
+    $$("[data-tab]", view).forEach((b) => (b.onclick = () => openTab(b.dataset.tab)));
+    $$("[data-open-tab]", view).forEach((b) => (b.onclick = (e) => { e.preventDefault(); openTab(b.dataset.openTab); }));
+    $$("[data-open-cal]", view).forEach((b) => (b.onclick = () => {
+      const [y, m, i] = b.dataset.openCal.split("-").map(Number);
+      Object.assign(state, { tab: "holidays", year: y, month: m, cal: i }); rerender();
+    }));
     const next = $("#so-next", view);
-    if (next) next.onclick = () => { state.idx[state.tab] = pickIndex(BANK_SIZE[state.tab], state.idx[state.tab] ?? 0); window.renderSocial(view); };
-    const go = (dm) => { let m = state.month + dm, y = state.year; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } state.month = m; state.year = y; state.cal = 0; window.renderSocial(view); };
+    if (next) next.onclick = () => {
+      if (state.tab === "jobday") state.jobShift++;
+      else if (state.tab === "faq") state.faqIdx = pickIndex((state.faqMode === "job" ? faqData.jobs : faqData.general).length, state.faqIdx);
+      else state.idx[state.tab] = pickIndex(bankFor(state.tab).length, state.idx[state.tab] ?? 0);
+      rerender();
+    };
+    $$("[data-faq]", view).forEach((b) => (b.onclick = () => { state.faqMode = b.dataset.faq; state.faqIdx = 0; rerender(); }));
+    $$("[data-sector]", view).forEach((b) => (b.onclick = () => { state.sector = b.dataset.sector; rerender(); }));
+    $$("[data-sal]", view).forEach((b) => (b.onclick = () => { state.salary = +b.dataset.sal; rerender(); }));
+    const sal = $("#so-salary", view), st = $("#so-status", view);
+    if (sal) sal.onchange = () => { state.salary = Math.max(0, +sal.value || 0); rerender(); };
+    if (st) st.onchange = () => { state.status = st.value; rerender(); };
+    const go = (dm) => { let m = state.month + dm, y = state.year; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } Object.assign(state, { month: m, year: y, cal: 0 }); rerender(); };
     if ($("#cal-prev", view)) {
       $("#cal-prev", view).onclick = () => go(-1); $("#cal-next", view).onclick = () => go(1);
-      $("#cal-today", view).onclick = () => { state.year = now.getFullYear(); state.month = now.getMonth() + 1; state.cal = 0; window.renderSocial(view); };
-      $$("[data-cal]", view).forEach((b) => (b.onclick = () => { state.cal = +b.dataset.cal; window.renderSocial(view); }));
+      $("#cal-today", view).onclick = () => { Object.assign(state, { year: now.getFullYear(), month: now.getMonth() + 1, cal: 0 }); rerender(); };
+      $$("[data-cal]", view).forEach((b) => (b.onclick = () => { state.cal = +b.dataset.cal; rerender(); }));
     }
-    $$("[data-sector]", view).forEach((b) => (b.onclick = () => { state.sector = b.dataset.sector; window.renderSocial(view); }));
-    $$("[data-sal]", view).forEach((b) => (b.onclick = () => { state.salary = +b.dataset.sal; window.renderSocial(view); }));
-    const sal = $("#so-salary", view), st = $("#so-status", view);
-    if (sal) sal.onchange = () => { state.salary = Math.max(0, +sal.value || 0); window.renderSocial(view); };
-    if (st) st.onchange = () => { state.status = st.value; window.renderSocial(view); };
+    $("#so-hash", view).onchange = (e) => {
+      const c = hashChoice(); c[state.tab] = e.target.value;
+      try { localStorage.setItem(HS_KEY, JSON.stringify(c)); } catch {}
+      rerender();
+    };
+    const of = $("#own-form", view);
+    if (of) of.onsubmit = async (e) => {
+      e.preventDefault();
+      const f = Object.fromEntries(new FormData(of));
+      const item = state.tab === "polls" ? { q: f.q.trim(), o: f.o.split("\n").map((x) => x.trim()).filter(Boolean) }
+        : Object.fromEntries(Object.entries(f).map(([k, v]) => [k, String(v).trim()]).filter(([, v]) => v));
+      if (item.url && !item.url.startsWith("/") && !item.url.startsWith("http")) item.url = "/" + item.url;
+      ideas[state.tab] = [...(ideas[state.tab] || []), item];
+      const where = await saveIdeas();
+      state.idx[state.tab] = bankFor(state.tab).length - 1;
+      rerender();
+      setTimeout(() => { const b = document.getElementById("banner"); if (b) { b.textContent = `Idea saved ${where}`; b.hidden = false; setTimeout(() => (b.hidden = true), 2500); } }, 50);
+    };
+    const del = $("#own-del", view);
+    if (del) del.onclick = async () => {
+      if (!confirm("Delete this idea?")) return;
+      ideas[state.tab].splice(post.ownIndex, 1);
+      await saveIdeas(); state.idx[state.tab] = 0; rerender();
+    };
 
     const ta = $("#so-caption", view);
     ta.oninput = () => { $("#so-preview", view).innerHTML = K().toHTML(ta.value); $("#so-count", view).textContent = K().toSocial(ta.value).length; };

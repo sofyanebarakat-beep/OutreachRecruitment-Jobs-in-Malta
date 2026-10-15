@@ -478,7 +478,7 @@ def git_preflight() -> str | None:
 
 LISTING_FILES = ["tools/jobs_registry.json", "jobs/index.html", "index.html", "sitemaps/sitemap-jobs.xml",
                  "sitemap_index.xml", "sitemap.xml", "construction-jobs-in-malta.html", "tools/ats_snapshots",
-                 "reports/google_indexing_history.csv", "tools/page_audit.json", "tools/rich_results.json",
+                 "reports/google_indexing_history.csv", "tools/page_audit.json", "tools/rich_results.json", "admin/faq-posts.json",
                  "tools/job_redirects.json"]
 
 
@@ -1108,6 +1108,8 @@ def main(args: list[str]) -> int:
     # 6. Listings everywhere
     if not dry:  # idempotent — also picks up registry edits made since the last run
         subprocess.run([sys.executable, str(ROOT / "tools" / "update_jobs_listing.py")], cwd=str(ROOT))
+    if not dry:  # FAQ questions for Admin › Social Media (follows the open jobs)
+        subprocess.run([sys.executable, str(ROOT / "tools" / "build_social_faqs.py")], cwd=str(ROOT))
     if not dry:
         res = sync_job_listings.run()
         TOUCHED.update(res.pop("touched"))
@@ -1201,7 +1203,7 @@ def main(args: list[str]) -> int:
             try:
                 rr = rich_results_check.run()
                 log(f"  checked {rr['checked']}, Job Posting OK {rr['job_posting_ok']}, problems {len(rr['problems'])}")
-                git("add", "--", "tools/rich_results.json", "tools/page_audit.json")
+                git("add", "--", "tools/rich_results.json", "admin/faq-posts.json", "tools/page_audit.json")
                 if git("diff", "--cached", "--quiet").returncode:
                     git("commit", "-m", f"[Daily Sync] monthly Google rich-result check {today}\n\n"
                                         "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
