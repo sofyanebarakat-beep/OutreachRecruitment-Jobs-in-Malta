@@ -3138,3 +3138,45 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-15T09:38:34,CNC Machine Operator,cnc-machine-operator,https://outreachrecruitment.net/jobs/cnc-machine-operator/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/cnc-machine-operator/""
+  }
+}
+"
+2026-10-15T09:38:34,Customer Care Agent,customer-care-agent,https://outreachrecruitment.net/jobs/customer-care-agent/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/customer-care-agent/""
+  }
+}
+"
+2026-10-15T09:38:34,Ship Chandler,ship-chandler,https://outreachrecruitment.net/jobs/ship-chandler/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/ship-chandler/""
+  }
+}
+"
+2026-10-15T09:38:34,Fleet Mechanical Superintendent,fleet-mechanical-superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent/""
+  }
+}
+"
+2026-10-15T09:38:34,Head Chef,head-chef-steakhouse,https://outreachrecruitment.net/jobs/head-chef-steakhouse/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/head-chef-steakhouse/""
+  }
+}
+"
+2026-10-15T09:48:53,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-15T09:48:53,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
