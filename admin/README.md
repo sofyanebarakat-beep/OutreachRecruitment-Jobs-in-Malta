@@ -20,7 +20,8 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   **Generate picture** creates a square 1080×1080 social post in the fixed Outreach format. Selecting a job
   automatically fills its title, location, salary, employment type and the first 4–5 requirements from the
   careers-page description. The logo and layout stay fixed while each job remembers its own chosen background.
-  The finished PNG can be copied or downloaded.
+  The fixed Outreach logo and layout adapt to Instagram/Facebook square (1080×1080), Story (1080×1920)
+  and LinkedIn landscape (1200×627). The finished PNG can be copied or downloaded.
   "Copy for email" = rich text with real bold; "Copy for social media" = Unicode bold. Also a Generic
   round-up post and editable templates (`{title}`, `{apply_url}` … saved in the browser). Today's new jobs
   (from the latest sync report) are shown first. Code: `marketing.js`.

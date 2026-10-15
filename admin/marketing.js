@@ -13,7 +13,12 @@
   const SITE = "https://outreachrecruitment.net";
   const MORE_JOBS = SITE + "/jobs";
   const UUID_RE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
-  const TPL_KEY = "admin:marketing-template:v2", GEN_KEY = "admin:marketing-generic-template";
+  const TPL_KEY = "admin:marketing-template:v2", GEN_KEY = "admin:marketing-generic-template", FORMAT_KEY = "admin:marketing-picture-format";
+  const PICTURE_FORMATS = {
+    square: { label: "Instagram / Facebook", width: 1080, height: 1080 },
+    story: { label: "Story", width: 1080, height: 1920 },
+    linkedin: { label: "LinkedIn landscape", width: 1200, height: 627 },
+  };
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
                   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
@@ -348,8 +353,14 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
   }
 
   function pictureGeneratorCard(job, details, requirements) {
+    const savedFormat = store.get(FORMAT_KEY);
+    const format = PICTURE_FORMATS[savedFormat] ? savedFormat : "square";
+    const dimensions = PICTURE_FORMATS[format];
     return `<div class="card mk-picture-card">
-      <div class="section-title"><div><h2>Social media picture</h2><p class="muted small" style="margin:3px 0 0">Square 1080 × 1080 · fixed Outreach format</p></div></div>
+      <div class="section-title"><div><h2>Social media picture</h2><p class="muted small" id="mk-gen-size" style="margin:3px 0 0">${esc(dimensions.label)} · ${dimensions.width} × ${dimensions.height} · fixed Outreach format</p></div></div>
+      <div class="mk-format-picker" role="group" aria-label="Picture format">
+        ${Object.entries(PICTURE_FORMATS).map(([key, item]) => `<button class="mk-format ${key === format ? "active" : ""}" data-format="${key}" type="button"><strong>${esc(item.label)}</strong><span>${item.width} × ${item.height}</span></button>`).join("")}
+      </div>
       <div class="mk-actions">
         <label class="btn small" for="mk-gen-upload">⬆️ Add background</label>
         <input type="file" id="mk-gen-upload" accept="image/png,image/jpeg,image/webp" hidden>
@@ -358,7 +369,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       </div>
       <div class="mk-gen-backgrounds" id="mk-gen-backgrounds"><span class="muted small">Loading job backgrounds…</span></div>
       <p class="small muted" id="mk-gen-note">The selected background is saved for ${esc(job.title)} only.</p>
-      <div class="mk-canvas-wrap"><canvas id="mk-gen-canvas" width="1080" height="1080" aria-label="Generated social media post for ${esc(job.title)}"></canvas></div>
+      <div class="mk-canvas-wrap" data-format="${format}"><canvas id="mk-gen-canvas" width="${dimensions.width}" height="${dimensions.height}" aria-label="Generated social media post for ${esc(job.title)}"></canvas></div>
       ${requirements.length ? "" : `<p class="status warn">No detailed requirements were found, so the design will use the available role details.</p>`}
     </div>`;
   }
@@ -390,8 +401,8 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     let size = start;
     do { ctx.font = `${weight} ${size}px Arial, Helvetica, sans-serif`; size -= 2; } while (ctx.measureText(text).width > maxWidth && size >= min);
   }
-  async function drawSocialPicture(canvas, job, details, requirements, background) {
-    const ctx = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
+  async function drawSquareArtwork(canvas, job, details, requirements, background) {
+    const ctx = canvas.getContext("2d"), W = 1080, H = 1080;
     ctx.clearRect(0, 0, W, H);
     if (background) {
       const scale = Math.max(W / background.width, H / background.height), dw = background.width * scale, dh = background.height * scale;
@@ -437,16 +448,60 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     ctx.fillStyle = purple; roundRect(ctx, 770, 982, 238, 51, 28).fill();
     ctx.fillStyle = "#fff"; ctx.font = "italic 900 28px Arial, Helvetica, sans-serif"; ctx.fillText("APPLY NOW", 806, 1017);
   }
+  function drawCover(ctx, image, width, height) {
+    if (!image) { ctx.fillStyle = "#f4f0ee"; ctx.fillRect(0, 0, width, height); return; }
+    const scale = Math.max(width / image.width, height / image.height), dw = image.width * scale, dh = image.height * scale;
+    ctx.drawImage(image, (width - dw) / 2, (height - dh) / 2, dw, dh);
+  }
+  async function drawSocialPicture(canvas, job, details, requirements, background, format) {
+    if (format === "square") return drawSquareArtwork(canvas, job, details, requirements, background);
+    const artwork = document.createElement("canvas"); artwork.width = 1080; artwork.height = 1080;
+    await drawSquareArtwork(artwork, job, details, requirements, background);
+    const ctx = canvas.getContext("2d"), W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H); drawCover(ctx, background, W, H);
+    if (format === "story") {
+      ctx.fillStyle = "rgba(255,255,255,.22)"; ctx.fillRect(0, 0, W, H);
+      ctx.drawImage(artwork, 0, 420, 1080, 1080);
+      ctx.fillStyle = "rgba(255,255,255,.94)"; roundRect(ctx, 260, 1540, 560, 74, 37).fill();
+      ctx.fillStyle = "#4727fa"; ctx.font = "italic 900 34px Arial, Helvetica, sans-serif"; ctx.textAlign = "center"; ctx.fillText("APPLY NOW", 540, 1589); ctx.textAlign = "left";
+    } else {
+      const gradient = ctx.createLinearGradient(0, 0, W, 0);
+      gradient.addColorStop(0, "rgba(255,255,255,.99)"); gradient.addColorStop(.62, "rgba(255,255,255,.94)"); gradient.addColorStop(1, "rgba(255,255,255,.10)");
+      ctx.fillStyle = gradient; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "rgba(255,255,255,.94)"; roundRect(ctx, 24, 22, 780, 583, 24).fill();
+      try {
+        const logo = await loadCanvasImage("../assets/outreach-recruitment-logo.svg");
+        const lh = 48, lw = Math.min(260, logo.width * (lh / logo.height)); ctx.drawImage(logo, 48, 38, lw, lh);
+      } catch { ctx.fillStyle = "#4527f5"; ctx.font = "900 32px Arial"; ctx.fillText("OUTREACH", 48, 76); }
+      ctx.fillStyle = "#14121a"; ctx.font = "900 31px Arial, Helvetica, sans-serif"; ctx.fillText("WE ARE HIRING IN MALTA 🇲🇹", 48, 125);
+      ctx.fillStyle = "#fb2427"; roundRect(ctx, 44, 146, 736, 72, 4).fill();
+      ctx.fillStyle = "#fff"; fitCanvasFont(ctx, job.title.toUpperCase(), 680, 35, 22, 900); ctx.fillText(job.title.toUpperCase(), 70, 193);
+      ctx.font = "700 18px Arial, Helvetica, sans-serif";
+      let ly = 260;
+      for (const requirement of requirements.slice(0, 5)) {
+        ctx.fillStyle = "#4727fa"; ctx.beginPath(); ctx.moveTo(53, ly - 9); ctx.lineTo(72, ly); ctx.lineTo(53, ly + 9); ctx.lineTo(59, ly); ctx.lineTo(45, ly + 9); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = "#20202a"; const lines = canvasLines(ctx, requirement.replace(/\s*[.;]$/, ""), 675, 1); ctx.fillText(lines[0] || "", 88, ly + 6); ly += 43;
+      }
+      ctx.font = "800 17px Arial, Helvetica, sans-serif";
+      const landscapeBadges = [`📍 ${details.city}, Malta`, details.salary, details.job_type].filter(Boolean);
+      let bx = 46;
+      landscapeBadges.forEach((label) => { const bw = Math.min(235, ctx.measureText(label).width + 28); ctx.fillStyle = "#4727fa"; roundRect(ctx, bx, 491, bw, 39, 3).fill(); ctx.fillStyle = "#fff"; ctx.fillText(label, bx + 13, 517); bx += bw + 9; });
+      ctx.fillStyle = "#fb2427"; roundRect(ctx, 24, 548, 780, 57, 8).fill();
+      ctx.fillStyle = "#fff"; ctx.font = "800 17px Arial, Helvetica, sans-serif"; ctx.fillText("More information: outreachrecruitment.net", 48, 583);
+      ctx.fillStyle = "rgba(71,39,250,.96)"; roundRect(ctx, 858, 500, 292, 72, 36).fill();
+      ctx.fillStyle = "#fff"; ctx.font = "italic 900 32px Arial, Helvetica, sans-serif"; ctx.textAlign = "center"; ctx.fillText("APPLY NOW", 1004, 547); ctx.textAlign = "left";
+    }
+  }
   function wirePictureGenerator(root, job, details, requirements) {
     const I = window.AdminImages, canvas = $("#mk-gen-canvas", root), note = $("#mk-gen-note", root), key = job.slug;
-    let images = [], background = null, drawVersion = 0;
+    let images = [], background = null, drawVersion = 0, format = PICTURE_FORMATS[store.get(FORMAT_KEY)] ? store.get(FORMAT_KEY) : "square";
     const isCurrent = () => canvas.isConnected && $("#mk-gen-canvas", root) === canvas;
     const draw = async () => {
       const version = ++drawVersion;
       let bitmap = null;
       try { if (background) bitmap = await loadCanvasImage(background.url); }
       catch (e) { if (isCurrent()) note.textContent = e.message + ". Choose another background."; }
-      if (isCurrent() && version === drawVersion) await drawSocialPicture(canvas, job, details, requirements, bitmap);
+      if (isCurrent() && version === drawVersion) await drawSocialPicture(canvas, job, details, requirements, bitmap, format);
     };
     const paintBackgrounds = () => {
       if (!isCurrent()) return;
@@ -463,8 +518,17 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       catch (err) { if (isCurrent()) note.textContent = "Could not save the background: " + (err.message || err); }
       e.target.value = "";
     };
+    $$(".mk-format", root).forEach((button) => (button.onclick = () => {
+      format = button.dataset.format;
+      const dimensions = PICTURE_FORMATS[format];
+      store.set(FORMAT_KEY, format); canvas.width = dimensions.width; canvas.height = dimensions.height;
+      $(".mk-canvas-wrap", root).dataset.format = format;
+      $("#mk-gen-size", root).textContent = `${dimensions.label} · ${dimensions.width} × ${dimensions.height} · fixed Outreach format`;
+      $$(".mk-format", root).forEach((item) => item.classList.toggle("active", item === button));
+      draw();
+    }));
     $("#mk-gen-download", root).onclick = () => {
-      const a = Object.assign(document.createElement("a"), { download: `${job.slug}-social-post.png`, href: canvas.toDataURL("image/png") }); a.click();
+      const a = Object.assign(document.createElement("a"), { download: `${job.slug}-${format}.png`, href: canvas.toDataURL("image/png") }); a.click();
     };
     $("#mk-gen-copy", root).onclick = async (e) => {
       try { const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png")); await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]); flash(e.currentTarget); }
