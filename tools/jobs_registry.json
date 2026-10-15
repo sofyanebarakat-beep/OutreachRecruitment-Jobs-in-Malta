@@ -1,5 +1,20 @@
 [
   {
+    "slug": "receptionist",
+    "title": "Receptionist",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-15",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0591c82d-5317-4620-86c9-eb4b0b386942/apply",
+    "keywords": "receptionist hotel receptionist front office front desk agent hotel st julians malta hospitality italian opera pms",
+    "featured": true,
+    "lastmod": "2026-10-15"
+  },
+  {
     "slug": "host-receptionist",
     "title": "Host / Receptionist",
     "category": "Hospitality",

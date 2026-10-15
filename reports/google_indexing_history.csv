@@ -3180,3 +3180,15 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-15T11:43:37,Host / Receptionist,host-receptionist,https://outreachrecruitment.net/jobs/host-receptionist/,URL_UPDATED,manual_new_job,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/host-receptionist/""
+  }
+}
+"
+2026-10-15T11:43:37,Subcontracting Jobs in Malta,,https://outreachrecruitment.net/subcontracting-jobs-in-malta,URL_UPDATED,manual_hub_fix,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/subcontracting-jobs-in-malta""
+  }
+}
+"
