@@ -75,7 +75,7 @@
     "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
     "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 115,
   "site_open_before": 115,
@@ -101,5 +101,44 @@
   "salary_coverage": {
     "open": 115,
     "with_salary": 26
+  },
+  "google": {
+    "sent": 5,
+    "ok": 5,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 115,
+    "expected": 115,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 2,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Hotel Maintenance Assistant",
+        "slug": "hotel-maintenance-assistant",
+        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
+        "age_days": 3,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Housekeeper",
+        "slug": "housekeeper-rabat",
+        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
+        "age_days": 3,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
