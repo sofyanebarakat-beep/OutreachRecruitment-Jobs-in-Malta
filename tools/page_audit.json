@@ -92,13 +92,6 @@
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
-  "cnc-machine-operator": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (8.6–8.6)"
-    ]
-  },
   "delivery-person-with-driving-licence-c1": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -200,29 +193,6 @@
       "hvac-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
-  "customer-care-agent": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (18614–18614)",
-      "salary 18614 is not shown on the page"
-    ]
-  },
-  "ship-chandler": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (30000–30000)"
-    ]
-  },
-  "fleet-mechanical-superintendent": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (43000–47000)",
-      "salary 43000 is not shown on the page"
-    ]
-  },
   "client-accountant-2": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -249,14 +219,6 @@
     "attempts": 0,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "head-chef-steakhouse": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (3500–3500)",
-      "salary 3500 is not shown on the page"
     ]
   },
   "senior-waiter-sommelier": {

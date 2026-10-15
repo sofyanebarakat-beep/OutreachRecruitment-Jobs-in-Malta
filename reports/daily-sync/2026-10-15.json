@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-15",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "076584df-b986-4b18-8006-d47a94958594",
+      "title": "CNC Machine Operator",
+      "slug": "cnc-machine-operator",
+      "city": "",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (8.6–8.6)"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/cnc-machine-operator/"
+    },
+    {
+      "uuid": "beb11885-e494-4a3c-802f-70e679d8b70c",
+      "title": "Customer Care Agent",
+      "slug": "customer-care-agent",
+      "city": "Luqa",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (18614–18614)",
+        "page repaired — salary 18614 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/customer-care-agent/"
+    },
+    {
+      "uuid": "84a61f1f-70d9-400c-84af-34aaed87cd7d",
+      "title": "Ship Chandler",
+      "slug": "ship-chandler",
+      "city": "Marsaxlokk",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (30000–30000)"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/ship-chandler/"
+    },
+    {
+      "uuid": "b964142e-ab7f-4a8e-86c0-f6fc9d532eb9",
+      "title": "Fleet Mechanical Superintendent",
+      "slug": "fleet-mechanical-superintendent",
+      "city": "Marsaxlokk",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (43000–47000)",
+        "page repaired — salary 43000 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent/"
+    },
+    {
+      "uuid": "f87c28af-69fe-4b05-8aed-a7f289ea20fb",
+      "title": "Head Chef",
+      "slug": "head-chef-steakhouse",
+      "city": "St. Julian's",
+      "changes": [
+        "page repaired — schema baseSalary (None, None) does not match the careers page (3500–3500)",
+        "page repaired — salary 3500 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/head-chef-steakhouse/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
+    "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 115,
+  "site_open_before": 115,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 115,
+    "ok": 74,
+    "to_fix": 41,
+    "fixing_today": 5,
+    "queued": 36
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 115,
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 115,
+  "salary_coverage": {
+    "open": 115,
+    "with_salary": 26
+  }
+}

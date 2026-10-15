@@ -1,0 +1,9 @@
+No flat shadow files exist for these 5 (only `jobs/<slug>/index.html`), so no duplicate write was needed. Registry already had the correct salary values — only the live pages were stale. All 5 pages now pass `verify_job_page.py`. No git commit made, per instructions.
+
+UPDATED 076584df-b986-4b18-8006-d47a94958594 cnc-machine-operator
+UPDATED beb11885-e494-4a3c-802f-70e679d8b70c customer-care-agent
+UPDATED 84a61f1f-70d9-400c-84af-34aaed87cd7d ship-chandler
+UPDATED b964142e-ab7f-4a8e-86c0-f6fc9d532eb9 fleet-mechanical-superintendent
+UPDATED f87c28af-69fe-4b05-8aed-a7f289ea20fb head-chef-steakhouse
+
+--- stderr ---
