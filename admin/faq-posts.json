@@ -103,6 +103,12 @@
    "pages": 5
   },
   {
+   "q": "Which languages do I need?",
+   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
    "q": "What qualifications do I need to apply?",
    "a": "You'll need to be currently enrolled in a Law degree programme (minimum first year completed), with strong legal research, analytical, and legal writing skills, plus office administration knowledge.",
    "url": "/jobs",
@@ -153,6 +159,12 @@
   {
    "q": "Do I need to speak Maltese?",
    "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "Will I work shifts?",
+   "a": "Yes. You should be flexible and able to work different shifts as required by the restaurant.",
    "url": "/jobs",
    "pages": 4
   },
@@ -457,6 +469,30 @@
    "pages": 2
   },
   {
+   "q": "What type of contract is this Host / Receptionist job?",
+   "a": "It is a full-time position on a subcontracting contract arranged through Outreach Recruitment. Our team explains the contract details to shortlisted candidates.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Host / Receptionist job pay?",
+   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need previous experience?",
+   "a": "Yes. Previous experience in front-of-house or guest-facing roles is required for this position.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Where is the Host / Receptionist job based?",
+   "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "Is Maltese language required for this role?",
    "a": "Yes. Fluency in both English and Maltese, verbal and written, is required for this Legal Intern position.",
    "url": "/jobs",
@@ -477,6 +513,30 @@
   {
    "q": "What software will I use?",
    "a": "You should be comfortable with Microsoft Excel and have experience working with an ERP system for purchase orders, supplier data and cost tracking.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Receptionist job pay?",
+   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need previous reception experience?",
+   "a": "It is not required, but previous experience in reception, front office, customer service or hospitality is considered an asset.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need to know Opera PMS?",
+   "a": "No, but previous experience with hotel management systems such as Opera PMS is an advantage. Basic computer literacy and the ability to learn the hotel's system are required.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Where is the Receptionist job based?",
+   "a": "The job is based at a modern hotel in St Julian's (San Ġiljan), Malta.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1053,6 +1113,42 @@
    "title": "Heavy Equipment Mechanic"
   },
   {
+   "q": "What type of contract is this Host / Receptionist job?",
+   "a": "It is a full-time position on a subcontracting contract arranged through Outreach Recruitment. Our team explains the contract details to shortlisted candidates.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
+   "q": "What does the Host / Receptionist job pay?",
+   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
+   "q": "Do I need previous experience?",
+   "a": "Yes. Previous experience in front-of-house or guest-facing roles is required for this position.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "You need to be fluent in English. Other languages are a plus.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
+   "q": "Will I work shifts?",
+   "a": "Yes. You should be flexible and able to work different shifts as required by the restaurant.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
+   "q": "Where is the Host / Receptionist job based?",
+   "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
+   "slug": "host-receptionist",
+   "title": "Host / Receptionist"
+  },
+  {
    "q": "What do these Dubai hospitality jobs pay?",
    "a": "Pay is AED 900–2,100 per month, depending on the position.",
    "slug": "italian-restaurant-hospitality-positions-dubai",
@@ -1411,6 +1507,42 @@
    "a": "Willingness to travel when required is part of the requirements for this role.",
    "slug": "proposal-engineer-energy-solutions",
    "title": "Proposal Engineer – Energy Solutions"
+  },
+  {
+   "q": "What does the Receptionist job pay?",
+   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "slug": "receptionist",
+   "title": "Receptionist"
+  },
+  {
+   "q": "Do I need previous reception experience?",
+   "a": "It is not required, but previous experience in reception, front office, customer service or hospitality is considered an asset.",
+   "slug": "receptionist",
+   "title": "Receptionist"
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "You need excellent spoken and written English. Knowledge of additional languages, particularly Italian, is an advantage.",
+   "slug": "receptionist",
+   "title": "Receptionist"
+  },
+  {
+   "q": "Will I work shifts?",
+   "a": "Yes. You need to be flexible to work shifts, including evenings, weekends and public holidays.",
+   "slug": "receptionist",
+   "title": "Receptionist"
+  },
+  {
+   "q": "Do I need to know Opera PMS?",
+   "a": "No, but previous experience with hotel management systems such as Opera PMS is an advantage. Basic computer literacy and the ability to learn the hotel's system are required.",
+   "slug": "receptionist",
+   "title": "Receptionist"
+  },
+  {
+   "q": "Where is the Receptionist job based?",
+   "a": "The job is based at a modern hotel in St Julian's (San Ġiljan), Malta.",
+   "slug": "receptionist",
+   "title": "Receptionist"
   },
   {
    "q": "What does the Restaurant Manager role pay?",

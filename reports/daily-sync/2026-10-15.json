@@ -1,6 +1,25 @@
 {
   "date": "2026-10-15",
-  "created": [],
+  "created": [
+    {
+      "title": "Receptionist",
+      "slug": "receptionist",
+      "uuid": "0591c82d-5317-4620-86c9-eb4b0b386942",
+      "url": "https://outreachrecruitment.net/jobs/receptionist/",
+      "city": "St. Julian's",
+      "salary_label": "€18,500–€19,000 per year",
+      "reason": "added manually (job-seo-generator)"
+    },
+    {
+      "title": "Host / Receptionist",
+      "slug": "host-receptionist",
+      "uuid": "373103d8-ea25-4de5-adcf-245224df8cd1",
+      "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+      "city": "San Ġiljan",
+      "salary_label": "Competitive salary",
+      "reason": "added manually (job-seo-generator) · Subcontracting"
+    }
+  ],
   "reopened": [],
   "closed": [],
   "updated": [
@@ -69,76 +88,54 @@
     }
   ],
   "failed": [],
-  "held": [],
+  "held": [
+    {
+      "uuid": "0591c82d-5317-4620-86c9-eb4b0b386942",
+      "title": "Receptionist",
+      "slug": "receptionist",
+      "city": "St. Julian's",
+      "changes": [
+        "salary: Competitive salary → €18,500–€19,000 per year"
+      ],
+      "owner_salary": "",
+      "reason": "changed on the careers page — not updated (--no-create)"
+    }
+  ],
   "notes": [],
   "salary_notes": [
     "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
     "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
   ],
-  "git": "pushed to GitHub (main)",
+  "git": "no changes",
   "dry_run": false,
-  "ats_advertised": 115,
+  "ats_advertised": 117,
   "site_open_before": 115,
-  "salary_synced": [],
+  "salary_synced": [
+    "Receptionist: none → €18,500–€19,000 per year"
+  ],
   "page_check": {
-    "open_checked": 115,
-    "ok": 74,
-    "to_fix": 41,
-    "fixing_today": 5,
+    "open_checked": 116,
+    "ok": 80,
+    "to_fix": 36,
+    "fixing_today": 0,
     "queued": 36
   },
   "listings": {
     "hub_cards": {},
     "hubs_now_empty": [],
     "carousel_swaps": 0,
-    "itemlist_items": 115,
+    "itemlist_items": 117,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
     "categorised": [],
     "merged": [],
     "pages_marked_closed": 0,
     "pages_reopened": 0
   },
-  "site_open_after": 115,
+  "site_open_after": 117,
   "salary_coverage": {
-    "open": 115,
-    "with_salary": 26
-  },
-  "google": {
-    "sent": 5,
-    "ok": 5,
-    "error": "",
-    "sitemap": "submitted"
-  },
-  "live": {
-    "count": 115,
-    "expected": 115,
-    "ok": true,
-    "problems": []
-  },
-  "google_check": {
-    "checked": 2,
-    "ok": [],
-    "flagged": [
-      {
-        "title": "Hotel Maintenance Assistant",
-        "slug": "hotel-maintenance-assistant",
-        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
-        "age_days": 3,
-        "indexed": false,
-        "job_posting": false,
-        "coverage": "URL is unknown to Google",
-        "reason": "not indexed yet (URL is unknown to Google)"
-      },
-      {
-        "title": "Housekeeper",
-        "slug": "housekeeper-rabat",
-        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
-        "age_days": 3,
-        "indexed": false,
-        "job_posting": false,
-        "coverage": "URL is unknown to Google",
-        "reason": "not indexed yet (URL is unknown to Google)"
-      }
-    ],
-    "error": ""
+    "open": 117,
+    "with_salary": 27
   }
 }
