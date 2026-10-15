@@ -6,8 +6,15 @@
   "country": "Malta",
   "employment_type": "Full-time",
   "date_posted": "2026-10-15",
-  "salary": null,
-  "salary_note": "No salary given on the careers page — page must say 'Competitive salary'.",
+  "salary": {
+    "min": 18500.0,
+    "max": 19000.0,
+    "currency": "EUR",
+    "unit": "YEAR",
+    "text": "",
+    "source": "ats_schema"
+  },
+  "salary_note": "",
   "work_mode": "On-site",
   "languages": [
     "English",
@@ -19,5 +26,5 @@
   "description_hash": "b20fe93b2c128e1c",
   "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0591c82d-5317-4620-86c9-eb4b0b386942",
   "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0591c82d-5317-4620-86c9-eb4b0b386942/apply",
-  "fetched_at": "2026-10-15T11:50:44"
+  "fetched_at": "2026-10-15T12:22:36"
 }
