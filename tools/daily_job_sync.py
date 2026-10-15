@@ -924,6 +924,18 @@ def main(args: list[str]) -> int:
             if not dry:
                 job["salary"] = salary_label(sal)
 
+    # 3c. Jobs published today outside the agent (e.g. built by hand with the job-seo-generator):
+    #     listed in the report as new, so the day's report covers every job that went live.
+    manual_added = []
+    for u, job in open_jobs.items():
+        if str(job.get("date", ""))[:10] == today and u in ats:
+            f = facts.get(u) or {}
+            manual_added.append({"title": job["title"], "slug": job["slug"], "uuid": u, "url": site_url(job["slug"]),
+                                 "city": f.get("city") or job.get("location", "").split(",")[0],
+                                 "salary_label": job.get("salary") or salary_label(f.get("salary")),
+                                 "reason": "added manually (job-seo-generator)"
+                                           + (" · Subcontracting" if job.get("job_type") == "Subcontracting" else "")})
+
     # 4. Reopen / new / changed
     taken = taken_slugs(registry)
     new_jobs, changed = [], []
@@ -1133,6 +1145,8 @@ def main(args: list[str]) -> int:
     # is first saved, so an interrupted run cannot leave an empty report behind). Only this
     # run's own changes are committed and sent to Google.
     run_changes = {k: list(r[k]) for k in ("created", "reopened", "closed", "updated")}
+    seen_new = {j.get("url") for j in r["created"]}
+    r["created"] += [m for m in manual_added if m["url"] not in seen_new]  # report only (already published)
     first = REPORT_DIR / f"{today}-first.json"
     if not r["dry_run"]:
         if first.exists():
