@@ -33,19 +33,34 @@ vm.runInNewContext(fs.readFileSync("admin/marketing.js", "utf8"), {
 const job = { title: "Software Developer", slug: "software-developer", category: "IT & Technology" };
 const description = (offer) => `<p>Our client is looking for a Software Developer.</p>
   <h2>Responsibilities</h2><ul><li>Build new product features.</li><li>Collaborate with the engineering team.</li></ul>
+  <h2>Requirements</h2><ul><li>Experience building web applications.</li><li>Strong communication skills.</li></ul>
   ${offer}`;
 
 (async () => {
   const withOfferId = "12345678-1234-1234-1234-123456789abc";
   factsById[withOfferId] = {
     description_html: description("<h2>What Our Client Offers</h2><ul><li>Hybrid working.</li><li>Training and development.</li></ul>"),
+    city: "St. Julian's",
+    employment_type: "Full-time",
+    work_mode: "Hybrid",
+    salary: { min: 32000, max: 35000, unit: "YEAR" },
   };
-  const withOffer = await window.MarketingKit.jobValues({ ...job, apply_url: `https://careers.example/${withOfferId}` });
+  const withOffer = await window.MarketingKit.jobValues({
+    ...job,
+    location: "St. Julian's, Malta",
+    apply_url: `https://careers.example/${withOfferId}`,
+  });
   assert.match(withOffer.intro, /About this role/);
   assert.match(withOffer.intro, /build new product features/i);
   assert.match(withOffer.intro, /What Our Client Offers/);
   assert.match(withOffer.intro, /Hybrid working/);
   assert.match(withOffer.intro, /Training and development/);
+  assert.match(withOffer.hook, /Software Developer/);
+  assert.match(withOffer.job_highlights, /€32,000–€35,000 per year/);
+  assert.match(withOffer.job_highlights, /Hybrid/);
+  assert.match(withOffer.good_fit, /Experience building web applications/);
+  assert.match(withOffer.good_fit, /Strong communication skills/);
+  assert.match(withOffer.apply_prompt, /Apply|application/);
 
   const withoutOfferId = "abcdef12-1234-1234-1234-123456789abc";
   factsById[withoutOfferId] = { description_html: description("") };
@@ -53,6 +68,24 @@ const description = (offer) => `<p>Our client is looking for a Software Develope
   assert.match(withoutOffer.intro, /About this role/);
   assert.doesNotMatch(withoutOffer.intro, /What Our Client Offers/);
   assert.doesNotMatch(withoutOffer.intro, /undefined|null/);
+  assert.equal(withoutOffer.job_highlights, "");
+  assert.doesNotMatch(withoutOffer.job_highlights, /Competitive salary/);
+  assert.match(withoutOffer.good_fit, /Experience building web applications/);
+
+  const noRequirementsId = "abcdef12-9876-1234-1234-123456789abc";
+  factsById[noRequirementsId] = { description_html: "<p>Our client is looking for a Software Developer.</p>" };
+  const noRequirements = await window.MarketingKit.jobValues({
+    ...job,
+    apply_url: `https://careers.example/${noRequirementsId}`,
+  });
+  assert.equal(noRequirements.good_fit, "");
+
+  const jobSlugs = ["developer-one", "developer-two", "developer-three", "developer-four", "developer-five"];
+  const variants = await Promise.all(jobSlugs.map((slug) => window.MarketingKit.jobValues({ ...job, slug }, null)));
+  const hooks = new Set(variants.map((values) => values.hook));
+  const applyPrompts = new Set(variants.map((values) => values.apply_prompt));
+  assert.ok(hooks.size > 1, "different jobs rotate through distinct role-specific hooks");
+  assert.ok(applyPrompts.size > 1, "different jobs rotate through distinct application prompts");
 
   console.log("admin marketing caption tests passed");
 })().catch((error) => {

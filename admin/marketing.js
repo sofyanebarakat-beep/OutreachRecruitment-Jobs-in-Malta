@@ -19,24 +19,38 @@
     story: { label: "Story", width: 1080, height: 1920 },
     linkedin: { label: "LinkedIn landscape", width: 1200, height: 627 },
   };
-  const LEGACY_JOB_CTA = "👉 **Ready for your next step? Apply today!**";
-  const JOB_CTA = "🚀 **Your next opportunity could start here. Apply today!**";
+  const LEGACY_JOB_CTAS = [
+    "👉 **Ready for your next step? Apply today!**",
+    "🚀 **Your next opportunity could start here. Apply today!**",
+  ];
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
                   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
 
-  const DEFAULT_TEMPLATE = `🚨 **WE'RE HIRING: {title}** 🚨
-📍 {city}, Malta · 🕒 {job_type} · 💶 {salary}
+  const DEFAULT_TEMPLATE = `🚨 **{hook}** 🚨
+💼 **WE'RE HIRING: {title}**
+📍 {job_highlights}
 
 {intro}
 
-${JOB_CTA}
+{good_fit}
+
+🚀 **{apply_prompt}**
 
 🌐 **Apply now:** {apply_url}
 💼 **More Jobs:** {more_jobs_url}
 
 {hashtags}`;
-  const jobTemplate = () => (store.get(TPL_KEY) || DEFAULT_TEMPLATE).replace(LEGACY_JOB_CTA, JOB_CTA);
+  const jobTemplate = () => {
+    let template = store.get(TPL_KEY) || DEFAULT_TEMPLATE;
+    template = template
+      .replace(/^🚨 \*\*WE'RE HIRING: \{title\}\*\* 🚨$/m, "🚨 **{hook}** 🚨\n💼 **WE'RE HIRING: {title}**")
+      .replace(/^📍 \{city\}, Malta · 🕒 \{job_type\} · 💶 \{salary\}$/m, "📍 {job_highlights}");
+    return LEGACY_JOB_CTAS.reduce(
+      (current, cta) => current.replace(cta, "{good_fit}\n\n🚀 **{apply_prompt}**"),
+      template
+    );
+  };
 
   const DEFAULT_GENERIC = `🇲🇹 **NEW JOBS IN MALTA THIS WEEK** 🇲🇹
 
@@ -127,6 +141,36 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
 
   const reEsc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const sentencesOf = (t) => String(t).replace(/\s+/g, " ").trim().match(/[^.!?]+[.!?]+/g) || (t ? [String(t)] : []);
+  function variantFor(job, choices, offset = 0) {
+    const seed = String(job.slug || job.title || "");
+    let hash = (2166136261 + offset) >>> 0;
+    for (const char of seed) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0;
+    return choices[hash % choices.length];
+  }
+  function jobHook(job, city) {
+    const title = job.title, location = city ? ` in ${city}` : "";
+    return variantFor(job, [
+      `Ready for your next move as a ${title}${location}?`,
+      `Could this ${title} role${location} be your next opportunity?`,
+      `Looking for a new opportunity? Explore this ${title} role${location}.`,
+    ]);
+  }
+  function applyPrompt(job) {
+    return variantFor(job, [
+      `Think this ${job.title} role could be right for you? Apply today.`,
+      `Ready to take the next step? Apply for the ${job.title} role today.`,
+      "Interested in this opportunity? Send your application today.",
+    ], 17);
+  }
+  function jobHighlights(job, facts, salary) {
+    const highlights = [];
+    if (salary) highlights.push(`💶 ${salary}`);
+    const workMode = String(facts?.work_mode || job.work_mode || "").trim();
+    if (/hybrid|remote/i.test(workMode)) highlights.push(`🏠 ${workMode}`);
+    const location = String(facts?.city || job.location || "").split(",")[0].trim();
+    if (location) highlights.push(`📍 ${location}`);
+    return highlights.slice(0, 2).join(" · ");
+  }
   const SECTOR_CLIENT = {
     "Hospitality": "a well-established hospitality business in Malta", "Construction": "a leading construction company in Malta",
     "Marine & Shipping": "a respected marine company in Malta", "Finance & Accounting": "an established finance firm in Malta",
@@ -136,8 +180,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     "Wellness": "a premium wellness business in Malta", "Healthcare": "a respected healthcare provider in Malta",
   };
 
-  // A short, impactful introduction: who is hiring (Outreach Recruitment on behalf of our client),
-  // the role in one sentence addressed to the candidate, and what's in it for them.
+  // Build a concise, fact-based introduction from the role and careers-page description.
   function introText(job, facts, d) {
     const title = job.title, city = cityOf(job, facts);
     const intro = sentencesOf(d.intro.join(" "));
@@ -171,13 +214,14 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
 
   function jobValues(job, facts) {
     const d = parseDescription(facts?.description_html, facts?.description_text);
-    const salary = job.salary || salaryLabel(facts?.salary) || "Competitive salary";
-    const type = [facts?.employment_type || job.employment_type || "Full-time", facts?.work_mode || job.work_mode || "On-site"]
-      .filter(Boolean).join(" · ");
+    const salary = job.salary || salaryLabel(facts?.salary);
+    const city = cityOf(job, facts);
     return {
-      title: job.title, city: cityOf(job, facts), job_type: type, salary,
+      title: job.title, city, job_type: [facts?.employment_type || job.employment_type, facts?.work_mode || job.work_mode].filter(Boolean).join(" · "), salary,
+      hook: jobHook(job, city), job_highlights: jobHighlights(job, facts, salary), apply_prompt: applyPrompt(job),
       intro: introText(job, facts, d), short_intro: firstSentences(d.intro.join(" ")),
       responsibilities: bullets(d.responsibilities), requirements: bullets(d.requirements), offer: bullets(d.offer, 4),
+      good_fit: d.requirements.length ? `🎯 **A good fit if you:**\n${bullets(d.requirements, 2)}` : "",
       apply_url: `${SITE}/jobs/${job.slug}/`, more_jobs_url: MORE_JOBS, hashtags: hashtags(job, facts),
       category: job.category || "",
     };
@@ -609,7 +653,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     body.innerHTML = `
       <section class="grid-2">
         <div class="card"><h2>Job post template</h2>
-          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "intro", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
+          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "hook", "job_highlights", "intro", "good_fit", "apply_prompt", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
             A paragraph whose placeholders are all empty is left out. <code>**text**</code> = bold.</p>
           <textarea id="tpl-job" rows="22" style="font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(jobTemplate())}</textarea>
           <div class="form-actions"><button class="btn primary" id="tpl-job-save">Save</button><button class="btn" id="tpl-job-reset">Reset to default</button></div></div>
