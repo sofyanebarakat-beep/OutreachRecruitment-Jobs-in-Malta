@@ -32,7 +32,8 @@ vm.runInNewContext(fs.readFileSync("admin/marketing.js", "utf8"), {
 
 const job = { title: "Software Developer", slug: "software-developer", category: "IT & Technology" };
 const description = (offer) => `<p>Our client is looking for a Software Developer.</p>
-  <h2>Responsibilities</h2><ul><li>Build new product features.</li><li>Collaborate with the engineering team.</li></ul>
+  <h2>Responsibilities</h2><ul><li>Build new product features.</li><li>Collaborate with the engineering team.</li>
+  <li>Support product testing and troubleshooting.</li></ul>
   <h2>Requirements</h2><ul><li>Experience building web applications.</li><li>Strong communication skills.</li></ul>
   ${offer}`;
 
@@ -56,10 +57,12 @@ const description = (offer) => `<p>Our client is looking for a Software Develope
   assert.match(withOffer.intro, /Hybrid working/);
   assert.match(withOffer.intro, /Training and development/);
   assert.match(withOffer.hook, /Software Developer/);
+  assert.doesNotMatch(withOffer.hook, /St\. Julian's|\bin\b/);
   assert.match(withOffer.job_highlights, /€32,000–€35,000 per year/);
   assert.match(withOffer.job_highlights, /Hybrid/);
-  assert.match(withOffer.good_fit, /Experience building web applications/);
-  assert.match(withOffer.good_fit, /Strong communication skills/);
+  assert.match(withOffer.intro, /Key responsibilities include: Build new product features; Collaborate with the engineering team; Support product testing and troubleshooting/);
+  assert.ok(withOffer.intro.match(/🔎 \*\*About this role:\*\*([\s\S]*?)(?=\n\n|$)/)[1].length > 100);
+  assert.doesNotMatch(withOffer.intro, /A good fit if/);
   assert.match(withOffer.apply_prompt, /Apply|application/);
 
   const withoutOfferId = "abcdef12-1234-1234-1234-123456789abc";
@@ -70,7 +73,7 @@ const description = (offer) => `<p>Our client is looking for a Software Develope
   assert.doesNotMatch(withoutOffer.intro, /undefined|null/);
   assert.equal(withoutOffer.job_highlights, "");
   assert.doesNotMatch(withoutOffer.job_highlights, /Competitive salary/);
-  assert.match(withoutOffer.good_fit, /Experience building web applications/);
+  assert.doesNotMatch(withoutOffer.intro, /A good fit if/);
 
   const noRequirementsId = "abcdef12-9876-1234-1234-123456789abc";
   factsById[noRequirementsId] = { description_html: "<p>Our client is looking for a Software Developer.</p>" };
@@ -78,7 +81,7 @@ const description = (offer) => `<p>Our client is looking for a Software Develope
     ...job,
     apply_url: `https://careers.example/${noRequirementsId}`,
   });
-  assert.equal(noRequirements.good_fit, "");
+  assert.doesNotMatch(noRequirements.intro, /A good fit if/);
 
   const jobSlugs = ["developer-one", "developer-two", "developer-three", "developer-four", "developer-five"];
   const variants = await Promise.all(jobSlugs.map((slug) => window.MarketingKit.jobValues({ ...job, slug }, null)));

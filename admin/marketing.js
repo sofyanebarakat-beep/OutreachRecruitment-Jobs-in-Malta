@@ -33,8 +33,6 @@
 
 {intro}
 
-{good_fit}
-
 🚀 **{apply_prompt}**
 
 🌐 **Apply now:** {apply_url}
@@ -45,9 +43,10 @@
     let template = store.get(TPL_KEY) || DEFAULT_TEMPLATE;
     template = template
       .replace(/^🚨 \*\*WE'RE HIRING: \{title\}\*\* 🚨$/m, "🚨 **{hook}** 🚨\n💼 **WE'RE HIRING: {title}**")
-      .replace(/^📍 \{city\}, Malta · 🕒 \{job_type\} · 💶 \{salary\}$/m, "📍 {job_highlights}");
+      .replace(/^📍 \{city\}, Malta · 🕒 \{job_type\} · 💶 \{salary\}$/m, "📍 {job_highlights}")
+      .replace(/\n{0,2}\{good_fit\}\n?/g, "");
     return LEGACY_JOB_CTAS.reduce(
-      (current, cta) => current.replace(cta, "{good_fit}\n\n🚀 **{apply_prompt}**"),
+      (current, cta) => current.replace(cta, "🚀 **{apply_prompt}**"),
       template
     );
   };
@@ -147,12 +146,12 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     for (const char of seed) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0;
     return choices[hash % choices.length];
   }
-  function jobHook(job, city) {
-    const title = job.title, location = city ? ` in ${city}` : "";
+  function jobHook(job) {
+    const title = job.title;
     return variantFor(job, [
-      `Ready for your next move as a ${title}${location}?`,
-      `Could this ${title} role${location} be your next opportunity?`,
-      `Looking for a new opportunity? Explore this ${title} role${location}.`,
+      `Ready for your next move as a ${title}?`,
+      `Could this ${title} role be your next opportunity?`,
+      `Looking for a new opportunity? Explore this ${title} role.`,
     ]);
   }
   function applyPrompt(job) {
@@ -199,11 +198,17 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     let roleDetail = roleRaw ? roleRaw.trim()
       .replace(/^the successful candidates? will be/i, "You'll be").replace(/^the successful candidates? will/i, "You'll")
       .replace(/^the (?:role|position) (?:will )?(?:involves?|includes?)/i, "You'll be").replace(/^you will/i, "You'll") : "";
-    if (!roleDetail && d.responsibilities.length) {
-      const lc = (t) => t.replace(/\s*[.;]$/, "").replace(/\s+-\s+(\w)/g, (_, c) => ", " + c.toLowerCase()).replace(/^\w/, (c) => c.toLowerCase());
-      roleDetail = "Key responsibilities include: " + d.responsibilities.slice(0, 2).map(lc).join(" and ") + ".";
+    const responsibilities = [...all.filter((text) => text !== first && text !== roleRaw).flatMap(sentencesOf), ...d.responsibilities]
+      .map((item) => item.replace(/[\s.;]+$/, "").trim())
+      .filter((item, index, items) => items.findIndex((candidate) => candidate.toLowerCase() === item.toLowerCase()) === index)
+      .filter((item) => !/interested candidates|submit (your|their) cv|apply now/i.test(item))
+      .filter((item) => !roleDetail.toLowerCase().includes(item.toLowerCase()));
+    if (responsibilities.length) {
+      const extra = responsibilities.slice(0, roleDetail ? 3 : 3).join("; ");
+      roleDetail = roleDetail
+        ? `${roleDetail.replace(/\s*[.;]$/, "")} Other responsibilities include: ${extra}.`
+        : `Key responsibilities include: ${extra}.`;
     }
-    if (roleDetail.length > 240) roleDetail = roleDetail.slice(0, 237).replace(/\s+\S*$/, "") + "…";
 
     const p2 = roleDetail ? `🔎 **About this role:** ${roleDetail}` : "";
     const perks = d.offer.filter((o) => !/full[- ]time|salary|employment with|interested candidates/i.test(o)).slice(0, 2)
@@ -218,10 +223,9 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     const city = cityOf(job, facts);
     return {
       title: job.title, city, job_type: [facts?.employment_type || job.employment_type, facts?.work_mode || job.work_mode].filter(Boolean).join(" · "), salary,
-      hook: jobHook(job, city), job_highlights: jobHighlights(job, facts, salary), apply_prompt: applyPrompt(job),
+      hook: jobHook(job), job_highlights: jobHighlights(job, facts, salary), apply_prompt: applyPrompt(job),
       intro: introText(job, facts, d), short_intro: firstSentences(d.intro.join(" ")),
       responsibilities: bullets(d.responsibilities), requirements: bullets(d.requirements), offer: bullets(d.offer, 4),
-      good_fit: d.requirements.length ? `🎯 **A good fit if you:**\n${bullets(d.requirements, 2)}` : "",
       apply_url: `${SITE}/jobs/${job.slug}/`, more_jobs_url: MORE_JOBS, hashtags: hashtags(job, facts),
       category: job.category || "",
     };
@@ -653,7 +657,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     body.innerHTML = `
       <section class="grid-2">
         <div class="card"><h2>Job post template</h2>
-          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "hook", "job_highlights", "intro", "good_fit", "apply_prompt", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
+          <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "hook", "job_highlights", "intro", "apply_prompt", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
             A paragraph whose placeholders are all empty is left out. <code>**text**</code> = bold.</p>
           <textarea id="tpl-job" rows="22" style="font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(jobTemplate())}</textarea>
           <div class="form-actions"><button class="btn primary" id="tpl-job-save">Save</button><button class="btn" id="tpl-job-reset">Reset to default</button></div></div>
