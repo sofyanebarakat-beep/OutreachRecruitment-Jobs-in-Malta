@@ -549,12 +549,14 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
 
     const paint = () => {
       if (!isCurrentPreview()) return;
-      current = images.find((im) => im.id === I.pickFor(key)) || null;
-      $("#mk-library", root).innerHTML = images.length
-        ? images.map((im) => `<div class="mk-thumb ${current?.id === im.id ? "active" : ""}">
+      current = images.find((im) => im.id === I.postPickFor(key)) || null;
+      const postPicks = I.postPicks();
+      const availableImages = images.filter((im) => !Object.entries(postPicks).some(([jobKey, id]) => jobKey !== key && id === im.id));
+      $("#mk-library", root).innerHTML = availableImages.length
+        ? availableImages.map((im) => `<div class="mk-thumb ${current?.id === im.id ? "active" : ""}">
             <button class="mk-thumb-pick" data-id="${esc(im.id)}" title="Use this picture"><img src="${esc(im.url)}" alt="${esc(im.name)}" loading="lazy"></button>
             <button class="mk-thumb-del" data-del="${esc(im.id)}" aria-label="Delete ${esc(im.name)}">✕</button></div>`).join("")
-        : `<span class="muted small">No pictures yet — upload one and it's saved for next time.</span>`;
+        : `<span class="muted small">${images.length ? "No pictures available for this job yet — upload one here." : "No pictures yet — upload one for this job."}</span>`;
       $("#mk-preview-img", root).innerHTML = current ? `<img src="${esc(current.url)}" alt="" class="mk-preview-pic">` : "";
       for (const id of ["#mk-img-copy", "#mk-img-download", "#mk-img-none"]) $(id, root).hidden = !current;
       if (current) { const a = $("#mk-img-download", root); a.href = current.url; a.download = current.name || "picture"; }
@@ -562,8 +564,8 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
       $("#mk-img-note", root).textContent = current && !current.online
         ? "This picture is saved in this browser, so it is not included in “Copy for email” — use Copy picture or Download, then add it in your email tool."
           + (window.AdminStore?.mode === "supabase" ? " To save pictures online, run supabase/marketing_storage.sql once in Supabase → SQL Editor." : "")
-        : current ? "Included at the top of “Copy for email”." : I.note;
-      $$(".mk-thumb-pick", root).forEach((b) => (b.onclick = () => { I.setPick(key, b.dataset.id); paint(); }));
+        : current ? "This picture belongs to this job and is included at the top of “Copy for email”." : "No picture is assigned to this job. Its post will show without an image until you upload or choose one here.";
+      $$(".mk-thumb-pick", root).forEach((b) => (b.onclick = () => { I.setPostPick(key, b.dataset.id); paint(); }));
       $$(".mk-thumb-del", root).forEach((b) => (b.onclick = async () => {
         if (!confirm("Delete this picture from your library?")) return;
         try { await I.remove(b.dataset.del); images = await I.list(); paint(); } catch (e) { alert("Could not delete: " + (e.message || e)); }
@@ -577,13 +579,13 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         for (const f of files) last = await I.add(f);
         images = await I.list();
         if (!isCurrentPreview()) return;
-        I.setPick(key, last); paint();
+        I.setPostPick(key, last); paint();
       } catch (err) {
         if (isCurrentPreview()) $("#mk-img-note", root).textContent = "Could not save the picture: " + (err.message || err);
       }
       e.target.value = "";
     };
-    $("#mk-img-none", root).onclick = () => { I.setPick(key, null); paint(); };
+    $("#mk-img-none", root).onclick = () => { I.setPostPick(key, null); paint(); };
     $("#mk-img-copy", root).onclick = async (e) => {
       try { await navigator.clipboard.write([new ClipboardItem({ "image/png": I.pngBlob(current.url) })]); flash(e.currentTarget); }
       catch (err) { alert("Your browser blocked copying the picture — use Download instead."); }

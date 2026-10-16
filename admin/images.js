@@ -8,6 +8,7 @@
 (() => {
   "use strict";
   const BUCKET = "marketing", DB = "outreach-admin", OS = "images", PICK_KEY = "admin:marketing-image-for";
+  const POST_PICK_KEY = "admin:marketing-post-image-for";
 
   const idb = () => new Promise((res, rej) => {
     const r = indexedDB.open(DB, 1);
@@ -89,12 +90,42 @@
       } else await tx("readwrite", (st) => st.delete(id));
       const map = this.picks(); for (const k of Object.keys(map)) if (map[k] === id) delete map[k];
       try { localStorage.setItem(PICK_KEY, JSON.stringify(map)); } catch {}
+      const postMap = this.postPicks(); for (const k of Object.keys(postMap)) if (postMap[k] === id) delete postMap[k];
+      try { localStorage.setItem(POST_PICK_KEY, JSON.stringify(postMap)); } catch {}
     },
     picks() { try { return JSON.parse(localStorage.getItem(PICK_KEY) || "{}"); } catch { return {}; } },
     pickFor(key) { return this.picks()[key] || null; },
     setPick(key, id) {
       const map = this.picks(); id ? (map[key] = id) : delete map[key];
       try { localStorage.setItem(PICK_KEY, JSON.stringify(map)); } catch {}
+    },
+    postPicks() {
+      try {
+        const saved = localStorage.getItem(POST_PICK_KEY);
+        if (saved !== null) {
+          const picks = JSON.parse(saved);
+          return picks && typeof picks === "object" && !Array.isArray(picks) ? picks : {};
+        }
+      } catch { return {}; }
+      const legacy = this.picks(), counts = {};
+      for (const [key, id] of Object.entries(legacy)) {
+        if (key !== "generic" && typeof id === "string" && id) counts[id] = (counts[id] || 0) + 1;
+      }
+      const migrated = {};
+      for (const [key, id] of Object.entries(legacy)) {
+        if (key !== "generic" && typeof id === "string" && id && counts[id] === 1) migrated[key] = id;
+      }
+      try { localStorage.setItem(POST_PICK_KEY, JSON.stringify(migrated)); } catch {}
+      return migrated;
+    },
+    postPickFor(key) { return this.postPicks()[key] || null; },
+    setPostPick(key, id) {
+      const picks = this.postPicks();
+      if (id) {
+        for (const otherKey of Object.keys(picks)) if (otherKey !== key && picks[otherKey] === id) delete picks[otherKey];
+        picks[key] = id;
+      } else delete picks[key];
+      try { localStorage.setItem(POST_PICK_KEY, JSON.stringify(picks)); } catch {}
     },
     // PNG blob of an image (clipboard only accepts PNG)
     async pngBlob(url) {
