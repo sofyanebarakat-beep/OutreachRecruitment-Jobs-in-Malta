@@ -19,6 +19,8 @@
     story: { label: "Story", width: 1080, height: 1920 },
     linkedin: { label: "LinkedIn landscape", width: 1200, height: 627 },
   };
+  const LEGACY_JOB_CTA = "👉 **Ready for your next step? Apply today!**";
+  const JOB_CTA = "🚀 **Your next opportunity could start here. Apply today!**";
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
                   set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
@@ -28,12 +30,13 @@
 
 {intro}
 
-👉 **Ready for your next step? Apply today!**
+${JOB_CTA}
 
 🌐 **Apply now:** {apply_url}
 💼 **More Jobs:** {more_jobs_url}
 
 {hashtags}`;
+  const jobTemplate = () => (store.get(TPL_KEY) || DEFAULT_TEMPLATE).replace(LEGACY_JOB_CTA, JOB_CTA);
 
   const DEFAULT_GENERIC = `🇲🇹 **NEW JOBS IN MALTA THIS WEEK** 🇲🇹
 
@@ -150,18 +153,19 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     const p1 = `**Outreach Recruitment** is recruiting on behalf of our client, ${client}, who is looking for ${qual.trim()} **${title}** to join their team${where}.`;
 
     const roleRaw = all.find((t) => /successful candidate|you will|will be responsible|responsible for|will assist|will support|will join/i.test(t) && t !== first);
-    let p2 = roleRaw ? roleRaw.trim()
+    let roleDetail = roleRaw ? roleRaw.trim()
       .replace(/^the successful candidates? will be/i, "You'll be").replace(/^the successful candidates? will/i, "You'll")
       .replace(/^the (?:role|position) (?:will )?(?:involves?|includes?)/i, "You'll be").replace(/^you will/i, "You'll") : "";
-    if (!p2 && d.responsibilities.length) {
+    if (!roleDetail && d.responsibilities.length) {
       const lc = (t) => t.replace(/\s*[.;]$/, "").replace(/\s+-\s+(\w)/g, (_, c) => ", " + c.toLowerCase()).replace(/^\w/, (c) => c.toLowerCase());
-      p2 = "Your role will include " + d.responsibilities.slice(0, 2).map(lc).join(" and ") + ".";
+      roleDetail = "Key responsibilities include: " + d.responsibilities.slice(0, 2).map(lc).join(" and ") + ".";
     }
-    if (p2.length > 240) p2 = p2.slice(0, 237).replace(/\s+\S*$/, "") + "…";
+    if (roleDetail.length > 240) roleDetail = roleDetail.slice(0, 237).replace(/\s+\S*$/, "") + "…";
 
+    const p2 = roleDetail ? `🔎 **About this role:** ${roleDetail}` : "";
     const perks = d.offer.filter((o) => !/full[- ]time|salary|employment with|interested candidates/i.test(o)).slice(0, 2)
-      .map((o) => o.replace(/\s*[.;]$/, "").replace(/^\w/, (c) => c.toLowerCase()).replace(/^(opportunit(?:y|ies))\b/, "the $1"));
-    const p3 = perks.length ? `✨ **What's in it for you:** ${perks.join(" and ")}.` : "";
+      .map((o) => o.replace(/\s*[.;]$/, ""));
+    const p3 = perks.length ? `**What Our Client Offers**\n${bullets(perks, 2)}` : "";
     return [p1, p2, p3].filter(Boolean).join("\n\n");
   }
 
@@ -306,7 +310,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
     // Job post
     const job = jobs.find((j) => j.slug === state.slug) || jobs[0];
     const facts = await factsFor(job);
-    const text = fill(store.get(TPL_KEY) || DEFAULT_TEMPLATE, jobValues(job, facts));
+    const text = fill(jobTemplate(), jobValues(job, facts));
     const todays = jobs.filter((j) => isNew(j.slug));
     body.innerHTML = `
       ${todays.length ? `<section class="card"><h2>🆕 Published today${cache.reportDate ? ` (${esc(cache.reportDate)})` : ""}</h2>
@@ -607,7 +611,7 @@ Looking for your next role? Outreach Recruitment is hiring for **{count} open po
         <div class="card"><h2>Job post template</h2>
           <p class="small muted">Placeholders: ${ph(["title", "city", "job_type", "salary", "intro", "short_intro", "responsibilities", "requirements", "offer", "apply_url", "more_jobs_url", "hashtags", "category"])}.
             A paragraph whose placeholders are all empty is left out. <code>**text**</code> = bold.</p>
-          <textarea id="tpl-job" rows="22" style="font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(store.get(TPL_KEY) || DEFAULT_TEMPLATE)}</textarea>
+          <textarea id="tpl-job" rows="22" style="font-family:ui-monospace,Menlo,monospace;font-size:.85rem">${esc(jobTemplate())}</textarea>
           <div class="form-actions"><button class="btn primary" id="tpl-job-save">Save</button><button class="btn" id="tpl-job-reset">Reset to default</button></div></div>
         <div class="card"><h2>Generic post template</h2>
           <p class="small muted">Placeholders: ${ph(["job_list", "count", "more_jobs_url"])}.</p>
