@@ -48,6 +48,7 @@ IMAGE_POOL = {
         ("/assets/jobs-malta-hr-admin.png", "Recruiter and candidate shaking hands during a recruitment process in Malta"),
         ("/assets/recruitment-agency-in-malta-hero.png", "Recruiter meeting with a candidate and employer in a modern Malta office"),
         ("/assets/recruitment.png", "Recruitment consultant reviewing candidate shortlists for a Malta employer"),
+        ("/assets/blog-featured/how-to-hire-hospitality-staff-malta.webp", "Two hospitality team members in aprons ready to welcome guests at a Malta restaurant"),
     ],
     "Candidate": [
         ("/assets/jobs-malta-hospitality.png", "Hospitality staff serving guests in a Malta hotel restaurant"),
@@ -432,7 +433,7 @@ def render_body(fm: dict, body: str) -> tuple[str, list[tuple[str, str]]]:
 def extract_boilerplate() -> tuple[str, str, str]:
     text = TEMPLATE_SOURCE.read_text()
     style_m = re.search(r"(  <style>\n.*?\n  </style>\n)", text, re.S)
-    nav_m = re.search(r"(<body>\n.*?<div class=\"navigation-overlay\"></div></div>\n)", text, re.S)
+    nav_m = re.search(r"(<body>\n.*?<div class=\"navigation-overlay\"></div></div>)(?=<main class=\"main\">)", text, re.S)
     footer_m = re.search(r"(  <footer class=\"footer\">.*?</html>\n?)$", text, re.S)
     if not (style_m and nav_m and footer_m):
         raise BuildError("Could not locate boilerplate blocks in template source — template may have changed")
@@ -469,6 +470,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     back_text = "Back to Study in Malta" if is_root else "Back to Blog"
 
     img_path, img_alt = pick(IMAGE_POOL[pillar], slug)
+    img_mime = "image/webp" if img_path.lower().endswith(".webp") else "image/png"
     tag = TAG_MAP[pillar]
     title = html.escape(fm["title"], quote=False)
     seo_title = html.escape(fm["seo_title"], quote=False)
@@ -523,7 +525,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
   <meta property="og:image" content="{og_image_abs}"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
-  <meta property="og:image:type" content="image/png"/>
+  <meta property="og:image:type" content="{img_mime}"/>
   <meta property="og:image:alt" content="{html.escape(img_alt, quote=False)}"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="{canonical}"/>
