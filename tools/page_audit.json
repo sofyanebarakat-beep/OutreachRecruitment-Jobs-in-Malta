@@ -1,12 +1,4 @@
 {
-  "beauty-specialist-nail-technician": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "<title> does not mention the job",
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
   "night-cleaner": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -81,14 +73,6 @@
     "first_seen": "2026-10-14",
     "attempts": 0,
     "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "wood-painting-finishing-specialist": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema has a baseSalary but the careers page gives none (invented salary)",
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
@@ -221,13 +205,6 @@
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
-  "senior-waiter-sommelier": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (15–15)"
-    ]
-  },
   "public-area-cleaner": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -235,29 +212,11 @@
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
-  "junior-revenue-accounts-analyst": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (30000–30000)"
-    ]
-  },
   "learning-development-executive-hybrid": {
     "first_seen": "2026-10-14",
     "attempts": 0,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "operations-supervisor": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "schema baseSalary (None, None) does not match the careers page (25000–30000)",
-      "salary 25000 is not shown on the page",
-      "operations-supervisor.html: <h1> does not contain the job title",
-      "operations-supervisor.html: schema baseSalary (None, None) does not match the careers page (25000–30000)",
-      "operations-supervisor.html: salary 25000 is not shown on the page"
     ]
   }
 }

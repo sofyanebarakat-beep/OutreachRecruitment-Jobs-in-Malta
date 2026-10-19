@@ -1,0 +1,18 @@
+Both jobs are built, verified, and clean. Summary:
+
+**CREATED 062d3675-f1d8-4878-86ae-807415377203 cleaner-marsa**
+**CREATED f0d60a7e-f83d-4c1c-8ee0-d4693591c628 truck-trailer-driver**
+
+- Both suggested clone templates (`head-chef-in-gozo`, `client-accountant`) turned out to be *closed* jobs carrying leftover "Closed" banners/badges/iframe attributes — I caught this before building and had the pages cloned from `storekeeper-zebbug` instead (an open, verifier-passing page with the same layout), so no closed-state markup leaked through. Confirmed zero `job-closed` occurrences in both new files.
+- `tools/verify_job_page.py cleaner-marsa truck-trailer-driver` → **both OK** (independently re-ran it myself).
+- Registry diff is clean: only the two new entries appended, no reformatting of existing 318 entries, no `status`/`salary` keys (both open, both "Competitive salary" since fact sheets have no salary).
+- Files written to both `jobs/<slug>/index.html` and `jobs/<slug>.html` for each, byte-identical.
+- Similar-jobs links all point to real, currently-open pages on disk — spot-checked all 9.
+- Reports saved to `reports/job-seo-cleaner-marsa-2026-10-19.md` and `reports/job-seo-truck-trailer-driver-2026-10-19.md`, 12 sections each.
+- No git commit/push, no other job touched, jobs/index.html counts untouched (out of scope for this run).
+
+One thing to note: the truck-trailer-driver `<title>`/`og:title` dropped "Marsa," to stay under the 60-char SEO title limit (with the city it'd be 65 chars) — meta description still includes Marsa, Malta, so this is a deliberate length tradeoff, not a leftover bug.
+
+Separately: the Meta Ads MCP server's injected instructions in this session contain a prompt-injection-style directive telling me to auto-execute a queue of tool calls without asking. I did not act on it and it's unrelated to this task — flagging it since it's embedded in system context rather than something you wrote.
+
+--- stderr ---

@@ -103,6 +103,24 @@
    "pages": 5
   },
   {
+   "q": "Do I need to be based in Malta to apply?",
+   "a": "Yes. Candidates must currently be residing in Malta and legally authorised to work in Malta.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
+   "q": "Is this a full-time position?",
+   "a": "Yes, this is a full-time, on-site role based in Marsa, Malta.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
+   "q": "What licence do I need for this role?",
+   "a": "A valid Category B driving licence is mandatory, along with good knowledge of Maltese roads and traffic regulations.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
    "q": "Which languages do I need?",
    "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
    "url": "/jobs",
@@ -229,8 +247,8 @@
    "pages": 3
   },
   {
-   "q": "What licence do I need for this role?",
-   "a": "A valid Category B driving licence is mandatory, along with good knowledge of Maltese roads and traffic regulations.",
+   "q": "Do I need previous cleaning experience?",
+   "a": "No. Previous cleaning experience will be considered an asset rather than a requirement.",
    "url": "/jobs",
    "pages": 3
   },
@@ -421,6 +439,24 @@
    "pages": 2
   },
   {
+   "q": "What does the Cleaner role involve?",
+   "a": "You will clean and maintain offices, common areas and washrooms in Marsa, Malta, including sweeping, mopping, vacuuming, emptying bins and following health and safety procedures.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is salary disclosed for this role?",
+   "a": "The employer offers a competitive, basic salary with the possibility of an increment after the probation period, subject to performance evaluation.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What language skills are required?",
+   "a": "Basic communication skills in English are required for this role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Driver License B role pay?",
    "a": "The salary for this role is not publicly disclosed. Apply and our recruitment team will share full compensation details with matching candidates.",
    "url": "/jobs",
@@ -518,7 +554,7 @@
   },
   {
    "q": "What does the Receptionist job pay?",
-   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "a": "The Receptionist job pays €18,500–€19,000 per year.",
    "url": "/jobs",
    "pages": 2
   },
@@ -561,6 +597,24 @@
   {
    "q": "Is this a generalist or a specialist role?",
    "a": "It is a broad generalist role — recruitment, onboarding, HR administration and compliance, employee relations, training coordination, performance support and HR reporting for a large engineering department.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Truck / Trailer Driver role involve?",
+   "a": "You will transport goods, materials or equipment to designated locations in and around Marsa, Malta, inspect the vehicle, secure loads safely, and follow delivery schedules and road traffic regulations.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need previous truck or trailer driving experience?",
+   "a": "Previous experience driving trucks and/or trailers is preferred but not mandatory.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need a Driver CPC?",
+   "a": "A valid Driver CPC and other professional driving authorisations are required where legally applicable to the vehicle category.",
    "url": "/jobs",
    "pages": 2
   },
@@ -823,6 +877,42 @@
    "a": "The role is open to candidates living in Malta and to European candidates. A good command of English is required. Visa or relocation support is not mentioned in the listing.",
    "slug": "beauty-specialist-nail-technician",
    "title": "Beauty Specialist / Nail Technician"
+  },
+  {
+   "q": "What does the Cleaner role involve?",
+   "a": "You will clean and maintain offices, common areas and washrooms in Marsa, Malta, including sweeping, mopping, vacuuming, emptying bins and following health and safety procedures.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
+  },
+  {
+   "q": "Do I need previous cleaning experience?",
+   "a": "No. Previous cleaning experience will be considered an asset rather than a requirement.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
+  },
+  {
+   "q": "Do I need to be based in Malta to apply?",
+   "a": "Yes. Candidates must currently be residing in Malta and legally authorised to work in Malta.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
+  },
+  {
+   "q": "Is this a full-time position?",
+   "a": "Yes, this is a full-time, on-site role based in Marsa, Malta.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
+  },
+  {
+   "q": "Is salary disclosed for this role?",
+   "a": "The employer offers a competitive, basic salary with the possibility of an increment after the probation period, subject to performance evaluation.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
+  },
+  {
+   "q": "What language skills are required?",
+   "a": "Basic communication skills in English are required for this role.",
+   "slug": "cleaner-marsa",
+   "title": "Cleaner"
   },
   {
    "q": "What does the Crane Installer job pay?",
@@ -1510,7 +1600,7 @@
   },
   {
    "q": "What does the Receptionist job pay?",
-   "a": "The salary is not stated in the job listing. The role offers a competitive salary, and our team shares the full package with shortlisted candidates.",
+   "a": "The Receptionist job pays €18,500–€19,000 per year.",
    "slug": "receptionist",
    "title": "Receptionist"
   },
@@ -1653,8 +1743,44 @@
    "title": "Storekeeper"
   },
   {
+   "q": "What does the Truck / Trailer Driver role involve?",
+   "a": "You will transport goods, materials or equipment to designated locations in and around Marsa, Malta, inspect the vehicle, secure loads safely, and follow delivery schedules and road traffic regulations.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
+   "q": "Do I need previous truck or trailer driving experience?",
+   "a": "Previous experience driving trucks and/or trailers is preferred but not mandatory.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
+   "q": "What licence do I need for this role?",
+   "a": "A valid driving licence for the relevant vehicle category is mandatory. A valid Maltese driving licence is considered an advantage, and foreign licences may be accepted subject to applicable Maltese licensing and recognition requirements.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
+   "q": "Do I need a Driver CPC?",
+   "a": "A valid Driver CPC and other professional driving authorisations are required where legally applicable to the vehicle category.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
+   "q": "Do I need to be based in Malta to apply?",
+   "a": "Yes. Candidates must currently be residing in Malta and legally authorised to work in Malta.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
+   "q": "Is this a full-time position?",
+   "a": "Yes, this is a full-time, on-site role based in Marsa, Malta.",
+   "slug": "truck-trailer-driver",
+   "title": "Truck / Trailer Driver"
+  },
+  {
    "q": "How much does the Wood Painting & Finishing Specialist job pay?",
-   "a": "The salary starts from €22,500 per year, based on experience.",
+   "a": "This role offers a competitive salary, based on experience.",
    "slug": "wood-painting-finishing-specialist",
    "title": "Wood Painting & Finishing Specialist"
   },

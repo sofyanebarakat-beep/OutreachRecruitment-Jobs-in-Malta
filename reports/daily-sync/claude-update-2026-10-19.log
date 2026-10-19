@@ -1,0 +1,9 @@
+All five pass verification. No registry changes were needed — their `tools/jobs_registry.json` entries already matched the fact sheets.
+
+UPDATED 47415842-998d-4d81-8b5c-3729cc948b47 senior-waiter-sommelier
+UPDATED 45602549-000a-4ffb-8987-dbd48d3f136a junior-revenue-accounts-analyst
+UPDATED f0e2775a-544e-4c64-8fc6-48f29121e4a4 operations-supervisor
+UPDATED 72332dfa-e0b8-4827-8fba-5d967d87151d beauty-specialist-nail-technician
+UPDATED d071e3f7-0e29-472e-bbb7-298393069639 wood-painting-finishing-specialist
+
+--- stderr ---

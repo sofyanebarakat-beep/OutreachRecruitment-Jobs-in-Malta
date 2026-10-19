@@ -5002,5 +5002,35 @@
     "featured": false,
     "lastmod": "2026-10-12",
     "salary": "€1,400 per month"
+  },
+  {
+    "slug": "cleaner-marsa",
+    "title": "Cleaner",
+    "category": "Administration",
+    "location": "Marsa, Malta",
+    "location_slug": "marsa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-15",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/062d3675-f1d8-4878-86ae-807415377203/apply",
+    "keywords": "cleaner administration marsa, malta",
+    "featured": false,
+    "lastmod": "2026-10-19"
+  },
+  {
+    "slug": "truck-trailer-driver",
+    "title": "Truck / Trailer Driver",
+    "category": "Logistics",
+    "location": "Marsa, Malta",
+    "location_slug": "marsa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-15",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f0d60a7e-f83d-4c1c-8ee0-d4693591c628/apply",
+    "keywords": "truck / trailer driver logistics marsa, malta",
+    "featured": false,
+    "lastmod": "2026-10-19"
   }
 ]
