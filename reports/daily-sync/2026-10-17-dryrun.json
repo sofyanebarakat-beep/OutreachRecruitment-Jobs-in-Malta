@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-17",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com.",
+    "Could not read the careers page (ATS listing returned HTTP 0 for page 1). No jobs were opened or closed."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 0,
+  "site_open_before": 117,
+  "site_open_after": 117,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 0,
+    "ok": 0,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 27
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-18",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "062d3675-f1d8-4878-86ae-807415377203",
+      "title": "Cleaner",
+      "city": "Marsa",
+      "slug": "cleaner-marsa",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/062d3675-f1d8-4878-86ae-807415377203",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "f0d60a7e-f83d-4c1c-8ee0-d4693591c628",
+      "title": "Truck / Trailer Driver",
+      "city": "Marsa",
+      "slug": "truck-trailer-driver",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f0d60a7e-f83d-4c1c-8ee0-d4693591c628",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [
+    "Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
+    "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.",
+    "Cleaner: no salary given on the careers page — page says 'Competitive salary'.",
+    "Truck / Trailer Driver: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 119,
+  "site_open_before": 117,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 117,
+    "ok": 81,
+    "to_fix": 36,
+    "fixing_today": 0,
+    "queued": 36
+  },
+  "site_open_after": 119,
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 27
+  }
+}

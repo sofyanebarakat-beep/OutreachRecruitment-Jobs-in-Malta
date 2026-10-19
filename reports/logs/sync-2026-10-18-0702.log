@@ -1,0 +1,460 @@
+=== Job Sync Agent ===
+Started: Sun Oct 18 07:02:48 CEST 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-10-18 07:02  ===
+  PREFLIGHT: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com — running report-only
+
+[1] Scraping careers page …
+    retry 1/5 in 10s (https://outreach-recruitment-agency.careers-page.com/)
+    retry 2/5 in 20s (https://outreach-recruitment-agency.careers-page.com/)
+    retry 3/5 in 30s (https://outreach-recruitment-agency.careers-page.com/)
+    retry 4/5 in 40s (https://outreach-recruitment-agency.careers-page.com/)
+    retry 5/5 in 50s (https://outreach-recruitment-agency.careers-page.com/)
+  pass 1: 119 / 119 advertised
+  careers page: 119 collected / 119 advertised · website open: 117
+
+[2] 0 website job(s) not in the careers-page listing — checking each …
+
+[3] Reading 119 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c1c99fd4-9e89-48b3-8f95-338d124f3654)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0094a7ce-72a7-44e6-8cd1-0ba1321bb783)
+  20/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/f0e2775a-544e-4c64-8fc6-48f29121e4a4)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/57ce944b-f716-4b66-8e62-322c9c3dbf32)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/784f9a92-69a7-498d-9146-09ea5c669c93)
+  40/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/befdff78-f9b6-4e4b-aef5-cab8bfb3e45f)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/ebda8d08-2e22-4c2a-9c69-85802cc2947b)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/1c894811-e5c4-4b98-be1f-9bb155171de7)
+  60/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/bd6cb514-3575-4cb1-93d0-10084e232125)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c91429df-e785-4dc4-ac10-bd803ae9cba1)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/e4d306a4-66b3-456b-8723-48e66d1ef3dc)
+  80/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7b8fe795-0594-4ea5-bc56-0d7efc030a8d)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c860e857-b436-49fa-a90e-65f711d3e320)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/807b3bad-4420-460c-9745-d3d47e499aed)
+  100/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/63312f81-a508-4467-b121-c15e63e5c869)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/1c5b7a74-e94c-4294-a35a-3ef4bc5275be)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c41969b1-8caf-4f29-bdb6-7950cabead37)
+  119 fact sheets read
+  new: Cleaner (Marsa) → cleaner-marsa · Competitive salary
+  new: Truck / Trailer Driver (Marsa) → truck-trailer-driver · Competitive salary
+  2 new, 0 to reopen, 0 changed
+  page check: 81 ok, 36 to fix (0 today)
+
+# Daily Job Sync — 2026-10-18
+
+**✅ In sync (report only — nothing was changed; lists show what WOULD happen)** — careers page 119, website 117 → 119
+
+## New jobs published (0)
+- none
+
+## Reopened (0)
+- none
+
+## Closed (0)
+- none
+
+## Updated (0)
+- none
+
+## Failed (0)
+- none
+
+## Held back (2)
+- Cleaner — https://outreach-recruitment-agency.careers-page.com/jobs/062d3675-f1d8-4878-86ae-807415377203 (new job — not created (report-only run))
+- Truck / Trailer Driver — https://outreach-recruitment-agency.careers-page.com/jobs/f0d60a7e-f83d-4c1c-8ee0-d4693591c628 (new job — not created (report-only run))
+
+## Notes
+- Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com.
+- Head of Spa: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.
+- Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page.
+- Cleaner: no salary given on the careers page — page says 'Competitive salary'.
+- Truck / Trailer Driver: no salary given on the careers page — page says 'Competitive salary'.
+
+## Site housekeeping
+- Daily page check: 81 of 117 open job pages pass every check, 36 queued for the next days
+- Salary shown on 27 of 117 open jobs (23%) — all salaries come from the careers page
+
+Git: no changes
+
+  email sent to sbarakat@outreachrecruitment.net
+
+=== SEO / GSC analysis (job_sync_agent.py, no email) ===
+============================================================
+  Outreach Recruitment — Job Sync Agent
+  2026-10-18 10:03:39
+============================================================
+
+  State loaded — tracking 5 job(s) for auto-close
+
+[1/5] Scraping careers page …
+  [Careers] page 1 — https://outreach-recruitment-agency.careers-page.com/
+  [Careers] page 2 — https://outreach-recruitment-agency.careers-page.com/?page=2
+  [Careers] page 3 — https://outreach-recruitment-agency.careers-page.com/?page=3
+  [Careers] page 4 — https://outreach-recruitment-agency.careers-page.com/?page=4
+  [Careers] page 5 — https://outreach-recruitment-agency.careers-page.com/?page=5
+  [Careers] page 6 — https://outreach-recruitment-agency.careers-page.com/?page=6
+  [Careers] page 7 — https://outreach-recruitment-agency.careers-page.com/?page=7
+  [Careers] page 8 — https://outreach-recruitment-agency.careers-page.com/?page=8
+  [Careers] page 9 — https://outreach-recruitment-agency.careers-page.com/?page=9
+  [Careers] page 10 — https://outreach-recruitment-agency.careers-page.com/?page=10
+  [Careers] page 11 — https://outreach-recruitment-agency.careers-page.com/?page=11
+  [Careers] page 12 — https://outreach-recruitment-agency.careers-page.com/?page=12
+  [Careers] page 13 — https://outreach-recruitment-agency.careers-page.com/?page=13
+  Collected 119 jobs (advertised: 119)
+
+[2/5] Scraping public website …
+  [Website] Fetching https://outreachrecruitment.net/jobs/
+  Found 117 job cards
+
+[SEO] Checking 117 job pages …
+  [1/117] receptionist … OK
+  [2/117] host-receptionist … OK
+  [3/117] hotel-maintenance-assistant … OK
+  [4/117] housekeeper-rabat … OK
+  [5/117] front-office-executive … OK
+  [6/117] italian-restaurant-hospitality-positions-dubai … OK
+  [7/117] junior-administrative-executive … OK
+  [8/117] crane-installer … OK
+  [9/117] beauty-specialist-nail-technician … OK
+  [10/117] marine-mechanical-engineer … OK
+  [11/117] maintenance-manager-mellieha … OK
+  [12/117] restaurant-manager-italian-speaking … OK
+  [13/117] gypsum-installers … OK
+  [14/117] mini-bus-driver-licence-d … OK
+  [15/117] proposal-engineer-energy-solutions … OK
+  [16/117] storekeeper-zebbug … OK
+  [17/117] driver-license-b … OK
+  [18/117] forklift-operator … OK
+  [19/117] front-office-agent … OK
+  [20/117] head-of-spa-2 … OK
+  [21/117] night-cleaner … OK
+  [22/117] banqueting-fb-supervisor … OK
+  [23/117] assistance-operations-coordinator … OK
+  [24/117] procurement-officer … OK
+  [25/117] operations-supervisor … OK
+  [26/117] heavy-equipment-mechanic-2 … OK
+  [27/117] learning-development-executive-hybrid … OK
+  [28/117] auto-electrician-heavy-vehicles … OK
+  [29/117] heavy-equipment-mechanic … OK
+  [30/117] steel-shutter-installer … OK
+  [31/117] junior-revenue-accounts-analyst … OK
+  [32/117] public-area-cleaner … OK
+  [33/117] head-chef-steakhouse … OK
+  [34/117] senior-waiter-sommelier … OK
+  [35/117] deli-counter-assistant-salumeria-specialist … OK
+  [36/117] chef-de-partie-4 … OK
+  [37/117] ship-chandler … OK
+  [38/117] fleet-mechanical-superintendent … OK
+  [39/117] customer-care-agent … OK
+  [40/117] hvac-technician … OK
+  [41/117] delivery-man … OK
+  [42/117] head-of-hvac-technicians … OK
+  [43/117] tank-cleaner … OK
+  [44/117] welder-burner-pipe-fitter … OK
+  [45/117] shipyard-sprayer-painter … OK
+  [46/117] marine-carpenter … OK
+  [47/117] electronic-technician … OK
+  [48/117] commercial-divers … OK
+  [49/117] trailer-drivers … OK
+  [50/117] marine-mechanical-foreman … OK
+  [51/117] administration-specialist … OK
+  [52/117] marine-turner-malta … OK
+  [53/117] plate-shop-foreman-malta … OK
+  [54/117] quality-engineer-marine-malta … OK
+  [55/117] client-accountant-2 … OK
+  [56/117] application-developer-drupal … OK
+  [57/117] fleet-tools-facility-manager … OK
+  [58/117] sales-office-coordinator … OK
+  [59/117] customer-contact-agent … OK
+  [60/117] hr-administration-officer … OK
+  [61/117] project-manager … OK
+  [62/117] estimator … OK
+  [63/117] hsse-coordinator … OK
+  [64/117] housekeeper … OK
+  [65/117] driver-runner-washer … OK
+  [66/117] supervisor … OK
+  [67/117] customer-operations-associate … OK
+  [68/117] structural-engineer … OK
+  [69/117] senior-quantity-estimator-me … OK
+  [70/117] sales-representative-in-renewables … OK
+  [71/117] hvac-project-manager … OK
+  [72/117] hvac-sales-representative … OK
+  [73/117] maintenance-technician-electrical-licence-a-or-b … OK
+  [74/117] it-support-executive … OK
+  [75/117] general-maintenance-technician … OK
+  [76/117] counter-assistant … OK
+  [77/117] kitchen-assistant … OK
+  [78/117] heavy-machine-operator … OK
+  [79/117] housekeeping-attendant … OK
+  [80/117] accounts-payable … OK
+  [81/117] tax-manager … OK
+  [82/117] automotive-service-advisor … OK
+  [83/117] high-voltage-motor-vehicle-technician … OK
+  [84/117] audit-senior-associate … OK
+  [85/117] customer-contact-centre-representative … OK
+  [86/117] builders-and-shutterers … OK
+  [87/117] draughtsperson … OK
+  [88/117] associate-tax-advisor … OK
+  [89/117] customer-care-associate … OK
+  [90/117] sales-executive-luxury-retail … OK
+  [91/117] bottling-operator … OK
+  [92/117] motor-vehicle-mechanictechnician … OK
+  [93/117] automotive-parts-personnel … OK
+  [94/117] corporate-insurance-associate … OK
+  [95/117] wood-painting-finishing-specialist … OK
+  [96/117] delivery-driver-malta-c-license … OK
+  [97/117] health-claims-associate … OK
+  [98/117] delivery-drivers-c1-malta-license … OK
+  [99/117] auditor … OK
+  [100/117] cnc-machine-operator … OK
+  [101/117] room-attendents … OK
+  [102/117] finance-associate … OK
+  [103/117] skilled-carpenters … OK
+  [104/117] delivery-person-with-driving-licence-c1 … OK
+  [105/117] commercial-insurance-associate … OK
+  [106/117] aluminum-install-and-fabrication-foreman … OK
+  [107/117] audit-senior … OK
+  [108/117] product-owner-hybrid … OK
+  [109/117] volvo-penta-mechanic … OK
+  [110/117] sign-assembler-installer … OK
+  [111/117] hotel-porter … OK
+  [112/117] boat-maintenance … OK
+  [113/117] first-line-support-hybrid … OK
+  [114/117] semi-senior-accountant … OK
+  [115/117] sales-executive-2 … OK
+  [116/117] housekeeper-2 … OK
+  [117/117] accounts-senior-2 … OK
+
+[4/5] Checking sitemap …
+  Found 117 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 92.3%
+============================================================
+  Careers page: 119 advertised, 119 scraped
+  Website:      117 jobs
+  Missing jobs: 8
+    + Cleaner
+    + Truck / Trailer Driver
+    + Italian Restaurant – Multiple Hospitality Positions | Dubai
+    + Mini Bus Drivers License D
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    + Heavy equipment mech
+  Extra jobs:   5
+    - Italian Restaurant – Multiple Hospitality Positions
+    - Mini Bus Driver – Licence D
+    - Deli Counter Assistant / Salumeria Specialist
+    - Chef De Partie
+    - Application Developer (Drupal)
+  Title diffs:  5
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   37
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 19
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Project Manager' ≈ 'HVAC Project Manager' (86%)
+    'Receptionist' ≈ 'Host / Receptionist' (83%)
+    'Customer Care Agent' ≈ 'Customer Contact Agent' (83%)
+    'Heavy Machine Operator' ≈ 'CNC Machine Operator' (81%)
+
+  [Auto-Close DISABLED] 5 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+    - Mini Bus Driver – Licence D
+    - Italian Restaurant – Multiple Hospitality Positions
+    - Chef De Partie
+  State saved — tracking 5 extra job(s)
+
+  Fetching details for 8 missing job(s) …
+    Cleaner … OK
+    Truck / Trailer Driver … OK
+    Italian Restaurant – Multiple Hospitality Positions | Dubai … OK
+    Mini Bus Drivers License D … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+OK
+
+[GSC] Checking 117 job URL(s) with Search Console …
+  [1/117] receptionist … 1 issue(s)
+  [2/117] host-receptionist … 1 issue(s)
+  [3/117] hotel-maintenance-assistant … 1 issue(s)
+  [4/117] housekeeper-rabat … 1 issue(s)
+  [5/117] front-office-executive … 1 issue(s)
+  [6/117] italian-restaurant-hospitality-positions-dubai … 1 issue(s)
+  [7/117] junior-administrative-executive … 1 issue(s)
+  [8/117] crane-installer … 1 issue(s)
+  [9/117] beauty-specialist-nail-technician … 1 issue(s)
+  [10/117] marine-mechanical-engineer … 1 issue(s)
+  [11/117] maintenance-manager-mellieha … 1 issue(s)
+  [12/117] restaurant-manager-italian-speaking … 1 issue(s)
+  [13/117] gypsum-installers … 2 issue(s)
+  [14/117] mini-bus-driver-licence-d … OK
+  [15/117] proposal-engineer-energy-solutions … OK
+  [16/117] storekeeper-zebbug … 1 issue(s)
+  [17/117] driver-license-b … 2 issue(s)
+  [18/117] forklift-operator … OK
+  [19/117] front-office-agent … 1 issue(s)
+  [20/117] head-of-spa-2 … 1 issue(s)
+  [21/117] night-cleaner … 1 issue(s)
+  [22/117] banqueting-fb-supervisor … 1 issue(s)
+  [23/117] assistance-operations-coordinator … 1 issue(s)
+  [24/117] procurement-officer … OK
+  [25/117] operations-supervisor … 1 issue(s)
+  [26/117] heavy-equipment-mechanic-2 … 1 issue(s)
+  [27/117] learning-development-executive-hybrid … OK
+  [28/117] auto-electrician-heavy-vehicles … 1 issue(s)
+  [29/117] heavy-equipment-mechanic … 1 issue(s)
+  [30/117] steel-shutter-installer … 1 issue(s)
+  [31/117] junior-revenue-accounts-analyst … 1 issue(s)
+  [32/117] public-area-cleaner … 1 issue(s)
+  [33/117] head-chef-steakhouse … 1 issue(s)
+  [34/117] senior-waiter-sommelier … OK
+  [35/117] deli-counter-assistant-salumeria-specialist … OK
+  [36/117] chef-de-partie-4 … 1 issue(s)
+  [37/117] ship-chandler … 1 issue(s)
+  [38/117] fleet-mechanical-superintendent … 1 issue(s)
+  [39/117] customer-care-agent … 1 issue(s)
+  [40/117] hvac-technician … 1 issue(s)
+  [41/117] delivery-man … 1 issue(s)
+  [42/117] head-of-hvac-technicians … 1 issue(s)
+  [43/117] tank-cleaner … 1 issue(s)
+  [44/117] welder-burner-pipe-fitter … 1 issue(s)
+  [45/117] shipyard-sprayer-painter … 1 issue(s)
+  [46/117] marine-carpenter … 1 issue(s)
+  [47/117] electronic-technician … 1 issue(s)
+  [48/117] commercial-divers … 1 issue(s)
+  [49/117] trailer-drivers … 2 issue(s)
+  [50/117] marine-mechanical-foreman … 1 issue(s)
+  [51/117] administration-specialist … 1 issue(s)
+  [52/117] marine-turner-malta … 1 issue(s)
+  [53/117] plate-shop-foreman-malta … 1 issue(s)
+  [54/117] quality-engineer-marine-malta … 1 issue(s)
+  [55/117] client-accountant-2 … 1 issue(s)
+  [56/117] application-developer-drupal … 1 issue(s)
+  [57/117] fleet-tools-facility-manager … 1 issue(s)
+  [58/117] sales-office-coordinator … 1 issue(s)
+  [59/117] customer-contact-agent … OK
+  [60/117] hr-administration-officer … 1 issue(s)
+  [61/117] project-manager … 1 issue(s)
+  [62/117] estimator … 1 issue(s)
+  [63/117] hsse-coordinator … 1 issue(s)
+  [64/117] housekeeper … 1 issue(s)
+  [65/117] driver-runner-washer … 1 issue(s)
+  [66/117] supervisor … 1 issue(s)
+  [67/117] customer-operations-associate … 2 issue(s)
+  [68/117] structural-engineer … 2 issue(s)
+  [69/117] senior-quantity-estimator-me … 1 issue(s)
+  [70/117] sales-representative-in-renewables … 1 issue(s)
+  [71/117] hvac-project-manager … 1 issue(s)
+  [72/117] hvac-sales-representative … 1 issue(s)
+  [73/117] maintenance-technician-electrical-licence-a-or-b … 2 issue(s)
+  [74/117] it-support-executive … 2 issue(s)
+  [75/117] general-maintenance-technician … 1 issue(s)
+  [76/117] counter-assistant … 1 issue(s)
+  [77/117] kitchen-assistant … 2 issue(s)
+  [78/117] heavy-machine-operator … OK
+  [79/117] housekeeping-attendant … 1 issue(s)
+  [80/117] accounts-payable … 1 issue(s)
+  [81/117] tax-manager … 1 issue(s)
+  [82/117] automotive-service-advisor … 1 issue(s)
+  [83/117] high-voltage-motor-vehicle-technician … 1 issue(s)
+  [84/117] audit-senior-associate … 1 issue(s)
+  [85/117] customer-contact-centre-representative … 1 issue(s)
+  [86/117] builders-and-shutterers … 2 issue(s)
+  [87/117] draughtsperson … 1 issue(s)
+  [88/117] associate-tax-advisor … 1 issue(s)
+  [89/117] customer-care-associate … 1 issue(s)
+  [90/117] sales-executive-luxury-retail … 1 issue(s)
+  [91/117] bottling-operator … OK
+  [92/117] motor-vehicle-mechanictechnician … 1 issue(s)
+  [93/117] automotive-parts-personnel … 1 issue(s)
+  [94/117] corporate-insurance-associate … 1 issue(s)
+  [95/117] wood-painting-finishing-specialist … OK
+  [96/117] delivery-driver-malta-c-license … 1 issue(s)
+  [97/117] health-claims-associate … 1 issue(s)
+  [98/117] delivery-drivers-c1-malta-license … 2 issue(s)
+  [99/117] auditor … 1 issue(s)
+  [100/117] cnc-machine-operator … OK
+  [101/117] room-attendents … 1 issue(s)
+  [102/117] finance-associate … 2 issue(s)
+  [103/117] skilled-carpenters … 1 issue(s)
+  [104/117] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [105/117] commercial-insurance-associate … 2 issue(s)
+  [106/117] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [107/117] audit-senior … 1 issue(s)
+  [108/117] product-owner-hybrid … 1 issue(s)
+  [109/117] volvo-penta-mechanic … 1 issue(s)
+  [110/117] sign-assembler-installer … 1 issue(s)
+  [111/117] hotel-porter … 1 issue(s)
+  [112/117] boat-maintenance … 1 issue(s)
+  [113/117] first-line-support-hybrid … 1 issue(s)
+  [114/117] semi-senior-accountant … 1 issue(s)
+  [115/117] sales-executive-2 … 1 issue(s)
+  [116/117] housekeeper-2 … 1 issue(s)
+  [117/117] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-18.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-18.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-18.html
+
+  Email skipped. To send manually, remove --no-email / --dry-run flag.
+
+=== SEO Course Automation ===
+GA4 added to 0 content pages; conversion events added to 0 pages.
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-10-18T10:22:16.507728+02:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-10-16",
+      "days": 7,
+      "queries": 1000,
+      "pages": 488
+    },
+    "ga4": {
+      "ok": true,
+      "days": 6,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 1726
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 16
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 101
+    },
+    "experiments": {
+      "new": 277
+    },
+    "supabase": {
+      "ok": false,
+      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+    }
+  },
+  "warnings": []
+}
+Finished: Sun Oct 18 10:22:22 CEST 2026 | Exit: 0

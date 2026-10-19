@@ -3204,3 +3204,81 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-19T07:50:47,Cleaner,cleaner-marsa,https://outreachrecruitment.net/jobs/cleaner-marsa/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/cleaner-marsa/""
+  }
+}
+"
+2026-10-19T07:50:47,Truck / Trailer Driver,truck-trailer-driver,https://outreachrecruitment.net/jobs/truck-trailer-driver/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/truck-trailer-driver/""
+  }
+}
+"
+2026-10-19T07:50:47,Senior Waiter / Sommelier,senior-waiter-sommelier,https://outreachrecruitment.net/jobs/senior-waiter-sommelier/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/senior-waiter-sommelier/""
+  }
+}
+"
+2026-10-19T07:50:47,Junior Revenue & Accounts Analyst,junior-revenue-accounts-analyst,https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/""
+  }
+}
+"
+2026-10-19T07:50:47,Operations Supervisor,operations-supervisor,https://outreachrecruitment.net/jobs/operations-supervisor/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/operations-supervisor/""
+  }
+}
+"
+2026-10-19T07:50:47,Beauty Specialist / Nail Technician,beauty-specialist-nail-technician,https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician/""
+  }
+}
+"
+2026-10-19T07:50:47,Wood Painting & Finishing Specialist,wood-painting-finishing-specialist,https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist/""
+  }
+}
+"
+2026-10-19T08:01:40,Receptionist,receptionist,https://outreachrecruitment.net/jobs/receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/receptionist/""
+  }
+}
+"
+2026-10-19T08:01:40,Host / Receptionist,host-receptionist,https://outreachrecruitment.net/jobs/host-receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/host-receptionist/""
+  }
+}
+"
+2026-10-19T08:01:40,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-19T08:01:40,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
+2026-10-19T08:01:40,Cleaner,cleaner-marsa,https://outreachrecruitment.net/jobs/cleaner-marsa/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/cleaner-marsa/""
+  }
+}
+"
+2026-10-19T08:01:40,Truck / Trailer Driver,truck-trailer-driver,https://outreachrecruitment.net/jobs/truck-trailer-driver/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/truck-trailer-driver/""
+  }
+}
+"
