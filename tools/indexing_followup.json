@@ -88,7 +88,7 @@
     "status": "ok"
   },
   "hotel-maintenance-assistant": {
-    "checked": "2026-10-15",
+    "checked": "2026-10-19",
     "published": "2026-10-12",
     "indexed": false,
     "job_posting": false,
@@ -96,8 +96,40 @@
     "status": "pending"
   },
   "housekeeper-rabat": {
-    "checked": "2026-10-15",
+    "checked": "2026-10-19",
     "published": "2026-10-12",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "receptionist": {
+    "checked": "2026-10-19",
+    "published": "2026-10-15",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "host-receptionist": {
+    "checked": "2026-10-19",
+    "published": "2026-10-15",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "cleaner-marsa": {
+    "checked": "2026-10-19",
+    "published": "2026-10-15",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "truck-trailer-driver": {
+    "checked": "2026-10-19",
+    "published": "2026-10-15",
     "indexed": false,
     "job_posting": false,
     "coverage": "URL is unknown to Google",

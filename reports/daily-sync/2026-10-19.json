@@ -99,7 +99,7 @@
     "Cleaner: no salary given on the careers page — page says 'Competitive salary'.",
     "Truck / Trailer Driver: no salary given on the careers page — page says 'Competitive salary'."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 119,
   "site_open_before": 117,
@@ -128,5 +128,84 @@
   "salary_coverage": {
     "open": 119,
     "with_salary": 27
+  },
+  "google": {
+    "sent": 7,
+    "ok": 7,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 119,
+    "expected": 119,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 6,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Receptionist",
+        "slug": "receptionist",
+        "url": "https://outreachrecruitment.net/jobs/receptionist/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Host / Receptionist",
+        "slug": "host-receptionist",
+        "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Hotel Maintenance Assistant",
+        "slug": "hotel-maintenance-assistant",
+        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Housekeeper",
+        "slug": "housekeeper-rabat",
+        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Cleaner",
+        "slug": "cleaner-marsa",
+        "url": "https://outreachrecruitment.net/jobs/cleaner-marsa/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Truck / Trailer Driver",
+        "slug": "truck-trailer-driver",
+        "url": "https://outreachrecruitment.net/jobs/truck-trailer-driver/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
