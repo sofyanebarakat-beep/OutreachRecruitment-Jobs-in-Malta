@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-20",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Head of Spa",
+      "slug": "head-of-spa-2",
+      "url": "https://outreachrecruitment.net/jobs/head-of-spa-2/",
+      "city": "St. Paul's Bay, Malta"
+    }
+  ],
+  "updated": [
+    {
+      "uuid": "56e4d449-13a7-42b4-a93f-82f77e4caf8a",
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "city": "Żebbuġ",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'",
+        "page repaired — driver-license-b.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b/"
+    },
+    {
+      "uuid": "52efdcb6-1959-4340-a52f-7df576fbcab4",
+      "title": "Delivery Man",
+      "slug": "delivery-man",
+      "city": "San Ġwann",
+      "changes": [
+        "page repaired — delivery-man.html: schema has a baseSalary but the careers page gives none (invented salary)",
+        "page repaired — delivery-man.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/delivery-man/"
+    },
+    {
+      "uuid": "784f9a92-69a7-498d-9146-09ea5c669c93",
+      "title": "HVAC Technician",
+      "slug": "hvac-technician",
+      "city": "Qormi",
+      "changes": [
+        "page repaired — hvac-technician.html: schema has a baseSalary but the careers page gives none (invented salary)",
+        "page repaired — hvac-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/hvac-technician/"
+    },
+    {
+      "uuid": "09a73db3-caf9-469e-aa16-172607664595",
+      "title": "Night Cleaner",
+      "slug": "night-cleaner",
+      "city": "St. Julian's",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/night-cleaner/"
+    },
+    {
+      "uuid": "7f491566-3151-46f1-8751-e0dcdc91058e",
+      "title": "Deli Counter Assistant / Salumeria Specialist",
+      "slug": "deli-counter-assistant-salumeria-specialist",
+      "city": "St. Julian's",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 118,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 118,
+    "ok": 87,
+    "to_fix": 31,
+    "fixing_today": 5,
+    "queued": 26
+  },
+  "listings": {
+    "hub_cards": {
+      "index.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 4,
+    "itemlist_items": 118,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 118,
+  "salary_coverage": {
+    "open": 118,
+    "with_salary": 26
+  }
+}

@@ -1,0 +1,20 @@
+All five jobs are fixed and pass `verify_job_page.py`. Summary of changes (no commits/pushes made, per instructions):
+
+- **driver-license-b**: added a missing "Competitive salary" chip to the header meta (none existed before) — applied identically to both `jobs/driver-license-b/index.html` and `jobs/driver-license-b.html`.
+- **delivery-man**: fixed `jobs/delivery-man.html` (the live flat page — `index.html` is just a redirect stub) — replaced the invented "Negotiable – €18,000 / year" chip with "Competitive salary" and removed the fabricated `baseSalary` schema block.
+- **hvac-technician**: same fix as delivery-man, on `jobs/hvac-technician.html` — replaced "Negotiable – €30,000 / year" with "Competitive salary" and removed the invented `baseSalary` block.
+- **night-cleaner**: replaced the "Negotiable" chip with "Competitive salary" in `jobs/night-cleaner/index.html`.
+- **deli-counter-assistant-salumeria-specialist**: replaced the "Negotiable" chip with "Competitive salary" in `jobs/deli-counter-assistant-salumeria-specialist/index.html`.
+
+No registry changes were needed — none of these five jobs had a `salary` field in `tools/jobs_registry.json`, which is already correct since the fact sheets show no salary.
+
+Results:
+```
+UPDATED 56e4d449-13a7-42b4-a93f-82f77e4caf8a driver-license-b
+UPDATED 52efdcb6-1959-4340-a52f-7df576fbcab4 delivery-man
+UPDATED 784f9a92-69a7-498d-9146-09ea5c669c93 hvac-technician
+UPDATED 09a73db3-caf9-469e-aa16-172607664595 night-cleaner
+UPDATED 7f491566-3151-46f1-8751-e0dcdc91058e deli-counter-assistant-salumeria-specialist
+```
+
+--- stderr ---

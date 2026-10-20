@@ -1,18 +1,4 @@
 {
-  "night-cleaner": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "deli-counter-assistant-salumeria-specialist": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
   "sales-office-coordinator": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -104,14 +90,6 @@
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
-  "driver-license-b": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'",
-      "driver-license-b.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
   "tank-cleaner": {
     "first_seen": "2026-10-14",
     "attempts": 0,
@@ -159,22 +137,6 @@
     "attempts": 0,
     "problems": [
       "marine-mechanical-foreman.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "delivery-man": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "delivery-man.html: schema has a baseSalary but the careers page gives none (invented salary)",
-      "delivery-man.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "hvac-technician": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "hvac-technician.html: schema has a baseSalary but the careers page gives none (invented salary)",
-      "hvac-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
   "client-accountant-2": {
