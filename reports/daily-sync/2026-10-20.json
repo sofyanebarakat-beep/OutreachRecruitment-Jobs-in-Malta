@@ -81,7 +81,7 @@
   "salary_notes": [
     "Junior Revenue & Accounts Analyst: the careers page lists €30,000 per month — shown as €30,000 per year. Please correct the unit on the careers page."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 118,
   "site_open_before": 119,
@@ -115,5 +115,87 @@
   "salary_coverage": {
     "open": 118,
     "with_salary": 26
+  },
+  "google": {
+    "sent": 6,
+    "ok": 6,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 118,
+    "expected": 118,
+    "ok": false,
+    "problems": [
+      "Delivery Man: live page is not the new version yet",
+      "HVAC Technician: live page is not the new version yet"
+    ]
+  },
+  "google_check": {
+    "checked": 6,
+    "ok": [
+      {
+        "title": "Truck / Trailer Driver",
+        "slug": "truck-trailer-driver",
+        "url": "https://outreachrecruitment.net/jobs/truck-trailer-driver/",
+        "age_days": 5,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      }
+    ],
+    "flagged": [
+      {
+        "title": "Receptionist",
+        "slug": "receptionist",
+        "url": "https://outreachrecruitment.net/jobs/receptionist/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Host / Receptionist",
+        "slug": "host-receptionist",
+        "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Hotel Maintenance Assistant",
+        "slug": "hotel-maintenance-assistant",
+        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Housekeeper",
+        "slug": "housekeeper-rabat",
+        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Cleaner",
+        "slug": "cleaner-marsa",
+        "url": "https://outreachrecruitment.net/jobs/cleaner-marsa/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
