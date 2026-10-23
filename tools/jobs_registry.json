@@ -500,11 +500,11 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/18146647-f162-4eae-a1e3-0d5a5852fd6e/apply",
     "keywords": "sales office coordinator sales mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-23"
   },
   {
     "slug": "maintenance-technician",
@@ -991,11 +991,11 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/407827f1-9487-4e13-af74-11973e5607de/apply",
     "keywords": "driver / runner / washer logistics gżira, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-23"
   },
   {
     "slug": "level-2-platform-ops-engineer",
@@ -1325,11 +1325,11 @@
     "employment_type": "Full-Time",
     "work_mode": "Hybrid",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f32596e1-dc6b-46a2-bacd-81f72eab8805/apply",
     "keywords": "customer operations associate general ta' xbiex, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-23"
   },
   {
     "slug": "structural-engineer",
@@ -1340,11 +1340,11 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/caf5b1c5-4eea-4b7a-8315-4f4a5e479442/apply",
     "keywords": "structural engineer engineering & maintenance mellieħa, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-23"
   },
   {
     "slug": "customer-experience-supervisor",
@@ -1416,11 +1416,11 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/af7af24d-e41f-48aa-b566-3d1ec6672dfc/apply",
     "keywords": "hvac sales representative engineering & maintenance qormi, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-23"
   },
   {
     "slug": "maintenance-technician-electrical-licence-a-or-b",
@@ -4749,8 +4749,9 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/45602549-000a-4ffb-8987-dbd48d3f136a/apply",
     "keywords": "junior revenue accounts analyst finance & accounting luqa, malta",
     "featured": true,
-    "lastmod": "2026-08-27",
-    "salary": "€30,000 per year"
+    "lastmod": "2026-10-23",
+    "salary": "€30,000 per year",
+    "status": "closed"
   },
   {
     "slug": "legal-intern",
@@ -4844,8 +4845,9 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f0e2775a-544e-4c64-8fc6-48f29121e4a4/apply",
     "keywords": "operations supervisor finance & accounting st. julian's, malta operations supervisor finance & accounting st julians malta jobs in malta",
     "featured": false,
-    "lastmod": "2026-08-27",
-    "salary": "€25,000–€30,000 per year"
+    "lastmod": "2026-10-23",
+    "salary": "€25,000–€30,000 per year",
+    "status": "closed"
   },
   {
     "slug": "restaurant-supervisor-2",

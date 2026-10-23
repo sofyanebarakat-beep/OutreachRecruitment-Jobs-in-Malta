@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-23",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Junior Revenue & Accounts Analyst",
+      "slug": "junior-revenue-accounts-analyst",
+      "url": "https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/",
+      "city": "Luqa, Malta"
+    },
+    {
+      "title": "Operations Supervisor",
+      "slug": "operations-supervisor",
+      "url": "https://outreachrecruitment.net/jobs/operations-supervisor/",
+      "city": "St. Julian's, Malta"
+    }
+  ],
+  "updated": [
+    {
+      "uuid": "18146647-f162-4eae-a1e3-0d5a5852fd6e",
+      "title": "Sales Office Coordinator",
+      "slug": "sales-office-coordinator",
+      "city": "Mellieħa, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/sales-office-coordinator/"
+    },
+    {
+      "uuid": "407827f1-9487-4e13-af74-11973e5607de",
+      "title": "Driver / Runner / Washer",
+      "slug": "driver-runner-washer",
+      "city": "Gżira, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/driver-runner-washer/"
+    },
+    {
+      "uuid": "f32596e1-dc6b-46a2-bacd-81f72eab8805",
+      "title": "Customer Operations Associate",
+      "slug": "customer-operations-associate",
+      "city": "Ta' Xbiex, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/customer-operations-associate/"
+    },
+    {
+      "uuid": "caf5b1c5-4eea-4b7a-8315-4f4a5e479442",
+      "title": "Structural Engineer",
+      "slug": "structural-engineer",
+      "city": "Mellieħa, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/structural-engineer/"
+    },
+    {
+      "uuid": "af7af24d-e41f-48aa-b566-3d1ec6672dfc",
+      "title": "HVAC Sales Representative",
+      "slug": "hvac-sales-representative",
+      "city": "Qormi, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/hvac-sales-representative/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 117,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 117,
+    "ok": 91,
+    "to_fix": 26,
+    "fixing_today": 5,
+    "queued": 21
+  },
+  "listings": {
+    "hub_cards": {
+      "finance-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 1
+      },
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "index.html": {
+        "replaced": 2,
+        "removed": 0
+      },
+      "insurance-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "jobs-in-malta-top-15-opening-jobs.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 45,
+    "itemlist_items": 117,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 2,
+    "pages_reopened": 0
+  },
+  "site_open_after": 117,
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 25
+  }
+}

@@ -1,39 +1,4 @@
 {
-  "sales-office-coordinator": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "driver-runner-washer": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "customer-operations-associate": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "structural-engineer": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "hvac-sales-representative": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
   "heavy-machine-operator": {
     "first_seen": "2026-10-14",
     "attempts": 0,

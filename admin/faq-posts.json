@@ -4,43 +4,43 @@
    "q": "Can I work while studying in Malta?",
    "a": "Yes. International students on a valid student residence permit can work up to 20 hours per week during term time and full-time during official academic holidays.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 291
+   "pages": 296
   },
   {
    "q": "Looking for a job in Malta or Europe?",
    "a": "Browse our open positions and apply directly on our jobs page. Once you submit your application, our recruitment team will review it and get back to you within 2–3 working days to discuss next steps.",
    "url": "/jobs",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "How do I apply for a role through Outreach Recruitment?",
    "a": "Visit our Jobs page, find a role that fits your profile, and click Apply. You can also send your CV directly to hr@outreachrecruitment.net and we will match you with suitable openings.",
    "url": "/jobs",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "I want to hire talent — how does it work?",
    "a": "Fill in the contact form selecting 'Hire Talent' and describe the role you need to fill. Our team will reach out within 2–3 working days to understand your requirements and present a tailored recruitment plan.",
    "url": "/employers",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "What types of profiles can you source for my business?",
    "a": "We recruit across Retail, Hospitality, Administration, People Operations, and more. Whether you need one person or a full team, we source candidates who are ready to work and the right fit for your organisation.",
    "url": "/employers",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "I want to study in Malta — where do I start?",
    "a": "Select 'Study in Malta' on our contact page and tell us a bit about yourself. Our study advisors will guide you through school selection, enrolment, visa requirements, and accommodation — step by step.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "I have a different question — can I still contact you?",
    "a": "Absolutely. Select 'Other Question' on our contact page and describe what you need. No matter the topic, our team will read your message and get back to you within 2–3 working days.",
    "url": "/contact-us",
-   "pages": 281
+   "pages": 286
   },
   {
    "q": "Where is the job based?",
@@ -64,7 +64,7 @@
    "q": "Can I apply from abroad?",
    "a": "It depends on the job. Each listing includes a Target Location that tells you who can apply. If the job is marked Worldwide, you can apply directly from abroad. For all other Target Locations check the specific requirements before applying.",
    "url": "/faqs",
-   "pages": 8
+   "pages": 10
   },
   {
    "q": "Need more information?",
@@ -94,6 +94,12 @@
    "q": "What documents do I need to work in Malta?",
    "a": "EU citizens need a valid ID or passport. Non-EU candidates typically need a valid passport, a signed job offer, and must apply for a work permit before starting. Our team will guide you through the exact requirements for your situation.",
    "url": "/hospitality-jobs-in-malta",
+   "pages": 5
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "url": "/jobs",
    "pages": 5
   },
   {
@@ -175,6 +181,12 @@
    "pages": 4
   },
   {
+   "q": "What qualifications are required?",
+   "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
    "q": "Do I need to speak Maltese?",
    "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
    "url": "/jobs",
@@ -237,12 +249,6 @@
   {
    "q": "What benefits are offered with this role?",
    "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
-   "url": "/jobs",
-   "pages": 3
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "A minimum of two years in a similar supervisory role, ideally within a hotel or banqueting environment.",
    "url": "/jobs",
    "pages": 3
   },
@@ -385,6 +391,24 @@
    "pages": 2
   },
   {
+   "q": "What does the Accounting Officer job pay?",
+   "a": "The Accounting Officer job pays €25,000–€30,000 per year.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need to speak Italian?",
+   "a": "Yes. Fluency in both Italian and English, written and spoken, is essential for this role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is remote work possible?",
+   "a": "No. The role is on-site in Paola; remote working is not offered.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "Is this role on-site?",
    "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
    "url": "/jobs",
@@ -496,12 +520,6 @@
    "q": "Do I need the pre-departure course certificate?",
    "a": "Yes. The pre-departure course certificate is listed as a requirement for this role.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 2
-  },
-  {
-   "q": "What qualifications are required?",
-   "a": "A high school diploma or equivalent, plus the ability to read technical manuals and diagrams and strong troubleshooting skills.",
-   "url": "/jobs",
    "pages": 2
   },
   {
@@ -704,6 +722,42 @@
   }
  ],
  "jobs": [
+  {
+   "q": "What does the Accounting Officer job pay?",
+   "a": "The Accounting Officer job pays €25,000–€30,000 per year.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
+  {
+   "q": "Do I need to speak Italian?",
+   "a": "Yes. Fluency in both Italian and English, written and spoken, is essential for this role.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
+  {
+   "q": "What qualifications are required?",
+   "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
+  {
+   "q": "Is remote work possible?",
+   "a": "No. The role is on-site in Paola; remote working is not offered.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
+  {
+   "q": "Can I apply from abroad?",
+   "a": "No. Only candidates currently residing in Malta will be considered for this position.",
+   "slug": "accounting-officer",
+   "title": "Accounting Officer"
+  },
   {
    "q": "Is this Application Developer (Drupal) role full-time?",
    "a": "Yes. This is a full-time role with an employment type of Full-Time.",
@@ -1273,42 +1327,6 @@
    "a": "No. Only candidates currently residing in Malta will be considered.",
    "slug": "junior-administrative-executive",
    "title": "Junior Administrative Executive"
-  },
-  {
-   "q": "What experience is required for the Junior Revenue & Accounts Analyst role?",
-   "a": "Candidates should have a minimum of 2 years' experience in a similar role, along with a diploma in Finance or Accounting, or be currently pursuing a Bachelor's degree in a related field.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
-  },
-  {
-   "q": "Is this a full-time position?",
-   "a": "Yes, this is a full-time, on-site role based in Luqa, Malta, offered as a direct job through Outreach Recruitment.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
-  },
-  {
-   "q": "Where is the Junior Revenue & Accounts Analyst job located?",
-   "a": "The role is based in Luqa, Malta, working on-site with the client's Finance team.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
-  },
-  {
-   "q": "How can I apply for this job?",
-   "a": "Click Apply Now on this page to submit your application online. Our recruitment team will review it and be in touch if you're a match.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
-  },
-  {
-   "q": "Is a salary provided for this role?",
-   "a": "Yes, the position offers a starting salary from €30,000 per year, along with training and career progression opportunities.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
-  },
-  {
-   "q": "What industry is this job in?",
-   "a": "This role sits within the Finance function of a Malta-based business operating in the transport and logistics sector, making it a strong fit for candidates interested in both finance and transport industries.",
-   "slug": "junior-revenue-accounts-analyst",
-   "title": "Junior Revenue & Accounts Analyst"
   },
   {
    "q": "Is the Learning & Development Executive role hybrid or fully remote?",

@@ -1,0 +1,23 @@
+All five pages now say "Competitive salary" and pass `tools/verify_job_page.py`. The first verifier run failed on Customer Operations Associate only because Chrome timed out while rendering; it passed on a second run. Nothing was committed or pushed.
+
+**What I changed on each page:**
+- **Header:** the salary chip now reads "Competitive salary". It used to say "Negotiable".
+- **Sales Office Coordinator:** the chip showed "€21,600 – Negotiable / year", which isn't on the careers page. I removed it.
+- **Sidebar:** added a "Salary: Competitive salary" item.
+- **"What's on Offer":** added "Competitive salary." as the first item.
+- **Meta description:** added "Competitive salary." (including the og/twitter copies).
+- **Schema:** none of the pages has a salary in the schema. I changed the job's end date there from 2030-12-31 to the standard 2029-12-30, and made the same change in the registry. That date is not shown anywhere visible.
+- **Files:** wrote each page to both `jobs/<slug>/index.html` and `jobs/<slug>.html`, which are identical. None of these jobs had a `.html` copy before, so all five are new.
+- **Registry:** updated `valid_through` and `lastmod` for these five jobs only. The registry changes that were already uncommitted before I started are untouched.
+
+**Needs your attention:**
+- **Customer Operations Associate is Hybrid or On-site?** The fact sheet says On-site, but the registry says Hybrid and the page lists "Hybrid working model" under "What's on Offer". That mismatch wasn't part of this fix, so I left it as is.
+- **Empty job descriptions:** the description in all five fact sheets is blank, so I didn't check the job descriptions on the pages against them.
+
+UPDATED 18146647-f162-4eae-a1e3-0d5a5852fd6e sales-office-coordinator
+UPDATED 407827f1-9487-4e13-af74-11973e5607de driver-runner-washer
+UPDATED f32596e1-dc6b-46a2-bacd-81f72eab8805 customer-operations-associate
+UPDATED caf5b1c5-4eea-4b7a-8315-4f4a5e479442 structural-engineer
+UPDATED af7af24d-e41f-48aa-b566-3d1ec6672dfc hvac-sales-representative
+
+--- stderr ---
