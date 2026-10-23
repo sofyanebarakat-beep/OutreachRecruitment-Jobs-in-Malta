@@ -1,0 +1,25 @@
+=== Job Sync Agent ===
+Started: Fri Oct 23 08:46:24 CEST 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-10-23 08:46  ===
+
+[1] Scraping careers page …
+  pass 1: 117 / 117 advertised
+  careers page: 117 collected / 117 advertised · website open: 119
+
+[2] 2 website job(s) not in the careers-page listing — checking each …
+  Junior Revenue & Accounts Analyst (45602549) → CLOSED
+  Operations Supervisor (f0e2775a) → CLOSED
+
+[3] Reading 117 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/e73e4745-0ca6-48b2-8984-8564657e5f9b)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0094a7ce-72a7-44e6-8cd1-0ba1321bb783)
+  20/117
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7f491566-3151-46f1-8751-e0dcdc91058e)
+  40/117
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/bc24c506-cfcd-46f5-8bd5-85814eb1ef96)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/18146647-f162-4eae-a1e3-0d5a5852fd6e)
+  60/117
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/37f933db-ef0e-48bb-a2ed-0c1a37b4ccad)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/6ef09a6e-669c-4b31-816f-fffaaebdede3)
+  80/117
