@@ -82,7 +82,7 @@
   "held": [],
   "notes": [],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 117,
   "site_open_before": 119,
@@ -132,5 +132,84 @@
   "salary_coverage": {
     "open": 117,
     "with_salary": 25
+  },
+  "google": {
+    "sent": 7,
+    "ok": 7,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 117,
+    "expected": 117,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 6,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Accounting Officer",
+        "slug": "accounting-officer",
+        "url": "https://outreachrecruitment.net/jobs/accounting-officer/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Receptionist",
+        "slug": "receptionist",
+        "url": "https://outreachrecruitment.net/jobs/receptionist/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Host / Receptionist",
+        "slug": "host-receptionist",
+        "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Hotel Maintenance Assistant",
+        "slug": "hotel-maintenance-assistant",
+        "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/",
+        "age_days": 11,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Housekeeper",
+        "slug": "housekeeper-rabat",
+        "url": "https://outreachrecruitment.net/jobs/housekeeper-rabat/",
+        "age_days": 11,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Cleaner",
+        "slug": "cleaner-marsa",
+        "url": "https://outreachrecruitment.net/jobs/cleaner-marsa/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
