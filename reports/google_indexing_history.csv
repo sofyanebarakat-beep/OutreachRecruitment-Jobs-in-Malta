@@ -3348,3 +3348,9 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-23T08:46:18,Accounting Officer,accounting-officer,https://outreachrecruitment.net/jobs/accounting-officer/,URL_UPDATED,manual_new_job,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accounting-officer/""
+  }
+}
+"
