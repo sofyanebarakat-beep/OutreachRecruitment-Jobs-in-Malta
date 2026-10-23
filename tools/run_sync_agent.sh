@@ -6,6 +6,19 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 LOG_DIR="$PROJECT_DIR/reports/logs"
 LOG_FILE="$LOG_DIR/sync-$(date +%Y-%m-%d-%H%M).log"
+TODAY="$(date +%Y-%m-%d)"
+LOCK="$PROJECT_DIR/tools/.run_sync_agent.pid"
+
+# launchd starts this every hour 07:00–20:00 and at login, so a day missed because the Mac was
+# off or asleep at 07:00 is caught up as soon as it is on. Run at most once a day (--force overrides).
+if [ "$1" != "--force" ]; then
+  [ "$(date +%H)" -lt 7 ] && exit 0
+  [ -f "$PROJECT_DIR/reports/daily-sync/$TODAY.md" ] && exit 0
+fi
+# One run at a time (a stale lock from a crash or reboot is ignored).
+if [ -f "$LOCK" ] && kill -0 "$(cat "$LOCK")" 2>/dev/null; then exit 0; fi
+echo $$ > "$LOCK"
+trap 'rm -f "$LOCK"' EXIT
 
 mkdir -p "$LOG_DIR"
 

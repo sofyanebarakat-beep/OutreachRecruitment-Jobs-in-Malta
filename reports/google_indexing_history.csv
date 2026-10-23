@@ -3282,3 +3282,69 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-20T07:23:03,Driver License B,driver-license-b,https://outreachrecruitment.net/jobs/driver-license-b/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/driver-license-b/""
+  }
+}
+"
+2026-10-20T07:23:03,Delivery Man,delivery-man,https://outreachrecruitment.net/jobs/delivery-man/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/delivery-man/""
+  }
+}
+"
+2026-10-20T07:23:03,HVAC Technician,hvac-technician,https://outreachrecruitment.net/jobs/hvac-technician/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hvac-technician/""
+  }
+}
+"
+2026-10-20T07:23:03,Night Cleaner,night-cleaner,https://outreachrecruitment.net/jobs/night-cleaner/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/night-cleaner/""
+  }
+}
+"
+2026-10-20T07:23:03,Deli Counter Assistant / Salumeria Specialist,deli-counter-assistant-salumeria-specialist,https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist/""
+  }
+}
+"
+2026-10-20T07:23:03,Head of Spa,head-of-spa-2,https://outreachrecruitment.net/jobs/head-of-spa-2/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/head-of-spa-2/""
+  }
+}
+"
+2026-10-20T07:33:51,Receptionist,receptionist,https://outreachrecruitment.net/jobs/receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/receptionist/""
+  }
+}
+"
+2026-10-20T07:33:51,Host / Receptionist,host-receptionist,https://outreachrecruitment.net/jobs/host-receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/host-receptionist/""
+  }
+}
+"
+2026-10-20T07:33:51,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-20T07:33:51,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
+2026-10-20T07:33:51,Cleaner,cleaner-marsa,https://outreachrecruitment.net/jobs/cleaner-marsa/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/cleaner-marsa/""
+  }
+}
+"

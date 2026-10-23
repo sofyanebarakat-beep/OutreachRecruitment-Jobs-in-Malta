@@ -21,3 +21,4 @@ images/image-log.json
 # daily_job_sync.py
 reports/daily-sync/rejected/
 tools/.daily_job_sync.lock
+tools/.run_sync_agent.pid

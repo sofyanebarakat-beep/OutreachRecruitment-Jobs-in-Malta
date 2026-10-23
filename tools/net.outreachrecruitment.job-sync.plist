@@ -31,20 +31,33 @@
     <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/tools/run_sync_agent.sh</string>
   </array>
 
-  <!-- Every day at 07:00 local (Malta) time; report email goes out at 09:00 -->
+  <!-- Every hour 07:00–20:00 (Malta time); the script runs the sync once a day — the first hour the Mac is on. Email at 09:00 or straight after a later run. -->
   <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key><integer>7</integer>
-    <key>Minute</key><integer>0</integer>
-  </dict>
+  <array>
+    <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
 
   <key>StandardOutPath</key>
   <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/logs/launchd-stdout.log</string>
   <key>StandardErrorPath</key>
   <string>/Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/logs/launchd-stderr.log</string>
 
+  <!-- Also at login / after a restart: the script itself skips if today's report already exists. -->
   <key>RunAtLoad</key>
-  <false/>
+  <true/>
 
   <key>EnvironmentVariables</key>
   <dict>
