@@ -1,0 +1,28 @@
+All 5 job pages are built and every one passes `tools/verify_job_page.py`, including the headless-Chrome render check. Nothing is committed or pushed, and no other job was touched. The other job files showing as modified in `git status` were already modified before this run.
+
+**How they were built.** I used the repo's builder, `tools/build_job_page.py`, which was last used for Accounting Officer on 2026-10-23. Note one difference from your instructions: that builder clones `jobs/crane-installer/index.html`, not head-chef-in-gozo or client-accountant. It's the same rich layout (not plumber or `add_jobs_from_csv.py`), and its leftover check passed on all five pages. Each job has a spec in `tools/job_specs/<slug>.json` so it can be rebuilt.
+
+**Change to a tool.** I made one small change to `tools/build_job_page.py`: a spec can now set its own `meta_title`. "Facilities, Maintenance and Health & Safety Manager" is too long for the standard title and the builder refused it. Its title is now "Facilities, Maintenance & H&S Manager Job, Gżira | Outreach" (59 characters). Pages without the field are built exactly as before.
+
+**Choices worth checking:**
+- **Categories:** Customer Service for Customer Experience Assistant, Retail for Retail Shop Supervisor, and Engineering & Maintenance for the other three. PDI Leading Hand (vehicle inspection and preparation) was the least obvious fit.
+- **Similar jobs:** Retail has no open jobs, and Customer Service has only one. So those two pages also show open Sales jobs, under the heading "Similar Jobs in Malta". Every card on all five pages links to an open job.
+- **Languages:** PDI Leading Hand and the Facilities Manager list none on the careers page, so their pages show English, your default.
+- **Target location:** none of the fact sheets says who can apply, so the sidebar uses the site default, "Residents in Malta & Europeans".
+
+**What's on each page:**
+- **Salary:** Retail Shop Supervisor shows €3,000 per month everywhere, and the schema salary is 3000/3000 per month. The other four say "Competitive salary" and have no salary in the schema.
+- **Private details:** the deadline (2029-12-30) is only in the schema and the registry. The reference number is only in an HTML comment.
+- **Apply link and FAQ:** each page links only to its own careers-page apply form. The FAQ starts closed and matches the FAQ schema.
+- **Files:** `jobs/<slug>/index.html` and `jobs/<slug>.html` are identical for each job.
+- **Registry and packages:** five entries were added to `tools/jobs_registry.json`. The packages are in `reports/job-seo-<slug>-2026-10-25.md`.
+
+I didn't update the `/jobs` listing or the sitemap; I left those to the sync script.
+
+CREATED c5ffba04-709e-4c4d-ae3d-08760f6568ea customer-experience-assistant
+CREATED 8c67dbc9-77fb-46aa-9176-b7c41c7a650a pdi-leading-hand
+CREATED bc3bebeb-1f82-4e7a-ac19-129146faf0dd facilities-maintenance-and-health-and-safety-manager
+CREATED d1373a6c-8983-4702-9d43-e9cd592b6265 maintenance-person
+CREATED 2178667e-b89b-4b1e-9b6b-b845cea58eb9 retail-shop-supervisor
+
+--- stderr ---

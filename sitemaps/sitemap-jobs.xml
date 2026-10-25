@@ -4,9 +4,39 @@
   <!-- Job listing index -->
   <url>
     <loc>https://outreachrecruitment.net/jobs</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/retail-shop-supervisor</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/pdi-leading-hand</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/maintenance-person</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/customer-experience-assistant</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/accounting-officer</loc>
@@ -441,12 +471,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/product-owner-hybrid</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -543,18 +567,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/first-line-support-hybrid</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/finance-associate</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/estimator</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -591,12 +603,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/customer-operations-associate</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/customer-contact-centre-representative</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -604,12 +610,6 @@
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/customer-contact-agent</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/customer-care-associate</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

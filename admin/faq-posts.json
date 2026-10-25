@@ -49,6 +49,18 @@
    "pages": 16
   },
   {
+   "q": "How do I apply?",
+   "a": "Use the Apply Now button on this page or the direct online application link in the How To Apply section. The application method is online.",
+   "url": "/jobs",
+   "pages": 15
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "url": "/jobs",
+   "pages": 11
+  },
+  {
    "q": "What are the working hours?",
    "a": "Shifts are flexible, including long or split shifts, based on the banqueting and events schedule.",
    "url": "/jobs",
@@ -67,6 +79,12 @@
    "pages": 10
   },
   {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site in Gżira, Malta.",
+   "url": "/jobs",
+   "pages": 10
+  },
+  {
    "q": "Need more information?",
    "a": "Our team is happy to help. Reach out to us directly:Email: hr@outreachrecruitment.net",
    "url": "/customer-service-jobs-in-malta",
@@ -77,6 +95,12 @@
    "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
    "url": "/jobs",
    "pages": 7
+  },
+  {
+   "q": "Do I need to speak Maltese?",
+   "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
+   "url": "/jobs",
+   "pages": 6
   },
   {
    "q": "Are degrees from Malta recognised internationally?",
@@ -94,18 +118,6 @@
    "q": "What documents do I need to work in Malta?",
    "a": "EU citizens need a valid ID or passport. Non-EU candidates typically need a valid passport, a signed job offer, and must apply for a work permit before starting. Our team will guide you through the exact requirements for your situation.",
    "url": "/hospitality-jobs-in-malta",
-   "pages": 5
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
-   "url": "/jobs",
-   "pages": 5
-  },
-  {
-   "q": "How do I apply?",
-   "a": "Use the Apply Now button on this page or the direct online application link in the How To Apply section. The application method is online.",
-   "url": "/jobs",
    "pages": 5
   },
   {
@@ -187,12 +199,6 @@
    "pages": 4
   },
   {
-   "q": "Do I need to speak Maltese?",
-   "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
-   "url": "/jobs",
-   "pages": 4
-  },
-  {
    "q": "Will I work shifts?",
    "a": "Yes. You should be flexible and able to work different shifts as required by the restaurant.",
    "url": "/jobs",
@@ -255,6 +261,18 @@
   {
    "q": "Do I need previous cleaning experience?",
    "a": "No. Previous cleaning experience will be considered an asset rather than a requirement.",
+   "url": "/jobs",
+   "pages": 3
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "A valid driving licence is considered an advantage, not a requirement.",
+   "url": "/jobs",
+   "pages": 3
+  },
+  {
+   "q": "What does the role involve day to day?",
+   "a": "Safely moving, loading, unloading and storing materials, organising inventory, and carrying out routine equipment maintenance checks.",
    "url": "/jobs",
    "pages": 3
   },
@@ -481,6 +499,18 @@
    "pages": 2
   },
   {
+   "q": "What does the Customer Experience Assistant job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance, a loyalty card and training and development opportunities.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a typical day involve?",
+   "a": "Calling customers after their appointments for feedback, following up enquiries and complaints with the relevant departments, logging cases in the CRM system and helping the Customer Experience Manager reach satisfaction targets.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Driver License B role pay?",
    "a": "The salary for this role is not publicly disclosed. Apply and our recruitment team will share full compensation details with matching candidates.",
    "url": "/jobs",
@@ -489,6 +519,24 @@
   {
    "q": "Do I need previous driving experience?",
    "a": "Previous driving or logistics experience is preferred but not mandatory — operational training is provided on the job.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Facilities, Maintenance and Health & Safety Manager job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Who will I manage?",
+   "a": "You will supervise the Facilities and Sustainability Executive, the Health & Safety Officer and the maintenance staff.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Does the role cover more than one site?",
+   "a": "Yes. You will oversee buildings, infrastructure, plant and equipment across all of the organisation's sites, excluding workshop equipment.",
    "url": "/jobs",
    "pages": 2
   },
@@ -559,6 +607,48 @@
    "pages": 2
   },
   {
+   "q": "What does the Maintenance Person job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include reduced summer hours, health insurance, staff discounts and sponsorship for professional qualifications.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need maintenance experience?",
+   "a": "Previous experience in maintenance, repairs or a similar role is an advantage but not essential. Training and an induction period are provided before you work independently.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What are the main requirements?",
+   "a": "A valid driving licence, good spoken Maltese and English and a clean police conduct certificate.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What kind of work is involved?",
+   "a": "General maintenance and minor repairs, assisting with basic electrical and plumbing works, routine inspections and responding to maintenance requests.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a PDI Leading Hand do?",
+   "a": "PDI stands for pre-delivery inspection. You inspect, prepare and valet new vehicles before they are handed to customers, keep used vehicles presentable, report any damage and coordinate vehicle movements with the Service and Sales Managers.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the PDI Leading Hand job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance and a loyalty card.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need automotive experience?",
+   "a": "It is not essential. Previous experience in a similar role, or a certificate or qualification in Automotive, will be considered an asset.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Procurement Officer role pay?",
    "a": "The role offers a gross salary of €30,000 per year, plus long-term full-time employment with an established Malta-based mechanical and electrical contractor.",
    "url": "/jobs",
@@ -591,6 +681,18 @@
   {
    "q": "Where is the Receptionist job based?",
    "a": "The job is based at a modern hotel in St Julian's (San Ġiljan), Malta.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Retail Shop Supervisor job pay?",
+   "a": "The Retail Shop Supervisor job pays €3,000 per month.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Will I need to work weekends?",
+   "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1005,6 +1107,42 @@
    "title": "Crane Installer"
   },
   {
+   "q": "What does the Customer Experience Assistant job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance, a loyalty card and training and development opportunities.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "Do I need to speak Maltese?",
+   "a": "Yes. Excellent written and verbal communication skills in both English and Maltese are required.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2 years of experience in a customer service role, together with an A-level standard of education.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "What does a typical day involve?",
+   "a": "Calling customers after their appointments for feedback, following up enquiries and complaints with the relevant departments, logging cases in the CRM system and helping the Customer Experience Manager reach satisfaction targets.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site in Gżira, Malta.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "How do I apply?",
+   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
    "q": "What does the Driver License B role pay?",
    "a": "The salary for this role is not publicly disclosed. Apply and our recruitment team will share full compensation details with matching candidates.",
    "slug": "driver-license-b",
@@ -1039,6 +1177,42 @@
    "a": "Applications are open to candidates already residing in Malta and to European candidates. Check the Target Location on this page for full eligibility.",
    "slug": "driver-license-b",
    "title": "Driver License B"
+  },
+  {
+   "q": "What does the Facilities, Maintenance and Health & Safety Manager job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of three years of proven experience in a similar managerial role, with an A-Level standard of education.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
+  },
+  {
+   "q": "Who will I manage?",
+   "a": "You will supervise the Facilities and Sustainability Executive, the Health & Safety Officer and the maintenance staff.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
+  },
+  {
+   "q": "Does the role cover more than one site?",
+   "a": "Yes. You will oversee buildings, infrastructure, plant and equipment across all of the organisation's sites, excluding workshop equipment.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site, based in Gżira, Malta.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
+  },
+  {
+   "q": "How do I apply?",
+   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
+   "slug": "facilities-maintenance-and-health-and-safety-manager",
+   "title": "Facilities, Maintenance and Health & Safety Manager"
   },
   {
    "q": "What does the Forklift Operator role pay?",
@@ -1401,6 +1575,42 @@
    "title": "Maintenance Manager"
   },
   {
+   "q": "What does the Maintenance Person job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include reduced summer hours, health insurance, staff discounts and sponsorship for professional qualifications.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
+   "q": "Do I need maintenance experience?",
+   "a": "Previous experience in maintenance, repairs or a similar role is an advantage but not essential. Training and an induction period are provided before you work independently.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
+   "q": "What are the main requirements?",
+   "a": "A valid driving licence, good spoken Maltese and English and a clean police conduct certificate.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
+   "q": "What kind of work is involved?",
+   "a": "General maintenance and minor repairs, assisting with basic electrical and plumbing works, routine inspections and responding to maintenance requests.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site in Ta' Xbiex, Malta.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
+   "q": "How do I apply?",
+   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
+   "slug": "maintenance-person",
+   "title": "Maintenance Person"
+  },
+  {
    "q": "What does the Marine Mechanical Engineer job pay?",
    "a": "The salary is €43,000–€47,000 per year, based on experience.",
    "slug": "marine-mechanical-engineer",
@@ -1507,6 +1717,42 @@
    "a": "Yes. Only candidates currently residing in Malta will be considered for this role.",
    "slug": "night-cleaner",
    "title": "Night Cleaner"
+  },
+  {
+   "q": "What does a PDI Leading Hand do?",
+   "a": "PDI stands for pre-delivery inspection. You inspect, prepare and valet new vehicles before they are handed to customers, keep used vehicles presentable, report any damage and coordinate vehicle movements with the Service and Sales Managers.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
+  },
+  {
+   "q": "What does the PDI Leading Hand job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance and a loyalty card.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid Category B driving licence is required.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
+  },
+  {
+   "q": "Do I need automotive experience?",
+   "a": "It is not essential. Previous experience in a similar role, or a certificate or qualification in Automotive, will be considered an asset.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site in Gżira, Malta.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
+  },
+  {
+   "q": "How do I apply?",
+   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
+   "slug": "pdi-leading-hand",
+   "title": "PDI Leading Hand"
   },
   {
    "q": "What does the Procurement Officer role pay?",
@@ -1651,6 +1897,42 @@
    "a": "The role is open to candidates living in Malta and to European candidates. Visa or relocation support is not mentioned in the listing.",
    "slug": "restaurant-manager-italian-speaking",
    "title": "Restaurant Manager - Italian Speaking"
+  },
+  {
+   "q": "What does the Retail Shop Supervisor job pay?",
+   "a": "The Retail Shop Supervisor job pays €3,000 per month.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "Previous experience in a retail supervisory or team leadership role is required. Experience in home improvement, DIY or household goods retail is an advantage.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "Will I need to work weekends?",
+   "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "What does the role involve day to day?",
+   "a": "Running daily store operations, supervising and scheduling the retail team, handling customer enquiries and complaints, and looking after merchandising, pricing and stock levels.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "The role is full-time and on-site at the store in Birkirkara, Malta.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "How do I apply?",
+   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
+   "slug": "retail-shop-supervisor",
+   "title": "Retail Shop Supervisor"
   },
   {
    "q": "How much does the Skilled Carpenter job pay?",

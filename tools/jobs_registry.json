@@ -1,5 +1,81 @@
 [
   {
+    "slug": "customer-experience-assistant",
+    "title": "Customer Experience Assistant",
+    "category": "Customer Service",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-23",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c5ffba04-709e-4c4d-ae3d-08760f6568ea/apply",
+    "keywords": "customer experience assistant customer service customer care automotive crm complaints feedback maltese english gzira malta",
+    "featured": true,
+    "lastmod": "2026-10-25"
+  },
+  {
+    "slug": "pdi-leading-hand",
+    "title": "PDI Leading Hand",
+    "category": "Engineering & Maintenance",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-23",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8c67dbc9-77fb-46aa-9176-b7c41c7a650a/apply",
+    "keywords": "pdi leading hand pre-delivery inspection vehicle preparation valeter car valet automotive driving licence gzira malta",
+    "featured": true,
+    "lastmod": "2026-10-25"
+  },
+  {
+    "slug": "facilities-maintenance-and-health-and-safety-manager",
+    "title": "Facilities, Maintenance and Health & Safety Manager",
+    "category": "Engineering & Maintenance",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-23",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/bc3bebeb-1f82-4e7a-ac19-129146faf0dd/apply",
+    "keywords": "facilities manager maintenance manager health and safety manager hse manager sustainability automotive multi-site gzira malta",
+    "featured": true,
+    "lastmod": "2026-10-25"
+  },
+  {
+    "slug": "maintenance-person",
+    "title": "Maintenance Person",
+    "category": "Engineering & Maintenance",
+    "location": "Ta' Xbiex, Malta",
+    "location_slug": "ta' xbiex, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-23",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/d1373a6c-8983-4702-9d43-e9cd592b6265/apply",
+    "keywords": "maintenance person handyman maintenance worker general maintenance repairs electrical plumbing ta xbiex malta",
+    "featured": true,
+    "lastmod": "2026-10-25"
+  },
+  {
+    "slug": "retail-shop-supervisor",
+    "title": "Retail Shop Supervisor",
+    "category": "Retail",
+    "location": "Birkirkara, Malta",
+    "location_slug": "birkirkara, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-23",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2178667e-b89b-4b1e-9b6b-b845cea58eb9/apply",
+    "keywords": "retail shop supervisor store supervisor retail supervisor team leader home improvement diy shop birkirkara malta",
+    "featured": true,
+    "lastmod": "2026-10-25",
+    "salary": "€3,000 per month"
+  },
+  {
     "slug": "accounting-officer",
     "title": "Accounting Officer",
     "category": "Finance & Accounting",
@@ -1329,7 +1405,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f32596e1-dc6b-46a2-bacd-81f72eab8805/apply",
     "keywords": "customer operations associate general ta' xbiex, malta",
     "featured": false,
-    "lastmod": "2026-10-23"
+    "lastmod": "2026-10-25",
+    "status": "closed"
   },
   {
     "slug": "structural-engineer",
@@ -2767,7 +2844,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e0f0605c-37b7-431e-b2f4-797db7bb867a/apply",
     "keywords": "customer care associate healthcare malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-25",
+    "status": "closed"
   },
   {
     "slug": "lead-azure-infrastructure-architect",
@@ -3140,7 +3218,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/9b28054c-12c9-4220-8e9f-3049c024d9af/apply",
     "keywords": "finance associate finance & accounting malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-25",
+    "status": "closed"
   },
   {
     "slug": "skilled-carpenters",
@@ -3278,7 +3357,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f5fa8183-5b6e-4e2c-a821-8a41db465e92/apply",
     "keywords": "product owner - hybrid general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-25",
+    "status": "closed"
   },
   {
     "slug": "steel-shutterers-steel-fixers",
@@ -3465,7 +3545,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/4907c675-139b-41d1-b3f9-c7a8638da492/apply",
     "keywords": "first line support - hybrid general malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-10-25",
+    "status": "closed"
   },
   {
     "slug": "semi-senior-accountant",

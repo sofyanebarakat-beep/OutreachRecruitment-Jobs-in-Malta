@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-25",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Customer Operations Associate",
+      "slug": "customer-operations-associate",
+      "url": "https://outreachrecruitment.net/jobs/customer-operations-associate/",
+      "city": "Ta' Xbiex, Malta"
+    },
+    {
+      "title": "Customer Care Associate",
+      "slug": "customer-care-associate",
+      "url": "https://outreachrecruitment.net/jobs/customer-care-associate/",
+      "city": "Malta"
+    },
+    {
+      "title": "Finance Associate",
+      "slug": "finance-associate",
+      "url": "https://outreachrecruitment.net/jobs/finance-associate/",
+      "city": "Malta"
+    },
+    {
+      "title": "Product Owner - Hybrid",
+      "slug": "product-owner-hybrid",
+      "url": "https://outreachrecruitment.net/jobs/product-owner-hybrid/",
+      "city": "Malta"
+    },
+    {
+      "title": "First Line Support - Hybrid",
+      "slug": "first-line-support-hybrid",
+      "url": "https://outreachrecruitment.net/jobs/first-line-support-hybrid/",
+      "city": "Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "c5ffba04-709e-4c4d-ae3d-08760f6568ea",
+      "title": "Customer Experience Assistant",
+      "city": "Gżira",
+      "slug": "customer-experience-assistant",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c5ffba04-709e-4c4d-ae3d-08760f6568ea",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "8c67dbc9-77fb-46aa-9176-b7c41c7a650a",
+      "title": "PDI Leading Hand",
+      "city": "Gżira",
+      "slug": "pdi-leading-hand",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8c67dbc9-77fb-46aa-9176-b7c41c7a650a",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "bc3bebeb-1f82-4e7a-ac19-129146faf0dd",
+      "title": "Facilities, Maintenance and Health & Safety Manager",
+      "city": "Gżira",
+      "slug": "facilities-maintenance-and-health-and-safety-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/bc3bebeb-1f82-4e7a-ac19-129146faf0dd",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "d1373a6c-8983-4702-9d43-e9cd592b6265",
+      "title": "Maintenance Person",
+      "city": "Ta' Xbiex",
+      "slug": "maintenance-person",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/d1373a6c-8983-4702-9d43-e9cd592b6265",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "2178667e-b89b-4b1e-9b6b-b845cea58eb9",
+      "title": "Retail Shop Supervisor",
+      "city": "Birkirkara",
+      "slug": "retail-shop-supervisor",
+      "salary_label": "€3,000 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/2178667e-b89b-4b1e-9b6b-b845cea58eb9",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [
+    "Customer Experience Assistant: no salary given on the careers page — page says 'Competitive salary'.",
+    "PDI Leading Hand: no salary given on the careers page — page says 'Competitive salary'.",
+    "Facilities, Maintenance and Health & Safety Manager: no salary given on the careers page — page says 'Competitive salary'.",
+    "Maintenance Person: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 117,
+  "site_open_before": 117,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 112,
+    "ok": 93,
+    "to_fix": 19,
+    "fixing_today": 0,
+    "queued": 19
+  },
+  "site_open_after": 117,
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 25
+  }
+}

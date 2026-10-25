@@ -3354,3 +3354,81 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-23T09:13:19,Sales Office Coordinator,sales-office-coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/sales-office-coordinator/""
+  }
+}
+"
+2026-10-23T09:13:19,Driver / Runner / Washer,driver-runner-washer,https://outreachrecruitment.net/jobs/driver-runner-washer/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/driver-runner-washer/""
+  }
+}
+"
+2026-10-23T09:13:19,Customer Operations Associate,customer-operations-associate,https://outreachrecruitment.net/jobs/customer-operations-associate/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/customer-operations-associate/""
+  }
+}
+"
+2026-10-23T09:13:19,Structural Engineer,structural-engineer,https://outreachrecruitment.net/jobs/structural-engineer/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/structural-engineer/""
+  }
+}
+"
+2026-10-23T09:13:19,HVAC Sales Representative,hvac-sales-representative,https://outreachrecruitment.net/jobs/hvac-sales-representative/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hvac-sales-representative/""
+  }
+}
+"
+2026-10-23T09:13:19,Junior Revenue & Accounts Analyst,junior-revenue-accounts-analyst,https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/""
+  }
+}
+"
+2026-10-23T09:13:19,Operations Supervisor,operations-supervisor,https://outreachrecruitment.net/jobs/operations-supervisor/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/operations-supervisor/""
+  }
+}
+"
+2026-10-23T09:24:21,Accounting Officer,accounting-officer,https://outreachrecruitment.net/jobs/accounting-officer/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accounting-officer/""
+  }
+}
+"
+2026-10-23T09:24:21,Receptionist,receptionist,https://outreachrecruitment.net/jobs/receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/receptionist/""
+  }
+}
+"
+2026-10-23T09:24:21,Host / Receptionist,host-receptionist,https://outreachrecruitment.net/jobs/host-receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/host-receptionist/""
+  }
+}
+"
+2026-10-23T09:24:21,Hotel Maintenance Assistant,hotel-maintenance-assistant,https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-maintenance-assistant/""
+  }
+}
+"
+2026-10-23T09:24:21,Housekeeper,housekeeper-rabat,https://outreachrecruitment.net/jobs/housekeeper-rabat/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-rabat/""
+  }
+}
+"
+2026-10-23T09:24:21,Cleaner,cleaner-marsa,https://outreachrecruitment.net/jobs/cleaner-marsa/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/cleaner-marsa/""
+  }
+}
+"
