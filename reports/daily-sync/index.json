@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-10-26",
+  "ats": 117,
+  "site_before": 117,
+  "site_after": 117,
+  "in_sync": true,
+  "opened": 0,
+  "closed": 0,
+  "updated": 2,
+  "attention": 3,
+  "live_ok": true
+ },
+ {
   "date": "2026-10-25",
   "ats": 117,
   "site_before": 117,
