@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-26",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "e4d306a4-66b3-456b-8723-48e66d1ef3dc",
+      "title": "Heavy Machine Operator",
+      "slug": "heavy-machine-operator",
+      "city": "Żejtun, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/heavy-machine-operator/"
+    },
+    {
+      "uuid": "1e90bf54-eb62-4d84-ad59-3c5ccbc6f5bc",
+      "title": "Delivery Person with Driving Licence C1",
+      "slug": "delivery-person-with-driving-licence-c1",
+      "city": "Paola",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/delivery-person-with-driving-licence-c1/"
+    }
+  ],
+  "failed": [
+    {
+      "uuid": "ab183a4c-2c2b-48fc-b8c0-800379c81a7b",
+      "title": "Customer Contact Centre Representative",
+      "slug": "customer-contact-centre-representative",
+      "city": "Floriana",
+      "changes": [
+        "no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "reason": "update failed the pre-publish check, page left as it was: Chrome could not render the page (Command '['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '--headless=new', '--disable-gpu', '--no-first-run', '--user-data-dir=/var/folders/1f/l9vqznl10v991ng2629rb2wc0000gn/T/tmpiznryff1', '--virtual-time-budget=8000', '--dump-dom', 'http://127.0.0.1:62027/jobs/customer-contact-centre-representative/']' timed out after 90 seconds)"
+    },
+    {
+      "uuid": "e5cbcae3-29f1-4fcf-ae14-d069cce4769d",
+      "title": "Bottling Operator",
+      "slug": "bottling-operator",
+      "city": "Paola",
+      "changes": [
+        "no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "reason": "update failed the pre-publish check, page left as it was: Chrome could not render the page (Command '['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '--headless=new', '--disable-gpu', '--no-first-run', '--user-data-dir=/var/folders/1f/l9vqznl10v991ng2629rb2wc0000gn/T/tmpfpwaxr8a', '--virtual-time-budget=8000', '--dump-dom', 'http://127.0.0.1:62155/jobs/bottling-operator/']' timed out after 90 seconds)"
+    },
+    {
+      "uuid": "807b3bad-4420-460c-9745-d3d47e499aed",
+      "title": "Motor Vehicle Mechanic/Technician",
+      "slug": "motor-vehicle-mechanictechnician",
+      "city": "Gżira",
+      "changes": [
+        "no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "reason": "update failed the pre-publish check, page left as it was: Chrome could not render the page (Command '['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '--headless=new', '--disable-gpu', '--no-first-run', '--user-data-dir=/var/folders/1f/l9vqznl10v991ng2629rb2wc0000gn/T/tmp8cqz_yuw', '--virtual-time-budget=8000', '--dump-dom', 'http://127.0.0.1:62455/jobs/motor-vehicle-mechanictechnician/']' timed out after 90 seconds)"
+    }
+  ],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 117,
+  "site_open_before": 117,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 117,
+    "ok": 98,
+    "to_fix": 19,
+    "fixing_today": 5,
+    "queued": 14
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 117,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 117,
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 26
+  }
+}

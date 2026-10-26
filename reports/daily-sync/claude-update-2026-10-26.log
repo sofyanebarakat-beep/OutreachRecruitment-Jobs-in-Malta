@@ -1,0 +1,24 @@
+All five pages now say "Competitive salary". Four pass `tools/verify_job_page.py` completely. The Motor Vehicle Mechanic/Technician page passes every page-content check, but its headless-Chrome render step usually goes past the verifier's 90-second limit.
+
+**What I changed on each page** (both `jobs/<slug>/index.html` and `jobs/<slug>.html`, which are identical):
+- Added a "Salary: Competitive salary" item to the sidebar, after Job Type.
+- Added "Competitive salary." as the first line of "What's on Offer".
+- Added "Competitive salary." to the meta, og and twitter descriptions.
+- Left `baseSalary` out of the schema, since the careers page gives no salary.
+- Changed nothing else. Title, city, apply link, slug and FAQ are the same.
+
+The flat `jobs/<slug>.html` files didn't exist before; I created them as you instructed. In `tools/jobs_registry.json` the only change is `lastmod` → `2026-10-26` for these five jobs. Like other jobs with no salary, they have no `salary` field. Nothing was committed or pushed.
+
+**The mechanic page's render problem isn't caused by this edit.** The page as it was before my change (HEAD) also times out. When I ran Chrome by hand with a longer limit, the edited page rendered in 55 seconds and passed. It uses the same scripts as the pages that render fine, so this looks like slow Chrome on this machine. It still matters, though: if the sync script's own check times out the same way, it will roll this page back. That page may need a re-run, or a longer timeout in `check_render`.
+
+**Things I noticed but didn't touch**, because they're outside this task:
+- All five pages and their registry entries have `validThrough` set to 2030-12-31 instead of 2029-12-30.
+- The heavy-machine-operator page shows Job Type "Subcontracting", which matches its registry `job_type`.
+
+UPDATED e4d306a4-66b3-456b-8723-48e66d1ef3dc heavy-machine-operator
+UPDATED ab183a4c-2c2b-48fc-b8c0-800379c81a7b customer-contact-centre-representative
+UPDATED e5cbcae3-29f1-4fcf-ae14-d069cce4769d bottling-operator
+UPDATED 807b3bad-4420-460c-9745-d3d47e499aed motor-vehicle-mechanictechnician
+UPDATED 1e90bf54-eb62-4d84-ad59-3c5ccbc6f5bc delivery-person-with-driving-licence-c1
+
+--- stderr ---
