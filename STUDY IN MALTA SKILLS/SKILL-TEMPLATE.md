@@ -38,7 +38,7 @@ These four links are mandatory. They must appear naturally inside the article bo
 
 | Link | URL | Placement Rule |
 |---|---|---|
-| Apply Now CTA Button | https://apply.outreachstudy.eu/ | **3 times minimum** — after Introduction, mid-article, and before Conclusion. Use a styled CTA button/callout box. Anchor text: "Apply Now", "Start Your Application", "Apply to Study in Malta" |
+| Apply Now CTA Button | https://consultation.outreachstudy.eu/ | **3 times minimum** — after Introduction, mid-article, and before Conclusion. Use a styled CTA button/callout box. Anchor text: "Apply Now", "Start Your Application", "Apply to Study in Malta" |
 | Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | **2 times minimum** — in the section about programs/courses and in the Conclusion. Anchor text: "browse available programs", "view all study programs in Malta" |
 | Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | **2 times minimum** — in Introduction and in Internal Links section. Anchor text: "Study in Malta", "complete guide to studying in Malta" |
 | Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | **2 times minimum** — mid-article and in Conclusion. Anchor text: "free webinar", "join our free Study in Malta webinar", "register for the webinar" |
@@ -49,7 +49,7 @@ These four links are mandatory. They must appear naturally inside the article bo
 ```html
 <div class="cta-box" style="background:#1a56db;padding:24px;border-radius:8px;text-align:center;margin:32px 0;">
   <p style="color:#fff;font-size:18px;font-weight:600;margin-bottom:12px;">Ready to Study in Malta?</p>
-  <a href="https://apply.outreachstudy.eu/" target="_blank" rel="noopener"
+  <a href="https://consultation.outreachstudy.eu/" target="_blank" rel="noopener"
      style="background:#fff;color:#1a56db;padding:12px 28px;border-radius:6px;font-weight:700;text-decoration:none;display:inline-block;">
     Apply Now →
   </a>
@@ -450,7 +450,7 @@ For articles over 2,000 words, use a CSS-only sticky ToC on desktop. On mobile, 
 
     <aside class="toc-cta" aria-label="Study in Malta consultation">
       <p><strong>Need help choosing a programme?</strong></p>
-      <a href="https://apply.outreachstudy.eu/" aria-label="Apply for free study in Malta guidance">Apply Now</a>
+      <a href="https://consultation.outreachstudy.eu/" aria-label="Apply for free study in Malta guidance">Apply Now</a>
     </aside>
   </aside>
 
@@ -550,7 +550,7 @@ html { scroll-behavior:smooth; }
 - [ ] ToC click moves directly to the section in desktop and mobile
 - [ ] Heading anchor position is visible after click because `scroll-margin-top` is set
 - [ ] Sticky ToC stays on the left on desktop
-- [ ] CTA banner appears under the ToC and links to `https://apply.outreachstudy.eu/`
+- [ ] CTA banner appears under the ToC and links to `https://consultation.outreachstudy.eu/`
 
 ---
 
@@ -1719,7 +1719,7 @@ Google's quality raters score accessibility as part of page quality. These rules
 <main id="main-content" role="main">
 
 <!-- 3. ARIA labels on all CTA buttons -->
-<a href="https://apply.outreachstudy.eu/"
+<a href="https://consultation.outreachstudy.eu/"
    aria-label="Apply to study in Malta — opens application form">Apply Now →</a>
 
 <!-- 4. ARIA labels on all icon/image links -->
@@ -2458,7 +2458,7 @@ Target reader: [student type]
 Required word count: 4,000+ words
 
 Mandatory links:
-- Apply Now: https://apply.outreachstudy.eu/
+- Apply Now: https://consultation.outreachstudy.eu/
 - Browse Programs: https://outreachrecruitment.net/study-in-malta#programs-table
 - Study in Malta: https://outreachrecruitment.net/study-in-malta
 - Webinar: https://outreachrecruitment.net/webinar-study-in-malta.html
@@ -4167,7 +4167,7 @@ Funnel Stage Map — [Date]
 | Cost of Living in Malta | /cost-of-living-... | cost of living Malta | 1–2 — Awareness/Consideration | Browse Programs | /malta-student-visa-complete-guide |
 | Universities in Malta | /universities-... | universities in Malta | 2 — Consideration | Browse Programs | /how-to-apply-to-study-in-malta |
 | Malta Student Visa Guide | /malta-student-visa-... | Malta student visa | 2–3 — Consideration/Decision | Apply Now | /how-to-apply-to-study-in-malta |
-| How to Apply to Study in Malta | /how-to-apply-... | how to apply study Malta | 3 — Decision | Apply Now | (conversion — apply.outreachstudy.eu) |
+| How to Apply to Study in Malta | /how-to-apply-... | how to apply study Malta | 3 — Decision | Apply Now | (conversion — consultation.outreachstudy.eu) |
 ```
 
 **Stage assignment rules:**

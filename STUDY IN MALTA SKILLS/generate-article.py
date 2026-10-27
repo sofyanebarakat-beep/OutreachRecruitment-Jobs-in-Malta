@@ -34,7 +34,7 @@ These four links are NON-NEGOTIABLE. Embed them naturally in the article body at
 
 | Link | URL | Minimum Appearances | Placement |
 |---|---|---|---|
-| Apply Now CTA Button | https://apply.outreachstudy.eu/ | 3× | After Introduction / Mid-article / Before Conclusion |
+| Apply Now CTA Button | https://consultation.outreachstudy.eu/ | 3× | After Introduction / Mid-article / Before Conclusion |
 | Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | 2× | Programs section + Conclusion |
 | Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | 2× | Introduction + Internal Links section |
 | Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | 2× | Mid-article + Conclusion |
@@ -45,7 +45,7 @@ These four links are NON-NEGOTIABLE. Embed them naturally in the article body at
 ```html
 <div class="cta-box" style="background:#1a56db;padding:24px;border-radius:8px;text-align:center;margin:32px 0;">
   <p style="color:#fff;font-size:18px;font-weight:600;margin-bottom:12px;">Ready to Study in Malta?</p>
-  <a href="https://apply.outreachstudy.eu/" target="_blank" rel="noopener"
+  <a href="https://consultation.outreachstudy.eu/" target="_blank" rel="noopener"
      style="background:#fff;color:#1a56db;padding:12px 28px;border-radius:6px;font-weight:700;text-decoration:none;display:inline-block;">
     Apply Now →
   </a>

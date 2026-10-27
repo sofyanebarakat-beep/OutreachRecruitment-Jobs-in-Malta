@@ -105,7 +105,7 @@ CTA_MAP = {
          "Browse available programs", "/study-in-malta#programs-table", False),
         ("Ready to Study in Malta?",
          "Start your application today and get guidance on programmes, visas, and next steps.",
-         "Apply Now", "https://apply.outreachstudy.eu/", True),
+         "Apply Now", "https://consultation.outreachstudy.eu/", True),
     ],
     "Brand": [
         ("Want to work with Outreach Recruitment?",

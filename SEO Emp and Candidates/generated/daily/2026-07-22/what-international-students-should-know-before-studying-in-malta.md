@@ -103,7 +103,7 @@ Some universities and institutions offer scholarships or financial aid. Availabi
 # Internal Links and CTAs
 
 - Link to Study in Malta main guide: https://outreachrecruitment.net/study-in-malta  
-- Link to Study in Malta application portal: https://apply.outreachstudy.eu/  
+- Link to Study in Malta application portal: https://consultation.outreachstudy.eu/  
 - Link to outreach recruitment contact page for enquiries: https://outreachrecruitment.net/contact-us.html  
 - Suggested CTA: Apply Now  
 - Suggested CTA: Browse courses in Malta  

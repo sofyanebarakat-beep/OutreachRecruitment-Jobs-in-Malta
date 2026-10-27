@@ -118,7 +118,7 @@ These 4 links are hardwired into the skill. Every generated article must include
 
 | Link | URL | Min. Appearances | Anchor Text |
 |---|---|---|---|
-| Apply Now CTA | https://apply.outreachstudy.eu/ | 3× | "Apply Now", "Start Your Application", "Apply to Study in Malta" |
+| Apply Now CTA | https://consultation.outreachstudy.eu/ | 3× | "Apply Now", "Start Your Application", "Apply to Study in Malta" |
 | Browse Programs | https://outreachrecruitment.net/study-in-malta#programs-table | 2× | "browse available programs", "view all study programs in Malta" |
 | Study in Malta Guide | https://outreachrecruitment.net/study-in-malta | 2× | "Study in Malta", "complete guide to studying in Malta" |
 | Free Webinar | https://outreachrecruitment.net/webinar-study-in-malta.html | 2× | "free webinar", "join our free Study in Malta webinar" |

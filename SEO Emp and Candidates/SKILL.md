@@ -57,7 +57,7 @@ Use links naturally in the body copy where relevant. Do not force every link int
 | Careers page | `https://outreachrecruitment.net/careers.html` | Candidate guidance and career support pages |
 | People Connector | `https://outreachrecruitment.net/jobs/people-connector.html` | Candidate registration or general application intent |
 | Study in Malta guide | `https://outreachrecruitment.net/study-in-malta` | Study in Malta pillar content |
-| Study in Malta apply | `https://apply.outreachstudy.eu/` | Study in Malta pillar CTAs |
+| Study in Malta apply | `https://consultation.outreachstudy.eu/` | Study in Malta pillar CTAs |
 | About page | `https://outreachrecruitment.net/about.html` | Brand pillar content |
 | Hospitality jobs hub | `https://outreachrecruitment.net/hospitality-jobs-in-malta.html` | Jobs in Malta pillar content |
 | IT jobs hub | `https://outreachrecruitment.net/it-jobs-in-malta.html` | Jobs in Malta pillar content |
@@ -125,7 +125,7 @@ Focus on:
 
 - International students considering studying in Malta: courses, universities, student visas, cost of living, accommodation, working while studying
 - EU and non-EU student pathways, framed carefully and factually
-- Mandatory CTAs: `Apply Now` to `https://apply.outreachstudy.eu/`, and links to `https://outreachrecruitment.net/study-in-malta` and `https://outreachrecruitment.net/webinar-study-in-malta.html` where relevant
+- Mandatory CTAs: `Apply Now` to `https://consultation.outreachstudy.eu/`, and links to `https://outreachrecruitment.net/study-in-malta` and `https://outreachrecruitment.net/webinar-study-in-malta.html` where relevant
 
 The daily automation for this pillar produces the same lightweight Markdown draft structure as the other pillars (see SEO Output Requirements), not the full publish-ready HTML build. When a Study in Malta draft is promoted to a live page, follow the full `STUDY IN MALTA SKILLS/SKILL-TEMPLATE.md` template (position-zero block, key takeaways, testimonials, sticky ToC, data-sources section, full schema) rather than publishing the lightweight draft as-is.
 

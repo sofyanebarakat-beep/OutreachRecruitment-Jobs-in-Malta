@@ -85,7 +85,7 @@ Applications are usually submitted to the Maltese embassy or consulate in your h
 ## Internal Links and CTAs
 
 - Explore study options in Malta: https://outreachrecruitment.net/study-in-malta  
-- Begin your Malta study application: https://apply.outreachstudy.eu/  
+- Begin your Malta study application: https://consultation.outreachstudy.eu/  
 - Attend a Study in Malta webinar: https://outreachrecruitment.net/webinar-study-in-malta.html  
 
 ## Schema Recommendations
