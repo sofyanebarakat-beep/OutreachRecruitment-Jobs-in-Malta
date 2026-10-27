@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-10-19T09:18:52.065423+02:00",
+  "generated_at": "2026-10-26T11:37:37.531548+01:00",
   "checks": {
     "gsc": {
       "ok": true,
-      "through": "2026-10-17",
-      "days": 6,
+      "through": "2026-10-24",
+      "days": 7,
       "queries": 1000,
-      "pages": 483
+      "pages": 465
     },
     "ga4": {
       "ok": true,
@@ -15,18 +15,18 @@
     },
     "audit": {
       "ok": true,
-      "issues": 1749
+      "issues": 1884
     },
     "sectors": {
       "ok": true,
-      "rows": 16
+      "rows": 17
     },
     "opportunities": {
       "ok": true,
-      "rows": 103
+      "rows": 101
     },
     "experiments": {
-      "new": 276
+      "new": 3
     },
     "supabase": {
       "ok": false,

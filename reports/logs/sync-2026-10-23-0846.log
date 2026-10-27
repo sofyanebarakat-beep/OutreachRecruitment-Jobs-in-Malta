@@ -23,3 +23,629 @@ Started: Fri Oct 23 08:46:24 CEST 2026
     retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/37f933db-ef0e-48bb-a2ed-0c1a37b4ccad)
     retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/6ef09a6e-669c-4b31-816f-fffaaebdede3)
   80/117
+  100/117
+  117 fact sheets read
+  0 new, 0 to reopen, 0 changed
+  page check: 91 ok, 26 to fix (5 today)
+  /job-seo-generator (headless Claude): updating 5 changed job(s) …
+    ✓ Sales Office Coordinator
+    ✓ Driver / Runner / Washer
+    ✓ Customer Operations Associate
+    ✓ Structural Engineer
+    ✓ HVAC Sales Representative
+Updating listings (2026-10-23) — 117 open, 129 closed, 75 expired/hidden
+  index.html — 117 total, showing 10 on homepage
+  jobs/index.html — 246 job(s), 53 featured, 20 categories
+  sitemaps/sitemap-jobs.xml — 118 URL(s)
+  sitemap_index.xml — jobs sitemap lastmod refreshed
+  sitemap.xml — compatibility lastmod refreshed
+  construction-jobs-in-malta.html — 11 construction job(s), 5 with published salary
+
+Done. Run: git add -A && git commit -m 'Update job listings' && git push origin main
+faq-posts.json: 120 general question(s), 179 question(s) from open job pages
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[7] Checking the live site …
+  waiting 10 min for GitHub Pages to deploy …
+  live: {'count': 117, 'expected': 117, 'ok': True, 'problems': []}
+
+[8] Google follow-up (jobs published 2+ days ago) …
+  checked 6, flagged 6
+
+# Daily Job Sync — 2026-10-23
+
+**✅ In sync** — careers page 117, website 119 → 117
+
+Live site: 117 ✅
+
+## New jobs published (0)
+- none
+
+## Reopened (0)
+- none
+
+## Closed (2)
+- Junior Revenue & Accounts Analyst — https://outreachrecruitment.net/jobs/junior-revenue-accounts-analyst/
+- Operations Supervisor — https://outreachrecruitment.net/jobs/operations-supervisor/
+
+## Updated (5)
+- Sales Office Coordinator — https://outreachrecruitment.net/jobs/sales-office-coordinator/ (page repaired — no salary on the careers page, but the page does not say 'Competitive salary')
+- Driver / Runner / Washer — https://outreachrecruitment.net/jobs/driver-runner-washer/ (page repaired — no salary on the careers page, but the page does not say 'Competitive salary')
+- Customer Operations Associate — https://outreachrecruitment.net/jobs/customer-operations-associate/ (page repaired — no salary on the careers page, but the page does not say 'Competitive salary')
+- Structural Engineer — https://outreachrecruitment.net/jobs/structural-engineer/ (page repaired — no salary on the careers page, but the page does not say 'Competitive salary')
+- HVAC Sales Representative — https://outreachrecruitment.net/jobs/hvac-sales-representative/ (page repaired — no salary on the careers page, but the page does not say 'Competitive salary')
+
+## Failed (0)
+- none
+
+## Held back (0)
+- none
+
+## Google check (0/6 indexed + in Google Jobs)
+- Accounting Officer — not indexed yet (URL is unknown to Google)
+- Receptionist — not indexed yet (URL is unknown to Google)
+- Host / Receptionist — not indexed yet (URL is unknown to Google)
+- Hotel Maintenance Assistant — not indexed yet (URL is unknown to Google)
+- Housekeeper — not indexed yet (URL is unknown to Google)
+- Cleaner — not indexed yet (URL is unknown to Google)
+
+## Site housekeeping
+- Daily page check: 91 of 117 open job pages pass every check; repairing 5 today, 21 queued for the next days
+- Salary shown on 25 of 117 open jobs (21%) — all salaries come from the careers page
+- Hub/homepage cards for closed jobs: 6 replaced with open jobs, 1 removed
+- 'Similar jobs' links to closed jobs replaced: 45
+- Google job list on /jobs (ItemList) rebuilt: 117 open jobs
+- Google notified about 7/7 changed page(s); jobs sitemap submitted
+- Job pages switched to 'Position Closed' (apply disabled): 2; closed look removed from reopened pages: 0
+
+Git: pushed to GitHub (main)
+
+  email sent to sbarakat@outreachrecruitment.net
+
+=== SEO / GSC analysis (job_sync_agent.py, no email) ===
+============================================================
+  Outreach Recruitment — Job Sync Agent
+  2026-10-23 09:24:40
+============================================================
+
+  State loaded — tracking 5 job(s) for auto-close
+
+[1/5] Scraping careers page …
+  [Careers] page 1 — https://outreach-recruitment-agency.careers-page.com/
+  [Careers] page 2 — https://outreach-recruitment-agency.careers-page.com/?page=2
+  [Careers] page 3 — https://outreach-recruitment-agency.careers-page.com/?page=3
+  [Careers] page 4 — https://outreach-recruitment-agency.careers-page.com/?page=4
+  [Careers] page 5 — https://outreach-recruitment-agency.careers-page.com/?page=5
+  [Careers] page 6 — https://outreach-recruitment-agency.careers-page.com/?page=6
+  [Careers] page 7 — https://outreach-recruitment-agency.careers-page.com/?page=7
+  [Careers] page 8 — https://outreach-recruitment-agency.careers-page.com/?page=8
+  [Careers] page 9 — https://outreach-recruitment-agency.careers-page.com/?page=9
+  [Careers] page 10 — https://outreach-recruitment-agency.careers-page.com/?page=10
+  [Careers] page 11 — https://outreach-recruitment-agency.careers-page.com/?page=11
+  [Careers] page 12 — https://outreach-recruitment-agency.careers-page.com/?page=12
+  [Careers] page 13 — https://outreach-recruitment-agency.careers-page.com/?page=13
+  Collected 117 jobs (advertised: 117)
+
+[2/5] Scraping public website …
+  [Website] Fetching https://outreachrecruitment.net/jobs/
+  Found 117 job cards
+
+[SEO] Checking 117 job pages …
+  [1/117] accounting-officer … OK
+  [2/117] receptionist … OK
+  [3/117] host-receptionist … OK
+  [4/117] cleaner-marsa … OK
+  [5/117] truck-trailer-driver … OK
+  [6/117] hotel-maintenance-assistant … OK
+  [7/117] housekeeper-rabat … OK
+  [8/117] front-office-executive … OK
+  [9/117] italian-restaurant-hospitality-positions-dubai … OK
+  [10/117] junior-administrative-executive … OK
+  [11/117] crane-installer … OK
+  [12/117] beauty-specialist-nail-technician … OK
+  [13/117] marine-mechanical-engineer …     WARN: https://outreachrecruitment.net/jobs/marine-mechanical-engineer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [14/117] maintenance-manager-mellieha …     WARN: https://outreachrecruitment.net/jobs/maintenance-manager-mellieha — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [15/117] restaurant-manager-italian-speaking …     WARN: https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [16/117] gypsum-installers …     WARN: https://outreachrecruitment.net/jobs/gypsum-installers — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [17/117] mini-bus-driver-licence-d …     WARN: https://outreachrecruitment.net/jobs/mini-bus-driver-licence-d — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [18/117] proposal-engineer-energy-solutions …     WARN: https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [19/117] storekeeper-zebbug …     WARN: https://outreachrecruitment.net/jobs/storekeeper-zebbug — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [20/117] driver-license-b …     WARN: https://outreachrecruitment.net/jobs/driver-license-b — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [21/117] forklift-operator …     WARN: https://outreachrecruitment.net/jobs/forklift-operator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [22/117] front-office-agent …     WARN: https://outreachrecruitment.net/jobs/front-office-agent — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [23/117] night-cleaner …     WARN: https://outreachrecruitment.net/jobs/night-cleaner — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [24/117] banqueting-fb-supervisor …     WARN: https://outreachrecruitment.net/jobs/banqueting-fb-supervisor — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [25/117] assistance-operations-coordinator …     WARN: https://outreachrecruitment.net/jobs/assistance-operations-coordinator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [26/117] procurement-officer …     WARN: https://outreachrecruitment.net/jobs/procurement-officer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [27/117] heavy-equipment-mechanic-2 …     WARN: https://outreachrecruitment.net/jobs/heavy-equipment-mechanic-2 — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [28/117] learning-development-executive-hybrid …     WARN: https://outreachrecruitment.net/jobs/learning-development-executive-hybrid — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [29/117] auto-electrician-heavy-vehicles …     WARN: https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [30/117] heavy-equipment-mechanic …     WARN: https://outreachrecruitment.net/jobs/heavy-equipment-mechanic — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [31/117] steel-shutter-installer …     WARN: https://outreachrecruitment.net/jobs/steel-shutter-installer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [32/117] public-area-cleaner …     WARN: https://outreachrecruitment.net/jobs/public-area-cleaner — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [33/117] head-chef-steakhouse …     WARN: https://outreachrecruitment.net/jobs/head-chef-steakhouse — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [34/117] senior-waiter-sommelier …     WARN: https://outreachrecruitment.net/jobs/senior-waiter-sommelier — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [35/117] deli-counter-assistant-salumeria-specialist …     WARN: https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [36/117] chef-de-partie-4 …     WARN: https://outreachrecruitment.net/jobs/chef-de-partie-4 — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [37/117] ship-chandler …     WARN: https://outreachrecruitment.net/jobs/ship-chandler — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [38/117] fleet-mechanical-superintendent …     WARN: https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [39/117] customer-care-agent …     WARN: https://outreachrecruitment.net/jobs/customer-care-agent — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [40/117] hvac-technician …     WARN: https://outreachrecruitment.net/jobs/hvac-technician — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [41/117] delivery-man …     WARN: https://outreachrecruitment.net/jobs/delivery-man — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [42/117] head-of-hvac-technicians …     WARN: https://outreachrecruitment.net/jobs/head-of-hvac-technicians — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [43/117] tank-cleaner …     WARN: https://outreachrecruitment.net/jobs/tank-cleaner — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [44/117] welder-burner-pipe-fitter …     WARN: https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [45/117] shipyard-sprayer-painter …     WARN: https://outreachrecruitment.net/jobs/shipyard-sprayer-painter — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [46/117] marine-carpenter …     WARN: https://outreachrecruitment.net/jobs/marine-carpenter — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [47/117] electronic-technician …     WARN: https://outreachrecruitment.net/jobs/electronic-technician — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [48/117] commercial-divers …     WARN: https://outreachrecruitment.net/jobs/commercial-divers — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [49/117] trailer-drivers …     WARN: https://outreachrecruitment.net/jobs/trailer-drivers — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [50/117] marine-mechanical-foreman …     WARN: https://outreachrecruitment.net/jobs/marine-mechanical-foreman — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [51/117] administration-specialist …     WARN: https://outreachrecruitment.net/jobs/administration-specialist — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [52/117] marine-turner-malta …     WARN: https://outreachrecruitment.net/jobs/marine-turner-malta — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [53/117] plate-shop-foreman-malta …     WARN: https://outreachrecruitment.net/jobs/plate-shop-foreman-malta — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [54/117] quality-engineer-marine-malta …     WARN: https://outreachrecruitment.net/jobs/quality-engineer-marine-malta — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [55/117] client-accountant-2 …     WARN: https://outreachrecruitment.net/jobs/client-accountant-2 — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [56/117] application-developer-drupal …     WARN: https://outreachrecruitment.net/jobs/application-developer-drupal — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [57/117] fleet-tools-facility-manager …     WARN: https://outreachrecruitment.net/jobs/fleet-tools-facility-manager — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [58/117] sales-office-coordinator …     WARN: https://outreachrecruitment.net/jobs/sales-office-coordinator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [59/117] customer-contact-agent …     WARN: https://outreachrecruitment.net/jobs/customer-contact-agent — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [60/117] hr-administration-officer …     WARN: https://outreachrecruitment.net/jobs/hr-administration-officer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [61/117] project-manager …     WARN: https://outreachrecruitment.net/jobs/project-manager — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [62/117] estimator …     WARN: https://outreachrecruitment.net/jobs/estimator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [63/117] hsse-coordinator …     WARN: https://outreachrecruitment.net/jobs/hsse-coordinator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [64/117] housekeeper …     WARN: https://outreachrecruitment.net/jobs/housekeeper — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [65/117] driver-runner-washer …     WARN: https://outreachrecruitment.net/jobs/driver-runner-washer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [66/117] supervisor …     WARN: https://outreachrecruitment.net/jobs/supervisor — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [67/117] customer-operations-associate …     WARN: https://outreachrecruitment.net/jobs/customer-operations-associate — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [68/117] structural-engineer …     WARN: https://outreachrecruitment.net/jobs/structural-engineer — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [69/117] senior-quantity-estimator-me …     WARN: https://outreachrecruitment.net/jobs/senior-quantity-estimator-me — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [70/117] sales-representative-in-renewables …     WARN: https://outreachrecruitment.net/jobs/sales-representative-in-renewables — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [71/117] hvac-project-manager …     WARN: https://outreachrecruitment.net/jobs/hvac-project-manager — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [72/117] hvac-sales-representative …     WARN: https://outreachrecruitment.net/jobs/hvac-sales-representative — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [73/117] maintenance-technician-electrical-licence-a-or-b …     WARN: https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [74/117] it-support-executive …     WARN: https://outreachrecruitment.net/jobs/it-support-executive — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [75/117] general-maintenance-technician …     WARN: https://outreachrecruitment.net/jobs/general-maintenance-technician — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [76/117] counter-assistant …     WARN: https://outreachrecruitment.net/jobs/counter-assistant — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [77/117] kitchen-assistant …     WARN: https://outreachrecruitment.net/jobs/kitchen-assistant — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [78/117] heavy-machine-operator …     WARN: https://outreachrecruitment.net/jobs/heavy-machine-operator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [79/117] housekeeping-attendant …     WARN: https://outreachrecruitment.net/jobs/housekeeping-attendant — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [80/117] accounts-payable …     WARN: https://outreachrecruitment.net/jobs/accounts-payable — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [81/117] tax-manager …     WARN: https://outreachrecruitment.net/jobs/tax-manager — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [82/117] automotive-service-advisor …     WARN: https://outreachrecruitment.net/jobs/automotive-service-advisor — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [83/117] high-voltage-motor-vehicle-technician …     WARN: https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [84/117] audit-senior-associate …     WARN: https://outreachrecruitment.net/jobs/audit-senior-associate — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [85/117] customer-contact-centre-representative …     WARN: https://outreachrecruitment.net/jobs/customer-contact-centre-representative — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [86/117] builders-and-shutterers …     WARN: https://outreachrecruitment.net/jobs/builders-and-shutterers — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [87/117] draughtsperson …     WARN: https://outreachrecruitment.net/jobs/draughtsperson — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [88/117] associate-tax-advisor …     WARN: https://outreachrecruitment.net/jobs/associate-tax-advisor — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [89/117] customer-care-associate …     WARN: https://outreachrecruitment.net/jobs/customer-care-associate — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [90/117] sales-executive-luxury-retail …     WARN: https://outreachrecruitment.net/jobs/sales-executive-luxury-retail — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [91/117] bottling-operator …     WARN: https://outreachrecruitment.net/jobs/bottling-operator — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [92/117] motor-vehicle-mechanictechnician …     WARN: https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [93/117] automotive-parts-personnel …     WARN: https://outreachrecruitment.net/jobs/automotive-parts-personnel — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [94/117] corporate-insurance-associate …     WARN: https://outreachrecruitment.net/jobs/corporate-insurance-associate — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [95/117] wood-painting-finishing-specialist …     WARN: https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [96/117] delivery-driver-malta-c-license …     WARN: https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [97/117] health-claims-associate …     WARN: https://outreachrecruitment.net/jobs/health-claims-associate — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [98/117] delivery-drivers-c1-malta-license …     WARN: https://outreachrecruitment.net/jobs/delivery-drivers-c1-malta-license — <urlopen error [Errno 8] nodename nor servname provided, or not known>
+HTTP ERR
+  [99/117] auditor … OK
+  [100/117] cnc-machine-operator … OK
+  [101/117] room-attendents … OK
+  [102/117] finance-associate … OK
+  [103/117] skilled-carpenters … OK
+  [104/117] delivery-person-with-driving-licence-c1 … OK
+  [105/117] commercial-insurance-associate … OK
+  [106/117] aluminum-install-and-fabrication-foreman … OK
+  [107/117] audit-senior … OK
+  [108/117] product-owner-hybrid … OK
+  [109/117] volvo-penta-mechanic … OK
+  [110/117] sign-assembler-installer … OK
+  [111/117] hotel-porter … OK
+  [112/117] boat-maintenance … OK
+  [113/117] first-line-support-hybrid … OK
+  [114/117] semi-senior-accountant … OK
+  [115/117] sales-executive-2 … OK
+  [116/117] housekeeper-2 … OK
+  [117/117] accounts-senior-2 … OK
+
+[SEO] 86 page(s) errored — cooling down 20s then re-checking …
+  re-check marine-mechanical-engineer: 200
+  re-check maintenance-manager-mellieha: 200
+  re-check restaurant-manager-italian-speaking: 200
+  re-check gypsum-installers: 200
+  re-check mini-bus-driver-licence-d: 200
+  re-check proposal-engineer-energy-solutions: 200
+  re-check storekeeper-zebbug: 200
+  re-check driver-license-b: 200
+  re-check forklift-operator: 200
+  re-check front-office-agent: 200
+  re-check night-cleaner: 200
+  re-check banqueting-fb-supervisor: 200
+  re-check assistance-operations-coordinator: 200
+  re-check procurement-officer: 200
+  re-check heavy-equipment-mechanic-2: 200
+  re-check learning-development-executive-hybrid: 200
+  re-check auto-electrician-heavy-vehicles: 200
+  re-check heavy-equipment-mechanic: 200
+  re-check steel-shutter-installer: 200
+  re-check public-area-cleaner: 200
+  re-check head-chef-steakhouse: 200
+  re-check senior-waiter-sommelier: 200
+  re-check deli-counter-assistant-salumeria-specialist: 200
+  re-check chef-de-partie-4: 200
+  re-check ship-chandler: 200
+  re-check fleet-mechanical-superintendent: 200
+  re-check customer-care-agent: 200
+  re-check hvac-technician: 200
+  re-check delivery-man: 200
+  re-check head-of-hvac-technicians: 200
+  re-check tank-cleaner: 200
+  re-check welder-burner-pipe-fitter: 200
+  re-check shipyard-sprayer-painter: 200
+  re-check marine-carpenter: 200
+  re-check electronic-technician: 200
+  re-check commercial-divers: 200
+  re-check trailer-drivers: 200
+  re-check marine-mechanical-foreman: 200
+  re-check administration-specialist: 200
+  re-check marine-turner-malta: 200
+  re-check plate-shop-foreman-malta: 200
+  re-check quality-engineer-marine-malta: 200
+  re-check client-accountant-2: 200
+  re-check application-developer-drupal: 200
+  re-check fleet-tools-facility-manager: 200
+  re-check sales-office-coordinator: 200
+  re-check customer-contact-agent: 200
+  re-check hr-administration-officer: 200
+  re-check project-manager: 200
+  re-check estimator: 200
+  re-check hsse-coordinator: 200
+  re-check housekeeper: 200
+  re-check driver-runner-washer: 200
+  re-check supervisor: 200
+  re-check customer-operations-associate: 200
+  re-check structural-engineer: 200
+  re-check senior-quantity-estimator-me: 200
+  re-check sales-representative-in-renewables: 200
+  re-check hvac-project-manager: 200
+  re-check hvac-sales-representative: 200
+  re-check maintenance-technician-electrical-licence-a-or-b: 200
+  re-check it-support-executive: 200
+  re-check general-maintenance-technician: 200
+  re-check counter-assistant: 200
+  re-check kitchen-assistant: 200
+  re-check heavy-machine-operator: 200
+  re-check housekeeping-attendant: 200
+  re-check accounts-payable: 200
+  re-check tax-manager: 200
+  re-check automotive-service-advisor: 200
+  re-check high-voltage-motor-vehicle-technician: 200
+  re-check audit-senior-associate: 200
+  re-check customer-contact-centre-representative: 200
+  re-check builders-and-shutterers: 200
+  re-check draughtsperson: 200
+  re-check associate-tax-advisor: 200
+  re-check customer-care-associate: 200
+  re-check sales-executive-luxury-retail: 200
+  re-check bottling-operator: 200
+  re-check motor-vehicle-mechanictechnician: 200
+  re-check automotive-parts-personnel: 200
+  re-check corporate-insurance-associate: 200
+  re-check wood-painting-finishing-specialist: 200
+  re-check delivery-driver-malta-c-license: 200
+  re-check health-claims-associate: 200
+  re-check delivery-drivers-c1-malta-license: 200
+
+[4/5] Checking sitemap …
+  Found 117 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 93.1%
+============================================================
+  Careers page: 117 advertised, 117 scraped
+  Website:      117 jobs
+  Missing jobs: 6
+    + Italian Restaurant – Multiple Hospitality Positions | Dubai
+    + Mini Bus Drivers License D
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    + Heavy equipment mech
+  Extra jobs:   5
+    - Italian Restaurant – Multiple Hospitality Positions
+    - Mini Bus Driver – Licence D
+    - Deli Counter Assistant / Salumeria Specialist
+    - Chef De Partie
+    - Application Developer (Drupal)
+  Title diffs:  5
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   36
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 21
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Project Manager' ≈ 'HVAC Project Manager' (86%)
+    'Receptionist' ≈ 'Host / Receptionist' (83%)
+    'Customer Care Agent' ≈ 'Customer Contact Agent' (83%)
+    'Heavy Machine Operator' ≈ 'CNC Machine Operator' (81%)
+
+  [Auto-Close DISABLED] 5 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+    - Mini Bus Driver – Licence D
+    - Italian Restaurant – Multiple Hospitality Positions
+    - Chef De Partie
+  State saved — tracking 5 extra job(s)
+
+  Fetching details for 6 missing job(s) …
+    Italian Restaurant – Multiple Hospitality Positions | Dubai … OK
+    Mini Bus Drivers License D … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+OK
+
+[GSC] Checking 117 job URL(s) with Search Console …
+  [1/117] accounting-officer … 1 issue(s)
+  [2/117] receptionist … 1 issue(s)
+  [3/117] host-receptionist … 1 issue(s)
+  [4/117] cleaner-marsa … 1 issue(s)
+  [5/117] truck-trailer-driver … 1 issue(s)
+  [6/117] hotel-maintenance-assistant … 1 issue(s)
+  [7/117] housekeeper-rabat … 1 issue(s)
+  [8/117] front-office-executive … 1 issue(s)
+  [9/117] italian-restaurant-hospitality-positions-dubai … 1 issue(s)
+  [10/117] junior-administrative-executive … 1 issue(s)
+  [11/117] crane-installer … 1 issue(s)
+  [12/117] beauty-specialist-nail-technician … 1 issue(s)
+  [13/117] marine-mechanical-engineer … OK
+  [14/117] maintenance-manager-mellieha … 1 issue(s)
+  [15/117] restaurant-manager-italian-speaking … 1 issue(s)
+  [16/117] gypsum-installers … 2 issue(s)
+  [17/117] mini-bus-driver-licence-d … OK
+  [18/117] proposal-engineer-energy-solutions … OK
+  [19/117] storekeeper-zebbug … OK
+  [20/117] driver-license-b … 1 issue(s)
+  [21/117] forklift-operator … OK
+  [22/117] front-office-agent … 1 issue(s)
+  [23/117] night-cleaner … 1 issue(s)
+  [24/117] banqueting-fb-supervisor … 1 issue(s)
+  [25/117] assistance-operations-coordinator … 1 issue(s)
+  [26/117] procurement-officer … OK
+  [27/117] heavy-equipment-mechanic-2 … 1 issue(s)
+  [28/117] learning-development-executive-hybrid … OK
+  [29/117] auto-electrician-heavy-vehicles … 1 issue(s)
+  [30/117] heavy-equipment-mechanic … 1 issue(s)
+  [31/117] steel-shutter-installer … 1 issue(s)
+  [32/117] public-area-cleaner … 1 issue(s)
+  [33/117] head-chef-steakhouse … 1 issue(s)
+  [34/117] senior-waiter-sommelier … OK
+  [35/117] deli-counter-assistant-salumeria-specialist … OK
+  [36/117] chef-de-partie-4 … 1 issue(s)
+  [37/117] ship-chandler … 1 issue(s)
+  [38/117] fleet-mechanical-superintendent … 1 issue(s)
+  [39/117] customer-care-agent … 2 issue(s)
+  [40/117] hvac-technician … 1 issue(s)
+  [41/117] delivery-man … 1 issue(s)
+  [42/117] head-of-hvac-technicians … 1 issue(s)
+  [43/117] tank-cleaner … 1 issue(s)
+  [44/117] welder-burner-pipe-fitter … 1 issue(s)
+  [45/117] shipyard-sprayer-painter … 1 issue(s)
+  [46/117] marine-carpenter … 1 issue(s)
+  [47/117] electronic-technician … 1 issue(s)
+  [48/117] commercial-divers … 1 issue(s)
+  [49/117] trailer-drivers … 2 issue(s)
+  [50/117] marine-mechanical-foreman … 1 issue(s)
+  [51/117] administration-specialist … 1 issue(s)
+  [52/117] marine-turner-malta … 1 issue(s)
+  [53/117] plate-shop-foreman-malta … 1 issue(s)
+  [54/117] quality-engineer-marine-malta … 1 issue(s)
+  [55/117] client-accountant-2 … 1 issue(s)
+  [56/117] application-developer-drupal … 1 issue(s)
+  [57/117] fleet-tools-facility-manager … 1 issue(s)
+  [58/117] sales-office-coordinator … 1 issue(s)
+  [59/117] customer-contact-agent … OK
+  [60/117] hr-administration-officer … 1 issue(s)
+  [61/117] project-manager … 1 issue(s)
+  [62/117] estimator … 1 issue(s)
+  [63/117] hsse-coordinator … 1 issue(s)
+  [64/117] housekeeper … 1 issue(s)
+  [65/117] driver-runner-washer … 1 issue(s)
+  [66/117] supervisor … 1 issue(s)
+  [67/117] customer-operations-associate … 2 issue(s)
+  [68/117] structural-engineer … 2 issue(s)
+  [69/117] senior-quantity-estimator-me … 1 issue(s)
+  [70/117] sales-representative-in-renewables … 1 issue(s)
+  [71/117] hvac-project-manager … 1 issue(s)
+  [72/117] hvac-sales-representative … 1 issue(s)
+  [73/117] maintenance-technician-electrical-licence-a-or-b … 2 issue(s)
+  [74/117] it-support-executive … 2 issue(s)
+  [75/117] general-maintenance-technician … 1 issue(s)
+  [76/117] counter-assistant … 1 issue(s)
+  [77/117] kitchen-assistant … 2 issue(s)
+  [78/117] heavy-machine-operator … OK
+  [79/117] housekeeping-attendant … 1 issue(s)
+  [80/117] accounts-payable … 1 issue(s)
+  [81/117] tax-manager … 1 issue(s)
+  [82/117] automotive-service-advisor … OK
+  [83/117] high-voltage-motor-vehicle-technician … 1 issue(s)
+  [84/117] audit-senior-associate … 1 issue(s)
+  [85/117] customer-contact-centre-representative … 1 issue(s)
+  [86/117] builders-and-shutterers … 2 issue(s)
+  [87/117] draughtsperson … 1 issue(s)
+  [88/117] associate-tax-advisor … 1 issue(s)
+  [89/117] customer-care-associate … 1 issue(s)
+  [90/117] sales-executive-luxury-retail … 1 issue(s)
+  [91/117] bottling-operator … OK
+  [92/117] motor-vehicle-mechanictechnician … 1 issue(s)
+  [93/117] automotive-parts-personnel … 1 issue(s)
+  [94/117] corporate-insurance-associate … 2 issue(s)
+  [95/117] wood-painting-finishing-specialist … OK
+  [96/117] delivery-driver-malta-c-license … 1 issue(s)
+  [97/117] health-claims-associate … 1 issue(s)
+  [98/117] delivery-drivers-c1-malta-license … 2 issue(s)
+  [99/117] auditor … 2 issue(s)
+  [100/117] cnc-machine-operator … OK
+  [101/117] room-attendents … 1 issue(s)
+  [102/117] finance-associate … 2 issue(s)
+  [103/117] skilled-carpenters … 1 issue(s)
+  [104/117] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [105/117] commercial-insurance-associate … 2 issue(s)
+  [106/117] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [107/117] audit-senior … 1 issue(s)
+  [108/117] product-owner-hybrid … 1 issue(s)
+  [109/117] volvo-penta-mechanic … 1 issue(s)
+  [110/117] sign-assembler-installer … 1 issue(s)
+  [111/117] hotel-porter … 1 issue(s)
+  [112/117] boat-maintenance … OK
+  [113/117] first-line-support-hybrid … 1 issue(s)
+  [114/117] semi-senior-accountant … 1 issue(s)
+  [115/117] sales-executive-2 … 1 issue(s)
+  [116/117] housekeeper-2 … 1 issue(s)
+  [117/117] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-23.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-23.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-10-23.html
+
+  Email skipped. To send manually, remove --no-email / --dry-run flag.
+
+=== SEO Course Automation ===
+GA4 added to 1 content pages; conversion events added to 0 pages.
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-10-23T10:15:51.303562+02:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-10-21",
+      "days": 7,
+      "queries": 1000,
+      "pages": 479
+    },
+    "ga4": {
+      "ok": true,
+      "days": 6,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 1798
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 16
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 99
+    },
+    "experiments": {
+      "new": 3
+    },
+    "supabase": {
+      "ok": false,
+      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+    }
+  },
+  "warnings": []
+}
+Finished: Fri Oct 23 10:16:01 CEST 2026 | Exit: 0

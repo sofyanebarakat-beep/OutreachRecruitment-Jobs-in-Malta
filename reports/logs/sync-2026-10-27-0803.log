@@ -1,0 +1,69 @@
+=== Job Sync Agent ===
+Started: Tue Oct 27 08:03:35 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-10-27 08:03  ===
+  PREFLIGHT: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com — running report-only
+
+[1] Scraping careers page …
+    retry 1/5 in 10s (https://outreach-recruitment-agency.careers-page.com/)
+  pass 1: 119 / 119 advertised
+  careers page: 119 collected / 119 advertised · website open: 117
+
+[2] 0 website job(s) not in the careers-page listing — checking each …
+
+[3] Reading 119 job pages for fact sheets …
+  20/119
+    retry 1/5 in 10s (https://outreach-recruitment-agency.careers-page.com/jobs/8cced953-90fc-495a-9aca-3e26468daa6f)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/844bbee7-f2f7-46d5-bad0-ca3c0ffee572)
+  40/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/52efdcb6-1959-4340-a52f-7df576fbcab4)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/3abd2a84-9fa8-4b46-a244-1e8fca21bf9d)
+  60/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/407827f1-9487-4e13-af74-11973e5607de)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/2d02e5e0-fefe-49c9-85d3-8002651c6242)
+  80/119
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7d98976a-f3e9-44e1-bf8c-9ab241c3263f)
+    retry 1/5 in 10s (https://outreach-recruitment-agency.careers-page.com/jobs/7b8fe795-0594-4ea5-bc56-0d7efc030a8d)
+  100/119
+  119 fact sheets read
+  new: Senior Clerk (Floriana) → senior-clerk-floriana · €18,015 per year
+  new: Business Development Manager HoReCa (Paola) → business-development-manager-horeca-paola · €30,000–€35,000 per year
+  2 new, 0 to reopen, 0 changed
+  page check: 100 ok, 14 to fix (0 today)
+
+# Daily Job Sync — 2026-10-27
+
+**✅ In sync (report only — nothing was changed; lists show what WOULD happen)** — careers page 119, website 117 → 119
+
+## New jobs published (0)
+- none
+
+## Reopened (0)
+- none
+
+## Closed (0)
+- none
+
+## Updated (0)
+- none
+
+## Failed (0)
+- none
+
+## Held back (5)
+- Customer Contact Centre Representative — https://outreachrecruitment.net/jobs/customer-contact-centre-representative/ (page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary')
+- Bottling Operator — https://outreachrecruitment.net/jobs/bottling-operator/ (page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary')
+- Motor Vehicle Mechanic/Technician — https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician/ (page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary')
+- Senior Clerk — https://outreach-recruitment-agency.careers-page.com/jobs/57e0609f-27a2-4a76-849c-9b75bf9910d6 (new job — not created (report-only run))
+- Business Development Manager HoReCa — https://outreach-recruitment-agency.careers-page.com/jobs/53bf0290-9051-4f27-8fef-fb814da89811 (new job — not created (report-only run))
+
+## Notes
+- Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com.
+
+## Site housekeeping
+- Daily page check: 100 of 117 open job pages pass every check, 14 queued for the next days
+- Salary shown on 28 of 119 open jobs (24%) — all salaries come from the careers page
+
+Git: no changes
+
+  holding the report until 09:00 (37 min) …
