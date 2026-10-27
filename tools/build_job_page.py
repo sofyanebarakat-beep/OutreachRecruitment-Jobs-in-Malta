@@ -11,7 +11,8 @@ With --publish it also adds the registry entry and saves the careers-page fact s
 Usage:
   python3 tools/build_job_page.py spec.json [--publish]
 
-Spec (JSON): uuid, slug, title, city, city_full, ref, date_posted, meta_desc, category,
+Spec (JSON): uuid, slug, title, [meta_title — only for titles too long for the default],
+  city, city_full, ref, date_posted, meta_desc, category,
   hub_url, hub_name, image, job_type ("Direct Job" | "Subcontracting"), employment_types (list),
   employment_label, target_location, applicant_country (or null), salary ({min,max,unit,label} or null),
   occupational_category, industry, experience, education, qualifications, work_hours,
@@ -47,8 +48,8 @@ def build(spec: dict) -> str:
     today = date.today().isoformat()
     sal = sp.get("salary")
     sal_label = sal["label"] if sal else "Competitive salary"
-    meta_title = f"{title} Job in {city}, Malta | Outreach"
-    if len(f"{meta_title} Recruitment") <= 60:
+    meta_title = sp.get("meta_title") or f"{title} Job in {city}, Malta | Outreach"
+    if not sp.get("meta_title") and len(f"{meta_title} Recruitment") <= 60:
         meta_title += " Recruitment"
     assert len(meta_title) <= 60, f"meta title {len(meta_title)} > 60"
     assert 120 <= len(sp["meta_desc"]) <= 155, f"meta description {len(sp['meta_desc'])} not 120–155"

@@ -187,9 +187,19 @@ class _Quiet(SimpleHTTPRequestHandler):
     def log_message(self, *args):  # noqa: D401
         pass
 
+    def do_GET(self):  # noqa: N802
+        # This simple server cannot stream video (no Range support): the hero video then never
+        # finishes and headless Chrome hangs. The check does not need video, so refuse it.
+        if self.path.split("?")[0].lower().endswith((".webm", ".mp4", ".mov")):
+            self.send_error(404)
+            return
+        super().do_GET()
+
 
 def check_render(slug: str, title: str) -> list[str]:
-    """Render the page in headless Chrome against a local server."""
+    """Render the page in headless Chrome against a local server. No --virtual-time-budget: with the
+    streaming hero video, simulated time never advances and Chrome hangs (seen 2026-10-27). --timeout
+    makes Chrome dump the DOM after at most 20 s of real time."""
     if not Path(CHROME).exists():
         return []
     server = ThreadingHTTPServer(("127.0.0.1", 0), partial(_Quiet, directory=str(ROOT)))
@@ -198,7 +208,7 @@ def check_render(slug: str, title: str) -> list[str]:
         with tempfile.TemporaryDirectory() as profile:
             out = subprocess.run(
                 [CHROME, "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={profile}",
-                 "--virtual-time-budget=8000", "--dump-dom",
+                 "--timeout=20000", "--autoplay-policy=user-gesture-required", "--dump-dom",
                  f"http://127.0.0.1:{server.server_address[1]}/jobs/{slug}/"],
                 capture_output=True, text=True, timeout=90)
         dom = out.stdout

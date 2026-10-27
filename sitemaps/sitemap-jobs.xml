@@ -4,9 +4,21 @@
   <!-- Job listing index -->
   <url>
     <loc>https://outreachrecruitment.net/jobs</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/senior-clerk</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outreachrecruitment.net/jobs/business-development-manager-horeca</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://outreachrecruitment.net/jobs/retail-shop-supervisor</loc>

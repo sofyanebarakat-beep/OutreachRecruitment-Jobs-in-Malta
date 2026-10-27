@@ -1,5 +1,37 @@
 [
   {
+    "slug": "senior-clerk",
+    "title": "Senior Clerk",
+    "category": "Administration",
+    "location": "Floriana, Malta",
+    "location_slug": "floriana, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-26",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/57e0609f-27a2-4a76-849c-9b75bf9910d6/apply",
+    "keywords": "senior clerk depot administrator clerical admin office transport floriana malta ecdl maltese english monday friday",
+    "featured": true,
+    "lastmod": "2026-10-27",
+    "salary": "€18,015 per year"
+  },
+  {
+    "slug": "business-development-manager-horeca",
+    "title": "Business Development Manager HoReCa",
+    "category": "Sales",
+    "location": "Paola, Malta",
+    "location_slug": "paola, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-26",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/53bf0290-9051-4f27-8fef-fb814da89811/apply",
+    "keywords": "business development manager horeca sales manager key account wine beverage hotels restaurants catering paola malta company car",
+    "featured": true,
+    "lastmod": "2026-10-27",
+    "salary": "€30,000–€35,000 per year"
+  },
+  {
     "slug": "customer-experience-assistant",
     "title": "Customer Experience Assistant",
     "category": "Customer Service",

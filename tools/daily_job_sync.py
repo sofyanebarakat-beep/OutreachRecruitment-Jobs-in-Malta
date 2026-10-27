@@ -437,10 +437,14 @@ def update_jobs(changed: list[dict], facts: dict[str, dict]) -> tuple[list[dict]
         reg = registry[idx] if idx is not None else json.loads(backup_entries[j["uuid"]])
         problems = verify(dict(reg, owner_salary=j.get("owner_salary", "")), facts.get(j["uuid"]))
         if problems:
-            # Roll back: the page keeps yesterday's (still valid) content.
+            # Roll back: the page keeps yesterday's (still valid) content, and any page file the failed
+            # update created is removed (a new flat jobs/<slug>.html would shadow the folder page live).
             for path_s, text in backup_pages.items():
                 if path_s.startswith(f"jobs/{j['slug']}"):
                     (ROOT / path_s).write_text(text, encoding="utf-8")
+            for f in (ROOT / "jobs" / f"{j['slug']}.html", ROOT / "jobs" / j["slug"] / "index.html"):
+                if f.exists() and rel(f) not in backup_pages:
+                    f.unlink()
             if idx is not None:
                 registry[idx] = json.loads(backup_entries[j["uuid"]])
             failed.append(dict(j, reason="update failed the pre-publish check, page left as it was: "
