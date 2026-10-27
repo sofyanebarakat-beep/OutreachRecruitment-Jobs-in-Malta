@@ -75,7 +75,7 @@ These four links are mandatory. They must appear naturally inside the article bo
 <div class="programs-box" style="background:#faf5ff;border:1px solid #a855f7;padding:20px;border-radius:6px;margin:32px 0;">
   <p style="font-weight:700;margin-bottom:6px;">Explore Study Programs in Malta</p>
   <p style="margin-bottom:12px;">Browse bachelor's, master's, and English language programs available to international students.</p>
-  <a href="https://outreachrecruitment.net/study-in-malta#programs-table" target="_blank" rel="noopener"
+  <a href="https://consultation.outreachstudy.eu/" target="_blank" rel="noopener"
      style="background:#a855f7;color:#fff;padding:10px 22px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-block;">
     Browse All Programs →
   </a>
