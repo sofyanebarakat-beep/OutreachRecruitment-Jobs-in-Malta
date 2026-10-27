@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-27",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "57f253f2-fdd5-4495-b9dd-eaae87374bb6",
+      "title": "Sales Executive",
+      "slug": "sales-executive-2",
+      "city": "Gżira, Malta",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/sales-executive-2/"
+    },
+    {
+      "uuid": "0ac3ab67-cc73-49dc-beec-5c8847af4091",
+      "title": "Tank Cleaner",
+      "slug": "tank-cleaner",
+      "city": "Biot",
+      "changes": [
+        "page repaired — tank-cleaner.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/tank-cleaner/"
+    },
+    {
+      "uuid": "5f1e9804-85bc-4b5f-a4ef-32c85219612e",
+      "title": "Welder / Burner / Pipe Fitter",
+      "slug": "welder-burner-pipe-fitter",
+      "city": "Żejtun",
+      "changes": [
+        "page repaired — welder-burner-pipe-fitter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter/"
+    },
+    {
+      "uuid": "8321197a-8a56-4045-8178-8500e12b701c",
+      "title": "Shipyard Sprayer / Painter",
+      "slug": "shipyard-sprayer-painter",
+      "city": "Żejtun",
+      "changes": [
+        "page repaired — shipyard-sprayer-painter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/shipyard-sprayer-painter/"
+    },
+    {
+      "uuid": "befdff78-f9b6-4e4b-aef5-cab8bfb3e45f",
+      "title": "Marine Carpenter",
+      "slug": "marine-carpenter",
+      "city": "Biot",
+      "changes": [
+        "page repaired — marine-carpenter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/marine-carpenter/"
+    }
+  ],
+  "failed": [],
+  "held": [
+    {
+      "title": "Customer Contact Centre Representative",
+      "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative/",
+      "reason": "page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary'"
+    },
+    {
+      "title": "Bottling Operator",
+      "url": "https://outreachrecruitment.net/jobs/bottling-operator/",
+      "reason": "page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary'"
+    },
+    {
+      "title": "Motor Vehicle Mechanic/Technician",
+      "url": "https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician/",
+      "reason": "page check keeps failing after automatic repair attempts: no salary on the careers page, but the page does not say 'Competitive salary'"
+    }
+  ],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 119,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 119,
+    "ok": 102,
+    "to_fix": 14,
+    "fixing_today": 5,
+    "queued": 9
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 119,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 119,
+  "salary_coverage": {
+    "open": 119,
+    "with_salary": 28
+  }
+}

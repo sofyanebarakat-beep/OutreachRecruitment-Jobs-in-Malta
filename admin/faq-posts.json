@@ -4,43 +4,43 @@
    "q": "Can I work while studying in Malta?",
    "a": "Yes. International students on a valid student residence permit can work up to 20 hours per week during term time and full-time during official academic holidays.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 301
+   "pages": 303
   },
   {
    "q": "Looking for a job in Malta or Europe?",
    "a": "Browse our open positions and apply directly on our jobs page. Once you submit your application, our recruitment team will review it and get back to you within 2–3 working days to discuss next steps.",
    "url": "/jobs",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "How do I apply for a role through Outreach Recruitment?",
    "a": "Visit our Jobs page, find a role that fits your profile, and click Apply. You can also send your CV directly to hr@outreachrecruitment.net and we will match you with suitable openings.",
    "url": "/jobs",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "I want to hire talent — how does it work?",
    "a": "Fill in the contact form selecting 'Hire Talent' and describe the role you need to fill. Our team will reach out within 2–3 working days to understand your requirements and present a tailored recruitment plan.",
    "url": "/employers",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "What types of profiles can you source for my business?",
    "a": "We recruit across Retail, Hospitality, Administration, People Operations, and more. Whether you need one person or a full team, we source candidates who are ready to work and the right fit for your organisation.",
    "url": "/employers",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "I want to study in Malta — where do I start?",
    "a": "Select 'Study in Malta' on our contact page and tell us a bit about yourself. Our study advisors will guide you through school selection, enrolment, visa requirements, and accommodation — step by step.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "I have a different question — can I still contact you?",
    "a": "Absolutely. Select 'Other Question' on our contact page and describe what you need. No matter the topic, our team will read your message and get back to you within 2–3 working days.",
    "url": "/contact-us",
-   "pages": 291
+   "pages": 293
   },
   {
    "q": "Where is the job based?",
@@ -55,16 +55,16 @@
    "pages": 15
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
-   "url": "/jobs",
-   "pages": 11
-  },
-  {
    "q": "What are the working hours?",
    "a": "Shifts are flexible, including long or split shifts, based on the banqueting and events schedule.",
    "url": "/jobs",
-   "pages": 11
+   "pages": 15
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "url": "/jobs",
+   "pages": 13
   },
   {
    "q": "Do I need to be living in Malta to apply?",
@@ -85,6 +85,12 @@
    "pages": 10
   },
   {
+   "q": "Do I need to speak Maltese?",
+   "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
+   "url": "/jobs",
+   "pages": 8
+  },
+  {
    "q": "Need more information?",
    "a": "Our team is happy to help. Reach out to us directly:Email: hr@outreachrecruitment.net",
    "url": "/customer-service-jobs-in-malta",
@@ -95,12 +101,6 @@
    "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
    "url": "/jobs",
    "pages": 7
-  },
-  {
-   "q": "Do I need to speak Maltese?",
-   "a": "No. Fluent English, spoken and written, is required. Maltese is an advantage but not a requirement.",
-   "url": "/jobs",
-   "pages": 6
   },
   {
    "q": "Are degrees from Malta recognised internationally?",
@@ -121,6 +121,18 @@
    "pages": 5
   },
   {
+   "q": "What qualifications do I need?",
+   "a": "A minimum A-Level qualification in Accounts is required, along with strong attention to detail and Excel proficiency.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
    "q": "Do I need to be based in Malta to apply?",
    "a": "Yes. Candidates must currently be residing in Malta and legally authorised to work in Malta.",
    "url": "/jobs",
@@ -135,6 +147,12 @@
   {
    "q": "What licence do I need for this role?",
    "a": "A valid Category B driving licence is mandatory, along with good knowledge of Maltese roads and traffic regulations.",
+   "url": "/jobs",
+   "pages": 5
+  },
+  {
+   "q": "What does the role involve day to day?",
+   "a": "Safely moving, loading, unloading and storing materials, organising inventory, and carrying out routine equipment maintenance checks.",
    "url": "/jobs",
    "pages": 5
   },
@@ -247,12 +265,6 @@
    "pages": 3
   },
   {
-   "q": "What qualifications do I need?",
-   "a": "A minimum A-Level qualification in Accounts is required, along with strong attention to detail and Excel proficiency.",
-   "url": "/jobs",
-   "pages": 3
-  },
-  {
    "q": "What benefits are offered with this role?",
    "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
    "url": "/jobs",
@@ -261,18 +273,6 @@
   {
    "q": "Do I need previous cleaning experience?",
    "a": "No. Previous cleaning experience will be considered an asset rather than a requirement.",
-   "url": "/jobs",
-   "pages": 3
-  },
-  {
-   "q": "Do I need a driving licence?",
-   "a": "A valid driving licence is considered an advantage, not a requirement.",
-   "url": "/jobs",
-   "pages": 3
-  },
-  {
-   "q": "What does the role involve day to day?",
-   "a": "Safely moving, loading, unloading and storing materials, organising inventory, and carrying out routine equipment maintenance checks.",
    "url": "/jobs",
    "pages": 3
   },
@@ -477,6 +477,24 @@
   {
    "q": "Is this a full-time job?",
    "a": "Yes. This is a full-time position.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Business Development Manager HoReCa job pay?",
+   "a": "The role pays €30,000–€35,000 per year plus performance-related bonuses, a company car, fuel allowance, company mobile phone and health insurance.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does HoReCa mean?",
+   "a": "HoReCa stands for hotels, restaurants and cafés/catering — the hospitality businesses you will sell to and look after in this role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is wine industry knowledge required?",
+   "a": "It is not required, but knowledge of the local HoReCa sector and the wine industry is considered an advantage.",
    "url": "/jobs",
    "pages": 2
   },
@@ -693,6 +711,18 @@
   {
    "q": "Will I need to work weekends?",
    "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Senior Clerk job pay?",
+   "a": "The role pays €18,015 per year for full-time work, Monday to Friday.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is transport industry experience required?",
+   "a": "No. Previous administration, clerical, HR support or operational administration experience is preferred, and transport or workforce administration experience is an advantage.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1033,6 +1063,42 @@
    "a": "The role is open to candidates living in Malta and to European candidates. A good command of English is required. Visa or relocation support is not mentioned in the listing.",
    "slug": "beauty-specialist-nail-technician",
    "title": "Beauty Specialist / Nail Technician"
+  },
+  {
+   "q": "What does the Business Development Manager HoReCa job pay?",
+   "a": "The role pays €30,000–€35,000 per year plus performance-related bonuses, a company car, fuel allowance, company mobile phone and health insurance.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
+  },
+  {
+   "q": "What does HoReCa mean?",
+   "a": "HoReCa stands for hotels, restaurants and cafés/catering — the hospitality businesses you will sell to and look after in this role.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of three years of proven experience in sales, business development or field marketing, with hands-on sales and marketing experience.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
+  },
+  {
+   "q": "What are the working hours?",
+   "a": "Full-time, Monday to Friday, with occasional promotional events and industry activities outside normal working hours.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
+  },
+  {
+   "q": "Is wine industry knowledge required?",
+   "a": "It is not required, but knowledge of the local HoReCa sector and the wine industry is considered an advantage.",
+   "slug": "business-development-manager-horeca",
+   "title": "Business Development Manager HoReCa"
   },
   {
    "q": "What does the Cleaner role involve?",
@@ -1933,6 +1999,42 @@
    "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
    "slug": "retail-shop-supervisor",
    "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "What does the Senior Clerk job pay?",
+   "a": "The role pays €18,015 per year for full-time work, Monday to Friday.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
+  },
+  {
+   "q": "What are the working hours?",
+   "a": "Full-time, Monday to Friday, from 8:00 am to 4:30 pm. The role is on-site at the depot in Floriana.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
+  },
+  {
+   "q": "What qualifications do I need?",
+   "a": "A minimum O-Level standard of education, the European Computer Driving Licence (ECDL) and good knowledge of Microsoft Office, particularly Excel and Word.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
+  },
+  {
+   "q": "Do I need to speak Maltese?",
+   "a": "Yes. Good written and verbal communication skills in both Maltese and English are required.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
+  },
+  {
+   "q": "Is transport industry experience required?",
+   "a": "No. Previous administration, clerical, HR support or operational administration experience is preferred, and transport or workforce administration experience is an advantage.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
+  },
+  {
+   "q": "What does the role involve day to day?",
+   "a": "Supporting Depot Management with attendance and leave records, payroll queries, disciplinary and compliance documentation, incident reports, purchase orders, driver alcohol tests, CPC training bookings and regular depot reports.",
+   "slug": "senior-clerk",
+   "title": "Senior Clerk"
   },
   {
    "q": "How much does the Skilled Carpenter job pay?",

@@ -1,0 +1,27 @@
+I fixed all 5 pages, and `tools/verify_job_page.py` now passes for each of them, including the headless-Chrome render check. Nothing was committed or pushed, and no other job was touched.
+
+**The problem:** every page had "Negotiable" in its header chip, which is why the daily check said the page doesn't say "Competitive salary". None of the fact sheets give a salary, and none of the pages had a `baseSalary` in the schema, so no invented number needed removing.
+
+**Changes on each page:**
+- **Header chip:** "Negotiable" now reads "Competitive salary".
+- **Sidebar:** added a "Salary: Competitive salary" row under Employment Type.
+- **Meta descriptions:** "Competitive salary." added to the page description, `og:description` and `twitter:description`.
+- **Schema deadline:** `validThrough` was 2026-12-31 on the pages; it is now the default 2029-12-30. I changed this even though the daily check didn't flag it, because the publishing rules require it.
+
+**Registry:** for these 5 jobs, `valid_through` changed from 2030-12-31 to 2029-12-30 and `lastmod` to 2026-10-27.
+
+**Both file copies:**
+- For tank-cleaner, welder-burner-pipe-fitter, shipyard-sprayer-painter and marine-carpenter, `jobs/<slug>/index.html` used to be a short redirect page. As your rules require, it's now an identical copy of the full page.
+- For sales-executive-2, only the folder page existed, so `jobs/sales-executive-2.html` is a new file.
+
+**Check this:** the fact sheets give the city for Tank Cleaner and Marine Carpenter as "Biot". That matches what's already on the pages, so I left it as is, but it may be a typo on the careers page.
+
+Backups of the original files are in `/tmp/jobsync-bak/`.
+
+UPDATED 57f253f2-fdd5-4495-b9dd-eaae87374bb6 sales-executive-2
+UPDATED 0ac3ab67-cc73-49dc-beec-5c8847af4091 tank-cleaner
+UPDATED 5f1e9804-85bc-4b5f-a4ef-32c85219612e welder-burner-pipe-fitter
+UPDATED 8321197a-8a56-4045-8178-8500e12b701c shipyard-sprayer-painter
+UPDATED befdff78-f9b6-4e4b-aef5-cab8bfb3e45f marine-carpenter
+
+--- stderr ---

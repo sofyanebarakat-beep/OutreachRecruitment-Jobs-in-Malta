@@ -4,21 +4,24 @@
     "attempts": 2,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
+    ],
+    "flagged": "2026-10-27"
   },
   "bottling-operator": {
     "first_seen": "2026-10-14",
     "attempts": 2,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
+    ],
+    "flagged": "2026-10-27"
   },
   "motor-vehicle-mechanictechnician": {
     "first_seen": "2026-10-14",
     "attempts": 2,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
+    ],
+    "flagged": "2026-10-27"
   },
   "product-owner-hybrid": {
     "first_seen": "2026-10-14",
@@ -32,41 +35,6 @@
     "attempts": 0,
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "sales-executive-2": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "tank-cleaner": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "tank-cleaner.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "welder-burner-pipe-fitter": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "welder-burner-pipe-fitter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "shipyard-sprayer-painter": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "shipyard-sprayer-painter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
-    ]
-  },
-  "marine-carpenter": {
-    "first_seen": "2026-10-14",
-    "attempts": 0,
-    "problems": [
-      "marine-carpenter.html: no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
   },
   "electronic-technician": {
