@@ -1,0 +1,21 @@
+All five pages now pass `tools/verify_job_page.py`. Nothing was committed or pushed, as instructed.
+
+**What changed on each page:**
+- **Header chip:** "Negotiable" now reads "Competitive salary".
+- **"What's on Offer" list:** "Competitive salary." is now the first bullet. Electronic Technician and Commercial Divers have no offer section, so they don't get this bullet.
+- **Meta, og and twitter descriptions:** "Competitive salary." added after the category.
+- **Salary schema:** none of the pages has a `baseSalary`, and I didn't add one.
+- **Expiry date:** set `validThrough` to 2029-12-30 in the schema. Electronic Technician and Commercial Divers had 2026-12-31, which would have expired in two months; Client Accountant had 2030-12-31.
+- **Registry:** set `valid_through` to 2029-12-30 and `lastmod` to 2026-10-28 for these five jobs.
+
+**Which file I edited:** for Electronic Technician, Commercial Divers and Marine Mechanical Foreman, `jobs/<slug>/index.html` is a small redirect page that sends visitors to the flat `jobs/<slug>.html`. So I edited only the flat file and left the redirect alone, which is how the sync and verify scripts treat these older jobs. Client Accountant (`client-accountant-2`) and Marine Turner have no flat `.html` file, so I edited their `index.html`.
+
+The fact sheets have empty job descriptions and no salary, so nothing else on the pages needed changing.
+
+UPDATED 2a680e82-b5a1-4a83-9d76-6dd62e9ba429 electronic-technician
+UPDATED fb15295d-faf1-488c-bdea-aac65473eb62 commercial-divers
+UPDATED 3abd2a84-9fa8-4b46-a244-1e8fca21bf9d marine-mechanical-foreman
+UPDATED bc24c506-cfcd-46f5-8bd5-85814eb1ef96 client-accountant-2
+UPDATED ebda8d08-2e22-4c2a-9c69-85802cc2947b marine-turner-malta
+
+--- stderr ---

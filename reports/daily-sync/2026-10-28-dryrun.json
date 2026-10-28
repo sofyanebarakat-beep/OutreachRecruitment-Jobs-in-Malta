@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-28",
+  "created": [],
+  "reopened": [
+    {
+      "title": "IT Support Executive",
+      "slug": "it-support-executive-2",
+      "uuid": "ef783bfa-54fd-4c09-a28a-f09430347318",
+      "url": "https://outreachrecruitment.net/jobs/it-support-executive-2/",
+      "city": "Malta"
+    }
+  ],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 120,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 119,
+    "ok": 107,
+    "to_fix": 9,
+    "fixing_today": 0,
+    "queued": 9
+  },
+  "site_open_after": 120,
+  "salary_coverage": {
+    "open": 119,
+    "with_salary": 28
+  }
+}

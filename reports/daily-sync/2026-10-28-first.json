@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-28",
+  "created": [],
+  "reopened": [
+    {
+      "title": "IT Support Executive",
+      "slug": "it-support-executive-2",
+      "uuid": "ef783bfa-54fd-4c09-a28a-f09430347318",
+      "url": "https://outreachrecruitment.net/jobs/it-support-executive-2/",
+      "city": "Malta"
+    }
+  ],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "2a680e82-b5a1-4a83-9d76-6dd62e9ba429",
+      "title": "Electronic Technician",
+      "slug": "electronic-technician",
+      "city": "Biot",
+      "changes": [
+        "page repaired — electronic-technician.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/electronic-technician/"
+    },
+    {
+      "uuid": "fb15295d-faf1-488c-bdea-aac65473eb62",
+      "title": "Commercial Divers",
+      "slug": "commercial-divers",
+      "city": "Żejtun",
+      "changes": [
+        "page repaired — commercial-divers.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/commercial-divers/"
+    },
+    {
+      "uuid": "3abd2a84-9fa8-4b46-a244-1e8fca21bf9d",
+      "title": "Marine Mechanical Foreman",
+      "slug": "marine-mechanical-foreman",
+      "city": "Paola",
+      "changes": [
+        "page repaired — marine-mechanical-foreman.html: no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/marine-mechanical-foreman/"
+    },
+    {
+      "uuid": "bc24c506-cfcd-46f5-8bd5-85814eb1ef96",
+      "title": "Client Accountant",
+      "slug": "client-accountant-2",
+      "city": "Ta' Xbiex",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/client-accountant-2/"
+    },
+    {
+      "uuid": "ebda8d08-2e22-4c2a-9c69-85802cc2947b",
+      "title": "Marine Turner",
+      "slug": "marine-turner-malta",
+      "city": "Paola",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/marine-turner-malta/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 120,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 119,
+    "ok": 107,
+    "to_fix": 9,
+    "fixing_today": 5,
+    "queued": 4
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 120,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 1
+  },
+  "site_open_after": 120,
+  "salary_coverage": {
+    "open": 120,
+    "with_salary": 28
+  }
+}
