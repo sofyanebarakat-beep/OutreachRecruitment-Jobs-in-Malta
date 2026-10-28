@@ -104,7 +104,7 @@
     "status": "gave_up"
   },
   "receptionist": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-15",
     "indexed": false,
     "job_posting": false,
@@ -112,7 +112,7 @@
     "status": "pending"
   },
   "host-receptionist": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-15",
     "indexed": false,
     "job_posting": false,
@@ -120,7 +120,7 @@
     "status": "pending"
   },
   "cleaner-marsa": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-15",
     "indexed": false,
     "job_posting": false,
@@ -136,7 +136,7 @@
     "status": "ok"
   },
   "accounting-officer": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-21",
     "indexed": false,
     "job_posting": false,
@@ -144,7 +144,7 @@
     "status": "pending"
   },
   "customer-experience-assistant": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-23",
     "indexed": false,
     "job_posting": false,
@@ -152,7 +152,7 @@
     "status": "pending"
   },
   "pdi-leading-hand": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-23",
     "indexed": false,
     "job_posting": false,
@@ -160,7 +160,7 @@
     "status": "pending"
   },
   "facilities-maintenance-and-health-and-safety-manager": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-23",
     "indexed": false,
     "job_posting": false,
@@ -168,7 +168,7 @@
     "status": "pending"
   },
   "maintenance-person": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-23",
     "indexed": false,
     "job_posting": false,
@@ -176,8 +176,24 @@
     "status": "pending"
   },
   "retail-shop-supervisor": {
-    "checked": "2026-10-27",
+    "checked": "2026-10-28",
     "published": "2026-10-23",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "senior-clerk": {
+    "checked": "2026-10-28",
+    "published": "2026-10-26",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "business-development-manager-horeca": {
+    "checked": "2026-10-28",
+    "published": "2026-10-26",
     "indexed": false,
     "job_posting": false,
     "coverage": "URL is unknown to Google",
