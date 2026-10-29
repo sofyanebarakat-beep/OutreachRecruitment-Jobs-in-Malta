@@ -4,43 +4,43 @@
    "q": "Can I work while studying in Malta?",
    "a": "Yes. International students on a valid student residence permit can work up to 20 hours per week during term time and full-time during official academic holidays.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 303
+   "pages": 307
   },
   {
    "q": "Looking for a job in Malta or Europe?",
    "a": "Browse our open positions and apply directly on our jobs page. Once you submit your application, our recruitment team will review it and get back to you within 2–3 working days to discuss next steps.",
    "url": "/jobs",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "How do I apply for a role through Outreach Recruitment?",
    "a": "Visit our Jobs page, find a role that fits your profile, and click Apply. You can also send your CV directly to hr@outreachrecruitment.net and we will match you with suitable openings.",
    "url": "/jobs",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "I want to hire talent — how does it work?",
    "a": "Fill in the contact form selecting 'Hire Talent' and describe the role you need to fill. Our team will reach out within 2–3 working days to understand your requirements and present a tailored recruitment plan.",
    "url": "/employers",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "What types of profiles can you source for my business?",
    "a": "We recruit across Retail, Hospitality, Administration, People Operations, and more. Whether you need one person or a full team, we source candidates who are ready to work and the right fit for your organisation.",
    "url": "/employers",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "I want to study in Malta — where do I start?",
    "a": "Select 'Study in Malta' on our contact page and tell us a bit about yourself. Our study advisors will guide you through school selection, enrolment, visa requirements, and accommodation — step by step.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "I have a different question — can I still contact you?",
    "a": "Absolutely. Select 'Other Question' on our contact page and describe what you need. No matter the topic, our team will read your message and get back to you within 2–3 working days.",
    "url": "/contact-us",
-   "pages": 293
+   "pages": 297
   },
   {
    "q": "Where is the job based?",
@@ -217,6 +217,12 @@
    "pages": 4
   },
   {
+   "q": "What benefits are offered with this role?",
+   "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
    "q": "Will I work shifts?",
    "a": "Yes. You should be flexible and able to work different shifts as required by the restaurant.",
    "url": "/jobs",
@@ -262,12 +268,6 @@
    "q": "Is Malta safe for international students?",
    "a": "Malta consistently ranks among the top 20 safest countries in the world according to the Global Peace Index 2024. Violent crime is rare and the local community is welcoming to international students.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 3
-  },
-  {
-   "q": "What benefits are offered with this role?",
-   "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
-   "url": "/jobs",
    "pages": 3
   },
   {
@@ -609,6 +609,36 @@
   {
    "q": "Where is the Host / Receptionist job based?",
    "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is the Learning & Development Executive role hybrid or fully remote?",
+   "a": "This is a hybrid role based in Ta' Xbiex, combining office days with remote flexibility.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What experience do I need for this role?",
+   "a": "A minimum of 2 years' experience in a Learning & Development role is required, along with strong communication and organisational skills.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is Maltese language required?",
+   "a": "English fluency is required; Maltese is advantageous but not essential.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the L&D Executive role involve day-to-day?",
+   "a": "You'll coordinate onboarding programmes, identify learning needs, develop training materials, manage training records, and liaise with external training providers.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "How do I apply for this position?",
+   "a": "Click Apply Now on this page to submit your application online. Our recruitment team will review it and get back to you.",
    "url": "/jobs",
    "pages": 2
   },

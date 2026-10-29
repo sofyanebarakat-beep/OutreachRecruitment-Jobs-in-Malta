@@ -1,0 +1,15 @@
+All five pages now say "Competitive salary", and `tools/verify_job_page.py` passes on every one of them. Nothing was committed or pushed.
+
+- **What changed on each page:** the salary chip in the page header was replaced with "Competitive salary". On four pages it said "Negotiable".
+- **IT Support Executive:** the chip said "Starting from €30,000 / year", but neither the careers page nor the registry gives any salary. I treated it as an invented figure and removed it.
+- **No other salary text to change:** none of these pages had a salary in the sidebar, FAQ, meta description or schema (`baseSalary`), so the chip was the only spot.
+- **New files:** `jobs/<slug>.html` didn't exist for any of the five jobs, so I created each as an identical copy of `jobs/<slug>/index.html`.
+- **Registry:** in `tools/jobs_registry.json` only `lastmod` changed, set to 2026-10-29. There is no salary field, which matches how other jobs without a salary are stored.
+
+UPDATED ef783bfa-54fd-4c09-a28a-f09430347318 it-support-executive-2
+UPDATED 10070d19-7087-4905-a4fc-88dc95840c58 plate-shop-foreman-malta
+UPDATED 04cdef53-63f9-41b2-9e2e-dcc8053ff95d chef-de-partie-4
+UPDATED 57ce944b-f716-4b66-8e62-322c9c3dbf32 public-area-cleaner
+UPDATED d0d6a4df-ce3d-4cce-af37-d3c75a90f359 learning-development-executive-hybrid
+
+--- stderr ---

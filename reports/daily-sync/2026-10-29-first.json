@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-29",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "ef783bfa-54fd-4c09-a28a-f09430347318",
+      "title": "IT Support Executive",
+      "slug": "it-support-executive-2",
+      "city": "",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/it-support-executive-2/"
+    },
+    {
+      "uuid": "10070d19-7087-4905-a4fc-88dc95840c58",
+      "title": "Plate Shop Foreman",
+      "slug": "plate-shop-foreman-malta",
+      "city": "Paola",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/plate-shop-foreman-malta/"
+    },
+    {
+      "uuid": "04cdef53-63f9-41b2-9e2e-dcc8053ff95d",
+      "title": "Chef De Partie",
+      "slug": "chef-de-partie-4",
+      "city": "St. Julian's",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/chef-de-partie-4/"
+    },
+    {
+      "uuid": "57ce944b-f716-4b66-8e62-322c9c3dbf32",
+      "title": "Public Area Cleaner",
+      "slug": "public-area-cleaner",
+      "city": "Sliema",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/public-area-cleaner/"
+    },
+    {
+      "uuid": "d0d6a4df-ce3d-4cce-af37-d3c75a90f359",
+      "title": "Learning & Development Executive - Hybrid",
+      "slug": "learning-development-executive-hybrid",
+      "city": "Ta' Xbiex",
+      "changes": [
+        "page repaired — no salary on the careers page, but the page does not say 'Competitive salary'"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "url": "https://outreachrecruitment.net/jobs/learning-development-executive-hybrid/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 120,
+  "site_open_before": 120,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 120,
+    "ok": 112,
+    "to_fix": 5,
+    "fixing_today": 5,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 120,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 120,
+  "salary_coverage": {
+    "open": 120,
+    "with_salary": 28
+  }
+}
