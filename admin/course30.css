@@ -315,6 +315,15 @@ label.btn { font-weight: 600; }
 .note-editor h3 { font-size: 1.05rem; margin: 22px 0 6px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
 .note-editor p { min-height: 1.2em; }
 .note-editor ul, .note-editor ol { padding-left: 24px; }
+.note-editor table, .notes-report table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: .9rem; }
+.note-editor th, .note-editor td, .notes-report th, .notes-report td { padding: 8px 10px; border: 1px solid var(--border); min-width: 90px; }
+.note-editor th, .notes-report th { background: var(--brand-soft); color: var(--text); font-weight: 700; }
+.note-editor blockquote, .notes-report blockquote { margin: 14px 0; padding: 10px 14px; border-left: 4px solid var(--brand); background: var(--brand-soft); color: var(--text-2); }
+.note-editor pre, .notes-report pre { padding: 12px; border-radius: 8px; overflow: auto; background: var(--surface-2); font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; }
+.note-editor code, .notes-report code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.note-editor a, .notes-report a { color: var(--brand); text-decoration: underline; overflow-wrap: anywhere; }
+.note-editor mark, .notes-report mark { background: #fff0a8; color: #382d00; padding: 1px 3px; }
+.note-editor hr, .notes-report hr { border: 0; border-top: 1px solid var(--border); margin: 20px 0; }
 .note-tip { margin: 12px 0; padding: 10px 12px; border-radius: 9px; background: var(--good-bg); color: var(--text-2); font-size: .86rem; }
 .report-preview summary { color: var(--brand); font-weight: 700; }
 .notes-report { margin-top: 16px; }

@@ -52,7 +52,10 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 - **Course Notes** — one structured, report-ready note for every course day. Includes rich formatting
   (headings, bold, italic, underline, lists and text colour), lesson search, note completion progress,
   reusable learning/practice/evidence/problem/next-action prompts, and full-report copy, HTML download,
-  preview and print actions. Notes are stored with the existing course settings in Supabase or locally.
+  preview and print actions. Rich paste from ChatGPT preserves safe headings, emphasis, lists, tables,
+  links, quotes and code; Markdown tables/lists are converted when only plain text is available. Notes
+  and the complete report can be copied back out with their formatting intact. Notes are stored with the
+  existing course settings in Supabase or locally.
 
 Files: `index.html`, `jobsync.js`, `marketing.js`, `images.js`, `social.js`, `calendar-malta.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 

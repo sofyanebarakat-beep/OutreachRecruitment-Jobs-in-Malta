@@ -204,7 +204,7 @@
   function sanitiseNoteHtml(html) {
     const template = document.createElement("template");
     template.innerHTML = html;
-    const allowed = new Set(["H2", "H3", "P", "DIV", "BR", "STRONG", "B", "EM", "I", "U", "UL", "OL", "LI", "SPAN"]);
+    const allowed = new Set(["H1", "H2", "H3", "H4", "P", "DIV", "BR", "HR", "STRONG", "B", "EM", "I", "U", "S", "UL", "OL", "LI", "SPAN", "MARK", "BLOCKQUOTE", "PRE", "CODE", "TABLE", "THEAD", "TBODY", "TFOOT", "TR", "TH", "TD", "A"]);
     [...template.content.querySelectorAll("*")].forEach((node) => {
       if (node.tagName === "FONT") {
         const span = document.createElement("span"), colour = node.getAttribute("color") || "";
@@ -212,11 +212,42 @@
         span.append(...node.childNodes); node.replaceWith(span); return;
       }
       if (!allowed.has(node.tagName)) { node.replaceWith(...node.childNodes); return; }
-      const colour = node.style.color;
+      const colour = node.style.color, href = node.getAttribute("href") || "", colspan = node.getAttribute("colspan"), rowspan = node.getAttribute("rowspan");
       [...node.attributes].forEach((a) => node.removeAttribute(a.name));
       if (colour && /^(#[0-9a-f]{3,8}|rgb\([\d\s,.%]+\)|[a-z]+)$/i.test(colour)) node.style.color = colour;
+      if (node.tagName === "A" && /^(https?:|mailto:)/i.test(href)) { node.href = href; node.target = "_blank"; node.rel = "noopener"; }
+      if (["TH", "TD"].includes(node.tagName)) {
+        if (/^\d{1,2}$/.test(colspan || "")) node.setAttribute("colspan", colspan);
+        if (/^\d{1,2}$/.test(rowspan || "")) node.setAttribute("rowspan", rowspan);
+      }
     });
     return template.innerHTML;
+  }
+  function markdownInline(text) {
+    return esc(text)
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>');
+  }
+  function plainTextToNoteHtml(text) {
+    const lines = String(text || "").replace(/\r/g, "").split("\n"), out = [];
+    for (let i = 0; i < lines.length;) {
+      const line = lines[i], next = lines[i + 1] || "";
+      if (/^\s*\|?.+\|.+\|?\s*$/.test(line) && /^\s*\|?\s*:?-{3,}/.test(next)) {
+        const rows = [line]; let cursor = i + 2;
+        while (cursor < lines.length && /^\s*\|?.+\|.+\|?\s*$/.test(lines[cursor])) rows.push(lines[cursor++]);
+        const rowHtml = rows.map((r, ri) => { const cells = r.trim().replace(/^\||\|$/g, "").split("|"); const tag = ri ? "td" : "th"; return `<tr>${cells.map((c) => `<${tag}>${markdownInline(c.trim())}</${tag}>`).join("")}</tr>`; }).join("");
+        out.push(`<table><thead>${rowHtml.split("</tr>")[0]}</tr></thead><tbody>${rowHtml.split("</tr>").slice(1).join("</tr>")}</tbody></table>`); i = cursor; continue;
+      }
+      if (/^#{1,4}\s+/.test(line)) { const n = Math.min(4, line.match(/^#+/)[0].length); out.push(`<h${n}>${markdownInline(line.replace(/^#{1,4}\s+/, ""))}</h${n}>`); i++; continue; }
+      if (/^>\s?/.test(line)) { out.push(`<blockquote>${markdownInline(line.replace(/^>\s?/, ""))}</blockquote>`); i++; continue; }
+      if (/^[-*]\s+/.test(line)) { const items = []; while (i < lines.length && /^[-*]\s+/.test(lines[i])) items.push(`<li>${markdownInline(lines[i++].replace(/^[-*]\s+/, ""))}</li>`); out.push(`<ul>${items.join("")}</ul>`); continue; }
+      if (/^\d+[.)]\s+/.test(line)) { const items = []; while (i < lines.length && /^\d+[.)]\s+/.test(lines[i])) items.push(`<li>${markdownInline(lines[i++].replace(/^\d+[.)]\s+/, ""))}</li>`); out.push(`<ol>${items.join("")}</ol>`); continue; }
+      if (!line.trim()) out.push("<p><br></p>"); else out.push(`<p>${markdownInline(line)}</p>`);
+      i++;
+    }
+    return sanitiseNoteHtml(out.join(""));
   }
   const noteText = (html) => { const el = document.createElement("div"); el.innerHTML = html || ""; return (el.textContent || "").replace(/\s+/g, " ").trim(); };
 
@@ -613,15 +644,17 @@
         </div></aside>
         <article class="card note-workspace">
           <div class="section-title"><div><span class="badge info">${esc(p.label)}</span><h2>Day ${lesson.day} · ${esc(lesson.title)}</h2></div><span id="note-save-state" class="status none">Ready to write</span></div>
-          <p class="muted small">The template prepares your lesson for the final report. Replace the prompts with your real learning, work and evidence.</p>
+          <p class="muted small">The template prepares your lesson for the final report. Paste directly from ChatGPT—headings, bold text, lists, tables, links, quotes and code will keep their structure.</p>
           <div class="note-toolbar" role="toolbar" aria-label="Note formatting">
+            <button type="button" data-note-cmd="undo" title="Undo">↶ Undo</button><button type="button" data-note-cmd="redo" title="Redo">↷ Redo</button>
             <button type="button" data-note-cmd="bold" title="Bold"><strong>B</strong></button><button type="button" data-note-cmd="italic" title="Italic"><em>I</em></button><button type="button" data-note-cmd="underline" title="Underline"><u>U</u></button>
             <button type="button" data-note-block="h2">Heading</button><button type="button" data-note-block="h3">Subheading</button><button type="button" data-note-block="p">Normal</button>
             <button type="button" data-note-cmd="insertUnorderedList">• List</button><button type="button" data-note-cmd="insertOrderedList">1. List</button>
-            <label title="Text colour"><span>Colour</span><input id="note-colour" type="color" value="#442dfa"></label><button type="button" id="clear-format">Clear formatting</button>
+            <button type="button" id="insert-table">▦ Table</button><button type="button" id="insert-link">🔗 Link</button><button type="button" data-note-block="blockquote">❝ Quote</button><button type="button" data-note-block="pre">&lt;/&gt; Code</button>
+            <label title="Text colour"><span>Colour</span><input id="note-colour" type="color" value="#442dfa"></label><button type="button" id="clear-format">Clear formatting</button><button type="button" id="copy-rich-note">Copy note</button>
           </div>
           <div id="note-editor" class="note-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${sanitiseNoteHtml(currentHtml)}</div>
-          <div class="note-tip"><strong>A strong note includes:</strong> what you learned, what you changed, one real result or evidence item, a problem, and one dated next action.</div>
+          <div class="note-tip"><strong>Copy and paste from ChatGPT:</strong> use ChatGPT’s normal Copy button, click inside the note, then paste. Tables and formatting are cleaned automatically to match this template.</div>
           <div class="form-actions"><button class="btn primary" id="save-rich-note">Save note</button><button class="btn" id="reset-note">Reset template</button><a class="btn" href="#/course">Back to course</a></div>
         </article>
       </section>
@@ -639,11 +672,42 @@
       clearTimeout(autosaveTimer);
       autosaveTimer = setTimeout(() => saveNote(""), 900);
     };
+    editor.onpaste = (event) => {
+      event.preventDefault();
+      const clipboard = event.clipboardData, rich = clipboard.getData("text/html"), plain = clipboard.getData("text/plain");
+      const clean = rich ? sanitiseNoteHtml(rich) : plainTextToNoteHtml(plain);
+      document.execCommand("insertHTML", false, clean);
+      state.className = "status warn"; state.textContent = "Pasted · saving…";
+      clearTimeout(autosaveTimer); autosaveTimer = setTimeout(() => saveNote(""), 500);
+    };
     $("#save-rich-note").onclick = () => saveNote();
     $$("[data-note-cmd]").forEach((button) => button.onclick = () => { editor.focus(); document.execCommand(button.dataset.noteCmd); });
     $$("[data-note-block]").forEach((button) => button.onclick = () => { editor.focus(); document.execCommand("formatBlock", false, button.dataset.noteBlock); });
     $("#note-colour").oninput = (e) => { editor.focus(); document.execCommand("foreColor", false, e.target.value); };
     $("#clear-format").onclick = () => { editor.focus(); document.execCommand("removeFormat"); };
+    $("#insert-table").onclick = () => {
+      const rows = Math.min(12, Math.max(1, +(prompt("Number of table rows", "3") || 0))), cols = Math.min(8, Math.max(1, +(prompt("Number of table columns", "3") || 0)));
+      if (!rows || !cols) return;
+      const head = `<tr>${Array.from({ length: cols }, (_, i) => `<th>Heading ${i + 1}</th>`).join("")}</tr>`;
+      const body = Array.from({ length: rows }, () => `<tr>${Array.from({ length: cols }, () => "<td>Write here</td>").join("")}</tr>`).join("");
+      editor.focus(); document.execCommand("insertHTML", false, `<table><thead>${head}</thead><tbody>${body}</tbody></table><p><br></p>`);
+    };
+    $("#insert-link").onclick = () => {
+      const url = prompt("Paste the https:// link");
+      if (!url || !/^https?:\/\//i.test(url)) return url ? toast("Use a complete http:// or https:// link", true) : undefined;
+      editor.focus();
+      const selection = getSelection();
+      if (selection && !selection.isCollapsed) document.execCommand("createLink", false, url);
+      else document.execCommand("insertHTML", false, `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(url)}</a>`);
+    };
+    $("#copy-rich-note").onclick = async () => {
+      const html = sanitiseNoteHtml(editor.innerHTML), plain = noteText(html);
+      try {
+        if (window.ClipboardItem && navigator.clipboard.write) await navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([html], { type: "text/html" }), "text/plain": new Blob([plain], { type: "text/plain" }) })]);
+        else await navigator.clipboard.writeText(plain);
+        toast("Note copied with formatting");
+      } catch { toast("Could not copy this note", true); }
+    };
     $("#reset-note").onclick = () => {
       if (!confirm("Replace this note with a fresh lesson template?")) return;
       editor.innerHTML = noteTemplate(lesson, Store.settings.day_notes[selectedNoteDay] || "");
@@ -659,8 +723,16 @@
       await saveNote("");
       location.hash = a.getAttribute("href");
     });
-    const reportDocument = () => `<!doctype html><html><head><meta charset="utf-8"><title>Outreach SEO Course Notes</title><style>body{max-width:850px;margin:40px auto;font:16px/1.6 Arial;color:#202124}h1{color:#442dfa}section{padding:18px 0;border-bottom:1px solid #ddd}h2{margin-bottom:8px}ul,ol{padding-left:24px}@media print{body{margin:0}section{break-inside:avoid}}</style></head><body><h1>Outreach Recruitment — SEO & KPI Course Notes</h1><p>Prepared ${new Date().toLocaleDateString("en-GB")}</p>${notesReportHtml()}</body></html>`;
-    $("#copy-report").onclick = async () => { clearTimeout(autosaveTimer); await saveNote(""); await navigator.clipboard.writeText(C.lessons.map((l) => `DAY ${l.day} — ${l.title}\n${noteText(notes[l.day]) || "No note written yet."}`).join("\n\n")); toast("Full notes report copied"); };
+    const reportDocument = () => `<!doctype html><html><head><meta charset="utf-8"><title>Outreach SEO Course Notes</title><style>body{max-width:850px;margin:40px auto;font:16px/1.6 Arial;color:#202124}h1{color:#442dfa}section{padding:18px 0;border-bottom:1px solid #ddd}h2{margin-bottom:8px}ul,ol{padding-left:24px}table{width:100%;border-collapse:collapse;margin:14px 0}th,td{padding:8px;border:1px solid #ccc;text-align:left}th{background:#eeebff}blockquote{margin:12px 0;padding:8px 14px;border-left:4px solid #442dfa;background:#f6f5ff}pre{padding:12px;background:#f3f3f3;white-space:pre-wrap}@media print{body{margin:0}section{break-inside:avoid}}</style></head><body><h1>Outreach Recruitment — SEO & KPI Course Notes</h1><p>Prepared ${new Date().toLocaleDateString("en-GB")}</p>${notesReportHtml()}</body></html>`;
+    $("#copy-report").onclick = async () => {
+      clearTimeout(autosaveTimer); await saveNote("");
+      const html = `<h1>Outreach Recruitment — SEO & KPI Course Notes</h1>${notesReportHtml()}`, plain = C.lessons.map((l) => `DAY ${l.day} — ${l.title}\n${noteText(notes[l.day]) || "No note written yet."}`).join("\n\n");
+      try {
+        if (window.ClipboardItem && navigator.clipboard.write) await navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([html], { type: "text/html" }), "text/plain": new Blob([plain], { type: "text/plain" }) })]);
+        else await navigator.clipboard.writeText(plain);
+        toast("Full report copied with formatting");
+      } catch { toast("Could not copy the report", true); }
+    };
     $("#download-report").onclick = async () => { clearTimeout(autosaveTimer); await saveNote(""); const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(new Blob([reportDocument()], { type: "text/html" })), download: `outreach-course-notes-${today()}.html` }); a.click(); URL.revokeObjectURL(a.href); };
     $("#print-report").onclick = async () => { const w = window.open("", "_blank"); if (!w) return toast("Allow pop-ups to print the report", true); clearTimeout(autosaveTimer); await saveNote(""); w.document.write(reportDocument()); w.document.close(); w.focus(); w.print(); };
   }
