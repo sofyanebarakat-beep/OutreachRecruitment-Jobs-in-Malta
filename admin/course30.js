@@ -26,6 +26,7 @@
       start_date: today(),
       completed: [1],
       day_notes: {},
+      lesson_steps: {},
       baseline: {
         date: CFG.BASELINE?.date || "", clicks28: CFG.BASELINE?.clicks28 ?? null,
         impressions28: CFG.BASELINE?.impressions28 ?? null, ctr: null, position: null,
@@ -135,6 +136,7 @@
   const completedSet = () => new Set(Store.settings.completed || []);
   const currentDay = () => { const done = completedSet(); for (let d = 1; d <= 30; d++) if (!done.has(d)) return d; return 30; };
   const phaseOf = (day) => C.phases.find((p) => day >= p.days[0] && day <= p.days[1]);
+  const lessonOf = (day) => C.lessons.find((lesson) => lesson.day === day);
 
   // ── Course section ────────────────────────────────────────────────────────
   let selectedDay = null;
@@ -154,7 +156,7 @@
         <div class="section-title"><h2>Today · Day ${cur}</h2><span class="muted small">${done.size}/30 lessons done</span></div>
         ${cur === C.nextStep.day ? `<p><strong>${esc(C.nextStep.title)}.</strong> ${esc(C.nextStep.text)}</p>` : `<p><strong>${esc(ph.title)}.</strong> ${esc(ph.summary)}</p>`}
         <div class="progress" aria-label="Course progress ${pctDone}%"><span style="width:${pctDone}%"></span></div>
-        <div class="form-actions"><button class="btn primary" id="finish-today">Mark Day ${cur} as done</button>
+        <div class="form-actions"><button class="btn primary" id="finish-today">Continue Day ${cur} step by step</button>
           <a class="btn" href="#/kpi">Record today's KPIs</a></div>
       </section>
 
@@ -223,16 +225,34 @@
       </section>`;
 
     const panel = () => {
-      const d = selectedDay, p = phaseOf(d), isDone = completedSet().has(d);
+      const d = selectedDay, p = phaseOf(d), lesson = lessonOf(d), isDone = completedSet().has(d);
+      const stepState = Store.settings.lesson_steps?.[d] || [];
+      const stepsDone = lesson.steps.filter((_, i) => stepState[i]).length;
       $("#day-panel").innerHTML = `<div class="card" style="background:var(--surface-2)">
-        <div class="section-title"><h3>Day ${d} · ${esc(p.label)} — ${esc(p.title)}</h3>
+        <div class="section-title"><div><div class="kicker muted">Day ${d} · ${esc(p.label)}</div><h3>${esc(lesson.title)}</h3></div>
           <span class="status ${isDone ? "good" : "none"}">${isDone ? "✓ Done" : "Not done yet"}</span></div>
-        <p class="small">${esc(p.summary)}</p>
+        <p class="lesson-goal"><strong>Goal:</strong> ${esc(lesson.goal)}</p>
+        <div class="lesson-progress"><span>${stepsDone} of ${lesson.steps.length} steps complete</span><div class="progress" aria-label="Day ${d} progress ${Math.round((stepsDone / lesson.steps.length) * 100)}%"><span style="width:${(stepsDone / lesson.steps.length) * 100}%"></span></div></div>
+        <ol class="lesson-steps">
+          ${lesson.steps.map((step, i) => `<li class="lesson-step ${stepState[i] ? "complete" : ""}">
+            <label><input type="checkbox" data-step="${i}" ${stepState[i] ? "checked" : ""}><span><strong>Step ${i + 1}</strong>${esc(step)}</span></label>
+          </li>`).join("")}
+        </ol>
+        <div class="lesson-outcome"><strong>Finish with:</strong> ${esc(lesson.outcome)}</div>
         <label>My notes for Day ${d}<textarea id="day-note" rows="3" placeholder="What did you learn, change and measure?">${esc(Store.settings.day_notes[d] || "")}</textarea></label>
         <div class="form-actions">
-          <button class="btn primary" id="toggle-day">${isDone ? "Mark as not done" : "Mark as done"}</button>
+          <button class="btn primary" id="toggle-day" ${!isDone && stepsDone < lesson.steps.length ? "disabled" : ""}>${isDone ? "Mark as not done" : "Complete this lesson"}</button>
           <button class="btn" id="save-note">Save notes</button>
         </div></div>`;
+      $$("[data-step]", $("#day-panel")).forEach((box) => (box.onchange = async () => {
+        Store.settings.lesson_steps ||= {};
+        const state = [...(Store.settings.lesson_steps[d] || [])];
+        state[+box.dataset.step] = box.checked;
+        Store.settings.lesson_steps[d] = state;
+        Store.settings.day_notes[d] = $("#day-note").value;
+        await save(box.checked ? `Step ${+box.dataset.step + 1} completed` : `Step ${+box.dataset.step + 1} reopened`);
+        panel();
+      }));
       $("#toggle-day").onclick = async () => {
         const set = completedSet();
         set.has(d) ? set.delete(d) : set.add(d);
@@ -245,11 +265,9 @@
     };
     $$(".day").forEach((b) => (b.onclick = () => { selectedDay = +b.dataset.day; panel(); }));
     $("#finish-today").onclick = async () => {
-      const set = completedSet(); set.add(cur);
-      Store.settings.completed = [...set].sort((a, b) => a - b);
-      selectedDay = null;
-      await save(`Day ${cur} done — well done!`);
-      renderCourse();
+      selectedDay = cur;
+      panel();
+      $("#day-panel").scrollIntoView({ behavior: "smooth", block: "start" });
     };
     panel();
   }
