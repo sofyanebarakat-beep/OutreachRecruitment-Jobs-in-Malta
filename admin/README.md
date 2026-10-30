@@ -49,6 +49,10 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   its KPIs, Day 1 keyword progress, success KPIs, tools and the next step. Content: `course30-data.js`.
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.
+- **Course Notes** — one structured, report-ready note for every course day. Includes rich formatting
+  (headings, bold, italic, underline, lists and text colour), lesson search, note completion progress,
+  reusable learning/practice/evidence/problem/next-action prompts, and full-report copy, HTML download,
+  preview and print actions. Notes are stored with the existing course settings in Supabase or locally.
 
 Files: `index.html`, `jobsync.js`, `marketing.js`, `images.js`, `social.js`, `calendar-malta.js`, `course30.js`, `course30.css`, `course30-data.js`, `config.js`.
 

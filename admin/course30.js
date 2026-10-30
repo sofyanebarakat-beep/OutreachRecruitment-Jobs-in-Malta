@@ -27,6 +27,7 @@
       completed: [1],
       day_notes: {},
       lesson_steps: {},
+      lesson_notes: {},
       baseline: {
         date: CFG.BASELINE?.date || "", clicks28: CFG.BASELINE?.clicks28 ?? null,
         impressions28: CFG.BASELINE?.impressions28 ?? null, ctr: null, position: null,
@@ -197,6 +198,27 @@
     const good = lesson.day <= 7 ? "recruitment agencies malta · commercial intent · position 9.6 · /about" : lesson.day <= 14 ? "Recruitment Agency in Malta | Outreach Recruitment" : lesson.day <= 21 ? "Your Malta careers guide answers visa questions; our verified job checklist could help its readers." : lesson.day <= 28 ? "Title changed 30 Oct · CTR baseline 1.8% · review after 28 days" : "Improve five priority pages · owner: Sofia · target: +20% clicks · review: 29 Dec";
     return { bad, good };
   }
+  function noteTemplate(lesson, quickNote = "") {
+    return `<h2>Day ${lesson.day} · ${esc(lesson.title)}</h2><p><strong>Date:</strong> ${today()}</p><h3>What I learned</h3><p>Write the main idea in your own words.</p><h3>What I practised</h3><ul><li>Action completed:</li><li>Page, keyword or tool used:</li></ul><h3>Result and evidence</h3><p>Record the number, observation, link or screenshot that proves the work.</p>${quickNote ? `<p><strong>Earlier quick note:</strong> ${esc(quickNote)}</p>` : ""}<h3>Problem or question</h3><p>What was unclear or blocked?</p><h3>My next action</h3><p>Write one specific action and a review date.</p>`;
+  }
+  function sanitiseNoteHtml(html) {
+    const template = document.createElement("template");
+    template.innerHTML = html;
+    const allowed = new Set(["H2", "H3", "P", "DIV", "BR", "STRONG", "B", "EM", "I", "U", "UL", "OL", "LI", "SPAN"]);
+    [...template.content.querySelectorAll("*")].forEach((node) => {
+      if (node.tagName === "FONT") {
+        const span = document.createElement("span"), colour = node.getAttribute("color") || "";
+        if (/^(#[0-9a-f]{3,8}|rgb\([\d\s,.%]+\)|[a-z]+)$/i.test(colour)) span.style.color = colour;
+        span.append(...node.childNodes); node.replaceWith(span); return;
+      }
+      if (!allowed.has(node.tagName)) { node.replaceWith(...node.childNodes); return; }
+      const colour = node.style.color;
+      [...node.attributes].forEach((a) => node.removeAttribute(a.name));
+      if (colour && /^(#[0-9a-f]{3,8}|rgb\([\d\s,.%]+\)|[a-z]+)$/i.test(colour)) node.style.color = colour;
+    });
+    return template.innerHTML;
+  }
+  const noteText = (html) => { const el = document.createElement("div"); el.innerHTML = html || ""; return (el.textContent || "").replace(/\s+/g, " ").trim(); };
 
   // ── Course section ────────────────────────────────────────────────────────
   let selectedDay = null;
@@ -332,6 +354,7 @@
         <div class="form-actions">
           <button class="btn primary" id="toggle-day" ${!isDone && stepsDone < lesson.steps.length ? "disabled" : ""}>${isDone ? "Mark as not done" : "Complete this lesson"}</button>
           <button class="btn" id="save-note">Save notes</button>
+          <a class="btn" href="#/notes/${d}">Open full lesson note →</a>
         </div></div>`;
       $("#copy-template").onclick = async () => {
         await navigator.clipboard.writeText(template.text);
@@ -556,12 +579,90 @@
       if (!local) return;
       s.completed = [...new Set([...(s.completed || []), ...(local.completed || [])])].sort((a, b) => a - b);
       s.day_notes = { ...(local.day_notes || {}), ...s.day_notes };
+      s.lesson_steps = { ...(local.lesson_steps || {}), ...s.lesson_steps };
+      s.lesson_notes = { ...(local.lesson_notes || {}), ...s.lesson_notes };
       const byDate = new Map([...(local.checkins || []), ...s.checkins].map((c) => [c.date, c]));
       s.checkins = [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
       for (const k of local.keywords || []) if (!s.keywords.some((x) => x.keyword === k.keyword)) s.keywords.push(k);
       await save("Browser data copied to the database");
       localStorage.removeItem(LOCAL_KEY); renderKPI();
     };
+  }
+
+  // ── Course notes ─────────────────────────────────────────────────────────
+  let selectedNoteDay = 1;
+  function notesReportHtml() {
+    const notes = Store.settings.lesson_notes || {};
+    return C.lessons.map((lesson) => {
+      const html = notes[lesson.day];
+      return `<section>${html ? sanitiseNoteHtml(html) : `<h2>Day ${lesson.day} · ${esc(lesson.title)}</h2><p><em>No note written yet.</em></p>`}</section>`;
+    }).join("");
+  }
+  function renderNotes(day) {
+    const notes = Store.settings.lesson_notes || (Store.settings.lesson_notes = {});
+    selectedNoteDay = Math.min(30, Math.max(1, +day || selectedNoteDay || currentDay()));
+    const lesson = lessonOf(selectedNoteDay), p = phaseOf(selectedNoteDay);
+    const written = C.lessons.filter((l) => noteText(notes[l.day]).length > 80).length;
+    const currentHtml = notes[selectedNoteDay] || noteTemplate(lesson, Store.settings.day_notes[selectedNoteDay] || "");
+    $("#view").innerHTML = `
+      <section class="card hero notes-hero"><div class="kicker">Course knowledge journal</div><h1>Course Notes & Report</h1><p>Write a structured note for every lesson, then copy, download or print all 30 notes as one report.</p></section>
+      <section class="card notes-summary"><div><span class="value">${written}/30</span><span class="muted">report-ready notes</span></div><div class="progress" aria-label="Notes completed ${Math.round(written / 30 * 100)}%"><span style="width:${written / 30 * 100}%"></span></div><div class="form-actions"><button class="btn" id="copy-report">Copy full report</button><button class="btn" id="download-report">Download report</button><button class="btn" id="print-report">Print report</button></div></section>
+      <section class="notes-layout">
+        <aside class="card notes-index"><label>Find a lesson<input id="notes-search" type="search" placeholder="Search day or topic"></label><div id="notes-list">
+          ${C.lessons.map((l) => `<a href="#/notes/${l.day}" data-note-day="${l.day}" class="${l.day === selectedNoteDay ? "active" : ""} ${noteText(notes[l.day]).length > 80 ? "written" : ""}"><span>${noteText(notes[l.day]).length > 80 ? "✓" : l.day}</span><div><strong>Day ${l.day}</strong><small>${esc(l.title)}</small></div></a>`).join("")}
+        </div></aside>
+        <article class="card note-workspace">
+          <div class="section-title"><div><span class="badge info">${esc(p.label)}</span><h2>Day ${lesson.day} · ${esc(lesson.title)}</h2></div><span id="note-save-state" class="status none">Ready to write</span></div>
+          <p class="muted small">The template prepares your lesson for the final report. Replace the prompts with your real learning, work and evidence.</p>
+          <div class="note-toolbar" role="toolbar" aria-label="Note formatting">
+            <button type="button" data-note-cmd="bold" title="Bold"><strong>B</strong></button><button type="button" data-note-cmd="italic" title="Italic"><em>I</em></button><button type="button" data-note-cmd="underline" title="Underline"><u>U</u></button>
+            <button type="button" data-note-block="h2">Heading</button><button type="button" data-note-block="h3">Subheading</button><button type="button" data-note-block="p">Normal</button>
+            <button type="button" data-note-cmd="insertUnorderedList">• List</button><button type="button" data-note-cmd="insertOrderedList">1. List</button>
+            <label title="Text colour"><span>Colour</span><input id="note-colour" type="color" value="#442dfa"></label><button type="button" id="clear-format">Clear formatting</button>
+          </div>
+          <div id="note-editor" class="note-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true">${sanitiseNoteHtml(currentHtml)}</div>
+          <div class="note-tip"><strong>A strong note includes:</strong> what you learned, what you changed, one real result or evidence item, a problem, and one dated next action.</div>
+          <div class="form-actions"><button class="btn primary" id="save-rich-note">Save note</button><button class="btn" id="reset-note">Reset template</button><a class="btn" href="#/course">Back to course</a></div>
+        </article>
+      </section>
+      <section class="card report-preview"><details><summary>Preview all notes in the final report</summary><div class="notes-report">${notesReportHtml()}</div></details></section>`;
+
+    const editor = $("#note-editor"), state = $("#note-save-state");
+    const saveNote = async (message = "Note saved") => {
+      notes[selectedNoteDay] = sanitiseNoteHtml(editor.innerHTML);
+      await save(message);
+      state.className = "status good"; state.textContent = "✓ Saved";
+    };
+    let autosaveTimer;
+    editor.oninput = () => {
+      state.className = "status warn"; state.textContent = "Saving…";
+      clearTimeout(autosaveTimer);
+      autosaveTimer = setTimeout(() => saveNote(""), 900);
+    };
+    $("#save-rich-note").onclick = () => saveNote();
+    $$("[data-note-cmd]").forEach((button) => button.onclick = () => { editor.focus(); document.execCommand(button.dataset.noteCmd); });
+    $$("[data-note-block]").forEach((button) => button.onclick = () => { editor.focus(); document.execCommand("formatBlock", false, button.dataset.noteBlock); });
+    $("#note-colour").oninput = (e) => { editor.focus(); document.execCommand("foreColor", false, e.target.value); };
+    $("#clear-format").onclick = () => { editor.focus(); document.execCommand("removeFormat"); };
+    $("#reset-note").onclick = () => {
+      if (!confirm("Replace this note with a fresh lesson template?")) return;
+      editor.innerHTML = noteTemplate(lesson, Store.settings.day_notes[selectedNoteDay] || "");
+      state.className = "status warn"; state.textContent = "Unsaved template";
+    };
+    $("#notes-search").oninput = (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      $$('[data-note-day]').forEach((a) => { const l = lessonOf(+a.dataset.noteDay); a.hidden = q && !(`day ${l.day} ${l.title} ${noteText(notes[l.day])}`.toLowerCase().includes(q)); });
+    };
+    $$('[data-note-day]').forEach((a) => a.onclick = async (e) => {
+      e.preventDefault();
+      clearTimeout(autosaveTimer);
+      await saveNote("");
+      location.hash = a.getAttribute("href");
+    });
+    const reportDocument = () => `<!doctype html><html><head><meta charset="utf-8"><title>Outreach SEO Course Notes</title><style>body{max-width:850px;margin:40px auto;font:16px/1.6 Arial;color:#202124}h1{color:#442dfa}section{padding:18px 0;border-bottom:1px solid #ddd}h2{margin-bottom:8px}ul,ol{padding-left:24px}@media print{body{margin:0}section{break-inside:avoid}}</style></head><body><h1>Outreach Recruitment — SEO & KPI Course Notes</h1><p>Prepared ${new Date().toLocaleDateString("en-GB")}</p>${notesReportHtml()}</body></html>`;
+    $("#copy-report").onclick = async () => { clearTimeout(autosaveTimer); await saveNote(""); await navigator.clipboard.writeText(C.lessons.map((l) => `DAY ${l.day} — ${l.title}\n${noteText(notes[l.day]) || "No note written yet."}`).join("\n\n")); toast("Full notes report copied"); };
+    $("#download-report").onclick = async () => { clearTimeout(autosaveTimer); await saveNote(""); const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(new Blob([reportDocument()], { type: "text/html" })), download: `outreach-course-notes-${today()}.html` }); a.click(); URL.revokeObjectURL(a.href); };
+    $("#print-report").onclick = async () => { const w = window.open("", "_blank"); if (!w) return toast("Allow pop-ups to print the report", true); clearTimeout(autosaveTimer); await saveNote(""); w.document.write(reportDocument()); w.document.close(); w.focus(); w.print(); };
   }
 
   // ── Line chart (single series + dashed target, crosshair tooltip) ─────────
@@ -621,7 +722,9 @@
     if (r === "jobsync") window.renderJobSync($("#view"), param);
     else if (r === "marketing") window.renderMarketing($("#view"));
     else if (r === "social") window.renderSocial($("#view"));
-    else (r === "kpi" ? renderKPI : renderCourse)();
+    else if (r === "kpi") renderKPI();
+    else if (r === "notes") renderNotes(param);
+    else renderCourse();
     $("#view").focus({ preventScroll: true });
     window.scrollTo(0, 0);
   }
