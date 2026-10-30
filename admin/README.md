@@ -44,7 +44,8 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
 
 - **Course** — the 30-day *Outreach Recruitment — SEO & KPI Course* (1 hour daily: theory, practice,
   QCM, KPI tracking): every day has its own plain-language goal, numbered practical checklist, saved
-  step progress, expected result and notes; plus the 30-day progress grid, the 4-week plan with
+  step progress, illustrated walkthrough, good/bad examples, beginner help, copyable worksheet,
+  browser-saved screenshot evidence, expected result and notes; plus the 30-day progress grid, the 4-week plan with
   its KPIs, Day 1 keyword progress, success KPIs, tools and the next step. Content: `course30-data.js`.
 - **KPI** — the course's 90-day targets (organic clicks +20%, impressions +30%, 5 priority keywords in
   the Top 10, 30 lessons), 28-day check-ins, trend charts, priority keywords and the baseline.

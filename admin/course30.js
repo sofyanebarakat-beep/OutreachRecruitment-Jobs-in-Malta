@@ -138,6 +138,66 @@
   const phaseOf = (day) => C.phases.find((p) => day >= p.days[0] && day <= p.days[1]);
   const lessonOf = (day) => C.lessons.find((lesson) => lesson.day === day);
 
+  const ProofStore = {
+    db: null,
+    async open() {
+      if (this.db) return this.db;
+      this.db = await new Promise((resolve, reject) => {
+        const req = indexedDB.open("outreach-course-proof", 1);
+        req.onupgradeneeded = () => req.result.createObjectStore("proofs");
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+      return this.db;
+    },
+    async get(day) {
+      const db = await this.open();
+      return new Promise((resolve, reject) => {
+        const req = db.transaction("proofs").objectStore("proofs").get(day);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => reject(req.error);
+      });
+    },
+    async set(day, value) {
+      const db = await this.open();
+      return new Promise((resolve, reject) => {
+        const req = db.transaction("proofs", "readwrite").objectStore("proofs").put(value, day);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    },
+    async remove(day) {
+      const db = await this.open();
+      return new Promise((resolve, reject) => {
+        const req = db.transaction("proofs", "readwrite").objectStore("proofs").delete(day);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    }
+  };
+
+  function visualType(day) {
+    if (day <= 7) return "search";
+    if (day <= 14) return "page";
+    if (day <= 21) return "links";
+    if (day <= 28) return "audit";
+    return "plan";
+  }
+  function lessonVisual(lesson) {
+    const type = visualType(lesson.day);
+    const common = `<div class="visual-browser"><div class="visual-bar"><i></i><i></i><i></i><span>outreachrecruitment.net · practice</span></div>`;
+    if (type === "search") return `${common}<div class="visual-screen visual-search"><div class="visual-side">Performance<br><b>Search results</b><br>Queries<br>Pages</div><div class="visual-content"><div class="visual-filter">① Last 28 complete days</div><div class="visual-metrics"><b>② Clicks<br><strong>1,284</strong></b><b>Impressions<br><strong>48.6K</strong></b><b>CTR<br><strong>2.6%</strong></b></div><div class="visual-chart"><span></span></div><div class="visual-arrow">③ Record the result ↓</div></div></div></div>`;
+    if (type === "page") return `${common}<div class="visual-screen visual-page"><div class="visual-serp"><small>outreachrecruitment.net › jobs</small><b>② Clear page title with Malta context</b><p>③ A useful description that answers the searcher's need.</p></div><div class="visual-document"><em>① One clear H1</em><span></span><span></span><mark>④ Helpful next action</mark></div></div></div>`;
+    if (type === "links") return `${common}<div class="visual-screen visual-links"><div class="visual-node main">③ Outreach<br>resource</div><div class="visual-node n1">① Relevant<br>website</div><div class="visual-node n2">② Useful<br>audience</div><div class="visual-node n3">④ Measured<br>result</div><svg viewBox="0 0 500 180" aria-hidden="true"><path d="M110 45 L245 90 M390 45 L270 90 M250 105 L375 145"/></svg></div></div>`;
+    if (type === "audit") return `${common}<div class="visual-screen visual-audit"><div class="visual-checks"><b>SEO experiment</b><span>✓ ① Save the baseline</span><span>✓ ② Make one change</span><span>◷ ③ Wait for review date</span><span>○ ④ Record the decision</span></div><div class="visual-score"><strong>1</strong><small>change at a time</small></div></div></div>`;
+    return `${common}<div class="visual-screen visual-plan"><div class="visual-road"><span>① Audit</span><i></i><span>② Prioritise</span><i></i><span>③ Assign</span><i></i><span>④ Measure</span></div><div class="visual-finish">60-day growth plan</div></div></div>`;
+  }
+  function comparisonFor(lesson) {
+    const bad = lesson.day <= 7 ? "SEO keyword — improve ranking" : lesson.day <= 14 ? "Best page | Home" : lesson.day <= 21 ? "Hello, please link to our website." : lesson.day <= 28 ? "Changed many things — check later" : "Improve SEO soon";
+    const good = lesson.day <= 7 ? "recruitment agencies malta · commercial intent · position 9.6 · /about" : lesson.day <= 14 ? "Recruitment Agency in Malta | Outreach Recruitment" : lesson.day <= 21 ? "Your Malta careers guide answers visa questions; our verified job checklist could help its readers." : lesson.day <= 28 ? "Title changed 30 Oct · CTR baseline 1.8% · review after 28 days" : "Improve five priority pages · owner: Sofia · target: +20% clicks · review: 29 Dec";
+    return { bad, good };
+  }
+
   // ── Course section ────────────────────────────────────────────────────────
   let selectedDay = null;
   function renderCourse() {
@@ -228,22 +288,74 @@
       const d = selectedDay, p = phaseOf(d), lesson = lessonOf(d), isDone = completedSet().has(d);
       const stepState = Store.settings.lesson_steps?.[d] || [];
       const stepsDone = lesson.steps.filter((_, i) => stepState[i]).length;
+      const comparison = comparisonFor(lesson);
+      const template = C.practiceTemplates[p.id];
       $("#day-panel").innerHTML = `<div class="card" style="background:var(--surface-2)">
         <div class="section-title"><div><div class="kicker muted">Day ${d} · ${esc(p.label)}</div><h3>${esc(lesson.title)}</h3></div>
           <span class="status ${isDone ? "good" : "none"}">${isDone ? "✓ Done" : "Not done yet"}</span></div>
         <p class="lesson-goal"><strong>Goal:</strong> ${esc(lesson.goal)}</p>
+        <div class="practice-flow" aria-label="Lesson workflow"><span class="active">1 Learn</span><b>→</b><span>2 Look</span><b>→</b><span>3 Practise</span><b>→</b><span>4 Prove</span><b>→</b><span>5 Complete</span></div>
+        <details class="visual-example" open>
+          <summary>See the picture example</summary>
+          <p class="small muted">Follow the numbered markers from 1 to 4. This is a simplified picture of the workflow, so the live tool may look slightly different.</p>
+          ${lessonVisual(lesson)}
+        </details>
+        <div class="example-compare">
+          <div class="example-bad"><span>✕ Avoid this</span><p>${esc(comparison.bad)}</p><small>Too vague, unmeasured or not useful to the reader.</small></div>
+          <div class="example-good"><span>✓ Better example</span><p>${esc(comparison.good)}</p><small>Specific, relevant and possible to check later.</small></div>
+        </div>
         <div class="lesson-progress"><span>${stepsDone} of ${lesson.steps.length} steps complete</span><div class="progress" aria-label="Day ${d} progress ${Math.round((stepsDone / lesson.steps.length) * 100)}%"><span style="width:${(stepsDone / lesson.steps.length) * 100}%"></span></div></div>
+        <h4 class="practice-heading">Now do it yourself</h4>
         <ol class="lesson-steps">
           ${lesson.steps.map((step, i) => `<li class="lesson-step ${stepState[i] ? "complete" : ""}">
             <label><input type="checkbox" data-step="${i}" ${stepState[i] ? "checked" : ""}><span><strong>Step ${i + 1}</strong>${esc(step)}</span></label>
           </li>`).join("")}
         </ol>
         <div class="lesson-outcome"><strong>Finish with:</strong> ${esc(lesson.outcome)}</div>
+        <div class="practice-tools">
+          <details class="help-box">
+            <summary>Help me understand</summary>
+            <div class="help-grid"><div><strong>Simple explanation</strong><p>${esc(lesson.goal)} Work through only one numbered action, save it, and then continue.</p></div><div><strong>Real Outreach example</strong><p>Use outreachrecruitment.net, its live job pages and its Search Console data—not imaginary figures.</p></div><div><strong>Common mistake</strong><p>Doing several unrelated changes together makes it difficult to understand what produced the result.</p></div><div><strong>2-minute version</strong><p>Read the goal, copy the template, complete Step 1 and write what you found in your notes.</p></div></div>
+          </details>
+          <details class="template-box">
+            <summary>Practice template · ${esc(template.title)}</summary>
+            <textarea id="practice-template" rows="10" readonly>${esc(template.text)}</textarea>
+            <button class="btn small" id="copy-template" type="button">Copy template</button>
+          </details>
+        </div>
+        <section class="proof-box">
+          <div><h4>Upload your proof</h4><p class="small muted">Add a screenshot showing the work you completed. It is saved privately in this browser with Day ${d}.</p></div>
+          <label class="proof-upload btn"><input id="proof-file" type="file" accept="image/png,image/jpeg,image/webp" hidden>Choose screenshot</label>
+          <div id="proof-preview" class="proof-preview"><span class="muted small">No screenshot saved yet.</span></div>
+        </section>
         <label>My notes for Day ${d}<textarea id="day-note" rows="3" placeholder="What did you learn, change and measure?">${esc(Store.settings.day_notes[d] || "")}</textarea></label>
         <div class="form-actions">
           <button class="btn primary" id="toggle-day" ${!isDone && stepsDone < lesson.steps.length ? "disabled" : ""}>${isDone ? "Mark as not done" : "Complete this lesson"}</button>
           <button class="btn" id="save-note">Save notes</button>
         </div></div>`;
+      $("#copy-template").onclick = async () => {
+        await navigator.clipboard.writeText(template.text);
+        toast("Practice template copied");
+      };
+      const showProof = async () => {
+        const host = $("#proof-preview");
+        try {
+          const proof = await ProofStore.get(d);
+          if (selectedDay !== d) return;
+          if (!proof) { host.innerHTML = `<span class="muted small">No screenshot saved yet.</span>`; return; }
+          const url = URL.createObjectURL(proof.blob);
+          host.innerHTML = `<img src="${url}" alt="Uploaded practice proof for Day ${d}"><div><strong>${esc(proof.name)}</strong><small>${new Date(proof.savedAt).toLocaleString("en-GB")}</small><button class="btn small" id="delete-proof" type="button">Remove</button></div>`;
+          $("#delete-proof").onclick = async () => { URL.revokeObjectURL(url); await ProofStore.remove(d); toast("Screenshot removed"); showProof(); };
+        } catch { host.innerHTML = `<span class="muted small">Screenshot storage is unavailable in this browser.</span>`; }
+      };
+      $("#proof-file").onchange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith("image/") || file.size > 10 * 1024 * 1024) return toast("Choose a PNG, JPG or WebP image smaller than 10 MB", true);
+        try { await ProofStore.set(d, { blob: file, name: file.name, savedAt: new Date().toISOString() }); toast("Screenshot saved with this lesson"); showProof(); }
+        catch { toast("Could not save the screenshot in this browser", true); }
+      };
+      showProof();
       $$("[data-step]", $("#day-panel")).forEach((box) => (box.onchange = async () => {
         Store.settings.lesson_steps ||= {};
         const state = [...(Store.settings.lesson_steps[d] || [])];

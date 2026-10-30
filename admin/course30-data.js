@@ -53,6 +53,28 @@ window.COURSE30 = {
     ["Run the final audit", "Compare the course result with the verified starting point.", ["Use the same date ranges and KPI definitions as Day 1.", "Compare clicks, impressions, CTR, positions and conversions.", "List completed improvements and link each one to evidence.", "Write wins, weak results and limits without claiming unsupported causes."], "An honest before-and-after audit supported by evidence."],
     ["Build the next 60-day plan", "Continue the work with focused actions, owners and review dates.", ["Select the five opportunities with the best impact and effort balance.", "Write one specific action and owner for each opportunity.", "Set the success measure and realistic review date.", "Schedule weekly KPI checks and a final 60-day review."], "A practical 60-day SEO plan ready to follow."],
   ].map((lesson, index) => ({ day: index + 1, title: lesson[0], goal: lesson[1], steps: lesson[2], outcome: lesson[3] })),
+  practiceTemplates: {
+    w1: {
+      title: "Keyword research worksheet",
+      text: "KEYWORD:\nSEARCH INTENT: Jobs / Employer service / Information\nCURRENT POSITION:\nIMPRESSIONS:\nOWNER PAGE:\nWHY THIS IS A PRIORITY:\nNEXT ACTION:"
+    },
+    w2: {
+      title: "On-page improvement worksheet",
+      text: "PAGE URL:\nPRIMARY SEARCH INTENT:\nCURRENT TITLE:\nIMPROVED TITLE:\nCURRENT H1:\nIMPROVED H1:\nVISITOR QUESTION TO ANSWER:\nINTERNAL LINKS TO ADD:\nCTA:\nREVIEW DATE:"
+    },
+    w3: {
+      title: "Authority and outreach worksheet",
+      text: "PROSPECT / WEBSITE:\nRELEVANT PAGE:\nAUDIENCE CONNECTION:\nRESOURCE TO SHARE:\nPERSONALISED OPENING:\nSIMPLE REQUEST:\nCONTACT DATE:\nREPLY / LINK / REFERRAL RESULT:"
+    },
+    w4: {
+      title: "SEO experiment worksheet",
+      text: "PAGE OR QUERY:\nOBSERVATION:\nBASELINE METRIC:\nONE CHANGE TO TEST:\nCHANGE DATE:\nEXPECTED RESULT:\nREVIEW DATE:\nACTUAL RESULT:\nDECISION: Keep / Improve / Reverse"
+    },
+    final: {
+      title: "60-day action plan",
+      text: "PRIORITY:\nWHY IT MATTERS:\nSPECIFIC ACTION:\nOWNER:\nSTART DATE:\nSUCCESS MEASURE:\nREVIEW DATE:\nEVIDENCE LINK:\nSTATUS: Not started / Active / Complete"
+    }
+  },
   phases: [
     {
       id: "w1", label: "Week 1", days: [1, 7], title: "Keyword Research & Google Rankings",
