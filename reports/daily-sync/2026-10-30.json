@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-30",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Accounts Payable",
+      "slug": "accounts-payable",
+      "url": "https://outreachrecruitment.net/jobs/accounts-payable/",
+      "city": "Birkirkara, Malta"
+    },
+    {
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b/",
+      "city": "Żebbuġ, Malta"
+    },
+    {
+      "title": "Storekeeper",
+      "slug": "storekeeper-zebbug",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-zebbug/",
+      "city": "Żebbuġ, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 117,
+  "site_open_before": 120,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 117,
+    "ok": 114,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "finance-jobs-in-malta.html": {
+        "replaced": 0,
+        "removed": 1
+      },
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 2,
+        "removed": 0
+      },
+      "manufacturing-jobs-in-malta.html": {
+        "replaced": 2,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 28,
+    "itemlist_items": 117,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 3,
+    "pages_reopened": 0
+  },
+  "site_open_after": 117,
+  "salary_coverage": {
+    "open": 117,
+    "with_salary": 27
+  }
+}
