@@ -3864,3 +3864,69 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-10-30T08:53:04,Accounts Payable,accounts-payable,https://outreachrecruitment.net/jobs/accounts-payable/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accounts-payable/""
+  }
+}
+"
+2026-10-30T08:53:04,Driver License B,driver-license-b,https://outreachrecruitment.net/jobs/driver-license-b/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/driver-license-b/""
+  }
+}
+"
+2026-10-30T08:53:04,Storekeeper,storekeeper-zebbug,https://outreachrecruitment.net/jobs/storekeeper-zebbug/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/storekeeper-zebbug/""
+  }
+}
+"
+2026-10-30T09:04:01,Senior Clerk,senior-clerk,https://outreachrecruitment.net/jobs/senior-clerk/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/senior-clerk/""
+  }
+}
+"
+2026-10-30T09:04:01,Business Development Manager HoReCa,business-development-manager-horeca,https://outreachrecruitment.net/jobs/business-development-manager-horeca/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/business-development-manager-horeca/""
+  }
+}
+"
+2026-10-30T09:04:01,Customer Experience Assistant,customer-experience-assistant,https://outreachrecruitment.net/jobs/customer-experience-assistant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/customer-experience-assistant/""
+  }
+}
+"
+2026-10-30T09:04:01,PDI Leading Hand,pdi-leading-hand,https://outreachrecruitment.net/jobs/pdi-leading-hand/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/pdi-leading-hand/""
+  }
+}
+"
+2026-10-30T09:04:01,"Facilities, Maintenance and Health & Safety Manager",facilities-maintenance-and-health-and-safety-manager,https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager/""
+  }
+}
+"
+2026-10-30T09:04:01,Maintenance Person,maintenance-person,https://outreachrecruitment.net/jobs/maintenance-person/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/maintenance-person/""
+  }
+}
+"
+2026-10-30T09:04:01,Retail Shop Supervisor,retail-shop-supervisor,https://outreachrecruitment.net/jobs/retail-shop-supervisor/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/retail-shop-supervisor/""
+  }
+}
+"
+2026-10-30T09:04:01,Accounting Officer,accounting-officer,https://outreachrecruitment.net/jobs/accounting-officer/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accounting-officer/""
+  }
+}
+"
