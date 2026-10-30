@@ -27,7 +27,7 @@
   "held": [],
   "notes": [],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 117,
   "site_open_before": 120,
@@ -69,5 +69,104 @@
   "salary_coverage": {
     "open": 117,
     "with_salary": 27
+  },
+  "google": {
+    "sent": 3,
+    "ok": 3,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 117,
+    "expected": 117,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 8,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Senior Clerk",
+        "slug": "senior-clerk",
+        "url": "https://outreachrecruitment.net/jobs/senior-clerk/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Business Development Manager HoReCa",
+        "slug": "business-development-manager-horeca",
+        "url": "https://outreachrecruitment.net/jobs/business-development-manager-horeca/",
+        "age_days": 4,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Customer Experience Assistant",
+        "slug": "customer-experience-assistant",
+        "url": "https://outreachrecruitment.net/jobs/customer-experience-assistant/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "PDI Leading Hand",
+        "slug": "pdi-leading-hand",
+        "url": "https://outreachrecruitment.net/jobs/pdi-leading-hand/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Facilities, Maintenance and Health & Safety Manager",
+        "slug": "facilities-maintenance-and-health-and-safety-manager",
+        "url": "https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Maintenance Person",
+        "slug": "maintenance-person",
+        "url": "https://outreachrecruitment.net/jobs/maintenance-person/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Retail Shop Supervisor",
+        "slug": "retail-shop-supervisor",
+        "url": "https://outreachrecruitment.net/jobs/retail-shop-supervisor/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Accounting Officer",
+        "slug": "accounting-officer",
+        "url": "https://outreachrecruitment.net/jobs/accounting-officer/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
