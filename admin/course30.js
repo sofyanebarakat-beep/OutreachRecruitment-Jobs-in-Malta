@@ -69,7 +69,7 @@
     async loadAuto() {
       this.auto = []; this.live = {};
       if (this.mode !== "supabase") return;
-      const daily = await this.sb.from("seo_kpi_daily").select("date,clicks,impressions,avg_position")
+      const daily = await this.sb.from("seo_kpi_daily").select("date,clicks,impressions,avg_position,organic_users,applications,employer_leads")
         .gte("date", daysAgo(150)).order("date");
       if (!daily.error) this.auto = daily.data || [];
       const keys = this.settings.keywords.map((k) => "gsc:" + k.keyword.toLowerCase());
@@ -86,22 +86,30 @@
   };
 
   // ── Derived numbers ───────────────────────────────────────────────────────
-  // Rolling 28-day totals from the automation's daily Search Console rows.
+  // Rolling 28-day totals from the automation's daily rows. When the automation has stored Search
+  // Console's own 28-day property totals (settings.gsc_totals), those replace the summed daily
+  // clicks/impressions/CTR/position, which never match the Search Console report exactly.
   function autoSeries() {
     const rows = Store.auto.filter((r) => r.clicks !== null || r.impressions !== null);
     const byDate = new Map(rows.map((r) => [r.date, r]));
+    const verified = Store.settings.gsc_totals || [];
     const out = [];
     for (const r of rows) {
-      let c = 0, i = 0, pw = 0, n = 0;
+      let c = 0, i = 0, pw = 0, n = 0, users = 0, apps = 0, leads = 0, ga = 0;
       for (let k = 0; k < 28; k++) {
         const d = new Date(new Date(r.date).getTime() - k * 864e5).toISOString().slice(0, 10);
         const x = byDate.get(d);
         if (!x) continue;
         n++; c += x.clicks || 0; i += x.impressions || 0; pw += (x.avg_position || 0) * (x.impressions || 0);
+        if (x.organic_users !== null && x.organic_users !== undefined) { ga++; users += x.organic_users; apps += x.applications || 0; leads += x.employer_leads || 0; }
       }
-      if (n >= 25) out.push({ date: r.date, clicks28: c, impressions28: i, ctr: i ? (c / i) * 100 : null, position: i ? pw / i : null, source: "Search Console (auto)" });
+      if (n < 25) continue;
+      const p = { date: r.date, source: "Search Console (auto)" };
+      if (!verified.length) Object.assign(p, { clicks28: c, impressions28: i, ctr: i ? (c / i) * 100 : null, position: i ? pw / i : null });
+      if (ga >= 25) Object.assign(p, { organic_users: users, applications: apps, employer_leads: leads, source: "GA4 (auto)" });
+      if (Object.keys(p).length > 2) out.push(p);
     }
-    return out;
+    return [...out, ...verified.map((v) => ({ ...v, source: "Search Console (verified)" }))];
   }
   function series() {
     const manual = Store.settings.checkins.map((c) => ({ ...c, source: "Check-in" }));
@@ -288,8 +296,8 @@
       <section class="grid-4">
         ${[["CTR", L.ctr ? fmt(L.ctr.value, 2) + "%" : "—", b.ctr !== null && b.ctr !== undefined ? `Baseline ${fmt(b.ctr, 2)}%` : ""],
            ["Average position", L.position ? fmt(L.position.value, 1) : "—", b.position ? `Baseline ${fmt(b.position, 1)}` : ""],
-           ["Applications", fmt(L.applications?.value), "Latest check-in"],
-           ["Employer leads", fmt(L.leads?.value), "Latest check-in"]]
+           ["Applications (28 days)", fmt(L.applications?.value), L.applications?.source || "Latest check-in"],
+           ["Employer leads (28 days)", fmt(L.leads?.value), L.leads?.source || "Latest check-in"]]
           .map(([l, v, sub]) => `<div class="card kpi-card"><div class="label">${l}</div><div class="value" style="font-size:1.4rem">${v}</div><div class="sub">${sub}</div></div>`).join("")}
       </section>
 
@@ -340,7 +348,7 @@
 
       <section class="card">
         <h2>Baseline</h2>
-        ${b.verified ? "" : `<p class="status warn">⚠ ${esc(b.note || C.baselineWarning)}</p>`}
+        ${b.verified ? (b.note && b.auto ? `<p class="status good">✓ ${esc(b.note)}</p>` : "") : `<p class="status warn">⚠ ${esc(b.note || C.baselineWarning)}</p>`}
         <form id="baseline" class="form-grid" style="margin-top:10px">
           <label>Baseline date<input type="date" name="date" value="${esc(b.date)}"></label>
           <label>Clicks (28 days)<input type="number" name="clicks28" value="${b.clicks28 ?? ""}"></label>
@@ -382,7 +390,7 @@
       e.preventDefault();
       const f = new FormData(e.target);
       Object.assign(s.baseline, { date: f.get("date"), clicks28: num(f.get("clicks28")), impressions28: num(f.get("impressions28")),
-        ctr: num(f.get("ctr")), position: num(f.get("position")), verified: f.get("verified") === "on" });
+        ctr: num(f.get("ctr")), position: num(f.get("position")), verified: f.get("verified") === "on", auto: false });
       await save("Baseline saved"); renderKPI();
     };
     $("#add-kw").onsubmit = async (e) => {

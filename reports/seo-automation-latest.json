@@ -1,21 +1,17 @@
 {
-  "generated_at": "2026-10-30T09:21:55.367011+01:00",
+  "generated_at": "2026-10-30T10:02:21.341487+01:00",
   "checks": {
     "gsc": {
       "ok": true,
       "through": "2026-10-28",
-      "days": 6,
+      "days": 149,
       "queries": 1000,
       "pages": 449
     },
     "ga4": {
       "ok": true,
-      "days": 6,
+      "days": 149,
       "property_id": "350506159"
-    },
-    "audit": {
-      "ok": true,
-      "issues": 1960
     },
     "sectors": {
       "ok": true,
@@ -23,7 +19,7 @@
     },
     "opportunities": {
       "ok": true,
-      "rows": 95
+      "rows": 59
     },
     "experiments": {
       "new": 3
@@ -33,5 +29,13 @@
       "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
     }
   },
-  "warnings": []
+  "warnings": [],
+  "kpi_latest_28d": {
+    "start": "2026-10-01",
+    "end": "2026-10-28",
+    "clicks28": 1291,
+    "impressions28": 21498,
+    "ctr": 6.01,
+    "position": 9.8
+  }
 }

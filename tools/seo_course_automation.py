@@ -27,6 +27,7 @@ STATE = ROOT / "tools" / "private" / "seo-automation-state.json"
 SITE_URL = "https://outreachrecruitment.net/"
 DEFAULT_CREDS = ROOT / "tools" / "private" / "search-console-bot.json"
 GA4_ID = "G-FK09PDN6TK"
+HISTORY_DAYS = 150  # daily rows re-imported each run, so the admin's rolling 28-day KPIs always have full windows
 EXCLUDED = {".git", "admin", "reports", "components", "images", "SEO Emp and Candidates", "STUDY IN MALTA SKILLS"}
 SECTOR_SLUGS = {
     "Hospitality": "hospitality-jobs-in-malta", "Engineering & Maintenance": "engineering-jobs-in-malta",
@@ -214,7 +215,7 @@ class Supabase:
 
 def pull_gsc() -> dict:
     token=google_token(["https://www.googleapis.com/auth/webmasters.readonly"])
-    end=date.today()-timedelta(days=2); start=end-timedelta(days=6); month=end-timedelta(days=27)
+    end=date.today()-timedelta(days=2); start=end-timedelta(days=HISTORY_DAYS-1); month=end-timedelta(days=27)
     daily=[]
     for row in gsc_query(token,str(start),str(end),["date"]):
         daily.append({"date":row["keys"][0],"clicks":round(row.get("clicks",0)),"impressions":round(row.get("impressions",0)),"ctr":round(row.get("ctr",0)*100,4),"avg_position":round(row.get("position",0),2),"source":"gsc"})
@@ -224,7 +225,42 @@ def pull_gsc() -> dict:
     pages=[]
     for row in gsc_query(token,str(month),str(end),["page"],2000):
         u=row["keys"][0]; pages.append({"source_key":"gsc:"+u,"url":u,"clicks":round(row.get("clicks",0)),"impressions":round(row.get("impressions",0)),"ctr":round(row.get("ctr",0)*100,4),"position":round(row.get("position",0),2),"notes":f"GSC 28d through {end}"})
-    return {"daily":daily,"queries":queries,"pages":pages,"through":str(end)}
+    return {"daily":daily,"queries":queries,"pages":pages,"through":str(end),"latest28":gsc_totals(token,str(month),str(end))}
+
+
+def gsc_totals(token: str, start: str, end: str) -> dict:
+    """Property totals exactly as the Search Console Performance report shows them (no dimension, so
+    clicks/impressions are not summed from page or query rows) and a CTR derived from those totals."""
+    rows=gsc_query(token,start,end,[])
+    r=rows[0] if rows else {}
+    clicks=round(r.get("clicks",0)); impressions=round(r.get("impressions",0))
+    return {"start":start,"end":end,"clicks28":clicks,"impressions28":impressions,
+            "ctr":round(clicks/impressions*100,2) if impressions else None,"position":round(r.get("position",0),1) if r else None}
+
+
+def kpi_history(existing: list, through: str) -> list:
+    """Weekly 28-day property totals (plus the latest day), so the admin's KPI cards and charts show the
+    same numbers as Search Console instead of a sum of daily rows. Only missing points are queried."""
+    have={p.get("date"):p for p in existing or [] if p.get("date")}
+    end=date.fromisoformat(through); wanted=[str(end-timedelta(days=7*n)) for n in range(0,(HISTORY_DAYS-28)//7+1)]
+    token=None
+    for day in wanted:
+        if day in have: continue
+        token=token or google_token(["https://www.googleapis.com/auth/webmasters.readonly"])
+        d=date.fromisoformat(day); t=gsc_totals(token,str(d-timedelta(days=27)),day)
+        have[day]={"date":day,"clicks28":t["clicks28"],"impressions28":t["impressions28"],"ctr":t["ctr"],"position":t["position"]}
+    return sorted(have.values(),key=lambda p:p["date"])[-60:]
+
+
+def verified_baseline(course: dict) -> dict | None:
+    """28 days of final Search Console data ending the day before the course started."""
+    try: start=date.fromisoformat(str(course.get("start_date") or ""))
+    except ValueError: return None
+    end=min(start-timedelta(days=1),date.today()-timedelta(days=2))
+    token=google_token(["https://www.googleapis.com/auth/webmasters.readonly"])
+    t=gsc_totals(token,str(end-timedelta(days=27)),str(end))
+    return {"date":str(end),"clicks28":t["clicks28"],"impressions28":t["impressions28"],"ctr":t["ctr"],"position":t["position"],
+            "verified":True,"auto":True,"note":f"Verified automatically from the Search Console API: {t['start']} to {t['end']} (final data, web search)."}
 
 
 def ga4_report(property_id: str, dimensions, metrics, start="7daysAgo", end="2daysAgo", dimension_filter=None):
@@ -238,7 +274,7 @@ def ga4_report(property_id: str, dimensions, metrics, start="7daysAgo", end="2da
 
 def pull_ga4(property_id: str) -> dict[str, dict]:
     filt={"filter":{"fieldName":"sessionDefaultChannelGroup","stringFilter":{"matchType":"EXACT","value":"Organic Search"}}}
-    data=ga4_report(property_id,["date","eventName"],["activeUsers","eventCount"],dimension_filter=filt)
+    data=ga4_report(property_id,["date","eventName"],["activeUsers","eventCount"],start=f"{HISTORY_DAYS+1}daysAgo",dimension_filter=filt)
     out=defaultdict(lambda:{"organic_users":0,"applications":0,"employer_leads":0,"ai_referrals":0})
     for row in data.get("rows",[]):
         day,event=[x["value"] for x in row["dimensionValues"]]; users,count=[int(float(x["value"])) for x in row["metricValues"]]
@@ -246,7 +282,7 @@ def pull_ga4(property_id: str) -> dict[str, dict]:
         if event=="apply_click": out[key]["applications"]+=count
         if event=="employer_lead_submit": out[key]["employer_leads"]+=count
     ai_filter={"filter":{"fieldName":"sessionSource","stringFilter":{"matchType":"FULL_REGEXP","value":".*(chatgpt|perplexity|gemini|copilot|claude).*","caseSensitive":False}}}
-    ai=ga4_report(property_id,["date"],["sessions"],dimension_filter=ai_filter)
+    ai=ga4_report(property_id,["date"],["sessions"],start=f"{HISTORY_DAYS+1}daysAgo",dimension_filter=ai_filter)
     for row in ai.get("rows",[]):
         day=row["dimensionValues"][0]["value"]; key=f"{day[:4]}-{day[4:6]}-{day[6:]}"; out[key]["ai_referrals"]+=int(float(row["metricValues"][0]["value"]))
     return dict(out)
@@ -315,6 +351,7 @@ def main() -> int:
     load_env(ROOT/"tools/private/seo_automation.env")
     result={"generated_at":datetime.now().astimezone().isoformat(),"checks":{},"warnings":[]}
     gsc=pull_gsc(); result["checks"]["gsc"]={"ok":True,"through":gsc["through"],"days":len(gsc["daily"]),"queries":len(gsc["queries"]),"pages":len(gsc["pages"])}
+    result["kpi_latest_28d"]=gsc["latest28"]
     ga={}; property_id=os.environ.get("GA4_PROPERTY_ID","")
     if property_id:
         try: ga=pull_ga4(property_id); result["checks"]["ga4"]={"ok":True,"days":len(ga),"property_id":property_id}
@@ -367,6 +404,21 @@ def main() -> int:
         sb.upsert("seo_technical",audit,"source_key"); sb.upsert("seo_sector_opportunities",sector_rows,"sector"); sb.upsert("seo_experiments",experiments,"source_key"); sb.upsert("seo_alerts",alerts,"source_key")
         try: sb.upsert("seo_opportunities",opportunity_rows,"source_key")
         except RuntimeError as exc: result["warnings"].append("Opportunity table unavailable; rerun admin_schema.sql. "+str(exc))
+        # Replace an unverified (hand-typed) course baseline with real Search Console totals.
+        course_rows=sb.get("seo_settings","select=value&key=eq.course30")
+        course=(course_rows[0].get("value") if course_rows else None) or {}
+        baseline=course.get("baseline") or {}
+        if course and (not baseline.get("verified") or baseline.get("auto")):
+            fresh=verified_baseline(course)
+            if fresh and any(baseline.get(k)!=fresh[k] for k in ("date","clicks28","impressions28","ctr","position","verified")):
+                course["baseline"]={**baseline,**fresh}
+                sb.upsert("seo_settings",[{"key":"course30","value":course,"updated_at":datetime.now().astimezone().isoformat()}],"key")
+            if fresh: result["baseline"]=fresh
+        if course:
+            history=kpi_history(course.get("gsc_totals"),gsc["through"])
+            if history!=course.get("gsc_totals"):
+                course["gsc_totals"]=history
+                sb.upsert("seo_settings",[{"key":"course30","value":course,"updated_at":datetime.now().astimezone().isoformat()}],"key")
         # On each course Day 7, create an editable weekly-summary draft if those fields are empty.
         settings=sb.get("seo_settings","select=value&key=eq.course_start")
         if settings:
