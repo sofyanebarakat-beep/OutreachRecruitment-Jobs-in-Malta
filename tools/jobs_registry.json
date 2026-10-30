@@ -1,5 +1,21 @@
 [
   {
+    "slug": "sushi-chef",
+    "title": "Sushi Chef",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/09692c92-ffc9-4ef7-864b-3b71329f209b/apply",
+    "keywords": "sushi chef japanese chef sushi cook sashimi asian cuisine restaurant chef st julians malta",
+    "featured": true,
+    "lastmod": "2026-10-30",
+    "salary": "€1,900 per month"
+  },
+  {
     "slug": "senior-clerk",
     "title": "Senior Clerk",
     "category": "Administration",
@@ -2228,22 +2244,6 @@
     "featured": false,
     "lastmod": "2026-10-07",
     "status": "closed"
-  },
-  {
-    "slug": "sushi-chef",
-    "title": "Sushi Chef",
-    "category": "Hospitality",
-    "location": "St. Julian, Malta",
-    "location_slug": "st. julian, malta",
-    "employment_type": "Full-Time",
-    "work_mode": "On-Site",
-    "date": "2026-06-09",
-    "valid_through": "2026-08-03",
-    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c1d869fe-c93f-4c7c-bffe-b3e9ee8de931/apply",
-    "keywords": "sushi chef hospitality st. julian, malta",
-    "featured": false,
-    "lastmod": "2026-08-04",
-    "status": "expired"
   },
   {
     "slug": "reservations-agent",
