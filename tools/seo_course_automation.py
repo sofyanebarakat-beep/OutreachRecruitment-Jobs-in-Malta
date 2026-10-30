@@ -204,9 +204,13 @@ class Supabase:
         return data
     def upsert(self, table, rows, conflict):
         if not self.enabled or not rows: return
-        status,data=request_json(f"{self.url}/rest/v1/{table}?on_conflict={quote(conflict)}",method="POST",
-            headers={**self.headers,"Prefer":"resolution=merge-duplicates,return=minimal"},body=rows)
-        if status not in (200,201,204): raise RuntimeError(f"Supabase upsert {table} {status}: {data}")
+        # PostgREST bulk upserts need identical keys in every row, so send each key-shape separately.
+        groups=defaultdict(list)
+        for row in rows: groups[tuple(sorted(row))].append(row)
+        for batch in groups.values():
+            status,data=request_json(f"{self.url}/rest/v1/{table}?on_conflict={quote(conflict)}",method="POST",
+                headers={**self.headers,"Prefer":"resolution=merge-duplicates,return=minimal"},body=batch)
+            if status not in (200,201,204): raise RuntimeError(f"Supabase upsert {table} {status}: {data}")
     def patch(self, table, query, row):
         if not self.enabled: return
         status,data=request_json(f"{self.url}/rest/v1/{table}?{query}",method="PATCH",headers={**self.headers,"Prefer":"return=minimal"},body=row)

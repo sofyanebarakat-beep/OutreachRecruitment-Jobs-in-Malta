@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T10:02:21.341487+01:00",
+  "generated_at": "2026-10-30T10:05:05.418815+01:00",
   "checks": {
     "gsc": {
       "ok": true,
@@ -13,20 +13,24 @@
       "days": 149,
       "property_id": "350506159"
     },
+    "audit": {
+      "ok": true,
+      "issues": 1960
+    },
     "sectors": {
       "ok": true,
       "rows": 17
     },
     "opportunities": {
       "ok": true,
-      "rows": 59
+      "rows": 95
     },
     "experiments": {
       "new": 3
     },
     "supabase": {
-      "ok": false,
-      "error": "SUPABASE_SERVICE_ROLE_KEY not configured; local report only"
+      "ok": true,
+      "alerts": 73
     }
   },
   "warnings": [],
@@ -37,5 +41,15 @@
     "impressions28": 21498,
     "ctr": 6.01,
     "position": 9.8
+  },
+  "baseline": {
+    "date": "2026-10-13",
+    "clicks28": 2017,
+    "impressions28": 24004,
+    "ctr": 8.4,
+    "position": 9.4,
+    "verified": true,
+    "auto": true,
+    "note": "Verified automatically from the Search Console API: 2026-09-16 to 2026-10-13 (final data, web search)."
   }
 }
