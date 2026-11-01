@@ -1,13 +1,114 @@
 {
-  "last_run": "2026-10-12",
+  "last_run": "2026-11-01",
   "summary": {
-    "checked": 116,
-    "job_posting_ok": 99,
-    "warnings": 209,
-    "not_indexed": 17,
-    "error": ""
+    "checked": 123,
+    "job_posting_ok": 91,
+    "warnings": 180,
+    "not_indexed": 32,
+    "error": "",
+    "reindex_requested": 32
   },
   "pages": {
+    "workshop-assistant-manager": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "aftersales-receptionist": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "warranty-administrator": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "back-office-administrator": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "leasing-administration-officer": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "sushi-chef": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"credentialCategory\"",
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "senior-clerk": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "business-development-manager-horeca": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "customer-experience-assistant": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "pdi-leading-hand": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "facilities-maintenance-and-health-and-safety-manager": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "maintenance-person": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "retail-shop-supervisor": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "accounting-officer": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "receptionist": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "host-receptionist": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
     "front-office-executive": {
       "indexed": true,
       "job_posting": true,
@@ -74,20 +175,10 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"maxValue\""
-      ]
-    },
-    "front-office-agent": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"educationRequirements\"",
         "Invalid enum value in field \"experienceRequirements\""
       ]
     },
-    "head-of-spa-2": {
+    "front-office-agent": {
       "indexed": true,
       "job_posting": true,
       "errors": [],
@@ -156,8 +247,7 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"credentialCategory\""
       ]
     },
     "hr-administration-officer": {
@@ -223,16 +313,6 @@
         "Missing field \"baseSalary\""
       ]
     },
-    "customer-operations-associate": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
     "structural-engineer": {
       "indexed": true,
       "job_posting": true,
@@ -286,16 +366,6 @@
         "Missing field \"baseSalary\""
       ]
     },
-    "it-support-executive": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
     "general-maintenance-technician": {
       "indexed": true,
       "job_posting": true,
@@ -336,16 +406,6 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Missing field \"baseSalary\""
-      ]
-    },
-    "accounts-payable": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
         "Missing field \"baseSalary\""
       ]
     },
@@ -399,9 +459,7 @@
       "indexed": true,
       "job_posting": true,
       "errors": [],
-      "warnings": [
-        "Missing field \"baseSalary\""
-      ]
+      "warnings": []
     },
     "draughtsperson": {
       "indexed": true,
@@ -418,18 +476,7 @@
       "errors": [],
       "warnings": [
         "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
-    "customer-care-associate": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"experienceRequirements\""
       ]
     },
     "sales-executive-luxury-retail": {
@@ -485,7 +532,7 @@
       "warnings": [
         "Invalid enum value in field \"educationRequirements\"",
         "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"maxValue\""
+        "Missing field \"baseSalary\""
       ]
     },
     "delivery-driver-malta-c-license": {
@@ -530,8 +577,7 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"credentialCategory\""
       ]
     },
     "room-attendents": {
@@ -544,22 +590,13 @@
         "Missing field \"baseSalary\""
       ]
     },
-    "finance-associate": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
     "skilled-carpenters": {
       "indexed": true,
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"educationRequirements\"",
+        "Invalid enum value in field \"experienceRequirements\""
       ]
     },
     "delivery-person-with-driving-licence-c1": {
@@ -590,15 +627,6 @@
       ]
     },
     "audit-senior": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
-    "product-owner-hybrid": {
       "indexed": true,
       "job_posting": true,
       "errors": [],
@@ -645,31 +673,12 @@
         "Missing field \"baseSalary\""
       ]
     },
-    "first-line-support-hybrid": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
     "semi-senior-accountant": {
       "indexed": true,
       "job_posting": true,
       "errors": [],
       "warnings": [
         "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
-      ]
-    },
-    "sales-executive-2": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
         "Missing field \"baseSalary\""
       ]
     },
@@ -680,6 +689,14 @@
       "warnings": [
         "Invalid enum value in field \"credentialCategory\"",
         "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
+    },
+    "it-support-executive-2": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
         "Missing field \"baseSalary\""
       ]
     },
@@ -784,8 +801,7 @@
       "errors": [],
       "warnings": [
         "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"experienceRequirements\""
       ]
     },
     "ship-chandler": {
@@ -793,17 +809,14 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"credentialCategory\""
       ]
     },
     "fleet-mechanical-superintendent": {
       "indexed": true,
       "job_posting": true,
       "errors": [],
-      "warnings": [
-        "Missing field \"baseSalary\""
-      ]
+      "warnings": []
     },
     "client-accountant-2": {
       "indexed": true,
@@ -871,8 +884,7 @@
       "errors": [],
       "warnings": [
         "Invalid enum value in field \"credentialCategory\"",
-        "Invalid enum value in field \"experienceRequirements\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"experienceRequirements\""
       ]
     },
     "senior-waiter-sommelier": {
@@ -880,8 +892,7 @@
       "job_posting": true,
       "errors": [],
       "warnings": [
-        "Invalid enum value in field \"credentialCategory\"",
-        "Missing field \"baseSalary\""
+        "Invalid enum value in field \"credentialCategory\""
       ]
     },
     "public-area-cleaner": {
@@ -917,14 +928,6 @@
         "Missing field \"baseSalary\""
       ]
     },
-    "junior-revenue-accounts-analyst": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
-        "Missing field \"baseSalary\""
-      ]
-    },
     "learning-development-executive-hybrid": {
       "indexed": true,
       "job_posting": true,
@@ -933,12 +936,6 @@
         "Invalid enum value in field \"credentialCategory\"",
         "Missing field \"baseSalary\""
       ]
-    },
-    "operations-supervisor": {
-      "indexed": false,
-      "job_posting": false,
-      "errors": [],
-      "warnings": []
     },
     "heavy-equipment-mechanic-2": {
       "indexed": false,
@@ -952,14 +949,6 @@
       "errors": [],
       "warnings": [
         "Invalid enum value in field \"educationRequirements\"",
-        "Invalid enum value in field \"experienceRequirements\""
-      ]
-    },
-    "head-chef-in-gozo": {
-      "indexed": true,
-      "job_posting": true,
-      "errors": [],
-      "warnings": [
         "Invalid enum value in field \"experienceRequirements\""
       ]
     },
@@ -1011,6 +1000,21 @@
       "job_posting": false,
       "errors": [],
       "warnings": []
+    },
+    "cleaner-marsa": {
+      "indexed": false,
+      "job_posting": false,
+      "errors": [],
+      "warnings": []
+    },
+    "truck-trailer-driver": {
+      "indexed": true,
+      "job_posting": true,
+      "errors": [],
+      "warnings": [
+        "Invalid enum value in field \"experienceRequirements\"",
+        "Missing field \"baseSalary\""
+      ]
     }
   }
 }
