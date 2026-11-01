@@ -1,5 +1,80 @@
 [
   {
+    "slug": "workshop-assistant-manager",
+    "title": "Workshop Assistant Manager",
+    "category": "Engineering & Maintenance",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0bd3aac9-23b6-45c8-b2b0-32beb7d55792/apply",
+    "keywords": "workshop assistant manager workshop supervisor automotive workshop service manager technicians aftersales gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-01"
+  },
+  {
+    "slug": "aftersales-receptionist",
+    "title": "Aftersales Receptionist",
+    "category": "Customer Service",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c/apply",
+    "keywords": "aftersales receptionist showroom receptionist car dealership receptionist front desk automotive maltese english gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-01"
+  },
+  {
+    "slug": "warranty-administrator",
+    "title": "Warranty Administrator",
+    "category": "Administration",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c9d68a7c-031e-43de-9abb-1ace8fb4fe24/apply",
+    "keywords": "warranty administrator warranty claims clerk automotive warranty recall campaigns aftersales administration gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-01"
+  },
+  {
+    "slug": "back-office-administrator",
+    "title": "Back Office Administrator",
+    "category": "Administration",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a76cf000-1af2-4763-aa11-82eddec33737/apply",
+    "keywords": "back office administrator aftersales administrator service booking administrator automotive crm job cards gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-01"
+  },
+  {
+    "slug": "leasing-administration-officer",
+    "title": "Leasing Administration Officer",
+    "category": "Administration",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-10-30",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/762c9fd6-b31a-4da3-ae27-3fb4244c1bcc/apply",
+    "keywords": "leasing administration officer leasing administrator fleet administration car leasing vehicle insurance road licence maltese english gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-01"
+  },
+  {
     "slug": "sushi-chef",
     "title": "Sushi Chef",
     "category": "Hospitality",
@@ -1623,7 +1698,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a4e4c67b-6173-468c-94c2-f7a59594c18e/apply",
     "keywords": "it support executive it & technology gżira, malta",
     "featured": false,
-    "lastmod": "2026-08-27"
+    "lastmod": "2026-11-01",
+    "status": "closed"
   },
   {
     "slug": "commis",
@@ -3641,7 +3717,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/57f253f2-fdd5-4495-b9dd-eaae87374bb6/apply",
     "keywords": "sales executive sales gżira, malta",
     "featured": false,
-    "lastmod": "2026-10-27"
+    "lastmod": "2026-11-01",
+    "status": "closed"
   },
   {
     "slug": "housekeeper-2",
@@ -3957,8 +4034,7 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a/apply",
     "keywords": "driver license b driver logistics żebbuġ, malta construction",
     "featured": true,
-    "lastmod": "2026-10-30",
-    "status": "closed"
+    "lastmod": "2026-11-01"
   },
   {
     "slug": "general-labourer",
@@ -5056,9 +5132,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0094a7ce-72a7-44e6-8cd1-0ba1321bb783/apply",
     "keywords": "storekeeper warehouse stock management logistics żebbuġ malta",
     "featured": true,
-    "lastmod": "2026-10-30",
-    "salary": "€18,000–€25,000 per year",
-    "status": "closed"
+    "lastmod": "2026-11-01",
+    "salary": "€18,000–€25,000 per year"
   },
   {
     "slug": "proposal-engineer-energy-solutions",

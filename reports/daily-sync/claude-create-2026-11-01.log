@@ -1,0 +1,35 @@
+I built all 5 job pages and each one passes `tools/verify_job_page.py`, including the headless Chrome render. Nothing is committed or pushed, and no other job was touched: the registry gained exactly these 5 entries and is otherwise unchanged.
+
+**One departure from your instructions:** I built the pages with the repo's own builder, `tools/build_job_page.py`, which earlier sync runs also used. It clones the rich page `jobs/crane-installer/index.html`, not `head-chef-in-gozo` or `client-accountant`. It's the same rich layout, not `jobs/plumber`. The builder fails the build if any crane-installer text is left over. I also checked the whole file by hand, and the only "Construction" text left is the normal site menu link.
+
+**What each job has:**
+- **Pages:** `jobs/<slug>/index.html` and `jobs/<slug>.html`, identical.
+- **Registry entry:** no status, `valid_through` 2029-12-30, `apply_url` from the fact sheet, no salary.
+- **Spec:** `tools/job_specs/<slug>.json`.
+- **Report:** `reports/job-seo-<slug>-2026-11-01.md`.
+
+**Facts, all from the fact sheets:**
+- Every page says "Competitive salary" and has no `baseSalary` in the schema, because none of the five lists a salary.
+- All are Full-time, On-site, in Gżira.
+- Maltese and English are required only on Aftersales Receptionist and Leasing Administration Officer, as their fact sheets say. The other three show English, the site default.
+- The reference number appears only in an HTML comment, and 2029-12-30 only in the schema and registry.
+- The visible FAQ questions match the FAQPage schema, and the FAQ is closed by default.
+- Each page links only to its own apply URL.
+
+**Categories:**
+- Workshop Assistant Manager: Engineering & Maintenance.
+- Aftersales Receptionist: Customer Service.
+- Warranty Administrator, Back Office Administrator and Leasing Administration Officer: Administration.
+
+**Things to know:**
+- **Leasing Administration Officer title:** the default page title was 61 characters, so it uses "Leasing Administration Officer Job, Gżira Malta | Outreach" (58).
+- **No Administration hub:** the site has no Administration hub page yet, so the three Administration pages use Customer Service Jobs in Malta as their breadcrumb hub. Senior Clerk already does the same.
+- **Similar jobs:** the builder picks similar jobs from the same category only. On Aftersales Receptionist that left two carpentry cards from the template, and on the Administration pages it picked "Cleaner". I replaced these by hand with related open jobs: the other Gżira roles, Customer Experience Assistant, Customer Contact Centre Representative and Senior Clerk. Those four pages now say "Similar Jobs" instead of "Similar Jobs in <category>". Rebuilding from a spec would bring back the builder's picks.
+
+CREATED 0bd3aac9-23b6-45c8-b2b0-32beb7d55792 workshop-assistant-manager
+CREATED 7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c aftersales-receptionist
+CREATED c9d68a7c-031e-43de-9abb-1ace8fb4fe24 warranty-administrator
+CREATED a76cf000-1af2-4763-aa11-82eddec33737 back-office-administrator
+CREATED 762c9fd6-b31a-4da3-ae27-3fb4244c1bcc leasing-administration-officer
+
+--- stderr ---

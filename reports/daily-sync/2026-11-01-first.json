@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-01",
+  "created": [
+    {
+      "uuid": "0bd3aac9-23b6-45c8-b2b0-32beb7d55792",
+      "title": "Workshop Assistant Manager",
+      "city": "Gżira",
+      "slug": "workshop-assistant-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0bd3aac9-23b6-45c8-b2b0-32beb7d55792",
+      "url": "https://outreachrecruitment.net/jobs/workshop-assistant-manager/"
+    },
+    {
+      "uuid": "7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c",
+      "title": "Aftersales Receptionist",
+      "city": "Gżira",
+      "slug": "aftersales-receptionist",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c",
+      "url": "https://outreachrecruitment.net/jobs/aftersales-receptionist/"
+    },
+    {
+      "uuid": "c9d68a7c-031e-43de-9abb-1ace8fb4fe24",
+      "title": "Warranty Administrator",
+      "city": "Gżira",
+      "slug": "warranty-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c9d68a7c-031e-43de-9abb-1ace8fb4fe24",
+      "url": "https://outreachrecruitment.net/jobs/warranty-administrator/"
+    },
+    {
+      "uuid": "a76cf000-1af2-4763-aa11-82eddec33737",
+      "title": "Back Office Administrator",
+      "city": "Gżira",
+      "slug": "back-office-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a76cf000-1af2-4763-aa11-82eddec33737",
+      "url": "https://outreachrecruitment.net/jobs/back-office-administrator/"
+    },
+    {
+      "uuid": "762c9fd6-b31a-4da3-ae27-3fb4244c1bcc",
+      "title": "Leasing Administration Officer",
+      "city": "Gżira",
+      "slug": "leasing-administration-officer",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/762c9fd6-b31a-4da3-ae27-3fb4244c1bcc",
+      "url": "https://outreachrecruitment.net/jobs/leasing-administration-officer/"
+    }
+  ],
+  "reopened": [
+    {
+      "title": "Storekeeper",
+      "slug": "storekeeper-zebbug",
+      "uuid": "0094a7ce-72a7-44e6-8cd1-0ba1321bb783",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-zebbug/",
+      "city": "Żebbuġ, Malta"
+    },
+    {
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "uuid": "56e4d449-13a7-42b4-a93f-82f77e4caf8a",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b/",
+      "city": "Żebbuġ, Malta"
+    }
+  ],
+  "closed": [
+    {
+      "title": "IT Support Executive",
+      "slug": "it-support-executive",
+      "url": "https://outreachrecruitment.net/jobs/it-support-executive/",
+      "city": "Gżira, Malta"
+    },
+    {
+      "title": "Sales Executive",
+      "slug": "sales-executive-2",
+      "url": "https://outreachrecruitment.net/jobs/sales-executive-2/",
+      "city": "Gżira, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Workshop Assistant Manager: no salary given on the careers page — page says 'Competitive salary'.",
+    "Aftersales Receptionist: no salary given on the careers page — page says 'Competitive salary'.",
+    "Warranty Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Back Office Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Leasing Administration Officer: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 123,
+  "site_open_before": 118,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 116,
+    "ok": 113,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "it-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "salary-calculator-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "sales-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 19,
+    "itemlist_items": 123,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 2,
+    "pages_reopened": 2
+  },
+  "site_open_after": 123,
+  "salary_coverage": {
+    "open": 123,
+    "with_salary": 29
+  }
+}
