@@ -88,7 +88,7 @@
     "Back Office Administrator: no salary given on the careers page — page says 'Competitive salary'.",
     "Leasing Administration Officer: no salary given on the careers page — page says 'Competitive salary'."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 123,
   "site_open_before": 118,
@@ -134,5 +134,164 @@
   "salary_coverage": {
     "open": 123,
     "with_salary": 29
+  },
+  "google": {
+    "sent": 9,
+    "ok": 9,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 123,
+    "expected": 123,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 14,
+    "ok": [
+      {
+        "title": "Sushi Chef",
+        "slug": "sushi-chef",
+        "url": "https://outreachrecruitment.net/jobs/sushi-chef/",
+        "age_days": 2,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      }
+    ],
+    "flagged": [
+      {
+        "title": "Workshop Assistant Manager",
+        "slug": "workshop-assistant-manager",
+        "url": "https://outreachrecruitment.net/jobs/workshop-assistant-manager/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Aftersales Receptionist",
+        "slug": "aftersales-receptionist",
+        "url": "https://outreachrecruitment.net/jobs/aftersales-receptionist/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Warranty Administrator",
+        "slug": "warranty-administrator",
+        "url": "https://outreachrecruitment.net/jobs/warranty-administrator/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Back Office Administrator",
+        "slug": "back-office-administrator",
+        "url": "https://outreachrecruitment.net/jobs/back-office-administrator/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Leasing Administration Officer",
+        "slug": "leasing-administration-officer",
+        "url": "https://outreachrecruitment.net/jobs/leasing-administration-officer/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Senior Clerk",
+        "slug": "senior-clerk",
+        "url": "https://outreachrecruitment.net/jobs/senior-clerk/",
+        "age_days": 6,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Business Development Manager HoReCa",
+        "slug": "business-development-manager-horeca",
+        "url": "https://outreachrecruitment.net/jobs/business-development-manager-horeca/",
+        "age_days": 6,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Customer Experience Assistant",
+        "slug": "customer-experience-assistant",
+        "url": "https://outreachrecruitment.net/jobs/customer-experience-assistant/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "PDI Leading Hand",
+        "slug": "pdi-leading-hand",
+        "url": "https://outreachrecruitment.net/jobs/pdi-leading-hand/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Facilities, Maintenance and Health & Safety Manager",
+        "slug": "facilities-maintenance-and-health-and-safety-manager",
+        "url": "https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Maintenance Person",
+        "slug": "maintenance-person",
+        "url": "https://outreachrecruitment.net/jobs/maintenance-person/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Retail Shop Supervisor",
+        "slug": "retail-shop-supervisor",
+        "url": "https://outreachrecruitment.net/jobs/retail-shop-supervisor/",
+        "age_days": 9,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Accounting Officer",
+        "slug": "accounting-officer",
+        "url": "https://outreachrecruitment.net/jobs/accounting-officer/",
+        "age_days": 11,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
