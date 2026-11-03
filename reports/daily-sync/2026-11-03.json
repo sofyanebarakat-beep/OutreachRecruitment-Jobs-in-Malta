@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-03",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Receptionist",
+      "slug": "receptionist",
+      "url": "https://outreachrecruitment.net/jobs/receptionist/",
+      "city": "St. Julian's, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 122,
+  "site_open_before": 123,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 122,
+    "ok": 119,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "index.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 24,
+    "itemlist_items": 122,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 122,
+  "salary_coverage": {
+    "open": 122,
+    "with_salary": 28
+  }
+}
