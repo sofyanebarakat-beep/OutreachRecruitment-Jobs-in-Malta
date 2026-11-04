@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hotel-general-manager",
+    "title": "Hotel General Manager",
+    "category": "Hospitality",
+    "location": "St. Julian's, Malta",
+    "location_slug": "st. julian's, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-11-04",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/64da0fe6-144f-41ca-a0f6-9530da9ab3e1/apply",
+    "keywords": "hotel general manager hotel manager gm pre-opening new hotel st julians malta 3-star hospitality management revpar",
+    "featured": true,
+    "lastmod": "2026-11-04",
+    "salary": "€52,000–€55,000 per year"
+  },
+  {
     "slug": "workshop-assistant-manager",
     "title": "Workshop Assistant Manager",
     "category": "Engineering & Maintenance",

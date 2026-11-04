@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-31",
+  "created": [],
+  "reopened": [
+    {
+      "title": "Storekeeper",
+      "slug": "storekeeper-zebbug",
+      "uuid": "0094a7ce-72a7-44e6-8cd1-0ba1321bb783",
+      "url": "https://outreachrecruitment.net/jobs/storekeeper-zebbug/",
+      "city": "Żebbuġ, Malta"
+    },
+    {
+      "title": "Driver License B",
+      "slug": "driver-license-b",
+      "uuid": "56e4d449-13a7-42b4-a93f-82f77e4caf8a",
+      "url": "https://outreachrecruitment.net/jobs/driver-license-b/",
+      "city": "Żebbuġ, Malta"
+    }
+  ],
+  "closed": [
+    {
+      "title": "IT Support Executive",
+      "slug": "it-support-executive",
+      "url": "https://outreachrecruitment.net/jobs/it-support-executive/",
+      "city": "Gżira, Malta"
+    },
+    {
+      "title": "Sales Executive",
+      "slug": "sales-executive-2",
+      "url": "https://outreachrecruitment.net/jobs/sales-executive-2/",
+      "city": "Gżira, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "0bd3aac9-23b6-45c8-b2b0-32beb7d55792",
+      "title": "Workshop Assistant Manager",
+      "city": "Gżira",
+      "slug": "workshop-assistant-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0bd3aac9-23b6-45c8-b2b0-32beb7d55792",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c",
+      "title": "Aftersales Receptionist",
+      "city": "Gżira",
+      "slug": "aftersales-receptionist",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "c9d68a7c-031e-43de-9abb-1ace8fb4fe24",
+      "title": "Warranty Administrator",
+      "city": "Gżira",
+      "slug": "warranty-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/c9d68a7c-031e-43de-9abb-1ace8fb4fe24",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "a76cf000-1af2-4763-aa11-82eddec33737",
+      "title": "Back Office Administrator",
+      "city": "Gżira",
+      "slug": "back-office-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a76cf000-1af2-4763-aa11-82eddec33737",
+      "reason": "new job — not created (report-only run)"
+    },
+    {
+      "uuid": "762c9fd6-b31a-4da3-ae27-3fb4244c1bcc",
+      "title": "Leasing Administration Officer",
+      "city": "Gżira",
+      "slug": "leasing-administration-officer",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/762c9fd6-b31a-4da3-ae27-3fb4244c1bcc",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [
+    "Workshop Assistant Manager: no salary given on the careers page — page says 'Competitive salary'.",
+    "Aftersales Receptionist: no salary given on the careers page — page says 'Competitive salary'.",
+    "Warranty Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Back Office Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Leasing Administration Officer: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 123,
+  "site_open_before": 118,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 116,
+    "ok": 113,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "site_open_after": 123,
+  "salary_coverage": {
+    "open": 118,
+    "with_salary": 28
+  }
+}
