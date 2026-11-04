@@ -4488,3 +4488,9 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-11-04T11:00:07,Hotel General Manager,hotel-general-manager,https://outreachrecruitment.net/jobs/hotel-general-manager/,URL_UPDATED,manual_new_job,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-general-manager/""
+  }
+}
+"
