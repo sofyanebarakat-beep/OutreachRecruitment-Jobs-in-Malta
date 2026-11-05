@@ -73,6 +73,12 @@
    "pages": 16
   },
   {
+   "q": "Do I need to speak Maltese?",
+   "a": "Yes. Fluency in both Maltese and English is essential for this role.",
+   "url": "/jobs",
+   "pages": 12
+  },
+  {
    "q": "Do I need to be living in Malta to apply?",
    "a": "Yes. This role is open to candidates already residing in Malta.",
    "url": "/jobs",
@@ -87,12 +93,6 @@
   {
    "q": "Is a salary stated for this role?",
    "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance and an employee loyalty card.",
-   "url": "/jobs",
-   "pages": 10
-  },
-  {
-   "q": "Do I need to speak Maltese?",
-   "a": "Yes. Fluency in both Maltese and English is essential for this role.",
    "url": "/jobs",
    "pages": 10
   },
@@ -651,6 +651,36 @@
   {
    "q": "Where is the Host / Receptionist job based?",
    "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Hotel General Manager job pay?",
+   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "When does the hotel open?",
+   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "How big is the hotel?",
+   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Who does the General Manager report to?",
+   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need pre-opening experience?",
+   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1657,6 +1687,42 @@
    "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
    "slug": "host-receptionist",
    "title": "Host / Receptionist"
+  },
+  {
+   "q": "What does the Hotel General Manager job pay?",
+   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
+  },
+  {
+   "q": "When does the hotel open?",
+   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
+  },
+  {
+   "q": "How big is the hotel?",
+   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
+  },
+  {
+   "q": "Who does the General Manager report to?",
+   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
+  },
+  {
+   "q": "Do I need pre-opening experience?",
+   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
+  },
+  {
+   "q": "Do I need to speak Maltese?",
+   "a": "No. Fluent spoken and written English is required; knowledge of Maltese or other languages is an advantage.",
+   "slug": "hotel-general-manager",
+   "title": "Hotel General Manager"
   },
   {
    "q": "What do these Dubai hospitality jobs pay?",
