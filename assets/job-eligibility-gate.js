@@ -32,11 +32,12 @@
     var panel=document.getElementById("job-apply-panel");if(!panel||!eligible(saved))return;
     var summary=panel.querySelector(".eligibility-summary");
     if(!summary){summary=document.createElement("section");summary.className="eligibility-summary";var headerText=panel.querySelector(".job-inline-apply-header .text");var existingIntro=headerText&&headerText.querySelector(".text-medium");if(existingIntro)existingIntro.remove();if(headerText)headerText.appendChild(summary);else panel.insertBefore(summary,panel.firstChild);}
-    summary.innerHTML='<div class="eligibility-summary-head"><h2>Eligibility confirmed</h2></div><p class="eligibility-summary-lead">Apply now — if you\'re a match, we\'ll be in touch to arrange an interview.</p><div class="eligibility-summary-grid"><span><strong>Current residence:</strong>'+escapeHtml(countryNames[saved.country]||saved.country)+'</span></div><p class="eligibility-summary-note">Please enter your full name, email and remaining details in the official application form below.</p>';
+    summary.innerHTML='<button class="eligibility-back" type="button" data-job-description-trigger data-eligibility-back>Back to job description</button><div class="eligibility-summary-head"><h2>Eligibility confirmed</h2></div><p class="eligibility-summary-lead">Apply now — if you\'re a match, we\'ll be in touch to arrange an interview.</p><div class="eligibility-summary-grid"><span><strong>Current residence:</strong>'+escapeHtml(countryNames[saved.country]||saved.country)+'</span></div><p class="eligibility-summary-note">Please enter your full name, email and remaining details in the official application form below.</p>';
   }
   function escapeHtml(value){var node=document.createElement("div");node.textContent=value||"";return node.innerHTML;}
 
   document.addEventListener("click",function(event){
+    if(event.target.closest("[data-eligibility-back]")){setTimeout(function(){history.replaceState(null,"",location.pathname+location.search);},0);return;}
     var trigger=event.target.closest("[data-job-apply-trigger], [data-slow-scroll-target='how-to-apply']");
     if(!trigger)return;
     if(eligible(saved)){if(trigger.hasAttribute("data-slow-scroll-target")){event.preventDefault();event.stopImmediatePropagation();continueToApplication();}else{setTimeout(showSummary,0);}return;}
