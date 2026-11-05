@@ -1,18 +1,11 @@
 (function(){
   "use strict";
   var STORAGE_KEY="or-hotel-manager-eligibility";
-  var countries=[
-    ["AL","🇦🇱 Albania"],["AD","🇦🇩 Andorra"],["AM","🇦🇲 Armenia"],["AT","🇦🇹 Austria"],["AZ","🇦🇿 Azerbaijan"],
-    ["BY","🇧🇾 Belarus"],["BE","🇧🇪 Belgium"],["BA","🇧🇦 Bosnia and Herzegovina"],["BG","🇧🇬 Bulgaria"],["HR","🇭🇷 Croatia"],
-    ["CY","🇨🇾 Cyprus"],["CZ","🇨🇿 Czechia"],["DK","🇩🇰 Denmark"],["EE","🇪🇪 Estonia"],["FI","🇫🇮 Finland"],
-    ["FR","🇫🇷 France"],["GE","🇬🇪 Georgia"],["DE","🇩🇪 Germany"],["GR","🇬🇷 Greece"],["HU","🇭🇺 Hungary"],
-    ["IS","🇮🇸 Iceland"],["IE","🇮🇪 Ireland"],["IT","🇮🇹 Italy"],["XK","🇽🇰 Kosovo"],["LV","🇱🇻 Latvia"],
-    ["LI","🇱🇮 Liechtenstein"],["LT","🇱🇹 Lithuania"],["LU","🇱🇺 Luxembourg"],["MT","🇲🇹 Malta"],["MD","🇲🇩 Moldova"],
-    ["MC","🇲🇨 Monaco"],["ME","🇲🇪 Montenegro"],["NL","🇳🇱 Netherlands"],["MK","🇲🇰 North Macedonia"],["NO","🇳🇴 Norway"],
-    ["PL","🇵🇱 Poland"],["PT","🇵🇹 Portugal"],["RO","🇷🇴 Romania"],["RU","🇷🇺 Russia"],["SM","🇸🇲 San Marino"],["RS","🇷🇸 Serbia"],
-    ["SK","🇸🇰 Slovakia"],["SI","🇸🇮 Slovenia"],["ES","🇪🇸 Spain"],["SE","🇸🇪 Sweden"],["CH","🇨🇭 Switzerland"],
-    ["TR","🇹🇷 Türkiye"],["UA","🇺🇦 Ukraine"],["GB","🇬🇧 United Kingdom"],["VA","🇻🇦 Vatican City"],["OTHER","🌍 Outside Europe"]
-  ];
+  var countryCodes="AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI KP KR KW KG LA LV LB LS LR LY LI LT LU MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG MK NO OM PK PW PS PA PG PY PE PH PL PT QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW XK".split(" ");
+  var europeCodes="AL AD AM AT AZ BY BE BA BG HR CY CZ DK EE FI FR GE DE GR HU IS IE IT XK KZ LV LI LT LU MT MD MC ME NL MK NO PL PT RO RU SM RS SK SI ES SE CH TR UA GB VA".split(" ");
+  var displayNames=typeof Intl!=="undefined"&&Intl.DisplayNames?new Intl.DisplayNames(["en"],{type:"region"}):null;
+  function flag(code){return code.replace(/./g,function(letter){return String.fromCodePoint(127397+letter.charCodeAt(0));});}
+  var countries=countryCodes.map(function(code){var name=code==="XK"?"Kosovo":displayNames?displayNames.of(code):code;return [code,flag(code)+" "+name];}).sort(function(a,b){return a[1].slice(a[1].indexOf(" ")+1).localeCompare(b[1].slice(b[1].indexOf(" ")+1));});
   var countryNames={};countries.forEach(function(c){countryNames[c[0]]=c[1];});
   var saved=null,lastFocus=null;
   try{saved=JSON.parse(sessionStorage.getItem(STORAGE_KEY)||"null");}catch(e){saved=null;}
@@ -22,8 +15,9 @@
   gate.innerHTML='<div class="eligibility-dialog" role="dialog" aria-modal="true" aria-labelledby="eligibility-title"><button class="eligibility-close" type="button" aria-label="Close eligibility check">×</button><p class="eligibility-eyebrow">Before you apply</p><h2 class="eligibility-title" id="eligibility-title">Check your eligibility</h2><p class="eligibility-intro">This vacancy is currently open to candidates who live in Europe. Search for your current country of residence to continue.</p><form class="eligibility-form"><div class="eligibility-field"><label for="eligibility-country-search">Current country of residence</label><div class="eligibility-country-picker"><input id="eligibility-country-search" type="search" autocomplete="off" placeholder="Search by country" role="combobox" aria-autocomplete="list" aria-controls="eligibility-country-list" aria-expanded="false" required><input id="eligibility-country" name="country" type="hidden"><div class="eligibility-country-list" id="eligibility-country-list" role="listbox" hidden>'+countries.map(function(c){return '<button type="button" role="option" data-country-code="'+c[0]+'" data-country-name="'+c[1]+'">'+c[1]+'</button>';}).join("")+'<p class="eligibility-country-empty" hidden>No country found</p></div></div></div><button class="eligibility-submit" type="submit">Check eligibility and continue</button><p class="eligibility-note">Your selection stays in this browser session. Enter your name and email once in the official application form on the next step.</p><div class="eligibility-result" hidden aria-live="polite"></div></form></div>';
   document.body.appendChild(gate);
   var form=gate.querySelector("form"),countryInput=gate.querySelector("#eligibility-country"),countrySearch=gate.querySelector("#eligibility-country-search"),countryList=gate.querySelector("#eligibility-country-list"),countryOptions=Array.prototype.slice.call(countryList.querySelectorAll("[data-country-code]")),countryEmpty=countryList.querySelector(".eligibility-country-empty"),result=gate.querySelector(".eligibility-result"),closeButton=gate.querySelector(".eligibility-close");
+  var neighbourhood=document.getElementById("neighbourhood-desc");if(neighbourhood){var locationSection=neighbourhood.closest(".stack");if(locationSection)locationSection.remove();}
 
-  function eligible(data){return data&&data.country&&data.country!=="OTHER";}
+  function eligible(data){return data&&europeCodes.indexOf(data.country)!==-1;}
   function openCountryList(){countryList.hidden=false;countrySearch.setAttribute("aria-expanded","true");filterCountries();}
   function closeCountryList(){countryList.hidden=true;countrySearch.setAttribute("aria-expanded","false");}
   function filterCountries(){var query=countrySearch.value.trim().toLowerCase(),visible=0;countryOptions.forEach(function(option){var show=!query||option.getAttribute("data-country-name").toLowerCase().indexOf(query)!==-1;option.hidden=!show;if(show)visible++;});countryEmpty.hidden=visible!==0;}
@@ -36,9 +30,8 @@
   function showSummary(){
     var panel=document.getElementById("job-apply-panel");if(!panel||!eligible(saved))return;
     var summary=panel.querySelector(".eligibility-summary");
-    if(!summary){summary=document.createElement("section");summary.className="eligibility-summary";var header=panel.querySelector(".job-inline-apply-header");if(header)header.insertAdjacentElement("afterend",summary);else panel.insertBefore(summary,panel.firstChild);}
-    summary.innerHTML='<div class="eligibility-summary-head"><h2>Eligibility confirmed</h2><button type="button" data-eligibility-change>Change country</button></div><div class="eligibility-summary-grid"><span><strong>Current residence:</strong>'+escapeHtml(countryNames[saved.country]||saved.country)+'</span></div><p class="eligibility-summary-note">Please enter your full name, email and remaining details in the official application form below.</p>';
-    summary.querySelector("[data-eligibility-change]").addEventListener("click",openGate);
+    if(!summary){summary=document.createElement("section");summary.className="eligibility-summary";var headerText=panel.querySelector(".job-inline-apply-header .text");var existingIntro=headerText&&headerText.querySelector(".text-medium");if(existingIntro)existingIntro.remove();if(headerText)headerText.appendChild(summary);else panel.insertBefore(summary,panel.firstChild);}
+    summary.innerHTML='<div class="eligibility-summary-head"><h2>Eligibility confirmed</h2></div><p class="eligibility-summary-lead">Apply now — if you\'re a match, we\'ll be in touch to arrange an interview.</p><div class="eligibility-summary-grid"><span><strong>Current residence:</strong>'+escapeHtml(countryNames[saved.country]||saved.country)+'</span></div><p class="eligibility-summary-note">Please enter your full name, email and remaining details in the official application form below.</p>';
   }
   function escapeHtml(value){var node=document.createElement("div");node.textContent=value||"";return node.innerHTML;}
 
