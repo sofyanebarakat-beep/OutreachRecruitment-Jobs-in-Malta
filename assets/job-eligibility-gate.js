@@ -57,8 +57,7 @@
     if(!eligible(saved)){
       returnToDescription();
       result.hidden=false;result.className="eligibility-result eligibility-result--blocked";
-      result.innerHTML='<h3>This role is not available for your location</h3><p>You must currently live in Europe to apply for this vacancy.</p><div class="eligibility-result-actions"><button class="eligibility-secondary" type="button" data-edit-residence>Change country</button><a class="eligibility-secondary" href="/jobs/">Browse other jobs</a></div>';
-      result.querySelector("[data-edit-residence]").addEventListener("click",function(){countrySearch.focus();openCountryList();});return;
+      result.innerHTML='<h3>This role is not available for your location</h3><p>You must currently live in Europe to apply for this vacancy.</p><div class="eligibility-result-actions"><a class="eligibility-secondary" href="/jobs/">Browse other jobs</a></div>';return;
     }
     continueToApplication();setTimeout(showSummary,0);
   });
