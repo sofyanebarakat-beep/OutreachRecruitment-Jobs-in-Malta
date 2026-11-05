@@ -17,7 +17,7 @@ HOW TO USE
 HOMEPAGE_LIMIT
 --------------
 Set how many jobs appear on the homepage scroll-track.
-The jobs page always shows every job.
+The homepage and jobs page show only open jobs.
 """
 from __future__ import annotations
 import json
@@ -339,9 +339,9 @@ def main() -> None:
     closed_jobs  = [j for j in current_jobs if is_closed(j)]
     expired_count = len(jobs) - len(current_jobs)
     print(f"Updating listings ({today}) — {len(open_jobs)} open, {len(closed_jobs)} closed, {expired_count} expired/hidden")
-    # Pass only open jobs for homepage + counters, but full list for jobs page grid
+    # Public listing pages show only jobs that are still open.
     update_homepage(open_jobs)
-    update_jobs_page(current_jobs, len(open_jobs))  # shows closed cards in grid too
+    update_jobs_page(open_jobs, len(open_jobs))
     update_jobs_sitemap(open_jobs, today)   # don't index closed pages in sitemap
     update_sitemap_indexes(today)
     try:

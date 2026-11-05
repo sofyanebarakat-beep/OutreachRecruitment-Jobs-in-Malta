@@ -3,8 +3,8 @@
 sync_job_listings.py — make every place that lists jobs show only open jobs.
 
   1. Hub + homepage pages (*.html in the site root): remove <article class="opening-job-card">
-     cards that link to a closed/expired job. (jobs/index.html is rebuilt by
-     update_jobs_listing.py and keeps its intentional "Closed" cards.)
+     cards that link to a closed/expired job. jobs/index.html is rebuilt by
+     update_jobs_listing.py with open jobs only.
   2. "Similar jobs" carousels on job pages: swap cards that point to a closed/expired
      job for an open job, same category first.
   3. /jobs ItemList JSON-LD (the job list Google reads): rebuilt from the open jobs.

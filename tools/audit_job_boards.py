@@ -532,7 +532,7 @@ Steps (all mandatory — do not skip any):
       "This position is no longer accepting applications. Browse our current open vacancies →"
       linking to /jobs/
    e. Confirm the JobPosting schema validThrough is set to a past date
-4. In jobs/index.html: mark each closed job card with a "Position Closed" badge — do NOT remove the cards from the grid
+4. In jobs/index.html: remove each closed job card from the grid so only open positions are shown
 5. Update sitemaps/sitemap-jobs.xml — set <lastmod> for each closed job URL to today"""
 
 
