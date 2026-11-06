@@ -300,6 +300,13 @@ and rolls the page back if any fails):
   HTML comment.
 - FAQ: closed by default; FAQPage schema questions must equal the visible FAQ questions.
 - The apply link MUST be the fact sheet's apply_url. No other careers-page job link on the page.
+- Use the shared inline application experience from jobs/hotel-general-manager/index.html: lazy-load the
+  job's exact apply_url in job-apply-frame-template; include the inline application panel, all Apply
+  triggers, description/back navigation, eligibility gate, submission-success handling, and shared
+  job-alert assets. Keep the iframe title and application-panel heading specific to this job.
+- Optional job alerts are managed by Outreach Recruitment. Do not mention external ATS vendors in
+  the alert UI. Preserve the selected residence country in the optional alert form; do not skip the
+  eligibility confirmation.
 - No text left over from the template page you cloned (old title, city, slug, uuid, salary).
 - Write the page to jobs/<slug>/index.html AND jobs/<slug>.html (identical).
 - Do NOT git commit or push. Do NOT close, expire or edit any other job.

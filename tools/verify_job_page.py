@@ -6,6 +6,7 @@ Checks (on both jobs/<slug>/index.html and jobs/<slug>.html):
   - JobPosting JSON-LD parses and has the fields Google for Jobs needs
   - canonical, <title> and <h1> belong to this job
   - the apply link uses this job's ATS uuid, and no other ATS uuid is on the page
+  - the inline application panel, lazy ATS iframe, Apply controls and shared application assets exist
   - salary matches the careers page (or the owner's own registry salary);
     never an invented number when neither has one
   - nothing left over from the template page it was cloned from
@@ -90,6 +91,53 @@ def expected_salary(job: dict, facts: dict | None) -> tuple[float, float] | None
     return None
 
 
+def check_application_system(page: str, job: dict) -> list[str]:
+    problems = []
+    expected_url = job.get("apply_url", "")
+    panel_count = page.count('id="job-apply-panel"')
+    if panel_count != 1:
+        problems.append(f"expected 1 inline application panel, found {panel_count}")
+    if page.count("data-job-apply-trigger") < 2:
+        problems.append("expected at least 2 Apply controls connected to the inline application panel")
+    for asset in ("job-eligibility-gate.css", "job-alert-launcher.css", "job-alert-focus.css",
+                  "job-alert-subscribe.js", "job-alert-after-apply.js", "job-eligibility-gate.js"):
+        if f"/assets/{asset}" not in page:
+            problems.append(f"missing shared application asset /assets/{asset}")
+
+    templates = re.findall(
+        r'<template\b[^>]*id=["\']job-apply-frame-template["\'][^>]*>(.*?)</template>',
+        page, re.S | re.I)
+    if len(templates) != 1:
+        problems.append(f"expected 1 lazy application iframe template, found {len(templates)}")
+        return problems
+
+    frames = re.findall(r"<iframe\b[^>]*>", templates[0], re.S | re.I)
+    if len(frames) != 1:
+        problems.append(f"expected 1 application iframe in its template, found {len(frames)}")
+        return problems
+    frame = frames[0]
+    source = re.search(r'\bdata-src=["\']([^"\']+)["\']', frame, re.I)
+    if not expected_url or not source or htmllib.unescape(source.group(1)) != expected_url:
+        problems.append("lazy application iframe does not use this job's exact ATS apply URL")
+    if not re.search(r'\sloading=["\']lazy["\']', frame, re.I):
+        problems.append("application iframe is not lazy-loaded")
+    if re.search(r'\ssrc=["\']', frame, re.I):
+        problems.append("application iframe loads before the visitor opens the application panel")
+
+    title = re.search(r'\btitle=["\']([^"\']*)["\']', frame, re.I)
+    if not title or htmllib.unescape(title.group(1)) != f"Apply for {job['title']}":
+        problems.append("application iframe accessible title does not match the job")
+    panel_start = page.find('id="job-apply-panel"')
+    panel_heading = re.search(r"<h1\b[^>]*>(.*?)</h1>", page[panel_start:], re.S | re.I) if panel_start >= 0 else None
+    if not panel_heading or norm(re.sub(r"<[^>]+>", " ", panel_heading.group(1))) != norm(job["title"]):
+        problems.append("inline application panel heading does not match the job")
+
+    for marker in ("job-apply-frame-mount", "showApplySuccess", "data-job-description-trigger"):
+        if marker not in page:
+            problems.append(f"application interaction is missing {marker}")
+    return problems
+
+
 def check_static(path: Path, job: dict, facts: dict | None) -> list[str]:
     page = path.read_text(encoding="utf-8")
     slug, uuid, title = job["slug"], "", job["title"]
@@ -128,6 +176,7 @@ def check_static(path: Path, job: dict, facts: dict | None) -> list[str]:
               and re.search(rf"careers-page\.com/jobs/{u}", page)}
     if others:
         p.append(f"page links other ATS job(s): {', '.join(sorted(others))[:80]}")
+    p.extend(check_application_system(page, job))
 
     # Salary
     text = visible_text(page)

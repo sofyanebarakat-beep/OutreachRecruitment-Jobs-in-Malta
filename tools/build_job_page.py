@@ -199,6 +199,27 @@ def build(spec: dict) -> str:
                          "Construction Jobs in Malta") if b in core and b.lower() not in json.dumps(sp).lower()]
     if leaks:
         raise SystemExit(f"Template leftovers found: {leaks}")
+    expected_apply_url = sp.get("apply_url", f"{ATS}/jobs/{sp['uuid']}/apply")
+    app_template = re.search(r'<template id="job-apply-frame-template">(.*?)</template>', s, re.S)
+    app_iframe = re.search(r"<iframe\b[^>]*>", app_template.group(1), re.S) if app_template else None
+    app_attrs = dict(re.findall(r'([\w-]+)="([^"]*)"', app_iframe.group(0))) if app_iframe else {}
+    if 'id="job-apply-panel"' not in s or 'data-job-apply-trigger' not in s or not app_iframe:
+        raise SystemExit("Generated page is missing the inline application panel or Apply controls")
+    if app_attrs.get("data-src") != expected_apply_url or "src" in app_attrs:
+        raise SystemExit("Generated application iframe does not use this job's lazy-loaded ATS apply URL")
+    if html.unescape(app_attrs.get("title", "")) != f"Apply for {title}":
+        raise SystemExit("Generated application iframe title does not match this job")
+    required_assets = (
+        "/assets/job-eligibility-gate.css",
+        "/assets/job-alert-launcher.css",
+        "/assets/job-alert-focus.css",
+        "/assets/job-alert-subscribe.js",
+        "/assets/job-alert-after-apply.js",
+        "/assets/job-eligibility-gate.js",
+    )
+    missing_assets = [asset for asset in required_assets if asset not in s]
+    if missing_assets:
+        raise SystemExit("Generated page is missing application assets: " + ", ".join(missing_assets))
     return s
 
 
