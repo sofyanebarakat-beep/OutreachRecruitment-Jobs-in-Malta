@@ -187,11 +187,11 @@ def auto_keywords(job: dict) -> str:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def generate_job_page(job: dict, other_jobs: list[dict] | None = None) -> str:
-    """Clone jobs/plumber/index.html and substitute all dynamic fields."""
+    """Clone the canonical open-job template and substitute dynamic fields."""
     other_jobs = other_jobs or []
-    base_path = JOBS / "plumber" / "index.html"
+    base_path = JOBS / "hotel-general-manager" / "index.html"
     if not base_path.exists():
-        raise FileNotFoundError("Base template jobs/plumber/index.html not found")
+        raise FileNotFoundError("Base template jobs/hotel-general-manager/index.html not found")
 
     html = base_path.read_text(encoding="utf-8")
 

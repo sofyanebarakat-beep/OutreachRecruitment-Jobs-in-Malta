@@ -2,7 +2,7 @@
 """
 build_job_page.py — build a full-quality job page (job-seo-generator spec) from a JSON spec.
 
-Clones the rich template page jobs/crane-installer/index.html, regenerates every job-specific part
+Clones the canonical open-job page jobs/hotel-general-manager/index.html, regenerates every job-specific part
 (head/meta, JobPosting / BreadcrumbList / FAQPage / ImageObject JSON-LD, header badges + chips,
 sidebar, all body sections, FAQ, similar-jobs carousel, share links, apply panel, JOB_REF),
 checks for template leftovers, and writes BOTH jobs/<slug>/index.html and jobs/<slug>.html.
@@ -36,8 +36,8 @@ import sync_job_listings as SJL  # noqa: E402
 
 SITE = "https://outreachrecruitment.net"
 ATS = "https://outreach-recruitment-agency.careers-page.com"
-TEMPLATE = ROOT / "jobs" / "crane-installer" / "index.html"
-T_TITLE, T_SLUG, T_CITY, T_REF = "Crane Installer", "crane-installer", "Mqabba", "OR-CRIN-2026-001"
+TEMPLATE = ROOT / "jobs" / "hotel-general-manager" / "index.html"
+T_TITLE, T_SLUG, T_CITY, T_REF = "Hotel General Manager", "hotel-general-manager", "St. Julian's", "OR-HOGM-2026-001"
 E = html.escape
 
 
@@ -195,7 +195,7 @@ def build(spec: dict) -> str:
     s = re.sub(r"Similar Jobs in [^<]+<", f"Similar Jobs in {E(sp['category'])}<", s)
 
     core = s[s.index("<head"):s.index("<nav")] + s[s.index("<main"):s.index("</main>")]
-    leaks = [b for b in ("Crane", "crane", T_CITY, "tower", "CRIN", old_uuid, "jobs-malta-construction",
+    leaks = [b for b in (T_TITLE, T_SLUG, T_CITY, "HOGM", old_uuid,
                          "Construction Jobs in Malta") if b in core and b.lower() not in json.dumps(sp).lower()]
     if leaks:
         raise SystemExit(f"Template leftovers found: {leaks}")
