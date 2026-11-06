@@ -4,7 +4,7 @@
   var KEY="sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY";
   window.OutreachJobAlerts={
     subscribe:function(data){
-      return fetch(URL+"/rest/v1/rpc/subscribe_job_alert",{
+      return fetch(URL+"/rest/v1/rpc/subscribe_job_alert_v2",{
         method:"POST",
         headers:{"Content-Type":"application/json","apikey":KEY,"Authorization":"Bearer "+KEY},
         body:JSON.stringify({
