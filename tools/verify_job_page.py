@@ -101,8 +101,8 @@ def check_application_system(page: str, job: dict) -> list[str]:
         problems.append("expected at least 2 Apply controls connected to the inline application panel")
     for asset in ("job-eligibility-gate.css", "job-alert-launcher.css", "job-alert-focus.css",
                   "job-alert-subscribe.js", "job-alert-after-apply.js", "job-eligibility-gate.js"):
-        if f"/assets/{asset}" not in page:
-            problems.append(f"missing shared application asset /assets/{asset}")
+        if not re.search(rf'(?:href|src)="/assets/{re.escape(asset)}\?v=[^"]+"', page):
+            problems.append(f"missing versioned shared application asset /assets/{asset}")
 
     templates = re.findall(
         r'<template\b[^>]*id=["\']job-apply-frame-template["\'][^>]*>(.*?)</template>',

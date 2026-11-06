@@ -210,14 +210,17 @@ def build(spec: dict) -> str:
     if html.unescape(app_attrs.get("title", "")) != f"Apply for {title}":
         raise SystemExit("Generated application iframe title does not match this job")
     required_assets = (
-        "/assets/job-eligibility-gate.css",
-        "/assets/job-alert-launcher.css",
-        "/assets/job-alert-focus.css",
-        "/assets/job-alert-subscribe.js",
-        "/assets/job-alert-after-apply.js",
-        "/assets/job-eligibility-gate.js",
+        "job-eligibility-gate.css",
+        "job-alert-launcher.css",
+        "job-alert-focus.css",
+        "job-alert-subscribe.js",
+        "job-alert-after-apply.js",
+        "job-eligibility-gate.js",
     )
-    missing_assets = [asset for asset in required_assets if asset not in s]
+    missing_assets = [
+        asset for asset in required_assets
+        if not re.search(rf'(?:href|src)="/assets/{re.escape(asset)}\?v=[^"]+"', s)
+    ]
     if missing_assets:
         raise SystemExit("Generated page is missing application assets: " + ", ".join(missing_assets))
     return s

@@ -303,7 +303,8 @@ and rolls the page back if any fails):
 - Use the shared inline application experience from jobs/hotel-general-manager/index.html: lazy-load the
   job's exact apply_url in job-apply-frame-template; include the inline application panel, all Apply
   triggers, description/back navigation, eligibility gate, submission-success handling, and shared
-  job-alert assets. Keep the iframe title and application-panel heading specific to this job.
+  job-alert assets with the current ?v=20261106 cache-busting query. Keep the iframe title and
+  application-panel heading specific to this job.
 - Optional job alerts are managed by Outreach Recruitment. Do not mention external ATS vendors in
   the alert UI. Preserve the selected residence country in the optional alert form; do not skip the
   eligibility confirmation.
