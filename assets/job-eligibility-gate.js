@@ -31,9 +31,9 @@
   function returnToDescription(){var panel=document.getElementById("job-apply-panel"),description=document.getElementById("job-description-panel");if(panel)panel.hidden=true;if(description)description.hidden=false;document.body.classList.remove("job-apply-open");}
   function showSummary(){
     var panel=document.getElementById("job-apply-panel");if(!panel||!eligible(saved))return;
-    var summary=panel.querySelector(".eligibility-summary");
-    if(!summary){summary=document.createElement("section");summary.className="eligibility-summary";var headerText=panel.querySelector(".job-inline-apply-header .text");var existingIntro=headerText&&headerText.querySelector(".text-medium");if(existingIntro)existingIntro.remove();if(headerText)headerText.appendChild(summary);else panel.insertBefore(summary,panel.firstChild);}
-    summary.innerHTML='<button class="eligibility-back" type="button" data-job-description-trigger data-eligibility-back>Back to job description</button><div class="eligibility-summary-head"><h2>Eligibility confirmed</h2></div><p class="eligibility-summary-lead">Apply now — if you\'re a match, we\'ll be in touch to arrange an interview.</p><div class="eligibility-summary-grid"><span><strong>Current residence:</strong>'+escapeHtml(countryNames[saved.country]||saved.country)+'</span></div><p class="eligibility-summary-note">Please enter your full name, email and remaining details in the official application form below.</p>';
+    var oldSummary=panel.querySelector(".eligibility-summary");if(oldSummary)oldSummary.remove();
+    var headerText=panel.querySelector(".job-inline-apply-header .text"),intro=headerText&&headerText.querySelector(".text-medium");if(intro)intro.textContent="Complete your application below.";
+    if(headerText&&!headerText.querySelector(".job-apply-back-top")){var back=document.createElement("button");back.type="button";back.className="job-apply-back-top";back.setAttribute("data-job-description-trigger","");back.setAttribute("data-eligibility-back","");back.textContent="← Back to job description";headerText.insertBefore(back,headerText.firstChild);}
   }
   function escapeHtml(value){var node=document.createElement("div");node.textContent=value||"";return node.innerHTML;}
 
