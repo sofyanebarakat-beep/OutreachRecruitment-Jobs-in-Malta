@@ -2,7 +2,7 @@
   "use strict";
   const SUPABASE_URL = "https://atcitaqyraeqngcsaeun.supabase.co";
   const SUPABASE_KEY = "sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY";
-  const LIMIT = 5;
+  const LIMIT = 3;
 
   function cardsBySlug() {
     return new Map(
@@ -23,8 +23,7 @@
 
   function showFeatured(slugs, loadError) {
     const grid = document.getElementById("opening-jobs-grid");
-    const filter = document.getElementById("opening-jobs-filter");
-    if (!grid || !filter) return;
+    if (!grid) return;
     const cards = cardsBySlug();
     const chosen = [...new Set(slugs)].filter((slug) => cards.has(slug)).slice(0, LIMIT);
     fallbackSlugs(cards).forEach((slug) => {
@@ -32,28 +31,24 @@
     });
     if (!chosen.length) return;
 
-    let section = document.getElementById("opening-featured-jobs");
-    if (!section) {
-      section = document.createElement("section");
-      section.className = "opening-featured-section";
-      section.id = "opening-featured-jobs";
-      section.setAttribute("aria-labelledby", "opening-featured-title");
-      filter.parentNode.insertBefore(section, filter);
-    }
-    section.innerHTML = `<div class="opening-featured-heading">
-      <div><h2 id="opening-featured-title">Featured opportunities</h2>
-      <p>${loadError ? "Showing highlighted open roles while the curated selection is unavailable." : "Five hand-picked roles to explore first."}</p></div>
-      <span class="opening-featured-badge">Top 5 jobs</span>
-    </div><div class="opening-featured-grid"></div>`;
-    const featuredGrid = section.querySelector(".opening-featured-grid");
-    chosen.forEach((slug) => {
-      const clone = cards.get(slug).cloneNode(true);
-      clone.removeAttribute("data-opening-job");
-      clone.removeAttribute("data-job-slug");
-      clone.removeAttribute("hidden");
-      clone.classList.add("opening-job-card--gold");
-      featuredGrid.appendChild(clone);
+    cards.forEach((card) => {
+      card.classList.remove("opening-job-card--gold");
+      card.querySelector(".opening-featured-label")?.remove();
     });
+    chosen.forEach((slug) => {
+      const card = cards.get(slug);
+      card.classList.add("opening-job-card--gold");
+      const link = card.querySelector(".opening-job-link");
+      if (link && !link.querySelector(".opening-featured-label")) {
+        const label = document.createElement("span");
+        label.className = "opening-featured-label";
+        label.textContent = loadError ? "Featured" : "Featured role";
+        link.insertBefore(label, link.firstChild);
+      }
+    });
+    const chosenCards = new Set(chosen.map((slug) => cards.get(slug)));
+    const firstOtherCard = [...grid.children].find((child) => !chosenCards.has(child)) || null;
+    chosen.forEach((slug) => grid.insertBefore(cards.get(slug), firstOtherCard));
   }
 
   async function loadSelection() {
@@ -75,7 +70,7 @@
   loadSelection()
     .then((slugs) => {
       if (!Array.isArray(slugs) || slugs.length !== LIMIT) {
-        throw new Error("No saved five-job selection was found");
+        throw new Error("No saved three-job selection was found");
       }
       showFeatured(slugs, false);
     })

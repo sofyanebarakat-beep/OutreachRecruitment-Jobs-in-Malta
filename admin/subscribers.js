@@ -3,7 +3,7 @@
   "use strict";
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const date = (v) => v ? new Date(v).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }) : "—";
-  const euEligibleCountries = new Set("AL AD AM AT AZ BY BE BA BG HR CY CZ DK EE FI FR GE DE GR HU IS IE IT XK KZ LV LI LT LU MT MD MC ME NL MK NO PL PT RO RU SM RS SK SI ES SE CH TR UA GB VA".split(" "));
+  const euEligibleCountries = new Set("AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO CH GB MC".split(" "));
   const eligibility = (row) => euEligibleCountries.has(String(row.country_code || "").toUpperCase()) ? "eligible" : "not_eligible";
   const eligibilityLabel = (row) => eligibility(row) === "eligible" ? "Eligible for EU-only vacancies" : "Not eligible for EU-only vacancies";
   let rows = [];
