@@ -43,6 +43,22 @@ create table if not exists public.seo_settings (
   updated_at timestamptz not null default now()
 );
 
+-- Public jobs-page spotlight, managed by authenticated admins.
+create table if not exists public.jobs_featured (
+  id text primary key check (id = 'current'),
+  slugs text[] not null check (cardinality(slugs) = 5),
+  updated_at timestamptz not null default now()
+);
+alter table public.jobs_featured enable row level security;
+drop policy if exists jobs_featured_public_read on public.jobs_featured;
+create policy jobs_featured_public_read on public.jobs_featured
+  for select to anon, authenticated using (true);
+drop policy if exists jobs_featured_admin_write on public.jobs_featured;
+create policy jobs_featured_admin_write on public.jobs_featured
+  for all to authenticated using (public.is_admin()) with check (public.is_admin());
+grant select on public.jobs_featured to anon, authenticated;
+grant insert, update, delete on public.jobs_featured to authenticated;
+
 -- 02 Daily tracking
 create table if not exists public.seo_kpi_daily (
   id uuid primary key default gen_random_uuid(),

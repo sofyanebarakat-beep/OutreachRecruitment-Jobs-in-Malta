@@ -247,6 +247,18 @@ def build_main() -> str:
 
 def main() -> None:
     html = SOURCE.read_text()
+    html = re.sub(
+        r'<meta\s+http-equiv=["\']refresh["\'][^>]*>',
+        '',
+        html,
+        flags=re.I,
+    )
+    html = re.sub(
+        r'<meta\s+name=["\']robots["\'][^>]*content=["\']noindex,follow["\'][^>]*>',
+        '',
+        html,
+        flags=re.I,
+    )
     html = html.replace(f"<title>{TITLE_OLD}</title>", f"<title>{TITLE_NEW}</title>")
     html = html.replace(f'<meta content="{DESC_OLD}" name="description"/>', f'<meta content="{DESC_NEW}" name="description"/>')
     html = html.replace(f'<meta content="{TITLE_OLD}" property="og:title"/>', f'<meta content="{TITLE_NEW}" property="og:title"/>')

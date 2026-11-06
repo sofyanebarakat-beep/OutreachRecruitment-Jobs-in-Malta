@@ -102,6 +102,17 @@ main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; display: grid
 tr.row-current td { background: var(--brand-soft); }
 .sync-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 640px) { .sync-grid { grid-template-columns: minmax(0, 1fr); } .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.featured-job-options { display: grid; gap: 8px; max-height: 520px; overflow: auto; margin-top: 16px; }
+.featured-job-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer; }
+.featured-job-option:hover { border-color: var(--brand); }
+.featured-job-option input { width: auto; margin: 3px 0 0; accent-color: var(--brand); }
+.featured-job-option span { display: grid; gap: 2px; }
+.featured-job-option small { color: var(--muted); font-weight: 400; }
+.featured-selected-list { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.featured-selected-list li { display: flex; align-items: center; gap: 8px; font-size: .9rem; }
+.featured-order { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: #f0d992; color: #573d0d; font-size: .75rem; font-weight: 800; }
 
 /* blocks */
 .hero { background: linear-gradient(135deg, var(--brand), #6c5bff); color: #fff; border: 0; }

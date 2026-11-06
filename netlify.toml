@@ -1,6 +1,25 @@
 [build]
   publish = "."
 
+# Legacy candidate page — use the canonical live vacancy board.
+[[redirects]]
+  from = "/careers"
+  to = "/jobs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers/"
+  to = "/jobs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers.html"
+  to = "/jobs/"
+  status = 301
+  force = true
+
 # ── Blog articles — redirect old /blog/* URLs to root ──────────────────────
 [[redirects]]
   from = "/blog/:slug/"

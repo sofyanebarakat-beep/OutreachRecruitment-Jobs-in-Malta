@@ -136,6 +136,7 @@ def jobs_page_card(job: dict) -> str:
 
     return (
         f'<article class="opening-job-card" data-opening-job '
+        f'data-job-slug="{escape(job["slug"], quote=True)}" '
         f'data-featured="{"true" if job.get("featured") else "false"}" '
         f'data-latest="true" '
         f'data-title="{search_data}" '
@@ -190,6 +191,16 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
     html = path.read_text(encoding="utf-8")
     n        = len(all_jobs)
     featured = sum(1 for j in all_jobs if j.get("featured"))
+    updated_dates = [
+        date.fromisoformat(j.get("lastmod") or j["date"])
+        for j in all_jobs
+        if j.get("lastmod") or j.get("date")
+    ]
+    latest_update = max(updated_dates, default=None)
+    updated_label = (
+        f"{latest_update.strftime('%B')} {latest_update.day}, {latest_update.year}"
+        if latest_update else ""
+    )
 
     # Job cards (newest first)
     jobs_sorted = sorted(all_jobs, key=lambda j: j["date"], reverse=True)
@@ -219,6 +230,36 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
         html = html[:content_start] + cards_html + html[end_idx:]
     else:
         print("  WARNING: opening-jobs-grid div not found")
+
+    # Keep the visible freshness headline tied to open registry content.
+    headline_update = f" — updated {updated_label}" if updated_label else ""
+    html, headline_count = re.subn(
+        r'(<h2\b[^>]*>)Browse\s+\d+\+?\s+current job vacancies in Malta'
+        r'(?:\s*[—-]\s*updated\s+[^<]*)?(</h2>)',
+        rf'\g<1>Browse {open_n} current job vacancies in Malta{headline_update}\g<2>',
+        html,
+        count=1,
+        flags=re.I,
+    )
+    if not headline_count:
+        raise RuntimeError("Jobs freshness headline not found; refusing to publish stale count/date")
+    html = re.sub(
+        r'\d+\+ current job vacancies in Malta',
+        f'{open_n} current job vacancies in Malta',
+        html,
+    )
+    if '/assets/featured-jobs.css' not in html:
+        html = html.replace(
+            '</head>',
+            '<link href="/assets/featured-jobs.css" rel="stylesheet" type="text/css"/></head>',
+            1,
+        )
+    if '/assets/featured-jobs.js' not in html:
+        html = html.replace(
+            '</body>',
+            '<script src="/assets/featured-jobs.js"></script></body>',
+            1,
+        )
 
     # Counters
     word = "job" if n == 1 else "jobs"
