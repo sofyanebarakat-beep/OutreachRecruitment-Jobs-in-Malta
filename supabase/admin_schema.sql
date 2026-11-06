@@ -51,11 +51,9 @@ create table if not exists public.jobs_featured (
 );
 alter table public.jobs_featured drop constraint if exists jobs_featured_slugs_check;
 alter table public.jobs_featured drop constraint if exists jobs_featured_three_slugs_check;
-update public.jobs_featured
-  set slugs = slugs[1:3]
-  where cardinality(slugs) > 3;
+alter table public.jobs_featured drop constraint if exists jobs_featured_six_slugs_check;
 alter table public.jobs_featured
-  add constraint jobs_featured_three_slugs_check check (cardinality(slugs) = 3);
+  add constraint jobs_featured_six_slugs_check check (cardinality(slugs) between 3 and 6);
 alter table public.jobs_featured enable row level security;
 drop policy if exists jobs_featured_public_read on public.jobs_featured;
 create policy jobs_featured_public_read on public.jobs_featured

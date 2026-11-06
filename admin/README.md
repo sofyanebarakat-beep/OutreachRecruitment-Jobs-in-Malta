@@ -7,8 +7,8 @@ Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections
   new / closed / reopened / updated jobs with what changed, items needing attention, notes, the Google
   indexing check, site housekeeping, and every earlier day (`#/jobsync/<date>`). Reads
   `reports/daily-sync/index.json` + `<date>.json`, which `tools/daily_job_sync.py` pushes every morning.
-- **Marketing › Featured Jobs** — choose exactly three open jobs for the gold-highlighted Featured
-  Opportunities section at the top of `/jobs/`. Save publishes the selection to Supabase; the public
+- **Marketing › Featured Jobs** — choose exactly six open jobs for gold highlighting in the `/jobs/`
+  results grid. Save publishes the selection to Supabase; the public
   page reads it directly, so no listing rebuild or site deployment is needed. Apply the `jobs_featured`
   table/policies in `supabase/admin_schema.sql` before using this section. Browser-only mode cannot publish.
 - **Marketing › Email Marketing** — ready-to-paste job posts built from the careers-page description
@@ -70,7 +70,7 @@ Supabase project from `config.js` (`atcitaqyraeqngcsaeun`), locked by RLS to ema
 - `seo_kpi_daily` (read) — daily Search Console totals from `tools/seo_course_automation.py`; the KPI page
   turns them into rolling 28-day totals automatically
 - `seo_keywords` (read) — live positions, `source_key = "gsc:<keyword>"`
-- `jobs_featured` — the ordered three-job public `/jobs/` spotlight; readable by visitors and writable only by signed-in admins
+- `jobs_featured` — the ordered six-job public `/jobs/` highlights; readable by visitors and writable only by signed-in admins
 
 If the database cannot be reached (e.g. the free project is paused), the admin offers browser-only mode;
 **KPI → History → Copy browser data to the database** moves that data across later.

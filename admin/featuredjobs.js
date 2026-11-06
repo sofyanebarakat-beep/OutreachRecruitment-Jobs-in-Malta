@@ -1,4 +1,4 @@
-/* Outreach Recruitment — select the three jobs highlighted above the job board. */
+/* Outreach Recruitment — select the six jobs highlighted in the job board. */
 (() => {
   "use strict";
   const CFG = window.ADMIN_CONFIG || {};
@@ -16,13 +16,13 @@
   function fallbackSlugs(jobs) {
     return [...jobs]
       .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || String(b.date).localeCompare(String(a.date)))
-      .slice(0, 3)
+      .slice(0, 6)
       .map((job) => job.slug);
   }
 
   window.renderFeaturedJobs = async function (view) {
     view.innerHTML = `<section class="card hero"><div class="kicker">Marketing · Jobs page</div><h1>Featured jobs</h1>
-      <p>Choose exactly three open jobs to display in the gold Featured Opportunities section at the top of <a href="/jobs/" target="_blank" rel="noopener">/jobs/</a>.</p></section>
+      <p>Choose exactly six open jobs to highlight in the results on <a href="/jobs/" target="_blank" rel="noopener">/jobs/</a>.</p></section>
       <section class="card" id="featured-job-manager"><p class="muted" role="status">Loading open jobs and the current selection…</p></section>`;
 
     const manager = document.querySelector("#featured-job-manager");
@@ -34,18 +34,18 @@
       const response = await fetch(CFG.JOBS_REGISTRY, { cache: "no-cache" });
       if (!response.ok) throw new Error(`Could not load the job registry (HTTP ${response.status}).`);
       const jobs = (await response.json()).filter(isOpen).sort((a, b) => String(b.date).localeCompare(String(a.date)));
-      if (jobs.length < 3) throw new Error(`Only ${jobs.length} open jobs are available; three are required.`);
+      if (jobs.length < 6) throw new Error(`Only ${jobs.length} open jobs are available; six are required.`);
 
       const { data, error } = await store.sb.from("jobs_featured").select("slugs").eq("id", "current").maybeSingle();
       if (error) throw new Error(`Could not load the featured-job selection: ${error.message}`);
       const openSlugs = new Set(jobs.map((job) => job.slug));
-      let selected = [...new Set((data?.slugs || []).filter((slug) => openSlugs.has(slug)))].slice(0, 3);
-      if (selected.length < 3) {
-        selected = [...selected, ...fallbackSlugs(jobs).filter((slug) => !selected.includes(slug))].slice(0, 3);
+      let selected = [...new Set((data?.slugs || []).filter((slug) => openSlugs.has(slug)))].slice(0, 6);
+      if (selected.length < 6) {
+        selected = [...selected, ...fallbackSlugs(jobs).filter((slug) => !selected.includes(slug))].slice(0, 6);
       }
 
       manager.innerHTML = `
-        <div class="section-title"><h2>Choose three jobs</h2><strong id="featured-job-count" aria-live="polite"></strong></div>
+        <div class="section-title"><h2>Choose six jobs</h2><strong id="featured-job-count" aria-live="polite"></strong></div>
         <p class="muted">Selected roles appear in the order shown below. To change the order, unselect a role and select it again.</p>
         <div class="grid c2" style="align-items:end">
           <label>Find an open job<input id="featured-job-search" type="search" placeholder="Search title, category, or location"></label>
@@ -53,7 +53,7 @@
         </div>
         <div id="featured-job-options" class="featured-job-options" aria-label="Open jobs"></div>
         <div class="section-title" style="margin-top:16px">
-          <p id="featured-job-status" class="msg" role="status">Choose three open jobs, then save.</p>
+          <p id="featured-job-status" class="msg" role="status">Choose six open jobs, then save.</p>
           <button type="button" class="btn primary" id="featured-job-save" disabled>Save featured jobs</button>
         </div>`;
 
@@ -77,18 +77,18 @@
           const job = jobs.find((item) => item.slug === slug);
           return `<li><span class="featured-order">${index + 1}</span> ${esc(job?.title || slug)}</li>`;
         }).join("");
-        count.textContent = `${selected.length} of 3 selected`;
-        save.disabled = selected.length !== 3;
-        if (selected.length === 3) status.textContent = "Ready to publish. Saving updates the public page without a site rebuild.";
+        count.textContent = `${selected.length} of 6 selected`;
+        save.disabled = selected.length !== 6;
+        if (selected.length === 6) status.textContent = "Ready to publish. Saving updates the public page without a site rebuild.";
       }
 
       options.addEventListener("change", (event) => {
         const input = event.target;
         if (!(input instanceof HTMLInputElement) || input.type !== "checkbox") return;
         if (input.checked) {
-          if (selected.length === 3) {
+          if (selected.length === 6) {
             input.checked = false;
-            status.textContent = "Select no more than three jobs. Uncheck one before choosing another.";
+            status.textContent = "Select no more than six jobs. Uncheck one before choosing another.";
             status.className = "msg error";
             return;
           }
@@ -108,7 +108,7 @@
       });
 
       save.addEventListener("click", async () => {
-        if (selected.length !== 3) return;
+        if (selected.length !== 6) return;
         save.disabled = true;
         status.className = "msg";
         status.textContent = "Saving featured jobs…";
@@ -117,12 +117,12 @@
             .upsert({ id: "current", slugs: selected }, { onConflict: "id" });
           if (saveError) throw saveError;
           status.className = "msg ok";
-          status.textContent = "Saved. The gold Featured Opportunities section on /jobs/ now uses these three jobs.";
+          status.textContent = "Saved. The six selected jobs are now highlighted in the /jobs/ results.";
         } catch (e) {
           status.className = "msg error";
           status.textContent = `Save failed: ${e.message || e}`;
         } finally {
-          save.disabled = selected.length !== 3;
+          save.disabled = selected.length !== 6;
         }
       });
 

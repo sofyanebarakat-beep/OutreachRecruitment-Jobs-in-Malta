@@ -2,7 +2,7 @@
   "use strict";
   const SUPABASE_URL = "https://atcitaqyraeqngcsaeun.supabase.co";
   const SUPABASE_KEY = "sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY";
-  const LIMIT = 3;
+  const LIMIT = 6;
 
   function cardsBySlug() {
     return new Map(
@@ -70,7 +70,7 @@
   loadSelection()
     .then((slugs) => {
       if (!Array.isArray(slugs) || slugs.length !== LIMIT) {
-        throw new Error("No saved three-job selection was found");
+        throw new Error("No saved six-job selection was found");
       }
       showFeatured(slugs, false);
     })
