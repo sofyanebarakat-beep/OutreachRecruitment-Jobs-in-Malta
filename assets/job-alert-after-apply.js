@@ -1,14 +1,21 @@
 (function(){
   "use strict";
-  var STORAGE_KEY="or-hotel-manager-eligibility-v3";
+  var STORAGE_KEY="or-job-eligibility-v1";
   var countryCodes="AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR IQ IE IL IT JM JP JO KZ KE KI KR KW KG LA LV LB LS LR LY LI LT LU MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG MK NO OM PK PW PS PA PG PY PE PH PL PT QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW XK".split(" ");
   var names=typeof Intl!=="undefined"&&Intl.DisplayNames?new Intl.DisplayNames(["en"],{type:"region"}):null;
   var countries=countryCodes.map(function(code){return[code,code==="XK"?"Kosovo":names?names.of(code):code];}).sort(function(a,b){return a[1].localeCompare(b[1]);});
 
-  function savedResidence(){try{return JSON.parse(sessionStorage.getItem(STORAGE_KEY)||"null");}catch(e){return null;}}
+  function jobMeta(){
+    var title=document.querySelector(".job-header-title")||document.querySelector("#job-apply-panel h1");
+    var category="General";
+    Array.prototype.some.call(document.querySelectorAll(".cms-detail"),function(detail){var label=detail.querySelector(".caption"),value=detail.querySelector(".text-medium");if(label&&value&&label.textContent.trim()==="Category"){category=value.textContent.trim();return true;}return false;});
+    return{title:title?title.textContent.replace(/\s+—\s+Position Closed\s*$/,"").trim():"Current vacancy",category:category};
+  }
+
+  function savedResidence(){try{return JSON.parse(sessionStorage.getItem(STORAGE_KEY)||sessionStorage.getItem("or-hotel-manager-eligibility-v3")||"null");}catch(e){return null;}}
   function render(){
     var panel=document.getElementById("job-apply-panel"),mount=document.getElementById("job-apply-frame-mount");if(!panel||!mount||document.querySelector("[data-job-alert-drawer]"))return;
-    var residence=savedResidence()||{};
+    var residence=savedResidence()||{},currentJob=jobMeta();
     var residenceNote=residence.country?'<small class="job-alert-country-note">Same residence selected in your eligibility check.</small>':'';
     var notice=document.createElement("aside");notice.className="job-alert-notice";notice.innerHTML='<div class="job-alert-notice__icon" aria-hidden="true">✓</div><div class="job-alert-notice__copy"><span>Optional</span><strong>Application completed? Stay open to similar opportunities.</strong><p>Join our optional job alerts and we’ll contact you when a suitable role matches your location.</p></div><button type="button" data-open-job-alert>Join job alerts</button>';
     panel.appendChild(notice);
@@ -31,7 +38,7 @@
       event.preventDefault();var form=event.currentTarget;if(!form.reportValidity())return;
       var button=form.querySelector(".job-alert-drawer__submit"),status=form.querySelector("[role=status]"),select=form.elements.country;
       button.disabled=true;button.textContent="Checking your details…";status.textContent="";
-      window.OutreachJobAlerts.subscribe({email:form.elements.email.value,fullName:form.elements.full_name.value,countryCode:select.value,countryName:select.options[select.selectedIndex].text,sourceType:"post_application",sourceJob:"Hotel General Manager",sourceUrl:location.href.split("#")[0],jobCategory:"Hospitality"}).then(function(result){
+      window.OutreachJobAlerts.subscribe({email:form.elements.email.value,fullName:form.elements.full_name.value,countryCode:select.value,countryName:select.options[select.selectedIndex].text,sourceType:"post_application",sourceJob:currentJob.title,sourceUrl:location.href.split("#")[0],jobCategory:currentJob.category}).then(function(result){
         var duplicate=result&&result.already_subscribed,reactivated=result&&result.reactivated;
         form.innerHTML='<div class="job-alert-drawer__success"><span aria-hidden="true">✓</span><div><strong>'+(duplicate?'You’re already on the list.':reactivated?'Welcome back — your alerts are active.':'You’re on the list.')+'</strong><p>'+(duplicate?'No duplicate was created. We’ll continue sending relevant opportunities to this email.':'We’ll let you know when another suitable opportunity becomes available.')+'</p></div></div>';
         notice.querySelector("strong").textContent=duplicate?'You are already subscribed to job alerts.':'Your job alerts are active.';notice.querySelector("button").textContent="View confirmation";
