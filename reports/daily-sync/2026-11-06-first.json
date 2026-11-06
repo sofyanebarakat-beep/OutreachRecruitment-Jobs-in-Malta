@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-06",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Crane Installer",
+      "slug": "crane-installer",
+      "url": "https://outreachrecruitment.net/jobs/crane-installer/",
+      "city": "Mqabba, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [
+    {
+      "uuid": "97c52056-38be-46b0-9e44-6edebfc3a67d",
+      "title": "Senior Corporate Administrator",
+      "city": "Birkirkara",
+      "slug": "senior-corporate-administrator",
+      "salary_label": "€35,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/97c52056-38be-46b0-9e44-6edebfc3a67d",
+      "reason": "the page was not built (not added to the registry)"
+    }
+  ],
+  "held": [],
+  "notes": [
+    "Website shows 122 open jobs vs 123 on the careers page — see 'Needs your attention'."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 123,
+  "site_open_before": 123,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 122,
+    "ok": 119,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 7,
+    "itemlist_items": 122,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 122,
+  "salary_coverage": {
+    "open": 122,
+    "with_salary": 29
+  }
+}
