@@ -89,7 +89,49 @@ def main() -> None:
     (JOBS / job["slug"] / "index.html").write_text(page, encoding="utf-8")
     (JOBS / f'{job["slug"]}.html').write_text(page, encoding="utf-8")
 
-    print(f"Normalized {len(LEGACY_FLAT_PAGES) + 1} open job templates.")
+    customer = dict(by_slug["customer-experience-assistant"])
+    customer.update(
+        about=(
+            "Our client, a well-established company operating in the automotive industry, is seeking a "
+            "motivated and customer-focused Customer Experience Assistant. The successful candidate will "
+            "support the Customer Experience Manager in delivering excellent service, handling customer "
+            "feedback and enquiries, and maintaining high levels of customer satisfaction."
+        ),
+        responsibilities="|".join(
+            (
+                "Contact customers following their appointments to gather feedback on the services provided.",
+                "Follow up on customer concerns, requests, and enquiries with the relevant departments.",
+                "Record and manage customer complaints in the CRM system, ensuring timely follow-up and resolution.",
+                "Prepare customer feedback reports and share monthly insights with Sales and Aftersales teams.",
+                "Assist the Customer Experience Manager in achieving customer satisfaction targets.",
+                "Provide guidance to customers regarding loyalty programmes and related enquiries.",
+                "Maintain accurate records of customer interactions, feedback, and complaints.",
+                "Work closely with internal departments to ensure a positive customer experience.",
+                "Participate in training and continuously develop customer service skills.",
+            )
+        ),
+        requirements="|".join(
+            (
+                "Minimum of 2 years of experience in a customer service role.",
+                "A-level standard of education.",
+                "Excellent written and verbal communication skills in English and Maltese.",
+                "Proficiency in Microsoft Office and familiarity with CRM systems.",
+                "Strong customer service, interpersonal, problem-solving, and organisational skills.",
+                "Empathetic, adaptable, and professional approach when dealing with customers.",
+                "Ability to work independently and as part of a team.",
+            )
+        ),
+        offer="Health insurance.|Loyalty card.|Training and development opportunities.",
+        closing=(
+            "Are you passionate about delivering excellent customer service and creating positive customer "
+            "experiences? Apply now and take the next step in your career with our client's team."
+        ),
+    )
+    customer_page = clean_html(generate_job_page(customer, other_jobs=open_jobs))
+    (JOBS / customer["slug"] / "index.html").write_text(customer_page, encoding="utf-8")
+    (JOBS / f'{customer["slug"]}.html').write_text(customer_page, encoding="utf-8")
+
+    print(f"Normalized {len(LEGACY_FLAT_PAGES) + 2} open job templates.")
 
 
 if __name__ == "__main__":
