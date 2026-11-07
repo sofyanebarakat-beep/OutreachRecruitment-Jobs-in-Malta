@@ -1,11 +1,14 @@
 {
   "consecutive_extra": {
-    "Deli Counter Assistant / Salumeria Specialist": 48,
-    "Application Developer (Drupal)": 48,
-    "Mini Bus Driver – Licence D": 31,
-    "Italian Restaurant – Multiple Hospitality Positions": 30,
-    "Chef De Partie": 30
+    "Deli Counter Assistant / Salumeria Specialist": 49,
+    "Application Developer (Drupal)": 49,
+    "Mini Bus Driver – Licence D": 32,
+    "Italian Restaurant – Multiple Hospitality Positions": 31,
+    "Chef De Partie": 31,
+    "Night Cleaner": 1,
+    "Audit Senior Associate": 1,
+    "Associate Tax Advisor": 1
   },
-  "last_run": "2026-11-06",
+  "last_run": "2026-11-07",
   "broken_streak": {}
 }
