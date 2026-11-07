@@ -4,55 +4,49 @@
    "q": "Can I work while studying in Malta?",
    "a": "Yes. International students on a valid student residence permit can work up to 20 hours per week during term time and full-time during official academic holidays.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 306
+   "pages": 313
   },
   {
    "q": "Looking for a job in Malta or Europe?",
    "a": "Browse our open positions and apply directly on our jobs page. Once you submit your application, our recruitment team will review it and get back to you within 2–3 working days to discuss next steps.",
    "url": "/jobs",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "How do I apply for a role through Outreach Recruitment?",
    "a": "Visit our Jobs page, find a role that fits your profile, and click Apply. You can also send your CV directly to hr@outreachrecruitment.net and we will match you with suitable openings.",
    "url": "/jobs",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "I want to hire talent — how does it work?",
    "a": "Fill in the contact form selecting 'Hire Talent' and describe the role you need to fill. Our team will reach out within 2–3 working days to understand your requirements and present a tailored recruitment plan.",
    "url": "/employers",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "What types of profiles can you source for my business?",
    "a": "We recruit across Retail, Hospitality, Administration, People Operations, and more. Whether you need one person or a full team, we source candidates who are ready to work and the right fit for your organisation.",
    "url": "/employers",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "I want to study in Malta — where do I start?",
    "a": "Select 'Study in Malta' on our contact page and tell us a bit about yourself. Our study advisors will guide you through school selection, enrolment, visa requirements, and accommodation — step by step.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "I have a different question — can I still contact you?",
    "a": "Absolutely. Select 'Other Question' on our contact page and describe what you need. No matter the topic, our team will read your message and get back to you within 2–3 working days.",
    "url": "/contact-us",
-   "pages": 296
+   "pages": 303
   },
   {
    "q": "How do I apply?",
    "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
    "url": "/jobs",
-   "pages": 25
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
-   "url": "/jobs",
-   "pages": 17
+   "pages": 24
   },
   {
    "q": "What are the working hours?",
@@ -61,22 +55,28 @@
    "pages": 17
   },
   {
-   "q": "Is this role remote or on-site?",
-   "a": "It is a full-time, on-site role at the showroom in Gżira, Malta.",
-   "url": "/jobs",
-   "pages": 16
-  },
-  {
    "q": "Where is the job based?",
    "a": "On-site in Floriana, Malta, just outside Valletta's city walls and well connected by bus routes into the capital.",
    "url": "/jobs",
    "pages": 16
   },
   {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "url": "/jobs",
+   "pages": 15
+  },
+  {
    "q": "Do I need to speak Maltese?",
    "a": "Yes. Fluency in both Maltese and English is essential for this role.",
    "url": "/jobs",
-   "pages": 12
+   "pages": 14
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "It is a full-time, on-site role at the showroom in Gżira, Malta.",
+   "url": "/jobs",
+   "pages": 14
   },
   {
    "q": "Do I need to be living in Malta to apply?",
@@ -117,6 +117,36 @@
   {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
+   "url": "/jobs",
+   "pages": 6
+  },
+  {
+   "q": "What does the Hotel General Manager job pay?",
+   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
+   "url": "/jobs",
+   "pages": 6
+  },
+  {
+   "q": "When does the hotel open?",
+   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
+   "url": "/jobs",
+   "pages": 6
+  },
+  {
+   "q": "How big is the hotel?",
+   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
+   "url": "/jobs",
+   "pages": 6
+  },
+  {
+   "q": "Who does the General Manager report to?",
+   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
+   "url": "/jobs",
+   "pages": 6
+  },
+  {
+   "q": "Do I need pre-opening experience?",
+   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
    "url": "/jobs",
    "pages": 6
   },
@@ -559,18 +589,6 @@
    "pages": 2
   },
   {
-   "q": "What does the Customer Experience Assistant job pay?",
-   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance, a loyalty card and training and development opportunities.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "What does a typical day involve?",
-   "a": "Calling customers after their appointments for feedback, following up enquiries and complaints with the relevant departments, logging cases in the CRM system and helping the Customer Experience Manager reach satisfaction targets.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
    "q": "What does the Driver License B role pay?",
    "a": "The salary for this role is not publicly disclosed. Apply and our recruitment team will share full compensation details with matching candidates.",
    "url": "/jobs",
@@ -651,36 +669,6 @@
   {
    "q": "Where is the Host / Receptionist job based?",
    "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "What does the Hotel General Manager job pay?",
-   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "When does the hotel open?",
-   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "How big is the hotel?",
-   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "Who does the General Manager report to?",
-   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "Do I need pre-opening experience?",
-   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
    "url": "/jobs",
    "pages": 2
   },
@@ -837,6 +825,36 @@
   {
    "q": "Is transport industry experience required?",
    "a": "No. Previous administration, clerical, HR support or operational administration experience is preferred, and transport or workforce administration experience is an advantage.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for the Senior Corporate Administrator job?",
+   "a": "The role offers a gross salary of €35,000 per year.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Where is this Senior Corporate Administrator role based?",
+   "a": "The position is based on-site in Birkirkara, Malta, and is full-time.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Who can apply for this role?",
+   "a": "Only candidates who currently reside in Malta will be considered.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What experience is required?",
+   "a": "You need previous corporate administration experience within a Corporate Service Provider in Malta, preferably at senior level, together with knowledge of Malta Business Registry procedures and statutory obligations.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What will I manage in this position?",
+   "a": "You will own a client portfolio, handle incorporations and corporate changes, oversee statutory filings, support junior administrators and assist with complex corporate matters and Scottish Partnerships.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1077,26 +1095,38 @@
    "title": "Aftersales Receptionist"
   },
   {
-   "q": "Is this Application Developer (Drupal) role full-time?",
-   "a": "Yes. This is a full-time role with an employment type of Full-Time.",
+   "q": "What does the Hotel General Manager job pay?",
+   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
    "slug": "application-developer-drupal",
    "title": "Application Developer (Drupal)"
   },
   {
-   "q": "Where is this job based?",
-   "a": "This vacancy is based in Valletta, Malta. The work mode is hybrid.",
+   "q": "When does the hotel open?",
+   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
    "slug": "application-developer-drupal",
    "title": "Application Developer (Drupal)"
   },
   {
-   "q": "What salary is offered?",
-   "a": "The salary package is competitive. A specific salary range has not been disclosed publicly for this vacancy.",
+   "q": "How big is the hotel?",
+   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
    "slug": "application-developer-drupal",
    "title": "Application Developer (Drupal)"
   },
   {
-   "q": "What reference should I use?",
-   "a": "You don't need to quote any reference yourself — just apply online and our recruitment team will match your application to this vacancy.",
+   "q": "Who does the General Manager report to?",
+   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
+   "slug": "application-developer-drupal",
+   "title": "Application Developer (Drupal)"
+  },
+  {
+   "q": "Do I need pre-opening experience?",
+   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
+   "slug": "application-developer-drupal",
+   "title": "Application Developer (Drupal)"
+  },
+  {
+   "q": "Do I need to speak Maltese?",
+   "a": "No. Fluent spoken and written English is required; knowledge of Maltese or other languages is an advantage.",
    "slug": "application-developer-drupal",
    "title": "Application Developer (Drupal)"
   },
@@ -1135,42 +1165,6 @@
    "a": "Yes. This role is open to candidates already residing in Malta and able to work on-site in Floriana.",
    "slug": "assistance-operations-coordinator",
    "title": "Assistance Operations Coordinator"
-  },
-  {
-   "q": "What does the Audit Senior Associate role pay?",
-   "a": "The salary for this role is €38,000–€42,000 per year.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
-  },
-  {
-   "q": "Where is the Audit Senior Associate job based?",
-   "a": "On-site in Msida, Malta, with a client that is expanding its audit team.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
-  },
-  {
-   "q": "What qualifications and experience do I need?",
-   "a": "You need to be fully ACCA qualified (or equivalent) with at least 3 years of experience within an audit team.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
-  },
-  {
-   "q": "Do I need to speak Maltese?",
-   "a": "Yes. Strong written and spoken communication skills in both English and Maltese are required.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
-  },
-  {
-   "q": "Are Excel skills required?",
-   "a": "You need to be proficient in Microsoft Office; advanced Excel skills are considered an asset.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
-  },
-  {
-   "q": "Are there career progression opportunities?",
-   "a": "Yes. The employer offers a transparent career path with growth opportunities in a supportive, work-life-balanced environment.",
-   "slug": "audit-senior-associate",
-   "title": "Audit Senior Associate"
   },
   {
    "q": "What does a Back Office Administrator do here?",
@@ -1347,32 +1341,38 @@
    "title": "Cleaner"
   },
   {
-   "q": "What does the Customer Experience Assistant job pay?",
-   "a": "The salary is competitive and is discussed with shortlisted candidates. Benefits include health insurance, a loyalty card and training and development opportunities.",
+   "q": "What does the Hotel General Manager job pay?",
+   "a": "A gross annual salary of €52,000–€55,000 depending on experience and suitability, plus a performance-related bonus of up to 10–15% of gross annual basic salary and a company-paid mobile phone.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "When does the hotel open?",
+   "a": "The hotel is expected to open in June 2027, subject to project readiness. The successful candidate will join sufficiently in advance to lead the pre-opening; the joining date is agreed with the applicant.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "How big is the hotel?",
+   "a": "It will have approximately 60 guest rooms and operate in the 3-star hotel segment in St Julian's.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "Who does the General Manager report to?",
+   "a": "The role reports directly to the Directors, with regular performance updates on challenges and opportunities.",
+   "slug": "customer-experience-assistant",
+   "title": "Customer Experience Assistant"
+  },
+  {
+   "q": "Do I need pre-opening experience?",
+   "a": "It is not required, but previous hotel pre-opening experience is considered a strong advantage. Senior hotel management experience is required.",
    "slug": "customer-experience-assistant",
    "title": "Customer Experience Assistant"
   },
   {
    "q": "Do I need to speak Maltese?",
-   "a": "Yes. Excellent written and verbal communication skills in both English and Maltese are required.",
-   "slug": "customer-experience-assistant",
-   "title": "Customer Experience Assistant"
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2 years of experience in a customer service role, together with an A-level standard of education.",
-   "slug": "customer-experience-assistant",
-   "title": "Customer Experience Assistant"
-  },
-  {
-   "q": "What does a typical day involve?",
-   "a": "Calling customers after their appointments for feedback, following up enquiries and complaints with the relevant departments, logging cases in the CRM system and helping the Customer Experience Manager reach satisfaction targets.",
-   "slug": "customer-experience-assistant",
-   "title": "Customer Experience Assistant"
-  },
-  {
-   "q": "Is this role remote or on-site?",
-   "a": "The role is full-time and on-site in Gżira, Malta.",
+   "a": "No. Fluent spoken and written English is required; knowledge of Maltese or other languages is an advantage.",
    "slug": "customer-experience-assistant",
    "title": "Customer Experience Assistant"
   },
@@ -1689,42 +1689,6 @@
    "title": "Hotel General Manager"
   },
   {
-   "q": "What do these Dubai hospitality jobs pay?",
-   "a": "Pay is AED 900–2,100 per month, depending on the position.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
-   "q": "Which positions are available?",
-   "a": "Food & Beverage Servers, Bartender, Hostess and Commis Chefs. Internship and trainee positions are also available.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
-   "q": "Is accommodation provided?",
-   "a": "Yes. Shared accommodation (up to 3 people per room) is provided, with a gym and swimming pool, plus transport between the accommodation and the workplace.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
-   "q": "Is the visa covered?",
-   "a": "Yes. Visa costs are covered by the company, and visa processing takes about 2–3 weeks.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
-   "q": "When does the job start and how long is the contract?",
-   "a": "The expected start is mid-November. Regular positions are on a 2-year contract; trainee programmes run from 6 months to 1 year.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
-   "q": "Do I need experience?",
-   "a": "Previous experience in a similar role is preferred, but internship and trainee opportunities are available. A good command of spoken English is required.",
-   "slug": "italian-restaurant-hospitality-positions-dubai",
-   "title": "Italian Restaurant – Multiple Hospitality Positions"
-  },
-  {
    "q": "What does the Junior Administrative Executive job pay?",
    "a": "The salary is €1,250–€1,350 per month.",
    "slug": "junior-administrative-executive",
@@ -1965,42 +1929,6 @@
    "title": "Mini Bus Driver – Licence D"
   },
   {
-   "q": "What does the Night Cleaner role pay?",
-   "a": "Salary for this role is not published — it's negotiable and discussed directly with the employer based on your experience.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
-   "q": "Where is the job based?",
-   "a": "On-site in St. Julian's, Malta, in one of the island's busiest hospitality and dining districts.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
-   "q": "What are the working hours?",
-   "a": "This is a night-shift role — you'll be cleaning the restaurant, kitchen and back-of-house areas after service, so it's ready for the following day's operations.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
-   "q": "Do I need previous cleaning experience?",
-   "a": "Previous cleaning experience is preferred, ideally within a restaurant, hotel or hospitality environment, but is not always essential.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
-   "q": "What will a typical shift involve?",
-   "a": "You'll sanitise the restaurant, kitchen and back-of-house areas, sweep and mop floors, clean surfaces and staff areas, manage waste disposal, and report any maintenance issues — working independently with minimal supervision.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
-   "q": "Do I need to be living in Malta to apply?",
-   "a": "Yes. Only candidates currently residing in Malta will be considered for this role.",
-   "slug": "night-cleaner",
-   "title": "Night Cleaner"
-  },
-  {
    "q": "What does a PDI Leading Hand do?",
    "a": "PDI stands for pre-delivery inspection. You inspect, prepare and valet new vehicles before they are handed to customers, keep used vehicles presentable, report any damage and coordinate vehicle movements with the Service and Sales Managers.",
    "slug": "pdi-leading-hand",
@@ -2197,6 +2125,36 @@
    "a": "Supporting Depot Management with attendance and leave records, payroll queries, disciplinary and compliance documentation, incident reports, purchase orders, driver alcohol tests, CPC training bookings and regular depot reports.",
    "slug": "senior-clerk",
    "title": "Senior Clerk"
+  },
+  {
+   "q": "What is the salary for the Senior Corporate Administrator job?",
+   "a": "The role offers a gross salary of €35,000 per year.",
+   "slug": "senior-corporate-administrator",
+   "title": "Senior Corporate Administrator"
+  },
+  {
+   "q": "Where is this Senior Corporate Administrator role based?",
+   "a": "The position is based on-site in Birkirkara, Malta, and is full-time.",
+   "slug": "senior-corporate-administrator",
+   "title": "Senior Corporate Administrator"
+  },
+  {
+   "q": "Who can apply for this role?",
+   "a": "Only candidates who currently reside in Malta will be considered.",
+   "slug": "senior-corporate-administrator",
+   "title": "Senior Corporate Administrator"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "You need previous corporate administration experience within a Corporate Service Provider in Malta, preferably at senior level, together with knowledge of Malta Business Registry procedures and statutory obligations.",
+   "slug": "senior-corporate-administrator",
+   "title": "Senior Corporate Administrator"
+  },
+  {
+   "q": "What will I manage in this position?",
+   "a": "You will own a client portfolio, handle incorporations and corporate changes, oversee statutory filings, support junior administrators and assist with complex corporate matters and Scottish Partnerships.",
+   "slug": "senior-corporate-administrator",
+   "title": "Senior Corporate Administrator"
   },
   {
    "q": "How much does the Skilled Carpenter job pay?",

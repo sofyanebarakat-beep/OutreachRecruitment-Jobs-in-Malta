@@ -1,0 +1,155 @@
+{
+  "date": "2026-11-07",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Italian Restaurant – Multiple Hospitality Positions",
+      "slug": "italian-restaurant-hospitality-positions-dubai",
+      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai/",
+      "city": "Dubai, United Arab Emirates"
+    },
+    {
+      "title": "Night Cleaner",
+      "slug": "night-cleaner",
+      "url": "https://outreachrecruitment.net/jobs/night-cleaner/",
+      "city": "St. Julian's, Malta"
+    },
+    {
+      "title": "Audit Senior Associate",
+      "slug": "audit-senior-associate",
+      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate/",
+      "city": "Msida, Malta"
+    },
+    {
+      "title": "Associate Tax Advisor",
+      "slug": "associate-tax-advisor",
+      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor/",
+      "city": "Msida, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [
+    {
+      "uuid": "35466667-4755-407f-b866-2354151973b9",
+      "title": "Service Delivery Manager",
+      "city": "Valletta",
+      "slug": "service-delivery-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/35466667-4755-407f-b866-2354151973b9",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "8c5047d4-7c1b-4ab9-b581-273104d90c58",
+      "title": "Workshop Team Leader",
+      "city": "Gżira",
+      "slug": "workshop-team-leader",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8c5047d4-7c1b-4ab9-b581-273104d90c58",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "f046a446-d5aa-4bf2-aaa2-ae9c184f40fb",
+      "title": "Aftersales Administrator",
+      "city": "Gżira",
+      "slug": "aftersales-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f046a446-d5aa-4bf2-aaa2-ae9c184f40fb",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "a5cdd055-a18e-4aad-b319-7d66d6e85ed9",
+      "title": "Senior Technician",
+      "city": "Gżira",
+      "slug": "senior-technician",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a5cdd055-a18e-4aad-b319-7d66d6e85ed9",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "b71ac02a-3011-454a-9a98-93e34f74267a",
+      "title": "Accounts Clerk",
+      "city": "Gżira",
+      "slug": "accounts-clerk",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b71ac02a-3011-454a-9a98-93e34f74267a",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "182ca7ce-c6c6-4c0d-8780-6745e20aca66",
+      "title": "Sales Manager",
+      "city": "Gżira",
+      "slug": "sales-manager-gzira",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/182ca7ce-c6c6-4c0d-8780-6745e20aca66",
+      "reason": "the page was not built (not added to the registry)"
+    }
+  ],
+  "held": [],
+  "notes": [
+    "Website shows 119 open jobs vs 125 on the careers page — see 'Needs your attention'."
+  ],
+  "salary_notes": [
+    "Service Delivery Manager: no salary given on the careers page — page says 'Competitive salary'.",
+    "Workshop Team Leader: no salary given on the careers page — page says 'Competitive salary'.",
+    "Aftersales Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Senior Technician: no salary given on the careers page — page says 'Competitive salary'.",
+    "Accounts Clerk: no salary given on the careers page — page says 'Competitive salary'.",
+    "Sales Manager: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 125,
+  "site_open_before": 123,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 119,
+    "ok": 116,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "finance-jobs-in-malta.html": {
+        "replaced": 0,
+        "removed": 2
+      },
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 2,
+        "removed": 0
+      },
+      "index.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "it-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "retail-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "salary-calculator-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 28,
+    "itemlist_items": 119,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 4,
+    "pages_reopened": 0
+  },
+  "site_open_after": 119,
+  "salary_coverage": {
+    "open": 119,
+    "with_salary": 28
+  }
+}

@@ -4,7 +4,7 @@
   <!-- Job listing index -->
   <url>
     <loc>https://outreachrecruitment.net/jobs</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -159,12 +159,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/front-office-executive</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -209,12 +203,6 @@
   <url>
     <loc>https://outreachrecruitment.net/jobs/driver-license-b</loc>
     <lastmod>2026-11-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/night-cleaner</loc>
-    <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -717,20 +705,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://outreachrecruitment.net/jobs/audit-senior-associate</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://outreachrecruitment.net/jobs/audit-senior</loc>
     <lastmod>2026-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://outreachrecruitment.net/jobs/associate-tax-advisor</loc>
-    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
