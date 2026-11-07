@@ -1,6 +1,6 @@
 (function(){
   "use strict";
-  var STORAGE_KEY="or-job-eligibility-v1";
+  var STORAGE_KEY="or-job-eligibility-v2:"+location.pathname.replace(/\/+$/,"");
   var ALERT_COUNTRY_KEY="or-job-alert-country-v1";
   var countryCodes="AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI KP KR KW KG LA LV LB LS LR LY LI LT LU MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG MK NO OM PK PW PS PA PG PY PE PH PL PT QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW XK".split(" ");
   var europeCodes="AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO CH GB MC".split(" ");
@@ -9,7 +9,7 @@
   var countries=countryCodes.map(function(code){var name=code==="XK"?"Kosovo":displayNames?displayNames.of(code):code;return [code,flag(code)+" "+name];}).sort(function(a,b){return a[1].slice(a[1].indexOf(" ")+1).localeCompare(b[1].slice(b[1].indexOf(" ")+1));});
   var countryNames={};countries.forEach(function(c){countryNames[c[0]]=c[1];});
   var saved=null,lastFocus=null,skipNextCountryFocus=false;
-  try{saved=JSON.parse(sessionStorage.getItem(STORAGE_KEY)||sessionStorage.getItem("or-hotel-manager-eligibility-v3")||"null");}catch(e){saved=null;}
+  try{saved=JSON.parse(sessionStorage.getItem(STORAGE_KEY)||"null");}catch(e){saved=null;}
   function jobMeta(){
     var title=document.querySelector(".job-header-title")||document.querySelector("#job-apply-panel h1");
     var category="General",targetLocation="";
