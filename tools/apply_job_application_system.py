@@ -8,7 +8,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 JOBS = ROOT / "jobs"
-ASSET_VERSION = "20261106"
+ASSET_VERSION = "20261107"
 ASSET_NAMES = (
     "job-eligibility-gate.css",
     "job-alert-launcher.css",
