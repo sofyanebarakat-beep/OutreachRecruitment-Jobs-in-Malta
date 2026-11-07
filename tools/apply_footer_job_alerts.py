@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = '<link href="/assets/footer-job-alerts.css?v=20261107" rel="stylesheet" type="text/css"/>\n<script defer src="/assets/job-alert-subscribe.js?v=20261107"></script>\n<script defer src="/assets/footer-job-alerts.js?v=20261107"></script>\n'
+ASSETS = '<link href="/assets/footer-job-alerts.css?v=20261107b" rel="stylesheet" type="text/css"/>\n<script defer src="/assets/job-alert-subscribe.js?v=20261107b"></script>\n<script defer src="/assets/footer-job-alerts.js?v=20261107b"></script>\n'
 FOOTER_RE = re.compile(r'<div class="footer-newsletter">.*?<div class="text-small">Be first to get new job alerts\.</div></div>', re.S)
 
 def update(path: Path) -> bool:

@@ -4,9 +4,10 @@
 .footer-alert-copy{margin:0;color:rgba(255,255,255,.68);font-size:.84rem;line-height:1.45}
 .footer-alert-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
 .footer-alert-form label{display:grid;gap:.3rem;color:rgba(255,255,255,.82);font-size:.72rem;font-weight:700}
-.footer-alert-form input,.footer-alert-form select{width:100%;min-height:46px;box-sizing:border-box;padding:.65rem .75rem;border:1px solid rgba(255,255,255,.22);border-radius:9px;background:rgba(255,255,255,.1);color:#fff;font:inherit}
+.footer-alert-form input,.footer-alert-form select{width:100%;min-height:46px;box-sizing:border-box;padding:.65rem .75rem;border:1px solid rgba(255,255,255,.34);border-radius:9px;background:#fff;color:#17113d;font:inherit;caret-color:#3224ad}
 .footer-alert-form select option{color:#17113d;background:#fff}
-.footer-alert-form input::placeholder{color:rgba(255,255,255,.48)}
+.footer-alert-form input::placeholder{color:#6f6a86;opacity:1}
+.footer-alert-form label small{color:rgba(255,255,255,.62);font-size:.65rem;font-weight:500;line-height:1.35}
 .footer-alert-form input:focus,.footer-alert-form select:focus{border-color:#8f82ff;outline:3px solid rgba(143,130,255,.2)}
 .footer-alert-consent{display:flex!important;grid-column:1/-1;align-items:flex-start;gap:.55rem;line-height:1.35;cursor:pointer}
 .footer-alert-consent input{width:18px;height:18px;min-height:0;flex:0 0 18px;margin:.05rem 0 0;accent-color:#7968ff}
