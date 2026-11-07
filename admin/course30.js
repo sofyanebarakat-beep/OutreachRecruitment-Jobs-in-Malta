@@ -793,6 +793,7 @@
     $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === r));
     if (r === "jobsync") window.renderJobSync($("#view"), param);
     else if (r === "featured-jobs") window.renderFeaturedJobs($("#view"));
+    else if (r === "footer-job-alerts") window.renderSubscribers($("#view"), "footer_signup");
     else if (r === "subscribers") window.renderSubscribers($("#view"));
     else if (r === "marketing") window.renderMarketing($("#view"));
     else if (r === "social") window.renderSocial($("#view"));

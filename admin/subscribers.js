@@ -17,22 +17,25 @@
     link.download = `job-alert-subscribers-${new Date().toISOString().slice(0,10)}.csv`; link.click(); URL.revokeObjectURL(link.href);
   }
 
-  window.renderSubscribers = async function(view) {
-    view.innerHTML = `<section class="card hero"><div class="kicker">Candidates · Job alerts</div><h1>Job alert subscribers</h1><p>People who subscribed from the website footer, after applying, or when a role was unavailable for their location.</p></section><section class="card"><p class="muted" role="status">Loading subscribers…</p></section>`;
+  window.renderSubscribers = async function(view, sourceFilter) {
+    const footerOnly = sourceFilter === "footer_signup";
+    const title = footerOnly ? "Footer job alerts" : "Job alert subscribers";
+    const description = footerOnly ? "People who completed the job-alert form in the website footer." : "People who subscribed from the website footer, after applying, or when a role was unavailable for their location.";
+    view.innerHTML = `<section class="card hero"><div class="kicker">Candidates · Job alerts</div><h1>${title}</h1><p>${description}</p></section><section class="card"><p class="muted" role="status">Loading subscribers…</p></section>`;
     const store = window.AdminStore;
     if (!store || store.mode !== "supabase" || !store.sb) {
       view.lastElementChild.innerHTML = `<h2>Online database required</h2><p class="msg error">Sign in to the connected admin database to view subscriber data.</p>`; return;
     }
     const { data, error } = await store.sb.from("job_alert_subscribers").select("*").order("last_opt_in_at", { ascending: false });
     if (error) { view.lastElementChild.innerHTML = `<h2>Subscribers unavailable</h2><p class="msg error">${esc(error.message)}</p><p class="muted">Apply the job-alert database migration, then reload this section.</p>`; return; }
-    rows = data || [];
+    rows = footerOnly ? (data || []).filter((row) => (row.sources || []).includes("footer_signup")) : (data || []);
     const active = rows.filter((r) => r.status === "active").length;
     const blocked = rows.filter((r) => (r.sources || []).includes("location_blocked")).length;
     const applied = rows.filter((r) => (r.sources || []).includes("post_application")).length;
     const footer = rows.filter((r) => (r.sources || []).includes("footer_signup")).length;
     const eligible = rows.filter((r) => eligibility(r) === "eligible").length;
     const notEligible = rows.length - eligible;
-    view.innerHTML = `<section class="card hero"><div class="kicker">Candidates · Job alerts</div><h1>Job alert subscribers</h1><p>People who subscribed from the website footer, after applying, or when a role was unavailable for their location.</p></section>
+    view.innerHTML = `<section class="card hero"><div class="kicker">Candidates · Job alerts</div><h1>${title}</h1><p>${description}</p></section>
       <section class="subscriber-stats"><div class="card"><span>Active subscribers</span><strong>${active}</strong></div><div class="card"><span>Footer signups</span><strong>${footer}</strong></div><div class="card"><span>After application</span><strong>${applied}</strong></div><div class="card"><span>Location blocked</span><strong>${blocked}</strong></div><div class="card"><span>Countries</span><strong>${new Set(rows.map((r) => r.country_code)).size}</strong></div></section>
       <section class="subscriber-eligibility"><button class="card eligible" type="button" data-eligibility-pick="eligible"><span>✓ Eligible for EU-only vacancies</span><strong>${eligible}</strong><small>Current residence meets this vacancy rule</small></button><button class="card not-eligible" type="button" data-eligibility-pick="not_eligible"><span>! Not eligible for EU-only vacancies</span><strong>${notEligible}</strong><small>Keep for worldwide or location-matched roles</small></button></section>
       <section class="card"><div class="subscriber-toolbar"><label>Search<input id="subscriber-search" type="search" placeholder="Name, email, country or job"></label><label>EU-only eligibility<select id="subscriber-eligibility"><option value="all">All eligibility</option><option value="eligible">Eligible</option><option value="not_eligible">Not eligible</option></select></label><label>Status<select id="subscriber-status"><option value="all">All subscribers</option><option value="active">Active</option><option value="unsubscribed">Unsubscribed</option></select></label><button class="btn" id="subscriber-export" type="button">Export CSV</button></div><p id="subscriber-count" class="muted small"></p><div id="subscriber-table"></div></section>`;
