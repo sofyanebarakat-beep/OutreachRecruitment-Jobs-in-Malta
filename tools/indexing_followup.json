@@ -184,7 +184,7 @@
     "status": "gave_up"
   },
   "senior-clerk": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-26",
     "indexed": false,
     "job_posting": false,
@@ -192,7 +192,7 @@
     "status": "pending"
   },
   "business-development-manager-horeca": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-26",
     "indexed": false,
     "job_posting": false,
@@ -208,7 +208,7 @@
     "status": "ok"
   },
   "aftersales-receptionist": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -216,7 +216,7 @@
     "status": "pending"
   },
   "warranty-administrator": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -224,7 +224,7 @@
     "status": "pending"
   },
   "back-office-administrator": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -232,7 +232,7 @@
     "status": "pending"
   },
   "leasing-administration-officer": {
-    "checked": "2026-11-06",
+    "checked": "2026-11-07",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -246,5 +246,13 @@
     "job_posting": true,
     "coverage": "Submitted and indexed",
     "status": "ok"
+  },
+  "hotel-general-manager": {
+    "checked": "2026-11-07",
+    "published": "2026-11-04",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
   }
 }
