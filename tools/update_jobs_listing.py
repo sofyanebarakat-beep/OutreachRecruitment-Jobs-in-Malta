@@ -35,6 +35,7 @@ BASE_URL = "https://outreachrecruitment.net"
 
 # How many recent jobs to show on the homepage (0 = show all)
 HOMEPAGE_LIMIT = 10
+FEATURED_DISPLAY_LIMIT = 6
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -191,6 +192,7 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
     html = path.read_text(encoding="utf-8")
     n        = len(all_jobs)
     featured = sum(1 for j in all_jobs if j.get("featured"))
+    featured_display = min(featured, FEATURED_DISPLAY_LIMIT)
     updated_dates = [
         date.fromisoformat(j.get("lastmod") or j["date"])
         for j in all_jobs
@@ -282,7 +284,7 @@ def update_jobs_page(all_jobs: list[dict], open_n: int) -> None:
 
     # Tab counts
     html = re.sub(r'(data-opening-tab="featured"[^>]*>Featured <span>)\d+(</span>)',
-                  rf'\g<1>{featured}\2', html, count=1)
+                  rf'\g<1>{featured_display}\2', html, count=1)
     html = re.sub(r'(data-opening-tab="latest"[^>]*>Latest <span>)\d+(</span>)',
                   rf'\g<1>{n}\2', html, count=1)
     html = re.sub(r'(data-opening-tab="all"[^>]*>Open positions <span>)\d+(</span>)',
