@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-07T10:37:53",
+  "generated_at": "2026-11-07T11:54:05",
   "careers_count_advertised": 125,
   "careers_count_scraped": 125,
-  "website_count": 123,
-  "sync_score": 91.0,
+  "website_count": 119,
+  "sync_score": 92.2,
   "missing_jobs": [
     "Service Delivery Manager",
     "Workshop Team Leader",
@@ -18,14 +18,10 @@
     "Heavy equipment mech"
   ],
   "extra_jobs": [
-    "Italian Restaurant – Multiple Hospitality Positions",
     "Mini Bus Driver – Licence D",
-    "Night Cleaner",
     "Deli Counter Assistant / Salumeria Specialist",
     "Chef De Partie",
-    "Application Developer (Drupal)",
-    "Audit Senior Associate",
-    "Associate Tax Advisor"
+    "Application Developer (Drupal)"
   ],
   "title_mismatches": [
     {
@@ -84,13 +80,6 @@
       "url": "https://outreachrecruitment.net/jobs/front-office-agent",
       "issues": [
         "Meta description too short (48 chars)"
-      ]
-    },
-    {
-      "title": "Night Cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "issues": [
-        "Meta description too short (43 chars)"
       ]
     },
     {
@@ -278,13 +267,6 @@
       ]
     },
     {
-      "title": "Associate Tax Advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "issues": [
-        "Meta description too long (165 chars)"
-      ]
-    },
-    {
       "title": "Health Claims Associate",
       "url": "https://outreachrecruitment.net/jobs/health-claims-associate",
       "issues": [
@@ -435,13 +417,6 @@
       "title_b": "Housekeeper",
       "url_b": "https://outreachrecruitment.net/jobs/housekeeper-2",
       "similarity": 0.73
-    },
-    {
-      "title_a": "Night Cleaner",
-      "url_a": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "title_b": "Tank Cleaner",
-      "url_b": "https://outreachrecruitment.net/jobs/tank-cleaner",
-      "similarity": 0.72
     }
   ],
   "schema_issues": [],
@@ -532,7 +507,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Leasing Administration Officer jobs in Malta",
@@ -636,7 +611,7 @@
       "score": 73,
       "priority": "Medium",
       "target_keyword": "Cleaner jobs in Malta",
-      "word_count": 5053,
+      "word_count": 5052,
       "category_links": 0,
       "category_sources": "",
       "schema_eligible": true,
@@ -819,50 +794,6 @@
       ]
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "slug": "italian-restaurant-hospitality-positions-dubai",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "category": "Hospitality",
-      "score": 75,
-      "priority": "Medium",
-      "target_keyword": "Italian Restaurant – Multiple Hospitality Positions jobs in Malta",
-      "word_count": 5194,
-      "category_links": 2,
-      "category_sources": "hospitality-jobs-in-malta.html, retail-jobs-in-malta.html",
-      "schema_eligible": true,
-      "last_indexing_status": "Not recorded",
-      "last_indexing_date": "",
-      "issues": [
-        "Meta title does not include exact job title",
-        "Meta title missing Malta",
-        "Meta description does not include exact job title",
-        "Meta description missing Malta",
-        "Target phrase missing: Italian Restaurant – Multiple Hospitality Positions jobs in Malta"
-      ]
-    },
-    {
-      "title": "Night Cleaner",
-      "slug": "night-cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "category": "Hospitality",
-      "score": 75,
-      "priority": "Medium",
-      "target_keyword": "Night Cleaner jobs in Malta",
-      "word_count": 5119,
-      "category_links": 1,
-      "category_sources": "hospitality-jobs-in-malta.html",
-      "schema_eligible": true,
-      "last_indexing_status": "200",
-      "last_indexing_date": "2026-10-20T07:23:03",
-      "issues": [
-        "Possible duplicate/cannibalization risk",
-        "Meta description missing Malta",
-        "Target phrase missing: Night Cleaner jobs in Malta",
-        "Missing offer/benefits section",
-        "Salary/baseSalary missing or not specific"
-      ]
-    },
-    {
       "title": "Commercial Insurance Associate",
       "slug": "commercial-insurance-associate",
       "url": "https://outreachrecruitment.net/jobs/commercial-insurance-associate",
@@ -912,7 +843,7 @@
       "score": 77,
       "priority": "Medium",
       "target_keyword": "Front Office Agent jobs in Malta",
-      "word_count": 5030,
+      "word_count": 5031,
       "category_links": 2,
       "category_sources": "engineering-jobs-in-malta.html, hospitality-jobs-in-malta.html",
       "schema_eligible": true,
@@ -938,7 +869,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Target phrase missing: Aftersales Receptionist jobs in Malta",
         "Not linked from a category jobs page",
@@ -959,7 +890,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Target phrase missing: Back Office Administrator jobs in Malta",
         "Not linked from a category jobs page",
@@ -1064,7 +995,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Target phrase missing: Warranty Administrator jobs in Malta",
         "Not linked from a category jobs page",
@@ -1115,26 +1046,6 @@
       ]
     },
     {
-      "title": "Hotel General Manager",
-      "slug": "hotel-general-manager",
-      "url": "https://outreachrecruitment.net/jobs/hotel-general-manager",
-      "category": "Hospitality",
-      "score": 81,
-      "priority": "Medium",
-      "target_keyword": "Hotel General Manager jobs in Malta",
-      "word_count": 6223,
-      "category_links": 0,
-      "category_sources": "",
-      "schema_eligible": true,
-      "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-04T11:00:07",
-      "issues": [
-        "Target phrase missing: Hotel General Manager jobs in Malta",
-        "Not linked from a category jobs page",
-        "Missing offer/benefits section"
-      ]
-    },
-    {
       "title": "Retail Shop Supervisor",
       "slug": "retail-shop-supervisor",
       "url": "https://outreachrecruitment.net/jobs/retail-shop-supervisor",
@@ -1167,7 +1078,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Target phrase missing: Senior Clerk jobs in Malta",
         "Not linked from a category jobs page",
@@ -1263,7 +1174,7 @@
       "score": 83,
       "priority": "Medium",
       "target_keyword": "Audit Senior jobs in Malta",
-      "word_count": 4716,
+      "word_count": 4715,
       "category_links": 3,
       "category_sources": "finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, it-jobs-in-malta.html",
       "schema_eligible": true,
@@ -2073,7 +1984,7 @@
       "score": 89,
       "priority": "Low",
       "target_keyword": "Hotel Maintenance Assistant jobs in Malta",
-      "word_count": 5031,
+      "word_count": 5032,
       "category_links": 2,
       "category_sources": "hospitality-jobs-in-malta.html, retail-jobs-in-malta.html",
       "schema_eligible": true,
@@ -2151,9 +2062,9 @@
       "score": 91,
       "priority": "Low",
       "target_keyword": "Accounting Officer jobs in Malta",
-      "word_count": 5320,
-      "category_links": 3,
-      "category_sources": "finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, insurance-jobs-in-malta.html",
+      "word_count": 5317,
+      "category_links": 4,
+      "category_sources": "finance-jobs-in-malta.html, hospitality-jobs-in-malta.html, insurance-jobs-in-malta.html, it-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
       "last_indexing_date": "2026-11-04T10:29:18",
@@ -2194,7 +2105,7 @@
       "category_sources": "sales-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Target phrase missing: Business Development Manager HoReCa jobs in Malta",
         "Missing offer/benefits section"
@@ -2235,6 +2146,25 @@
       "last_indexing_date": "",
       "issues": [
         "Target phrase missing: Forklift Operator jobs in Malta",
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "Hotel General Manager",
+      "slug": "hotel-general-manager",
+      "url": "https://outreachrecruitment.net/jobs/hotel-general-manager",
+      "category": "Hospitality",
+      "score": 91,
+      "priority": "Low",
+      "target_keyword": "Hotel General Manager jobs in Malta",
+      "word_count": 6223,
+      "category_links": 2,
+      "category_sources": "hospitality-jobs-in-malta.html, retail-jobs-in-malta.html",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-11-07T11:47:39",
+      "issues": [
+        "Target phrase missing: Hotel General Manager jobs in Malta",
         "Missing offer/benefits section"
       ]
     },
@@ -2322,7 +2252,7 @@
       "score": 93,
       "priority": "Low",
       "target_keyword": "Client Accountant jobs in Malta",
-      "word_count": 4807,
+      "word_count": 4804,
       "category_links": 2,
       "category_sources": "finance-jobs-in-malta.html, hospitality-jobs-in-malta.html",
       "schema_eligible": true,
@@ -2379,7 +2309,7 @@
       "score": 93,
       "priority": "Low",
       "target_keyword": "Deli Counter Assistant / Salumeria Specialist jobs in Malta",
-      "word_count": 5069,
+      "word_count": 5067,
       "category_links": 1,
       "category_sources": "hospitality-jobs-in-malta.html",
       "schema_eligible": true,
@@ -2652,42 +2582,6 @@
       "last_indexing_date": "",
       "issues": [
         "Target phrase missing: Assistance Operations Coordinator jobs in Malta"
-      ]
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "slug": "associate-tax-advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "category": "Finance & Accounting",
-      "score": 95,
-      "priority": "Low",
-      "target_keyword": "Associate Tax Advisor jobs in Malta",
-      "word_count": 4608,
-      "category_links": 1,
-      "category_sources": "finance-jobs-in-malta.html",
-      "schema_eligible": true,
-      "last_indexing_status": "200",
-      "last_indexing_date": "2026-10-14T09:53:21",
-      "issues": [
-        "Target phrase missing: Associate Tax Advisor jobs in Malta"
-      ]
-    },
-    {
-      "title": "Audit Senior Associate",
-      "slug": "audit-senior-associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "category": "Finance & Accounting",
-      "score": 95,
-      "priority": "Low",
-      "target_keyword": "Audit Senior Associate jobs in Malta",
-      "word_count": 5156,
-      "category_links": 2,
-      "category_sources": "finance-jobs-in-malta.html, it-jobs-in-malta.html",
-      "schema_eligible": true,
-      "last_indexing_status": "200",
-      "last_indexing_date": "2026-08-13T08:33:05",
-      "issues": [
-        "Target phrase missing: Audit Senior Associate jobs in Malta"
       ]
     },
     {
@@ -2969,7 +2863,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-06T10:32:46",
+      "last_indexing_date": "2026-11-07T11:47:39",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Leasing Administration Officer jobs in Malta",
@@ -3073,7 +2967,7 @@
       "score": 73,
       "priority": "Medium",
       "target_keyword": "Cleaner jobs in Malta",
-      "word_count": 5053,
+      "word_count": 5052,
       "category_links": 0,
       "category_sources": "",
       "schema_eligible": true,
@@ -3386,18 +3280,6 @@
       ]
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "target_keyword": "Italian Restaurant – Multiple Hospitality Positions jobs in Malta",
-      "issues": [
-        "Meta title does not include exact job title",
-        "Meta title missing Malta",
-        "Meta description does not include exact job title",
-        "Meta description missing Malta",
-        "Target phrase missing: Italian Restaurant – Multiple Hospitality Positions jobs in Malta"
-      ]
-    },
-    {
       "title": "Junior Administrative Executive",
       "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive",
       "target_keyword": "Junior Administrative Executive jobs in Malta",
@@ -3499,15 +3381,6 @@
       "issues": [
         "Meta description missing Malta",
         "Target phrase missing: Front Office Agent jobs in Malta"
-      ]
-    },
-    {
-      "title": "Night Cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "target_keyword": "Night Cleaner jobs in Malta",
-      "issues": [
-        "Meta description missing Malta",
-        "Target phrase missing: Night Cleaner jobs in Malta"
       ]
     },
     {
@@ -3938,27 +3811,11 @@
       ]
     },
     {
-      "title": "Audit Senior Associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "target_keyword": "Audit Senior Associate jobs in Malta",
-      "issues": [
-        "Target phrase missing: Audit Senior Associate jobs in Malta"
-      ]
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
       "target_keyword": "Customer Contact Centre Representative jobs in Malta",
       "issues": [
         "Target phrase missing: Customer Contact Centre Representative jobs in Malta"
-      ]
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "target_keyword": "Associate Tax Advisor jobs in Malta",
-      "issues": [
-        "Target phrase missing: Associate Tax Advisor jobs in Malta"
       ]
     },
     {
@@ -4103,13 +3960,6 @@
     {
       "title": "Senior Corporate Administrator",
       "url": "https://outreachrecruitment.net/jobs/senior-corporate-administrator",
-      "issues": [
-        "Not linked from a category jobs page"
-      ]
-    },
-    {
-      "title": "Hotel General Manager",
-      "url": "https://outreachrecruitment.net/jobs/hotel-general-manager",
       "issues": [
         "Not linked from a category jobs page"
       ]
@@ -4499,7 +4349,7 @@
     {
       "title": "Accounting Officer",
       "url": "https://outreachrecruitment.net/jobs/accounting-officer",
-      "word_count": 5320,
+      "word_count": 5317,
       "issues": [
         "Missing offer/benefits section"
       ]
@@ -4516,7 +4366,7 @@
     {
       "title": "Cleaner",
       "url": "https://outreachrecruitment.net/jobs/cleaner-marsa",
-      "word_count": 5053,
+      "word_count": 5052,
       "issues": [
         "Salary/baseSalary missing or not specific"
       ]
@@ -4532,7 +4382,7 @@
     {
       "title": "Hotel Maintenance Assistant",
       "url": "https://outreachrecruitment.net/jobs/hotel-maintenance-assistant",
-      "word_count": 5031,
+      "word_count": 5032,
       "issues": [
         "Salary/baseSalary missing or not specific"
       ]
@@ -4581,18 +4431,9 @@
     {
       "title": "Front Office Agent",
       "url": "https://outreachrecruitment.net/jobs/front-office-agent",
-      "word_count": 5030,
+      "word_count": 5031,
       "issues": [
         "Missing offer/benefits section"
-      ]
-    },
-    {
-      "title": "Night Cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "word_count": 5119,
-      "issues": [
-        "Missing offer/benefits section",
-        "Salary/baseSalary missing or not specific"
       ]
     },
     {
@@ -4664,7 +4505,7 @@
     {
       "title": "Deli Counter Assistant / Salumeria Specialist",
       "url": "https://outreachrecruitment.net/jobs/deli-counter-assistant-salumeria-specialist",
-      "word_count": 5069,
+      "word_count": 5067,
       "issues": [
         "Salary/baseSalary missing or not specific"
       ]
@@ -4820,7 +4661,7 @@
     {
       "title": "Client Accountant",
       "url": "https://outreachrecruitment.net/jobs/client-accountant-2",
-      "word_count": 4807,
+      "word_count": 4804,
       "issues": [
         "Salary/baseSalary missing or not specific"
       ]
@@ -5148,7 +4989,7 @@
     {
       "title": "Audit Senior",
       "url": "https://outreachrecruitment.net/jobs/audit-senior",
-      "word_count": 4716,
+      "word_count": 4715,
       "issues": [
         "Salary/baseSalary missing or not specific"
       ]
@@ -5268,12 +5109,6 @@
       "weak_jobs": 1
     },
     {
-      "category": "Hospitality",
-      "jobs": 21,
-      "average_score": 86.6,
-      "weak_jobs": 7
-    },
-    {
       "category": "Customer Service",
       "jobs": 3,
       "average_score": 87.7,
@@ -5286,9 +5121,21 @@
       "weak_jobs": 0
     },
     {
+      "category": "Hospitality",
+      "jobs": 19,
+      "average_score": 88.3,
+      "weak_jobs": 4
+    },
+    {
       "category": "IT & Technology",
       "jobs": 3,
       "average_score": 90.7,
+      "weak_jobs": 1
+    },
+    {
+      "category": "Finance & Accounting",
+      "jobs": 6,
+      "average_score": 91.0,
       "weak_jobs": 1
     },
     {
@@ -5296,12 +5143,6 @@
       "jobs": 8,
       "average_score": 91.2,
       "weak_jobs": 0
-    },
-    {
-      "category": "Finance & Accounting",
-      "jobs": 8,
-      "average_score": 92.0,
-      "weak_jobs": 1
     },
     {
       "category": "Manufacturing",
@@ -5456,12 +5297,6 @@
       "issues": []
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "eligible": true,
-      "issues": []
-    },
-    {
       "title": "Junior Administrative Executive",
       "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive",
       "eligible": true,
@@ -5530,12 +5365,6 @@
     {
       "title": "Front Office Agent",
       "url": "https://outreachrecruitment.net/jobs/front-office-agent",
-      "eligible": true,
-      "issues": []
-    },
-    {
-      "title": "Night Cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
       "eligible": true,
       "issues": []
     },
@@ -5882,12 +5711,6 @@
       "issues": []
     },
     {
-      "title": "Audit Senior Associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "eligible": true,
-      "issues": []
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
       "eligible": true,
@@ -5902,12 +5725,6 @@
     {
       "title": "Draughtsperson",
       "url": "https://outreachrecruitment.net/jobs/draughtsperson",
-      "eligible": true,
-      "issues": []
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
       "eligible": true,
       "issues": []
     },
@@ -6064,10 +5881,10 @@
   ],
   "ranking_action_plan": [
     "Fix 7 high-priority job page(s) below 70/100",
-    "Fix 106 job page(s) with keyword targeting gaps",
-    "Fix 38 job page(s) missing category-page internal links",
-    "Fix 103 job page(s) needing deeper content",
-    "Fix 20 possible duplicate/cannibalization pair(s) to review"
+    "Fix 102 job page(s) with keyword targeting gaps",
+    "Fix 37 job page(s) missing category-page internal links",
+    "Fix 102 job page(s) needing deeper content",
+    "Fix 19 possible duplicate/cannibalization pair(s) to review"
   ],
   "gsc_url_inspection": [
     {
@@ -6533,27 +6350,6 @@
       "error": ""
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "slug": "italian-restaurant-hospitality-positions-dubai",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "status": 200,
-      "ok": true,
-      "indexed": true,
-      "verdict": "PASS",
-      "coverage_state": "Submitted and indexed",
-      "indexing_state": "INDEXING_ALLOWED",
-      "page_fetch_state": "SUCCESSFUL",
-      "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-03T02:49:51Z",
-      "user_canonical": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "google_canonical": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai/",
-      "canonical_match": true,
-      "sitemap": "",
-      "rich_results_verdict": "PASS",
-      "rich_result_types": "Breadcrumbs, Job Postings",
-      "error": ""
-    },
-    {
       "title": "Junior Administrative Executive",
       "slug": "junior-administrative-executive",
       "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive",
@@ -6806,27 +6602,6 @@
       "error": ""
     },
     {
-      "title": "Night Cleaner",
-      "slug": "night-cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "status": 200,
-      "ok": true,
-      "indexed": true,
-      "verdict": "PASS",
-      "coverage_state": "Submitted and indexed",
-      "indexing_state": "INDEXING_ALLOWED",
-      "page_fetch_state": "SUCCESSFUL",
-      "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-03T20:49:54Z",
-      "user_canonical": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "google_canonical": "https://outreachrecruitment.net/jobs/night-cleaner/",
-      "canonical_match": true,
-      "sitemap": "",
-      "rich_results_verdict": "PASS",
-      "rich_result_types": "Breadcrumbs, Job Postings",
-      "error": ""
-    },
-    {
       "title": "Banqueting F&B Supervisor",
       "slug": "banqueting-fb-supervisor",
       "url": "https://outreachrecruitment.net/jobs/banqueting-fb-supervisor",
@@ -7006,7 +6781,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-07T00:17:11Z",
+      "last_crawl_time": "2026-11-07T10:24:04Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/public-area-cleaner",
       "google_canonical": "https://outreachrecruitment.net/jobs/public-area-cleaner/",
       "canonical_match": true,
@@ -8024,27 +7799,6 @@
       "error": ""
     },
     {
-      "title": "Audit Senior Associate",
-      "slug": "audit-senior-associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "status": 200,
-      "ok": true,
-      "indexed": true,
-      "verdict": "PASS",
-      "coverage_state": "Submitted and indexed",
-      "indexing_state": "INDEXING_ALLOWED",
-      "page_fetch_state": "SUCCESSFUL",
-      "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-04T02:24:13Z",
-      "user_canonical": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "google_canonical": "https://outreachrecruitment.net/jobs/audit-senior-associate/",
-      "canonical_match": true,
-      "sitemap": "",
-      "rich_results_verdict": "PASS",
-      "rich_result_types": "Breadcrumbs, Job Postings",
-      "error": ""
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "slug": "customer-contact-centre-representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
@@ -8101,27 +7855,6 @@
       "last_crawl_time": "2026-11-05T06:39:02Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/draughtsperson",
       "google_canonical": "https://outreachrecruitment.net/jobs/draughtsperson/",
-      "canonical_match": true,
-      "sitemap": "",
-      "rich_results_verdict": "PASS",
-      "rich_result_types": "Breadcrumbs, Job Postings",
-      "error": ""
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "slug": "associate-tax-advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "status": 200,
-      "ok": true,
-      "indexed": true,
-      "verdict": "PASS",
-      "coverage_state": "Submitted and indexed",
-      "indexing_state": "INDEXING_ALLOWED",
-      "page_fetch_state": "SUCCESSFUL",
-      "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-01T12:10:10Z",
-      "user_canonical": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "google_canonical": "https://outreachrecruitment.net/jobs/associate-tax-advisor/",
       "canonical_match": true,
       "sitemap": "",
       "rich_results_verdict": "PASS",
@@ -9008,22 +8741,6 @@
       "error": ""
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "slug": "italian-restaurant-hospitality-positions-dubai",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "status": 200,
-      "ok": true,
-      "clicks": 3,
-      "impressions": 61,
-      "ctr": 0.0492,
-      "position": 7.1,
-      "top_query": "hospitality jobs in dubai",
-      "target_keyword": "Italian Restaurant – Multiple Hospitality Positions jobs in Malta",
-      "target_query_visible": false,
-      "queries": "hospitality jobs in dubai; hotel and restaurant job; restaurant vacancy near me; available jobs in dubai for foreigners; best agency for europe jobs in dubai; careers in hospitality; chef jobs in dubai; commis jobs in dubai; dubai direct hiring company; dubai hospitality careers",
-      "error": ""
-    },
-    {
       "title": "Junior Administrative Executive",
       "slug": "junior-administrative-executive",
       "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive",
@@ -9213,22 +8930,6 @@
       "target_keyword": "Front Office Agent jobs in Malta",
       "target_query_visible": false,
       "queries": "direct links",
-      "error": ""
-    },
-    {
-      "title": "Night Cleaner",
-      "slug": "night-cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Night Cleaner jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
       "error": ""
     },
     {
@@ -10144,22 +9845,6 @@
       "error": ""
     },
     {
-      "title": "Audit Senior Associate",
-      "slug": "audit-senior-associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Audit Senior Associate jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
-      "error": ""
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "slug": "customer-contact-centre-representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
@@ -10205,22 +9890,6 @@
       "target_keyword": "Draughtsperson jobs in Malta",
       "target_query_visible": false,
       "queries": "draughtsperson job",
-      "error": ""
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "slug": "associate-tax-advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Associate Tax Advisor jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
       "error": ""
     },
     {
@@ -10780,13 +10449,6 @@
       ]
     },
     {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "problems": [
-        "Target keyword not visible in top Search Console queries"
-      ]
-    },
-    {
       "title": "Junior Administrative Executive",
       "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive",
       "problems": [
@@ -10834,13 +10496,6 @@
       "url": "https://outreachrecruitment.net/jobs/front-office-agent",
       "problems": [
         "Target keyword not visible in top Search Console queries"
-      ]
-    },
-    {
-      "title": "Night Cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "problems": [
-        "Indexed page has zero impressions in selected GSC window"
       ]
     },
     {
@@ -11189,13 +10844,6 @@
       ]
     },
     {
-      "title": "Audit Senior Associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "problems": [
-        "Indexed page has zero impressions in selected GSC window"
-      ]
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
       "problems": [
@@ -11214,13 +10862,6 @@
       "url": "https://outreachrecruitment.net/jobs/draughtsperson",
       "problems": [
         "Target keyword not visible in top Search Console queries"
-      ]
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "problems": [
-        "Indexed page has zero impressions in selected GSC window"
       ]
     },
     {
@@ -12135,22 +11776,6 @@
       "error": ""
     },
     {
-      "title": "Night Cleaner",
-      "slug": "night-cleaner",
-      "url": "https://outreachrecruitment.net/jobs/night-cleaner",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Night Cleaner jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
-      "error": ""
-    },
-    {
       "title": "Auto Electrician (Heavy Vehicles)",
       "slug": "auto-electrician-heavy-vehicles",
       "url": "https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles",
@@ -12551,22 +12176,6 @@
       "error": ""
     },
     {
-      "title": "Audit Senior Associate",
-      "slug": "audit-senior-associate",
-      "url": "https://outreachrecruitment.net/jobs/audit-senior-associate",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Audit Senior Associate jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
-      "error": ""
-    },
-    {
       "title": "Customer Contact Centre Representative",
       "slug": "customer-contact-centre-representative",
       "url": "https://outreachrecruitment.net/jobs/customer-contact-centre-representative",
@@ -12578,22 +12187,6 @@
       "position": 0,
       "top_query": "",
       "target_keyword": "Customer Contact Centre Representative jobs in Malta",
-      "target_query_visible": false,
-      "queries": "",
-      "error": ""
-    },
-    {
-      "title": "Associate Tax Advisor",
-      "slug": "associate-tax-advisor",
-      "url": "https://outreachrecruitment.net/jobs/associate-tax-advisor",
-      "status": 200,
-      "ok": true,
-      "clicks": 0,
-      "impressions": 0,
-      "ctr": 0,
-      "position": 0,
-      "top_query": "",
-      "target_keyword": "Associate Tax Advisor jobs in Malta",
       "target_query_visible": false,
       "queries": "",
       "error": ""
@@ -12920,22 +12513,6 @@
       "target_keyword": "Front Office Executive jobs in Malta",
       "target_query_visible": false,
       "queries": "hospitality; office executive",
-      "error": ""
-    },
-    {
-      "title": "Italian Restaurant – Multiple Hospitality Positions",
-      "slug": "italian-restaurant-hospitality-positions-dubai",
-      "url": "https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai",
-      "status": 200,
-      "ok": true,
-      "clicks": 3,
-      "impressions": 61,
-      "ctr": 0.0492,
-      "position": 7.1,
-      "top_query": "hospitality jobs in dubai",
-      "target_keyword": "Italian Restaurant – Multiple Hospitality Positions jobs in Malta",
-      "target_query_visible": false,
-      "queries": "hospitality jobs in dubai; hotel and restaurant job; restaurant vacancy near me; available jobs in dubai for foreigners; best agency for europe jobs in dubai; careers in hospitality; chef jobs in dubai; commis jobs in dubai; dubai direct hiring company; dubai hospitality careers",
       "error": ""
     },
     {
@@ -13326,8 +12903,8 @@
   "gsc_rich_result_issues": [],
   "gsc_action_plan": [
     "Fix 33 job URL(s) not indexed or not passing URL Inspection",
-    "Fix 47 job URL(s) with zero Search Console impressions",
+    "Fix 44 job URL(s) with zero Search Console impressions",
     "Fix 5 job URL(s) ranking worse than average position 20",
-    "Fix 26 job URL(s) missing target keyword visibility in top queries"
+    "Fix 25 job URL(s) missing target keyword visibility in top queries"
   ]
 }

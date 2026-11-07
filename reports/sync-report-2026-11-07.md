@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-11-07
 
-Generated: 2026-11-07T10:37:53
+Generated: 2026-11-07T11:54:05
 
 ## Summary
 
@@ -8,24 +8,24 @@ Generated: 2026-11-07T10:37:53
 |---|---|
 | Careers Page Jobs | 125 |
 | Careers Jobs Scraped | 125 |
-| Website Jobs | 123 |
-| **Sync Score** | **91.0% — Needs Attention** |
+| Website Jobs | 119 |
+| **Sync Score** | **92.2% — Needs Attention** |
 | Missing from Website | 11 |
-| Extra on Website | 8 |
+| Extra on Website | 4 |
 | Title Mismatches | 4 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
-| SEO Issues | 33 |
+| SEO Issues | 31 |
 | Sitemap Missing | 0 |
-| Possible Duplicates | 20 |
+| Possible Duplicates | 19 |
 | Schema Issues | 0 |
 | Google Indexing Submitted | 0 |
 | Google Indexing Successful | 0 |
 | Google Indexing Failed | 0 |
-| Average Ranking Readiness | 85.4/100 |
+| Average Ranking Readiness | 85.5/100 |
 | High-Priority Ranking Jobs | 7 |
-| GSC URLs Checked | 123 |
-| GSC Problem Groups | 106 |
+| GSC URLs Checked | 119 |
+| GSC Problem Groups | 102 |
 
 ## Jobs to Add (Missing from Website)
 
@@ -43,14 +43,10 @@ Generated: 2026-11-07T10:37:53
 
 ## Jobs to Remove (Extra on Website)
 
-- Italian Restaurant – Multiple Hospitality Positions
 - Mini Bus Driver – Licence D
-- Night Cleaner
 - Deli Counter Assistant / Salumeria Specialist
 - Chef De Partie
 - Application Developer (Drupal)
-- Audit Senior Associate
-- Associate Tax Advisor
 
 ## Title Differences
 
@@ -75,7 +71,6 @@ Generated: 2026-11-07T10:37:53
 - **Hotel Maintenance Assistant** (`https://outreachrecruitment.net/jobs/hotel-maintenance-assistant`): Meta title too long (78 chars); Meta description too short (55 chars)
 - **Beauty Specialist / Nail Technician** (`https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician`): Meta title too long (79 chars)
 - **Front Office Agent** (`https://outreachrecruitment.net/jobs/front-office-agent`): Meta description too short (48 chars)
-- **Night Cleaner** (`https://outreachrecruitment.net/jobs/night-cleaner`): Meta description too short (43 chars)
 - **Assistance Operations Coordinator** (`https://outreachrecruitment.net/jobs/assistance-operations-coordinator`): Meta description too long (161 chars)
 - **Procurement Officer** (`https://outreachrecruitment.net/jobs/procurement-officer`): Meta description too long (164 chars)
 - **Learning & Development Executive - Hybrid** (`https://outreachrecruitment.net/jobs/learning-development-executive-hybrid`): Meta title too long (88 chars); Meta description too short (63 chars)
@@ -101,7 +96,6 @@ Generated: 2026-11-07T10:37:53
 - **General Maintenance Technician** (`https://outreachrecruitment.net/jobs/general-maintenance-technician`): Meta description too short (58 chars)
 - **Housekeeping Attendant** (`https://outreachrecruitment.net/jobs/housekeeping-attendant`): Meta description too short (52 chars)
 - **Customer Contact Centre Representative** (`https://outreachrecruitment.net/jobs/customer-contact-centre-representative`): Meta title too long (84 chars); Meta description too long (177 chars)
-- **Associate Tax Advisor** (`https://outreachrecruitment.net/jobs/associate-tax-advisor`): Meta description too long (165 chars)
 - **Health Claims Associate** (`https://outreachrecruitment.net/jobs/health-claims-associate`): Meta title too long (66 chars)
 - **Sign Assembler & Installer** (`https://outreachrecruitment.net/jobs/sign-assembler-installer`): Meta title too long (69 chars); Meta description too long (163 chars)
 
@@ -132,7 +126,6 @@ Generated: 2026-11-07T10:37:53
 | [Housekeeper](https://outreachrecruitment.net/jobs/housekeeper-rabat) | [Storekeeper](https://outreachrecruitment.net/jobs/storekeeper-zebbug) | 0.73 |
 | [Storekeeper](https://outreachrecruitment.net/jobs/storekeeper-zebbug) | [Housekeeper](https://outreachrecruitment.net/jobs/housekeeper) | 0.73 |
 | [Storekeeper](https://outreachrecruitment.net/jobs/storekeeper-zebbug) | [Housekeeper](https://outreachrecruitment.net/jobs/housekeeper-2) | 0.73 |
-| [Night Cleaner](https://outreachrecruitment.net/jobs/night-cleaner) | [Tank Cleaner](https://outreachrecruitment.net/jobs/tank-cleaner) | 0.72 |
 
 ## Google Indexing API
 
@@ -141,17 +134,17 @@ Generated: 2026-11-07T10:37:53
 ## Ranking Action Plan
 
 1. Fix 7 high-priority job page(s) below 70/100
-2. Fix 106 job page(s) with keyword targeting gaps
-3. Fix 38 job page(s) missing category-page internal links
-4. Fix 103 job page(s) needing deeper content
-5. Fix 20 possible duplicate/cannibalization pair(s) to review
+2. Fix 102 job page(s) with keyword targeting gaps
+3. Fix 37 job page(s) missing category-page internal links
+4. Fix 102 job page(s) needing deeper content
+5. Fix 19 possible duplicate/cannibalization pair(s) to review
 
 ## Google Search Console Action Plan
 
 1. Fix 33 job URL(s) not indexed or not passing URL Inspection
-2. Fix 47 job URL(s) with zero Search Console impressions
+2. Fix 44 job URL(s) with zero Search Console impressions
 3. Fix 5 job URL(s) ranking worse than average position 20
-4. Fix 26 job URL(s) missing target keyword visibility in top queries
+4. Fix 25 job URL(s) missing target keyword visibility in top queries
 
 ## Jobs Not Indexed by Google
 
@@ -196,7 +189,6 @@ Generated: 2026-11-07T10:37:53
 - **[Truck / Trailer Driver](https://outreachrecruitment.net/jobs/truck-trailer-driver)**: target `Truck / Trailer Driver jobs in Malta`
 - **[Maintenance Manager](https://outreachrecruitment.net/jobs/maintenance-manager-mellieha)**: target `Maintenance Manager jobs in Malta`
 - **[Restaurant Manager - Italian Speaking](https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking)**: target `Restaurant Manager - Italian Speaking jobs in Malta`
-- **[Night Cleaner](https://outreachrecruitment.net/jobs/night-cleaner)**: target `Night Cleaner jobs in Malta`
 - **[Auto Electrician (Heavy Vehicles)](https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles)**: target `Auto Electrician (Heavy Vehicles) jobs in Malta`
 - **[Steel Shutter Installer](https://outreachrecruitment.net/jobs/steel-shutter-installer)**: target `Steel Shutter Installer jobs in Malta`
 - **[Head Chef](https://outreachrecruitment.net/jobs/head-chef-steakhouse)**: target `Head Chef jobs in Malta`
@@ -222,6 +214,7 @@ Generated: 2026-11-07T10:37:53
 - **[Kitchen Assistant](https://outreachrecruitment.net/jobs/kitchen-assistant)**: target `Kitchen Assistant jobs in Malta`
 - **[Tax Manager](https://outreachrecruitment.net/jobs/tax-manager)**: target `Tax Manager jobs in Malta`
 - **[High Voltage Motor Vehicle Technician](https://outreachrecruitment.net/jobs/high-voltage-motor-vehicle-technician)**: target `High Voltage Motor Vehicle Technician jobs in Malta`
+- **[Customer Contact Centre Representative](https://outreachrecruitment.net/jobs/customer-contact-centre-representative)**: target `Customer Contact Centre Representative jobs in Malta`
 
 ## Ranking Opportunities from GSC
 
@@ -234,7 +227,6 @@ Generated: 2026-11-07T10:37:53
 ## Query Match Gaps from GSC
 
 - **[Front Office Executive](https://outreachrecruitment.net/jobs/front-office-executive)**: target `Front Office Executive jobs in Malta`, top query `hospitality`
-- **[Italian Restaurant – Multiple Hospitality Positions](https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai)**: target `Italian Restaurant – Multiple Hospitality Positions jobs in Malta`, top query `hospitality jobs in dubai`
 - **[Junior Administrative Executive](https://outreachrecruitment.net/jobs/junior-administrative-executive)**: target `Junior Administrative Executive jobs in Malta`, top query `administration jobs malta`
 - **[Beauty Specialist / Nail Technician](https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician)**: target `Beauty Specialist / Nail Technician jobs in Malta`, top query `hiring nail technician`
 - **[Proposal Engineer – Energy Solutions](https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions)**: target `Proposal Engineer – Energy Solutions jobs in Malta`, top query `proposal engineer`
@@ -292,12 +284,12 @@ Generated: 2026-11-07T10:37:53
 | Engineering & Maintenance | 26 | 83.9/100 | 12 |
 | Administration | 12 | 84.5/100 | 7 |
 | Insurance | 4 | 86.2/100 | 1 |
-| Hospitality | 21 | 86.6/100 | 7 |
 | Customer Service | 3 | 87.7/100 | 1 |
 | Sales | 4 | 88.2/100 | 0 |
+| Hospitality | 19 | 88.3/100 | 4 |
 | IT & Technology | 3 | 90.7/100 | 1 |
+| Finance & Accounting | 6 | 91.0/100 | 1 |
 | Construction | 8 | 91.2/100 | 0 |
-| Finance & Accounting | 8 | 92.0/100 | 1 |
 | Manufacturing | 3 | 92.3/100 | 0 |
 | Wellness | 1 | 93.0/100 | 0 |
 | Healthcare | 1 | 98.0/100 | 0 |
@@ -325,7 +317,6 @@ Generated: 2026-11-07T10:37:53
 - **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)** — target `Hotel Maintenance Assistant jobs in Malta`: Meta description missing Malta; Target phrase missing: Hotel Maintenance Assistant jobs in Malta
 - **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper-rabat)** — target `Housekeeper jobs in Malta`: Target phrase missing: Housekeeper jobs in Malta
 - **[Front Office Executive](https://outreachrecruitment.net/jobs/front-office-executive)** — target `Front Office Executive jobs in Malta`: Target phrase missing: Front Office Executive jobs in Malta
-- **[Italian Restaurant – Multiple Hospitality Positions](https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai)** — target `Italian Restaurant – Multiple Hospitality Positions jobs in Malta`: Meta title does not include exact job title; Meta title missing Malta; Meta description does not include exact job title; Meta description missing Malta; Target phrase missing: Italian Restaurant – Multiple Hospitality Positions jobs in Malta
 - **[Junior Administrative Executive](https://outreachrecruitment.net/jobs/junior-administrative-executive)** — target `Junior Administrative Executive jobs in Malta`: Target phrase missing: Junior Administrative Executive jobs in Malta
 - **[Beauty Specialist / Nail Technician](https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician)** — target `Beauty Specialist / Nail Technician jobs in Malta`: Target phrase missing: Beauty Specialist / Nail Technician jobs in Malta
 - **[Marine Mechanical Engineer](https://outreachrecruitment.net/jobs/marine-mechanical-engineer)** — target `Marine Mechanical Engineer jobs in Malta`: Target phrase missing: Marine Mechanical Engineer jobs in Malta
@@ -334,11 +325,11 @@ Generated: 2026-11-07T10:37:53
 - **[Gypsum Installers](https://outreachrecruitment.net/jobs/gypsum-installers)** — target `Gypsum Installers jobs in Malta`: Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Gypsum Installers jobs in Malta
 - **[Mini Bus Driver – Licence D](https://outreachrecruitment.net/jobs/mini-bus-driver-licence-d)** — target `Mini Bus Driver – Licence D jobs in Malta`: Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Mini Bus Driver – Licence D jobs in Malta
 - **[Proposal Engineer – Energy Solutions](https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions)** — target `Proposal Engineer – Energy Solutions jobs in Malta`: Meta title does not include exact job title; Target phrase missing: Proposal Engineer – Energy Solutions jobs in Malta
+- **[Storekeeper](https://outreachrecruitment.net/jobs/storekeeper-zebbug)** — target `Storekeeper jobs in Malta`: Target phrase missing: Storekeeper jobs in Malta
 
 ## Internal Link Coverage
 
 - **[Senior Corporate Administrator](https://outreachrecruitment.net/jobs/senior-corporate-administrator)**: Not linked from a category jobs page
-- **[Hotel General Manager](https://outreachrecruitment.net/jobs/hotel-general-manager)**: Not linked from a category jobs page
 - **[Workshop Assistant Manager](https://outreachrecruitment.net/jobs/workshop-assistant-manager)**: Not linked from a category jobs page
 - **[Aftersales Receptionist](https://outreachrecruitment.net/jobs/aftersales-receptionist)**: Not linked from a category jobs page
 - **[Warranty Administrator](https://outreachrecruitment.net/jobs/warranty-administrator)**: Not linked from a category jobs page
@@ -367,6 +358,7 @@ Generated: 2026-11-07T10:37:53
 - **[Fleet, Tools and Facility Manager](https://outreachrecruitment.net/jobs/fleet-tools-facility-manager)**: Not linked from a category jobs page
 - **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)**: Not linked from a category jobs page
 - **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: Not linked from a category jobs page
+- **[HVAC Project Manager](https://outreachrecruitment.net/jobs/hvac-project-manager)**: Not linked from a category jobs page
 
 ## Content Quality Checks
 
@@ -385,21 +377,21 @@ Generated: 2026-11-07T10:37:53
 - **[Facilities, Maintenance and Health & Safety Manager](https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager)** — 5645 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person)** — 5126 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Retail Shop Supervisor](https://outreachrecruitment.net/jobs/retail-shop-supervisor)** — 5450 words: Missing offer/benefits section
-- **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — 5320 words: Missing offer/benefits section
+- **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — 5317 words: Missing offer/benefits section
 - **[Host / Receptionist](https://outreachrecruitment.net/jobs/host-receptionist)** — 5062 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
-- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner-marsa)** — 5053 words: Salary/baseSalary missing or not specific
+- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner-marsa)** — 5052 words: Salary/baseSalary missing or not specific
 - **[Truck / Trailer Driver](https://outreachrecruitment.net/jobs/truck-trailer-driver)** — 5362 words: Salary/baseSalary missing or not specific
-- **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)** — 5031 words: Salary/baseSalary missing or not specific
+- **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)** — 5032 words: Salary/baseSalary missing or not specific
 - **[Beauty Specialist / Nail Technician](https://outreachrecruitment.net/jobs/beauty-specialist-nail-technician)** — 4988 words: Salary/baseSalary missing or not specific
 - **[Mini Bus Driver – Licence D](https://outreachrecruitment.net/jobs/mini-bus-driver-licence-d)** — 5043 words: Salary/baseSalary missing or not specific
 - **[Proposal Engineer – Energy Solutions](https://outreachrecruitment.net/jobs/proposal-engineer-energy-solutions)** — 5410 words: Salary/baseSalary missing or not specific
 - **[Driver License B](https://outreachrecruitment.net/jobs/driver-license-b)** — 4924 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Forklift Operator](https://outreachrecruitment.net/jobs/forklift-operator)** — 4771 words: Missing offer/benefits section
-- **[Front Office Agent](https://outreachrecruitment.net/jobs/front-office-agent)** — 5030 words: Missing offer/benefits section
-- **[Night Cleaner](https://outreachrecruitment.net/jobs/night-cleaner)** — 5119 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
+- **[Front Office Agent](https://outreachrecruitment.net/jobs/front-office-agent)** — 5031 words: Missing offer/benefits section
 - **[Banqueting F&B Supervisor](https://outreachrecruitment.net/jobs/banqueting-fb-supervisor)** — 4978 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Heavy Equipment Mechanic](https://outreachrecruitment.net/jobs/heavy-equipment-mechanic-2)** — 5156 words: Salary/baseSalary missing or not specific
 - **[Learning & Development Executive - Hybrid](https://outreachrecruitment.net/jobs/learning-development-executive-hybrid)** — 4630 words: Salary/baseSalary missing or not specific
+- **[Auto Electrician (Heavy Vehicles)](https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles)** — 4926 words: Salary/baseSalary missing or not specific
 
 ## JobPosting Rich Results Eligibility
 
@@ -408,8 +400,8 @@ Generated: 2026-11-07T10:37:53
 ## Actions Required
 
 1. Add 11 missing job(s) to website
-2. Remove 8 closed job(s) from website
+2. Remove 4 closed job(s) from website
 3. Review 4 possible title mismatch(es)
-4. Fix 33 SEO issue(s)
-5. Review 20 possible duplicate job(s)
+4. Fix 31 SEO issue(s)
+5. Review 19 possible duplicate job(s)
 6. Improve 7 high-priority ranking page(s) below 70/100
