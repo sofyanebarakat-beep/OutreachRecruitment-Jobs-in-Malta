@@ -468,3 +468,59 @@ OK
 GA4 added to 0 content pages; conversion events added to 0 pages.
 /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(
+{
+  "generated_at": "2026-11-07T12:15:14.758817+01:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-11-05",
+      "days": 149,
+      "queries": 1000,
+      "pages": 430
+    },
+    "ga4": {
+      "ok": true,
+      "days": 149,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 2108
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 17
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 103
+    },
+    "experiments": {
+      "new": 1
+    },
+    "supabase": {
+      "ok": true,
+      "alerts": 16
+    }
+  },
+  "warnings": [],
+  "kpi_latest_28d": {
+    "start": "2026-10-09",
+    "end": "2026-11-05",
+    "clicks28": 1196,
+    "impressions28": 20880,
+    "ctr": 5.73,
+    "position": 10.4
+  },
+  "baseline": {
+    "date": "2026-10-13",
+    "clicks28": 2017,
+    "impressions28": 24004,
+    "ctr": 8.4,
+    "position": 9.4,
+    "verified": true,
+    "auto": true,
+    "note": "Verified automatically from the Search Console API: 2026-09-16 to 2026-10-13 (final data, web search)."
+  }
+}
+Finished: Sat Nov  7 12:16:58 CET 2026 | Exit: 0

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T10:55:55.118609+01:00",
+  "generated_at": "2026-11-07T12:15:14.758817+01:00",
   "checks": {
     "gsc": {
       "ok": true,
@@ -26,11 +26,11 @@
       "rows": 103
     },
     "experiments": {
-      "new": 500
+      "new": 1
     },
     "supabase": {
       "ok": true,
-      "alerts": 24
+      "alerts": 16
     }
   },
   "warnings": [],
