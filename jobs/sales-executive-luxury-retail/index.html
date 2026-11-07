@@ -257,6 +257,10 @@ body{background:#ffffff !important;}
 .job-meta-item{display:inline-flex;align-items:center;gap:0.45rem;}
 .job-meta-item svg{width:16px;height:16px;color:#442DFA;flex:0 0 auto;}
 .job-header-actions{display:flex;gap:0.75rem;margin-top:1.4rem;}
+#job-description-panel > .page-header{padding-top:1.5rem !important;padding-bottom:2rem !important;min-height:0 !important;}
+#job-description-panel > .page-header .section-content{gap:0 !important;}
+#job-description-panel > .page-header .job-header-card{margin-top:0;}
+#job-description-panel > .page-header .job-header-logo{content:url('/assets/outreach-recruitment-logo.svg');width:190px;height:68px;border-radius:0;object-fit:contain;object-position:right center;}
 .job-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;font-size:0.9rem;font-weight:600;padding:0.7rem 1.5rem;border-radius:999px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:opacity .15s ease,border-color .15s ease,color .15s ease,background .15s ease;}
 .job-btn-primary{background:#442DFA;color:#fff;}
 .job-btn-primary:hover{opacity:0.9;}
@@ -280,8 +284,10 @@ body{background:#ffffff !important;}
 body.job-applied .job-mobile-apply-cta{display:none !important;}
 #how-to-apply{scroll-margin-top:96px;}
 @media (max-width:640px){
+  #job-description-panel > .page-header{padding-top:1rem !important;padding-bottom:1.25rem !important;}
   .job-header-card{padding:1.4rem 1.25rem;}
   .job-header-title-row{flex-direction:column-reverse;align-items:flex-start;gap:0.75rem;}
+  #job-description-panel > .page-header .job-header-logo{width:150px;height:54px;object-position:left center;}
   .job-header-actions{flex-direction:column;}
   .job-btn{width:100%;}
   #how-to-apply{scroll-margin-top:76px;}
