@@ -1,0 +1,358 @@
+=== Job Sync Agent ===
+Started: Sat Nov  7 11:00:05 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-07 11:00  ===
+
+[1] Scraping careers page …
+  pass 1: 125 / 125 advertised
+  careers page: 125 collected / 125 advertised · website open: 123
+
+[2] 4 website job(s) not in the careers-page listing — checking each …
+  Italian Restaurant – Multiple Hospitality Positions (029a3d07) → CLOSED
+  Night Cleaner (09a73db3) → CLOSED
+  Audit Senior Associate (a70527a6) → CLOSED
+  Associate Tax Advisor (f4ddecbd) → CLOSED
+
+[3] Reading 125 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/97c52056-38be-46b0-9e44-6edebfc3a67d)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/09692c92-ffc9-4ef7-864b-3b71329f209b)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/d1373a6c-8983-4702-9d43-e9cd592b6265)
+  20/125
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/6a9f1e06-545e-4cd0-9d42-1472f1fea3dd)
+  40/125
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/befdff78-f9b6-4e4b-aef5-cab8bfb3e45f)
+  60/125
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/10070d19-7087-4905-a4fc-88dc95840c58)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/2867b73e-5b67-497b-a9fe-4c17fcb66e53)
+  80/125
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/beb11885-e494-4a3c-802f-70e679d8b70c)
+  100/125
+  120/125
+  125 fact sheets read
+  new: Service Delivery Manager (Valletta) → service-delivery-manager · Competitive salary
+  new: Workshop Team Leader (Gżira) → workshop-team-leader · Competitive salary
+  new: Aftersales Administrator (Gżira) → aftersales-administrator · Competitive salary
+  new: Senior Technician (Gżira) → senior-technician · Competitive salary
+  new: Accounts Clerk (Gżira) → accounts-clerk · Competitive salary
+  new: Sales Manager (Gżira) → sales-manager-gzira · Competitive salary
+  6 new, 0 to reopen, 0 changed
+  page check: 116 ok, 0 to fix (0 today)
+  /job-seo-generator (headless Claude): creating 6 job(s) …
+Updating listings (2026-11-07) — 119 open, 142 closed, 74 expired/hidden
+  index.html — 119 total, showing 10 on homepage
+  jobs/index.html — 119 job(s), 45 featured, 17 categories
+  sitemaps/sitemap-jobs.xml — 120 URL(s)
+  sitemap_index.xml — jobs sitemap lastmod refreshed
+  sitemap.xml — compatibility lastmod refreshed
+  construction-jobs-in-malta.html — 10 construction job(s), 5 with published salary
+
+Done. Run: git add -A && git commit -m 'Update job listings' && git push origin main
+faq-posts.json: 171 general question(s), 227 question(s) from open job pages
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[7] Checking the live site …
+  waiting 10 min for GitHub Pages to deploy …
+  live: {'count': 123, 'expected': 119, 'ok': False, 'problems': ['Italian Restaurant – Multiple Hospitality Positions: live page still looks open', 'Night Cleaner: live page still looks open', 'Audit Senior Associate: live page still looks open', 'Associate Tax Advisor: live page still looks open']}
+
+[8] Google follow-up (jobs published 2+ days ago) …
+  checked 7, flagged 7
+
+# Daily Job Sync — 2026-11-07
+
+**⚠️ Not in sync** — careers page 125, website 123 → 119
+
+Live site shows 123, expected 119 ⚠️ — GitHub Pages may still be deploying; if it is still wrong later today, the deploy failed and needs a look.
+
+## New jobs published (0)
+- none
+
+## Reopened (0)
+- none
+
+## Closed (4)
+- Italian Restaurant – Multiple Hospitality Positions — https://outreachrecruitment.net/jobs/italian-restaurant-hospitality-positions-dubai/
+- Night Cleaner — https://outreachrecruitment.net/jobs/night-cleaner/
+- Audit Senior Associate — https://outreachrecruitment.net/jobs/audit-senior-associate/
+- Associate Tax Advisor — https://outreachrecruitment.net/jobs/associate-tax-advisor/
+
+## Updated (0)
+- none
+
+## Failed (6)
+- Service Delivery Manager — https://outreach-recruitment-agency.careers-page.com/jobs/35466667-4755-407f-b866-2354151973b9 (the page was not built (not added to the registry))
+- Workshop Team Leader — https://outreach-recruitment-agency.careers-page.com/jobs/8c5047d4-7c1b-4ab9-b581-273104d90c58 (the page was not built (not added to the registry))
+- Aftersales Administrator — https://outreach-recruitment-agency.careers-page.com/jobs/f046a446-d5aa-4bf2-aaa2-ae9c184f40fb (the page was not built (not added to the registry))
+- Senior Technician — https://outreach-recruitment-agency.careers-page.com/jobs/a5cdd055-a18e-4aad-b319-7d66d6e85ed9 (the page was not built (not added to the registry))
+- Accounts Clerk — https://outreach-recruitment-agency.careers-page.com/jobs/b71ac02a-3011-454a-9a98-93e34f74267a (the page was not built (not added to the registry))
+- Sales Manager — https://outreach-recruitment-agency.careers-page.com/jobs/182ca7ce-c6c6-4c0d-8780-6745e20aca66 (the page was not built (not added to the registry))
+
+## Held back (0)
+- none
+
+## Notes
+- Website shows 119 open jobs vs 125 on the careers page — see 'Needs your attention'.
+- Service Delivery Manager: no salary given on the careers page — page says 'Competitive salary'.
+- Workshop Team Leader: no salary given on the careers page — page says 'Competitive salary'.
+- Aftersales Administrator: no salary given on the careers page — page says 'Competitive salary'.
+- Senior Technician: no salary given on the careers page — page says 'Competitive salary'.
+- Accounts Clerk: no salary given on the careers page — page says 'Competitive salary'.
+- Sales Manager: no salary given on the careers page — page says 'Competitive salary'.
+
+## Google check (0/7 indexed + in Google Jobs)
+- Hotel General Manager — not indexed yet (URL is unknown to Google)
+- Aftersales Receptionist — not indexed yet (URL is unknown to Google)
+- Warranty Administrator — not indexed yet (URL is unknown to Google)
+- Back Office Administrator — not indexed yet (URL is unknown to Google)
+- Leasing Administration Officer — not indexed yet (URL is unknown to Google)
+- Senior Clerk — not indexed yet (URL is unknown to Google)
+- Business Development Manager HoReCa — not indexed yet (URL is unknown to Google)
+
+## Site housekeeping
+- Daily page check: 116 of 119 open job pages pass every check
+- Salary shown on 28 of 119 open jobs (24%) — all salaries come from the careers page
+- Hub/homepage cards for closed jobs: 6 replaced with open jobs, 2 removed
+- 'Similar jobs' links to closed jobs replaced: 28
+- Google job list on /jobs (ItemList) rebuilt: 119 open jobs
+- Google notified about 4/4 changed page(s); jobs sitemap submitted
+- Job pages switched to 'Position Closed' (apply disabled): 4; closed look removed from reopened pages: 0
+
+Git: pushed to GitHub (main)
+
+  email sent to sbarakat@outreachrecruitment.net
+
+=== SEO / GSC analysis (job_sync_agent.py, no email) ===
+============================================================
+  Outreach Recruitment — Job Sync Agent
+  2026-11-07 11:47:59
+============================================================
+
+  State loaded — tracking 8 job(s) for auto-close
+
+[1/5] Scraping careers page …
+  [Careers] page 1 — https://outreach-recruitment-agency.careers-page.com/
+  [Careers] page 2 — https://outreach-recruitment-agency.careers-page.com/?page=2
+  [Careers] page 3 — https://outreach-recruitment-agency.careers-page.com/?page=3
+  [Careers] page 4 — https://outreach-recruitment-agency.careers-page.com/?page=4
+  [Careers] page 5 — https://outreach-recruitment-agency.careers-page.com/?page=5
+  [Careers] page 6 — https://outreach-recruitment-agency.careers-page.com/?page=6
+  [Careers] page 7 — https://outreach-recruitment-agency.careers-page.com/?page=7
+  [Careers] page 8 — https://outreach-recruitment-agency.careers-page.com/?page=8
+  [Careers] page 9 — https://outreach-recruitment-agency.careers-page.com/?page=9
+  [Careers] page 10 — https://outreach-recruitment-agency.careers-page.com/?page=10
+  [Careers] page 11 — https://outreach-recruitment-agency.careers-page.com/?page=11
+  [Careers] page 12 — https://outreach-recruitment-agency.careers-page.com/?page=12
+  [Careers] page 13 — https://outreach-recruitment-agency.careers-page.com/?page=13
+  [Careers] page 14 — https://outreach-recruitment-agency.careers-page.com/?page=14
+  Collected 125 jobs (advertised: 125)
+
+[2/5] Scraping public website …
+  [Website] Fetching https://outreachrecruitment.net/jobs/
+  Found 119 job cards
+
+[SEO] Checking 119 job pages …
+  [1/119] senior-corporate-administrator … OK
+  [2/119] hotel-general-manager … OK
+  [3/119] workshop-assistant-manager … OK
+  [4/119] aftersales-receptionist … OK
+  [5/119] warranty-administrator … OK
+  [6/119] back-office-administrator … OK
+  [7/119] leasing-administration-officer … OK
+  [8/119] sushi-chef … OK
+  [9/119] senior-clerk … OK
+  [10/119] business-development-manager-horeca … OK
+  [11/119] customer-experience-assistant … OK
+  [12/119] pdi-leading-hand … OK
+  [13/119] facilities-maintenance-and-health-and-safety-manager … OK
+  [14/119] maintenance-person … OK
+  [15/119] retail-shop-supervisor … OK
+  [16/119] accounting-officer … OK
+  [17/119] host-receptionist … OK
+  [18/119] cleaner-marsa … OK
+  [19/119] truck-trailer-driver … OK
+  [20/119] hotel-maintenance-assistant … OK
+  [21/119] housekeeper-rabat … OK
+  [22/119] front-office-executive … OK
+  [23/119] junior-administrative-executive … OK
+  [24/119] beauty-specialist-nail-technician … OK
+  [25/119] marine-mechanical-engineer … OK
+  [26/119] maintenance-manager-mellieha … OK
+  [27/119] restaurant-manager-italian-speaking … OK
+  [28/119] gypsum-installers … OK
+  [29/119] mini-bus-driver-licence-d … OK
+  [30/119] proposal-engineer-energy-solutions … OK
+  [31/119] storekeeper-zebbug … OK
+  [32/119] driver-license-b … OK
+  [33/119] forklift-operator … OK
+  [34/119] front-office-agent … OK
+  [35/119] banqueting-fb-supervisor … OK
+  [36/119] assistance-operations-coordinator … OK
+  [37/119] procurement-officer … OK
+  [38/119] heavy-equipment-mechanic-2 … OK
+  [39/119] learning-development-executive-hybrid … OK
+  [40/119] auto-electrician-heavy-vehicles … OK
+  [41/119] heavy-equipment-mechanic … OK
+  [42/119] steel-shutter-installer … OK
+  [43/119] public-area-cleaner … OK
+  [44/119] head-chef-steakhouse … OK
+  [45/119] senior-waiter-sommelier … OK
+  [46/119] deli-counter-assistant-salumeria-specialist … OK
+  [47/119] chef-de-partie-4 … OK
+  [48/119] ship-chandler … OK
+  [49/119] fleet-mechanical-superintendent … OK
+  [50/119] customer-care-agent … OK
+  [51/119] hvac-technician … OK
+  [52/119] delivery-man … OK
+  [53/119] head-of-hvac-technicians … OK
+  [54/119] tank-cleaner … OK
+  [55/119] welder-burner-pipe-fitter … OK
+  [56/119] shipyard-sprayer-painter … OK
+  [57/119] marine-carpenter … OK
+  [58/119] electronic-technician … OK
+  [59/119] commercial-divers … OK
+  [60/119] trailer-drivers … OK
+  [61/119] marine-mechanical-foreman … OK
+  [62/119] administration-specialist … OK
+  [63/119] marine-turner-malta … OK
+  [64/119] plate-shop-foreman-malta … OK
+  [65/119] quality-engineer-marine-malta … OK
+  [66/119] client-accountant-2 … OK
+  [67/119] application-developer-drupal … OK
+  [68/119] fleet-tools-facility-manager … OK
+  [69/119] sales-office-coordinator … OK
+  [70/119] customer-contact-agent … OK
+  [71/119] hr-administration-officer … OK
+  [72/119] project-manager … OK
+  [73/119] estimator … OK
+  [74/119] hsse-coordinator … OK
+  [75/119] housekeeper … OK
+  [76/119] driver-runner-washer … OK
+  [77/119] supervisor … OK
+  [78/119] structural-engineer … OK
+  [79/119] senior-quantity-estimator-me … OK
+  [80/119] sales-representative-in-renewables … OK
+  [81/119] hvac-project-manager … OK
+  [82/119] hvac-sales-representative … OK
+  [83/119] maintenance-technician-electrical-licence-a-or-b … OK
+  [84/119] general-maintenance-technician … OK
+  [85/119] counter-assistant … OK
+  [86/119] kitchen-assistant … OK
+  [87/119] heavy-machine-operator … OK
+  [88/119] housekeeping-attendant … OK
+  [89/119] tax-manager … OK
+  [90/119] automotive-service-advisor … OK
+  [91/119] high-voltage-motor-vehicle-technician … OK
+  [92/119] customer-contact-centre-representative … OK
+  [93/119] builders-and-shutterers … OK
+  [94/119] draughtsperson … OK
+  [95/119] sales-executive-luxury-retail … OK
+  [96/119] bottling-operator … OK
+  [97/119] motor-vehicle-mechanictechnician … OK
+  [98/119] automotive-parts-personnel … OK
+  [99/119] corporate-insurance-associate … OK
+  [100/119] wood-painting-finishing-specialist … OK
+  [101/119] delivery-driver-malta-c-license … OK
+  [102/119] health-claims-associate … OK
+  [103/119] delivery-drivers-c1-malta-license … OK
+  [104/119] auditor … OK
+  [105/119] cnc-machine-operator … OK
+  [106/119] room-attendents … OK
+  [107/119] skilled-carpenters … OK
+  [108/119] delivery-person-with-driving-licence-c1 … OK
+  [109/119] commercial-insurance-associate … OK
+  [110/119] aluminum-install-and-fabrication-foreman … OK
+  [111/119] audit-senior … OK
+  [112/119] volvo-penta-mechanic … OK
+  [113/119] sign-assembler-installer … OK
+  [114/119] hotel-porter … OK
+  [115/119] boat-maintenance … OK
+  [116/119] semi-senior-accountant … OK
+  [117/119] housekeeper-2 … OK
+  [118/119] it-support-executive-2 … OK
+  [119/119] accounts-senior-2 … OK
+
+[4/5] Checking sitemap …
+  Found 119 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 92.2%
+============================================================
+  Careers page: 125 advertised, 125 scraped
+  Website:      119 jobs
+  Missing jobs: 11
+    + Service Delivery Manager
+    + Workshop Team Leader
+    + Aftersales Administrator
+    + Senior Technician
+    + Accounts Clerk
+    + Sales Manager
+    + Mini Bus Drivers License D
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    … and 1 more
+  Extra jobs:   4
+    - Mini Bus Driver – Licence D
+    - Deli Counter Assistant / Salumeria Specialist
+    - Chef De Partie
+    - Application Developer (Drupal)
+  Title diffs:  4
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   31
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 19
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Project Manager' ≈ 'HVAC Project Manager' (86%)
+    'Leasing Administration Officer' ≈ 'HR Administration Officer' (84%)
+    'Customer Care Agent' ≈ 'Customer Contact Agent' (83%)
+    'Heavy Machine Operator' ≈ 'CNC Machine Operator' (81%)
+
+  [Auto-Close DISABLED] 4 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+    - Mini Bus Driver – Licence D
+    - Chef De Partie
+  State saved — tracking 4 extra job(s)
+
+  Fetching details for 11 missing job(s) …
+    Service Delivery Manager … OK
+    Workshop Team Leader … OK
+    Aftersales Administrator … OK
+    Senior Technician … OK
+    Accounts Clerk … OK
+    Sales Manager … OK
+    Mini Bus Drivers License D … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+OK
+
+[GSC] Checking 119 job URL(s) with Search Console …
+  [1/119] senior-corporate-administrator … 1 issue(s)
+  [2/119] hotel-general-manager … 1 issue(s)
+  [3/119] workshop-assistant-manager … 1 issue(s)
+  [4/119] aftersales-receptionist … 1 issue(s)
+  [5/119] warranty-administrator … 1 issue(s)
+  [6/119] back-office-administrator … 1 issue(s)
+  [7/119] leasing-administration-officer … 1 issue(s)
+  [8/119] sushi-chef … 1 issue(s)
+  [9/119] senior-clerk … 1 issue(s)
+  [10/119] business-development-manager-horeca … 1 issue(s)
+  [11/119] customer-experience-assistant … 1 issue(s)
+  [12/119] pdi-leading-hand … 1 issue(s)
+  [13/119] facilities-maintenance-and-health-and-safety-manager … 1 issue(s)
+  [14/119] maintenance-person … 1 issue(s)
+  [15/119] retail-shop-supervisor … 1 issue(s)
+  [16/119] accounting-officer … 1 issue(s)
+  [17/119] host-receptionist … 1 issue(s)
+  [18/119] cleaner-marsa … 1 issue(s)
+  [19/119] truck-trailer-driver … 1 issue(s)
+  [20/119] hotel-maintenance-assistant … 1 issue(s)
+  [21/119] housekeeper-rabat … 
