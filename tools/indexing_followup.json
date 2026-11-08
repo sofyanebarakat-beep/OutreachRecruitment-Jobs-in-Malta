@@ -184,7 +184,7 @@
     "status": "gave_up"
   },
   "senior-clerk": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-26",
     "indexed": false,
     "job_posting": false,
@@ -192,7 +192,7 @@
     "status": "pending"
   },
   "business-development-manager-horeca": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-26",
     "indexed": false,
     "job_posting": false,
@@ -208,7 +208,7 @@
     "status": "ok"
   },
   "aftersales-receptionist": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -216,7 +216,7 @@
     "status": "pending"
   },
   "warranty-administrator": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -224,7 +224,7 @@
     "status": "pending"
   },
   "back-office-administrator": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -232,7 +232,7 @@
     "status": "pending"
   },
   "leasing-administration-officer": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-10-30",
     "indexed": false,
     "job_posting": false,
@@ -248,8 +248,64 @@
     "status": "ok"
   },
   "hotel-general-manager": {
-    "checked": "2026-11-07",
+    "checked": "2026-11-08",
     "published": "2026-11-04",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "service-delivery-manager": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "workshop-team-leader": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "aftersales-administrator": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "senior-technician": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "accounts-clerk": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "sales-manager-gzira": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
+    "indexed": false,
+    "job_posting": false,
+    "coverage": "URL is unknown to Google",
+    "status": "pending"
+  },
+  "senior-corporate-administrator": {
+    "checked": "2026-11-08",
+    "published": "2026-11-06",
     "indexed": false,
     "job_posting": false,
     "coverage": "URL is unknown to Google",
