@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-08",
+  "created": [
+    {
+      "uuid": "35466667-4755-407f-b866-2354151973b9",
+      "title": "Service Delivery Manager",
+      "city": "Valletta",
+      "slug": "service-delivery-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/35466667-4755-407f-b866-2354151973b9",
+      "url": "https://outreachrecruitment.net/jobs/service-delivery-manager/"
+    },
+    {
+      "uuid": "8c5047d4-7c1b-4ab9-b581-273104d90c58",
+      "title": "Workshop Team Leader",
+      "city": "Gżira",
+      "slug": "workshop-team-leader",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/8c5047d4-7c1b-4ab9-b581-273104d90c58",
+      "url": "https://outreachrecruitment.net/jobs/workshop-team-leader/"
+    },
+    {
+      "uuid": "f046a446-d5aa-4bf2-aaa2-ae9c184f40fb",
+      "title": "Aftersales Administrator",
+      "city": "Gżira",
+      "slug": "aftersales-administrator",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/f046a446-d5aa-4bf2-aaa2-ae9c184f40fb",
+      "url": "https://outreachrecruitment.net/jobs/aftersales-administrator/"
+    },
+    {
+      "uuid": "a5cdd055-a18e-4aad-b319-7d66d6e85ed9",
+      "title": "Senior Technician",
+      "city": "Gżira",
+      "slug": "senior-technician",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a5cdd055-a18e-4aad-b319-7d66d6e85ed9",
+      "url": "https://outreachrecruitment.net/jobs/senior-technician/"
+    },
+    {
+      "uuid": "b71ac02a-3011-454a-9a98-93e34f74267a",
+      "title": "Accounts Clerk",
+      "city": "Gżira",
+      "slug": "accounts-clerk",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/b71ac02a-3011-454a-9a98-93e34f74267a",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk/"
+    },
+    {
+      "uuid": "182ca7ce-c6c6-4c0d-8780-6745e20aca66",
+      "title": "Sales Manager",
+      "city": "Gżira",
+      "slug": "sales-manager-gzira",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/182ca7ce-c6c6-4c0d-8780-6745e20aca66",
+      "url": "https://outreachrecruitment.net/jobs/sales-manager-gzira/"
+    }
+  ],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Service Delivery Manager: no salary given on the careers page — page says 'Competitive salary'.",
+    "Workshop Team Leader: no salary given on the careers page — page says 'Competitive salary'.",
+    "Aftersales Administrator: no salary given on the careers page — page says 'Competitive salary'.",
+    "Senior Technician: no salary given on the careers page — page says 'Competitive salary'.",
+    "Accounts Clerk: no salary given on the careers page — page says 'Competitive salary'.",
+    "Sales Manager: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 125,
+  "site_open_before": 119,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 119,
+    "ok": 116,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 125,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 125,
+  "salary_coverage": {
+    "open": 125,
+    "with_salary": 28
+  }
+}

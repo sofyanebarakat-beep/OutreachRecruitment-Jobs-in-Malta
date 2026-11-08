@@ -46,7 +46,25 @@
    "q": "How do I apply?",
    "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
    "url": "/jobs",
-   "pages": 24
+   "pages": 36
+  },
+  {
+   "q": "Is a salary stated for this role?",
+   "a": "The careers page does not give a figure; the role offers a competitive salary, health insurance and an employee loyalty card.",
+   "url": "/jobs",
+   "pages": 22
+  },
+  {
+   "q": "Where is the job based?",
+   "a": "On-site in Floriana, Malta, just outside Valletta's city walls and well connected by bus routes into the capital.",
+   "url": "/jobs",
+   "pages": 18
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
+   "url": "/jobs",
+   "pages": 17
   },
   {
    "q": "What are the working hours?",
@@ -55,26 +73,14 @@
    "pages": 17
   },
   {
-   "q": "Where is the job based?",
-   "a": "On-site in Floriana, Malta, just outside Valletta's city walls and well connected by bus routes into the capital.",
+   "q": "Is this role remote or on-site?",
+   "a": "It is a full-time, on-site role in the Finance Department in Gżira, Malta.",
    "url": "/jobs",
    "pages": 16
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
-   "url": "/jobs",
-   "pages": 15
-  },
-  {
    "q": "Do I need to speak Maltese?",
    "a": "Yes. Fluency in both Maltese and English is essential for this role.",
-   "url": "/jobs",
-   "pages": 14
-  },
-  {
-   "q": "Is this role remote or on-site?",
-   "a": "It is a full-time, on-site role at the showroom in Gżira, Malta.",
    "url": "/jobs",
    "pages": 14
   },
@@ -91,10 +97,28 @@
    "pages": 10
   },
   {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance and an employee loyalty card.",
+   "q": "What qualifications do I need?",
+   "a": "A minimum A-Level qualification in Accounts is required, along with strong attention to detail and Excel proficiency.",
    "url": "/jobs",
-   "pages": 10
+   "pages": 9
+  },
+  {
+   "q": "Is training provided?",
+   "a": "Yes. Professional training and development opportunities are part of the offer.",
+   "url": "/jobs",
+   "pages": 9
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
+   "url": "/jobs",
+   "pages": 9
+  },
+  {
+   "q": "What qualifications are required?",
+   "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
+   "url": "/jobs",
+   "pages": 8
   },
   {
    "q": "Need more information?",
@@ -103,22 +127,10 @@
    "pages": 7
   },
   {
-   "q": "What qualifications do I need?",
-   "a": "A minimum A-Level qualification in Accounts is required, along with strong attention to detail and Excel proficiency.",
-   "url": "/jobs",
-   "pages": 7
-  },
-  {
    "q": "What experience do I need?",
    "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
    "url": "/jobs",
    "pages": 7
-  },
-  {
-   "q": "What qualifications are required?",
-   "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
-   "url": "/jobs",
-   "pages": 6
   },
   {
    "q": "What does the Hotel General Manager job pay?",
@@ -169,12 +181,6 @@
    "pages": 5
   },
   {
-   "q": "Is training provided?",
-   "a": "Yes. Professional training and development opportunities are part of the offer.",
-   "url": "/jobs",
-   "pages": 5
-  },
-  {
    "q": "Do I need a driving licence?",
    "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
    "url": "/jobs",
@@ -201,12 +207,6 @@
   {
    "q": "What does the role involve day to day?",
    "a": "Safely moving, loading, unloading and storing materials, organising inventory, and carrying out routine equipment maintenance checks.",
-   "url": "/jobs",
-   "pages": 5
-  },
-  {
-   "q": "Which languages do I need?",
-   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
    "url": "/jobs",
    "pages": 5
   },
@@ -259,8 +259,26 @@
    "pages": 4
   },
   {
+   "q": "Is this role on-site?",
+   "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
    "q": "What benefits are offered with this role?",
    "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "Which languages are required?",
+   "a": "Fluency in both Maltese and English, written and spoken, is required.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "Do I need previous experience?",
+   "a": "Previous experience in a similar administrative role is an asset but not essential. You need an O-Level standard of education and good Microsoft Office skills.",
    "url": "/jobs",
    "pages": 4
   },
@@ -291,6 +309,12 @@
   {
    "q": "Who can apply for this job?",
    "a": "Candidates must be residing in Malta or be EU citizens.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous sales management experience, preferably within the automotive industry, together with diploma-level education and proficiency in Microsoft Office.",
    "url": "/jobs",
    "pages": 4
   },
@@ -475,8 +499,26 @@
    "pages": 2
   },
   {
-   "q": "Is this role on-site?",
-   "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
+   "q": "What does an Accounts Clerk do in this role?",
+   "a": "You post sales, purchase and nominal ledger invoices, process local and international payments, carry out bank reconciliations, post vehicle registration payments and support month-end and year-end closing.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need accounting experience?",
+   "a": "Previous experience in a similar accounting or finance role is an asset but not essential.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does an Aftersales Administrator do?",
+   "a": "You support the Parts and Service departments with orders, customs documents, stock records and GRNs, run the Parts Warranty Room, help with warranty claims and assist Service Advisors and Customer Care with filing, spreadsheets and data entry.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Where is the role based?",
+   "a": "It is a full-time, on-site role with the automotive group in Gżira, Malta.",
    "url": "/jobs",
    "pages": 2
   },
@@ -661,12 +703,6 @@
    "pages": 2
   },
   {
-   "q": "Do I need previous experience?",
-   "a": "Yes. Previous experience in front-of-house or guest-facing roles is required for this position.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
    "q": "Where is the Host / Receptionist job based?",
    "a": "The job is based at a rooftop restaurant in St Julian's (San Ġiljan), Malta.",
    "url": "/jobs",
@@ -705,12 +741,6 @@
   {
    "q": "What does a Leasing Administration Officer do?",
    "a": "You manage the daily administration of a vehicle leasing fleet: new-vehicle documentation, insurance and road licences, CVA payments, VRT testing, citations and penalty points, supplier and client invoicing, and opening and closing vehicle files.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
-   "q": "Which languages are required?",
-   "a": "Strong verbal and written communication skills in both Maltese and English are required.",
    "url": "/jobs",
    "pages": 2
   },
@@ -817,6 +847,12 @@
    "pages": 2
   },
   {
+   "q": "What does this Sales Manager role involve?",
+   "a": "You lead MG vehicle sales: promoting the brand, presenting models and arranging test drives, managing sales paperwork and payments, coordinating deliveries, running the showroom to franchise standards and supporting budgets, reports and stock orders.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Senior Clerk job pay?",
    "a": "The role pays €18,015 per year for full-time work, Monday to Friday.",
    "url": "/jobs",
@@ -847,12 +883,6 @@
    "pages": 2
   },
   {
-   "q": "What experience is required?",
-   "a": "You need previous corporate administration experience within a Corporate Service Provider in Malta, preferably at senior level, together with knowledge of Malta Business Registry procedures and statutory obligations.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
    "q": "What will I manage in this position?",
    "a": "You will own a client portfolio, handle incorporations and corporate changes, oversee statutory filings, support junior administrators and assist with complex corporate matters and Scottish Partnerships.",
    "url": "/jobs",
@@ -879,6 +909,30 @@
   {
    "q": "Is this a generalist or a specialist role?",
    "a": "It is a broad generalist role — recruitment, onboarding, HR administration and compliance, employee relations, training coordination, performance support and HR reporting for a large engineering department.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a Senior Technician do in this role?",
+   "a": "You diagnose and repair mechanical and electrical faults, carry out servicing, wiring harness repairs and road tests to manufacturer standards, and give technical guidance and training to other technicians.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is previous workshop experience required?",
+   "a": "Previous experience in an automotive workshop or a similar technical role is an asset. Strong technical knowledge of vehicle mechanics and electrical systems is essential.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a Service Delivery Manager do in this role?",
+   "a": "You are the main management contact for service performance and escalations, supervise a multidisciplinary IT team, run monthly service reviews, track SLAs and KPIs, and lead continuous service improvement and problem management for a major client's IT services.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is an ITIL certification required?",
+   "a": "Yes. A valid ITIL Managing Professional (ITIL MP) or ITIL 4 Strategic Leader (ITIL SL) certification, or equivalent, is mandatory.",
    "url": "/jobs",
    "pages": 2
   },
@@ -939,6 +993,18 @@
   {
    "q": "What does a Workshop Assistant Manager do?",
    "a": "You support the Workshop Manager in running the automotive workshop: supervising technicians, planning schedules, checking repair quality and times, coordinating parts and warranty work, and keeping customers updated on their vehicles.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a Workshop Team Leader do?",
+   "a": "You supervise and guide the technicians, help with complex diagnostics, plan and allocate workshop jobs, check repair quality against manufacturer standards and coordinate with Service Advisors on priorities and deadlines.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need previous supervisory experience?",
+   "a": "It is an advantage but not required. The role is ideal for a senior automotive technician who wants to move into a leadership role.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1065,14 +1131,56 @@
    "title": "Accounting Officer"
   },
   {
-   "q": "What does an Aftersales Receptionist do?",
-   "a": "You are the first point of contact at the showroom: welcoming customers, answering calls and emails, giving general information on vehicle models, pricing and services, and supporting the sales and aftersales teams with administration.",
-   "slug": "aftersales-receptionist",
-   "title": "Aftersales Receptionist"
+   "q": "What does an Accounts Clerk do in this role?",
+   "a": "You post sales, purchase and nominal ledger invoices, process local and international payments, carry out bank reconciliations, post vehicle registration payments and support month-end and year-end closing.",
+   "slug": "accounts-clerk",
+   "title": "Accounts Clerk"
   },
   {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance and an employee loyalty card.",
+   "q": "What qualifications are required?",
+   "a": "An A-Level qualification in Accounts and/or an AAT qualification, plus ECDL or equivalent.",
+   "slug": "accounts-clerk",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "Do I need accounting experience?",
+   "a": "Previous experience in a similar accounting or finance role is an asset but not essential.",
+   "slug": "accounts-clerk",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "Is this role remote or on-site?",
+   "a": "It is a full-time, on-site role in the Finance Department in Gżira, Malta.",
+   "slug": "accounts-clerk",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "What does an Aftersales Administrator do?",
+   "a": "You support the Parts and Service departments with orders, customs documents, stock records and GRNs, run the Parts Warranty Room, help with warranty claims and assist Service Advisors and Customer Care with filing, spreadsheets and data entry.",
+   "slug": "aftersales-administrator",
+   "title": "Aftersales Administrator"
+  },
+  {
+   "q": "Which languages are required?",
+   "a": "Fluency in both Maltese and English, written and spoken, is required.",
+   "slug": "aftersales-administrator",
+   "title": "Aftersales Administrator"
+  },
+  {
+   "q": "Do I need previous experience?",
+   "a": "Previous experience in a similar administrative role is an asset but not essential. You need an O-Level standard of education and good Microsoft Office skills.",
+   "slug": "aftersales-administrator",
+   "title": "Aftersales Administrator"
+  },
+  {
+   "q": "Where is the role based?",
+   "a": "It is a full-time, on-site role with the automotive group in Gżira, Malta.",
+   "slug": "aftersales-administrator",
+   "title": "Aftersales Administrator"
+  },
+  {
+   "q": "What does an Aftersales Receptionist do?",
+   "a": "You are the first point of contact at the showroom: welcoming customers, answering calls and emails, giving general information on vehicle models, pricing and services, and supporting the sales and aftersales teams with administration.",
    "slug": "aftersales-receptionist",
    "title": "Aftersales Receptionist"
   },
@@ -1169,12 +1277,6 @@
   {
    "q": "What does a Back Office Administrator do here?",
    "a": "You run the administrative side of the aftersales department: booking service appointments, preparing job cards, updating the CRM, keeping customers informed about estimates and repairs, coordinating recalls and processing invoices and warranty documents.",
-   "slug": "back-office-administrator",
-   "title": "Back Office Administrator"
-  },
-  {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance and an employee benefits card.",
    "slug": "back-office-administrator",
    "title": "Back Office Administrator"
   },
@@ -1767,12 +1869,6 @@
    "title": "Leasing Administration Officer"
   },
   {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary.",
-   "slug": "leasing-administration-officer",
-   "title": "Leasing Administration Officer"
-  },
-  {
    "q": "Which languages are required?",
    "a": "Strong verbal and written communication skills in both Maltese and English are required.",
    "slug": "leasing-administration-officer",
@@ -2091,6 +2187,30 @@
    "title": "Retail Shop Supervisor"
   },
   {
+   "q": "What does this Sales Manager role involve?",
+   "a": "You lead MG vehicle sales: promoting the brand, presenting models and arranging test drives, managing sales paperwork and payments, coordinating deliveries, running the showroom to franchise standards and supporting budgets, reports and stock orders.",
+   "slug": "sales-manager-gzira",
+   "title": "Sales Manager"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous sales management experience, preferably within the automotive industry, together with diploma-level education and proficiency in Microsoft Office.",
+   "slug": "sales-manager-gzira",
+   "title": "Sales Manager"
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "Fluency in both Maltese and English, spoken and written, is required.",
+   "slug": "sales-manager-gzira",
+   "title": "Sales Manager"
+  },
+  {
+   "q": "Is training provided?",
+   "a": "Yes. You will attend local and international product training and share that knowledge with the sales team.",
+   "slug": "sales-manager-gzira",
+   "title": "Sales Manager"
+  },
+  {
    "q": "What does the Senior Clerk job pay?",
    "a": "The role pays €18,015 per year for full-time work, Monday to Friday.",
    "slug": "senior-clerk",
@@ -2155,6 +2275,54 @@
    "a": "You will own a client portfolio, handle incorporations and corporate changes, oversee statutory filings, support junior administrators and assist with complex corporate matters and Scottish Partnerships.",
    "slug": "senior-corporate-administrator",
    "title": "Senior Corporate Administrator"
+  },
+  {
+   "q": "What does a Senior Technician do in this role?",
+   "a": "You diagnose and repair mechanical and electrical faults, carry out servicing, wiring harness repairs and road tests to manufacturer standards, and give technical guidance and training to other technicians.",
+   "slug": "senior-technician",
+   "title": "Senior Technician"
+  },
+  {
+   "q": "Is previous workshop experience required?",
+   "a": "Previous experience in an automotive workshop or a similar technical role is an asset. Strong technical knowledge of vehicle mechanics and electrical systems is essential.",
+   "slug": "senior-technician",
+   "title": "Senior Technician"
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "Fluency in both Maltese and English is required.",
+   "slug": "senior-technician",
+   "title": "Senior Technician"
+  },
+  {
+   "q": "Is training provided?",
+   "a": "Yes. The role includes specialised training opportunities locally and abroad, and you will keep up to date with new models and manufacturer standards.",
+   "slug": "senior-technician",
+   "title": "Senior Technician"
+  },
+  {
+   "q": "What does a Service Delivery Manager do in this role?",
+   "a": "You are the main management contact for service performance and escalations, supervise a multidisciplinary IT team, run monthly service reviews, track SLAs and KPIs, and lead continuous service improvement and problem management for a major client's IT services.",
+   "slug": "service-delivery-manager",
+   "title": "Service Delivery Manager"
+  },
+  {
+   "q": "Is an ITIL certification required?",
+   "a": "Yes. A valid ITIL Managing Professional (ITIL MP) or ITIL 4 Strategic Leader (ITIL SL) certification, or equivalent, is mandatory.",
+   "slug": "service-delivery-manager",
+   "title": "Service Delivery Manager"
+  },
+  {
+   "q": "How much experience do I need?",
+   "a": "You need a Bachelor's degree in IT and at least 10 years of relevant experience managing support services, including SLA/KPI tracking, CSI, service catalogue management and vendor governance.",
+   "slug": "service-delivery-manager",
+   "title": "Service Delivery Manager"
+  },
+  {
+   "q": "Where is the job based?",
+   "a": "The role is on-site in Valletta, Malta, working with the client's IT team both on site and off site.",
+   "slug": "service-delivery-manager",
+   "title": "Service Delivery Manager"
   },
   {
    "q": "How much does the Skilled Carpenter job pay?",
@@ -2307,12 +2475,6 @@
    "title": "Warranty Administrator"
   },
   {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance, a loyalty card and specialised training.",
-   "slug": "warranty-administrator",
-   "title": "Warranty Administrator"
-  },
-  {
    "q": "Do I need warranty experience?",
    "a": "It is not essential. Previous experience in warranty claims will be considered an asset.",
    "slug": "warranty-administrator",
@@ -2367,12 +2529,6 @@
    "title": "Workshop Assistant Manager"
   },
   {
-   "q": "Is a salary stated for this role?",
-   "a": "The careers page does not give a figure; the role offers a competitive salary, plus health insurance and employee discounts.",
-   "slug": "workshop-assistant-manager",
-   "title": "Workshop Assistant Manager"
-  },
-  {
    "q": "How much experience do I need?",
    "a": "You need previous experience in a similar workshop management or supervisory role within the automotive industry, with a good technical understanding of repairs, servicing and workshop operations.",
    "slug": "workshop-assistant-manager",
@@ -2389,6 +2545,30 @@
    "a": "It is a full-time, on-site role at the workshop in Gżira, Malta.",
    "slug": "workshop-assistant-manager",
    "title": "Workshop Assistant Manager"
+  },
+  {
+   "q": "What does a Workshop Team Leader do?",
+   "a": "You supervise and guide the technicians, help with complex diagnostics, plan and allocate workshop jobs, check repair quality against manufacturer standards and coordinate with Service Advisors on priorities and deadlines.",
+   "slug": "workshop-team-leader",
+   "title": "Workshop Team Leader"
+  },
+  {
+   "q": "What qualifications do I need?",
+   "a": "A Level 4 Master Technician qualification or higher, at least 5 years as an automotive technician and a valid driving licence. Additional automotive technical qualifications are an asset.",
+   "slug": "workshop-team-leader",
+   "title": "Workshop Team Leader"
+  },
+  {
+   "q": "Do I need previous supervisory experience?",
+   "a": "It is an advantage but not required. The role is ideal for a senior automotive technician who wants to move into a leadership role.",
+   "slug": "workshop-team-leader",
+   "title": "Workshop Team Leader"
+  },
+  {
+   "q": "Is this role on-site?",
+   "a": "Yes. It is a full-time, on-site role in the automotive group's workshop in Gżira, Malta.",
+   "slug": "workshop-team-leader",
+   "title": "Workshop Team Leader"
   }
  ]
 }

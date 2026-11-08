@@ -1,0 +1,26 @@
+All six pages are built and pass `tools/verify_job_page.py`, which checks the files on disk and renders each page in headless Chrome. Nothing is committed or pushed, and no other job was changed.
+
+**What was done for each job**
+- I built each page with the repo's builder `tools/build_job_page.py` from a new spec in `tools/job_specs/<slug>.json`. The builder clones `jobs/hotel-general-manager/index.html`, which already has the inline application panel. The page was written to both `jobs/<slug>/index.html` and `jobs/<slug>.html`, and the two files are identical.
+- Each job has a new entry in `tools/jobs_registry.json`: no `status`, `valid_through` 2029-12-30, the fact sheet's `apply_url` and no salary.
+- Each job has its 12-section report at `reports/job-seo-<slug>-2026-11-08.md`.
+- None of the fact sheets gives a salary, so every page says "Competitive salary" and the JobPosting schema has no `baseSalary`.
+- The FAQs start closed and match the FAQPage schema. The reference number appears only in an HTML comment, and the deadline only in the schema and registry.
+- The only careers-page job ID on each page is that job's own.
+
+**Things to know**
+- **Asset version:** the pages use `?v=20261107b`, not the `?v=20261106` the task asked for. That is the version all 123 job pages and `tools/apply_job_application_system.py` currently use, so 20261106 would have been older.
+- **Service Delivery Manager:** the careers page asks applicants to quote "SDM/11/2026". That reference is not shown, because applying online replaces it. The source also says pay can be on a contract basis or with a full benefits package. That is mentioned in the offer list and the salary FAQ, but the employment type stays Full-time as the careers page states.
+- **Audit Senior in the IT carousel:** the Service Delivery Manager's similar-jobs carousel includes `audit-senior`, because the registry files it under IT & Technology. It looks mis-categorised, but I left it alone because the task said not to edit other jobs.
+- **Language defaults:** Workshop Team Leader and Accounts Clerk list no language on the careers page, so their pages show English, the site default.
+- **Aftersales Administrator breadcrumb:** there is no Administration jobs hub page yet, so its breadcrumb links to Customer Service Jobs in Malta, as `warranty-administrator` does.
+- **Sales Manager:** `sales-manager-gzira` uses the slug you gave because `jobs/sales-manager` already exists. Its browser title includes Gżira so the two pages differ, and the page names the MG brand because the careers page does.
+
+CREATED 35466667-4755-407f-b866-2354151973b9 service-delivery-manager
+CREATED 8c5047d4-7c1b-4ab9-b581-273104d90c58 workshop-team-leader
+CREATED f046a446-d5aa-4bf2-aaa2-ae9c184f40fb aftersales-administrator
+CREATED a5cdd055-a18e-4aad-b319-7d66d6e85ed9 senior-technician
+CREATED b71ac02a-3011-454a-9a98-93e34f74267a accounts-clerk
+CREATED 182ca7ce-c6c6-4c0d-8780-6745e20aca66 sales-manager-gzira
+
+--- stderr ---
