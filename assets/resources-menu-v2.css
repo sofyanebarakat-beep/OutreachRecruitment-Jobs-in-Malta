@@ -1,0 +1,113 @@
+.navigation .dropdown-content.pages {
+  display: block;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e8e7f1;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(32, 27, 74, .12);
+}
+
+.navigation .resources-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.navigation .resources-group {
+  min-width: 0;
+}
+
+.navigation .resources-group summary {
+  display: block;
+  padding: 8px 10px;
+  color: #55536a;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.navigation .resources-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.navigation .resources-group .nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navigation .resources-group .nav-item {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.navigation .resources-group .nav-item:hover,
+.navigation .resources-group .nav-item:focus-visible {
+  background: #f5f4ff;
+  color: #442dfa;
+}
+
+.navigation .resources-group :is(summary, .nav-item):focus-visible {
+  outline: 2px solid #442dfa;
+  outline-offset: 2px;
+}
+
+@media (max-width: 991px) {
+  .navigation .navigation-center {
+    max-height: calc(100dvh - 110px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .navigation .dropdown-content.pages {
+    padding: 12px;
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .navigation .resources-groups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .navigation .resources-group summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+
+  .navigation .resources-group summary::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform .2s ease;
+  }
+
+  .navigation .resources-group[open] summary::after {
+    transform: rotate(225deg);
+  }
+
+  .navigation .resources-group .nav-item {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation .resources-group summary::after {
+    transition: none;
+  }
+}
