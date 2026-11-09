@@ -1,0 +1,46 @@
+.navigation .navigation-right > .button-primary {
+  display: none;
+}
+
+.navigation .job-mobile-header-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #442dfa;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.navigation .job-mobile-header-cta:focus-visible {
+  outline: 2px solid #2c2d2d;
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .navigation .navigation-content {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    column-gap: 8px;
+  }
+
+  .navigation .navigation-left {
+    min-width: 0;
+    transform: none !important;
+  }
+
+  .navigation .nav-logo-link,
+  .navigation .nav-logo {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 132px;
+  }
+
+  .navigation .job-mobile-header-cta {
+    padding: 0 12px;
+  }
+}
