@@ -31,7 +31,8 @@
     });
     if (!chosen.length) return;
 
-    cards.forEach((card) => {
+    cards.forEach((card, slug) => {
+      card.dataset.featured = String(chosen.includes(slug));
       card.classList.remove("opening-job-card--gold");
       card.querySelector(".opening-featured-label")?.remove();
     });
@@ -49,6 +50,11 @@
     const chosenCards = new Set(chosen.map((slug) => cards.get(slug)));
     const firstOtherCard = [...grid.children].find((child) => !chosenCards.has(child)) || null;
     chosen.forEach((slug) => grid.insertBefore(cards.get(slug), firstOtherCard));
+
+    const featuredTab = document.querySelector('[data-opening-tab="featured"]');
+    const featuredCount = featuredTab?.querySelector("span");
+    if (featuredCount) featuredCount.textContent = String(chosen.length);
+    if (featuredTab?.classList.contains("is-active")) featuredTab.click();
   }
 
   async function loadSelection() {

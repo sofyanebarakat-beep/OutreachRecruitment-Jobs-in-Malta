@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-07T12:15:14.758817+01:00",
+  "generated_at": "2026-11-09T10:45:49.103496+01:00",
   "checks": {
     "gsc": {
       "ok": true,
-      "through": "2026-11-05",
-      "days": 149,
+      "through": "2026-11-07",
+      "days": 150,
       "queries": 1000,
-      "pages": 430
+      "pages": 417
     },
     "ga4": {
       "ok": true,
@@ -15,7 +15,7 @@
     },
     "audit": {
       "ok": true,
-      "issues": 2108
+      "issues": 2191
     },
     "sectors": {
       "ok": true,
@@ -23,24 +23,24 @@
     },
     "opportunities": {
       "ok": true,
-      "rows": 103
+      "rows": 117
     },
     "experiments": {
-      "new": 1
+      "new": 0
     },
     "supabase": {
       "ok": true,
-      "alerts": 16
+      "alerts": 21
     }
   },
   "warnings": [],
   "kpi_latest_28d": {
-    "start": "2026-10-09",
-    "end": "2026-11-05",
-    "clicks28": 1196,
-    "impressions28": 20880,
-    "ctr": 5.73,
-    "position": 10.4
+    "start": "2026-10-11",
+    "end": "2026-11-07",
+    "clicks28": 1221,
+    "impressions28": 21466,
+    "ctr": 5.69,
+    "position": 10.5
   },
   "baseline": {
     "date": "2026-10-13",
