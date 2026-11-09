@@ -54,7 +54,7 @@
     const featuredTab = document.querySelector('[data-opening-tab="featured"]');
     const featuredCount = featuredTab?.querySelector("span");
     if (featuredCount) featuredCount.textContent = String(chosen.length);
-    if (featuredTab?.classList.contains("is-active")) featuredTab.click();
+    document.querySelector("[data-opening-tab].is-active")?.click();
   }
 
   async function loadSelection() {

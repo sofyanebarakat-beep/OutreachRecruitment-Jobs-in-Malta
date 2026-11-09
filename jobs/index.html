@@ -1193,9 +1193,10 @@
     if (!grid) return;
     var existing = Array.prototype.slice.call(grid.querySelectorAll('.opening-ad-banner'));
     existing.forEach(function (el) { el.parentNode.removeChild(el); });
-    var visible = cards.filter(function (c) { return !c.hidden; });
+    var visible = Array.prototype.slice.call(grid.querySelectorAll('[data-opening-job]')).filter(function (c) { return !c.hidden; });
     var bannerIndex = 0;
-    for (var i = 5; i < visible.length; i += 6) {
+    var bannerOffset = activeTab === 'featured' && window.matchMedia('(max-width: 767px)').matches ? 4 : 5;
+    for (var i = bannerOffset; i < visible.length; i += 6) {
       var tpl = adBannerTemplates[bannerIndex % adBannerTemplates.length];
       var banner = document.createElement('div');
       banner.className = 'opening-ad-banner';
@@ -1215,7 +1216,7 @@
     var cat = category.value;
     var loc = (location.value || '').toLowerCase().trim();
     var savedJobs = JSON.parse(localStorage.getItem('or-saved-jobs') || '[]');
-    var source = activeTab === 'featured' ? featuredOrder : cards;
+    var source = activeTab === 'featured' ? Array.prototype.slice.call(document.querySelectorAll('#opening-jobs-grid [data-opening-job][data-featured="true"]')) : activeTab === 'all' ? Array.prototype.slice.call(document.querySelectorAll('#opening-jobs-grid [data-opening-job]')) : cards;
     var matched = source.filter(function (card) {
       var jobHref = card.querySelector('.opening-job-link') ? card.querySelector('.opening-job-link').getAttribute('href') : '';
       var matchesTab = activeTab === 'all'
