@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-09",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 125,
+  "site_open_before": 125,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 125,
+    "ok": 122,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 125,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 125,
+  "salary_coverage": {
+    "open": 125,
+    "with_salary": 28
+  }
+}
