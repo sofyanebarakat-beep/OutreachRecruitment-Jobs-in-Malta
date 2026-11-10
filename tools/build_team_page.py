@@ -31,15 +31,23 @@ ICONS = {
     "instagram": ('Instagram', '<rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/>'),
     "x": ('X', '<path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.3l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z" fill="currentColor"/>'),
 }
+# Used when a person has no personal social links yet: their icons point to the company's pages.
+COMPANY_SOCIALS = {"linkedin": "https://www.linkedin.com/company/outreach-recruitment-agency/",
+                   "facebook": "https://www.facebook.com/outreachrecruit/",
+                   "instagram": "https://www.instagram.com/outreachrecruitment_agency",
+                   "x": "https://x.com/OutreachRecrt"}
 EMAIL_ICON = '<path d="M3 5.5h18v13H3z M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'
 
 
 def socials_html(person: dict, cls: str) -> str:
     items = []
+    own = {k: v for k, v in (person.get("socials") or {}).items() if v and v != "#"}
+    links = own or COMPANY_SOCIALS
     for key, (label, path) in ICONS.items():
-        url = (person.get("socials") or {}).get(key, "")
+        url = links.get(key, "")
         if url:
-            items.append(f'<li><a class="{cls}-link" href="{E(url)}" target="_blank" rel="noopener" aria-label="{E(person["name"])} on {label}">'
+            who = E(person["name"]) if own else "Outreach Recruitment"
+            items.append(f'<li><a class="{cls}-link" href="{E(url)}" target="_blank" rel="noopener" aria-label="{who} on {label}">'
                          f'<svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg></a></li>')
     return f'<ul class="{cls}" role="list">{"".join(items)}</ul>' if items else ""
 
@@ -47,9 +55,9 @@ def socials_html(person: dict, cls: str) -> str:
 def card(person: dict, idx: int) -> str:
     return f"""<article class="team-card" data-member="{idx}">
   <button class="team-card-open" type="button" aria-label="View profile of {E(person['name'])}" data-open="{idx}"></button>
-  <div class="team-img-wrap"><img class="team-img" src="{E(person['photo'])}" alt="{E(person['name'])}, {E(person['role'])} at Outreach Recruitment" loading="lazy" width="413" height="367">
-    {socials_html(person, 'team-social')}</div>
-  <div class="team-card-body"><h3 class="team-name">{E(person['name'])}</h3><p class="team-role">{E(person['role'])}</p></div>
+  <div class="team-img-wrap"><img class="team-img" src="{E(person['photo'])}" alt="{E(person['name'])}, {E(person['role'])} at Outreach Recruitment" loading="lazy" width="413" height="367"></div>
+  <div class="team-card-body"><h3 class="team-name">{E(person['name'])}</h3>
+    <div class="team-card-foot">{socials_html(person, 'card-social')}<button class="team-view-btn" type="button" data-open="{idx}">View profile</button></div></div>
 </article>"""
 
 
@@ -58,10 +66,11 @@ CSS = """<style id="team-page-style">
 .team-hero { text-align: center; max-width: 760px; margin: 0 auto; padding: 2rem 0 3rem; }
 .team-hero .team-sub { font-size: 1.1rem; opacity: .8; margin-top: 1rem; }
 /* CEO */
-.ceo-card { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0; background: #f6f6f6;
-  border-radius: 24px; overflow: hidden; margin-bottom: 4rem; }
-.ceo-card .team-img-wrap { aspect-ratio: 4 / 4.2; border-radius: 0; }
-.ceo-body { padding: clamp(1.75rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+.ceo-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; background: #f6f6f6;
+  border-radius: 24px; overflow: hidden; margin: 0 auto 4rem; max-width: 880px; transition: box-shadow .35s ease; }
+.ceo-card:hover { box-shadow: 0 18px 40px rgba(22, 22, 22, .1); }
+.ceo-card .team-img-wrap { aspect-ratio: 4 / 4.4; border-radius: 0; }
+.ceo-body { padding: clamp(1.75rem, 4vw, 3.5rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.25rem; }
 .ceo-eyebrow { display: inline-flex; width: fit-content; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   color: #442DFA; background: #eeebff; padding: .35rem .8rem; border-radius: 999px; }
 .ceo-name { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.1; margin: 0; }
@@ -91,9 +100,22 @@ CSS = """<style id="team-page-style">
   background: rgba(255, 255, 255, .18); backdrop-filter: blur(6px); transition: background .2s ease; }
 .team-social-link:hover { background: #442DFA; }
 .team-social-link svg { width: 18px; height: 18px; }
-.team-card-body { padding: 1.4rem 1.5rem 1.6rem; }
+.team-card-body { padding: 1.25rem 1.25rem 1.4rem; }
 .team-name { font-size: 1.2rem; margin: 0 0 .35rem; }
 .team-role { margin: 0; font-size: .95rem; opacity: .75; }
+.team-card-body { display: flex; flex-direction: column; gap: 1rem; }
+.team-card-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+.card-social { display: flex; gap: .4rem; margin: 0; padding: 0; list-style: none; position: relative; z-index: 3; }
+.card-social-link { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dcdcdc;
+  color: #161616; background: #fff; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.card-social-link:hover, .card-social-link:focus-visible { background: #442DFA; border-color: #442DFA; color: #fff; }
+.card-social-link svg { width: 16px; height: 16px; }
+.team-view-btn { position: relative; z-index: 3; border: 0; border-radius: 999px; padding: .6rem 1.1rem; font: inherit; font-weight: 600;
+  font-size: .9rem; background: #442DFA; color: #fff; cursor: pointer; transition: background .2s ease; }
+.team-view-btn:hover { background: #2f1bd6; }
+.ceo-body .card-social-link { width: 42px; height: 42px; }
+.ceo-body .card-social-link svg { width: 18px; height: 18px; }
+@media (max-width: 400px) { .team-card-foot { flex-direction: column; align-items: flex-start; } }
 /* Profile dialog */
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .55); }
@@ -106,7 +128,7 @@ CSS = """<style id="team-page-style">
 .team-dialog-socials-link { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; color: #161616; }
 .team-dialog-socials-link:hover { background: #442DFA; border-color: #442DFA; color: #fff; }
 .team-dialog-socials-link svg { width: 18px; height: 18px; }
-@media (max-width: 991px) { .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ceo-card { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 991px) { .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ceo-card { grid-template-columns: minmax(0, 1fr); max-width: 560px; } .ceo-card .team-img-wrap { aspect-ratio: 1 / 1; } }
 @media (max-width: 600px) { .team-grid { grid-template-columns: minmax(0, 1fr); } .team-dialog-inner { grid-template-columns: minmax(0, 1fr); }
   .team-dialog-photo { min-height: 0; aspect-ratio: 1; } }
 /* Touch screens have no hover: show the social icons all the time */
@@ -180,15 +202,12 @@ def main() -> None:
     s = s.replace("</head>", CSS + "\n</head>", 1)
 
     ceo_html = f"""<article class="ceo-card" data-member="0">
-  <div class="team-img-wrap"><img class="team-img" src="{E(ceo['photo'])}" alt="{E(ceo['name'])}, {E(ceo['role'])} of Outreach Recruitment" width="560" height="588">
-    {socials_html(ceo, 'team-social')}</div>
+  <button class="team-card-open" type="button" aria-label="View profile of {E(ceo['name'])}" data-open="0"></button>
+  <div class="team-img-wrap"><img class="team-img" src="{E(ceo['photo'])}" alt="{E(ceo['name'])}, {E(ceo['role'])} of Outreach Recruitment" width="560" height="588"></div>
   <div class="ceo-body">
-    <span class="ceo-eyebrow">{E(ceo['role'])}</span>
     <h2 class="ceo-name">{E(ceo['name'])}</h2>
-    <p class="ceo-bio">{E(ceo['bio'])}</p>
-    {f'<blockquote class="ceo-quote">“{E(ceo["quote"])}”</blockquote>' if ceo.get('quote') else ''}
-    <div class="ceo-actions"><button class="ceo-btn primary" type="button" data-open="0">View full profile</button>
-      {f'<a class="ceo-btn" href="mailto:{E(ceo["email"])}">Email {E(ceo["name"].split()[0])}</a>' if ceo.get('email') else '<a class="ceo-btn" href="/contact-us">Contact us</a>'}</div>
+    {socials_html(ceo, 'card-social')}
+    <div class="ceo-actions"><button class="ceo-btn primary team-view-btn" type="button" data-open="0">View profile</button></div>
   </div>
 </article>"""
     grid = "\n".join(card(m, i + 1) for i, m in enumerate(members))
