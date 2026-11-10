@@ -18524,4 +18524,120 @@ OK
   [75/124] customer-contact-agent … 2 issue(s)
   [76/124] hr-administration-officer … 1 issue(s)
   [77/124] project-manager … 1 issue(s)
-  [78/124] estimator … 
+  [78/124] estimator … 1 issue(s)
+  [79/124] hsse-coordinator … 1 issue(s)
+  [80/124] housekeeper … 1 issue(s)
+  [81/124] driver-runner-washer … 1 issue(s)
+  [82/124] supervisor … 1 issue(s)
+  [83/124] structural-engineer … 1 issue(s)
+  [84/124] senior-quantity-estimator-me … 1 issue(s)
+  [85/124] sales-representative-in-renewables … 1 issue(s)
+  [86/124] hvac-project-manager … 1 issue(s)
+  [87/124] hvac-sales-representative … 1 issue(s)
+  [88/124] maintenance-technician-electrical-licence-a-or-b … 1 issue(s)
+  [89/124] general-maintenance-technician … 1 issue(s)
+  [90/124] counter-assistant … 1 issue(s)
+  [91/124] kitchen-assistant … 1 issue(s)
+  [92/124] heavy-machine-operator … OK
+  [93/124] housekeeping-attendant … 1 issue(s)
+  [94/124] tax-manager … 1 issue(s)
+  [95/124] automotive-service-advisor … OK
+  [96/124] high-voltage-motor-vehicle-technician … 1 issue(s)
+  [97/124] customer-contact-centre-representative … 1 issue(s)
+  [98/124] builders-and-shutterers … 1 issue(s)
+  [99/124] draughtsperson … 1 issue(s)
+  [100/124] sales-executive-luxury-retail … 1 issue(s)
+  [101/124] bottling-operator … OK
+  [102/124] motor-vehicle-mechanictechnician … 1 issue(s)
+  [103/124] automotive-parts-personnel … 1 issue(s)
+  [104/124] corporate-insurance-associate … 2 issue(s)
+  [105/124] wood-painting-finishing-specialist … 1 issue(s)
+  [106/124] delivery-driver-malta-c-license … 1 issue(s)
+  [107/124] health-claims-associate … 1 issue(s)
+  [108/124] delivery-drivers-c1-malta-license … 1 issue(s)
+  [109/124] auditor … 1 issue(s)
+  [110/124] cnc-machine-operator … OK
+  [111/124] room-attendents … 1 issue(s)
+  [112/124] skilled-carpenters … 1 issue(s)
+  [113/124] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [114/124] commercial-insurance-associate … 2 issue(s)
+  [115/124] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [116/124] audit-senior … 1 issue(s)
+  [117/124] volvo-penta-mechanic … 1 issue(s)
+  [118/124] sign-assembler-installer … 1 issue(s)
+  [119/124] hotel-porter … 1 issue(s)
+  [120/124] boat-maintenance … OK
+  [121/124] semi-senior-accountant … OK
+  [122/124] housekeeper-2 … 1 issue(s)
+  [123/124] it-support-executive-2 … 1 issue(s)
+  [124/124] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-10.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-10.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-10.html
+
+  Email skipped. To send manually, remove --no-email / --dry-run flag.
+
+=== SEO Course Automation ===
+GA4 added to 0 content pages; conversion events added to 0 pages.
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-11-10T10:02:03.125798+01:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-11-08",
+      "days": 150,
+      "queries": 1000,
+      "pages": 415
+    },
+    "ga4": {
+      "ok": true,
+      "days": 149,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 2215
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 17
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 117
+    },
+    "experiments": {
+      "new": 52
+    },
+    "supabase": {
+      "ok": true,
+      "alerts": 27
+    }
+  },
+  "warnings": [],
+  "kpi_latest_28d": {
+    "start": "2026-10-12",
+    "end": "2026-11-08",
+    "clicks28": 1187,
+    "impressions28": 21418,
+    "ctr": 5.54,
+    "position": 10.6
+  },
+  "baseline": {
+    "date": "2026-10-13",
+    "clicks28": 2017,
+    "impressions28": 24004,
+    "ctr": 8.4,
+    "position": 9.4,
+    "verified": true,
+    "auto": true,
+    "note": "Verified automatically from the Search Console API: 2026-09-16 to 2026-10-13 (final data, web search)."
+  }
+}
+Finished: Tue Nov 10 10:02:21 CET 2026 | Exit: 0

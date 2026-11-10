@@ -733,6 +733,16 @@ def update_netlify_routes(meta: dict) -> bool:
 
 # --------------------------------------------------------------------------------
 
+def apply_blog_layout(dest: Path) -> None:
+    """Restyle a freshly written blog article with the shared layout (tools/apply_blog_template.py)."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    try:
+        import apply_blog_template  # type: ignore
+        apply_blog_template.main([str(dest)])
+    except Exception as exc:  # noqa: BLE001 - layout is cosmetic; never block publishing
+        print(f"warning: blog layout not applied to {dest.name}: {exc}", file=sys.stderr)
+
+
 def publish_one(md_path: Path) -> dict:
     """Returns {"ok": True, "dest_rel": ..., "canonical": ...} or {"ok": False, "error": ...}."""
     try:
@@ -747,6 +757,8 @@ def publish_one(md_path: Path) -> dict:
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(page)
         touched = [meta["dest_rel"]]
+        if not meta["is_root"]:
+            apply_blog_layout(dest)
         if update_netlify_routes(meta):
             touched.append("netlify.toml")
         if update_blog_index(meta):
