@@ -48,7 +48,7 @@ def email_of(person: dict) -> str:
     return person.get("email") or DEFAULT_EMAIL
 
 
-def socials_html(person: dict, cls: str) -> str:
+def socials_html(person: dict, cls: str, with_email: bool = True) -> str:
     items = []
     own = {k: v for k, v in (person.get("socials") or {}).items() if v and v != "#"}
     links = own or COMPANY_SOCIALS
@@ -59,7 +59,7 @@ def socials_html(person: dict, cls: str) -> str:
             items.append(f'<li><a class="{cls}-link" data-net="{key}" href="{E(url)}" target="_blank" rel="noopener" aria-label="{who} on {label}">'
                          f'<svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg></a></li>')
     mail = email_of(person)
-    items.append(f'<li><a class="{cls}-link" data-net="email" href="mailto:{E(mail)}" aria-label="Email {E(person["name"])} ({E(mail)})" title="{E(mail)}">'
+    if with_email: items.append(f'<li><a class="{cls}-link" data-net="email" href="mailto:{E(mail)}" aria-label="Email {E(person["name"])} ({E(mail)})" title="{E(mail)}">'
                  f'<svg viewBox="0 0 24 24" aria-hidden="true">{EMAIL_ICON}</svg></a></li>')
     return f'<ul class="{cls}" role="list">{"".join(items)}</ul>'
 
@@ -122,7 +122,6 @@ CSS = """<style id="team-page-style">
 @keyframes tw-fade { from { opacity: 0; transform: translateY(12px); } to { opacity: .8; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .tw-in, .team-sub { animation: none; transform: none; opacity: .8; } .tw-in { opacity: 1; }
-  .lead-glow::before, .lead-glow::after { animation: none; }
   .card-social-link:hover, .team-dialog-socials-link:hover { transform: none; }
 }
 .team-card-open { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; }
@@ -159,15 +158,9 @@ CSS = """<style id="team-page-style">
 .ceo-body .card-social-link svg { width: 18px; height: 18px; }
 @media (max-width: 400px) { .team-card-foot { flex-direction: column; align-items: flex-start; } }
 .team-lead { display: flex; justify-content: center; margin-bottom: 4rem; }
-.lead-glow { position: relative; width: calc((100% - 2.5rem) / 3); padding: 3px; border-radius: 27px; }
-@media (max-width: 991px) { .lead-glow { width: calc((100% - 1.25rem) / 2); } }
-@media (max-width: 600px) { .lead-glow { width: 100%; } }
-@property --glow-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.lead-glow::before, .lead-glow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
-  background: conic-gradient(from var(--glow-a), #442DFA, #b7aefc, #ff5a5f, #ffd166, #442DFA); animation: glow-spin 6s linear infinite; }
-.lead-glow::after { inset: 6px; filter: blur(22px); opacity: .55; }
-.lead-glow .team-card { z-index: 1; }
-@keyframes glow-spin { to { --glow-a: 360deg; } }
+.team-lead .team-card { width: calc((100% - 2.5rem) / 3); }
+@media (max-width: 991px) { .team-lead .team-card { width: calc((100% - 1.25rem) / 2); } }
+@media (max-width: 600px) { .team-lead .team-card { width: 100%; } }
 /* Profile dialog */
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .55); }
@@ -264,7 +257,7 @@ def main() -> None:
                s, count=1, flags=re.S)
     s = s.replace("</head>", CSS + "\n</head>", 1)
 
-    ceo_html = f'<div class="team-lead"><div class="lead-glow">{card(ceo, 0)}</div></div>'
+    ceo_html = f'<div class="team-lead">{card(ceo, 0)}</div>'
     grid = "\n".join(card(m, i + 1) for i, m in enumerate(members))
     content = f"""
 <section class="section team-page">
@@ -302,7 +295,7 @@ def main() -> None:
     s = s[:a] + content + (cta.group(0) if cta else "") + s[b:]
 
     payload = [{"name": p["name"], "role": p["role"], "photo": p["photo"], "bio": p.get("bio", ""), "quote": p.get("quote", ""),
-                "email": email_of(p), "pos": p.get("photo_position", ""), "socialsHtml": socials_html(p, "team-dialog-socials").replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
+                "email": p.get("email", ""), "pos": p.get("photo_position", ""), "socialsHtml": socials_html(p, "team-dialog-socials", with_email=bool(p.get("email"))).replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
                for p in people]
     s = s.replace("</body>", f"<script>window.__TEAM__ = {json.dumps(payload, ensure_ascii=False)};</script>\n{SCRIPT}\n</body>", 1)
     OUT.write_text(s, encoding="utf-8")
