@@ -52,10 +52,16 @@ def socials_html(person: dict, cls: str) -> str:
     return f'<ul class="{cls}" role="list">{"".join(items)}</ul>' if items else ""
 
 
+def pos_style(person: dict) -> str:
+    """Optional "photo_position" (e.g. "center 55%") moves the face up/down inside the crop."""
+    pos = person.get("photo_position")
+    return f' style="object-position: {E(pos)}"' if pos else ""
+
+
 def card(person: dict, idx: int) -> str:
     return f"""<article class="team-card" data-member="{idx}">
   <button class="team-card-open" type="button" aria-label="View profile of {E(person['name'])}" data-open="{idx}"></button>
-  <div class="team-img-wrap"><img class="team-img" src="{E(person['photo'])}" alt="{E(person['name'])}, {E(person['role'])} at Outreach Recruitment" loading="lazy" width="413" height="367"></div>
+  <div class="team-img-wrap"><img class="team-img" src="{E(person['photo'])}" alt="{E(person['name'])}, {E(person['role'])} at Outreach Recruitment" loading="lazy" width="413" height="367"{pos_style(person)}></div>
   <div class="team-card-body"><h3 class="team-name">{E(person['name'])}</h3>
     <div class="team-card-foot">{socials_html(person, 'card-social')}<button class="team-view-btn" type="button" data-open="{idx}">View profile</button></div></div>
 </article>"""
@@ -116,6 +122,10 @@ CSS = """<style id="team-page-style">
 .ceo-body .card-social-link { width: 42px; height: 42px; }
 .ceo-body .card-social-link svg { width: 18px; height: 18px; }
 @media (max-width: 400px) { .team-card-foot { flex-direction: column; align-items: flex-start; } }
+.team-lead { display: flex; justify-content: center; margin-bottom: 4rem; }
+.team-lead .team-card { width: calc((100% - 2.5rem) / 3); }
+@media (max-width: 991px) { .team-lead .team-card { width: calc((100% - 1.25rem) / 2); } }
+@media (max-width: 600px) { .team-lead .team-card { width: 100%; } }
 /* Profile dialog */
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .55); }
@@ -146,6 +156,7 @@ SCRIPT = """<script id="team-page-script">
     lastFocus = document.activeElement;
     dlg.querySelector('.team-dialog-photo').src = p.photo;
     dlg.querySelector('.team-dialog-photo').alt = p.name;
+    dlg.querySelector('.team-dialog-photo').style.objectPosition = p.pos || '';
     dlg.querySelector('.team-dialog-name').textContent = p.name;
     dlg.querySelector('.team-dialog-role').textContent = p.role;
     dlg.querySelector('.team-dialog-bio').textContent = p.bio || '';
@@ -201,15 +212,7 @@ def main() -> None:
                s, count=1, flags=re.S)
     s = s.replace("</head>", CSS + "\n</head>", 1)
 
-    ceo_html = f"""<article class="ceo-card" data-member="0">
-  <button class="team-card-open" type="button" aria-label="View profile of {E(ceo['name'])}" data-open="0"></button>
-  <div class="team-img-wrap"><img class="team-img" src="{E(ceo['photo'])}" alt="{E(ceo['name'])}, {E(ceo['role'])} of Outreach Recruitment" width="560" height="588"></div>
-  <div class="ceo-body">
-    <h2 class="ceo-name">{E(ceo['name'])}</h2>
-    {socials_html(ceo, 'card-social')}
-    <div class="ceo-actions"><button class="ceo-btn primary team-view-btn" type="button" data-open="0">View profile</button></div>
-  </div>
-</article>"""
+    ceo_html = f'<div class="team-lead">{card(ceo, 0)}</div>'
     grid = "\n".join(card(m, i + 1) for i, m in enumerate(members))
     content = f"""
 <section class="section team-page">
@@ -247,7 +250,7 @@ def main() -> None:
     s = s[:a] + content + (cta.group(0) if cta else "") + s[b:]
 
     payload = [{"name": p["name"], "role": p["role"], "photo": p["photo"], "bio": p.get("bio", ""), "quote": p.get("quote", ""),
-                "email": p.get("email", ""), "socialsHtml": socials_html(p, "team-dialog-socials").replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
+                "email": p.get("email", ""), "pos": p.get("photo_position", ""), "socialsHtml": socials_html(p, "team-dialog-socials").replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
                for p in people]
     s = s.replace("</body>", f"<script>window.__TEAM__ = {json.dumps(payload, ensure_ascii=False)};</script>\n{SCRIPT}\n</body>", 1)
     OUT.write_text(s, encoding="utf-8")

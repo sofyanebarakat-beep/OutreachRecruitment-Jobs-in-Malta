@@ -32,7 +32,8 @@
         "facebook": "",
         "instagram": "",
         "x": ""
-      }
+      },
+      "photo_position": "center 60%"
     },
     {
       "name": "Katherin",
@@ -77,7 +78,7 @@
       }
     },
     {
-      "name": "Team Member 5",
+      "name": "Soufiane",
       "role": "Job Title",
       "photo": "/assets/team/placeholder.svg",
       "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
