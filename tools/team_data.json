@@ -1,0 +1,102 @@
+{
+ "_help": "Fill in the real details, add photos to /assets/team/ (e.g. /assets/team/jane-doe.jpg, portrait, at least 800px wide), then run: python3 tools/build_team_page.py. Leave a social link empty (\"\") to hide its icon. Set \"ready\": true when all placeholders are replaced, so Google may index the page.",
+ "ready": false,
+ "page": {
+  "title": "Meet Our Team",
+  "subtitle": "Get to know the recruitment specialists who connect Malta's employers with the right people — and help candidates find their next role."
+ },
+ "ceo": {
+  "name": "CEO Name",
+  "role": "Founder & CEO",
+  "photo": "/assets/team/placeholder.svg",
+  "bio": "Short introduction of the CEO: background, experience in recruitment and what drives Outreach Recruitment. (Placeholder — replace with the real biography.)",
+  "quote": "A short quote from the CEO about the company's mission. (Placeholder)",
+  "email": "",
+  "socials": {
+   "linkedin": "#",
+   "facebook": "#",
+   "instagram": "#",
+   "x": "#"
+  }
+ },
+ "members": [
+  {
+   "name": "Team Member 1",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  },
+  {
+   "name": "Team Member 2",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  },
+  {
+   "name": "Team Member 3",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  },
+  {
+   "name": "Team Member 4",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  },
+  {
+   "name": "Team Member 5",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  },
+  {
+   "name": "Team Member 6",
+   "role": "Job Title",
+   "photo": "/assets/team/placeholder.svg",
+   "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+   "email": "",
+   "socials": {
+    "linkedin": "#",
+    "facebook": "#",
+    "instagram": "#",
+    "x": "#"
+   }
+  }
+ ]
+}
