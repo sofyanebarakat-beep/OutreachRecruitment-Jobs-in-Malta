@@ -79,16 +79,17 @@
     },
     {
       "name": "Soufiane",
-      "role": "Job Title",
+      "role": "Digital Marketing",
       "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+      "bio": "I make sure our jobs reach the right people. From our website and job adverts to social media and email campaigns, I help employers get noticed and candidates find their next opportunity in Malta.",
       "email": "",
       "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
-      }
+        "linkedin": "",
+        "facebook": "",
+        "instagram": "",
+        "x": ""
+      },
+      "quote": "Seen one of our job posts? That’s my work!"
     },
     {
       "name": "Team Member 6",

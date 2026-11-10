@@ -39,17 +39,29 @@ COMPANY_SOCIALS = {"linkedin": "https://www.linkedin.com/company/outreach-recrui
 EMAIL_ICON = '<path d="M3 5.5h18v13H3z M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'
 
 
+# Which networks to show (others stay in the data for later), and the shared contact email.
+SHOW_SOCIALS = ["linkedin"]
+DEFAULT_EMAIL = "hr@outreachrecruitment.net"
+
+
+def email_of(person: dict) -> str:
+    return person.get("email") or DEFAULT_EMAIL
+
+
 def socials_html(person: dict, cls: str) -> str:
     items = []
     own = {k: v for k, v in (person.get("socials") or {}).items() if v and v != "#"}
     links = own or COMPANY_SOCIALS
     for key, (label, path) in ICONS.items():
-        url = links.get(key, "")
+        url = links.get(key, "") if key in SHOW_SOCIALS else ""
         if url:
             who = E(person["name"]) if own else "Outreach Recruitment"
             items.append(f'<li><a class="{cls}-link" href="{E(url)}" target="_blank" rel="noopener" aria-label="{who} on {label}">'
                          f'<svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg></a></li>')
-    return f'<ul class="{cls}" role="list">{"".join(items)}</ul>' if items else ""
+    mail = email_of(person)
+    items.append(f'<li><a class="{cls}-link" href="mailto:{E(mail)}" aria-label="Email {E(person["name"])} ({E(mail)})" title="{E(mail)}">'
+                 f'<svg viewBox="0 0 24 24" aria-hidden="true">{EMAIL_ICON}</svg></a></li>')
+    return f'<ul class="{cls}" role="list">{"".join(items)}</ul>'
 
 
 def pos_style(person: dict) -> str:
@@ -250,7 +262,7 @@ def main() -> None:
     s = s[:a] + content + (cta.group(0) if cta else "") + s[b:]
 
     payload = [{"name": p["name"], "role": p["role"], "photo": p["photo"], "bio": p.get("bio", ""), "quote": p.get("quote", ""),
-                "email": p.get("email", ""), "pos": p.get("photo_position", ""), "socialsHtml": socials_html(p, "team-dialog-socials").replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
+                "email": email_of(p), "pos": p.get("photo_position", ""), "socialsHtml": socials_html(p, "team-dialog-socials").replace('<ul class="team-dialog-socials" role="list">', "").replace("</ul>", "")}
                for p in people]
     s = s.replace("</body>", f"<script>window.__TEAM__ = {json.dumps(payload, ensure_ascii=False)};</script>\n{SCRIPT}\n</body>", 1)
     OUT.write_text(s, encoding="utf-8")
