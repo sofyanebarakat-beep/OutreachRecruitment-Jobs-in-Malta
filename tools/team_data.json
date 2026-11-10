@@ -35,16 +35,17 @@
       }
     },
     {
-      "name": "Team Member 2",
-      "role": "Job Title",
-      "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+      "name": "Katherin",
+      "role": "Recruiter",
+      "photo": "/assets/team/katherin.jpg",
+      "bio": "Your point of contact throughout recruitment! I coordinate interview times, share updates, and guide candidates through the process, including our extended bus driver programme.",
+      "quote": "Questions? I’m here to help!",
       "email": "",
       "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
+        "linkedin": "",
+        "facebook": "",
+        "instagram": "",
+        "x": ""
       }
     },
     {
