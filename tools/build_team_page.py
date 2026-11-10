@@ -79,7 +79,7 @@ def card(person: dict, idx: int) -> str:
     return f"""<article class="team-card" data-member="{idx}">
   <button class="team-card-open" type="button" aria-label="View profile of {E(person['name'])}" data-open="{idx}"></button>
   <div class="team-img-wrap"><img class="team-img" src="{E(person['photo'])}" alt="{E(person['name'])}, {E(person['role'])} at Outreach Recruitment" loading="lazy" width="413" height="367"{pos_style(person)}></div>
-  <div class="team-card-body"><h3 class="team-name">{E(person['name'])}</h3>
+  <div class="team-card-body"><div><h3 class="team-name">{E(person['name'])}</h3><p class="team-role">{E(person['role'])}</p></div>
     <div class="team-card-foot">{socials_html(person, 'card-social')}<button class="team-view-btn" type="button" data-open="{idx}">View profile</button></div></div>
 </article>"""
 
@@ -143,7 +143,7 @@ CSS = """<style id="team-page-style">
 .team-social-link svg { width: 18px; height: 18px; }
 .team-card-body { padding: 1.25rem 1.25rem 1.4rem; }
 .team-name { font-family: var(--_🅰-typography---font-family--body, "BDO Grotesk", Arial, sans-serif); font-weight: 700; font-size: 1.25rem; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 .35rem; }
-.team-role { margin: 0; font-size: .95rem; opacity: .75; }
+.team-role { margin: 0; font-size: .9rem; font-weight: 500; color: #442DFA; letter-spacing: .01em; }
 .team-card-body { display: flex; flex-direction: column; gap: 1rem; }
 .team-card-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
 .card-social { display: flex; gap: .4rem; margin: 0; padding: 0; list-style: none; position: relative; z-index: 3; }
