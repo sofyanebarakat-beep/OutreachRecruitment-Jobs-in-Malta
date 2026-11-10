@@ -228,6 +228,10 @@ def rewrite_page(path, meta, raw, all_meta):
     if "/assets/blog-article.js" not in t:
         t = t.replace("</body>", js + "</body>", 1)
     path.write_text(t, encoding="utf-8")
+    # GitHub Pages has no rewrites: /<slug>/ is served from <slug>/index.html
+    out = ROOT / path.stem / "index.html"
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(t, encoding="utf-8")
 
 
 def root_copies():
