@@ -21,16 +21,17 @@
   },
   "members": [
     {
-      "name": "Team Member 1",
-      "role": "Job Title",
-      "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+      "name": "Andrea",
+      "role": "Business Development",
+      "photo": "/assets/team/andrea.jpg",
+      "bio": "Helping businesses grow by understanding their recruitment needs and finding the right talent.",
+      "quote": "Let’s discuss your hiring needs!",
       "email": "",
       "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
+        "linkedin": "",
+        "facebook": "",
+        "instagram": "",
+        "x": ""
       }
     },
     {
