@@ -56,12 +56,17 @@ def socials_html(person: dict, cls: str) -> str:
         url = links.get(key, "") if key in SHOW_SOCIALS else ""
         if url:
             who = E(person["name"]) if own else "Outreach Recruitment"
-            items.append(f'<li><a class="{cls}-link" href="{E(url)}" target="_blank" rel="noopener" aria-label="{who} on {label}">'
+            items.append(f'<li><a class="{cls}-link" data-net="{key}" href="{E(url)}" target="_blank" rel="noopener" aria-label="{who} on {label}">'
                          f'<svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg></a></li>')
     mail = email_of(person)
-    items.append(f'<li><a class="{cls}-link" href="mailto:{E(mail)}" aria-label="Email {E(person["name"])} ({E(mail)})" title="{E(mail)}">'
+    items.append(f'<li><a class="{cls}-link" data-net="email" href="mailto:{E(mail)}" aria-label="Email {E(person["name"])} ({E(mail)})" title="{E(mail)}">'
                  f'<svg viewBox="0 0 24 24" aria-hidden="true">{EMAIL_ICON}</svg></a></li>')
     return f'<ul class="{cls}" role="list">{"".join(items)}</ul>'
+
+
+def words(text: str) -> str:
+    return " ".join(f'<span class="tw" aria-hidden="true"><span class="tw-in" style="--i:{i}">{E(w)}</span></span>'
+                    for i, w in enumerate(str(text).split()))
 
 
 def pos_style(person: dict) -> str:
@@ -101,9 +106,25 @@ CSS = """<style id="team-page-style">
 .ceo-btn.primary { background: #442DFA; border-color: #442DFA; color: #fff; }
 /* Grid + cards (reference style: rounded card, photo on top, grey panel, hover overlay with socials) */
 .team-section-title { text-align: center; margin: 0 0 2.5rem; }
-.team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 1.25rem; }
+.team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
+.team-grid > .team-card { width: calc((100% - 2.5rem) / 3); }
+@media (max-width: 991px) { .team-grid > .team-card { width: calc((100% - 1.25rem) / 2); } }
+@media (max-width: 600px) { .team-grid > .team-card { width: 100%; } }
 .team-card { position: relative; background: #f6f6f6; border-radius: 24px; overflow: hidden; transition: transform .35s ease, box-shadow .35s ease; }
 .team-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(22, 22, 22, .1); }
+.team-card.is-tilting { transition: transform .12s ease-out, box-shadow .35s ease; will-change: transform; }
+/* Heading reveal word by word */
+.tw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
+.tw-in { display: inline-block; transform: translateY(110%); animation: tw-up .9s cubic-bezier(.2, .75, .2, 1) forwards;
+  animation-delay: calc(var(--i) * .14s + .15s); }
+.team-sub { opacity: 0; animation: tw-fade .8s ease forwards .7s; }
+@keyframes tw-up { to { transform: translateY(0); } }
+@keyframes tw-fade { from { opacity: 0; transform: translateY(12px); } to { opacity: .8; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .tw-in, .team-sub { animation: none; transform: none; opacity: .8; } .tw-in { opacity: 1; }
+  .lead-glow::before, .lead-glow::after { animation: none; }
+  .card-social-link:hover, .team-dialog-socials-link:hover { transform: none; }
+}
 .team-card-open { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; }
 .team-card-open:focus-visible { outline: 3px solid #442DFA; outline-offset: -3px; border-radius: 24px; }
 .team-img-wrap { position: relative; aspect-ratio: 413 / 367; overflow: hidden; background: #eeebff; }
@@ -119,14 +140,17 @@ CSS = """<style id="team-page-style">
 .team-social-link:hover { background: #442DFA; }
 .team-social-link svg { width: 18px; height: 18px; }
 .team-card-body { padding: 1.25rem 1.25rem 1.4rem; }
-.team-name { font-size: 1.2rem; margin: 0 0 .35rem; }
+.team-name { font-family: var(--_🅰-typography---font-family--body, "BDO Grotesk", Arial, sans-serif); font-weight: 700; font-size: 1.25rem; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 .35rem; }
 .team-role { margin: 0; font-size: .95rem; opacity: .75; }
 .team-card-body { display: flex; flex-direction: column; gap: 1rem; }
 .team-card-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
 .card-social { display: flex; gap: .4rem; margin: 0; padding: 0; list-style: none; position: relative; z-index: 3; }
 .card-social-link { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dcdcdc;
   color: #161616; background: #fff; transition: background .2s ease, color .2s ease, border-color .2s ease; }
-.card-social-link:hover, .card-social-link:focus-visible { background: #442DFA; border-color: #442DFA; color: #fff; }
+.card-social-link, .team-dialog-socials-link { transition: transform .35s cubic-bezier(.34, 1.8, .64, 1), background .2s ease, color .2s ease, border-color .2s ease; }
+.card-social-link:hover, .card-social-link:focus-visible, .team-dialog-socials-link:hover { background: #442DFA; border-color: #442DFA; color: #fff; transform: translateY(-4px) scale(1.12); }
+.card-social-link[data-net="linkedin"]:hover, .card-social-link[data-net="linkedin"]:focus-visible,
+.team-dialog-socials-link[data-net="linkedin"]:hover { background: #0A66C2; border-color: #0A66C2; }
 .card-social-link svg { width: 16px; height: 16px; }
 .team-view-btn { position: relative; z-index: 3; border: 0; border-radius: 999px; padding: .6rem 1.1rem; font: inherit; font-weight: 600;
   font-size: .9rem; background: #442DFA; color: #fff; cursor: pointer; transition: background .2s ease; }
@@ -135,9 +159,15 @@ CSS = """<style id="team-page-style">
 .ceo-body .card-social-link svg { width: 18px; height: 18px; }
 @media (max-width: 400px) { .team-card-foot { flex-direction: column; align-items: flex-start; } }
 .team-lead { display: flex; justify-content: center; margin-bottom: 4rem; }
-.team-lead .team-card { width: calc((100% - 2.5rem) / 3); }
-@media (max-width: 991px) { .team-lead .team-card { width: calc((100% - 1.25rem) / 2); } }
-@media (max-width: 600px) { .team-lead .team-card { width: 100%; } }
+.lead-glow { position: relative; width: calc((100% - 2.5rem) / 3); padding: 3px; border-radius: 27px; }
+@media (max-width: 991px) { .lead-glow { width: calc((100% - 1.25rem) / 2); } }
+@media (max-width: 600px) { .lead-glow { width: 100%; } }
+@property --glow-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.lead-glow::before, .lead-glow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
+  background: conic-gradient(from var(--glow-a), #442DFA, #b7aefc, #ff5a5f, #ffd166, #442DFA); animation: glow-spin 6s linear infinite; }
+.lead-glow::after { inset: 6px; filter: blur(22px); opacity: .55; }
+.lead-glow .team-card { z-index: 1; }
+@keyframes glow-spin { to { --glow-a: 360deg; } }
 /* Profile dialog */
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .55); }
@@ -160,6 +190,16 @@ CSS = """<style id="team-page-style">
 SCRIPT = """<script id="team-page-script">
 (function () {
   var data = window.__TEAM__ || [];
+  var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches &&
+             !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (fine) document.querySelectorAll('.team-card').forEach(function (c) {
+    c.addEventListener('mousemove', function (e) {
+      var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.classList.add('is-tilting');
+      c.style.transform = 'perspective(900px) rotateX(' + (-y * 8).toFixed(2) + 'deg) rotateY(' + (x * 8).toFixed(2) + 'deg) translateY(-4px)';
+    });
+    c.addEventListener('mouseleave', function () { c.classList.remove('is-tilting'); c.style.transform = ''; });
+  });
   var dlg = document.getElementById('team-dialog');
   if (!dlg || !dlg.showModal) return;
   var lastFocus = null;
@@ -224,13 +264,13 @@ def main() -> None:
                s, count=1, flags=re.S)
     s = s.replace("</head>", CSS + "\n</head>", 1)
 
-    ceo_html = f'<div class="team-lead">{card(ceo, 0)}</div>'
+    ceo_html = f'<div class="team-lead"><div class="lead-glow">{card(ceo, 0)}</div></div>'
     grid = "\n".join(card(m, i + 1) for i, m in enumerate(members))
     content = f"""
 <section class="section team-page">
   <div class="w-layout-blockcontainer container w-container">
-    <div class="team-hero" data-gsap-scroll="text">
-      <h1 class="heading-h1">{E(d['page']['title'])}</h1>
+    <div class="team-hero">
+      <h1 class="heading-h1 team-title" aria-label="{E(d['page']['title'])}">{words(d['page']['title'])}</h1>
       <p class="team-sub">{E(d['page']['subtitle'])}</p>
     </div>
     {ceo_html}

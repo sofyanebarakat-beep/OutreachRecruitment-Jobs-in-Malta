@@ -90,19 +90,6 @@
         "x": ""
       },
       "quote": "Seen one of our job posts? That’s my work!"
-    },
-    {
-      "name": "Team Member 6",
-      "role": "Job Title",
-      "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
-      "email": "",
-      "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
-      }
     }
   ]
 }
