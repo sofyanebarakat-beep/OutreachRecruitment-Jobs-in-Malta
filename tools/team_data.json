@@ -78,10 +78,10 @@
       }
     },
     {
-      "name": "Soufiane",
+      "name": "Soufiane Barakat",
       "role": "Digital Marketing",
       "photo": "/assets/team/placeholder.svg",
-      "bio": "I make sure our jobs reach the right people. From our website and job adverts to social media and email campaigns, I help employers get noticed and candidates find their next opportunity in Malta.",
+      "bio": "I manage our website and job listings, and make sure every job reaches the right candidates online.",
       "email": "",
       "socials": {
         "linkedin": "",
@@ -89,7 +89,7 @@
         "instagram": "",
         "x": ""
       },
-      "quote": "Seen one of our job posts? That’s my work!"
+      "quote": "Seen one of our jobs online? That’s my work!"
     }
   ]
 }
