@@ -49,29 +49,31 @@
       }
     },
     {
-      "name": "Team Member 3",
-      "role": "Job Title",
-      "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+      "name": "Jeraldin",
+      "role": "Human Resources Executive",
+      "photo": "/assets/team/jeraldin.jpg",
+      "bio": "Looking for staff without the paperwork headache? Dreaming of studying in Malta?",
+      "quote": "Let me take care of the process and help make it happen! 🙌",
       "email": "",
       "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
+        "linkedin": "",
+        "facebook": "",
+        "instagram": "",
+        "x": ""
       }
     },
     {
-      "name": "Team Member 4",
-      "role": "Job Title",
-      "photo": "/assets/team/placeholder.svg",
-      "bio": "Short biography of this team member: role, experience and the sectors they recruit for. (Placeholder)",
+      "name": "Julián",
+      "role": "Talent Acquisition Specialist",
+      "photo": "/assets/team/julian.jpg",
+      "bio": "Looking for your next career opportunity? I help candidates find the right job opportunities and guide them through the recruitment process.",
+      "quote": "Get in touch with me!",
       "email": "",
       "socials": {
-        "linkedin": "#",
-        "facebook": "#",
-        "instagram": "#",
-        "x": "#"
+        "linkedin": "",
+        "facebook": "",
+        "instagram": "",
+        "x": ""
       }
     },
     {
