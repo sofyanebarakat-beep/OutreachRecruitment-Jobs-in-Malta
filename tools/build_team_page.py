@@ -168,7 +168,7 @@ CSS = """<style id="team-page-style">
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .35); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .team-dialog-inner { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
-.team-dialog-photo { width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: center 25%; display: block; background: #eeebff; }
+.team-dialog-photo { width: 100%; height: 100%; min-height: 320px; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 25%; display: block; background: #eeebff; }
 .team-dialog-body { padding: 2rem 2rem 2.25rem; display: flex; flex-direction: column; gap: .75rem; overflow-y: auto; }
 .team-dialog-close { position: absolute; top: .9rem; right: .9rem; width: 40px; height: 40px; border-radius: 50%; border: 0; z-index: 2;
   background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.15); font-size: 1.3rem; cursor: pointer; }
