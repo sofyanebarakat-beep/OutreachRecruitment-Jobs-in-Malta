@@ -1,0 +1,23 @@
+I built the Chef de Partie (Breakfast) page and it passes `tools/verify_job_page.py`, including the headless Chrome render. Nothing is committed or pushed, and no other job was changed.
+
+**What was created:**
+- `jobs/chef-de-partie-breakfast/index.html` and `jobs/chef-de-partie-breakfast.html`, which are identical.
+- A new entry at the top of `tools/jobs_registry.json`: Hospitality, St. Julian's, On-Site, Full-Time, posted 2026-11-09, valid_through 2029-12-30, the fact sheet's apply_url, salary "€17,000–€18,000 per year", no status key.
+- `reports/job-seo-chef-de-partie-breakfast-2026-11-10.md` with the 12-section package.
+
+**On the page:**
+- **Salary:** €17,000–€18,000 per year in the header chip, sidebar, offer list, FAQ and meta description, with the same 17000–18000 YEAR in the JobPosting schema. The bonus is listed only as "performance bonuses", as the source says. The word "gross" isn't used.
+- **Private details:** the reference (OR-CDPB-2026-001) is only in an HTML comment, and 2029-12-30 is only in the schema. Neither appears in the visible text.
+- **FAQ:** six questions, closed by default, and the FAQPage schema matches them.
+- **Similar jobs:** five open hospitality jobs from the registry: chef-de-partie-4, sushi-chef, head-chef-steakhouse, senior-waiter-sommelier and restaurant-manager-italian-speaking.
+- **Apply:** the only careers-page link is this job's apply URL, loaded lazily in the inline application panel.
+
+**Where I did something different from the instructions:**
+- **Base page:** I copied `jobs/hotel-general-manager/index.html` instead of head-chef-in-gozo or client-accountant. Head-chef-in-gozo is marked closed, and the hotel-general-manager page is the same kind of full job page. It already has the application system you asked for, and it has the same city, category and yearly salary. I replaced everything specific to the hotel job, and a scan found nothing left over (old title, uuid, salary, slug).
+- **Cache-busting query:** I used `?v=20261107`, not `?v=20261106`. No page in `jobs/` uses 20261106 any more, and all 184 pages that load the shared assets use 20261107.
+- **Meta title:** it is "Chef de Partie (Breakfast) Job in St. Julian's, Malta" (52 characters). Adding "| Outreach Recruitment" would push it past the 60-character limit.
+- **Education:** the fact sheet doesn't mention any, so I left `educationRequirements` out of the schema instead of making one up.
+
+CREATED 44fbce48-2f7f-4916-918a-92e5f2ef5a7e chef-de-partie-breakfast
+
+--- stderr ---

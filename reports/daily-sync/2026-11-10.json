@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-10",
+  "created": [
+    {
+      "uuid": "44fbce48-2f7f-4916-918a-92e5f2ef5a7e",
+      "title": "Chef de Partie (Breakfast)",
+      "city": "St. Julian's",
+      "slug": "chef-de-partie-breakfast",
+      "salary_label": "€17,000–€18,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e",
+      "url": "https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/"
+    }
+  ],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Junior Administrative Executive",
+      "slug": "junior-administrative-executive",
+      "url": "https://outreachrecruitment.net/jobs/junior-administrative-executive/",
+      "city": "Birkirkara, Malta"
+    },
+    {
+      "title": "Trailer Drivers",
+      "slug": "trailer-drivers",
+      "url": "https://outreachrecruitment.net/jobs/trailer-drivers/",
+      "city": "Luqa, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 124,
+  "site_open_before": 125,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 123,
+    "ok": 120,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "index.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "insurance-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "jobs-in-malta-top-15-opening-jobs.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 31,
+    "itemlist_items": 124,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 2,
+    "pages_reopened": 0
+  },
+  "site_open_after": 124,
+  "salary_coverage": {
+    "open": 124,
+    "with_salary": 28
+  }
+}
