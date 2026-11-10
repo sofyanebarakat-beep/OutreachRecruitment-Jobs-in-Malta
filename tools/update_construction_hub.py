@@ -44,10 +44,10 @@ GROUPS = [
 ]
 
 GUIDES = [
-    ("/blog/construction-worker-salary-malta", "Construction worker salary in Malta 2026"),
-    ("/blog/construction-jobs-malta-non-eu-workers", "How to get a construction job in Malta as a non-EU worker"),
-    ("/blog/site-foreman-jobs-malta", "Site foreman jobs in Malta: duties, pay and how to get hired"),
-    ("/blog/construction-engineering-jobs-malta-overview", "Construction and engineering jobs in Malta: an overview"),
+    ("/construction-worker-salary-malta/", "Construction worker salary in Malta 2026"),
+    ("/construction-jobs-malta-non-eu-workers/", "How to get a construction job in Malta as a non-EU worker"),
+    ("/site-foreman-jobs-malta/", "Site foreman jobs in Malta: duties, pay and how to get hired"),
+    ("/construction-engineering-jobs-malta-overview/", "Construction and engineering jobs in Malta: an overview"),
 ]
 
 ARROW = ('<svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" '

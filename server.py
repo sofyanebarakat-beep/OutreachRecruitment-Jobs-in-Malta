@@ -15,12 +15,23 @@ class HTMLFallbackHandler(SimpleHTTPRequestHandler):
         path = self.path.split('?')[0].split('#')[0]
         base = path.lstrip('/')
 
-        # No extension and not a directory path → try .html
-        if '.' not in os.path.basename(path) and not path.endswith('/'):
-            candidates = [
-                base + '.html',
-                os.path.join(base, 'index.html'),
-            ]
+        # Resolve clean article URLs before falling back to ordinary root pages.
+        if '.' not in os.path.basename(path):
+            article_slug = base.strip('/')
+            candidates = []
+            is_directory_index = path.endswith('/') and os.path.isfile(
+                os.path.join(ROOT, base, 'index.html')
+            )
+            if article_slug and '/' not in article_slug and not is_directory_index:
+                candidates.extend([
+                    article_slug + '.html',
+                    os.path.join('blog', article_slug + '.html'),
+                ])
+            if not path.endswith('/'):
+                candidates.extend([
+                    base + '.html',
+                    os.path.join(base, 'index.html'),
+                ])
             for candidate in candidates:
                 if os.path.isfile(os.path.join(ROOT, candidate)):
                     self.path = '/' + candidate

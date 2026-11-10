@@ -59,7 +59,7 @@ POSTS.append(dict(
 <p>&ldquo;Negotiable&rdquo; means the employer sets the figure after interview, based on your experience and languages. Our consultants share the expected range with shortlisted candidates before the interview, so you never go in blind.</p></section>
 <section><h2>What affects a call centre salary in Malta?</h2>
 <ul>
-<li><strong>Languages.</strong> Fluent English is required everywhere. Adding French, Italian, German, Arabic or Maltese qualifies you for language desks that are harder to fill &mdash; and therefore better paid and easier to get into. Our guide to <a href="/blog/language-requirements-customer-service-jobs-malta">language requirements for customer service jobs</a> explains what &ldquo;fluent&rdquo; means in practice.</li>
+<li><strong>Languages.</strong> Fluent English is required everywhere. Adding French, Italian, German, Arabic or Maltese qualifies you for language desks that are harder to fill &mdash; and therefore better paid and easier to get into. Our guide to <a href="/language-requirements-customer-service-jobs-malta/">language requirements for customer service jobs</a> explains what &ldquo;fluent&rdquo; means in practice.</li>
 <li><strong>Shift pattern.</strong> Roles covering nights, weekends and public holidays, such as 24/7 assistance desks, often pay a shift allowance on top of base salary.</li>
 <li><strong>Industry.</strong> Insurance, travel assistance and financial services desks tend to pay more than general inbound support because agents handle policies, claims and sensitive data.</li>
 <li><strong>Responsibility.</strong> Moving from agent to co-ordinator, quality analyst or team leader is the usual route to a higher salary band.</li>
@@ -74,7 +74,7 @@ POSTS.append(dict(
 <li>Lead with your languages on your CV and say clearly which ones you can work in on the phone.</li>
 <li>Be open to rotating or 24/7 shifts if the allowance matters to you.</li>
 <li>Aim for co-ordinator, quality or team-lead roles after 12&ndash;18 months of solid KPIs.</li>
-<li>Prepare well for interviews &mdash; see our list of <a href="/blog/call-centre-interview-questions-malta">call centre interview questions in Malta</a> with sample answers.</li></ul></section>""",
+<li>Prepare well for interviews &mdash; see our list of <a href="/call-centre-interview-questions-malta/">call centre interview questions in Malta</a> with sample answers.</li></ul></section>""",
     faqs=("FAQs", [
         ("How much does a call centre agent earn in Malta?",
          "In our current listings, the Customer Contact Agent role pays &euro;19,000 &ndash; &euro;22,000 per year gross. Co-ordinator roles have recently been advertised at &euro;23,000 &ndash; &euro;27,000 per year."),
@@ -125,7 +125,7 @@ POSTS.append(dict(
 <tr><td>Lieu</td><td>Floriana, à côté de La Valette</td></tr>
 <tr><td>Qui peut postuler</td><td>Résidents à Malte et citoyens européens</td></tr>
 </tbody></table></div>
-<p>Le salaire annoncé est brut : l'impôt sur le revenu et les cotisations sociales sont déduits. Estimez votre net avec notre <a href="/salary-calculator-malta">calculateur de salaire Malte</a>. Pour comparer avec d'autres postes, lisez notre article sur le <a href="/blog/call-centre-salary-malta">salaire en centre d'appels à Malte</a> (en anglais).</p></section>
+<p>Le salaire annoncé est brut : l'impôt sur le revenu et les cotisations sociales sont déduits. Estimez votre net avec notre <a href="/salary-calculator-malta">calculateur de salaire Malte</a>. Pour comparer avec d'autres postes, lisez notre article sur le <a href="/call-centre-salary-malta/">salaire en centre d'appels à Malte</a> (en anglais).</p></section>
 <section><h2>Faut-il un permis de travail ?</h2>
 <p>Les citoyens de l'Union européenne peuvent travailler librement à Malte. Les candidats hors UE ont besoin d'un permis de travail demandé par l'employeur ; vérifiez dans chaque offre la mention &laquo;&nbsp;qui peut postuler&nbsp;&raquo;, car certains postes sont réservés aux personnes résidant déjà à Malte.</p></section>
 <section><h2>Comment postuler</h2>
@@ -133,7 +133,7 @@ POSTS.append(dict(
 <li>Préparez un CV en anglais et indiquez clairement vos langues et votre niveau (langue maternelle, courant).</li>
 <li>Postulez en ligne depuis l'offre ; notre équipe lit chaque candidature.</li>
 <li>Attendez-vous à un court entretien téléphonique, souvent en partie en français, puis à un entretien avec le client.</li>
-<li>Préparez-vous avec nos <a href="/blog/call-centre-interview-questions-malta">questions d'entretien pour centre d'appels</a> (en anglais).</li></ul></section>""",
+<li>Préparez-vous avec nos <a href="/call-centre-interview-questions-malta/">questions d'entretien pour centre d'appels</a> (en anglais).</li></ul></section>""",
     faqs=("Questions fréquentes", [
         ("Quel est le salaire d'un conseiller service client francophone à Malte ?",
          "Pour le poste de Customer Contact Agent que nous recrutons à Floriana, le salaire publié est de 19 000 &agrave; 22 000 &euro; brut par an."),
@@ -185,7 +185,7 @@ POSTS.append(dict(
 <tr><td>Sede</td><td>Floriana, accanto a La Valletta</td></tr>
 <tr><td>Chi può candidarsi</td><td>Residenti a Malta e cittadini europei</td></tr>
 </tbody></table></div>
-<p>Lo stipendio indicato è lordo: imposte e contributi vengono trattenuti. Calcola il tuo netto con il nostro <a href="/salary-calculator-malta">calcolatore di stipendio per Malta</a>. Per confrontarlo con altri ruoli leggi la nostra guida allo <a href="/blog/call-centre-salary-malta">stipendio nei call center a Malta</a> (in inglese).</p></section>
+<p>Lo stipendio indicato è lordo: imposte e contributi vengono trattenuti. Calcola il tuo netto con il nostro <a href="/salary-calculator-malta">calcolatore di stipendio per Malta</a>. Per confrontarlo con altri ruoli leggi la nostra guida allo <a href="/call-centre-salary-malta/">stipendio nei call center a Malta</a> (in inglese).</p></section>
 <section><h2>Serve un permesso di lavoro?</h2>
 <p>I cittadini italiani e dell'Unione europea possono lavorare liberamente a Malta. Chi non è cittadino UE ha bisogno di un permesso di lavoro richiesto dal datore di lavoro; controlla sempre la voce &laquo;chi può candidarsi&raquo; in ogni annuncio, perché alcune posizioni sono riservate a chi vive già a Malta.</p></section>
 <section><h2>Come candidarsi</h2>
@@ -193,7 +193,7 @@ POSTS.append(dict(
 <li>Prepara un CV in inglese e indica chiaramente le tue lingue e il livello (madrelingua, fluente).</li>
 <li>Candidati online dall'annuncio; il nostro team legge ogni candidatura.</li>
 <li>Aspettati una breve telefonata di selezione, spesso in parte in italiano, poi il colloquio con il cliente.</li>
-<li>Preparati con le nostre <a href="/blog/call-centre-interview-questions-malta">domande di colloquio per call center</a> (in inglese).</li></ul></section>""",
+<li>Preparati con le nostre <a href="/call-centre-interview-questions-malta/">domande di colloquio per call center</a> (in inglese).</li></ul></section>""",
     faqs=("Domande frequenti", [
         ("Quanto guadagna un operatore di call center che parla italiano a Malta?",
          "Per il ruolo di Customer Contact Agent a Floriana lo stipendio pubblicato è di 19.000 &ndash; 22.000 &euro; lordi l'anno."),
@@ -246,14 +246,14 @@ POSTS.append(dict(
 <p>Never guess. Explain that you would check the system or ask a colleague, tell the customer when they will hear back, and follow up.</p></section>
 <div class="cta-box"><h2>Practise, then apply</h2><p>Customer service and call agent jobs in Malta for English, French, Italian, Arabic and Maltese speakers.</p><a href="{HUB}">See customer service vacancies in Malta</a></div>
 <section><h2>The language check</h2>
-<p>If you list French, Italian, Arabic or Maltese, expect the interviewer to switch language without warning, or to give you a short role-play call in it. Practise describing your last job and handling a complaint in each language you list. Our guide to <a href="/blog/language-requirements-customer-service-jobs-malta">language requirements for customer service jobs in Malta</a> explains the level employers expect.</p></section>
+<p>If you list French, Italian, Arabic or Maltese, expect the interviewer to switch language without warning, or to give you a short role-play call in it. Practise describing your last job and handling a complaint in each language you list. Our guide to <a href="/language-requirements-customer-service-jobs-malta/">language requirements for customer service jobs in Malta</a> explains the level employers expect.</p></section>
 <section><h2>Questions to ask the interviewer</h2>
 <ul>
 <li>What does a typical shift look like, and how is the rota planned?</li>
 <li>How long is the training, and is there a buddy system?</li>
 <li>Which KPIs will I be measured on?</li>
 <li>What does progression look like after the first year?</li></ul>
-<p>For pay questions, read our guide to <a href="/blog/call-centre-salary-malta">call centre salaries in Malta</a> first so you know the realistic range. For general preparation, see <a href="/blog/what-to-expect-in-a-job-interview-in-malta">what to expect in a job interview in Malta</a>.</p></section>""",
+<p>For pay questions, read our guide to <a href="/call-centre-salary-malta/">call centre salaries in Malta</a> first so you know the realistic range. For general preparation, see <a href="/what-to-expect-in-a-job-interview-in-malta/">what to expect in a job interview in Malta</a>.</p></section>""",
     faqs=("FAQs", [
         ("What questions are asked in a call centre interview?",
          "Expect questions about handling difficult customers, multitasking, what good service means, explaining procedures clearly, and your availability for shifts. Multilingual roles usually include a language check."),
@@ -297,8 +297,8 @@ POSTS.append(dict(
 <section><h2>Language guides for French and Italian speakers</h2>
 <p>We have written dedicated guides in your language:</p>
 <ul>
-<li><a href="/blog/emploi-centre-appels-malte-francophones" lang="fr">Travailler dans un centre d'appels à Malte : guide pour francophones</a></li>
-<li><a href="/blog/lavoro-call-center-malta-italiani" lang="it">Lavorare in un call center a Malta: guida per italiani</a></li></ul></section>
+<li><a href="/emploi-centre-appels-malte-francophones/" lang="fr">Travailler dans un centre d'appels à Malte : guide pour francophones</a></li>
+<li><a href="/lavoro-call-center-malta-italiani/" lang="it">Lavorare in un call center a Malta: guida per italiani</a></li></ul></section>
 <section><h2>How to show your languages on your CV</h2>
 <ul>
 <li>List each language with an honest level: native, fluent, conversational.</li>
@@ -307,7 +307,7 @@ POSTS.append(dict(
 <li>Put languages near the top of your CV; for multilingual desks they matter more than anything else.</li></ul></section>
 <section><h2>Do I need to speak Maltese?</h2>
 <p>Only for roles that serve the local market, like the Maltese-speaking Customer Contact Centre Representative. For most international desks Maltese is an advantage, not a requirement. English is an official language in Malta, so you can live and work here comfortably in English.</p>
-<p>Languages also affect pay &mdash; see our guide to <a href="/blog/call-centre-salary-malta">call centre salaries in Malta</a>, and prepare for the language check with our <a href="/blog/call-centre-interview-questions-malta">call centre interview questions</a>.</p></section>""",
+<p>Languages also affect pay &mdash; see our guide to <a href="/call-centre-salary-malta/">call centre salaries in Malta</a>, and prepare for the language check with our <a href="/call-centre-interview-questions-malta/">call centre interview questions</a>.</p></section>""",
     faqs=("FAQs", [
         ("Do I need English for customer service jobs in Malta?",
          "Yes. Fluent English is required for every customer service and call centre role we recruit for in Malta."),
@@ -356,7 +356,7 @@ def plain(s):
 
 
 def build(p):
-    url = f"{BASE}/blog/{p['slug']}"
+    url = f"{BASE}/{p['slug']}/"
     img = make_image(p)
     img_abs = BASE + img
     e = H.escape
@@ -409,7 +409,7 @@ def build(p):
 """
     date_label = {"fr": "9 octobre 2026", "it": "9 ottobre 2026"}.get(p["lang"], DATE_EN)
     related = "".join(
-        f'<a class="article-card w-inline-block" href="/blog/{s}"><img src="{card_image(s)}" alt="{e(TITLES.get(s) or plain(related_title(s)))}" loading="lazy">'
+        f'<a class="article-card w-inline-block" href="/{s}/"><img src="{card_image(s)}" alt="{e(TITLES.get(s) or plain(related_title(s)))}" loading="lazy">'
         f'<div class="article-card-content"><div class="caption blue-caption">Candidates</div><h3 class="heading-h5">{TITLES.get(s) or related_title(s)}</h3></div></a>'
         for s in p["related"] if card_image(s))
     main = f"""<main class="main">
@@ -463,10 +463,10 @@ def add_index_cards(images):
     old_tag = re.search(r'<div class="tag darker">(.*?)</div>', tpl_card).group(1)
     new = ""
     for p in POSTS:
-        if f'href="/blog/{p["slug"]}.html"' in s:
+        if f'href="/{p["slug"]}/"' in s:
             continue
         c = tpl_card.replace(f'data-blog-subcategory="{old_slug}"', f'data-blog-subcategory="{p["sub"]}"')
-        c = c.replace(f"/blog/{old_slug}.html", f"/blog/{p['slug']}.html")
+        c = c.replace(f"/blog/{old_slug}.html", f"/{p['slug']}/")
         c = c.replace(f'<img src="{old_img.group(1)}" alt="{old_img.group(2)}"', f'<img src="{images[p["slug"]]}" alt="{H.escape(p["alt"])}"')
         c = c.replace(f'<h3 class="heading-h6 capitalize">{old_h}</h3>', f'<h3 class="heading-h6 capitalize">{p["h1"]}</h3>')
         c = c.replace(f">{old_date}</div>", f">{DATE_EN} &middot; {p['read']} min read</div>")
@@ -482,24 +482,24 @@ def add_sitemaps(images):
     s = sm.read_text()
     add = "".join(f"""
   <url>
-    <loc>{BASE}/blog/{p['slug']}</loc>
+    <loc>{BASE}/{p['slug']}/</loc>
     <lastmod>{DATE}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-""" for p in POSTS if f"/blog/{p['slug']}</loc>" not in s)
+""" for p in POSTS if f"{BASE}/{p['slug']}/</loc>" not in s)
     if add:
         sm.write_text(s.replace("</urlset>", add + "</urlset>"))
     smi = ROOT / "sitemaps" / "sitemap-blog-images.xml"
     s = smi.read_text()
     add = "".join(f"""  <url>
-    <loc>{BASE}/blog/{p['slug']}</loc>
+    <loc>{BASE}/{p['slug']}/</loc>
     <lastmod>{DATE}</lastmod>
     <image:image>
       <image:loc>{BASE}{images[p['slug']]}</image:loc>
     </image:image>
   </url>
-""" for p in POSTS if f"/blog/{p['slug']}</loc>" not in s)
+""" for p in POSTS if f"{BASE}/{p['slug']}/</loc>" not in s)
     if add:
         smi.write_text(s.replace("</urlset>", add + "</urlset>"))
 

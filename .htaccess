@@ -7,9 +7,28 @@ DirectoryIndex index.html index.php
     # /careers is a legacy alias for the current candidate job board.
     RewriteRule ^careers(?:\.html)?/?$ /jobs/ [R=301,L]
 
+    # Blog article URLs now use /:slug/ and keep their HTML files in /blog/.
+    RewriteRule ^blog/index(?:\.html)?/?$ /blog/ [R=301,L]
+    RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+    RewriteRule ^blog/([a-z0-9-]+)(?:\.html)?/?$ /$1/ [R=301,L]
+
+    # Root-level article URLs that previously had a root .html file.
+    RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+    RewriteRule ^([a-z0-9-]+)\.html$ /$1/ [R=301,L]
+
     # Redirect .html extension to clean URL (301 permanent)
     RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?]
     RewriteRule ^ /%1 [R=301,L]
+
+    # Serve clean article URLs from their existing HTML files.
+    RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+    RewriteRule ^([a-z0-9-]+)$ /$1/ [R=301,L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^([a-z0-9-]+)/?$ $1.html [L]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+    RewriteRule ^([a-z0-9-]+)/?$ blog/$1.html [L]
 
     # Serve sector pages clean URLs directly
     RewriteRule ^marine-jobs-in-malta/?$ marine-jobs-in-malta.html [L]

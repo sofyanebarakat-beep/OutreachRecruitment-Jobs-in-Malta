@@ -1,0 +1,60 @@
+=== Job Sync Agent ===
+Started: Tue Nov 10 07:12:53 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-10 07:12  ===
+
+[1] Scraping careers page …
+  pass 1: 124 / 124 advertised
+  careers page: 124 collected / 124 advertised · website open: 125
+
+[2] 2 website job(s) not in the careers-page listing — checking each …
+  Junior Administrative Executive (a4d59892) → CLOSED
+  Trailer Drivers (7c1bbc99) → CLOSED
+
+[3] Reading 124 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/182ca7ce-c6c6-4c0d-8780-6745e20aca66)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/57e0609f-27a2-4a76-849c-9b75bf9910d6)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/2178667e-b89b-4b1e-9b6b-b845cea58eb9)
+  20/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/9f872fcf-15f8-4e4e-aed4-9a2c83df6f7c)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/bcef8548-2bb5-4482-982d-b60a39feade8)
+  40/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/844bbee7-f2f7-46d5-bad0-ca3c0ffee572)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/56e4d449-13a7-42b4-a93f-82f77e4caf8a)
+  60/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/bc24c506-cfcd-46f5-8bd5-85814eb1ef96)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/87f8325d-fef8-4a57-bdca-edcfe42d10ab)
+  80/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/2d02e5e0-fefe-49c9-85d3-8002651c6242)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0649fcde-432a-4455-a63a-7d23af1799c3)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/762c9fd6-b31a-4da3-ae27-3fb4244c1bcc)
+  100/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/076584df-b986-4b18-8006-d47a94958594)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/d071e3f7-0e29-472e-bbb7-298393069639)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e)
+  120/124
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c476604a-42ab-4253-91de-7e663cb484a8)
+  124 fact sheets read
+  new: Chef de Partie (Breakfast) (St. Julian's) → chef-de-partie-breakfast · €17,000–€18,000 per year
+  1 new, 0 to reopen, 0 changed
+  page check: 120 ok, 0 to fix (0 today)
+  /job-seo-generator (headless Claude): creating 1 job(s) …
+    ✓ Chef de Partie (Breakfast) → chef-de-partie-breakfast
+Updating listings (2026-11-10) — 124 open, 144 closed, 74 expired/hidden
+  index.html — 124 total, showing 10 on homepage
+  jobs/index.html — 124 job(s), 51 featured, 17 categories
+  sitemaps/sitemap-jobs.xml — 125 URL(s)
+  sitemap_index.xml — jobs sitemap lastmod refreshed
+  sitemap.xml — compatibility lastmod refreshed
+  construction-jobs-in-malta.html — 10 construction job(s), 5 with published salary
+
+Done. Run: git add -A && git commit -m 'Update job listings' && git push origin main
+faq-posts.json: 184 general question(s), 234 question(s) from open job pages
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[7] Checking the live site …
+  waiting 10 min for GitHub Pages to deploy …
+  live: {'count': 125, 'expected': 124, 'ok': False, 'problems': ['Chef de Partie (Breakfast): live page answers HTTP 404', 'Junior Administrative Executive: live page still looks open', 'Trailer Drivers: live page still looks open']}
+
+[8] Google follow-up (jobs published 2+ days ago) …

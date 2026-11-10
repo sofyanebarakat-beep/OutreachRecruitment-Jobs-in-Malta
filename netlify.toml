@@ -20,19 +20,891 @@
   status = 301
   force = true
 
-# ── Blog articles — redirect old /blog/* URLs to root ──────────────────────
+# ── Blog articles — canonical URLs are /:slug/ ────────────────────────────
+[[redirects]]
+  from = "/blog/index.html"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/index"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/index/"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/:slug.html"
+  to = "/:slug/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog/:slug/"
-  to = "/:slug"
+  to = "/:slug/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/blog/:slug"
-  to = "/:slug"
+  to = "/:slug/"
   status = 301
   force = true
 
+[[redirects]]
+  from = "/best-industries-hiring-in-malta"
+  to = "/best-industries-hiring-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/best-industries-hiring-in-malta-right-now"
+  to = "/best-industries-hiring-in-malta-right-now/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/call-centre-interview-questions-malta"
+  to = "/call-centre-interview-questions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/call-centre-salary-malta"
+  to = "/call-centre-salary-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/common-cv-mistakes-malta-job-application"
+  to = "/common-cv-mistakes-malta-job-application/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/common-cv-mistakes-malti-job-application"
+  to = "/common-cv-mistakes-malti-job-application/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/complete-guide-finding-jobs-malta-category"
+  to = "/complete-guide-finding-jobs-malta-category/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-engineering-jobs-malta-overview"
+  to = "/construction-engineering-jobs-malta-overview/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-jobs-malta-non-eu-workers"
+  to = "/construction-jobs-malta-non-eu-workers/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-worker-salary-malta"
+  to = "/construction-worker-salary-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cv-writing-tips-how-to-get-hired-in-malta"
+  to = "/cv-writing-tips-how-to-get-hired-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/emploi-centre-appels-malte-francophones"
+  to = "/emploi-centre-appels-malte-francophones/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/finance-admin-jobs-malta-employers-hiring"
+  to = "/finance-admin-jobs-malta-employers-hiring/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-jobs-malti-market-overview"
+  to = "/hospitality-jobs-malti-market-overview/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-jobs-market-malta-2026"
+  to = "/hospitality-jobs-market-malta-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-manpower-solutions-malta"
+  to = "/hospitality-manpower-solutions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-a-recruitment-agency-helps-malta-employers-hire-faster"
+  to = "/how-a-recruitment-agency-helps-malta-employers-hire-faster/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will"
+  to = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-structured-interviews-improve-hiring-decisions"
+  to = "/how-structured-interviews-improve-hiring-decisions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-answer-common-interview-questions-in-malta"
+  to = "/how-to-answer-common-interview-questions-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-apply-to-study-in-malta-a-step-by-step-guide"
+  to = "/how-to-apply-to-study-in-malta-a-step-by-step-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-follow-up-after-job-interview-malta"
+  to = "/how-to-follow-up-after-job-interview-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-hire-hospitality-staff-malta"
+  to = "/how-to-hire-hospitality-staff-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-search-for-hospitality-jobs-in-malta"
+  to = "/how-to-search-for-hospitality-jobs-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-search-hospitality-jobs-malta"
+  to = "/how-to-search-hospitality-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/inside-the-outreach-recruitment-hiring-process"
+  to = "/inside-the-outreach-recruitment-hiring-process/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-jobs-in-malta-demand-growth"
+  to = "/it-jobs-in-malta-demand-growth/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/language-requirements-customer-service-jobs-malta"
+  to = "/language-requirements-customer-service-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lavoro-call-center-malta-italiani"
+  to = "/lavoro-call-center-malta-italiani/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/malta-budget-2027-changes-third-country-nationals"
+  to = "/malta-budget-2027-changes-third-country-nationals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/outreach-recruitment-approach-candidate-matching"
+  to = "/outreach-recruitment-approach-candidate-matching/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/permanent-vs-temporary-recruitment-malta"
+  to = "/permanent-vs-temporary-recruitment-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/practical-checklist-writing-better-job-descriptions-malta"
+  to = "/practical-checklist-writing-better-job-descriptions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pre-departure-course-certificate-malta"
+  to = "/pre-departure-course-certificate-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/prepare-references-job-application-malta"
+  to = "/prepare-references-job-application-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/recruitment-agency-in-malta"
+  to = "/recruitment-agency-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-during-recruitment"
+  to = "/reduce-candidate-drop-off-during-recruitment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-malta"
+  to = "/reduce-candidate-drop-off-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/site-foreman-jobs-malta"
+  to = "/site-foreman-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tailor-your-cv-for-jobs-in-malta"
+  to = "/tailor-your-cv-for-jobs-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning"
+  to = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-documents-do-i-need-to-apply-for-a-job-in-malta"
+  to = "/what-documents-do-i-need-to-apply-for-a-job-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-makes-outreach-recruitment-different"
+  to = "/what-makes-outreach-recruitment-different/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-to-expect-from-a-recruitment-agency-in-malta"
+  to = "/what-to-expect-from-a-recruitment-agency-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-to-expect-in-a-job-interview-in-malta"
+  to = "/what-to-expect-in-a-job-interview-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/when-to-use-temporary-recruitment-support-malta"
+  to = "/when-to-use-temporary-recruitment-support-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-employers-in-malta-trust-outreach-recruitment"
+  to = "/why-employers-in-malta-trust-outreach-recruitment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-malta-is-becoming-europes-top-destination-for-international-students"
+  to = "/why-malta-is-becoming-europes-top-destination-for-international-students/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams"
+  to = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/your-trusted-hospitality-recruitment-agency-in-malta"
+  to = "/your-trusted-hospitality-recruitment-agency-in-malta/"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/best-industries-hiring-in-malta.html"
+  to = "/best-industries-hiring-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/best-industries-hiring-in-malta/"
+  to = "/blog/best-industries-hiring-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/best-industries-hiring-in-malta-right-now.html"
+  to = "/best-industries-hiring-in-malta-right-now/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/best-industries-hiring-in-malta-right-now/"
+  to = "/blog/best-industries-hiring-in-malta-right-now.html"
+  status = 200
+
+[[redirects]]
+  from = "/call-centre-interview-questions-malta.html"
+  to = "/call-centre-interview-questions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/call-centre-interview-questions-malta/"
+  to = "/blog/call-centre-interview-questions-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/call-centre-salary-malta.html"
+  to = "/call-centre-salary-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/call-centre-salary-malta/"
+  to = "/blog/call-centre-salary-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/common-cv-mistakes-malta-job-application.html"
+  to = "/common-cv-mistakes-malta-job-application/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/common-cv-mistakes-malta-job-application/"
+  to = "/blog/common-cv-mistakes-malta-job-application.html"
+  status = 200
+
+[[redirects]]
+  from = "/common-cv-mistakes-malti-job-application.html"
+  to = "/common-cv-mistakes-malti-job-application/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/common-cv-mistakes-malti-job-application/"
+  to = "/blog/common-cv-mistakes-malti-job-application.html"
+  status = 200
+
+[[redirects]]
+  from = "/complete-guide-finding-jobs-malta-category.html"
+  to = "/complete-guide-finding-jobs-malta-category/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/complete-guide-finding-jobs-malta-category/"
+  to = "/blog/complete-guide-finding-jobs-malta-category.html"
+  status = 200
+
+[[redirects]]
+  from = "/construction-engineering-jobs-malta-overview.html"
+  to = "/construction-engineering-jobs-malta-overview/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-engineering-jobs-malta-overview/"
+  to = "/blog/construction-engineering-jobs-malta-overview.html"
+  status = 200
+
+[[redirects]]
+  from = "/construction-jobs-malta-non-eu-workers.html"
+  to = "/construction-jobs-malta-non-eu-workers/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-jobs-malta-non-eu-workers/"
+  to = "/blog/construction-jobs-malta-non-eu-workers.html"
+  status = 200
+
+[[redirects]]
+  from = "/construction-worker-salary-malta.html"
+  to = "/construction-worker-salary-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/construction-worker-salary-malta/"
+  to = "/blog/construction-worker-salary-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/cv-writing-tips-how-to-get-hired-in-malta.html"
+  to = "/cv-writing-tips-how-to-get-hired-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cv-writing-tips-how-to-get-hired-in-malta/"
+  to = "/blog/cv-writing-tips-how-to-get-hired-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/emploi-centre-appels-malte-francophones.html"
+  to = "/emploi-centre-appels-malte-francophones/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/emploi-centre-appels-malte-francophones/"
+  to = "/blog/emploi-centre-appels-malte-francophones.html"
+  status = 200
+
+[[redirects]]
+  from = "/finance-admin-jobs-malta-employers-hiring.html"
+  to = "/finance-admin-jobs-malta-employers-hiring/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/finance-admin-jobs-malta-employers-hiring/"
+  to = "/blog/finance-admin-jobs-malta-employers-hiring.html"
+  status = 200
+
+[[redirects]]
+  from = "/hospitality-jobs-malti-market-overview.html"
+  to = "/hospitality-jobs-malti-market-overview/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-jobs-malti-market-overview/"
+  to = "/blog/hospitality-jobs-malti-market-overview.html"
+  status = 200
+
+[[redirects]]
+  from = "/hospitality-jobs-market-malta-2026.html"
+  to = "/hospitality-jobs-market-malta-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-jobs-market-malta-2026/"
+  to = "/blog/hospitality-jobs-market-malta-2026.html"
+  status = 200
+
+[[redirects]]
+  from = "/hospitality-manpower-solutions-malta.html"
+  to = "/hospitality-manpower-solutions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hospitality-manpower-solutions-malta/"
+  to = "/blog/hospitality-manpower-solutions-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-a-recruitment-agency-helps-malta-employers-hire-faster.html"
+  to = "/how-a-recruitment-agency-helps-malta-employers-hire-faster/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-a-recruitment-agency-helps-malta-employers-hire-faster/"
+  to = "/blog/how-a-recruitment-agency-helps-malta-employers-hire-faster.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will.html"
+  to = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will/"
+  to = "/how-decision-clarity-removes-more-friction-than-motivation-ever-will.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-structured-interviews-improve-hiring-decisions.html"
+  to = "/how-structured-interviews-improve-hiring-decisions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-structured-interviews-improve-hiring-decisions/"
+  to = "/blog/how-structured-interviews-improve-hiring-decisions.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-answer-common-interview-questions-in-malta.html"
+  to = "/how-to-answer-common-interview-questions-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-answer-common-interview-questions-in-malta/"
+  to = "/blog/how-to-answer-common-interview-questions-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-apply-to-study-in-malta-a-step-by-step-guide.html"
+  to = "/how-to-apply-to-study-in-malta-a-step-by-step-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-apply-to-study-in-malta-a-step-by-step-guide/"
+  to = "/how-to-apply-to-study-in-malta-a-step-by-step-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-follow-up-after-job-interview-malta.html"
+  to = "/how-to-follow-up-after-job-interview-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-follow-up-after-job-interview-malta/"
+  to = "/blog/how-to-follow-up-after-job-interview-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-hire-hospitality-staff-malta.html"
+  to = "/how-to-hire-hospitality-staff-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-hire-hospitality-staff-malta/"
+  to = "/blog/how-to-hire-hospitality-staff-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-search-for-hospitality-jobs-in-malta.html"
+  to = "/how-to-search-for-hospitality-jobs-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-search-for-hospitality-jobs-in-malta/"
+  to = "/blog/how-to-search-for-hospitality-jobs-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/how-to-search-hospitality-jobs-malta.html"
+  to = "/how-to-search-hospitality-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-to-search-hospitality-jobs-malta/"
+  to = "/blog/how-to-search-hospitality-jobs-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/inside-the-outreach-recruitment-hiring-process.html"
+  to = "/inside-the-outreach-recruitment-hiring-process/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/inside-the-outreach-recruitment-hiring-process/"
+  to = "/blog/inside-the-outreach-recruitment-hiring-process.html"
+  status = 200
+
+[[redirects]]
+  from = "/it-jobs-in-malta-demand-growth.html"
+  to = "/it-jobs-in-malta-demand-growth/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/it-jobs-in-malta-demand-growth/"
+  to = "/blog/it-jobs-in-malta-demand-growth.html"
+  status = 200
+
+[[redirects]]
+  from = "/language-requirements-customer-service-jobs-malta.html"
+  to = "/language-requirements-customer-service-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/language-requirements-customer-service-jobs-malta/"
+  to = "/blog/language-requirements-customer-service-jobs-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/lavoro-call-center-malta-italiani.html"
+  to = "/lavoro-call-center-malta-italiani/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lavoro-call-center-malta-italiani/"
+  to = "/blog/lavoro-call-center-malta-italiani.html"
+  status = 200
+
+[[redirects]]
+  from = "/malta-budget-2027-changes-third-country-nationals.html"
+  to = "/malta-budget-2027-changes-third-country-nationals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/malta-budget-2027-changes-third-country-nationals/"
+  to = "/blog/malta-budget-2027-changes-third-country-nationals.html"
+  status = 200
+
+[[redirects]]
+  from = "/outreach-recruitment-approach-candidate-matching.html"
+  to = "/outreach-recruitment-approach-candidate-matching/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/outreach-recruitment-approach-candidate-matching/"
+  to = "/blog/outreach-recruitment-approach-candidate-matching.html"
+  status = 200
+
+[[redirects]]
+  from = "/permanent-vs-temporary-recruitment-malta.html"
+  to = "/permanent-vs-temporary-recruitment-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/permanent-vs-temporary-recruitment-malta/"
+  to = "/blog/permanent-vs-temporary-recruitment-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/practical-checklist-writing-better-job-descriptions-malta.html"
+  to = "/practical-checklist-writing-better-job-descriptions-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/practical-checklist-writing-better-job-descriptions-malta/"
+  to = "/blog/practical-checklist-writing-better-job-descriptions-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/pre-departure-course-certificate-malta.html"
+  to = "/pre-departure-course-certificate-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pre-departure-course-certificate-malta/"
+  to = "/blog/pre-departure-course-certificate-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/prepare-references-job-application-malta.html"
+  to = "/prepare-references-job-application-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/prepare-references-job-application-malta/"
+  to = "/blog/prepare-references-job-application-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/recruitment-agency-in-malta.html"
+  to = "/recruitment-agency-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/recruitment-agency-in-malta/"
+  to = "/blog/recruitment-agency-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-during-recruitment.html"
+  to = "/reduce-candidate-drop-off-during-recruitment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-during-recruitment/"
+  to = "/blog/reduce-candidate-drop-off-during-recruitment.html"
+  status = 200
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-malta.html"
+  to = "/reduce-candidate-drop-off-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reduce-candidate-drop-off-malta/"
+  to = "/blog/reduce-candidate-drop-off-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/site-foreman-jobs-malta.html"
+  to = "/site-foreman-jobs-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/site-foreman-jobs-malta/"
+  to = "/blog/site-foreman-jobs-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/tailor-your-cv-for-jobs-in-malta.html"
+  to = "/tailor-your-cv-for-jobs-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tailor-your-cv-for-jobs-in-malta/"
+  to = "/blog/tailor-your-cv-for-jobs-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning.html"
+  to = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning/"
+  to = "/the-invisible-architecture-behind-teams-that-move-fast-without-constantly-realigning.html"
+  status = 200
+
+[[redirects]]
+  from = "/what-documents-do-i-need-to-apply-for-a-job-in-malta.html"
+  to = "/what-documents-do-i-need-to-apply-for-a-job-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-documents-do-i-need-to-apply-for-a-job-in-malta/"
+  to = "/blog/what-documents-do-i-need-to-apply-for-a-job-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/what-makes-outreach-recruitment-different.html"
+  to = "/what-makes-outreach-recruitment-different/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-makes-outreach-recruitment-different/"
+  to = "/blog/what-makes-outreach-recruitment-different.html"
+  status = 200
+
+[[redirects]]
+  from = "/what-to-expect-from-a-recruitment-agency-in-malta.html"
+  to = "/what-to-expect-from-a-recruitment-agency-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-to-expect-from-a-recruitment-agency-in-malta/"
+  to = "/blog/what-to-expect-from-a-recruitment-agency-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/what-to-expect-in-a-job-interview-in-malta.html"
+  to = "/what-to-expect-in-a-job-interview-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/what-to-expect-in-a-job-interview-in-malta/"
+  to = "/blog/what-to-expect-in-a-job-interview-in-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/when-to-use-temporary-recruitment-support-malta.html"
+  to = "/when-to-use-temporary-recruitment-support-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/when-to-use-temporary-recruitment-support-malta/"
+  to = "/blog/when-to-use-temporary-recruitment-support-malta.html"
+  status = 200
+
+[[redirects]]
+  from = "/why-employers-in-malta-trust-outreach-recruitment.html"
+  to = "/why-employers-in-malta-trust-outreach-recruitment/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-employers-in-malta-trust-outreach-recruitment/"
+  to = "/blog/why-employers-in-malta-trust-outreach-recruitment.html"
+  status = 200
+
+[[redirects]]
+  from = "/why-malta-is-becoming-europes-top-destination-for-international-students.html"
+  to = "/why-malta-is-becoming-europes-top-destination-for-international-students/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-malta-is-becoming-europes-top-destination-for-international-students/"
+  to = "/why-malta-is-becoming-europes-top-destination-for-international-students.html"
+  status = 200
+
+[[redirects]]
+  from = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams.html"
+  to = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams/"
+  to = "/why-the-absence-of-clear-roles-slowly-erodes-confidence-across-even-the-most-talented-teams.html"
+  status = 200
+
+[[redirects]]
+  from = "/your-trusted-hospitality-recruitment-agency-in-malta.html"
+  to = "/your-trusted-hospitality-recruitment-agency-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/your-trusted-hospitality-recruitment-agency-in-malta/"
+  to = "/blog/your-trusted-hospitality-recruitment-agency-in-malta.html"
+  status = 200
 # ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
   from = "/study-in-malta-complete-guide"

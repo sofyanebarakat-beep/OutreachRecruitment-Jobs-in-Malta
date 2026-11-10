@@ -10,7 +10,7 @@ const slugs = fs.readdirSync(imageDir)
 const rel = (slug) => `/assets/blog-featured/${slug}.png`;
 const abs = (slug) => `https://outreachrecruitment.net${rel(slug)}`;
 const words = (slug) => `${slug.replaceAll("-", " ")} — Outreach Recruitment Malta`;
-const canonical = (slug) => `https://outreachrecruitment.net/blog/${slug}`;
+const canonical = (slug) => `https://outreachrecruitment.net/${slug}/`;
 
 function setMeta(html, attribute, value, content) {
   const pattern = new RegExp(
@@ -27,11 +27,11 @@ function setMeta(html, attribute, value, content) {
 function updateCards(html) {
   for (const slug of slugs) {
     const article = new RegExp(
-      `(<article\\b(?=[^>]*data-blog-subcategory=["'][^"']*["'])[^>]*>[\\s\\S]*?href=["']\\/blog\\/${slug}\\.html["'][\\s\\S]*?<div class=["']article-card-media["']>[\\s\\S]*?<img\\b)([^>]*)(>)`,
+      `(<article\\b(?=[^>]*data-blog-subcategory=["'][^"']*["'])[^>]*>[\\s\\S]*?href=["']\\/${slug}\\/["'][\\s\\S]*?<div class=["']article-card-media["']>[\\s\\S]*?<img\\b)([^>]*)(>)`,
       "i",
     );
     const linked = new RegExp(
-      `(<a\\b[^>]*href=["']\\/blog\\/${slug}\\.html["'][^>]*>[\\s\\S]*?<img\\b)([^>]*)(>)`,
+      `(<a\\b[^>]*href=["']\\/${slug}\\/["'][^>]*>[\\s\\S]*?<img\\b)([^>]*)(>)`,
       "gi",
     );
     const replace = (_, start, attrs, end) => {

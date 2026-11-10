@@ -4902,3 +4902,21 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-11-10T09:11:39,Chef de Partie (Breakfast),chef-de-partie-breakfast,https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/""
+  }
+}
+"
+2026-11-10T09:11:39,Junior Administrative Executive,junior-administrative-executive,https://outreachrecruitment.net/jobs/junior-administrative-executive/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/junior-administrative-executive/""
+  }
+}
+"
+2026-11-10T09:11:39,Trailer Drivers,trailer-drivers,https://outreachrecruitment.net/jobs/trailer-drivers/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/trailer-drivers/""
+  }
+}
+"

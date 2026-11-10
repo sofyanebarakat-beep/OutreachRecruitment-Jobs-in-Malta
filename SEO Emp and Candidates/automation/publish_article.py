@@ -27,6 +27,7 @@ TEMPLATE_SOURCE = ROOT / "blog" / "pre-departure-course-certificate-malta.html"
 BLOG_INDEX = ROOT / "blog" / "index.html"
 SITEMAP_BLOG = ROOT / "sitemaps" / "sitemap-blog.xml"
 SITEMAP_PAGES = ROOT / "sitemaps" / "sitemap-pages.xml"
+NETLIFY_CONFIG = ROOT / "netlify.toml"
 
 DATE_MONTHS = [
     "January", "February", "March", "April", "May", "June",
@@ -120,23 +121,23 @@ CTA_MAP = {
 # (href, image, alt, tag, title) — hand-verified real pages only.
 RELATED_POOL = {
     "Employer": [
-        ("/blog/why-employers-in-malta-trust-outreach-recruitment.html", "/assets/why-employers-malta-trust-outreach-recruitment-thumb.jpg", "Recruiter and employer reviewing candidate shortlist together in a Malta office", "Employers", "Why employers in Malta trust Outreach Recruitment to hire right"),
-        ("/blog/recruitment-agency-in-malta.html", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
-        ("/blog/hospitality-manpower-solutions-malta.html", "/assets/hospitality-manpower-solutions-malta-thumb.jpg", "Hotel manager and recruitment consultant reviewing hospitality manpower needs in a Malta hotel lobby", "Employers", "Hospitality Manpower Solutions in Malta for Employers"),
-        ("/blog/what-to-expect-from-a-recruitment-agency-in-malta.html", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
+        ("/why-employers-in-malta-trust-outreach-recruitment/", "/assets/why-employers-malta-trust-outreach-recruitment-thumb.jpg", "Recruiter and employer reviewing candidate shortlist together in a Malta office", "Employers", "Why employers in Malta trust Outreach Recruitment to hire right"),
+        ("/recruitment-agency-in-malta/", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
+        ("/hospitality-manpower-solutions-malta/", "/assets/hospitality-manpower-solutions-malta-thumb.jpg", "Hotel manager and recruitment consultant reviewing hospitality manpower needs in a Malta hotel lobby", "Employers", "Hospitality Manpower Solutions in Malta for Employers"),
+        ("/what-to-expect-from-a-recruitment-agency-in-malta/", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
     ],
     "Candidate": [
-        ("/blog/cv-writing-tips-how-to-get-hired-in-malta.html", "/assets/FastApplication.png", "Job seeker preparing a CV on a laptop before applying for jobs in Malta", "Candidates", "CV writing tips that get you hired in Malta"),
-        ("/blog/what-to-expect-from-a-recruitment-agency-in-malta.html", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
-        ("/blog/how-to-answer-common-interview-questions-in-malta.html", "/assets/Jobs in Malta (9).png", "Two professionals shaking hands after a successful job interview in Malta", "Candidates", "How to answer common interview questions in Malta"),
-        ("/blog/what-documents-do-i-need-to-apply-for-a-job-in-malta.html", "/assets/what-documents-do-i-need-to-apply-for-a-job-in-malta-thumb.jpg", "Candidate preparing CV, certificates, and identity documents before applying for jobs in Malta", "Candidates", "What documents do I need to apply for a job in Malta?"),
-        ("/blog/best-industries-hiring-in-malta-right-now.html", "/assets/Jobs in Malta (12).png", "A successful handshake after a job interview in Malta, resume on the desk", "Candidates", "Best industries hiring in Malta right now"),
+        ("/cv-writing-tips-how-to-get-hired-in-malta/", "/assets/FastApplication.png", "Job seeker preparing a CV on a laptop before applying for jobs in Malta", "Candidates", "CV writing tips that get you hired in Malta"),
+        ("/what-to-expect-from-a-recruitment-agency-in-malta/", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
+        ("/how-to-answer-common-interview-questions-in-malta/", "/assets/Jobs in Malta (9).png", "Two professionals shaking hands after a successful job interview in Malta", "Candidates", "How to answer common interview questions in Malta"),
+        ("/what-documents-do-i-need-to-apply-for-a-job-in-malta/", "/assets/what-documents-do-i-need-to-apply-for-a-job-in-malta-thumb.jpg", "Candidate preparing CV, certificates, and identity documents before applying for jobs in Malta", "Candidates", "What documents do I need to apply for a job in Malta?"),
+        ("/best-industries-hiring-in-malta-right-now/", "/assets/Jobs in Malta (12).png", "A successful handshake after a job interview in Malta, resume on the desk", "Candidates", "Best industries hiring in Malta right now"),
     ],
     "JobsInMalta": [
-        ("/blog/best-industries-hiring-in-malta-right-now.html", "/assets/Jobs in Malta (12).png", "A successful handshake after a job interview in Malta, resume on the desk", "Candidates", "Best industries hiring in Malta right now"),
-        ("/blog/hospitality-manpower-solutions-malta.html", "/assets/hospitality-manpower-solutions-malta-thumb.jpg", "Hotel manager and recruitment consultant reviewing hospitality manpower needs in a Malta hotel lobby", "Employers", "Hospitality Manpower Solutions in Malta for Employers"),
-        ("/blog/recruitment-agency-in-malta.html", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
-        ("/blog/cv-writing-tips-how-to-get-hired-in-malta.html", "/assets/FastApplication.png", "Job seeker preparing a CV on a laptop before applying for jobs in Malta", "Candidates", "CV writing tips that get you hired in Malta"),
+        ("/best-industries-hiring-in-malta-right-now/", "/assets/Jobs in Malta (12).png", "A successful handshake after a job interview in Malta, resume on the desk", "Candidates", "Best industries hiring in Malta right now"),
+        ("/hospitality-manpower-solutions-malta/", "/assets/hospitality-manpower-solutions-malta-thumb.jpg", "Hotel manager and recruitment consultant reviewing hospitality manpower needs in a Malta hotel lobby", "Employers", "Hospitality Manpower Solutions in Malta for Employers"),
+        ("/recruitment-agency-in-malta/", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
+        ("/cv-writing-tips-how-to-get-hired-in-malta/", "/assets/FastApplication.png", "Job seeker preparing a CV on a laptop before applying for jobs in Malta", "Candidates", "CV writing tips that get you hired in Malta"),
     ],
     "StudyInMalta": [
         ("/why-malta-is-becoming-europes-top-destination-for-international-students.html", "/assets/studyinmaltaa.png", "International students exploring Malta", "Study in Malta", "Why Malta is becoming Europe's top destination for international students"),
@@ -145,10 +146,10 @@ RELATED_POOL = {
         ("/working-while-studying-in-malta.html", "/assets/visastudy.jpg", "International student balancing work and study in Malta", "Study in Malta", "Working while studying in Malta"),
     ],
     "Brand": [
-        ("/blog/why-employers-in-malta-trust-outreach-recruitment.html", "/assets/why-employers-malta-trust-outreach-recruitment-thumb.jpg", "Recruiter and employer reviewing candidate shortlist together in a Malta office", "Employers", "Why employers in Malta trust Outreach Recruitment to hire right"),
-        ("/blog/recruitment-agency-in-malta.html", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
-        ("/blog/your-trusted-hospitality-recruitment-agency-in-malta.html", "/assets/your-trusted-hospitality-recruitment-agency-in-malta-thumb-v2.jpg", "Recruitment consultant, hospitality candidate, and hiring manager reviewing opportunities in a bright Malta hotel setting", "Candidates &amp; Employers", "Your Trusted Hospitality Recruitment Agency in Malta"),
-        ("/blog/what-to-expect-from-a-recruitment-agency-in-malta.html", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
+        ("/why-employers-in-malta-trust-outreach-recruitment/", "/assets/why-employers-malta-trust-outreach-recruitment-thumb.jpg", "Recruiter and employer reviewing candidate shortlist together in a Malta office", "Employers", "Why employers in Malta trust Outreach Recruitment to hire right"),
+        ("/recruitment-agency-in-malta/", "/assets/recruitment-agency-in-malta-thumb.jpg", "Recruiter meeting with a candidate and employer in a modern Malta office", "Candidates &amp; Employers", "Recruitment agency in Malta: a guide for candidates and employers"),
+        ("/your-trusted-hospitality-recruitment-agency-in-malta/", "/assets/your-trusted-hospitality-recruitment-agency-in-malta-thumb-v2.jpg", "Recruitment consultant, hospitality candidate, and hiring manager reviewing opportunities in a bright Malta hotel setting", "Candidates &amp; Employers", "Your Trusted Hospitality Recruitment Agency in Malta"),
+        ("/what-to-expect-from-a-recruitment-agency-in-malta/", "/assets/jobs-malta-hr-admin.png", "Recruitment consultants reviewing candidate profiles in a Malta office", "Candidates", "What to expect from a recruitment agency as a job seeker in Malta"),
     ],
 }
 
@@ -465,7 +466,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     slug = fm["slug"]
     is_root = pillar == "StudyInMalta"
     dest_rel = f"{slug}.html" if is_root else f"blog/{slug}.html"
-    canonical = f"https://outreachrecruitment.net/{slug}" if is_root else f"https://outreachrecruitment.net/blog/{slug}"
+    canonical = f"https://outreachrecruitment.net/{slug}/"
     back_href = "/study-in-malta" if is_root else "/blog/"
     back_text = "Back to Study in Malta" if is_root else "Back to Blog"
 
@@ -512,7 +513,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     schema = schema.replace("</", "<\\/")
 
     style_block, nav_block, footer_block = extract_boilerplate()
-    related = related_cards(pillar, f"/{dest_rel}" if is_root else f"/{dest_rel}")
+    related = related_cards(pillar, f"/{slug}/")
 
     page = f"""<!DOCTYPE html>
 <html lang="en">
@@ -613,7 +614,9 @@ def validate_page(page: str) -> list[str]:
         if path in ("/", ""):
             continue
         candidate = ROOT / path.lstrip("/")
-        if candidate.exists() or candidate.with_suffix(".html").exists() or (candidate / "index.html").exists():
+        article_file = ROOT / "blog" / f"{candidate.name}.html"
+        if (candidate.exists() or candidate.with_suffix(".html").exists()
+                or (candidate / "index.html").exists() or article_file.exists()):
             continue
         problems.append(f"broken local reference: {ref}")
 
@@ -624,8 +627,8 @@ def validate_page(page: str) -> list[str]:
 # blog/index.html + sitemap updates (idempotent — skip if href/loc already present)
 # --------------------------------------------------------------------------------
 
-def card_html(dest_rel: str, meta: dict, read_time: str) -> str:
-    href = f"/{dest_rel}"
+def card_html(meta: dict, read_time: str) -> str:
+    href = f"/{meta['slug']}/"
     return (
         f'<article class="article-card w-dyn-item" data-blog-subcategory="{meta["slug"]}" role="listitem">'
         f'<a class="card-link w-inline-block" href="{href}"></a>'
@@ -646,7 +649,7 @@ def card_html(dest_rel: str, meta: dict, read_time: str) -> str:
 def update_blog_index(meta: dict) -> bool:
     if meta["pillar"] not in BLOG_INDEX_SECTION:
         return False
-    href = f"/{meta['dest_rel']}"
+    href = f"/{meta['slug']}/"
     html_text = BLOG_INDEX.read_text()
     if href in html_text:
         return False  # already present, idempotent no-op
@@ -655,7 +658,7 @@ def update_blog_index(meta: dict) -> bool:
     idx = html_text.index(marker)
     grid_marker = '<div class="articles-grid w-dyn-items" data-gsap-scroll="stagger" role="list">'
     grid_idx = html_text.index(grid_marker, idx) + len(grid_marker)
-    card = card_html(meta["dest_rel"], meta, "4 min read")
+    card = card_html(meta, "4 min read")
     html_text = html_text[:grid_idx] + card + html_text[grid_idx:]
     BLOG_INDEX.write_text(html_text)
     return True
@@ -682,6 +685,52 @@ def update_sitemap(meta: dict) -> bool:
     return True
 
 
+def update_netlify_routes(meta: dict) -> bool:
+    config = NETLIFY_CONFIG.read_text()
+    slug = meta["slug"]
+    target = f"/{meta['dest_rel']}"
+    expected = {
+        f"/{slug}": (f"/{slug}/", 301),
+        f"/{slug}.html": (f"/{slug}/", 301),
+        f"/{slug}/": (target, 200),
+    }
+    found = set()
+    for block in re.split(r"(?m)(?=^\[\[redirects\]\])", config):
+        source = re.search(r'(?m)^\s*from\s*=\s*"([^"]+)"', block)
+        if not source or source.group(1) not in expected:
+            continue
+        route = expected[source.group(1)]
+        destination = re.search(r'(?m)^\s*to\s*=\s*"([^"]+)"', block)
+        status = re.search(r"(?m)^\s*status\s*=\s*(\d+)", block)
+        if (not destination or not status
+                or (destination.group(1), int(status.group(1))) != route):
+            raise BuildError(f"Conflicting Netlify route for {source.group(1)}")
+        found.add(source.group(1))
+
+    missing = [source for source in expected if source not in found]
+    if not missing:
+        return False
+
+    marker = "# ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────"
+    if marker not in config:
+        raise BuildError("Netlify article-route insertion point is missing")
+
+    rules = []
+    for source in missing:
+        destination, status = expected[source]
+        rules.extend([
+            "[[redirects]]",
+            f'  from = "{source}"',
+            f'  to = "{destination}"',
+            f"  status = {status}",
+        ])
+        if status == 301:
+            rules.append("  force = true")
+        rules.append("")
+    NETLIFY_CONFIG.write_text(config.replace(marker, "\n".join(rules) + marker, 1))
+    return True
+
+
 # --------------------------------------------------------------------------------
 
 def publish_one(md_path: Path) -> dict:
@@ -698,6 +747,8 @@ def publish_one(md_path: Path) -> dict:
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(page)
         touched = [meta["dest_rel"]]
+        if update_netlify_routes(meta):
+            touched.append("netlify.toml")
         if update_blog_index(meta):
             touched.append("blog/index.html")
         sitemap_rel = "sitemaps/sitemap-pages.xml" if meta["is_root"] else "sitemaps/sitemap-blog.xml"
