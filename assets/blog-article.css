@@ -118,3 +118,11 @@
 /* Blog pages are white */
 html,body,.main{background:#fff!important}
 .od-rich p,.od-rich li,.od-rich td{color:#333}
+
+/* One heading style for every article: same serif as the page title */
+.od-rich h2,.od-rich h3,.od-rich h4,.od-rich h5{font-family:"Libre Caslon Condensed","Times New Roman",serif!important;font-weight:600!important;letter-spacing:-.5px!important;line-height:1.2!important;color:#0c0407!important;text-transform:none!important}
+.od-rich h2,.od-rich h5{font-size:28px!important;margin:2.25rem 0 .75rem!important}
+.od-rich h3,.od-rich h4{font-size:22px!important;margin:1.75rem 0 .6rem!important}
+.od-rich .faq-item-top h3{font-size:20px!important;margin:0!important}
+.od-rich .cta-box h2{color:#fff!important}
+@media(max-width:767px){.od-rich h2,.od-rich h5{font-size:24px!important}.od-rich h3,.od-rich h4{font-size:20px!important}}

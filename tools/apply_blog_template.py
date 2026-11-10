@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parent.parent
 BLOG = ROOT / "blog"
 SITE = "https://outreachrecruitment.net"
-ASSET_V = "2"
+ASSET_V = "3"
 RELATED_HEADINGS = {"read more", "à lire aussi", "leggi anche"}
 
 I18N = {
