@@ -80,7 +80,7 @@ CSS = """<style id="team-page-style">
 .team-card-open { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; }
 .team-card-open:focus-visible { outline: 3px solid #442DFA; outline-offset: -3px; border-radius: 24px; }
 .team-img-wrap { position: relative; aspect-ratio: 413 / 367; overflow: hidden; background: #eeebff; }
-.team-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.team-img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; transition: transform .6s ease; }
 .team-img-wrap::after { content: ""; position: absolute; inset: 0; background: rgba(16, 16, 30, .38); opacity: 0; transition: opacity .35s ease; }
 .team-card:hover .team-img, .ceo-card:hover .team-img { transform: scale(1.04); }
 .team-card:hover .team-img-wrap::after, .ceo-card:hover .team-img-wrap::after { opacity: 1; }
@@ -98,7 +98,7 @@ CSS = """<style id="team-page-style">
 .team-dialog { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
 .team-dialog::backdrop { background: rgba(16, 16, 30, .55); }
 .team-dialog-inner { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
-.team-dialog-photo { width: 100%; height: 100%; min-height: 320px; object-fit: cover; display: block; background: #eeebff; }
+.team-dialog-photo { width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: center 25%; display: block; background: #eeebff; }
 .team-dialog-body { padding: 2rem 2rem 2.25rem; display: flex; flex-direction: column; gap: .75rem; overflow-y: auto; }
 .team-dialog-close { position: absolute; top: .9rem; right: .9rem; width: 40px; height: 40px; border-radius: 50%; border: 0; z-index: 2;
   background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.15); font-size: 1.3rem; cursor: pointer; }
