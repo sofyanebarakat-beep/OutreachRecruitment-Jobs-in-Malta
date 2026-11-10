@@ -86,6 +86,9 @@ def card(person: dict, idx: int) -> str:
 
 CSS = """<style id="team-page-style">
 .team-page { padding-bottom: 6rem; }
+/* Keep the site header fixed and always visible on this page (the theme hides it while scrolling) */
+.navigation.w-nav { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 1000;
+  transform: none !important; translate: none !important; opacity: 1 !important; }
 .team-hero { text-align: center; max-width: 760px; margin: 0 auto; padding: 2rem 0 3rem; }
 .team-hero .team-sub { font-size: 1.1rem; opacity: .8; margin-top: 1rem; }
 /* CEO */
