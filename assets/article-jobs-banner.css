@@ -1,5 +1,8 @@
 .article-jobs-banner {
   margin: 2rem 0;
+}
+
+.article-jobs-banner.is-visible {
   animation: article-jobs-banner-enter .7s cubic-bezier(.2, .75, .2, 1) both;
 }
 
@@ -18,7 +21,7 @@
   text-decoration: none;
   box-shadow: 0 12px 30px rgb(68 45 250 / 20%);
   isolation: isolate;
-  animation: article-jobs-banner-gradient 8s ease-in-out infinite;
+  animation: article-jobs-banner-gradient 16s ease-in-out infinite;
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
@@ -33,7 +36,18 @@
   content: "";
   pointer-events: none;
   transform: translateX(-180%) skewX(-18deg);
-  animation: article-jobs-banner-shine 6s ease-in-out infinite;
+  animation: article-jobs-banner-shine 12s ease-in-out infinite;
+}
+
+.article-jobs-banner-link::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(ellipse at 12% 0%, rgb(255 255 255 / 18%), transparent 58%);
+  content: "";
+  opacity: .65;
+  pointer-events: none;
+  animation: article-jobs-banner-glow 8s ease-in-out infinite;
 }
 
 .article-jobs-banner-link:hover {
@@ -82,8 +96,10 @@
   font-size: .95rem;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 0 0 0 rgb(255 255 255 / 25%);
-  animation: article-jobs-banner-count-pulse 2.8s ease-out infinite;
+}
+
+.article-jobs-banner-count.is-counted {
+  animation: article-jobs-banner-count-pulse 1.4s ease-out 1;
 }
 
 .article-jobs-banner-arrow {
@@ -139,11 +155,20 @@
 }
 
 @keyframes article-jobs-banner-shine {
-  0%, 18% {
+  0%, 72% {
     transform: translateX(-180%) skewX(-18deg);
   }
-  48%, 100% {
+  88%, 100% {
     transform: translateX(620%) skewX(-18deg);
+  }
+}
+
+@keyframes article-jobs-banner-glow {
+  0%, 100% {
+    opacity: .4;
+  }
+  50% {
+    opacity: .8;
   }
 }
 
@@ -173,7 +198,8 @@
   }
 
   .article-jobs-banner-link::before,
-  .article-jobs-banner-count {
+  .article-jobs-banner-link::after,
+  .article-jobs-banner-count.is-counted {
     animation: none;
   }
 
