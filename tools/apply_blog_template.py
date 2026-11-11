@@ -61,6 +61,24 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+def jobs_banner(lang):
+    labels = {
+        "en": ("Find <em>jobs in Malta</em> and Europe", "Open Positions",
+               "Find jobs in Malta and Europe — 124 open positions"),
+        "fr": ("Trouvez un <em>emploi à Malte</em> et en Europe", "Postes ouverts",
+               "Trouvez un emploi à Malte et en Europe — 124 postes ouverts"),
+        "it": ("Trova <em>lavoro a Malta</em> e in Europa", "Posizioni aperte",
+               "Trova lavoro a Malta e in Europa — 124 posizioni aperte"),
+    }
+    heading, count, label = labels.get(lang, labels["en"])
+    return f'''<div class="od-side-block article-jobs-banner article-jobs-banner--sidebar">
+  <a class="article-jobs-banner-link" href="/jobs/" aria-label="{esc(label)}">
+    <h2 class="article-jobs-banner-title">{heading}</h2>
+    <span class="article-jobs-banner-count"><span data-count-up="124" aria-hidden="true">+124</span> {count} <span class="article-jobs-banner-arrow" aria-hidden="true">→</span></span>
+  </a>
+</div>'''
+
+
 def articles():
     return sorted(p for p in BLOG.glob("*.html") if p.name != "index.html")
 
@@ -249,6 +267,7 @@ def render(meta, all_meta, lang):
           </div>
           <aside class="od-right">
             <details class="od-side-block od-toc" id="odToc" open><summary>{L["toc"]}</summary><ol></ol></details>
+            {jobs_banner(lang)}
             <div class="od-side-block od-cta-card"><h2>{L[k + "_t"]}</h2><p>{L[k + "_p"]}</p><a class="od-btn" href="{cta_href}">{L[k + "_b"]}</a></div>
           </aside>
         </div>
@@ -277,9 +296,13 @@ def rewrite_page(path, meta, raw, all_meta):
     if "/assets/blog-article.css" not in t:
         marker = '<style id="blog-white-bg">'
         t = t.replace(marker, css + marker, 1) if marker in t else t.replace("</head>", css + "</head>", 1)
+    if "/assets/article-jobs-banner.css" not in t:
+        t = t.replace("</head>", '<link href="/assets/article-jobs-banner.css" rel="stylesheet" type="text/css"/>\n</head>', 1)
     js = f'<script src="/assets/blog-article.js?v={ASSET_V}" defer></script>\n'
     if "/assets/blog-article.js" not in t:
         t = t.replace("</body>", js + "</body>", 1)
+    if "/assets/article-jobs-banner.js" not in t:
+        t = t.replace("</body>", '<script defer src="/assets/article-jobs-banner.js"></script>\n</body>', 1)
     path.write_text(t, encoding="utf-8")
     # GitHub Pages has no rewrites: /<slug>/ is served from <slug>/index.html
     out = ROOT / path.stem / "index.html"

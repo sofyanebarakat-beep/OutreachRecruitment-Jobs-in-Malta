@@ -1,17 +1,32 @@
 @media (min-width: 992px) {
-  .navigation .services-menu {
+  .navigation :is(.services-menu, .company-menu) {
     position: relative;
   }
 
-  .navigation .services-menu > .dropdown-panel.compact {
+  .navigation :is(.services-menu, .company-menu) > .dropdown-panel.compact {
     left: auto !important;
     right: 0 !important;
     width: 300px !important;
     max-width: calc(100vw - 32px);
   }
+
+  .navigation .company-menu > .dropdown-panel.compact {
+    left: 0 !important;
+    right: auto !important;
+    width: 240px !important;
+  }
 }
 
-.navigation .services-menu .dropdown-content.compact {
+.navigation .company-menu > .dropdown-toggle.w--open {
+  color: #442dfa;
+}
+
+.navigation .company-menu > .dropdown-toggle:focus-visible {
+  outline: 2px solid #442dfa;
+  outline-offset: 3px;
+}
+
+.navigation :is(.services-menu, .company-menu) .dropdown-content.compact {
   display: block;
   padding: 12px;
   background: #fff;
@@ -20,13 +35,13 @@
   box-shadow: 0 16px 40px rgba(32, 27, 74, .12);
 }
 
-.navigation .services-menu .nav-list {
+.navigation :is(.services-menu, .company-menu) .nav-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.navigation .services-menu .nav-item {
+.navigation :is(.services-menu, .company-menu) .nav-item {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -37,19 +52,19 @@
   text-decoration: none;
 }
 
-.navigation .services-menu .nav-item:hover,
-.navigation .services-menu .nav-item:focus-visible {
+.navigation :is(.services-menu, .company-menu) .nav-item:hover,
+.navigation :is(.services-menu, .company-menu) .nav-item:focus-visible {
   background: #f5f4ff;
   color: #442dfa;
 }
 
-.navigation .services-menu .nav-item:focus-visible {
+.navigation :is(.services-menu, .company-menu) .nav-item:focus-visible {
   outline: 2px solid #442dfa;
   outline-offset: 2px;
 }
 
 @media (max-width: 991px) {
-  .navigation .services-menu .dropdown-content.compact {
+  .navigation :is(.services-menu, .company-menu) .dropdown-content.compact {
     padding: 8px;
     border-radius: 14px;
     box-shadow: none;
