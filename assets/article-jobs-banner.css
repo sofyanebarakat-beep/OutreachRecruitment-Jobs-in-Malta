@@ -96,6 +96,28 @@
   transform: translateX(4px);
 }
 
+.article-jobs-banner--sidebar {
+  margin: 0;
+}
+
+.article-jobs-banner--sidebar .article-jobs-banner-link {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.35rem;
+  border-radius: .75rem;
+}
+
+.od-side-block .article-jobs-banner-title {
+  font-size: clamp(1.45rem, 2vw, 1.8rem) !important;
+}
+
+.article-jobs-banner--sidebar .article-jobs-banner-count {
+  gap: .4rem;
+  padding: .65rem .8rem;
+  font-size: .85rem;
+}
+
 @keyframes article-jobs-banner-enter {
   from {
     opacity: 0;
