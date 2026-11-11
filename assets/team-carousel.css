@@ -1,0 +1,127 @@
+.or-team-carousel {
+  overflow: hidden;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.or-team-carousel-inner {
+  --team-visible: 4;
+}
+
+.or-team-carousel-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.or-team-carousel-heading h2 {
+  margin-bottom: 0;
+}
+
+.or-team-carousel-controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: .6rem;
+}
+
+.or-team-carousel-controls button {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.or-team-carousel-controls button:hover {
+  background: #442dfa;
+  border-color: #442dfa;
+  color: #fff;
+}
+
+.or-team-carousel-controls button:focus-visible {
+  outline: 2px solid #442dfa;
+  outline-offset: 3px;
+}
+
+.or-team-carousel-controls svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.or-team-carousel-viewport {
+  overflow: hidden;
+}
+
+.or-team-carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  will-change: transform;
+  transition: transform .55s cubic-bezier(.22, .61, .36, 1);
+}
+
+.or-team-carousel-card {
+  flex: 0 0 calc((100% - (1.25rem * (var(--team-visible) - 1))) / var(--team-visible));
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #f6f6f6;
+}
+
+.or-team-carousel-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.5;
+  object-fit: cover;
+}
+
+.or-team-carousel-card-content {
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.or-team-carousel-card h3 {
+  margin: 0 0 .35rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.or-team-carousel-card p {
+  margin: 0;
+  opacity: .75;
+}
+
+.or-team-carousel-link {
+  margin-top: 2rem;
+}
+
+@media (max-width: 991px) {
+  .or-team-carousel-inner {
+    --team-visible: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .or-team-carousel {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .or-team-carousel-inner {
+    --team-visible: 1;
+  }
+
+  .or-team-carousel-heading {
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .or-team-carousel-track {
+    transition: none;
+  }
+}
