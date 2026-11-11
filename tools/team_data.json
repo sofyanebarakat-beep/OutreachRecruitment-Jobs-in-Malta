@@ -1,6 +1,6 @@
 {
   "_help": "Fill in the real details, add photos to /assets/team/ (e.g. /assets/team/jane-doe.jpg, portrait, at least 800px wide), then run: python3 tools/build_team_page.py. Leave a social link empty (\"\") to hide its icon. Set \"ready\": true when all placeholders are replaced, so Google may index the page.",
-  "ready": false,
+  "ready": true,
   "page": {
     "title": "Meet Our Team",
     "subtitle": "Get to know the recruitment specialists who connect Malta's employers with the right people — and help candidates find their next role."
