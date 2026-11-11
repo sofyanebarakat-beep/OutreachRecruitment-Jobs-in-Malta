@@ -139,6 +139,31 @@ body { background: #fff; }
 .nu-ad-box { aspect-ratio: 1; width: 100%; }
 .nu-ad.has-banner::before { display: none; }
 .nu-ad.has-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Animated jobs banners */
+.nu-jobs { position: relative; display: grid; align-items: center; gap: 1.5rem 2rem; overflow: hidden; isolation: isolate; color: #fff !important;
+  background: linear-gradient(120deg, #2a17c9, #442DFA 45%, #6b55ff); text-decoration: none; }
+.nu-jobs::before { content: ""; position: absolute; inset: -40% -10%; z-index: -1; opacity: .35;
+  background: radial-gradient(closest-side, rgba(255,255,255,.55), transparent 70%) 0 0 / 40% 120% no-repeat; animation: nu-sheen 7s ease-in-out infinite; }
+@keyframes nu-sheen { 0% { background-position: -40% 50%; } 50% { background-position: 140% 50%; } 100% { background-position: -40% 50%; } }
+.nu-jobs-wide { grid-template-columns: auto minmax(0, 1fr) auto; min-height: 152px; padding: 1.5rem 2rem; margin: 5rem 0; border-radius: 24px; }
+.nu-jobs-box { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding: 1.75rem 1.5rem; border-radius: 24px; }
+.nu-jobs-text { display: flex; flex-direction: column; gap: .35rem; }
+.nu-jobs strong, .nu-jobs-count, .nu-jobs-count b { color: #fff !important; }
+.nu-jobs-count { font-size: .8rem; font-weight: 600; letter-spacing: 1.25px; text-transform: uppercase; opacity: .9; }
+.nu-jobs-count b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.nu-jobs strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: 1.05; letter-spacing: -.5px; }
+.nu-jobs-box strong { font-size: 2rem; }
+.nu-jobs-box .nu-jobs-count b { display: block; font-family: var(--serif); font-size: 4.5rem; line-height: 1; font-weight: 400; letter-spacing: -1px; text-transform: none; }
+.nu-jobs-ticker { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.nu-jobs-track { display: flex; gap: .6rem; width: max-content; animation: nu-ticker 38s linear infinite; }
+.nu-jobs-track.rev { animation-direction: reverse; }
+.nu-jobs:hover .nu-jobs-track { animation-play-state: paused; }
+.nu-jobs-track span { padding: .5rem .9rem; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); font-size: .9rem; font-weight: 500; white-space: nowrap; }
+@keyframes nu-ticker { to { transform: translateX(-50%); } }
+.nu-jobs-btn.nu-btn.accent { background: #fff; color: var(--brand) !important; }
+.nu-jobs-btn.nu-btn.accent .nu-arrow { background: var(--brand); color: #fff; }
+.nu-jobs:hover .nu-jobs-btn .nu-arrow svg { animation: nu-arrow .5s ease; }
+.nu-jobs-box .nu-jobs-btn { justify-self: start; }
 /* Sidebar + latest */
 .nu-split { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 0; }
 .nu-side { padding-right: 3.5rem; border-right: 1px solid var(--line); }
@@ -173,23 +198,24 @@ body { background: #fff; }
 /* Newsletter */
 .nu-news { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; background: #121212;
   color: #fff; overflow: hidden; margin: 6rem 0; min-height: 480px; scroll-margin-top: 120px; }
-.nu-news-img { align-self: center; padding: 3rem 1rem 3rem 3rem; }
+.nu-news-img { align-self: stretch; display: flex; align-items: center; justify-content: center; background: #262626; padding: 3rem 2.5rem; }
 .nu-news-img img { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
-.nu-news-body { padding: 4rem 3.5rem 4rem 1rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.nu-news-body { padding: 4rem 3.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
 .nu-news h2 { color: #fff; font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .nu-news p { margin: 0; color: rgba(255,255,255,.82); line-height: 1.7; }
-.nu-form { display: flex; flex-direction: column; gap: .8rem; margin-top: .6rem; max-width: 500px; }
-.nu-pill { display: flex; align-items: center; background: #fff; border-radius: 999px; padding: .35rem .35rem .35rem 1.4rem; }
-.nu-pill input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: var(--ink); height: 50px; outline: none; }
-.nu-pill .nu-btn { height: 48px; padding: 0 5px 0 18px; border-radius: 999px; font-size: .95rem; }
-.nu-pill .nu-arrow { width: 38px; height: 38px; border-radius: 999px; }
-.nu-step2 { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
-.nu-step2[hidden] { display: none; }
-.nu-step2 input, .nu-step2 select { width: 100%; height: 50px; border-radius: 999px; border: 0; padding: 0 1.2rem; font: inherit; background: #fff; color: var(--ink); }
-.nu-step2 .nu-full { grid-column: 1 / -1; }
-.nu-consent { display: flex; gap: .6rem; align-items: flex-start; font-size: .85rem; color: rgba(255,255,255,.75); line-height: 1.5; }
-.nu-consent { font-weight: 400; cursor: pointer; }
-.nu-step2 .nu-consent input { width: 18px; height: 18px; min-width: 18px; padding: 0; margin: .15rem 0 0; border-radius: 4px; accent-color: var(--brand); }
+.nu-form { display: flex; flex-direction: column; gap: 1rem; margin-top: .6rem; max-width: 560px; }
+.nu-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.nu-form label { display: grid; align-content: start; gap: .4rem; color: #fff; font-size: .8rem; font-weight: 700; }
+.nu-form input[type=email], .nu-form input[type=search] { width: 100%; height: 50px; box-sizing: border-box; padding: .7rem .9rem; border: 1px solid rgba(255,255,255,.2);
+  border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-weight: 400; }
+.nu-form input::placeholder { color: #6f6a86; opacity: 1; }
+.nu-form input:focus { outline: 3px solid rgba(143,130,255,.45); border-color: #8f82ff; }
+.nu-form label small { color: rgba(255,255,255,.62); font-size: .72rem; font-weight: 500; }
+.nu-consent { display: flex !important; flex-direction: row; align-items: flex-start; gap: .6rem; font-size: .85rem !important; font-weight: 400 !important;
+  color: rgba(255,255,255,.78) !important; line-height: 1.5; cursor: pointer; }
+.nu-consent input { width: 18px; height: 18px; min-width: 18px; margin: .15rem 0 0; accent-color: #8f82ff; }
+.nu-submit { align-self: flex-start; }
+.nu-submit:disabled { opacity: .7; cursor: wait; }
 .nu-status { min-height: 1.2em; font-size: .92rem; margin: 0; }
 .nu-status.is-error { color: #ff8a8a; }
 .nu-status.is-ok { color: #9ff0b5; }
@@ -228,10 +254,10 @@ body { background: #fff; }
   .nu-side-ad { display: none; }
   .nu-latest { padding-left: 0; }
   .nu-news { grid-template-columns: minmax(0, 1fr); }
-  .nu-news-img { order: 2; padding: 1rem 2rem 2.5rem; }
+  .nu-news-img { order: 2; padding: 2.5rem 2rem; }
   .nu-news-img img { max-width: 420px; }
   .nu-follow { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; border-bottom: 0; padding-bottom: 0; }
-  .nu-news-body { padding: 3rem 2rem 1rem; }
+  .nu-news-body { padding: 3rem 2rem; }
   .nu-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nu-guide-grid { grid-template-columns: minmax(0, 1fr); }
 }
@@ -247,14 +273,15 @@ body { background: #fff; }
   .nu-hcard p { display: none; }
   .nu-grid, .nu-panel { grid-template-columns: minmax(0, 1fr); }
   .nu-ad-wide { min-height: 110px; margin: 3.5rem 0; }
-  .nu-step2 { grid-template-columns: minmax(0, 1fr); }
-  .nu-pill .nu-btn span { display: none; }
-  .nu-pill .nu-btn { padding: 0 5px; }
+  .nu-jobs-wide { grid-template-columns: minmax(0, 1fr); margin: 3.5rem 0; padding: 1.75rem 1.5rem; }
+  .nu-jobs-wide .nu-jobs-btn { justify-self: start; }
+  .nu-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .nu-submit { align-self: stretch; }
   .nu-guide { min-height: 440px; }
   .nu-guide-body { padding: 1.75rem; }
   .nu-guide-icon { top: 1.75rem; left: 1.75rem; }
 }
-@media (prefers-reduced-motion: reduce) { .nu * { transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .nu *, .nu *::before { transition: none !important; animation: none !important; } }
 </style>
 </head><body class="body"><!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8C6D5ZH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) --><div class="navigation w-nav" data-animation="default" data-collapse="medium" data-doc-height="1" data-duration="500" data-easing="ease-in-out-quart" data-easing2="ease-in-out-quart" data-w-id="a06a40ad-d853-40d9-7f6f-fa045595057d" role="banner"><div class="w-layout-blockcontainer container w-container"><div class="navigation-content"><div class="menu-button w-nav-button" data-nav="menu-button" id="w-node-a06a40ad-d853-40d9-7f6f-fa0455950582-5595057d"><div class="button-circle small"><div class="menu-open"><div class="icon small w-embed"><svg fill="none" height="100%" style="" viewbox="0 0 12 12" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M2 6L10 6M2 9H10M2 3L10 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
@@ -306,7 +333,11 @@ body { background: #fff; }
   <div><h3><a href="/call-centre-interview-questions-malta/">Call centre interview questions in Malta (with sample answers)</a></h3><p>The call centre and customer service interview questions Malta employers ask, with sample answers, a language-test checklist and tips to get hired.</p>
   <div class="nu-meta"><time datetime="2026-10-09">Oct 9, 2026</time><i class="nu-dot"></i><span>5 min read</span></div></div>
 </article></div>
-    <div class="nu-ad nu-ad-wide" aria-label="Advertising space"><span>Ad space</span><small>728 x 90 px</small></div>
+    <a class="nu-jobs nu-jobs-wide" href="/jobs/" aria-label="View 124 open jobs in Malta">
+  <div class="nu-jobs-text"><span class="nu-jobs-count"><b data-count="124">124</b> open jobs</span><strong>Find your next job in Malta</strong></div>
+  <div class="nu-jobs-ticker" aria-hidden="true"><div class="nu-jobs-track"><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span></div></div>
+  <span class="nu-btn accent nu-jobs-btn">View jobs<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</a>
     <div class="nu-split">
       <aside class="nu-side"><div class="nu-side-inner">
         <div><a class="nu-side-logo" href="/"><img src="/assets/outreach-recruitment-logo.svg" alt="Outreach Recruitment"></a>
@@ -314,7 +345,11 @@ body { background: #fff; }
         <form class="nu-search" role="search"><label class="sr-only" for="nu-search" style="position:absolute;left:-9999px">Search articles</label>
           <input id="nu-search" type="search" placeholder="Search for articles…" autocomplete="off"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></form>
         <div class="nu-follow"><strong>Follow us</strong><ul role="list"><li><a href="https://www.linkedin.com/company/outreach-recruitment-agency/" target="_blank" rel="noopener" aria-label="Outreach Recruitment on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.97 1.97 0 1 0 5.3 7a1.97 1.97 0 0 0-.05-4ZM20.44 13.4c0-3.1-1.65-5.15-4.4-5.15a3.83 3.83 0 0 0-3.44 1.9V8.5H9.37c.04.93 0 11.5 0 11.5h3.23v-6.42c0-.34.03-.69.13-.93.28-.69.9-1.4 1.95-1.4 1.38 0 1.93 1.05 1.93 2.6V20h3.23z" fill="currentColor"/></svg></a></li><li><a href="https://www.facebook.com/outreachrecruit/" target="_blank" rel="noopener" aria-label="Outreach Recruitment on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 1-1h2V2.5h-2.8C11.1 2.5 10.5 4.8 10.5 6.3v2.2H8.5V12h2v9.5H14V12h2.6l.4-3.5z" fill="currentColor"/></svg></a></li><li><a href="https://www.instagram.com/outreachrecruitment_agency" target="_blank" rel="noopener" aria-label="Outreach Recruitment on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a></li><li><a href="https://www.tiktok.com/@outreachrecruitment" target="_blank" rel="noopener" aria-label="Outreach Recruitment on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.9 3.7 4.1 3.9v3.2a7.4 7.4 0 0 1-4-1.3v6.3a5.9 5.9 0 1 1-5.9-5.9c.3 0 .7 0 1 .1v3.3a2.7 2.7 0 1 0 1.8 2.5V3z" fill="currentColor"/></svg></a></li><li><a href="https://www.youtube.com/@outreachrecruitmentagency" target="_blank" rel="noopener" aria-label="Outreach Recruitment on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8ZM10 15V9l5.2 3z" fill="currentColor"/></svg></a></li><li><a href="https://x.com/OutreachRecrt" target="_blank" rel="noopener" aria-label="Outreach Recruitment on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.3l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z" fill="currentColor"/></svg></a></li></ul></div>
-        <div class="nu-side-ad"><div class="nu-ad nu-ad-box" aria-label="Advertising space"><span>Ad space</span><small>300 x 300 px</small></div></div>
+        <div class="nu-side-ad"><a class="nu-jobs nu-jobs-box" href="/jobs/" aria-label="View 124 open jobs in Malta">
+  <div class="nu-jobs-text"><span class="nu-jobs-count"><b data-count="124">124</b> open jobs</span><strong>Find your next job in Malta</strong></div>
+  <div class="nu-jobs-ticker" aria-hidden="true"><div class="nu-jobs-track rev"><span>Leasing Administration Officer</span><span>Back Office Administrator</span><span>Warranty Administrator</span><span>Aftersales Receptionist</span><span>Workshop Assistant Manager</span><span>Hotel General Manager</span><span>Senior Corporate Administrator</span><span>Sales Manager</span><span>Accounts Clerk</span><span>Senior Technician</span><span>Aftersales Administrator</span><span>Workshop Team Leader</span><span>Service Delivery Manager</span><span>Chef de Partie</span><span>Leasing Administration Officer</span><span>Back Office Administrator</span><span>Warranty Administrator</span><span>Aftersales Receptionist</span><span>Workshop Assistant Manager</span><span>Hotel General Manager</span><span>Senior Corporate Administrator</span><span>Sales Manager</span><span>Accounts Clerk</span><span>Senior Technician</span><span>Aftersales Administrator</span><span>Workshop Team Leader</span><span>Service Delivery Manager</span><span>Chef de Partie</span></div></div>
+  <span class="nu-btn accent nu-jobs-btn">View jobs<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</a></div>
       </div></aside>
       <section class="nu-latest" id="latest" aria-labelledby="nu-latest-title" style="scroll-margin-top:120px">
         <div class="nu-latest-head"><h2 id="nu-latest-title">Latest articles</h2>
@@ -592,18 +627,15 @@ body { background: #fff; }
         <h2 id="nu-news-title">Subscribe to our newsletter to receive our latest news &amp; updates</h2>
         <p>New jobs, hiring advice and Study in Malta updates — straight to your inbox. No spam, unsubscribe anytime.</p>
         <form class="nu-form" id="nu-form" novalidate>
-          <div class="nu-pill"><input name="email" type="email" placeholder="Enter your email address" autocomplete="email" maxlength="254" required aria-label="Email address">
-            <button class="nu-btn accent" id="nu-submit" type="submit"><span>Subscribe</span><span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
-          <div class="nu-step2" id="nu-step2" hidden>
-            <input name="full_name" type="text" placeholder="Full name" autocomplete="name" maxlength="120" aria-label="Full name">
-            <select id="nu-country" name="country" aria-label="Country of residence"><option value="">Country of residence</option></select>
-            <select class="nu-full" name="interest" aria-label="I am interested in">
-              <option value="Candidates">I'm looking for a job in Malta</option><option value="Employers">I'm an employer hiring in Malta</option>
-              <option value="Study in Malta">I want to study in Malta</option></select>
-            <label class="nu-consent nu-full"><input type="checkbox" name="consent">I agree to receive emails from Outreach Recruitment. I can unsubscribe at any time.</label>
+          <div class="nu-form-grid">
+            <label><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
+            <label><span>Current country of residence</span><input name="country" type="search" list="nu-countries" autocomplete="country-name" placeholder="Type to search countries" required>
+              <datalist id="nu-countries"></datalist><small>Start typing, then choose your country.</small></label>
           </div>
+          <label class="nu-consent"><input name="consent" type="checkbox" required><span>I agree to receive news, updates and relevant job alerts from Outreach Recruitment. I can unsubscribe at any time.</span></label>
           <input name="website" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <p class="nu-status" id="nu-status" role="status"></p>
+          <button class="nu-btn accent nu-submit" id="nu-submit" type="submit"><span>Subscribe</span><span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+          <p class="nu-status" id="nu-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -674,7 +706,11 @@ body { background: #fff; }
       <div class="nu-center"><a class="nu-btn accent" href="#latest" data-filter="all" data-scroll>Explore all articles<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
     </div>
   </section>
-  <div class="nu-wrap"><div class="nu-ad nu-ad-wide" aria-label="Advertising space"><span>Ad space</span><small>728 x 90 px</small></div></div>
+  <div class="nu-wrap"><a class="nu-jobs nu-jobs-wide" href="/jobs/" aria-label="View 124 open jobs in Malta">
+  <div class="nu-jobs-text"><span class="nu-jobs-count"><b data-count="124">124</b> open jobs</span><strong>Find your next job in Malta</strong></div>
+  <div class="nu-jobs-ticker" aria-hidden="true"><div class="nu-jobs-track rev"><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span></div></div>
+  <span class="nu-btn accent nu-jobs-btn">View jobs<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</a></div>
 </div>
 </main><footer class="footer"><div class="w-layout-blockcontainer container w-container"><div class="footer-content"><div class="footer-promo" data-gsap-scroll="fade"><div class="promo-media or-footer-banner" aria-hidden="true" style="background:radial-gradient(120% 90% at 88% 8%,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 55%),radial-gradient(80% 70% at 6% 100%,rgba(17,8,92,.55) 0%,rgba(17,8,92,0) 60%),linear-gradient(135deg,#5b47ff 0%,#442DFA 48%,#2a19b5 100%);"></div><div class="promo-content"><div class="footer-logo w-embed"><img alt="Outreach Recruitment logo" src="/assets/outreach-recruitment-logo.svg" style="display:block;width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1);"/></div><div class="w-layout-hflex promo-bottom"><div class="heading-h5">We support your career move</div><div class="buttons"><a class="button-secondary w-variant-99b8bfb9-5755-d34a-f573-cb67a83f3440 w-inline-block" data-wf--button-secondary--variant="small" href="https://outreachrecruitment.net/"><div class="button-label" data-figma-id="12018:4671">Our website</div></a></div></div></div></div><div class="footer-main" data-gsap-scroll="stagger"><div class="footer-top"><div class="footer-links" id="w-node-_4bf6e483-2826-42d8-9159-e36eb66eba5a-b66eba43"><div class="w-layout-vflex nav-group"><div class="caption muted">Services</div><div class="nav-list"><a class="nav-item" href="/service">Hiring &amp; Recruitment</a><a class="nav-item" href="/jobs">Looking for a job</a><a class="nav-item" href="https://consultation.outreachstudy.eu/">Study in Malta</a></div></div><div class="w-layout-vflex nav-group"><div class="caption muted">Company</div><div class="nav-list"><a class="nav-item" href="/service">About Us</a><a class="nav-item" href="/our-team">Our Team</a></div></div><div class="w-layout-vflex nav-group"><div class="caption muted">Resources</div><div class="nav-list"><a class="nav-item" href="/salary-calculator-malta">Malta Salary Calculator</a><a class="nav-item" href="/blog">Career Advice</a><a class="nav-item" href="/book-a-call">Register CV</a><a class="nav-item" href="https://outreachrecruitment.net/jobs-in-malta-top-15-opening-jobs/">Top 15 Opening Jobs</a><a class="nav-item" href="/hospitality-jobs-in-malta">Hospitality Jobs</a><a class="nav-item" href="/customer-service-jobs-in-malta">Customer Service Jobs</a><a class="nav-item" href="https://outreachrecruitment.net/engineering-jobs-in-malta">Engineering Jobs</a><a class="nav-item" href="https://outreachrecruitment.net/manufacturing-jobs-in-malta">Manufacturing Jobs</a><a class="nav-item" href="https://outreachrecruitment.net/construction-jobs-in-malta">Construction Jobs</a></div></div><div class="w-layout-vflex nav-group"><div class="caption muted">Study in Malta</div><div class="nav-list"><a class="nav-item" href="https://consultation.outreachstudy.eu/">Study in Malta</a><a class="nav-item" href="https://consultation.outreachstudy.eu/">Programs</a><a class="nav-item" href="/webinar-study-in-malta.html">Register Webinar</a><a class="nav-item" href="/blog/">Study Guidance</a></div></div></div><div class="footer-newsletter" data-footer-job-alert></div></div><div class="footer-bottom" data-gsap-scroll="fade-late"><div class="footer-legal"><a class="small-link" href="/legal.html">Privacy Policy</a><a class="small-link" href="/legal.html#cookies">Cookies</a><a class="small-link" href="/sitemap.xml">Sitemap</a><a class="small-link" href="/style-guide.html">Style Guide</a></div><div class="footer-meta"><div class="text-small faint">© <a class="small-link" href="https://108.supply/?utm_source=people-work&amp;utm_medium=template&amp;utm_campaign=footer" target="_blank">108™</a> powered by <a class="small-link" href="https://webflow.com" target="_blank">Webflow</a> </div><div class="w-layout-hflex footer-social"><a aria-label="Instagram" class="w-inline-block" href="https://www.instagram.com/outreachrecruitment_agency" target="_blank"><div class="social-icon w-embed"><svg fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_50726_2100)"><path d="M7.99978 3.89156C5.73125 3.89156 3.89188 5.73128 3.89188 7.99978C3.89188 10.2688 5.73125 12.1077 7.99978 12.1077C10.2688 12.1077 12.1084 10.2688 12.1084 7.99978C12.1084 5.73128 10.2688 3.89156 7.99978 3.89156ZM7.99978 10.6665C6.52728 10.6665 5.33303 9.47266 5.33303 7.99978C5.33303 6.52694 6.52725 5.33306 7.99978 5.33306C9.47262 5.33306 10.6668 6.52694 10.6668 7.99978C10.6668 9.47262 9.47262 10.6665 7.99978 10.6665ZM13.2304 3.72947C13.2304 4.25922 12.8005 4.68913 12.2704 4.68913C11.7404 4.68913 11.3104 4.25922 11.3104 3.72947C11.3104 3.1995 11.7403 2.76947 12.2704 2.76947C12.8005 2.76947 13.2304 3.1995 13.2304 3.72947ZM15.58 2.75963C15.3755 2.23331 15.102 1.78737 14.6575 1.34256C13.7608 0.445219 12.534 0.104094 11.2986 0.0481563C10.4452 0.00871875 10.1728 0 7.99978 0C5.82756 0 5.55512 0.00871875 4.70169 0.0481563C3.46334 0.104219 2.23794 0.447469 1.34291 1.34253C0.444375 2.24106 0.104844 3.46409 0.0480312 4.70169C0.00915625 5.55512 0 5.82725 0 7.99978C0 10.1723 0.00915625 10.4449 0.0480312 11.2987C0.105094 12.5406 0.444031 13.759 1.34284 14.6571C2.24153 15.5551 3.46419 15.8952 4.70169 15.9518C5.55512 15.9908 5.82756 15.9997 7.99978 15.9997C10.1728 15.9997 10.4452 15.9908 11.2987 15.9518C12.539 15.895 13.7605 15.5547 14.6574 14.6571C15.5538 13.7602 15.8958 12.5335 15.9518 11.2986C15.9908 10.4449 16 10.1723 16 7.99975C16 5.82719 15.9908 5.55509 15.9518 4.70166C15.9132 3.84994 15.7779 3.26863 15.58 2.75963ZM14.5118 11.2325C14.4723 12.1014 14.2704 13.0052 13.6382 13.6382C12.9977 14.2796 12.1073 14.472 11.2329 14.5119C10.3891 14.5501 10.1364 14.5585 7.99978 14.5585C5.86391 14.5585 5.61122 14.5501 4.76734 14.5119C3.89078 14.4719 3.00181 14.2763 2.36178 13.6383C1.72359 13.0022 1.52719 12.1008 1.48809 11.2325C1.44987 10.3891 1.4415 10.1361 1.4415 7.99975C1.4415 5.86387 1.44991 5.61087 1.48809 4.767C1.52706 3.90209 1.73284 2.99166 2.36166 2.36178C2.99922 1.72316 3.89744 1.52775 4.76741 1.48806C5.61122 1.44953 5.86391 1.44147 7.99978 1.44147C10.1361 1.44147 10.3891 1.44953 11.233 1.48806C12.109 1.52803 12.9995 1.72278 13.6381 2.36166C14.2771 3.00084 14.4722 3.89569 14.5118 4.76706C14.5505 5.61087 14.5589 5.86387 14.5589 7.99978C14.5588 10.1361 14.5505 10.3891 14.5118 11.2325Z" fill="currentColor"></path></g></svg></div></a><a aria-label="Facebook" class="w-inline-block" href="https://www.facebook.com/outreachrecruit/" target="_blank"><div class="social-icon w-embed"><svg fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M16 8C16 11.9925 13.0706 15.3025 9.24669 15.9031V10.3276H11.1058L11.4596 8.02119H9.24669V6.52454C9.24669 5.89341 9.55587 5.27848 10.547 5.27848H11.5531V3.31494C11.5531 3.31494 10.6399 3.15911 9.76687 3.15911C7.94452 3.15911 6.75331 4.26367 6.75331 6.26336V8.02119H4.72744V10.3276H6.75331V15.9031C2.93003 15.3019 0 11.9922 0 8C0 3.58174 3.58174 0 8 0C12.4183 0 16 3.58174 16 8Z" fill="currentColor"></path></svg></div></a><a aria-label="LinkedIn" class="w-inline-block" href="https://www.linkedin.com/company/outreach-recruitment-agency/" target="_blank"><div class="social-icon w-embed"><svg fill="none" height="100%" style="" viewbox="0 0 16 16" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M13.2807 13.281H11.0582V9.80031C11.0582 8.97029 11.0434 7.90183 9.90225 7.90183C8.74467 7.90183 8.56758 8.80616 8.56758 9.73988V13.2808H6.34507V6.12306H8.47871V7.10123H8.50858C8.94365 6.35735 9.75257 5.91305 10.6137 5.945C12.8664 5.945 13.2817 7.42672 13.2817 9.35438L13.2807 13.281ZM3.83727 5.14464C3.12495 5.14478 2.5474 4.56739 2.54726 3.85508C2.54713 3.14273 3.1245 2.56517 3.83678 2.56503C4.54911 2.56489 5.12665 3.14228 5.12679 3.85459C5.12692 4.56694 4.54959 5.14454 3.83727 5.14464ZM4.94852 13.281H2.72369V6.12306H4.94852V13.281ZM14.3887 0.501033H1.60686C1.00277 0.494207 0.50738 0.978113 0.5 1.58222V14.4176C0.507137 15.022 1.00246 15.5064 1.60686 15.4999H14.3887C14.9944 15.5075 15.4916 15.0231 15.5 14.4176V1.58132C15.4914 0.976 14.994 0.492128 14.3887 0.500097V0.501033Z" fill="currentColor"></path></svg></div></a><a aria-label="TikTok" class="w-inline-block" href="https://www.tiktok.com/@outreachrecruitment" target="_blank"><div class="social-icon w-embed"><svg fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M13.06 3.56a3.22 3.22 0 0 1-2.51-2.83V0H8.3v9.11a1.93 1.93 0 0 1-1.92 1.67 1.93 1.93 0 0 1-1.93-1.93 1.93 1.93 0 0 1 1.93-1.92c.18 0 .36.03.52.07V4.67a4.22 4.22 0 0 0-.52-.03 4.23 4.23 0 0 0-4.22 4.22 4.23 4.23 0 0 0 4.22 4.23 4.23 4.23 0 0 0 4.22-4.23V5.79a5.45 5.45 0 0 0 3.18 1.01V4.5a3.23 3.23 0 0 1-.72-.94z"/></svg></div></a><a aria-label="X (Twitter)" class="w-inline-block" href="https://x.com/OutreachRecrt" target="_blank"><div class="social-icon w-embed"><svg fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M12.16 1.5h2.2L9.38 7.17l5.67 7.49h-4.16L7.74 10.3 4.2 14.66H2l5.24-5.99L1.67 1.5h4.27l2.84 3.75 3.38-3.75zm-.77 11.67h1.22L4.7 2.75H3.39l8 10.42z"/></svg></div></a><a aria-label="YouTube" class="w-inline-block" href="https://www.youtube.com/@outreachrecruitmentagency" target="_blank"><div class="social-icon w-embed"><svg fill="none" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M8 2.36328C8 2.36328 13.003 2.36324 14.251 2.69971C14.9394 2.88492 15.4815 3.43067 15.6655 4.12354C15.9984 5.37402 16 7.97719 16 7.99951C16 7.99951 15.9999 10.6201 15.6655 11.876C15.4815 12.5688 14.9393 13.1141 14.251 13.2993C13.0031 13.6358 8 13.6362 8 13.6362C8 13.6362 2.99687 13.6358 1.74902 13.2993C1.06069 13.1141 0.518527 12.5688 0.334473 11.876C0.000128895 10.6201 0 7.99951 0 7.99951C6.13225e-06 7.97719 0.00156385 5.37402 0.334473 4.12354C0.51848 3.43067 1.06063 2.88489 1.74902 2.69971C2.99699 2.36324 8 2.36328 8 2.36328ZM6.36377 10.3789L10.5454 7.99951L6.36377 5.62061V10.3789Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></a></div></div></div></div></div></div></footer><div class="_108-bar"><div class="_108-bar-wrapper main"><a class="_108-bar-logo-wrap w-inline-block" href="https://108.supply/?utm_source=people-work&amp;utm_medium=bar&amp;utm_campaign=logo" target="_blank"><div class="_108-bar-logo w-embed"><svg fill="none" height="100%" style="" viewbox="0 0 55 16" width="100%" xmlns="http://www.w3.org/2000/svg">
 <path d="M53.8641 15.5L52.9783 13.5H53.337L53.9565 14.9674L54.5761 13.5H54.9348L54.0489 15.5H53.8641ZM52.913 15.5V13.5H53.2609V15.5H52.913ZM54.6522 15.5V13.5H55V15.5H54.6522ZM51.6087 15.5V13.6739H51.9565V15.5H51.6087ZM51 13.8043V13.5H52.5652V13.8043H51Z" fill="currentColor"></path>
@@ -907,31 +943,42 @@ gsap.fromTo('[data-marquee="right"]',
     });
   });
 
-  // Newsletter: email first, then name + country (required by the subscriber list)
+  // Newsletter: same list as the footer job-alert form (email + country). The list needs a name, so
+  // newsletter sign-ups are stored as "Newsletter subscriber".
   var codes = "AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI CV KH CM CA CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI KP KR KW KG LA LV LB LS LR LY LI LT LU MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG MK NO OM PK PW PS PA PG PY PE PH PL PT QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW XK".split(' ');
   var names = window.Intl && Intl.DisplayNames ? new Intl.DisplayNames(['en'], { type: 'region' }) : null;
   var countries = codes.map(function (c) { return [c, c === 'XK' ? 'Kosovo' : names ? names.of(c) : c]; }).sort(function (a, b) { return a[1].localeCompare(b[1]); });
-  var sel = document.getElementById('nu-country');
-  countries.forEach(function (c) { var o = document.createElement('option'); o.value = c[0]; o.textContent = c[1]; sel.appendChild(o); });
-  var form = document.getElementById('nu-form'), step2 = document.getElementById('nu-step2'), status = document.getElementById('nu-status'), btn = document.getElementById('nu-submit');
+  document.getElementById('nu-countries').innerHTML = countries.map(function (c) { return '<option value="' + c[1].replace(/"/g, '&quot;') + '"></option>'; }).join('');
+  function countryOf(v) { v = (v || '').trim().toLowerCase(); return countries.find(function (c) { return c[1].toLowerCase() === v || c[0].toLowerCase() === v; }); }
+  var form = document.getElementById('nu-form'), status = document.getElementById('nu-status'), btn = document.getElementById('nu-submit');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (form.elements.website.value) return;
-    if (step2.hidden) {
-      if (!form.elements.email.reportValidity()) return;
-      step2.hidden = false; step2.querySelectorAll('input, select').forEach(function (el) { el.required = el.type !== 'hidden'; });
-      btn.querySelector('span').textContent = 'Confirm'; form.elements.full_name.focus(); return;
-    }
-    if (!form.reportValidity()) return;
+    var match = countryOf(form.elements.country.value);
+    form.elements.country.setCustomValidity(match ? '' : 'Please choose a country from the suggestions.');
+    if (!form.reportValidity() || form.elements.website.value) return;
     if (!window.OutreachJobAlerts) { status.textContent = 'The newsletter is unavailable right now. Please try again shortly.'; status.className = 'nu-status is-error'; return; }
-    var c = countries.find(function (x) { return x[0] === sel.value; });
-    btn.disabled = true; status.textContent = 'Subscribing…'; status.className = 'nu-status';
-    window.OutreachJobAlerts.subscribe({ email: form.elements.email.value.trim(), fullName: form.elements.full_name.value.trim(), countryCode: c[0], countryName: c[1],
-      sourceType: 'footer_signup', sourceJob: 'News & Updates newsletter', sourceUrl: location.href.split('#')[0], jobCategory: 'Newsletter: ' + form.elements.interest.value })
+    var email = form.elements.email.value.trim();
+    btn.disabled = true; btn.querySelector('span').textContent = 'Subscribing…'; status.textContent = ''; status.className = 'nu-status';
+    window.OutreachJobAlerts.subscribe({ email: email, fullName: 'Newsletter subscriber', countryCode: match[0], countryName: match[1],
+      sourceType: 'footer_signup', sourceJob: 'News & Updates newsletter', sourceUrl: location.href.split('#')[0], jobCategory: 'News & Updates newsletter' })
       .then(function (r) {
-        form.innerHTML = '<p class="nu-check">' + "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"#fff\"/><path d=\"m7.5 12.3 3 3 6-6.3\" fill=\"none\" stroke=\"#121212\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>" + (r && r.already_subscribed ? 'You are already subscribed — thank you!' : 'Thank you — you are subscribed!') + '</p>';
-      }).catch(function (err) { btn.disabled = false; status.textContent = err.message || 'We could not save your subscription. Please try again.'; status.className = 'nu-status is-error'; });
+        form.innerHTML = '<p class="nu-check">' + "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\" fill=\"#fff\"/><path d=\"m7.5 12.3 3 3 6-6.3\" fill=\"none\" stroke=\"#121212\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>" + (r && r.already_subscribed ? 'This email is already subscribed — thank you!' : r && r.reactivated ? 'Welcome back — you are subscribed again.' : 'Thank you — you are subscribed!') + '</p>';
+      }).catch(function (err) { btn.disabled = false; btn.querySelector('span').textContent = 'Subscribe'; status.textContent = err.message || 'We could not save your subscription. Please try again.'; status.className = 'nu-status is-error'; });
   });
+  form.elements.country.addEventListener('input', function () { form.elements.country.setCustomValidity(''); });
+
+  // Jobs banners: count up the open-jobs number when the banner scrolls into view
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return; io.unobserve(en.target);
+        var el = en.target, end = +el.dataset.count, t0 = null;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = end; return; }
+        requestAnimationFrame(function step(t) { t0 = t0 || t; var k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); });
+      });
+    });
+    document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = '0'; io.observe(el); });
+  }
 })();
 </script>
 </body></html>

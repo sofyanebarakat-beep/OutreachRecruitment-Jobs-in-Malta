@@ -154,12 +154,43 @@ ICONS = {
 }
 
 
+JOBS_BANNERS: dict[str, str] = {}
+
+
+def open_jobs() -> list[dict]:
+    reg = json.loads((ROOT / "tools" / "jobs_registry.json").read_text(encoding="utf-8"))
+    jobs = [j for j in reg if j.get("status") not in ("closed", "expired")]
+    jobs.sort(key=lambda j: (not j.get("featured"), j.get("date", "")), reverse=False)
+    jobs.sort(key=lambda j: j.get("date", ""), reverse=True)
+    return jobs
+
+
+def jobs_banner(kind: str, jobs: list[dict], reverse: bool = False) -> str:
+    """Animated house banner promoting /jobs/: open-jobs count + scrolling job titles + button."""
+    seen, chips = set(), []
+    for j in jobs:
+        t = re.sub(r"\s*\(.*?\)", "", j["title"]).strip()
+        if t.lower() not in seen:
+            seen.add(t.lower()); chips.append(t)
+        if len(chips) == 14:
+            break
+    if reverse:
+        chips = chips[::-1]
+    row = "".join(f"<span>{E(c)}</span>" for c in chips)
+    count = len(jobs)
+    return f"""<a class="nu-jobs nu-jobs-{kind}" href="/jobs/" aria-label="View {count} open jobs in Malta">
+  <div class="nu-jobs-text"><span class="nu-jobs-count"><b data-count="{count}">{count}</b> open jobs</span><strong>Find your next job in Malta</strong></div>
+  <div class="nu-jobs-ticker" aria-hidden="true"><div class="nu-jobs-track{' rev' if reverse else ''}">{row}{row}</div></div>
+  <span class="nu-btn accent nu-jobs-btn">View jobs{ARROW}</span>
+</a>"""
+
+
 def ad(slot: dict, size: str, cls: str) -> str:
     """An ad slot: a real banner when image+link are set in tools/news_page.json, otherwise the placeholder."""
     if slot.get("image") and slot.get("link"):
         return (f'<a class="nu-ad {cls} has-banner" href="{E(slot["link"])}"><img src="{E(slot["image"])}" '
                 f'alt="{E(slot.get("alt", "Advertisement"))}" loading="lazy"></a>')
-    return f'<div class="nu-ad {cls}" aria-label="Advertising space"><span>Ad space</span><small>{size}</small></div>'
+    return JOBS_BANNERS[cls]
 
 
 CSS = """<style id="news-page-style">
@@ -235,6 +266,31 @@ body { background: #fff; }
 .nu-ad-box { aspect-ratio: 1; width: 100%; }
 .nu-ad.has-banner::before { display: none; }
 .nu-ad.has-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Animated jobs banners */
+.nu-jobs { position: relative; display: grid; align-items: center; gap: 1.5rem 2rem; overflow: hidden; isolation: isolate; color: #fff !important;
+  background: linear-gradient(120deg, #2a17c9, #442DFA 45%, #6b55ff); text-decoration: none; }
+.nu-jobs::before { content: ""; position: absolute; inset: -40% -10%; z-index: -1; opacity: .35;
+  background: radial-gradient(closest-side, rgba(255,255,255,.55), transparent 70%) 0 0 / 40% 120% no-repeat; animation: nu-sheen 7s ease-in-out infinite; }
+@keyframes nu-sheen { 0% { background-position: -40% 50%; } 50% { background-position: 140% 50%; } 100% { background-position: -40% 50%; } }
+.nu-jobs-wide { grid-template-columns: auto minmax(0, 1fr) auto; min-height: 152px; padding: 1.5rem 2rem; margin: 5rem 0; border-radius: 24px; }
+.nu-jobs-box { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding: 1.75rem 1.5rem; border-radius: 24px; }
+.nu-jobs-text { display: flex; flex-direction: column; gap: .35rem; }
+.nu-jobs strong, .nu-jobs-count, .nu-jobs-count b { color: #fff !important; }
+.nu-jobs-count { font-size: .8rem; font-weight: 600; letter-spacing: 1.25px; text-transform: uppercase; opacity: .9; }
+.nu-jobs-count b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.nu-jobs strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: 1.05; letter-spacing: -.5px; }
+.nu-jobs-box strong { font-size: 2rem; }
+.nu-jobs-box .nu-jobs-count b { display: block; font-family: var(--serif); font-size: 4.5rem; line-height: 1; font-weight: 400; letter-spacing: -1px; text-transform: none; }
+.nu-jobs-ticker { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.nu-jobs-track { display: flex; gap: .6rem; width: max-content; animation: nu-ticker 38s linear infinite; }
+.nu-jobs-track.rev { animation-direction: reverse; }
+.nu-jobs:hover .nu-jobs-track { animation-play-state: paused; }
+.nu-jobs-track span { padding: .5rem .9rem; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); font-size: .9rem; font-weight: 500; white-space: nowrap; }
+@keyframes nu-ticker { to { transform: translateX(-50%); } }
+.nu-jobs-btn.nu-btn.accent { background: #fff; color: var(--brand) !important; }
+.nu-jobs-btn.nu-btn.accent .nu-arrow { background: var(--brand); color: #fff; }
+.nu-jobs:hover .nu-jobs-btn .nu-arrow svg { animation: nu-arrow .5s ease; }
+.nu-jobs-box .nu-jobs-btn { justify-self: start; }
 /* Sidebar + latest */
 .nu-split { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 0; }
 .nu-side { padding-right: 3.5rem; border-right: 1px solid var(--line); }
@@ -269,23 +325,24 @@ body { background: #fff; }
 /* Newsletter */
 .nu-news { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; background: #121212;
   color: #fff; overflow: hidden; margin: 6rem 0; min-height: 480px; scroll-margin-top: 120px; }
-.nu-news-img { align-self: center; padding: 3rem 1rem 3rem 3rem; }
+.nu-news-img { align-self: stretch; display: flex; align-items: center; justify-content: center; background: #262626; padding: 3rem 2.5rem; }
 .nu-news-img img { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
-.nu-news-body { padding: 4rem 3.5rem 4rem 1rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.nu-news-body { padding: 4rem 3.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
 .nu-news h2 { color: #fff; font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .nu-news p { margin: 0; color: rgba(255,255,255,.82); line-height: 1.7; }
-.nu-form { display: flex; flex-direction: column; gap: .8rem; margin-top: .6rem; max-width: 500px; }
-.nu-pill { display: flex; align-items: center; background: #fff; border-radius: 999px; padding: .35rem .35rem .35rem 1.4rem; }
-.nu-pill input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: var(--ink); height: 50px; outline: none; }
-.nu-pill .nu-btn { height: 48px; padding: 0 5px 0 18px; border-radius: 999px; font-size: .95rem; }
-.nu-pill .nu-arrow { width: 38px; height: 38px; border-radius: 999px; }
-.nu-step2 { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
-.nu-step2[hidden] { display: none; }
-.nu-step2 input, .nu-step2 select { width: 100%; height: 50px; border-radius: 999px; border: 0; padding: 0 1.2rem; font: inherit; background: #fff; color: var(--ink); }
-.nu-step2 .nu-full { grid-column: 1 / -1; }
-.nu-consent { display: flex; gap: .6rem; align-items: flex-start; font-size: .85rem; color: rgba(255,255,255,.75); line-height: 1.5; }
-.nu-consent { font-weight: 400; cursor: pointer; }
-.nu-step2 .nu-consent input { width: 18px; height: 18px; min-width: 18px; padding: 0; margin: .15rem 0 0; border-radius: 4px; accent-color: var(--brand); }
+.nu-form { display: flex; flex-direction: column; gap: 1rem; margin-top: .6rem; max-width: 560px; }
+.nu-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.nu-form label { display: grid; align-content: start; gap: .4rem; color: #fff; font-size: .8rem; font-weight: 700; }
+.nu-form input[type=email], .nu-form input[type=search] { width: 100%; height: 50px; box-sizing: border-box; padding: .7rem .9rem; border: 1px solid rgba(255,255,255,.2);
+  border-radius: 12px; background: #fff; color: var(--ink); font: inherit; font-weight: 400; }
+.nu-form input::placeholder { color: #6f6a86; opacity: 1; }
+.nu-form input:focus { outline: 3px solid rgba(143,130,255,.45); border-color: #8f82ff; }
+.nu-form label small { color: rgba(255,255,255,.62); font-size: .72rem; font-weight: 500; }
+.nu-consent { display: flex !important; flex-direction: row; align-items: flex-start; gap: .6rem; font-size: .85rem !important; font-weight: 400 !important;
+  color: rgba(255,255,255,.78) !important; line-height: 1.5; cursor: pointer; }
+.nu-consent input { width: 18px; height: 18px; min-width: 18px; margin: .15rem 0 0; accent-color: #8f82ff; }
+.nu-submit { align-self: flex-start; }
+.nu-submit:disabled { opacity: .7; cursor: wait; }
 .nu-status { min-height: 1.2em; font-size: .92rem; margin: 0; }
 .nu-status.is-error { color: #ff8a8a; }
 .nu-status.is-ok { color: #9ff0b5; }
@@ -324,10 +381,10 @@ body { background: #fff; }
   .nu-side-ad { display: none; }
   .nu-latest { padding-left: 0; }
   .nu-news { grid-template-columns: minmax(0, 1fr); }
-  .nu-news-img { order: 2; padding: 1rem 2rem 2.5rem; }
+  .nu-news-img { order: 2; padding: 2.5rem 2rem; }
   .nu-news-img img { max-width: 420px; }
   .nu-follow { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; border-bottom: 0; padding-bottom: 0; }
-  .nu-news-body { padding: 3rem 2rem 1rem; }
+  .nu-news-body { padding: 3rem 2rem; }
   .nu-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nu-guide-grid { grid-template-columns: minmax(0, 1fr); }
 }
@@ -343,14 +400,15 @@ body { background: #fff; }
   .nu-hcard p { display: none; }
   .nu-grid, .nu-panel { grid-template-columns: minmax(0, 1fr); }
   .nu-ad-wide { min-height: 110px; margin: 3.5rem 0; }
-  .nu-step2 { grid-template-columns: minmax(0, 1fr); }
-  .nu-pill .nu-btn span { display: none; }
-  .nu-pill .nu-btn { padding: 0 5px; }
+  .nu-jobs-wide { grid-template-columns: minmax(0, 1fr); margin: 3.5rem 0; padding: 1.75rem 1.5rem; }
+  .nu-jobs-wide .nu-jobs-btn { justify-self: start; }
+  .nu-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .nu-submit { align-self: stretch; }
   .nu-guide { min-height: 440px; }
   .nu-guide-body { padding: 1.75rem; }
   .nu-guide-icon { top: 1.75rem; left: 1.75rem; }
 }
-@media (prefers-reduced-motion: reduce) { .nu * { transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .nu *, .nu *::before { transition: none !important; animation: none !important; } }
 </style>"""
 
 ARROW_RAW = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -401,31 +459,42 @@ SCRIPT = """<script id="news-page-script">
     });
   });
 
-  // Newsletter: email first, then name + country (required by the subscriber list)
+  // Newsletter: same list as the footer job-alert form (email + country). The list needs a name, so
+  // newsletter sign-ups are stored as "Newsletter subscriber".
   var codes = %(codes)s.split(' ');
   var names = window.Intl && Intl.DisplayNames ? new Intl.DisplayNames(['en'], { type: 'region' }) : null;
   var countries = codes.map(function (c) { return [c, c === 'XK' ? 'Kosovo' : names ? names.of(c) : c]; }).sort(function (a, b) { return a[1].localeCompare(b[1]); });
-  var sel = document.getElementById('nu-country');
-  countries.forEach(function (c) { var o = document.createElement('option'); o.value = c[0]; o.textContent = c[1]; sel.appendChild(o); });
-  var form = document.getElementById('nu-form'), step2 = document.getElementById('nu-step2'), status = document.getElementById('nu-status'), btn = document.getElementById('nu-submit');
+  document.getElementById('nu-countries').innerHTML = countries.map(function (c) { return '<option value="' + c[1].replace(/"/g, '&quot;') + '"></option>'; }).join('');
+  function countryOf(v) { v = (v || '').trim().toLowerCase(); return countries.find(function (c) { return c[1].toLowerCase() === v || c[0].toLowerCase() === v; }); }
+  var form = document.getElementById('nu-form'), status = document.getElementById('nu-status'), btn = document.getElementById('nu-submit');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (form.elements.website.value) return;
-    if (step2.hidden) {
-      if (!form.elements.email.reportValidity()) return;
-      step2.hidden = false; step2.querySelectorAll('input, select').forEach(function (el) { el.required = el.type !== 'hidden'; });
-      btn.querySelector('span').textContent = 'Confirm'; form.elements.full_name.focus(); return;
-    }
-    if (!form.reportValidity()) return;
+    var match = countryOf(form.elements.country.value);
+    form.elements.country.setCustomValidity(match ? '' : 'Please choose a country from the suggestions.');
+    if (!form.reportValidity() || form.elements.website.value) return;
     if (!window.OutreachJobAlerts) { status.textContent = 'The newsletter is unavailable right now. Please try again shortly.'; status.className = 'nu-status is-error'; return; }
-    var c = countries.find(function (x) { return x[0] === sel.value; });
-    btn.disabled = true; status.textContent = 'Subscribing…'; status.className = 'nu-status';
-    window.OutreachJobAlerts.subscribe({ email: form.elements.email.value.trim(), fullName: form.elements.full_name.value.trim(), countryCode: c[0], countryName: c[1],
-      sourceType: 'footer_signup', sourceJob: 'News & Updates newsletter', sourceUrl: location.href.split('#')[0], jobCategory: 'Newsletter: ' + form.elements.interest.value })
+    var email = form.elements.email.value.trim();
+    btn.disabled = true; btn.querySelector('span').textContent = 'Subscribing…'; status.textContent = ''; status.className = 'nu-status';
+    window.OutreachJobAlerts.subscribe({ email: email, fullName: 'Newsletter subscriber', countryCode: match[0], countryName: match[1],
+      sourceType: 'footer_signup', sourceJob: 'News & Updates newsletter', sourceUrl: location.href.split('#')[0], jobCategory: 'News & Updates newsletter' })
       .then(function (r) {
-        form.innerHTML = '<p class="nu-check">' + %(check)s + (r && r.already_subscribed ? 'You are already subscribed — thank you!' : 'Thank you — you are subscribed!') + '</p>';
-      }).catch(function (err) { btn.disabled = false; status.textContent = err.message || 'We could not save your subscription. Please try again.'; status.className = 'nu-status is-error'; });
+        form.innerHTML = '<p class="nu-check">' + %(check)s + (r && r.already_subscribed ? 'This email is already subscribed — thank you!' : r && r.reactivated ? 'Welcome back — you are subscribed again.' : 'Thank you — you are subscribed!') + '</p>';
+      }).catch(function (err) { btn.disabled = false; btn.querySelector('span').textContent = 'Subscribe'; status.textContent = err.message || 'We could not save your subscription. Please try again.'; status.className = 'nu-status is-error'; });
   });
+  form.elements.country.addEventListener('input', function () { form.elements.country.setCustomValidity(''); });
+
+  // Jobs banners: count up the open-jobs number when the banner scrolls into view
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return; io.unobserve(en.target);
+        var el = en.target, end = +el.dataset.count, t0 = null;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = end; return; }
+        requestAnimationFrame(function step(t) { t0 = t0 || t; var k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); });
+      });
+    });
+    document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = '0'; io.observe(el); });
+  }
 })();
 </script>"""
 
@@ -445,6 +514,9 @@ def main() -> None:
     trending = pick("trending", [a for a in arts if a is not featured][:2])[:2]
     guides = pick("guides", [next(a for a in arts if a["cats"][0] == c and a is not featured) for c in ("Study in Malta", "Employers")])[:2]
     ads = settings.get("ads", {})
+    jobs = open_jobs()
+    JOBS_BANNERS["nu-ad-wide"] = jobs_banner("wide", jobs)
+    JOBS_BANNERS["nu-ad-box"] = jobs_banner("box", jobs, reverse=True)
 
     s = (ROOT / "about.html").read_text(encoding="utf-8")
     title = "News & Updates | Outreach Recruitment Malta"
@@ -532,18 +604,15 @@ def main() -> None:
         <h2 id="nu-news-title">Subscribe to our newsletter to receive our latest news &amp; updates</h2>
         <p>New jobs, hiring advice and Study in Malta updates — straight to your inbox. No spam, unsubscribe anytime.</p>
         <form class="nu-form" id="nu-form" novalidate>
-          <div class="nu-pill"><input name="email" type="email" placeholder="Enter your email address" autocomplete="email" maxlength="254" required aria-label="Email address">
-            <button class="nu-btn accent" id="nu-submit" type="submit"><span>Subscribe</span>{ARROW}</button></div>
-          <div class="nu-step2" id="nu-step2" hidden>
-            <input name="full_name" type="text" placeholder="Full name" autocomplete="name" maxlength="120" aria-label="Full name">
-            <select id="nu-country" name="country" aria-label="Country of residence"><option value="">Country of residence</option></select>
-            <select class="nu-full" name="interest" aria-label="I am interested in">
-              <option value="Candidates">I'm looking for a job in Malta</option><option value="Employers">I'm an employer hiring in Malta</option>
-              <option value="Study in Malta">I want to study in Malta</option></select>
-            <label class="nu-consent nu-full"><input type="checkbox" name="consent">I agree to receive emails from Outreach Recruitment. I can unsubscribe at any time.</label>
+          <div class="nu-form-grid">
+            <label><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
+            <label><span>Current country of residence</span><input name="country" type="search" list="nu-countries" autocomplete="country-name" placeholder="Type to search countries" required>
+              <datalist id="nu-countries"></datalist><small>Start typing, then choose your country.</small></label>
           </div>
+          <label class="nu-consent"><input name="consent" type="checkbox" required><span>I agree to receive news, updates and relevant job alerts from Outreach Recruitment. I can unsubscribe at any time.</span></label>
           <input name="website" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <p class="nu-status" id="nu-status" role="status"></p>
+          <button class="nu-btn accent nu-submit" id="nu-submit" type="submit"><span>Subscribe</span>{ARROW}</button>
+          <p class="nu-status" id="nu-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -561,7 +630,7 @@ def main() -> None:
       <div class="nu-center"><a class="nu-btn accent" href="#latest" data-filter="all" data-scroll>Explore all articles{ARROW}</a></div>
     </div>
   </section>
-  <div class="nu-wrap">{ad(ads.get("bottom", {}), "728 x 90 px", "nu-ad-wide")}</div>
+  <div class="nu-wrap">{ad(ads.get("bottom", {}), "728 x 90 px", "nu-ad-wide").replace('nu-jobs-track"', 'nu-jobs-track rev"')}</div>
 </div>
 """
     a = s.index('<main class="main">') + len('<main class="main">')
