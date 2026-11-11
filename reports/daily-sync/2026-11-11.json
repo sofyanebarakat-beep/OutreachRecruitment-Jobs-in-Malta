@@ -8,7 +8,7 @@
   "held": [],
   "notes": [],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 124,
   "site_open_before": 124,
@@ -37,5 +37,152 @@
   "salary_coverage": {
     "open": 124,
     "with_salary": 28
+  },
+  "google": {
+    "sent": 0,
+    "ok": 0
+  },
+  "live": {
+    "count": 124,
+    "expected": 124,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 13,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Chef de Partie (Breakfast)",
+        "slug": "chef-de-partie-breakfast",
+        "url": "https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/",
+        "age_days": 2,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Service Delivery Manager",
+        "slug": "service-delivery-manager",
+        "url": "https://outreachrecruitment.net/jobs/service-delivery-manager/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Workshop Team Leader",
+        "slug": "workshop-team-leader",
+        "url": "https://outreachrecruitment.net/jobs/workshop-team-leader/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Aftersales Administrator",
+        "slug": "aftersales-administrator",
+        "url": "https://outreachrecruitment.net/jobs/aftersales-administrator/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Senior Technician",
+        "slug": "senior-technician",
+        "url": "https://outreachrecruitment.net/jobs/senior-technician/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Accounts Clerk",
+        "slug": "accounts-clerk",
+        "url": "https://outreachrecruitment.net/jobs/accounts-clerk/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Sales Manager",
+        "slug": "sales-manager-gzira",
+        "url": "https://outreachrecruitment.net/jobs/sales-manager-gzira/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Senior Corporate Administrator",
+        "slug": "senior-corporate-administrator",
+        "url": "https://outreachrecruitment.net/jobs/senior-corporate-administrator/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Hotel General Manager",
+        "slug": "hotel-general-manager",
+        "url": "https://outreachrecruitment.net/jobs/hotel-general-manager/",
+        "age_days": 7,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Aftersales Receptionist",
+        "slug": "aftersales-receptionist",
+        "url": "https://outreachrecruitment.net/jobs/aftersales-receptionist/",
+        "age_days": 12,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Warranty Administrator",
+        "slug": "warranty-administrator",
+        "url": "https://outreachrecruitment.net/jobs/warranty-administrator/",
+        "age_days": 12,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Back Office Administrator",
+        "slug": "back-office-administrator",
+        "url": "https://outreachrecruitment.net/jobs/back-office-administrator/",
+        "age_days": 12,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Leasing Administration Officer",
+        "slug": "leasing-administration-officer",
+        "url": "https://outreachrecruitment.net/jobs/leasing-administration-officer/",
+        "age_days": 12,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      }
+    ],
+    "error": ""
   }
 }
