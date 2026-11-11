@@ -165,42 +165,49 @@ def ad(slot: dict, size: str, cls: str) -> str:
 CSS = """<style id="news-page-style">
 /* Header stays fixed and visible (the theme hides it while scrolling) */
 .navigation.w-nav { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 1000;
-  transform: none !important; translate: none !important; opacity: 1 !important; }
+  transform: none !important; translate: none !important; opacity: 1 !important;
+  background: #fff !important; padding-top: 0 !important; box-shadow: 0 1px 0 #ececec; }
 body { background: #fff; }
-.nu { --ink: #121212; --muted: #6b6b6b; --line: #e9e9e9; --soft: #f5f5f5; --brand: #442DFA;
+.nu { --ink: #1c2623; --muted: rgba(28, 38, 35, .64); --serif: var(--_🅰-typography---font-family--heading, "Libre Caslon Condensed", "Times New Roman", serif); --line: #e9e9e9; --soft: #f5f5f5; --brand: #442DFA;
   font-family: var(--_🅰-typography---font-family--body, "BDO Grotesk", Arial, sans-serif); color: var(--ink);
   padding: 9.5rem 0 5rem; background: #fff; }
 .nu-wrap { width: min(1240px, 100% - 32px); margin: 0 auto; }
-.nu h1, .nu h2, .nu h3 { font-family: inherit; color: var(--ink); letter-spacing: -.02em; margin: 0; }
+.nu h1, .nu h2, .nu h3 { font-family: var(--serif); font-weight: 400 !important; color: var(--ink); letter-spacing: -.5px; line-height: 1.08; margin: 0; }
 .nu a { color: inherit; text-decoration: none; }
-.nu-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 52px; padding: 0 1.6rem;
-  border-radius: 999px; font-weight: 600; font-size: 1rem; border: 1px solid var(--ink); cursor: pointer; transition: transform .25s ease, background .25s ease, color .25s ease; font-family: inherit; }
-.nu-btn:hover { transform: translateY(-2px); }
-.nu-btn.dark { background: var(--ink); color: #fff !important; }
-.nu-btn.dark:hover { background: var(--brand); border-color: var(--brand); }
-.nu-btn.outline { background: #fff; color: var(--ink); }
-.nu-btn.outline:hover { background: var(--ink); color: #fff !important; }
-.nu-badge { display: inline-flex; align-items: center; padding: .35rem .75rem; border-radius: 999px; background: var(--soft);
-  font-size: .85rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.nu-btn { display: inline-flex; align-items: center; justify-content: space-between; gap: .9rem; height: 56px; padding: 0 8px 0 22px;
+  border-radius: 20px; border: 0; font-family: inherit; font-weight: 600; font-size: 1rem; line-height: 1; cursor: pointer; white-space: nowrap;
+  text-decoration: none; transition: background .25s ease, color .25s ease; }
+.nu-arrow { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 16px; background: var(--brand); color: #fff; overflow: hidden; }
+.nu-arrow svg { width: 18px; height: 18px; }
+.nu-arrow.back { transform: scaleX(-1); }
+#nu-prev { padding: 0 22px 0 8px; }
+.nu-btn:hover .nu-arrow svg { animation: nu-arrow .5s ease; }
+@keyframes nu-arrow { 0% { transform: none; } 45% { transform: translateX(150%); } 46% { transform: translateX(-150%); } 100% { transform: none; } }
+.nu-btn.light { background: #ECEAE1; color: #2c2d2d !important; }
+.nu-btn.light:hover { background: #e1ddd0; }
+.nu-btn.accent { background: var(--brand); color: #fff !important; }
+.nu-btn.accent .nu-arrow { background: #fff; color: var(--brand); }
+.nu-btn.accent:hover { background: #3420d9; }
+.nu-badge { display: inline-flex; align-items: center; padding: .5rem .75rem; border-radius: 200px; background: var(--brand);
+  font-size: .75rem; line-height: 1; font-weight: 600; letter-spacing: 1.25px; text-transform: uppercase; color: #fff; white-space: nowrap; }
 .nu-meta { display: flex; align-items: center; gap: .6rem; color: var(--muted); font-size: .9rem; font-weight: 500; flex-wrap: wrap; }
 /* Title row */
 .nu-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.nu-head h1 { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; line-height: 1.05; }
+.nu-head h1 { font-size: clamp(2.75rem, 5vw, 4.25rem); }
 .nu-head-btns { display: flex; gap: .9rem; flex-wrap: wrap; }
 .nu-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin: 0 0 2.25rem; padding: 0; list-style: none; }
 .nu-chip { display: inline-flex; padding: .55rem 1.05rem; border-radius: 999px; background: var(--soft); font-weight: 600; font-size: .95rem;
   border: 0; cursor: pointer; font-family: inherit; color: var(--ink); transition: background .2s ease, color .2s ease; }
 .nu-chip:hover { background: #e6e6e6; }
-.nu-chip.is-active { background: var(--ink); color: #fff; }
+.nu-chip.is-active { background: var(--brand); color: #fff; }
 /* Featured */
 .nu-featured { position: relative; display: flex; align-items: center; min-height: 460px; overflow: hidden; background: #222; isolation: isolate; }
 .nu-featured img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s ease; }
 .nu-featured::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10,10,10,.82) 0%, rgba(10,10,10,.55) 45%, rgba(10,10,10,.08) 100%); }
 .nu-featured:hover img { transform: scale(1.03); }
 .nu-featured-body { padding: clamp(1.75rem, 5vw, 4.5rem); max-width: 620px; color: #fff; display: flex; flex-direction: column; gap: 1rem; }
-.nu-featured .nu-badge { background: #fff; }
 .nu-featured .nu-meta { color: #fff; }
-.nu-featured h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.2; }
+.nu-featured h2 { color: #fff; font-size: clamp(2rem, 3.6vw, 2.9rem); }
 .nu-featured p { margin: 0; color: rgba(255,255,255,.88); line-height: 1.65; }
 .nu-author { display: flex; align-items: center; gap: .6rem; font-weight: 600; }
 .nu-author span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; }
@@ -213,7 +220,7 @@ body { background: #fff; }
 .nu-hcard-img { display: block; aspect-ratio: 11 / 10; overflow: hidden; background: var(--soft); }
 .nu-hcard-img img, .nu-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
 .nu-hcard:hover img, .nu-card:hover .nu-card-img img { transform: scale(1.05); }
-.nu-hcard h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.35; margin-bottom: .6rem; }
+.nu-hcard h3 { font-size: 1.6rem; margin-bottom: .6rem; }
 .nu-hcard p { margin: 0 0 .9rem; color: var(--muted); line-height: 1.65; }
 .nu-dot { width: 4px; height: 4px; border-radius: 50%; background: #b5b5b5; }
 /* Ads */
@@ -246,13 +253,13 @@ body { background: #fff; }
 .nu-follow svg { width: 17px; height: 17px; }
 .nu-latest { padding-left: 4rem; min-width: 0; }
 .nu-latest-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.nu-latest-head h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 700; }
+.nu-latest-head h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); }
 .nu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2.25rem; }
 .nu-card { display: flex; flex-direction: column; gap: 1rem; }
 .nu-grid .nu-card { padding-bottom: 3rem; border-bottom: 1px solid var(--line); }
 .nu-card[hidden] { display: none; }
 .nu-card-img { display: block; aspect-ratio: 39 / 20; overflow: hidden; background: var(--soft); }
-.nu-card-title { font-size: 1.25rem; font-weight: 700; line-height: 1.35; }
+.nu-card-title { font-size: 1.65rem; line-height: 1.12; }
 .nu-card-title a:hover, .nu-hcard h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nu-card-text { margin: 0; color: var(--muted); line-height: 1.65; }
 .nu-empty { color: var(--muted); padding: 2rem 0; }
@@ -265,13 +272,13 @@ body { background: #fff; }
 .nu-news-img { align-self: center; padding: 3rem 1rem 3rem 3rem; }
 .nu-news-img img { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
 .nu-news-body { padding: 4rem 3.5rem 4rem 1rem; display: flex; flex-direction: column; gap: 1.1rem; }
-.nu-news h2 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.15; }
+.nu-news h2 { color: #fff; font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .nu-news p { margin: 0; color: rgba(255,255,255,.82); line-height: 1.7; }
 .nu-form { display: flex; flex-direction: column; gap: .8rem; margin-top: .6rem; max-width: 500px; }
 .nu-pill { display: flex; align-items: center; background: #fff; border-radius: 999px; padding: .35rem .35rem .35rem 1.4rem; }
 .nu-pill input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: var(--ink); height: 50px; outline: none; }
-.nu-pill .nu-btn { min-height: 46px; padding: 0 1.3rem; font-size: .95rem; white-space: nowrap; }
-.nu-pill .nu-btn svg { width: 16px; height: 16px; }
+.nu-pill .nu-btn { height: 48px; padding: 0 5px 0 18px; border-radius: 999px; font-size: .95rem; }
+.nu-pill .nu-arrow { width: 38px; height: 38px; border-radius: 999px; }
 .nu-step2 { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
 .nu-step2[hidden] { display: none; }
 .nu-step2 input, .nu-step2 select { width: 100%; height: 50px; border-radius: 999px; border: 0; padding: 0 1.2rem; font: inherit; background: #fff; color: var(--ink); }
@@ -286,7 +293,7 @@ body { background: #fff; }
 .nu-check svg { width: 20px; height: 20px; }
 /* Popular by category */
 .nu-pop-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.25rem; }
-.nu-pop-head h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; }
+.nu-pop-head h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); }
 .nu-tabs { display: flex; gap: .7rem; flex-wrap: wrap; }
 .nu-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; animation: nu-fade .45s ease; }
 .nu-panel[hidden] { display: none; }
@@ -295,7 +302,7 @@ body { background: #fff; }
 /* Must-read guides */
 .nu-guides { background: var(--soft); padding: 6rem 0; margin-top: 6rem; }
 .nu-guides-head { text-align: center; max-width: 760px; margin: 0 auto 3rem; }
-.nu-guides-head h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; margin-bottom: .9rem; }
+.nu-guides-head h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); margin-bottom: .9rem; }
 .nu-guides-head p { margin: 0; color: var(--muted); line-height: 1.7; }
 .nu-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem; }
 .nu-guide { position: relative; display: flex; align-items: flex-end; min-height: 540px; overflow: hidden; isolation: isolate; background: #222; }
@@ -303,9 +310,8 @@ body { background: #fff; }
 .nu-guide::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,10,0) 30%, rgba(10,10,10,.85) 100%); }
 .nu-guide:hover > img { transform: scale(1.04); }
 .nu-guide-body { padding: 3rem; color: #fff; display: flex; flex-direction: column; gap: 1rem; }
-.nu-guide .nu-badge { background: #fff; }
 .nu-guide .nu-meta { color: #fff; }
-.nu-guide h3 { color: #fff; font-size: clamp(1.5rem, 2.4vw, 1.9rem); font-weight: 700; line-height: 1.25; }
+.nu-guide h3 { color: #fff; font-size: clamp(1.9rem, 3vw, 2.6rem); }
 .nu-guide-icon { position: absolute; top: 3rem; left: 3rem; display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: #121212; color: #fff; }
 .nu-guide-icon svg { width: 26px; height: 26px; }
 /* Responsive */
@@ -327,18 +333,19 @@ body { background: #fff; }
 }
 @media (max-width: 640px) {
   .nu-head-btns, .nu-head-btns .nu-btn { width: 100%; }
-  .nu-head-btns .nu-btn { flex: 1; padding: 0 1rem; white-space: nowrap; font-size: .95rem; }
+  .nu-head-btns .nu-btn { flex: 1; padding: 0 6px 0 16px; font-size: .95rem; }
   .nu-latest-head .nu-btn { display: none; }
   .nu-news-img img { max-width: 300px; }
   .nu-featured { min-height: 520px; align-items: flex-end; }
   .nu-featured::before { background: linear-gradient(180deg, rgba(10,10,10,.1) 0%, rgba(10,10,10,.88) 70%); }
   .nu-hcard { grid-template-columns: 120px minmax(0, 1fr); gap: 1rem; align-items: start; }
-  .nu-hcard h3 { font-size: 1.05rem; }
+  .nu-hcard h3 { font-size: 1.3rem; }
   .nu-hcard p { display: none; }
   .nu-grid, .nu-panel { grid-template-columns: minmax(0, 1fr); }
   .nu-ad-wide { min-height: 110px; margin: 3.5rem 0; }
   .nu-step2 { grid-template-columns: minmax(0, 1fr); }
   .nu-pill .nu-btn span { display: none; }
+  .nu-pill .nu-btn { padding: 0 5px; }
   .nu-guide { min-height: 440px; }
   .nu-guide-body { padding: 1.75rem; }
   .nu-guide-icon { top: 1.75rem; left: 1.75rem; }
@@ -346,6 +353,8 @@ body { background: #fff; }
 @media (prefers-reduced-motion: reduce) { .nu * { transition: none !important; animation: none !important; } }
 </style>"""
 
+ARROW_RAW = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ARROW = f'<span class="nu-arrow">{ARROW_RAW}</span>'
 MAIL_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3z M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>'
 SEARCH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
 CHECK_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="m7.5 12.3 3 3 6-6.3" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -487,7 +496,7 @@ def main() -> None:
 <div class="nu">
   <div class="nu-wrap">
     <div class="nu-head"><h1>News &amp; Updates</h1>
-      <div class="nu-head-btns"><a class="nu-btn dark" href="#newsletter">Subscribe</a><a class="nu-btn outline" href="#latest" data-filter="all" data-scroll>Browse all articles</a></div></div>
+      <div class="nu-head-btns"><a class="nu-btn accent" href="#newsletter">Subscribe{ARROW}</a><a class="nu-btn light" href="#latest" data-filter="all" data-scroll>Browse all articles{ARROW}</a></div></div>
     <ul class="nu-chips" role="list">{chips}</ul>
     <a class="nu-featured" href="{E(featured['url'])}">
       <img src="{E(featured['img'])}" alt="{E(featured['alt'] or featured['title'])}" width="1240" height="460">
@@ -509,12 +518,12 @@ def main() -> None:
       </div></aside>
       <section class="nu-latest" id="latest" aria-labelledby="nu-latest-title" style="scroll-margin-top:120px">
         <div class="nu-latest-head"><h2 id="nu-latest-title">Latest articles</h2>
-          <a class="nu-btn outline" href="#latest" data-filter="all">Browse all articles</a></div>
+          <a class="nu-btn light" href="#latest" data-filter="all">Browse all articles{ARROW}</a></div>
         <div class="nu-grid" id="nu-grid">{"".join(card(a) for a in arts)}</div>
         <p class="nu-empty" id="nu-empty" hidden>No articles match your search yet — try another word or category.</p>
-        <div class="nu-pager"><button class="nu-btn outline" id="nu-prev" type="button">Previous</button>
+        <div class="nu-pager"><button class="nu-btn light" id="nu-prev" type="button"><span class="nu-arrow back">{ARROW_RAW}</span>Previous</button>
           <span class="nu-page-info" id="nu-page-info" aria-live="polite"></span>
-          <button class="nu-btn dark" id="nu-next" type="button">Next</button></div>
+          <button class="nu-btn accent" id="nu-next" type="button">Next{ARROW}</button></div>
       </section>
     </div>
     <section class="nu-news" id="newsletter" aria-labelledby="nu-news-title">
@@ -524,7 +533,7 @@ def main() -> None:
         <p>New jobs, hiring advice and Study in Malta updates — straight to your inbox. No spam, unsubscribe anytime.</p>
         <form class="nu-form" id="nu-form" novalidate>
           <div class="nu-pill"><input name="email" type="email" placeholder="Enter your email address" autocomplete="email" maxlength="254" required aria-label="Email address">
-            <button class="nu-btn dark" id="nu-submit" type="submit">{MAIL_ICON}<span>Subscribe</span></button></div>
+            <button class="nu-btn accent" id="nu-submit" type="submit"><span>Subscribe</span>{ARROW}</button></div>
           <div class="nu-step2" id="nu-step2" hidden>
             <input name="full_name" type="text" placeholder="Full name" autocomplete="name" maxlength="120" aria-label="Full name">
             <select id="nu-country" name="country" aria-label="Country of residence"><option value="">Country of residence</option></select>
@@ -541,7 +550,7 @@ def main() -> None:
     <section aria-labelledby="nu-pop-title">
       <div class="nu-pop-head"><h2 id="nu-pop-title">Popular articles by category</h2><div class="nu-tabs" role="tablist">{tabs}</div></div>
       {panels}
-      <div class="nu-center"><a class="nu-btn outline" id="nu-pop-all" href="#latest" data-filter="study-in-malta" data-scroll>Browse all articles</a></div>
+      <div class="nu-center"><a class="nu-btn light" id="nu-pop-all" href="#latest" data-filter="study-in-malta" data-scroll>Browse all articles{ARROW}</a></div>
     </section>
   </div>
   <section class="nu-guides" aria-labelledby="nu-guides-title">
@@ -549,7 +558,7 @@ def main() -> None:
       <div class="nu-guides-head"><h2 id="nu-guides-title">Must-read guides</h2>
         <p>Our most complete guides for studying in Malta and hiring the right people — start here.</p></div>
       <div class="nu-guide-grid">{guide_html}</div>
-      <div class="nu-center"><a class="nu-btn dark" href="#latest" data-filter="all" data-scroll>Explore all articles</a></div>
+      <div class="nu-center"><a class="nu-btn accent" href="#latest" data-filter="all" data-scroll>Explore all articles{ARROW}</a></div>
     </div>
   </section>
   <div class="nu-wrap">{ad(ads.get("bottom", {}), "728 x 90 px", "nu-ad-wide")}</div>
@@ -558,6 +567,8 @@ def main() -> None:
     a = s.index('<main class="main">') + len('<main class="main">')
     b = s.index("</main>")
     s = s[:a] + content + s[b:]
+    # The shell's "For teams preparing for growth, not hype" CTA (after </main>) does not belong on this page.
+    s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
 
     codes = re.search(r'countryCodes="([^"]+)"', (ROOT / "assets" / "footer-job-alerts.js").read_text(encoding="utf-8")).group(1)
     script = SCRIPT % {"per": PER_PAGE, "codes": json.dumps(codes), "check": json.dumps(CHECK_ICON)}
