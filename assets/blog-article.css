@@ -9,7 +9,8 @@
 .od-meta i{width:1px;height:9px;background:#999}
 .od-title{font-size:32px;font-weight:600;letter-spacing:-.96px;line-height:140%;margin:16px 0 0;max-width:640px;color:#0c0407}
 .od-image{margin-top:40px;border-radius:12px;overflow:hidden;background:#f8f8f8}
-.od-image img{width:100%;aspect-ratio:1200/630;max-height:655px;object-fit:cover;display:block}
+.od-image img{width:100%;height:auto;aspect-ratio:1200/630;max-height:655px;object-fit:cover;display:block}
+.od-image-full img{aspect-ratio:auto!important;max-height:none}
 .od-rich{margin-top:28px;font-size:16px;line-height:24px}
 .od-rich h2{font-size:24px;font-weight:600}
 .od-right{width:100%;max-width:392px;position:sticky;top:40px;margin-top:210px;display:flex;flex-direction:column;gap:24px;border-top:1px solid #ececec;border-bottom:1px solid #ececec;padding:28px 0}
@@ -72,7 +73,9 @@
 .od-rich h3{margin:1.5rem 0 .6rem;color:#0c0407}
 .od-rich p{margin:0 0 1.1rem}
 .od-rich a{color:#442DFA}
-.od-rich .cta-box a,.od-rich .od-btn{color:#fff}
+.od-rich .od-btn{color:#fff}
+.od-rich .cta-box p{color:rgba(255,255,255,.85)}
+.od-rich .cta-box a{color:#2c2d2d}
 .od-rich table{border-collapse:collapse}
 .od-rich .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
 .od-rich .table-scroll table{min-width:560px}

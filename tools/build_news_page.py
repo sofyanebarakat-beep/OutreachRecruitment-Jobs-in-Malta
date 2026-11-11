@@ -94,6 +94,7 @@ def blog_articles() -> list[dict]:
             "desc": clean_desc(meta_content(b, name="description")),
             "mins": mins,
             "cats": categories(tag),
+            "author": meta_content(b, name="author"),
         })
     return out
 
@@ -129,6 +130,19 @@ def fmt(d: datetime) -> str:
     return d.strftime("%b %-d, %Y")
 
 
+TEAM = json.loads((ROOT / "tools" / "team_data.json").read_text(encoding="utf-8"))
+TEAM_BY_NAME = {p["name"].lower(): p for p in [TEAM["ceo"]] + TEAM["members"]}
+
+
+def by(a: dict) -> str:
+    """Small author avatar + name for articles written by a team member."""
+    p = TEAM_BY_NAME.get((a.get("author") or "").lower())
+    if not p:
+        return ""
+    return (f'<span class="nu-by"><img src="{E(p["photo"])}" alt="" width="22" height="22" '
+            f'style="object-position:{E(p.get("photo_position", "center 30%"))}">{E(p["name"])}</span>')
+
+
 def badge(a: dict) -> str:
     return f'<span class="nu-badge">{E(a["cats"][0])}</span>'
 
@@ -138,7 +152,7 @@ def card(a: dict, extra: str = "") -> str:
     search = E((a["title"] + " " + a["desc"] + " " + " ".join(a["cats"])).lower())
     return f"""<article class="nu-card{extra}" data-cats="{cats}" data-search="{search}">
   <a class="nu-card-img" href="{E(a['url'])}" tabindex="-1" aria-hidden="true"><img src="{E(a['img'])}" alt="{E(a['title'])}" loading="lazy" width="390" height="200"></a>
-  <div class="nu-meta">{badge(a)}<time datetime="{a['date']:%Y-%m-%d}">{fmt(a['date'])}</time></div>
+  <div class="nu-meta">{badge(a)}<time datetime="{a['date']:%Y-%m-%d}">{fmt(a['date'])}</time>{by(a)}</div>
   <h3 class="nu-card-title"><a href="{E(a['url'])}">{E(a['title'])}</a></h3>
   <p class="nu-card-text">{E(a['desc'])}</p>
 </article>"""
@@ -256,6 +270,8 @@ body { background: #fff; }
 .nu-hcard:hover img, .nu-card:hover .nu-card-img img { transform: scale(1.05); }
 .nu-hcard h3 { font-size: 1.6rem; margin-bottom: .6rem; }
 .nu-hcard p { margin: 0 0 .9rem; color: var(--muted); line-height: 1.65; }
+.nu-by { display: inline-flex; align-items: center; gap: .4rem; color: var(--ink); font-weight: 600; }
+.nu-by img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
 .nu-dot { width: 4px; height: 4px; border-radius: 50%; background: #b5b5b5; }
 /* Ads */
 .nu-ad { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; background: #121212;

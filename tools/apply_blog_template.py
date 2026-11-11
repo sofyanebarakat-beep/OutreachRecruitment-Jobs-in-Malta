@@ -5,6 +5,7 @@ Idempotent: pages already using the layout are re-rendered from their own parts.
 Usage: python3 tools/apply_blog_template.py [blog/file.html ...]   (default: all articles)
 """
 import html
+import json
 import math
 import re
 import sys
@@ -117,12 +118,42 @@ def extract(path):
             if not h.get_text().replace("\u200d", "").strip():
                 h.decompose()
         body = "".join(str(c) for c in container.contents)
+    m = re.search(r'<meta name="author" content="([^"]+)"', raw[:a])
+    meta["author"] = html.unescape(m.group(1)) if m else ""
     meta["img_src"] = img["src"] if img else ""
     meta["img_alt"] = img.get("alt", "") if img else ""
     words = len(re.sub(r"<[^>]+>", " ", body).split())
     meta["mins"] = max(1, math.ceil(words / 200))
     meta["body"] = body
     return meta, raw
+
+
+# Articles whose hero is a designed graphic (text in the image): show it whole, never cropped.
+FULL_HERO = {"moving-to-malta-for-work"}
+
+
+def team_member(name):
+    """Return the Our Team entry (name, role, photo, LinkedIn) for an article author, or None."""
+    if not name:
+        return None
+    data = json.loads((ROOT / "tools" / "team_data.json").read_text(encoding="utf-8"))
+    for p in [data["ceo"]] + data["members"]:
+        if p["name"].lower() == name.lower():
+            return p
+    return None
+
+
+AUTHOR_CSS = (
+    '<style id="od-author-style">'
+    '.od-byline{display:inline-flex;align-items:center;gap:8px;color:#0c0407;font-weight:600;text-decoration:none}'
+    '.od-byline img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px #e4e0ff}'
+    '.od-byline:hover{color:#442dfa}'
+    '.od-author-role{display:block;margin-top:2px;font-size:13px;font-weight:600;color:#442dfa}'
+    '.od-author-in{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:600;color:#0a66c2;text-decoration:none}'
+    '.od-author-in svg{width:15px;height:15px}'
+    '</style>'
+)
+IN_SVG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.97 1.97 0 1 0 5.3 7a1.97 1.97 0 0 0-.05-4ZM20.44 13.4c0-3.1-1.65-5.15-4.4-5.15a3.83 3.83 0 0 0-3.44 1.9V8.5H9.37c.04.93 0 11.5 0 11.5h3.23v-6.42c0-.34.03-.69.13-.93.28-.69.9-1.4 1.95-1.4 1.38 0 1.93 1.05 1.93 2.6V20h3.23z"/></svg>')
 
 
 def short_date(d):
@@ -177,6 +208,21 @@ def render(meta, all_meta, lang):
         f'<a href="https://wa.me/?text={html.escape(meta["title"] + " " + url, quote=True).replace(" ", "%20")}" target="_blank" rel="noopener">WhatsApp</a>'
         f'<button type="button" data-od-copy data-done="{esc(L["copied"])}">{L["copy"]}</button></div>'
     )
+    who = team_member(meta.get("author"))
+    if who:
+        pos = who.get("photo_position", "center 30%")
+        li = (who.get("socials") or {}).get("linkedin", "")
+        byline = (f'<span><a class="od-byline" href="/our-team"><img src="{esc(who["photo"])}" alt="{esc(who["name"])}" width="28" height="28" '
+                  f'style="object-position:{esc(pos)}"/>{esc(who["name"])}</a></span>')
+        author_box = (f'{AUTHOR_CSS}<div class="od-author"><img src="{esc(who["photo"])}" alt="{esc(who["name"])}, {esc(who["role"])} at Outreach Recruitment" '
+                      f'width="56" height="56" loading="lazy" style="object-position:{esc(pos)}"/><div><strong>Written by {esc(who["name"])}</strong>'
+                      f'<span class="od-author-role">{esc(who["role"])} · Outreach Recruitment</span><p>{esc(who.get("bio", ""))}</p>'
+                      + (f'<a class="od-author-in" href="{esc(li)}" target="_blank" rel="noopener">{IN_SVG}Connect on LinkedIn</a>' if li else "")
+                      + '</div></div>')
+    else:
+        byline = f'<span>{L["brand"]}</span>'
+        author_box = (f'<div class="od-author"><img src="/assets/job-card-logo.jpg" alt="Outreach Recruitment" width="56" height="56" loading="lazy"/>'
+                      f'<div><strong>{L["by"]}</strong><p>{L["about"]}</p></div></div>')
     return f'''<main class="main">
     <div class="od-progress" id="odProgress"></div>
     <section class="od-section">
@@ -185,12 +231,12 @@ def render(meta, all_meta, lang):
           <div class="od-left">
             <nav class="od-crumbs" aria-label="Breadcrumb"><a href="/blog/">&larr; {L["back"]}</a><span>/</span><a href="/">{L["home"]}</a><span>/</span><b>{esc(meta["tag"])}</b></nav>
             <div class="od-tag">{esc(meta["tag"])}</div>
-            <div class="od-meta"><span>{L["brand"]}</span><i></i><span>{esc(meta["date"])}</span><i></i><span>{meta["mins"]} {L["min"]}</span></div>
+            <div class="od-meta">{byline}<i></i><span>{esc(meta["date"])}</span><i></i><span>{meta["mins"]} {L["min"]}</span></div>
             <h1 class="od-title">{esc(meta["title"])}</h1>
-            <div class="od-image"><img src="{esc(meta["img_src"])}" alt="{esc(meta["img_alt"])}" width="1200" height="630" fetchpriority="high" decoding="async"/></div>
+            <div class="od-image{' od-image-full' if meta['slug'] in FULL_HERO else ''}"><img src="{esc(meta["img_src"])}" alt="{esc(meta["img_alt"])}" width="1200" height="630" fetchpriority="high" decoding="async"/></div>
             <article class="cms-article od-rich" id="odBody">{meta["body"]}</article>
             <div class="od-end">
-              <div class="od-author"><img src="/assets/job-card-logo.jpg" alt="Outreach Recruitment" width="56" height="56" loading="lazy"/><div><strong>{L["by"]}</strong><p>{L["about"]}</p></div></div>
+              {author_box}
               {share}
             </div>
           </div>
