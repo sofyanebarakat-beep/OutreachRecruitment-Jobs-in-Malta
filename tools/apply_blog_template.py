@@ -129,7 +129,7 @@ def extract(path):
 
 
 # Articles whose hero is a designed graphic (text in the image): show it whole, never cropped.
-FULL_HERO = {"moving-to-malta-for-work"}
+FULL_HERO: set[str] = set()
 
 
 def team_member(name):
