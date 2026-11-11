@@ -1,0 +1,169 @@
+.article-jobs-banner {
+  margin: 2rem 0;
+  animation: article-jobs-banner-enter .7s cubic-bezier(.2, .75, .2, 1) both;
+}
+
+.article-jobs-banner-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 1rem;
+  background: linear-gradient(115deg, #3420cf 0%, #442dfa 42%, #6250ff 72%, #3420cf 100%);
+  background-size: 220% 220%;
+  color: #fff !important;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgb(68 45 250 / 20%);
+  isolation: isolate;
+  animation: article-jobs-banner-gradient 8s ease-in-out infinite;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.article-jobs-banner-link::before {
+  position: absolute;
+  z-index: 0;
+  top: -50%;
+  bottom: -50%;
+  left: -45%;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 22%), transparent);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-180%) skewX(-18deg);
+  animation: article-jobs-banner-shine 6s ease-in-out infinite;
+}
+
+.article-jobs-banner-link:hover {
+  color: #fff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgb(68 45 250 / 34%);
+}
+
+.article-jobs-banner-link:focus-visible {
+  outline: 3px solid #161616;
+  outline-offset: 4px;
+}
+
+.article-jobs-banner-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: clamp(1.65rem, 4vw, 2.6rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.03em !important;
+  line-height: 1.12 !important;
+}
+
+.article-jobs-banner-title em {
+  color: inherit;
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: rgb(255 255 255 / 55%);
+  text-underline-offset: .12em;
+}
+
+.article-jobs-banner-count {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: .55rem;
+  padding: .8rem 1rem;
+  border: 1px solid rgb(255 255 255 / 42%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0 rgb(255 255 255 / 25%);
+  animation: article-jobs-banner-count-pulse 2.8s ease-out infinite;
+}
+
+.article-jobs-banner-arrow {
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+
+.article-jobs-banner-link:hover .article-jobs-banner-arrow {
+  transform: translateX(4px);
+}
+
+@keyframes article-jobs-banner-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes article-jobs-banner-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes article-jobs-banner-shine {
+  0%, 18% {
+    transform: translateX(-180%) skewX(-18deg);
+  }
+  48%, 100% {
+    transform: translateX(620%) skewX(-18deg);
+  }
+}
+
+@keyframes article-jobs-banner-count-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 0%);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgb(255 255 255 / 12%);
+  }
+}
+
+@media (max-width: 600px) {
+  .article-jobs-banner-link {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-jobs-banner,
+  .article-jobs-banner-link {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .article-jobs-banner-link::before,
+  .article-jobs-banner-count {
+    animation: none;
+  }
+
+  .article-jobs-banner-arrow {
+    transition: none;
+  }
+
+  .article-jobs-banner-link:hover {
+    transform: none;
+  }
+
+  .article-jobs-banner-link:hover .article-jobs-banner-arrow {
+    transform: none;
+  }
+}
