@@ -137,7 +137,7 @@ def card(a: dict, extra: str = "") -> str:
     cats = " ".join(CAT_SLUG[c] for c in a["cats"])
     search = E((a["title"] + " " + a["desc"] + " " + " ".join(a["cats"])).lower())
     return f"""<article class="nu-card{extra}" data-cats="{cats}" data-search="{search}">
-  <a class="nu-card-img" href="{E(a['url'])}" tabindex="-1" aria-hidden="true"><img src="{E(a['img'])}" alt="" loading="lazy" width="390" height="200"></a>
+  <a class="nu-card-img" href="{E(a['url'])}" tabindex="-1" aria-hidden="true"><img src="{E(a['img'])}" alt="{E(a['title'])}" loading="lazy" width="390" height="200"></a>
   <div class="nu-meta">{badge(a)}<time datetime="{a['date']:%Y-%m-%d}">{fmt(a['date'])}</time></div>
   <h3 class="nu-card-title"><a href="{E(a['url'])}">{E(a['title'])}</a></h3>
   <p class="nu-card-text">{E(a['desc'])}</p>
@@ -226,6 +226,9 @@ body { background: #fff; }
 .nu-head { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .nu-head h1 { font-size: clamp(2.75rem, 5vw, 4.25rem); }
 .nu-head-btns { display: flex; gap: .9rem; flex-wrap: wrap; }
+.nu-intro { max-width: 760px; margin: 0 0 1.75rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+.nu-intro a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(68,45,250,.4); text-underline-offset: 3px; }
+.nu-intro a:hover { color: var(--brand); }
 .nu-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin: 0 0 2.25rem; padding: 0; list-style: none; }
 .nu-chip { display: inline-flex; padding: .55rem 1.05rem; border-radius: 999px; background: var(--soft); font-weight: 600; font-size: .95rem;
   border: 0; cursor: pointer; font-family: inherit; color: var(--ink); transition: background .2s ease, color .2s ease; }
@@ -244,7 +247,7 @@ body { background: #fff; }
 .nu-author span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; }
 .nu-author img { position: static !important; width: 22px !important; height: auto !important; z-index: 0 !important; transform: none !important; }
 /* Trending */
-.nu-label { display: flex; align-items: center; gap: 2rem; margin: 3rem 0 2rem; font-weight: 700; font-size: 1.15rem; }
+.nu .nu-label { display: flex; align-items: center; gap: 2rem; margin: 3rem 0 2rem; font-family: inherit; font-weight: 700 !important; font-size: 1.15rem; letter-spacing: 0; }
 .nu-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .nu-trend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem; }
 .nu-hcard { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 1.75rem; align-items: center; }
@@ -323,10 +326,10 @@ body { background: #fff; }
 .nu-pager [hidden] { display: none; }
 .nu-pager .nu-page-info { color: var(--muted); font-weight: 500; }
 /* Newsletter */
-.nu-news { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; background: #121212;
+.nu-news { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; background: #262626;
   color: #fff; overflow: hidden; margin: 6rem 0; min-height: 480px; scroll-margin-top: 120px; }
 .nu-news-img { align-self: stretch; display: flex; align-items: center; justify-content: center; background: #262626; padding: 3rem 2.5rem; }
-.nu-news-img img { width: 100%; max-width: 600px; display: block; margin: 0 auto; }
+.nu-news-img img { width: 100%; max-width: 480px; display: block; margin: 0 auto; }
 .nu-news-body { padding: 4rem 3.5rem; display: flex; flex-direction: column; gap: 1.1rem; }
 .nu-news h2 { color: #fff; font-size: clamp(2.3rem, 4vw, 3.4rem); }
 .nu-news p { margin: 0; color: rgba(255,255,255,.82); line-height: 1.7; }
@@ -519,9 +522,9 @@ def main() -> None:
     JOBS_BANNERS["nu-ad-box"] = jobs_banner("box", jobs, reverse=True)
 
     s = (ROOT / "about.html").read_text(encoding="utf-8")
-    title = "News & Updates | Outreach Recruitment Malta"
-    desc = ("Latest news, guides and updates from Outreach Recruitment for students, employers and candidates in Malta — "
-            "study in Malta, hiring advice and job-search tips.")
+    title = "News & Updates: Jobs, Hiring & Study in Malta | Outreach Recruitment"
+    desc = ("Malta news and guides from Outreach Recruitment: job-search tips for candidates, hiring advice for employers "
+            "and Study in Malta updates.")
     s = re.sub(r"<title>.*?</title>", f"<title>{E(title)}</title>", s, count=1, flags=re.S)
 
     def meta(attr, name, value):
@@ -530,6 +533,7 @@ def main() -> None:
     meta("name", "description", desc); meta("property", "og:description", desc); meta("name", "twitter:description", desc)
     meta("property", "og:title", title); meta("name", "twitter:title", title); meta("property", "og:url", URL)
     meta("property", "og:image", SITE + featured["img"]); meta("name", "twitter:image", SITE + featured["img"])
+    meta("property", "og:type", "website")
     s = re.sub(r'(<link href=")[^"]*(" rel="canonical"/>)', rf"\g<1>{URL}\g<2>", s, count=1)
     s = s.replace('<meta content="width=device-width, initial-scale=1" name="viewport"/>',
                   '<meta content="width=device-width, initial-scale=1" name="viewport"/>'
@@ -538,6 +542,11 @@ def main() -> None:
               {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
               {"@type": "ListItem", "position": 2, "name": "News & Updates", "item": URL}]},
           {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Updates", "url": URL, "description": desc,
+           "inLanguage": "en", "dateModified": arts[0]["date"].strftime("%Y-%m-%d"),
+           "isPartOf": {"@type": "WebSite", "name": "Outreach Recruitment", "url": f"{SITE}/"},
+           "publisher": {"@type": "Organization", "name": "Outreach Recruitment Ltd", "url": f"{SITE}/",
+                         "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/outreach-recruitment-logo.svg"}},
+           "about": [{"@type": "Thing", "name": n} for n in ("Jobs in Malta", "Recruitment in Malta", "Study in Malta")],
            "mainEntity": {"@type": "ItemList", "itemListElement": [
                {"@type": "ListItem", "position": i + 1, "url": SITE + a["url"], "name": a["title"]} for i, a in enumerate(arts)]}}]
     s = re.sub(r'<script type="application/ld\+json">.*?"AboutPage".*?</script>',
@@ -546,7 +555,7 @@ def main() -> None:
     s = s.replace("</head>", CSS + "\n</head>", 1)
 
     trend_html = "".join(f"""<article class="nu-hcard">
-  <a class="nu-hcard-img" href="{E(a['url'])}" tabindex="-1" aria-hidden="true"><img src="{E(a['img'])}" alt="" loading="lazy" width="220" height="200"></a>
+  <a class="nu-hcard-img" href="{E(a['url'])}" tabindex="-1" aria-hidden="true"><img src="{E(a['img'])}" alt="{E(a['title'])}" loading="lazy" width="220" height="200"></a>
   <div><h3><a href="{E(a['url'])}">{E(a['title'])}</a></h3><p>{E(a['desc'])}</p>
   <div class="nu-meta"><time datetime="{a['date']:%Y-%m-%d}">{fmt(a['date'])}</time><i class="nu-dot"></i><span>{a['mins']} min read</span></div></div>
 </article>""" for a in trending)
@@ -559,7 +568,7 @@ def main() -> None:
     panels = "".join(f'<div class="nu-panel" id="nu-panel-{CAT_SLUG[c]}" role="tabpanel"{"" if i == 0 else " hidden"}>'
                      + "".join(card(a) for a in [x for x in arts if c in x["cats"]][:3]) + "</div>" for i, c in enumerate(CATS))
     guide_html = "".join(f"""<a class="nu-guide" href="{E(g['url'])}">
-  <img src="{E(g['img'])}" alt="" loading="lazy"><span class="nu-guide-icon">{BOOK_ICON}</span>
+  <img src="{E(g['img'])}" alt="{E(g['title'])}" loading="lazy"><span class="nu-guide-icon">{BOOK_ICON}</span>
   <div class="nu-guide-body"><div class="nu-meta">{badge(g)}<time datetime="{g['date']:%Y-%m-%d}">{fmt(g['date'])}</time></div>
   <h3>{E(g['title'])}</h3><div class="nu-author"><span><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>by Outreach Recruitment</div></div>
 </a>""" for g in guides)
@@ -569,6 +578,10 @@ def main() -> None:
   <div class="nu-wrap">
     <div class="nu-head"><h1>News &amp; Updates</h1>
       <div class="nu-head-btns"><a class="nu-btn accent" href="#newsletter">Subscribe{ARROW}</a><a class="nu-btn light" href="#latest" data-filter="all" data-scroll>Browse all articles{ARROW}</a></div></div>
+    <p class="nu-intro">The latest news, guides and practical advice from the Outreach Recruitment team in Malta —
+      job-search and CV tips for <a href="/jobs/">candidates looking for jobs in Malta</a>, hiring advice for
+      <a href="/employers">employers recruiting in Malta</a>, and everything you need to
+      <a href="/study-in-malta-complete-guide">study in Malta</a> as an international student.</p>
     <ul class="nu-chips" role="list">{chips}</ul>
     <a class="nu-featured" href="{E(featured['url'])}">
       <img src="{E(featured['img'])}" alt="{E(featured['alt'] or featured['title'])}" width="1240" height="460">
@@ -576,7 +589,7 @@ def main() -> None:
         <h2>{E(featured['title'])}</h2><p>{E(featured['desc'])}</p>
         <div class="nu-author"><span><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>by Outreach Recruitment</div></div>
     </a>
-    <div class="nu-label">Trending Now</div>
+    <h2 class="nu-label">Trending Now</h2>
     <div class="nu-trend">{trend_html}</div>
     {ad(ads.get("top", {}), "728 x 90 px", "nu-ad-wide")}
     <div class="nu-split">
@@ -599,7 +612,7 @@ def main() -> None:
       </section>
     </div>
     <section class="nu-news" id="newsletter" aria-labelledby="nu-news-title">
-      <div class="nu-news-img"><img src="/assets/news/newsletter-laptop.png" alt="The Outreach Recruitment website on a laptop" loading="lazy" width="990" height="721"></div>
+      <div class="nu-news-img"><img src="/assets/news/newsletter-illustration.svg" alt="Outreach Recruitment newsletter: new jobs, study in Malta and hiring updates by email" loading="lazy" width="560" height="460"></div>
       <div class="nu-news-body">
         <h2 id="nu-news-title">Subscribe to our newsletter to receive our latest news &amp; updates</h2>
         <p>New jobs, hiring advice and Study in Malta updates — straight to your inbox. No spam, unsubscribe anytime.</p>

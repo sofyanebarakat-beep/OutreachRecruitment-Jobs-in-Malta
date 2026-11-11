@@ -1,6 +1,6 @@
 {
   "_help": "Settings for /news-updates. Rebuild with: python3 tools/build_news_page.py. 'featured', 'trending' and 'guides' take article URLs (e.g. \"/call-centre-salary-malta/\"); leave empty to use the newest articles automatically. Each ad slot shows the 'AD SPACE' placeholder until both 'image' and 'link' are set. Set 'ready' to true to let Google index the page.",
-  "ready": false,
+  "ready": true,
   "featured": [
     "/how-to-hire-hospitality-staff-malta/"
   ],
