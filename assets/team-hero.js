@@ -24,7 +24,7 @@
 
   function schedule() {
     window.clearTimeout(timer);
-    if (!playing || document.hidden || carousel.matches(":hover") || carousel.contains(document.activeElement)) return;
+    if (!playing || document.hidden || controls.matches(":hover") || controls.contains(document.activeElement)) return;
     timer = window.setTimeout(() => {
       show(index + 1);
       schedule();
@@ -43,10 +43,10 @@
     updatePauseButton();
     schedule();
   });
-  carousel.addEventListener("mouseenter", schedule);
-  carousel.addEventListener("mouseleave", schedule);
-  carousel.addEventListener("focusin", schedule);
-  carousel.addEventListener("focusout", () => window.setTimeout(schedule, 0));
+  controls.addEventListener("mouseenter", schedule);
+  controls.addEventListener("mouseleave", schedule);
+  controls.addEventListener("focusin", schedule);
+  controls.addEventListener("focusout", () => window.setTimeout(schedule, 0));
   document.addEventListener("visibilitychange", schedule);
   reducedMotion.addEventListener("change", (event) => {
     if (event.matches) playing = false;

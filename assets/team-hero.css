@@ -1,7 +1,25 @@
+.hero-2 .hero-header {
+  background: #242135;
+  color: #fff;
+}
+
+.hero-2 .hero-header :is(.heading-h1, .caption, .text-medium, .stars) {
+  color: #fff;
+}
+
+.hero-2 .hero-header .button-primary {
+  background: #442dfa;
+  color: #fff;
+}
+
+.hero-2 .hero-header .button-primary .button-label {
+  color: #fff;
+}
+
 .team-hero-slideshow {
   position: relative;
   overflow: hidden;
-  background: #eae8f3;
+  background: #242135;
 }
 
 .team-hero-slide {
@@ -20,12 +38,13 @@
 .team-hero-slide img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .team-hero-caption {
   position: absolute;
+  z-index: 2;
   right: 0;
   bottom: 0;
   left: 0;
@@ -37,6 +56,7 @@
 .team-hero-caption strong,
 .team-hero-caption span {
   display: block;
+  color: #fff;
 }
 
 .team-hero-caption strong {
@@ -80,6 +100,12 @@
 .team-hero-controls button:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 2px;
+}
+
+@media (max-width: 991px) {
+  .team-hero-controls {
+    top: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
