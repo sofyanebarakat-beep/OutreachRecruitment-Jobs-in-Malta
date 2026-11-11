@@ -78,7 +78,7 @@ def extract(path):
     if main.select_one(".od-section"):
         meta["tag"] = txt(main.select_one(".od-tag"))
         meta["title"] = txt(main.select_one(".od-title"))
-        spans = main.select(".od-meta span")
+        spans = main.select(".od-meta > span")
         meta["date"] = txt(spans[1]) if len(spans) > 1 else ""
         img = main.select_one(".od-image img")
         body_root = main.select_one("#odBody") or main.select_one(".od-rich")
@@ -145,9 +145,13 @@ def team_member(name):
 
 AUTHOR_CSS = (
     '<style id="od-author-style">'
-    '.od-byline{display:inline-flex;align-items:center;gap:8px;color:#0c0407;font-weight:600;text-decoration:none}'
-    '.od-byline img{width:28px;height:28px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px #e4e0ff}'
-    '.od-byline:hover{color:#442dfa}'
+    '.od-byline{display:inline-flex;align-items:center;gap:10px;color:#0c0407;text-decoration:none}'
+    '.od-byline-text{display:flex;flex-direction:column;line-height:1.2}'
+    '.od-byline-text b{font-size:14px;font-weight:600;color:#0c0407}'
+    '.od-byline-text small{font-size:12px;font-weight:500;color:#442dfa;margin-top:2px}'
+    '.od-byline:hover b{color:#442dfa}'
+    '@media(max-width:767px){.od-meta>span:has(.od-byline){flex-basis:100%}.od-meta>span:has(.od-byline)+i{display:none}}'
+    '.od-byline img{width:36px;height:36px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px #e4e0ff}'
     '.od-author-role{display:block;margin-top:2px;font-size:13px;font-weight:600;color:#442dfa}'
     '.od-author-in{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:600;color:#0a66c2;text-decoration:none}'
     '.od-author-in svg{width:15px;height:15px}'
@@ -210,11 +214,14 @@ def render(meta, all_meta, lang):
     )
     who = team_member(meta.get("author"))
     if who:
-        pos = who.get("photo_position", "center 30%")
+        avatar = who.get("avatar")
+        pos = "center" if avatar else who.get("photo_position", "center 30%")
+        avatar = avatar or who["photo"]
         li = (who.get("socials") or {}).get("linkedin", "")
-        byline = (f'<span><a class="od-byline" href="/our-team"><img src="{esc(who["photo"])}" alt="{esc(who["name"])}" width="28" height="28" '
-                  f'style="object-position:{esc(pos)}"/>{esc(who["name"])}</a></span>')
-        author_box = (f'{AUTHOR_CSS}<div class="od-author"><img src="{esc(who["photo"])}" alt="{esc(who["name"])}, {esc(who["role"])} at Outreach Recruitment" '
+        byline = (f'<span><a class="od-byline" href="/our-team"><img src="{esc(avatar)}" alt="{esc(who["name"])}" width="36" height="36" '
+                  f'style="object-position:{esc(pos)}"/><span class="od-byline-text"><b>{esc(who["name"])}</b>'
+                  f'<small>{esc(who["role"])}</small></span></a></span>')
+        author_box = (f'{AUTHOR_CSS}<div class="od-author"><img src="{esc(avatar)}" alt="{esc(who["name"])}, {esc(who["role"])} at Outreach Recruitment" '
                       f'width="56" height="56" loading="lazy" style="object-position:{esc(pos)}"/><div><strong>Written by {esc(who["name"])}</strong>'
                       f'<span class="od-author-role">{esc(who["role"])} · Outreach Recruitment</span><p>{esc(who.get("bio", ""))}</p>'
                       + (f'<a class="od-author-in" href="{esc(li)}" target="_blank" rel="noopener">{IN_SVG}Connect on LinkedIn</a>' if li else "")

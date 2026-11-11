@@ -77,7 +77,7 @@ def blog_articles() -> list[dict]:
         b = BeautifulSoup(p.read_text(encoding="utf-8"), "html.parser")
         if (b.html.get("lang") or "en")[:2] != "en" or not b.select_one(".od-section"):
             continue
-        spans = [s.get_text(strip=True) for s in b.select(".od-meta span")]
+        spans = [s.get_text(strip=True) for s in b.select(".od-meta > span")]
         img = b.select_one(".od-image img")
         canon = b.find("link", rel="canonical")
         tag = b.select_one(".od-tag").get_text(strip=True)
@@ -139,8 +139,9 @@ def by(a: dict) -> str:
     p = TEAM_BY_NAME.get((a.get("author") or "").lower())
     if not p:
         return ""
-    return (f'<span class="nu-by"><img src="{E(p["photo"])}" alt="" width="22" height="22" '
-            f'style="object-position:{E(p.get("photo_position", "center 30%"))}">{E(p["name"])}</span>')
+    src, pos = (p["avatar"], "center") if p.get("avatar") else (p["photo"], p.get("photo_position", "center 30%"))
+    return (f'<span class="nu-by"><img src="{E(src)}" alt="" width="22" height="22" '
+            f'style="object-position:{E(pos)}">{E(p["name"])}</span>')
 
 
 def badge(a: dict) -> str:
