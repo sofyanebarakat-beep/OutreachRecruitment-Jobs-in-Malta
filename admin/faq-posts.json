@@ -46,13 +46,13 @@
    "q": "How do I apply?",
    "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
    "url": "/jobs",
-   "pages": 38
+   "pages": 40
   },
   {
    "q": "Is a salary stated for this role?",
    "a": "The careers page does not give a figure; the role offers a competitive salary, health insurance and an employee loyalty card.",
    "url": "/jobs",
-   "pages": 22
+   "pages": 24
   },
   {
    "q": "Where is the job based?",
@@ -115,6 +115,12 @@
    "pages": 9
   },
   {
+   "q": "What experience do I need?",
+   "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
+   "url": "/jobs",
+   "pages": 9
+  },
+  {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
    "url": "/jobs",
@@ -127,10 +133,10 @@
    "pages": 7
   },
   {
-   "q": "What experience do I need?",
-   "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
+   "q": "Is this role on-site?",
+   "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
    "url": "/jobs",
-   "pages": 7
+   "pages": 6
   },
   {
    "q": "What does the Hotel General Manager job pay?",
@@ -268,12 +274,6 @@
    "q": "What happens after I get placed in a job?",
    "a": "We stay in contact after placement to make sure everything is going well. If any issues arise with your employer or contract, our team is available to help you resolve them quickly.",
    "url": "/hospitality-jobs-in-malta",
-   "pages": 4
-  },
-  {
-   "q": "Is this role on-site?",
-   "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
-   "url": "/jobs",
    "pages": 4
   },
   {
@@ -1928,7 +1928,7 @@
   },
   {
    "q": "What does the Chef de Partie (Breakfast) job pay?",
-   "a": "The role pays €17,000–€18,000 per year, plus performance bonuses.",
+   "a": "The role pays €19,000–€21,000 per year, plus performance bonuses.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2319,6 +2319,18 @@
   {
    "q": "What does a Workshop Assistant Manager do?",
    "a": "You support the Workshop Manager in running the automotive workshop: supervising technicians, planning schedules, checking repair quality and times, coordinating parts and warranty work, and keeping customers updated on their vehicles.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a Workshop Manager do?",
+   "a": "A Workshop Manager oversees the service reception, parts department and workshop day to day: monitoring team productivity against KPIs, checking repair estimates, invoices and warranty claims, resolving customer complaints and keeping tools, equipment and facilities to manufacturer requirements.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Which departments does the Workshop Manager oversee?",
+   "a": "The role covers the Service Department (including service reception), the Parts Department and the Workshop, and coordinates with other departments on daily operations and stock management.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2722,7 +2734,7 @@
   },
   {
    "q": "What does the Chef de Partie (Breakfast) job pay?",
-   "a": "The role pays €17,000–€18,000 per year, plus performance bonuses.",
+   "a": "The role pays €19,000–€21,000 per year, plus performance bonuses.",
    "slug": "chef-de-partie-breakfast",
    "title": "Chef de Partie (Breakfast)"
   },
@@ -3567,24 +3579,6 @@
    "title": "Senior Technician"
   },
   {
-   "q": "What does a Service Delivery Manager do in this role?",
-   "a": "You are the main management contact for service performance and escalations, supervise a multidisciplinary IT team, run monthly service reviews, track SLAs and KPIs, and lead continuous service improvement and problem management for a major client's IT services.",
-   "slug": "service-delivery-manager",
-   "title": "Service Delivery Manager"
-  },
-  {
-   "q": "Is an ITIL certification required?",
-   "a": "Yes. A valid ITIL Managing Professional (ITIL MP) or ITIL 4 Strategic Leader (ITIL SL) certification, or equivalent, is mandatory.",
-   "slug": "service-delivery-manager",
-   "title": "Service Delivery Manager"
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "You need a Bachelor's degree in IT and at least 10 years of relevant experience managing support services, including SLA/KPI tracking, CSI, service catalogue management and vendor governance.",
-   "slug": "service-delivery-manager",
-   "title": "Service Delivery Manager"
-  },
-  {
    "q": "How much does the Skilled Carpenter job pay?",
    "a": "The pay is €8 to €11 per hour, depending on experience.",
    "slug": "skilled-carpenters",
@@ -3799,6 +3793,30 @@
    "a": "It is a full-time, on-site role at the workshop in Gżira, Malta.",
    "slug": "workshop-assistant-manager",
    "title": "Workshop Assistant Manager"
+  },
+  {
+   "q": "What does a Workshop Manager do?",
+   "a": "A Workshop Manager oversees the service reception, parts department and workshop day to day: monitoring team productivity against KPIs, checking repair estimates, invoices and warranty claims, resolving customer complaints and keeping tools, equipment and facilities to manufacturer requirements.",
+   "slug": "workshop-manager",
+   "title": "Workshop Manager"
+  },
+  {
+   "q": "What experience do I need?",
+   "a": "You need previous experience in automotive aftersales, workshop management or a similar managerial role, together with strong leadership skills and a good understanding of workshop operations, vehicle servicing and Health & Safety procedures.",
+   "slug": "workshop-manager",
+   "title": "Workshop Manager"
+  },
+  {
+   "q": "Which departments does the Workshop Manager oversee?",
+   "a": "The role covers the Service Department (including service reception), the Parts Department and the Workshop, and coordinates with other departments on daily operations and stock management.",
+   "slug": "workshop-manager",
+   "title": "Workshop Manager"
+  },
+  {
+   "q": "Is this role on-site?",
+   "a": "Yes. It is a full-time, on-site role with a leading automotive company in Gżira, Malta.",
+   "slug": "workshop-manager",
+   "title": "Workshop Manager"
   },
   {
    "q": "What does a Workshop Team Leader do?",

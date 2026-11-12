@@ -7,8 +7,8 @@
   "employment_type": "Full-time",
   "date_posted": "2026-11-09",
   "salary": {
-    "min": 17000.0,
-    "max": 18000.0,
+    "min": 19000.0,
+    "max": 21000.0,
     "currency": "EUR",
     "unit": "YEAR",
     "text": "",
@@ -25,5 +25,5 @@
   "description_hash": "5c94b41b59416b98",
   "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e",
   "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e/apply",
-  "fetched_at": "2026-11-10T09:06:30"
+  "fetched_at": "2026-11-12T10:17:53"
 }

@@ -1,0 +1,21 @@
+I built and checked the Workshop Manager page. `python3 tools/verify_job_page.py workshop-manager` passes, including the headless-Chrome render. Nothing is committed or pushed, and no other job was touched.
+
+**What was created**
+- **Page:** `jobs/workshop-manager/index.html` and `jobs/workshop-manager.html`, which are identical. Every fact comes from the fact sheet: Gżira, full-time, on-site, English, apply online.
+- **Salary:** the page says "Competitive salary" in the header chip, sidebar, offer list and FAQ. The meta description doesn't mention salary, and the schema has no salary.
+- **Category:** Engineering & Maintenance, used in the header chip, sidebar, breadcrumb (Engineering Jobs in Malta) and schema `industry`. This matches the other Gżira workshop roles.
+- **Private data:** the deadline 2029-12-30 is only in the schema and registry. The reference `OR-WSM-2026-001` is only in an HTML comment.
+- **FAQ:** six questions, closed by default, matching the FAQ schema exactly.
+- **Similar jobs:** workshop-assistant-manager, workshop-team-leader, senior-technician and pdi-leading-hand, all open.
+- **Apply panel:** it lazy-loads only this job's apply URL, titled "Apply for Workshop Manager". It has the eligibility gate, back-to-description link, success handling and the optional Outreach-managed job alerts.
+- **Registry:** new entry at the top of `tools/jobs_registry.json`, with no salary and no status key.
+- **SEO package:** `reports/job-seo-workshop-manager-2026-11-12.md`.
+
+**Things to know**
+- **Template choice:** I cloned `jobs/workshop-team-leader/index.html` instead of the two suggested pages. `client-accountant` currently fails the verifier: it's marked closed, its apply iframe uses the wrong URL and some shared assets are missing. The team-leader page passes and already has the same apply setup as hotel-general-manager.
+- **Cache-busting version:** the brief asked for `?v=20261106`, but hotel-general-manager (the page the brief says to copy) uses `?v=20261107b` and `?v=20261107c`. I used those newer versions to match it.
+- **Bug on a live page I didn't edit:** `jobs/workshop-team-leader` shows text left over from hotel-general-manager. Its header chips say Hospitality, **€52,000–€55,000 per year** and St Julian's. Its breadcrumb points to Hospitality Jobs, its apply-panel caption says St Julian's, and its WhatsApp share text says "Hotel General Manager role in St Julian's". That role has no published salary, so the page shows a salary it shouldn't, and it still passes the verifier. It needs fixing separately.
+
+CREATED 0318a933-15bf-4813-bb8b-948b4bac159c workshop-manager
+
+--- stderr ---

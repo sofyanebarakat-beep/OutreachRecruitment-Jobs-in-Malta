@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-12",
+  "created": [],
+  "reopened": [
+    {
+      "title": "Client Accountant",
+      "slug": "client-accountant",
+      "uuid": "7dac46c7-8c5c-4fa0-afca-ca5051aacf01",
+      "url": "https://outreachrecruitment.net/jobs/client-accountant/",
+      "city": "Msida, Malta"
+    }
+  ],
+  "closed": [
+    {
+      "title": "Service Delivery Manager",
+      "slug": "service-delivery-manager",
+      "url": "https://outreachrecruitment.net/jobs/service-delivery-manager/",
+      "city": "Valletta, Malta"
+    }
+  ],
+  "updated": [
+    {
+      "uuid": "44fbce48-2f7f-4916-918a-92e5f2ef5a7e",
+      "title": "Chef de Partie (Breakfast)",
+      "slug": "chef-de-partie-breakfast",
+      "city": "St. Julian's",
+      "changes": [
+        "salary: €17,000–€18,000 per year → €19,000–€21,000 per year"
+      ],
+      "owner_salary": "",
+      "url": "https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/"
+    }
+  ],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "0318a933-15bf-4813-bb8b-948b4bac159c",
+      "title": "Workshop Manager",
+      "city": "Gżira",
+      "slug": "workshop-manager",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0318a933-15bf-4813-bb8b-948b4bac159c",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [
+    "Workshop Manager: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 125,
+  "site_open_before": 124,
+  "salary_synced": [
+    "Chef de Partie (Breakfast): €17,000–€18,000 per year → €19,000–€21,000 per year"
+  ],
+  "page_check": {
+    "open_checked": 122,
+    "ok": 119,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "site_open_after": 125,
+  "salary_coverage": {
+    "open": 124,
+    "with_salary": 28
+  }
+}

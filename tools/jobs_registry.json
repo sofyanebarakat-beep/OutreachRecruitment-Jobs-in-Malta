@@ -1,5 +1,20 @@
 [
   {
+    "slug": "workshop-manager",
+    "title": "Workshop Manager",
+    "category": "Engineering & Maintenance",
+    "location": "Gżira, Malta",
+    "location_slug": "gżira, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-11-11",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0318a933-15bf-4813-bb8b-948b4bac159c/apply",
+    "keywords": "workshop manager aftersales manager service manager automotive workshop parts department service reception gzira malta",
+    "featured": true,
+    "lastmod": "2026-11-12"
+  },
+  {
     "slug": "chef-de-partie-breakfast",
     "title": "Chef de Partie (Breakfast)",
     "category": "Hospitality",
@@ -12,8 +27,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e/apply",
     "keywords": "chef de partie breakfast breakfast chef hotel breakfast buffet a la carte kitchen cdp st julians malta hospitality",
     "featured": true,
-    "lastmod": "2026-11-10",
-    "salary": "€17,000–€18,000 per year"
+    "lastmod": "2026-11-12",
+    "salary": "€19,000–€21,000 per year"
   },
   {
     "slug": "service-delivery-manager",
@@ -28,7 +43,8 @@
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/35466667-4755-407f-b866-2354151973b9/apply",
     "keywords": "service delivery manager it service manager itil sla kpi service management european institution valletta malta",
     "featured": true,
-    "lastmod": "2026-11-08"
+    "lastmod": "2026-11-12",
+    "status": "closed"
   },
   {
     "slug": "workshop-team-leader",
@@ -2106,12 +2122,11 @@
     "employment_type": "Full-Time",
     "work_mode": "On-Site",
     "date": "2026-06-09",
-    "valid_through": "2030-12-31",
+    "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/7dac46c7-8c5c-4fa0-afca-ca5051aacf01/apply",
     "keywords": "client accountant finance & accounting msida, malta",
     "featured": false,
-    "lastmod": "2026-10-07",
-    "status": "closed"
+    "lastmod": "2026-11-12"
   },
   {
     "slug": "housekeeping-attendant",
