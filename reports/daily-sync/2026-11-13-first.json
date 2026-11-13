@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-13",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [
+    {
+      "uuid": "de9aae83-8b74-422d-932b-dc4adbf5599e",
+      "title": "Architect / Draughtsperson",
+      "city": "Mellieħa",
+      "slug": "architect-draughtsperson",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/de9aae83-8b74-422d-932b-dc4adbf5599e",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "77e86c50-0de9-4dc1-af2b-719a6459139e",
+      "title": "Residential Finishing Projects Manager",
+      "city": "Kirkop",
+      "slug": "residential-finishing-projects-manager",
+      "salary_label": "€50,000–€60,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/77e86c50-0de9-4dc1-af2b-719a6459139e",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "01fea69f-277d-4219-9a16-461436845495",
+      "title": "Sales Director",
+      "city": "St. Julian's",
+      "slug": "sales-director",
+      "salary_label": "€40,000–€50,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/01fea69f-277d-4219-9a16-461436845495",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "7dac46c7-8c5c-4fa0-afca-ca5051aacf01",
+      "title": "Client Accountant",
+      "slug": "client-accountant",
+      "city": "Msida, Malta",
+      "changes": [
+        "missing versioned shared application asset /assets/job-eligibility-gate.css",
+        "missing versioned shared application asset /assets/job-alert-launcher.css",
+        "missing versioned shared application asset /assets/job-alert-focus.css",
+        "missing versioned shared application asset /assets/job-alert-after-apply.js",
+        "missing versioned shared application asset /assets/job-eligibility-gate.js",
+        "schema baseSalary (None, None) does not match the careers page (32000–38000)",
+        "salary 32000 is not shown on the page"
+      ],
+      "owner_salary": "",
+      "audit": true,
+      "reason": "update failed the pre-publish check, page left as it was: missing versioned shared application asset /assets/job-eligibility-gate.css; missing versioned shared application asset /assets/job-alert-launcher.css; missing versioned shared application asset /assets/job-alert-focus.css; missing versioned shared application asset /assets/job-alert-after-apply.js"
+    }
+  ],
+  "held": [],
+  "notes": [
+    "Website shows 125 open jobs vs 128 on the careers page — see 'Needs your attention'."
+  ],
+  "salary_notes": [
+    "Architect / Draughtsperson: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 128,
+  "site_open_before": 125,
+  "salary_synced": [
+    "Client Accountant: none → €32,000–€38,000 per year"
+  ],
+  "page_check": {
+    "open_checked": 125,
+    "ok": 121,
+    "to_fix": 1,
+    "fixing_today": 1,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 125,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 125,
+  "salary_coverage": {
+    "open": 125,
+    "with_salary": 29
+  }
+}

@@ -36,5 +36,18 @@
     "problems": [
       "no salary on the careers page, but the page does not say 'Competitive salary'"
     ]
+  },
+  "client-accountant": {
+    "first_seen": "2026-11-13",
+    "attempts": 1,
+    "problems": [
+      "missing versioned shared application asset /assets/job-eligibility-gate.css",
+      "missing versioned shared application asset /assets/job-alert-launcher.css",
+      "missing versioned shared application asset /assets/job-alert-focus.css",
+      "missing versioned shared application asset /assets/job-alert-after-apply.js",
+      "missing versioned shared application asset /assets/job-eligibility-gate.js",
+      "schema baseSalary (None, None) does not match the careers page (32000–38000)",
+      "salary 32000 is not shown on the page"
+    ]
   }
 }

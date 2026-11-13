@@ -5070,3 +5070,99 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-11-12T10:23:34,Workshop Manager,workshop-manager,https://outreachrecruitment.net/jobs/workshop-manager/,URL_UPDATED,daily_sync_created,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/workshop-manager/""
+  }
+}
+"
+2026-11-12T10:23:34,Client Accountant,client-accountant,https://outreachrecruitment.net/jobs/client-accountant/,URL_UPDATED,daily_sync_reopened,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/client-accountant/""
+  }
+}
+"
+2026-11-12T10:23:34,Chef de Partie (Breakfast),chef-de-partie-breakfast,https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/,URL_UPDATED,daily_sync_updated,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/""
+  }
+}
+"
+2026-11-12T10:23:34,Service Delivery Manager,service-delivery-manager,https://outreachrecruitment.net/jobs/service-delivery-manager/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/service-delivery-manager/""
+  }
+}
+"
+2026-11-12T10:35:00,Chef de Partie (Breakfast),chef-de-partie-breakfast,https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/""
+  }
+}
+"
+2026-11-12T10:35:00,Workshop Team Leader,workshop-team-leader,https://outreachrecruitment.net/jobs/workshop-team-leader/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/workshop-team-leader/""
+  }
+}
+"
+2026-11-12T10:35:00,Aftersales Administrator,aftersales-administrator,https://outreachrecruitment.net/jobs/aftersales-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/aftersales-administrator/""
+  }
+}
+"
+2026-11-12T10:35:00,Senior Technician,senior-technician,https://outreachrecruitment.net/jobs/senior-technician/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/senior-technician/""
+  }
+}
+"
+2026-11-12T10:35:00,Accounts Clerk,accounts-clerk,https://outreachrecruitment.net/jobs/accounts-clerk/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accounts-clerk/""
+  }
+}
+"
+2026-11-12T10:35:00,Sales Manager,sales-manager-gzira,https://outreachrecruitment.net/jobs/sales-manager-gzira/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/sales-manager-gzira/""
+  }
+}
+"
+2026-11-12T10:35:00,Senior Corporate Administrator,senior-corporate-administrator,https://outreachrecruitment.net/jobs/senior-corporate-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/senior-corporate-administrator/""
+  }
+}
+"
+2026-11-12T10:35:00,Hotel General Manager,hotel-general-manager,https://outreachrecruitment.net/jobs/hotel-general-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-general-manager/""
+  }
+}
+"
+2026-11-12T10:35:00,Aftersales Receptionist,aftersales-receptionist,https://outreachrecruitment.net/jobs/aftersales-receptionist/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/aftersales-receptionist/""
+  }
+}
+"
+2026-11-12T10:35:00,Warranty Administrator,warranty-administrator,https://outreachrecruitment.net/jobs/warranty-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/warranty-administrator/""
+  }
+}
+"
+2026-11-12T10:35:00,Back Office Administrator,back-office-administrator,https://outreachrecruitment.net/jobs/back-office-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/back-office-administrator/""
+  }
+}
+"
+2026-11-12T10:35:00,Leasing Administration Officer,leasing-administration-officer,https://outreachrecruitment.net/jobs/leasing-administration-officer/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/leasing-administration-officer/""
+  }
+}
+"
