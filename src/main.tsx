@@ -1164,6 +1164,35 @@ function ArticleModal({
     setV((current: Row) => ({ ...current, ...data }));
     setGenerating(false);
   }
+  async function generateConnected() {
+    if (!v.title?.trim() || !v.focus_keyword?.trim()) {
+      setMsg("Add an article title and focus keyword first.");
+      return;
+    }
+    setGenerating(true);
+    setMsg("");
+    const { data, error } = await sb.functions.invoke("generate-seo-content", {
+      body: {
+        action: "article",
+        title: v.title,
+        keyword: v.focus_keyword,
+        tone: "professional",
+        language: v.language || "English",
+        target_words: targetWords,
+      },
+    });
+    setGenerating(false);
+    if (error)
+      setMsg(
+        `Connected AI unavailable: ${error.message}. You can still use Generate free article.`,
+      );
+    else
+      setV((current: Row) => ({
+        ...current,
+        ...data,
+        status: "generated",
+      }));
+  }
   const warnings = validateArticle(v);
   return (
     <Modal
@@ -1327,8 +1356,16 @@ function ArticleModal({
             {generating ? <Loader2 className="spin" /> : <Sparkles />} Generate
             free article
           </button>
+          <button
+            type="button"
+            onClick={generateConnected}
+            disabled={generating}
+          >
+            <Bot /> Generate with Gemini / Groq
+          </button>
           <span>
-            No API key or paid AI service required. Review before publishing.
+            Connected AI falls back automatically; free generation always
+            remains available.
           </span>
         </div>
         {msg && <p className="error wide">{msg}</p>}

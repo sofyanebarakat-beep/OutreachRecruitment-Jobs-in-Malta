@@ -8,6 +8,8 @@ Server-side AI generation is provided by the `generate-seo-content` Edge Functio
 
 `OPENAI_API_KEY` is optional. Without it, manual and scheduled generation use the built-in free article generator. The article editor offers approximate 800, 1,200, 1,600 and 2,000-word targets. Adding a paid key later automatically upgrades scheduled Edge Function generation without changing the workflow.
 
+Connected generation checks `GEMINI_API_KEY`, then `GROQ_API_KEY`, then `OPENAI_API_KEY`, and finally uses the built-in generator. Optional model overrides are `GEMINI_MODEL` (default `gemini-2.5-flash`) and `GROQ_MODEL` (default `openai/gpt-oss-20b`). Provider keys must exist only in Supabase Edge Function secrets.
+
 Published articles use the same shared editorial template as `/moving-to-malta-for-work/`. The article editor's **Written by** selector uses the real team list; the selected author is carried into the visible author card, HTML author metadata and BlogPosting structured data. Apply `20261113200000_article_authors.sql` before using this field.
 
 Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.

@@ -172,51 +172,178 @@ async function generate(input: any) {
       .select("*")
       .eq("month", month)
       .maybeSingle();
-  if (
-    budget?.hard_stop &&
-    Number(budget.current_spend) + Number(budget.reserved_spend) >=
-      Number(budget.monthly_limit)
-  )
-    throw new Error("Monthly AI budget exhausted");
-  const key = Deno.env.get("OPENAI_API_KEY");
-  if (!key) return freeContent(input.title, input.keyword, 1200);
-  const prompt = `Create an accurate original ${input.language || "English"} SEO article for Outreach Recruitment. Title: ${input.title}. Focus keyword: ${input.keyword}. Never invent business facts. Return JSON with title, slug, excerpt, seo_title, meta_description, body in Markdown with H2/H3, faqs, internal_links using only real outreachrecruitment.net URLs, suggested_image_prompt for a branded 1200x630 image, and social_posts containing linkedin, facebook, instagram, x and newsletter copy. Include introduction, useful sections, FAQ, conclusion and CTA.`;
-  const response = await fetch("https://api.openai.com/v1/responses", {
+  const targetWords = Math.max(
+    800,
+    Math.min(Number(input.target_words) || 1200, 2000),
+  );
+  const prompt = `Create an accurate original ${input.language || "English"} SEO article of approximately ${targetWords} words for Outreach Recruitment. Title: ${input.title}. Focus keyword: ${input.keyword}. Never invent business facts. Return JSON with title, slug, excerpt, seo_title, meta_description, body in Markdown with H2/H3, faqs, internal_links using only real outreachrecruitment.net URLs, suggested_image_prompt for a branded 1200x630 image, and social_posts containing linkedin, facebook, instagram, x and newsletter copy. Include introduction, useful sections, FAQ, conclusion and CTA.`;
+  let result: any = null;
+  const failures: string[] = [];
+  if (Deno.env.get("GEMINI_API_KEY")) {
+    try {
+      result = await generateGemini(prompt);
+    } catch (error) {
+      failures.push(
+        `Gemini: ${error instanceof Error ? error.message : error}`,
+      );
+    }
+  }
+  if (!result && Deno.env.get("GROQ_API_KEY")) {
+    try {
+      result = await generateGroq(prompt);
+    } catch (error) {
+      failures.push(`Groq: ${error instanceof Error ? error.message : error}`);
+    }
+  }
+  const openAIAllowed =
+    Deno.env.get("OPENAI_API_KEY") &&
+    !(
+      budget?.hard_stop &&
+      Number(budget.current_spend) + Number(budget.reserved_spend) >=
+        Number(budget.monthly_limit)
+    );
+  if (!result && openAIAllowed) {
+    try {
+      result = await generateOpenAI(prompt);
+    } catch (error) {
+      failures.push(
+        `OpenAI: ${error instanceof Error ? error.message : error}`,
+      );
+    }
+  }
+  if (!result) {
+    if (failures.length)
+      await service.from("seo_automation_logs").insert({
+        job_name: "AI provider fallback",
+        status: "skipped",
+        message: `${failures.join(" | ")} | Used built-in generator`,
+        ended_at: new Date().toISOString(),
+      });
+    return freeContent(input.title, input.keyword, targetWords);
+  }
+  const { content, provider, model, inputTokens, outputTokens, cost } = result;
+  await service.from("seo_api_usage").insert({
+    provider,
+    model,
+    action: input.action || "article",
+    input_tokens: inputTokens || 0,
+    output_tokens: outputTokens || 0,
+    cost,
+  });
+  if (cost > 0)
+    await service
+      .from("seo_api_budgets")
+      .update({
+        current_spend: Number(budget?.current_spend || 0) + cost,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("month", month);
+  return content;
+}
+function parseModelJson(value: string) {
+  const cleaned = String(value || "")
+    .trim()
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/, "");
+  const content = JSON.parse(cleaned);
+  for (const field of [
+    "title",
+    "slug",
+    "seo_title",
+    "meta_description",
+    "body",
+  ])
+    if (!content[field]) throw new Error(`Response missing ${field}`);
+  return content;
+}
+async function generateGemini(prompt: string) {
+  const model = Deno.env.get("GEMINI_MODEL") || "gemini-2.5-flash";
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(Deno.env.get("GEMINI_API_KEY")!)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          temperature: 0.6,
+          maxOutputTokens: 8192,
+        },
+      }),
+    },
+  );
+  const raw = await response.json();
+  if (!response.ok)
+    throw new Error(raw.error?.message || `HTTP ${response.status}`);
+  return {
+    content: parseModelJson(raw.candidates?.[0]?.content?.parts?.[0]?.text),
+    provider: "google",
+    model,
+    inputTokens: raw.usageMetadata?.promptTokenCount || 0,
+    outputTokens: raw.usageMetadata?.candidatesTokenCount || 0,
+    cost: 0,
+  };
+}
+async function generateGroq(prompt: string) {
+  const model = Deno.env.get("GROQ_MODEL") || "openai/gpt-oss-20b";
+  const response = await fetch(
+    "https://api.groq.com/openai/v1/chat/completions",
+    {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${key}`,
+        Authorization: `Bearer ${Deno.env.get("GROQ_API_KEY")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: Deno.env.get("OPENAI_MODEL") || "gpt-5-mini",
-        input: prompt,
-        text: { format: { type: "json_object" } },
+        model,
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        temperature: 0.6,
+        max_completion_tokens: 8000,
       }),
+    },
+  );
+  const raw = await response.json();
+  if (!response.ok)
+    throw new Error(raw.error?.message || `HTTP ${response.status}`);
+  return {
+    content: parseModelJson(raw.choices?.[0]?.message?.content),
+    provider: "groq",
+    model,
+    inputTokens: raw.usage?.prompt_tokens || 0,
+    outputTokens: raw.usage?.completion_tokens || 0,
+    cost: 0,
+  };
+}
+async function generateOpenAI(prompt: string) {
+  const model = Deno.env.get("OPENAI_MODEL") || "gpt-5-mini";
+  const response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${Deno.env.get("OPENAI_API_KEY")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model,
+      input: prompt,
+      text: { format: { type: "json_object" } },
     }),
-    raw = await response.json();
-  if (!response.ok) throw new Error(raw.error?.message || "AI request failed");
-  const output = raw.output
-      ?.flatMap((x: any) => x.content || [])
-      .find((x: any) => x.type === "output_text")?.text,
-    content = JSON.parse(output || "{}"),
-    usage = raw.usage || {},
-    cost = Number(Deno.env.get("AI_ESTIMATED_COST_PER_REQUEST") || "0.03");
-  await service.from("seo_api_usage").insert({
-    provider: "openai",
-    model: Deno.env.get("OPENAI_MODEL") || "gpt-5-mini",
-    action: input.action || "article",
-    input_tokens: usage.input_tokens || 0,
-    output_tokens: usage.output_tokens || 0,
-    cost,
   });
-  await service
-    .from("seo_api_budgets")
-    .update({
-      current_spend: Number(budget?.current_spend || 0) + cost,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("month", month);
-  return content;
+  const raw = await response.json();
+  if (!response.ok)
+    throw new Error(raw.error?.message || `HTTP ${response.status}`);
+  const output = raw.output
+    ?.flatMap((item: any) => item.content || [])
+    .find((item: any) => item.type === "output_text")?.text;
+  return {
+    content: parseModelJson(output),
+    provider: "openai",
+    model,
+    inputTokens: raw.usage?.input_tokens || 0,
+    outputTokens: raw.usage?.output_tokens || 0,
+    cost: Number(Deno.env.get("AI_ESTIMATED_COST_PER_REQUEST") || "0.03"),
+  };
 }
 function freeContent(title: string, keyword: string, target = 1200) {
   const articleTitle = title || `A Practical Guide to ${keyword}`;
