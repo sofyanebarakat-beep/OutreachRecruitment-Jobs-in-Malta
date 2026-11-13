@@ -12,6 +12,8 @@ Service pages are derived from the website itself by `tools/build_seo_service_ca
 
 Approved topics are turned into drafts automatically every Monday, Wednesday and Friday by `.github/workflows/seo-content-control-centre.yml`. Add repository secrets `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, deploy the Edge Function, and approve topics in the dashboard. Generated content is saved with `generated` status and is never published without human review and approval.
 
+After reviewing the generated text, the administrator only needs to add the featured image and alt text, then choose **Publish now** or set the status to **Scheduled** with a publication date. `.github/workflows/publish-scheduled-seo-articles.yml` checks every 15 minutes, builds the static SEO page, updates routes and the sitemap, adds the card to `/news-updates`, and marks the Supabase article as published. Failed validation leaves the article unpublished with an error in its quality notes.
+
 Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
 
 - **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline

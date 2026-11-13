@@ -28,6 +28,7 @@ BLOG_INDEX = ROOT / "blog" / "index.html"
 SITEMAP_BLOG = ROOT / "sitemaps" / "sitemap-blog.xml"
 SITEMAP_PAGES = ROOT / "sitemaps" / "sitemap-pages.xml"
 NETLIFY_CONFIG = ROOT / "netlify.toml"
+NEWS_UPDATES = ROOT / "news-updates.html"
 
 DATE_MONTHS = [
     "January", "February", "March", "April", "May", "June",
@@ -470,7 +471,9 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     back_href = "/study-in-malta" if is_root else "/blog/"
     back_text = "Back to Study in Malta" if is_root else "Back to Blog"
 
-    img_path, img_alt = pick(IMAGE_POOL[pillar], slug)
+    default_img, default_alt = pick(IMAGE_POOL[pillar], slug)
+    img_path = fm.get("featured_image_url") or default_img
+    img_alt = fm.get("featured_image_alt") or default_alt
     img_mime = "image/webp" if img_path.lower().endswith(".webp") else "image/png"
     tag = TAG_MAP[pillar]
     title = html.escape(fm["title"], quote=False)
@@ -685,6 +688,31 @@ def update_sitemap(meta: dict) -> bool:
     return True
 
 
+def update_news_updates(meta: dict, excerpt: str) -> bool:
+    """Insert a published article at the start of the public News Updates grid."""
+    text = NEWS_UPDATES.read_text()
+    href = f"/{meta['slug']}/"
+    if f'href="{href}"' in text:
+        return False
+    category = "study-in-malta" if meta["pillar"] == "StudyInMalta" else ("employers" if meta["pillar"] in ("Employer", "Brand") else "candidates")
+    badge = "Study in Malta" if category == "study-in-malta" else category.title()
+    safe_title = html.escape(meta["title"], quote=True)
+    safe_excerpt = html.escape(excerpt[:240].strip(), quote=False)
+    searchable = html.escape(f"{meta['title']} {excerpt} {badge}".lower(), quote=True)
+    card = (
+        f'<article class="nu-card" data-cats="{category}" data-search="{searchable}">\n'
+        f'  <a class="nu-card-img" href="{href}" tabindex="-1" aria-hidden="true"><img src="{html.escape(meta["img_path"], quote=True)}" alt="{html.escape(meta["img_alt"], quote=True)}" loading="lazy" width="390" height="200"></a>\n'
+        f'  <div class="nu-meta"><span class="nu-badge">{badge}</span><time datetime="{meta["date_iso"]}">{meta["date_human"]}</time></div>\n'
+        f'  <h3 class="nu-card-title"><a href="{href}">{safe_title}</a></h3>\n'
+        f'  <p class="nu-card-text">{safe_excerpt}</p>\n</article>'
+    )
+    marker = '<div class="nu-grid" id="nu-grid">'
+    if marker not in text:
+        raise BuildError("News Updates article grid is missing")
+    NEWS_UPDATES.write_text(text.replace(marker, marker + card, 1))
+    return True
+
+
 def update_netlify_routes(meta: dict) -> bool:
     config = NETLIFY_CONFIG.read_text()
     slug = meta["slug"]
@@ -766,6 +794,9 @@ def publish_one(md_path: Path) -> dict:
         sitemap_rel = "sitemaps/sitemap-pages.xml" if meta["is_root"] else "sitemaps/sitemap-blog.xml"
         if update_sitemap(meta):
             touched.append(sitemap_rel)
+        excerpt = fm.get("excerpt") or re.sub(r"[#>*_`\[\]-]", "", body).split("\n\n", 1)[0]
+        if update_news_updates(meta, excerpt):
+            touched.append("news-updates.html")
         return {"ok": True, "dest_rel": meta["dest_rel"], "canonical": meta["canonical"],
                 "source": str(md_path), "touched": touched}
     except BuildError as exc:

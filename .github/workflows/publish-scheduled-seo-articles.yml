@@ -1,0 +1,46 @@
+name: Publish scheduled SEO articles
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-scheduled-seo-articles
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish approved and due articles
+        id: publish
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set +e
+          python3 tools/publish_scheduled_seo_articles.py | tee publish-summary.json
+          PUBLISH_EXIT=${PIPESTATUS[0]}
+          echo "summary=$(tail -1 publish-summary.json)" >> "$GITHUB_OUTPUT"
+          exit "$PUBLISH_EXIT"
+      - name: Commit published website pages
+        if: always() && steps.publish.outputs.summary != ''
+        env:
+          SUMMARY: ${{ steps.publish.outputs.summary }}
+        run: |
+          python3 -c 'import json,os; [print(p) for p in json.loads(os.environ["SUMMARY"])["touched_paths"]]' > /tmp/outreach-touched.txt
+          while IFS= read -r path; do [ -n "$path" ] && git add -- "$path"; done < /tmp/outreach-touched.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "outreach-seo-agent[bot]"
+          git config user.email "outreach-seo-agent[bot]@users.noreply.github.com"
+          git commit -m "content: publish scheduled SEO articles"
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:main
+      - name: Report publishing failures
+        if: steps.publish.outcome == 'failure'
+        run: exit 1
