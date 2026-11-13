@@ -14,6 +14,12 @@ Approved topics are turned into drafts automatically every Monday, Wednesday and
 
 After reviewing the generated text, the administrator only needs to add the featured image and alt text, then choose **Publish now** or set the status to **Scheduled** with a publication date. `.github/workflows/publish-scheduled-seo-articles.yml` checks every 15 minutes, builds the static SEO page, updates routes and the sitemap, adds the card to `/news-updates`, and marks the Supabase article as published. Failed validation leaves the article unpublished with an error in its quality notes.
 
+The Autopilot migration adds automatic topic selection, duplicate-keyword protection, image prompts, internal-link suggestions, platform-specific social/newsletter drafts, Google indexing preparation, and 7/30/60-day performance review records. Social copy always enters an approval queue; no external account is posted to without approval.
+
+Apply `supabase/migrations/20261113190000_seo_autopilot.sql` after the base content-platform migration. Website Settings contains the Autopilot master switch and individual controls. The Social Approval Queue lets an administrator approve or reject generated copy without connecting or posting to external accounts.
+
+Autopilot generates drafts daily. `review-published-seo-content.yml` runs weekly and completes due 7/30/60-day reviews using the Search Console page metrics already imported into Supabase, saving a concrete improvement recommendation for each article.
+
 Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
 
 - **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline

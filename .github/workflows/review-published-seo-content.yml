@@ -1,0 +1,15 @@
+name: Review published SEO performance
+on:
+  schedule:
+    - cron: "45 6 * * 1"
+  workflow_dispatch:
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Review due articles against Search Console imports
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python3 -m tools.review_published_seo_content

@@ -6,7 +6,7 @@ import json
 import os
 import sys
 import tempfile
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -61,7 +61,13 @@ def main():
             draft=Path(tmp)/f"{article['slug']}.md";draft.write_text(markdown(article))
             result=publisher.publish_one(draft);result["id"]=article["id"];results.append(result)
             if result["ok"]:
-                request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"published","published_at":datetime.now(timezone.utc).isoformat(),"published_url":result["canonical"],"updated_at":datetime.now(timezone.utc).isoformat()})
+                published_at=datetime.now(timezone.utc)
+                request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"published","published_at":published_at.isoformat(),"published_url":result["canonical"],"updated_at":published_at.isoformat()})
+                for days,period in ((7,"7d"),(30,"30d"),(60,"60d")):
+                    try: request("POST","seo_content_reviews?on_conflict=article_id,review_period",{"article_id":article["id"],"review_period":period,"due_at":(published_at+timedelta(days=days)).isoformat(),"status":"pending"})
+                    except Exception: pass
+                try: request("POST","seo_automation_logs",{"job_name":"Google indexing request prepared","status":"success","message":result["canonical"],"article_id":article["id"],"ended_at":published_at.isoformat()})
+                except Exception: pass
             else:
                 request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"failed","quality_notes":result["error"],"updated_at":datetime.now(timezone.utc).isoformat()})
     summary={"published":sum(r["ok"] for r in results),"failed":sum(not r["ok"] for r in results),"touched_paths":sorted({p for r in results if r["ok"] for p in r["touched"]})}
