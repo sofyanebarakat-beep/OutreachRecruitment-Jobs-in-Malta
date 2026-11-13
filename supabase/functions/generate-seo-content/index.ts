@@ -204,7 +204,29 @@ async function generate(input: any) {
     800,
     Math.min(Number(input.target_words) || 1200, 2000),
   );
-  const prompt = `Create an accurate original ${input.language || "English"} SEO article of approximately ${targetWords} words for Outreach Recruitment. Title: ${input.title}. Focus keyword: ${input.keyword}. Never invent business facts. Return JSON with title, slug, excerpt, seo_title, meta_description, body in Markdown with H2/H3, faqs, internal_links using only real outreachrecruitment.net URLs, suggested_image_prompt for a branded 1200x630 image, and social_posts containing linkedin, facebook, instagram, x and newsletter copy. Include introduction, useful sections, FAQ, conclusion and CTA.`;
+  const prompt = `Create an accurate, original ${input.language || "English"} article of approximately ${targetWords} words for Outreach Recruitment.
+
+Title: ${input.title}
+Focus keyword: ${input.keyword}
+Audience: candidates, employers, or international students interested in Malta and Europe.
+
+Return one valid JSON object with: title, slug, excerpt, seo_title, meta_description, body, faqs, internal_links, external_sources, entities, suggested_image_prompt, and social_posts containing linkedin, facebook, instagram, x and newsletter.
+
+SEO and AI-search/GEO requirements:
+- Start body with a 40–60 word Markdown blockquote beginning with ">" that directly answers the main query.
+- Use one article title only; body headings must start at ## and use logical ##/### hierarchy.
+- Use the focus keyword naturally in the title, SEO title, meta description, opening answer, one heading, and conclusion. Never keyword-stuff.
+- Demonstrate experience and trust with practical steps, limitations, clear attribution, and language suitable for a recruitment business. Never invent facts, results, testimonials, fees, laws, statistics, vacancies, partnerships, or business claims.
+- Include at least three contextual internal Markdown links. Use only verified destinations: https://outreachrecruitment.net/jobs/, https://outreachrecruitment.net/news-updates, https://outreachrecruitment.net/candidates/, https://outreachrecruitment.net/employers/, and https://outreachrecruitment.net/study-in-malta/. Choose only relevant links and use descriptive anchor text.
+- Include a ## Sources and further reading section with 2–4 relevant authoritative external Markdown links, preferably official Malta or EU sources. Label every source clearly. Do not fabricate URLs or cite a source that does not support the statement.
+- Include concise definitions, named entities, scannable lists, and self-contained passages that can be understood when quoted by Google AI Overviews or answer engines.
+- Include exactly one ## FAQs section with at least three useful ### questions and direct answers.
+- Include a ## Conclusion with a factual call to action to a relevant Outreach Recruitment page.
+- Make the article genuinely useful and link-worthy; do not claim that backlinks exist or guarantee rankings.
+- internal_links and external_sources must repeat the URLs actually used in body. entities must list the important organisations, locations, services, and concepts mentioned.
+- suggested_image_prompt must describe a professional branded 1200x630 editorial image with no embedded text.
+
+Do not use generic filler, fake quotations, unsupported superlatives, or promises of employment, visas, admission, or search rankings.`;
   let result: any = null;
   const failures: string[] = [];
   if (Deno.env.get("GEMINI_API_KEY")) {
@@ -376,13 +398,15 @@ async function generateOpenAI(prompt: string) {
 function freeContent(title: string, keyword: string, target = 1200) {
   const articleTitle = title || `A Practical Guide to ${keyword}`;
   const sections = [
-    `## Introduction\n\nPeople researching **${keyword}** need clear, practical information before deciding what to do next. This guide explains useful preparation steps and questions to ask without promising a particular employment, study or immigration outcome.`,
+    `> ${keyword} requires careful research, a relevant application and confirmation from reliable sources. This guide gives candidates practical steps, trusted Malta resources and realistic next actions without promising employment, admission, visas or a particular outcome.`,
+    `## Introduction to ${keyword}\n\nPeople researching **${keyword}** need clear, practical information before deciding what to do next. This guide explains useful preparation steps and questions to ask without promising a particular employment, study or immigration outcome.`,
     `## Define Your Goal\n\nStart by identifying the opportunity you want, the experience you can demonstrate and the location that suits you. Review every description carefully and compare its requirements with your real skills, qualifications and availability.`,
     `## Research Reliable Sources\n\nUse reputable sources and confirm important requirements with the employer or appropriate official authority. Rules and availability can change, so avoid relying only on old posts or unsupported claims.`,
     `## Prepare Carefully\n\nAdapt your information to the opportunity, use clear examples and check that your contact details are correct. Keep a tracker containing deadlines, documents submitted and follow-up dates.`,
-    `## Useful Outreach Recruitment Resources\n\nReview current opportunities at https://outreachrecruitment.net/jobs/ and practical guidance at https://outreachrecruitment.net/news-updates. Follow the official application instructions shown on each page.`,
-    `## Frequently Asked Questions\n\n### Does applying guarantee an interview or offer?\n\nNo. Applications are assessed against each opportunity and no legitimate service can guarantee selection.\n\n### Should important legal information be verified?\n\nYes. Confirm visa, study and work-permit matters with the relevant official authority because rules depend on individual circumstances and may change.`,
-    `## Conclusion\n\nA successful approach to **${keyword}** begins with reliable research, an honest application and realistic expectations. Verify important information and take each step only when you have enough evidence.`,
+    `## Useful Outreach Recruitment Resources\n\nReview [current job opportunities in Malta](https://outreachrecruitment.net/jobs/), explore [Outreach Recruitment news and practical guides](https://outreachrecruitment.net/news-updates), and learn how the [candidate recruitment service](https://outreachrecruitment.net/candidates/) supports jobseekers. Follow the official application instructions shown on each page.`,
+    `## Sources and further reading\n\n- [Jobsplus — Malta's public employment service](https://jobsplus.gov.mt/)\n- [Identità — official Malta residence and immigration information](https://identita.gov.mt/)\n- [Your Europe — working in another EU country](https://europa.eu/youreurope/citizens/work/index_en.htm)`,
+    `## FAQs\n\n### Does applying guarantee an interview or offer?\n\nNo. Applications are assessed against each opportunity and no legitimate service can guarantee selection.\n\n### Should important legal information be verified?\n\nYes. Confirm visa, study and work-permit matters with the relevant official authority because rules depend on individual circumstances and may change.\n\n### Where can candidates find current opportunities?\n\nUse the Outreach Recruitment jobs page and verified employer or public-employment sources, then follow the application instructions for the specific vacancy.`,
+    `## Conclusion\n\nA successful approach to **${keyword}** begins with reliable research, an honest application and realistic expectations. Verify important information, then review [current opportunities from Outreach Recruitment](https://outreachrecruitment.net/jobs/) when you are ready to take the next step.`,
   ];
   const extras = [
     "Create a written checklist and record what you learn before continuing.",
@@ -411,6 +435,19 @@ function freeContent(title: string, keyword: string, target = 1200) {
     internal_links: [
       "https://outreachrecruitment.net/jobs/",
       "https://outreachrecruitment.net/news-updates",
+      "https://outreachrecruitment.net/candidates/",
+    ],
+    external_sources: [
+      "https://jobsplus.gov.mt/",
+      "https://identita.gov.mt/",
+      "https://europa.eu/youreurope/citizens/work/index_en.htm",
+    ],
+    entities: [
+      "Outreach Recruitment",
+      "Malta",
+      "Jobsplus",
+      "Identità",
+      "European Union",
     ],
     social_posts: {
       linkedin: `New guide: ${articleTitle}. Read practical advice from Outreach Recruitment.`,

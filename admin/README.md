@@ -14,6 +14,8 @@ Published articles use the same shared editorial template as `/moving-to-malta-f
 
 Campaign automation uses `20261113210000_campaign_autogeneration.sql`. An active campaign stores its related service, monthly article target, publishing weekdays, Malta publishing time, word-count target and author. Saving it creates deduplicated keyword topics and immediately asks the Edge Function for the first review-ready drafts; later scheduled runs continue up to the monthly limit. Drafts always remain in `generated` status until an administrator reviews them. The article editor detects every Markdown `##` section and provides a separate secure image upload, alt-text and caption control for each one; those images are inserted beneath the matching section heading when published.
 
+AI and free generation use the same search-ready content contract: a direct-answer opening for answer engines, semantic H2/H3 structure, natural focus-keyword placement, at least three contextual internal links, authoritative official sources, named entities, exact FAQ markup, a factual call to action, Article/FAQ/Breadcrumb JSON-LD, and human approval. The approval validator blocks articles that omit the answer box, exact FAQ section, internal links, sources, image, alt text, service, or core metadata. These practices improve eligibility and usefulness but cannot guarantee a particular Google or AI-search position. Inbound backlinks must be earned from independent websites; the generator creates useful, citeable content and authoritative outbound citations but never fabricates backlinks.
+
 After applying that migration, redeploy the updated function:
 
 ```bash
