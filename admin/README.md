@@ -1,5 +1,13 @@
 # Outreach Admin — Course & KPI
 
+## SEO Control Centre (`/admin/seo/`)
+
+The React + TypeScript SEO publishing suite lives at `/admin/seo/` and uses the same Supabase authentication and admin allow-list as this legacy admin. Apply `supabase/migrations/20261113140000_seo_content_platform.sql`, then build with `npm run build:seo`.
+
+Server-side AI generation is provided by the `generate-seo-content` Edge Function. Configure `OPENAI_API_KEY`, optionally `OPENAI_MODEL`, deploy the function, and keep the service-role key only in Supabase's managed function environment. The browser never receives privileged credentials.
+
+Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.
+
 Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
 
 - **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline

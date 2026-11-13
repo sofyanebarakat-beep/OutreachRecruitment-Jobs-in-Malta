@@ -22,3 +22,7 @@ images/image-log.json
 reports/daily-sync/rejected/
 tools/.daily_job_sync.lock
 tools/.run_sync_agent.pid
+
+# React/Vite admin build tooling
+node_modules/
+*.tsbuildinfo

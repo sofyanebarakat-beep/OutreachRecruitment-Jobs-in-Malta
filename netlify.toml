@@ -1148,3 +1148,7 @@
   for = "/jobs/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+[[redirects]]
+  from = "/admin/seo/*"
+  to = "/admin/seo/index.html"
+  status = 200
