@@ -772,28 +772,303 @@ function ServiceModal({
 }
 
 function Campaigns() {
+  const state = useRows("seo_campaigns");
+  const [edit, setEdit] = useState<Row | null>(null);
   return (
-    <SimpleCrud
-      table="seo_campaigns"
-      title="SEO campaigns"
-      action="Create campaign"
-      defaults={{
-        status: "planning",
-        language: "English",
-        articles_per_month: 4,
-      }}
-      fields={[
-        "name",
-        "target_location",
-        "language",
-        "objective",
-        "start_date",
-        "articles_per_month",
-        "publishing_schedule",
-        "notes",
-      ]}
-      statuses={["planning", "active", "paused", "completed"]}
-    />
+    <>
+      <ListHeader
+        title="SEO campaigns"
+        action="Create automated campaign"
+        onAction={() =>
+          setEdit({
+            status: "active",
+            language: "English",
+            target_location: "Malta and Europe",
+            articles_per_month: 8,
+            publish_days: ["Tuesday", "Friday"],
+            publish_time: "09:00",
+            auto_generate: true,
+            target_words: 1200,
+            author_name: "Outreach Recruitment",
+            start_date: new Date().toISOString().slice(0, 10),
+          })
+        }
+      />
+      {state.loading ? (
+        <TableLoader />
+      ) : (
+        <Cards
+          rows={state.rows}
+          empty="No campaigns yet."
+          render={(r) => (
+            <>
+              <div>
+                <span className={`badge ${statusTone[r.status]}`}>
+                  {r.status}
+                </span>
+                <h3>{r.name}</h3>
+                <p>{r.objective}</p>
+              </div>
+              <div className="card-meta">
+                <span>
+                  Monthly<strong>{r.articles_per_month} articles</strong>
+                </span>
+                <span>
+                  Schedule
+                  <strong>
+                    {(r.publish_days || []).join(", ")} ·{" "}
+                    {String(r.publish_time || "09:00").slice(0, 5)}
+                  </strong>
+                </span>
+                <span>
+                  Autopilot<strong>{r.auto_generate ? "On" : "Off"}</strong>
+                </span>
+              </div>
+              <button onClick={() => setEdit(r)}>Edit automation</button>
+            </>
+          )}
+        />
+      )}{" "}
+      {edit && (
+        <CampaignModal
+          row={edit}
+          close={() => setEdit(null)}
+          saved={() => {
+            setEdit(null);
+            state.load();
+          }}
+        />
+      )}
+    </>
+  );
+}
+
+function CampaignModal({
+  row,
+  close,
+  saved,
+}: {
+  row: Row;
+  close: () => void;
+  saved: () => void;
+}) {
+  const [v, setV] = useState(row),
+    [busy, setBusy] = useState(false),
+    [msg, setMsg] = useState("");
+  const services = useRows("seo_services"),
+    days = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+  const set = (k: string, x: any) =>
+    setV((current: Row) => ({ ...current, [k]: x }));
+  function toggleDay(day: string) {
+    const current = v.publish_days || [];
+    set(
+      "publish_days",
+      current.includes(day)
+        ? current.filter((x: string) => x !== day)
+        : [...current, day],
+    );
+  }
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    if (!(v.publish_days || []).length) {
+      setMsg("Choose at least one publishing weekday.");
+      return;
+    }
+    setBusy(true);
+    const schedule = `${v.publish_days.join(", ")} at ${v.publish_time} Malta time`;
+    const { data, error } = await sb
+      .from("seo_campaigns")
+      .upsert({
+        ...v,
+        publishing_schedule: schedule,
+        updated_at: new Date().toISOString(),
+      })
+      .select()
+      .single();
+    if (error) {
+      setMsg(error.message);
+      setBusy(false);
+      return;
+    }
+    if (data.auto_generate && data.status === "active") {
+      const service = services.rows.find((s) => s.id === data.service_id),
+        base = service?.main_keyword || data.name;
+      const ideas = [
+        `how to ${base}`,
+        `${base} guide`,
+        `${base} requirements`,
+        `${base} mistakes to avoid`,
+        `${base} checklist`,
+        `${base} for beginners`,
+        `${base} questions answered`,
+        `${base} practical tips`,
+        `choosing ${base}`,
+        `${base} in Malta`,
+        `what to know about ${base}`,
+        `${base} step by step`,
+      ].slice(0, Math.min(30, data.articles_per_month));
+      const { error: topicError } = await sb.from("seo_topics").upsert(
+        ideas.map((keyword: string, i: number) => ({
+          keyword,
+          target_location: data.target_location,
+          intent: i < 2 ? "commercial" : "informational",
+          priority: 90 - i * 3,
+          status: "idea",
+          suggested_title: keyword.replace(/\b\w/g, (c: string) =>
+            c.toUpperCase(),
+          ),
+          campaign_id: data.id,
+          service_id: data.service_id,
+          notes: "Automatically created from campaign settings",
+        })),
+        { onConflict: "keyword,target_location", ignoreDuplicates: true },
+      );
+      if (topicError) {
+        setMsg(
+          `Campaign saved, but topics could not be created: ${topicError.message}`,
+        );
+        setBusy(false);
+        return;
+      }
+      const { error: generationError } = await sb.functions.invoke(
+        "generate-seo-content",
+        {
+          body: {
+            action: "campaign_drafts",
+            campaign_id: data.id,
+            count: Math.min(5, data.articles_per_month),
+          },
+        },
+      );
+      if (generationError) {
+        setMsg(
+          `Campaign and topics saved. Draft generation will retry automatically: ${generationError.message}`,
+        );
+        setBusy(false);
+        return;
+      }
+    }
+    setBusy(false);
+    saved();
+  }
+  return (
+    <Modal
+      title={row.id ? "Edit automated campaign" : "Create automated campaign"}
+      close={close}
+    >
+      <form className="form-grid" onSubmit={save}>
+        <Field
+          label="Campaign name"
+          required
+          className="wide"
+          value={v.name}
+          onChange={(x) => set("name", x)}
+        />
+        <label>
+          Related service
+          <select
+            required
+            value={v.service_id || ""}
+            onChange={(e) => set("service_id", e.target.value)}
+          >
+            <option value="">Select a service</option>
+            {services.rows.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <Field
+          label="Target location"
+          value={v.target_location}
+          onChange={(x) => set("target_location", x)}
+        />
+        <Area
+          label="Campaign objective"
+          className="wide"
+          value={v.objective}
+          onChange={(x) => set("objective", x)}
+        />
+        <Field
+          label="Start date"
+          type="date"
+          value={v.start_date}
+          onChange={(x) => set("start_date", x)}
+        />
+        <Field
+          label="Articles per month"
+          type="number"
+          value={v.articles_per_month}
+          onChange={(x) => set("articles_per_month", Math.max(1, Number(x)))}
+        />
+        <div className="wide">
+          <span className="field-label">Publishing weekdays</span>
+          <div className="day-picker">
+            {days.map((day) => (
+              <button
+                type="button"
+                className={
+                  (v.publish_days || []).includes(day) ? "selected" : ""
+                }
+                onClick={() => toggleDay(day)}
+                key={day}
+              >
+                {day.slice(0, 3)}
+              </button>
+            ))}
+          </div>
+        </div>
+        <Field
+          label="Publishing time (Malta)"
+          type="time"
+          value={String(v.publish_time || "09:00").slice(0, 5)}
+          onChange={(x) => set("publish_time", x)}
+        />
+        <Select
+          label="Target words"
+          value={String(v.target_words || 1200)}
+          options={["800", "1200", "1600", "2000"]}
+          onChange={(x) => set("target_words", Number(x))}
+        />
+        <Select
+          label="Written by"
+          value={v.author_name || "Outreach Recruitment"}
+          options={ARTICLE_AUTHORS}
+          onChange={(x) => set("author_name", x)}
+        />
+        <Select
+          label="Status"
+          value={v.status}
+          options={["planning", "active", "paused", "completed"]}
+          onChange={(x) => set("status", x)}
+        />
+        <label className="check wide">
+          <input
+            type="checkbox"
+            checked={v.auto_generate ?? true}
+            onChange={(e) => set("auto_generate", e.target.checked)}
+          />{" "}
+          Automatically create related keywords and article drafts
+        </label>
+        <Area
+          label="Notes"
+          className="wide"
+          value={v.notes}
+          onChange={(x) => set("notes", x)}
+        />
+        {msg && <p className="error wide">{msg}</p>}
+        <FormActions busy={busy} close={close} />
+      </form>
+    </Modal>
   );
 }
 function Topics() {
@@ -1194,6 +1469,10 @@ function ArticleModal({
       }));
   }
   const warnings = validateArticle(v);
+  const articleHeadings = Array.from(
+    String(v.body || "").matchAll(/^##\s+(.+)$/gm),
+    (match) => match[1].trim(),
+  );
   return (
     <Modal
       title={row.id ? "Edit article" : "Create article"}
@@ -1269,6 +1548,65 @@ function ArticleModal({
           value={v.body}
           onChange={(x) => set("body", x)}
         />
+        {articleHeadings.length > 0 && (
+          <div className="wide section-images">
+            <h3>Images inside article sections</h3>
+            <p>Upload an optional image beneath any H2 section.</p>
+            {articleHeadings.map((heading) => {
+              const current = (v.section_images || []).find(
+                (image: Row) => image.heading === heading,
+              );
+              const update = (changes: Row) => {
+                const others = (v.section_images || []).filter(
+                  (image: Row) => image.heading !== heading,
+                );
+                set("section_images", [
+                  ...others,
+                  { heading, ...(current || {}), ...changes },
+                ]);
+              };
+              return (
+                <div className="section-image-row" key={heading}>
+                  <strong>{heading}</strong>
+                  <ImageUploader
+                    label={`Image below “${heading}”`}
+                    value={current?.url}
+                    alt={current?.alt}
+                    onUploaded={(url, width, height) =>
+                      update({ url, width, height })
+                    }
+                  />
+                  <Field
+                    label="Alt text"
+                    value={current?.alt}
+                    onChange={(alt) => update({ alt })}
+                  />
+                  <Field
+                    label="Optional caption"
+                    value={current?.caption}
+                    onChange={(caption) => update({ caption })}
+                  />
+                  {current?.url && (
+                    <button
+                      type="button"
+                      className="danger"
+                      onClick={() =>
+                        set(
+                          "section_images",
+                          (v.section_images || []).filter(
+                            (image: Row) => image.heading !== heading,
+                          ),
+                        )
+                      }
+                    >
+                      Remove section image
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
         {v.suggested_image_prompt && (
           <Area
             label="Suggested image brief"
@@ -2133,10 +2471,12 @@ function Select({
   );
 }
 function ImageUploader({
+  label = "Featured image · 1200 × 630 recommended",
   value,
   alt,
   onUploaded,
 }: {
+  label?: string;
   value?: string;
   alt?: string;
   onUploaded: (url: string, width: number, height: number) => void;
@@ -2173,7 +2513,7 @@ function ImageUploader({
   }
   return (
     <label>
-      Featured image · 1200 × 630 recommended
+      {label}
       <input
         type="file"
         accept="image/jpeg,image/png,image/webp"

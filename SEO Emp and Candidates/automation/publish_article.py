@@ -15,6 +15,7 @@ eliminated. See SKILL.md and the workflow's own comments for the accepted trade-
 from __future__ import annotations
 
 import argparse
+import base64
 import html
 import json
 import re
@@ -382,6 +383,11 @@ def render_body(fm: dict, body: str) -> tuple[str, list[tuple[str, str]]]:
     pillar = fm["pillar"]
     ctas = CTA_MAP[pillar]
 
+    try:
+        section_images = json.loads(base64.urlsafe_b64decode(fm.get("section_images_b64", "")).decode()) if fm.get("section_images_b64") else []
+    except (ValueError, json.JSONDecodeError):
+        section_images = []
+    images_by_heading = {str(item.get("heading", "")).strip().lower(): item for item in section_images if item.get("url") and item.get("alt")}
     parts = [f'<section><div class="answer-box"><strong>Quick answer:</strong> {answer}</div></section>']
 
     faq_html = None
@@ -399,7 +405,17 @@ def render_body(fm: dict, body: str) -> tuple[str, list[tuple[str, str]]]:
         # A ## section's content may contain ### subheadings — render those nested.
         sub_sections = split_by_marker(content, "###")
         pre_content = content[: content.find("###")] if "###" in content else content
-        section_html = [f"<h2>{inline_md(heading)}</h2>", render_blocks(pre_content)]
+        section_html = [f"<h2>{inline_md(heading)}</h2>"]
+        section_image = images_by_heading.get(heading.strip().lower())
+        if section_image:
+            caption = section_image.get("caption")
+            section_html.append(
+                '<figure class="article-section-image">'
+                f'<img src="{html.escape(str(section_image["url"]), quote=True)}" alt="{html.escape(str(section_image["alt"]), quote=True)}" loading="lazy" decoding="async"/>'
+                + (f'<figcaption>{html.escape(str(caption), quote=False)}</figcaption>' if caption else "")
+                + '</figure>'
+            )
+        section_html.append(render_blocks(pre_content))
         for sub_heading, sub_content in sub_sections:
             section_html.append(f"<h3>{inline_md(sub_heading)}</h3>{render_blocks(sub_content)}")
         parts.append("<section>" + "".join(section_html) + "</section>")
@@ -552,7 +568,12 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
   <link href="/assets/brand-overrides.css" rel="stylesheet" type="text/css"/>
   <link href="/assets/job-card-logo.jpg" rel="icon" type="image/jpeg"/>
   <link href="/assets/job-card-logo.jpg" rel="apple-touch-icon"/>
-{style_block}  <script type="application/ld+json">
+{style_block}  <style>
+    .article-section-image {{ margin: 1.5rem 0 2rem; }}
+    .article-section-image img {{ display: block; width: 100%; height: auto; border-radius: 0.75rem; }}
+    .article-section-image figcaption {{ margin-top: 0.55rem; color: #667085; font-size: 0.85rem; text-align: center; }}
+  </style>
+  <script type="application/ld+json">
   {schema}
   </script>
 </head>

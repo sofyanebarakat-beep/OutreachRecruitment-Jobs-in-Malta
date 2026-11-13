@@ -2,6 +2,7 @@
 """Publish due, approved Supabase articles through the site's safe static publisher."""
 from __future__ import annotations
 import importlib.util
+import base64
 import json
 import os
 import sys
@@ -42,6 +43,7 @@ def markdown(article):
         "featured_image_url": article.get("featured_image_url") or "",
         "featured_image_alt": article.get("featured_image_alt") or "",
         "author_name": article.get("author_name") or "Outreach Recruitment",
+        "section_images_b64": base64.urlsafe_b64encode(json.dumps(article.get("section_images") or []).encode()).decode(),
     }
     return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + article["body"].strip() + "\n"
 

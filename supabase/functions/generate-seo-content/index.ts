@@ -22,8 +22,11 @@ Deno.serve(async (req) => {
       if (!data) return json({ error: "Administrator access required" }, 403);
     }
     const input = await req.json();
-    return input.action === "scheduled_drafts"
-      ? await scheduled(Math.max(1, Math.min(Number(input.count) || 2, 5)))
+    return ["scheduled_drafts", "campaign_drafts"].includes(input.action)
+      ? await scheduled(
+          Math.max(1, Math.min(Number(input.count) || 2, 5)),
+          input.action === "campaign_drafts" ? input.campaign_id : undefined,
+        )
       : json(await generate(input));
   } catch (e) {
     return json(
@@ -32,7 +35,7 @@ Deno.serve(async (req) => {
     );
   }
 });
-async function scheduled(count: number) {
+async function scheduled(count: number, campaignId?: string) {
   const { data: settings } = await service
     .from("seo_automation_settings")
     .select("*")
@@ -82,16 +85,39 @@ async function scheduled(count: number) {
     const statuses = settings?.auto_topic_selection
         ? ["approved", "idea"]
         : ["approved"],
-      { data: topics, error } = await service
+      topicQuery = service
         .from("seo_topics")
         .select("*")
         .in("status", statuses)
         .order("priority", { ascending: false })
-        .limit(limit * 2);
+        .limit(limit * 2),
+      { data: topics, error } = await (campaignId
+        ? topicQuery.eq("campaign_id", campaignId)
+        : topicQuery);
     if (error) throw error;
     const created = [];
     for (const topic of topics || []) {
       if (created.length >= limit) break;
+      const { data: campaign } = topic.campaign_id
+        ? await service
+            .from("seo_campaigns")
+            .select("*")
+            .eq("id", topic.campaign_id)
+            .maybeSingle()
+        : { data: null };
+      if (campaign && (!campaign.auto_generate || campaign.status !== "active"))
+        continue;
+      if (campaign) {
+        const monthStart = `${new Date().toISOString().slice(0, 7)}-01T00:00:00.000Z`;
+        const { count: monthlyCount } = await service
+          .from("seo_articles")
+          .select("id", { count: "exact", head: true })
+          .eq("campaign_id", campaign.id)
+          .gte("created_at", monthStart)
+          .neq("status", "rejected");
+        if ((monthlyCount || 0) >= Number(campaign.articles_per_month || 1))
+          continue;
+      }
       const { data: duplicate } = await service
         .from("seo_articles")
         .select("id")
@@ -105,6 +131,7 @@ async function scheduled(count: number) {
           keyword: topic.keyword,
           tone: "professional",
           language: "English",
+          target_words: campaign?.target_words || 1200,
         }),
         { social_posts, ...articleContent } = content,
         { data: article, error: articleError } = await service
@@ -118,6 +145,7 @@ async function scheduled(count: number) {
             campaign_id: topic.campaign_id,
             status: "generated",
             language: "English",
+            author_name: campaign?.author_name || "Outreach Recruitment",
             auto_selected: topic.status !== "approved",
           })
           .select("id,title")

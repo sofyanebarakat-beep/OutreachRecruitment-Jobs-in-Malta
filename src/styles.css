@@ -867,6 +867,26 @@ td small {
   border-radius: 8px;
   border: 1px solid var(--line);
 }
+.field-label {
+  display: block;
+  font-size: 11px;
+  color: #44516a;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.day-picker {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.day-picker button {
+  min-width: 48px;
+}
+.day-picker button.selected {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
 @media (max-width: 1100px) {
   .metric-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -961,5 +981,36 @@ td small {
   }
   .login-copy h1 {
     font-size: 26px;
+  }
+}
+.section-images {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 16px;
+}
+.section-images > h3 {
+  font: 800 15px Manrope;
+  margin: 0;
+}
+.section-images > p {
+  color: var(--muted);
+  font-size: 11px;
+}
+.section-image-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 12px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+.section-image-row > strong {
+  grid-column: 1/-1;
+}
+.section-image-row > button {
+  align-self: end;
+}
+@media (max-width: 800px) {
+  .section-image-row {
+    grid-template-columns: 1fr;
   }
 }

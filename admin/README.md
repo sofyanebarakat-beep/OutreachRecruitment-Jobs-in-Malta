@@ -12,6 +12,16 @@ Connected generation checks `GEMINI_API_KEY`, then `GROQ_API_KEY`, then `OPENAI_
 
 Published articles use the same shared editorial template as `/moving-to-malta-for-work/`. The article editor's **Written by** selector uses the real team list; the selected author is carried into the visible author card, HTML author metadata and BlogPosting structured data. Apply `20261113200000_article_authors.sql` before using this field.
 
+Campaign automation uses `20261113210000_campaign_autogeneration.sql`. An active campaign stores its related service, monthly article target, publishing weekdays, Malta publishing time, word-count target and author. Saving it creates deduplicated keyword topics and immediately asks the Edge Function for the first review-ready drafts; later scheduled runs continue up to the monthly limit. Drafts always remain in `generated` status until an administrator reviews them. The article editor detects every Markdown `##` section and provides a separate secure image upload, alt-text and caption control for each one; those images are inserted beneath the matching section heading when published.
+
+After applying that migration, redeploy the updated function:
+
+```bash
+supabase link --project-ref atcitaqyraeqngcsaeun
+supabase db push
+supabase functions deploy generate-seo-content --project-ref atcitaqyraeqngcsaeun
+```
+
 Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.
 
 Service pages are derived from the website itself by `tools/build_seo_service_catalog.py`. The daily local automation refreshes `assets/seo-service-catalog.json`; **Services SEO → Sync from website** safely upserts that catalogue into Supabase. **Keywords & Topics → Find ideas from Google** converts the existing Search Console keyword feed into deduplicated content opportunities.
