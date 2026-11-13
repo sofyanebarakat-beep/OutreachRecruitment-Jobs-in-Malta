@@ -217,7 +217,7 @@ SEO and AI-search/GEO requirements:
 - Use one article title only; body headings must start at ## and use logical ##/### hierarchy.
 - Use the focus keyword naturally in the title, SEO title, meta description, opening answer, one heading, and conclusion. Never keyword-stuff.
 - Demonstrate experience and trust with practical steps, limitations, clear attribution, and language suitable for a recruitment business. Never invent facts, results, testimonials, fees, laws, statistics, vacancies, partnerships, or business claims.
-- Include at least three contextual internal Markdown links. Use only verified destinations: https://outreachrecruitment.net/jobs/, https://outreachrecruitment.net/news-updates, https://outreachrecruitment.net/candidates/, https://outreachrecruitment.net/employers/, and https://outreachrecruitment.net/study-in-malta/. Choose only relevant links and use descriptive anchor text.
+- Include at least three contextual internal Markdown links. Use only verified destinations: https://outreachrecruitment.net/jobs/, https://outreachrecruitment.net/news-updates, https://outreachrecruitment.net/service, https://outreachrecruitment.net/employers, https://outreachrecruitment.net/contact-us, and https://outreachrecruitment.net/study-in-malta.html. Choose only relevant links and use descriptive anchor text.
 - Include a ## Sources and further reading section with 2–4 relevant authoritative external Markdown links, preferably official Malta or EU sources. Label every source clearly. Do not fabricate URLs or cite a source that does not support the statement.
 - Include concise definitions, named entities, scannable lists, and self-contained passages that can be understood when quoted by Google AI Overviews or answer engines.
 - Include exactly one ## FAQs section with at least three useful ### questions and direct answers.
@@ -403,7 +403,7 @@ function freeContent(title: string, keyword: string, target = 1200) {
     `## Define Your Goal\n\nStart by identifying the opportunity you want, the experience you can demonstrate and the location that suits you. Review every description carefully and compare its requirements with your real skills, qualifications and availability.`,
     `## Research Reliable Sources\n\nUse reputable sources and confirm important requirements with the employer or appropriate official authority. Rules and availability can change, so avoid relying only on old posts or unsupported claims.`,
     `## Prepare Carefully\n\nAdapt your information to the opportunity, use clear examples and check that your contact details are correct. Keep a tracker containing deadlines, documents submitted and follow-up dates.`,
-    `## Useful Outreach Recruitment Resources\n\nReview [current job opportunities in Malta](https://outreachrecruitment.net/jobs/), explore [Outreach Recruitment news and practical guides](https://outreachrecruitment.net/news-updates), and learn how the [candidate recruitment service](https://outreachrecruitment.net/candidates/) supports jobseekers. Follow the official application instructions shown on each page.`,
+    `## Useful Outreach Recruitment Resources\n\nReview [current job opportunities in Malta](https://outreachrecruitment.net/jobs/), explore [Outreach Recruitment news and practical guides](https://outreachrecruitment.net/news-updates), and learn about [Outreach Recruitment's services](https://outreachrecruitment.net/service). Follow the official application instructions shown on each page.`,
     `## Sources and further reading\n\n- [Jobsplus — Malta's public employment service](https://jobsplus.gov.mt/)\n- [Identità — official Malta residence and immigration information](https://identita.gov.mt/)\n- [Your Europe — working in another EU country](https://europa.eu/youreurope/citizens/work/index_en.htm)`,
     `## FAQs\n\n### Does applying guarantee an interview or offer?\n\nNo. Applications are assessed against each opportunity and no legitimate service can guarantee selection.\n\n### Should important legal information be verified?\n\nYes. Confirm visa, study and work-permit matters with the relevant official authority because rules depend on individual circumstances and may change.\n\n### Where can candidates find current opportunities?\n\nUse the Outreach Recruitment jobs page and verified employer or public-employment sources, then follow the application instructions for the specific vacancy.`,
     `## Conclusion\n\nA successful approach to **${keyword}** begins with reliable research, an honest application and realistic expectations. Verify important information, then review [current opportunities from Outreach Recruitment](https://outreachrecruitment.net/jobs/) when you are ready to take the next step.`,
@@ -435,7 +435,7 @@ function freeContent(title: string, keyword: string, target = 1200) {
     internal_links: [
       "https://outreachrecruitment.net/jobs/",
       "https://outreachrecruitment.net/news-updates",
-      "https://outreachrecruitment.net/candidates/",
+      "https://outreachrecruitment.net/service",
     ],
     external_sources: [
       "https://jobsplus.gov.mt/",

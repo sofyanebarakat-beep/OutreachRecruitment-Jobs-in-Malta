@@ -178,7 +178,7 @@ function freeArticleDraft(title: string, keyword: string, targetWords: number) {
     `## Understand Your Goal\n\nStart by defining the type of opportunity you want, the experience you can demonstrate and the location or working arrangement that suits you. A focused search is easier to manage than applying to every available option. Review each opportunity carefully and compare its responsibilities with your real skills, qualifications and availability.`,
     `## Research Opportunities Carefully\n\nUse reputable sources and read the complete description before applying. Check the role, location, working pattern and requested experience. Requirements can differ between employers and may change, so confirm important details with the employer or the appropriate official authority instead of relying on assumptions or outdated social-media posts.`,
     `## Prepare a Focused Application\n\nAdapt your CV and supporting information to the opportunity. Put the most relevant experience near the top, use clear examples and check that your contact details are correct. Avoid copying claims that you cannot support. A concise application that responds to the actual requirements is usually more useful than a long generic document.`,
-    `## Use Outreach Recruitment Resources\n\nReview current opportunities on the [Outreach Recruitment jobs page](https://outreachrecruitment.net/jobs/) and explore relevant guidance on the [News Updates page](https://outreachrecruitment.net/news-updates). Only apply for opportunities that match your background, and use the official application instructions shown on the vacancy page.`,
+    `## Use Outreach Recruitment Resources\n\nReview current opportunities on the [Outreach Recruitment jobs page](https://outreachrecruitment.net/jobs/), explore relevant guidance on the [News Updates page](https://outreachrecruitment.net/news-updates), and understand [Outreach Recruitment's services](https://outreachrecruitment.net/service). Only apply for opportunities that match your background, and use the official application instructions shown on the vacancy page.`,
     `## Questions to Ask Before Moving Forward\n\n- What experience and qualifications are essential?\n- Where is the opportunity based?\n- What documents are requested during the application?\n- What are the next stages of the selection process?\n- Which details should be confirmed with an official authority?\n\nKeeping a written checklist makes it easier to compare options and follow up professionally.`,
     `## Avoid Common Mistakes\n\nDo not submit incomplete contact details, make unsupported claims or pay anyone who promises a guaranteed outcome. Take time to proofread your application and keep copies of important communication. If a requirement is unclear, ask for clarification before making a financial or relocation decision.`,
     `## Sources and further reading\n\n- [Jobsplus — Malta's public employment service](https://jobsplus.gov.mt/)\n- [Identità — official Malta residence and immigration information](https://identita.gov.mt/)\n- [Your Europe — working in another EU country](https://europa.eu/youreurope/citizens/work/index_en.htm)`,
@@ -209,7 +209,7 @@ function freeArticleDraft(title: string, keyword: string, targetWords: number) {
     internal_links: [
       "https://outreachrecruitment.net/jobs/",
       "https://outreachrecruitment.net/news-updates",
-      "https://outreachrecruitment.net/candidates/",
+      "https://outreachrecruitment.net/service",
     ],
     external_sources: [
       "https://jobsplus.gov.mt/",
@@ -1753,12 +1753,12 @@ function validateArticle(v: Row) {
   const internalLinks = String(v.body || "").match(
     /https:\/\/(?:www\.)?outreachrecruitment\.net\/[A-Za-z0-9_?=#%&./-]*/g,
   );
-  if ((internalLinks || []).length < 3)
+  if (new Set(internalLinks || []).size < 3)
     w.push("Add at least three contextual Outreach Recruitment internal links");
   const authorityLinks = String(v.body || "").match(
     /https:\/\/(?!(?:www\.)?outreachrecruitment\.net)[A-Za-z0-9.-]+\/[A-Za-z0-9_?=#%&./-]*/g,
   );
-  if ((authorityLinks || []).length < 2)
+  if (new Set(authorityLinks || []).size < 2)
     w.push("Cite at least two relevant authoritative external sources");
   return w;
 }
