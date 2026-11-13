@@ -41,6 +41,7 @@ def markdown(article):
         "date": today, "excerpt": article.get("excerpt") or "",
         "featured_image_url": article.get("featured_image_url") or "",
         "featured_image_alt": article.get("featured_image_alt") or "",
+        "author_name": article.get("author_name") or "Outreach Recruitment",
     }
     return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + article["body"].strip() + "\n"
 

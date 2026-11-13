@@ -127,6 +127,15 @@ const sections: Section[] = [
     description: "Business, SEO and integration configuration",
   },
 ];
+const ARTICLE_AUTHORS = [
+  "Outreach Recruitment",
+  "Nikolai Calleja",
+  "Andrea Zambrano",
+  "Katheryn Gonzalez Andrade",
+  "Jeraldin Daniela Bohorquez",
+  "Julián Longan Granados",
+  "Soufiane Barakat",
+];
 const statusTone: Record<string, string> = {
   active: "green",
   approved: "green",
@@ -1002,7 +1011,13 @@ function Articles({ review = false }: { review?: boolean }) {
         title={review ? "Articles awaiting review" : "Article library"}
         action={review ? undefined : "Create article"}
         onAction={() =>
-          setEdit({ status: "draft", language: "English", indexable: true })
+          setEdit({
+            status: "draft",
+            language: "English",
+            indexable: true,
+            author_name: "Outreach Recruitment",
+            template_style: "editorial",
+          })
         }
       />
       {state.loading ? (
@@ -1194,6 +1209,12 @@ function ArticleModal({
             ))}
           </select>
         </label>
+        <Select
+          label="Written by"
+          value={v.author_name || "Outreach Recruitment"}
+          options={ARTICLE_AUTHORS}
+          onChange={(x) => set("author_name", x)}
+        />
         <Field
           label="SEO title"
           className="wide"

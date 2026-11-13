@@ -465,7 +465,9 @@ def human_date(iso_date: str) -> str:
 def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tuple[str, dict]:
     pillar = fm["pillar"]
     slug = fm["slug"]
-    is_root = pillar == "StudyInMalta"
+    # Every dashboard article uses the shared editorial blog template, including
+    # Study in Malta content. Service/landing pages remain separate.
+    is_root = False
     dest_rel = f"{slug}.html" if is_root else f"blog/{slug}.html"
     canonical = f"https://outreachrecruitment.net/{slug}/"
     back_href = "/study-in-malta" if is_root else "/blog/"
@@ -477,6 +479,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     img_mime = "image/webp" if img_path.lower().endswith(".webp") else "image/png"
     tag = TAG_MAP[pillar]
     title = html.escape(fm["title"], quote=False)
+    author_name = fm.get("author_name") or "Outreach Recruitment"
     seo_title = html.escape(fm["seo_title"], quote=False)
     meta_desc = html.escape(fm["meta_description"], quote=False)
     og_image_abs = f"https://outreachrecruitment.net{img_path}"
@@ -498,11 +501,12 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
         {"@type": "Organization", "@id": org_id, "name": "Outreach Recruitment Ltd",
          "url": "https://outreachrecruitment.net/",
          "logo": {"@type": "ImageObject", "url": "https://outreachrecruitment.net/assets/outreach-recruitment-logo.svg"}},
+        {"@type": "Person", "@id": f"https://outreachrecruitment.net/our-team#{re.sub(r'[^a-z0-9]+', '-', author_name.lower()).strip('-')}", "name": author_name, "url": "https://outreachrecruitment.net/our-team", "worksFor": {"@id": org_id}},
         {"@type": "BlogPosting", "@id": f"{canonical}#article", "headline": fm["title"],
          "description": fm["meta_description"], "url": canonical,
          "image": {"@type": "ImageObject", "url": og_image_abs, "width": 1200, "height": 630},
          "datePublished": f"{fm['date']}T00:00:00Z", "dateModified": f"{fm['date']}T00:00:00Z",
-         "author": {"@id": org_id}, "publisher": {"@id": org_id}, "inLanguage": "en",
+         "author": {"@id": f"https://outreachrecruitment.net/our-team#{re.sub(r'[^a-z0-9]+', '-', author_name.lower()).strip('-')}"}, "publisher": {"@id": org_id}, "inLanguage": "en",
          "keywords": fm["primary_keyword"], "mainEntityOfPage": {"@type": "WebPage", "@id": canonical}},
         {"@type": "BreadcrumbList", "itemListElement": breadcrumb},
         {"@type": "FAQPage", "mainEntity": [
@@ -524,6 +528,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
   <meta charset="utf-8"/>
   <title>{seo_title}</title>
   <meta name="description" content="{meta_desc}"/>
+  <meta name="author" content="{html.escape(author_name, quote=True)}"/>
   <meta property="og:title" content="{title}"/>
   <meta property="og:description" content="{meta_desc}"/>
   <meta property="og:image" content="{og_image_abs}"/>
@@ -534,6 +539,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="{canonical}"/>
   <meta property="og:site_name" content="Outreach Recruitment Agency"/>
+  <meta property="article:author" content="{html.escape(author_name, quote=True)}"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{title}"/>
   <meta name="twitter:description" content="{meta_desc}"/>

@@ -8,6 +8,8 @@ Server-side AI generation is provided by the `generate-seo-content` Edge Functio
 
 `OPENAI_API_KEY` is optional. Without it, manual and scheduled generation use the built-in free article generator. The article editor offers approximate 800, 1,200, 1,600 and 2,000-word targets. Adding a paid key later automatically upgrades scheduled Edge Function generation without changing the workflow.
 
+Published articles use the same shared editorial template as `/moving-to-malta-for-work/`. The article editor's **Written by** selector uses the real team list; the selected author is carried into the visible author card, HTML author metadata and BlogPosting structured data. Apply `20261113200000_article_authors.sql` before using this field.
+
 Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.
 
 Service pages are derived from the website itself by `tools/build_seo_service_catalog.py`. The daily local automation refreshes `assets/seo-service-catalog.json`; **Services SEO → Sync from website** safely upserts that catalogue into Supabase. **Keywords & Topics → Find ideas from Google** converts the existing Search Console keyword feed into deduplicated content opportunities.
