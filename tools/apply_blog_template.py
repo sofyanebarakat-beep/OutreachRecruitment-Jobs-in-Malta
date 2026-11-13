@@ -64,17 +64,23 @@ def esc(s):
 def jobs_banner(lang):
     labels = {
         "en": ("Find <em>jobs in Malta</em> and Europe", "Open Positions",
-               "Find jobs in Malta and Europe — 124 open positions"),
+               "Discover your next opportunity in Malta and across Europe.",
+               "Supporting your next career move!"),
         "fr": ("Trouvez un <em>emploi à Malte</em> et en Europe", "Postes ouverts",
-               "Trouvez un emploi à Malte et en Europe — 124 postes ouverts"),
+               "Découvrez votre prochaine opportunité à Malte et dans toute l'Europe.",
+               "À vos côtés pour votre prochain projet professionnel !"),
         "it": ("Trova <em>lavoro a Malta</em> e in Europa", "Posizioni aperte",
-               "Trova lavoro a Malta e in Europa — 124 posizioni aperte"),
+               "Scopri la tua prossima opportunità a Malta e in tutta Europa.",
+               "Al fianco del tuo prossimo passo professionale!"),
     }
-    heading, count, label = labels.get(lang, labels["en"])
-    return f'''<div class="od-side-block article-jobs-banner article-jobs-banner--sidebar">
-  <a class="article-jobs-banner-link" href="/jobs/" aria-label="{esc(label)}">
+    heading, count, copy, footer = labels.get(lang, labels["en"])
+    return f'''<div class="od-side-block article-jobs-banner article-jobs-banner--sidebar article-jobs-banner--editorial">
+  <a class="article-jobs-banner-link" href="/jobs/">
+    <span class="article-jobs-banner-brand">Outreach Recruitment</span>
     <h2 class="article-jobs-banner-title">{heading}</h2>
-    <span class="article-jobs-banner-count"><span data-count-up="124" aria-hidden="true">+124</span> {count} <span class="article-jobs-banner-arrow" aria-hidden="true">→</span></span>
+    <p class="article-jobs-banner-copy">{copy}</p>
+    <span class="article-jobs-banner-count"><span data-count-up="124" aria-label="124">+124</span> {count} <span class="article-jobs-banner-arrow" aria-hidden="true">→</span></span>
+    <span class="article-jobs-banner-footer">{footer}</span>
   </a>
 </div>'''
 
@@ -268,7 +274,6 @@ def render(meta, all_meta, lang):
           <aside class="od-right">
             <details class="od-side-block od-toc" id="odToc" open><summary>{L["toc"]}</summary><ol></ol></details>
             {jobs_banner(lang)}
-            <div class="od-side-block od-cta-card"><h2>{L[k + "_t"]}</h2><p>{L[k + "_p"]}</p><a class="od-btn" href="{cta_href}">{L[k + "_b"]}</a></div>
           </aside>
         </div>
       </div>

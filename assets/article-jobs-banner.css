@@ -136,10 +136,84 @@
   font-size: .85rem;
 }
 
+.article-jobs-banner--editorial .article-jobs-banner-link {
+  align-items: center;
+  justify-content: center;
+  gap: .85rem;
+  min-height: 330px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.article-jobs-banner--editorial .article-jobs-banner-brand {
+  position: relative;
+  z-index: 1;
+  color: rgb(255 255 255 / 84%);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.article-jobs-banner--editorial .article-jobs-banner-title {
+  max-width: 16rem;
+  font-size: clamp(1.45rem, 2vw, 1.8rem) !important;
+}
+
+.article-jobs-banner--editorial .article-jobs-banner-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 17rem;
+  margin: 0;
+  color: rgb(255 255 255 / 88%);
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
+.article-jobs-banner--editorial .article-jobs-banner-footer {
+  position: relative;
+  z-index: 1;
+  color: rgb(255 255 255 / 84%);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-brand,
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-title,
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-copy,
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-footer {
+  animation: article-jobs-banner-text-in .65s cubic-bezier(.2, .75, .2, 1) both;
+}
+
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-title {
+  animation-delay: .08s;
+}
+
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-copy {
+  animation-delay: .16s;
+}
+
+.article-jobs-banner--editorial.is-visible .article-jobs-banner-footer {
+  animation-delay: .24s;
+}
+
 @keyframes article-jobs-banner-enter {
   from {
     opacity: 0;
     transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes article-jobs-banner-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -205,7 +279,11 @@
 
   .article-jobs-banner-link::before,
   .article-jobs-banner-link::after,
-  .article-jobs-banner-count.is-counted {
+  .article-jobs-banner-count.is-counted,
+  .article-jobs-banner--editorial.is-visible .article-jobs-banner-brand,
+  .article-jobs-banner--editorial.is-visible .article-jobs-banner-title,
+  .article-jobs-banner--editorial.is-visible .article-jobs-banner-copy,
+  .article-jobs-banner--editorial.is-visible .article-jobs-banner-footer {
     animation: none;
   }
 

@@ -233,21 +233,6 @@ body { background: #fff; }
 .nu-panel[hidden] { display: none; }
 @keyframes nu-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .nu-center { display: flex; justify-content: center; margin-top: 2.75rem; }
-/* Must-read guides */
-.nu-guides { background: var(--soft); padding: 6rem 0; margin-top: 6rem; }
-.nu-guides-head { text-align: center; max-width: 760px; margin: 0 auto 3rem; }
-.nu-guides-head h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); margin-bottom: .9rem; }
-.nu-guides-head p { margin: 0; color: var(--muted); line-height: 1.7; }
-.nu-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem; }
-.nu-guide { position: relative; display: flex; align-items: flex-end; min-height: 540px; overflow: hidden; isolation: isolate; background: #222; }
-.nu-guide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s ease; }
-.nu-guide::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10,10,10,0) 30%, rgba(10,10,10,.85) 100%); }
-.nu-guide:hover > img { transform: scale(1.04); }
-.nu-guide-body { padding: 3rem; color: #fff; display: flex; flex-direction: column; gap: 1rem; }
-.nu-guide .nu-meta { color: #fff; }
-.nu-guide h3 { color: #fff; font-size: clamp(1.9rem, 3vw, 2.6rem); }
-.nu-guide-icon { position: absolute; top: 3rem; left: 3rem; display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: #121212; color: #fff; }
-.nu-guide-icon svg { width: 26px; height: 26px; }
 /* Responsive */
 @media (max-width: 991px) {
   .nu { padding-top: 8rem; }
@@ -263,7 +248,6 @@ body { background: #fff; }
   .nu-follow { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; border-bottom: 0; padding-bottom: 0; }
   .nu-news-body { padding: 3rem 2rem; }
   .nu-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .nu-guide-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
   .nu-head-btns, .nu-head-btns .nu-btn { width: 100%; }
@@ -281,9 +265,6 @@ body { background: #fff; }
   .nu-jobs-wide .nu-jobs-btn { justify-self: start; }
   .nu-form-grid { grid-template-columns: minmax(0, 1fr); }
   .nu-submit { align-self: stretch; }
-  .nu-guide { min-height: 440px; }
-  .nu-guide-body { padding: 1.75rem; }
-  .nu-guide-icon { top: 1.75rem; left: 1.75rem; }
 }
 @media (prefers-reduced-motion: reduce) { .nu *, .nu *::before { transition: none !important; animation: none !important; } }
 </style>
@@ -703,22 +684,6 @@ body { background: #fff; }
       <div class="nu-center"><a class="nu-btn light" id="nu-pop-all" href="#latest" data-filter="study-in-malta" data-scroll>Browse all articles<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
     </section>
   </div>
-  <section class="nu-guides" aria-labelledby="nu-guides-title">
-    <div class="nu-wrap">
-      <div class="nu-guides-head"><h2 id="nu-guides-title">Must-read guides</h2>
-        <p>Our most complete guides for studying in Malta and hiring the right people — start here.</p></div>
-      <div class="nu-guide-grid"><a class="nu-guide" href="/study-in-malta-complete-guide">
-  <img src="/images/study-in-malta-complete-guide/study-in-malta-complete-guide-hero.webp" alt="Guide to Study in Malta 2026: Complete Guide for International Students" loading="lazy"><span class="nu-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-  <div class="nu-guide-body"><div class="nu-meta"><span class="nu-badge">Study in Malta</span><time datetime="2026-06-11">Jun 11, 2026</time></div>
-  <h3>Guide to Study in Malta 2026: Complete Guide for International Students</h3><div class="nu-author"><span><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>by Outreach Recruitment</div></div>
-</a><a class="nu-guide" href="/reduce-candidate-drop-off-during-recruitment/">
-  <img src="/assets/blog-featured/reduce-candidate-drop-off-during-recruitment.png" alt="How to reduce candidate drop-off during recruitment" loading="lazy"><span class="nu-guide-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-  <div class="nu-guide-body"><div class="nu-meta"><span class="nu-badge">Employers</span><time datetime="2026-07-22">Jul 22, 2026</time></div>
-  <h3>How to reduce candidate drop-off during recruitment</h3><div class="nu-author"><span><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>by Outreach Recruitment</div></div>
-</a></div>
-      <div class="nu-center"><a class="nu-btn accent" href="#latest" data-filter="all" data-scroll>Explore all articles<span class="nu-arrow"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
-    </div>
-  </section>
   <div class="nu-wrap"><a class="nu-jobs nu-jobs-wide" href="/jobs/" aria-label="View 124 open jobs in Malta">
   <div class="nu-jobs-text"><span class="nu-jobs-count"><b data-count="124">124</b> open jobs</span><strong>Find your next job in Malta</strong></div>
   <div class="nu-jobs-ticker" aria-hidden="true"><div class="nu-jobs-track rev"><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span><span>Chef de Partie</span><span>Service Delivery Manager</span><span>Workshop Team Leader</span><span>Aftersales Administrator</span><span>Senior Technician</span><span>Accounts Clerk</span><span>Sales Manager</span><span>Senior Corporate Administrator</span><span>Hotel General Manager</span><span>Workshop Assistant Manager</span><span>Aftersales Receptionist</span><span>Warranty Administrator</span><span>Back Office Administrator</span><span>Leasing Administration Officer</span></div></div>
