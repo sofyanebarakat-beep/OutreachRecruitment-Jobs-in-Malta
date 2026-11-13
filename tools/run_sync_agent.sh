@@ -47,6 +47,7 @@ python3 "$SCRIPT_DIR/job_sync_agent.py" --no-email 2>&1 | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/apply_analytics_tracking.py" 2>&1 | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/build_seo_service_catalog.py" 2>&1 | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/seo_course_automation.py" 2>&1 | tee -a "$LOG_FILE"
 SEO_EXIT_CODE=${PIPESTATUS[0]}
 echo "Finished: $(date) | Exit: $EXIT_CODE" | tee -a "$LOG_FILE"

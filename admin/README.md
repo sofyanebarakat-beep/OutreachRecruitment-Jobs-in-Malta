@@ -8,6 +8,10 @@ Server-side AI generation is provided by the `generate-seo-content` Edge Functio
 
 Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.
 
+Service pages are derived from the website itself by `tools/build_seo_service_catalog.py`. The daily local automation refreshes `assets/seo-service-catalog.json`; **Services SEO → Sync from website** safely upserts that catalogue into Supabase. **Keywords & Topics → Find ideas from Google** converts the existing Search Console keyword feed into deduplicated content opportunities.
+
+Approved topics are turned into drafts automatically every Monday, Wednesday and Friday by `.github/workflows/seo-content-control-centre.yml`. Add repository secrets `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, deploy the Edge Function, and approve topics in the dashboard. Generated content is saved with `generated` status and is never published without human review and approval.
+
 Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
 
 - **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline

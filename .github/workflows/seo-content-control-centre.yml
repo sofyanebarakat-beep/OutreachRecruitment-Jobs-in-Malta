@@ -1,0 +1,27 @@
+name: SEO content control centre
+on:
+  schedule:
+    - cron: "30 5 * * 1,3,5"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: Maximum approved topics to turn into drafts
+        required: false
+        default: "2"
+jobs:
+  generate-approved-drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate drafts from approved topics
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DRAFT_COUNT: ${{ inputs.count || '2' }}
+        run: |
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_SERVICE_ROLE_KEY"
+          curl --fail-with-body --silent --show-error \
+            "$SUPABASE_URL/functions/v1/generate-seo-content" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Content-Type: application/json" \
+            --data "{\"action\":\"scheduled_drafts\",\"count\":$DRAFT_COUNT}"
