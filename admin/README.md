@@ -6,6 +6,8 @@ The React + TypeScript SEO publishing suite lives at `/admin/seo/` and uses the 
 
 Server-side AI generation is provided by the `generate-seo-content` Edge Function. Configure `OPENAI_API_KEY`, optionally `OPENAI_MODEL`, deploy the function, and keep the service-role key only in Supabase's managed function environment. The browser never receives privileged credentials.
 
+`OPENAI_API_KEY` is optional. Without it, manual and scheduled generation use the built-in free article generator. The article editor offers approximate 800, 1,200, 1,600 and 2,000-word targets. Adding a paid key later automatically upgrades scheduled Edge Function generation without changing the workflow.
+
 Search Console and GA4 remain automatic: `tools/seo_course_automation.py` writes connected data to `seo_kpi_daily`, which the new Analytics page reads directly. Do not add Google credentials to browser JavaScript.
 
 Service pages are derived from the website itself by `tools/build_seo_service_catalog.py`. The daily local automation refreshes `assets/seo-service-catalog.json`; **Services SEO → Sync from website** safely upserts that catalogue into Supabase. **Keywords & Topics → Find ideas from Google** converts the existing Search Console keyword feed into deduplicated content opportunities.

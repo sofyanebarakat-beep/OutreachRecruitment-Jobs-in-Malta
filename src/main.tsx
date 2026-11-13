@@ -160,6 +160,45 @@ const slugify = (v: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+function freeArticleDraft(title: string, keyword: string, targetWords: number) {
+  const safeTitle = title.trim() || `A Practical Guide to ${keyword}`;
+  const safeKeyword = keyword.trim() || "jobs in Malta";
+  const sections = [
+    `## Introduction\n\nPeople researching **${safeKeyword}** often need clear, practical information before deciding what to do next. This guide explains the main considerations, useful preparation steps and questions to ask. It is designed to help readers make an informed decision without promising a particular employment, study or immigration outcome.`,
+    `## Understand Your Goal\n\nStart by defining the type of opportunity you want, the experience you can demonstrate and the location or working arrangement that suits you. A focused search is easier to manage than applying to every available option. Review each opportunity carefully and compare its responsibilities with your real skills, qualifications and availability.`,
+    `## Research Opportunities Carefully\n\nUse reputable sources and read the complete description before applying. Check the role, location, working pattern and requested experience. Requirements can differ between employers and may change, so confirm important details with the employer or the appropriate official authority instead of relying on assumptions or outdated social-media posts.`,
+    `## Prepare a Focused Application\n\nAdapt your CV and supporting information to the opportunity. Put the most relevant experience near the top, use clear examples and check that your contact details are correct. Avoid copying claims that you cannot support. A concise application that responds to the actual requirements is usually more useful than a long generic document.`,
+    `## Use Outreach Recruitment Resources\n\nReview current opportunities on the [Outreach Recruitment jobs page](https://outreachrecruitment.net/jobs/) and explore relevant guidance on the [News Updates page](https://outreachrecruitment.net/news-updates). Only apply for opportunities that match your background, and use the official application instructions shown on the vacancy page.`,
+    `## Questions to Ask Before Moving Forward\n\n- What experience and qualifications are essential?\n- Where is the opportunity based?\n- What documents are requested during the application?\n- What are the next stages of the selection process?\n- Which details should be confirmed with an official authority?\n\nKeeping a written checklist makes it easier to compare options and follow up professionally.`,
+    `## Avoid Common Mistakes\n\nDo not submit incomplete contact details, make unsupported claims or pay anyone who promises a guaranteed outcome. Take time to proofread your application and keep copies of important communication. If a requirement is unclear, ask for clarification before making a financial or relocation decision.`,
+    `## Frequently Asked Questions\n\n### Where should I look for current opportunities?\n\nStart with the official Outreach Recruitment vacancies page and other reputable employer sources. Availability changes regularly, so check the publication date and current status.\n\n### Does applying guarantee an interview or offer?\n\nNo. Applications are assessed against the requirements of each opportunity, and no legitimate recruitment service can guarantee selection.\n\n### Should I verify legal or permit information?\n\nYes. Rules depend on personal circumstances and can change. Confirm legal, visa, study or work-permit questions with the relevant official authority.`,
+    `## Conclusion\n\nA successful search for **${safeKeyword}** starts with careful research, an honest and relevant application, and realistic expectations. Review current Outreach Recruitment opportunities, verify important requirements and take each step only when you have enough reliable information.`,
+  ];
+  let body = sections.join("\n\n");
+  const extras = [
+    "Create a simple tracker containing the opportunity, closing date, documents submitted and next follow-up date. This prevents duplicate applications and helps you respond promptly.",
+    "Prepare examples that explain what you did, how you approached a problem and what result you achieved. Specific examples are more useful than broad claims.",
+    "Review your public professional profile and make sure its dates and experience are consistent with your CV. Remove outdated or misleading information.",
+    "Before an interview, reread the description and prepare questions about the work itself. Avoid focusing only on information that has not yet been confirmed.",
+    "Keep personal documents secure. Submit sensitive information only through an official, verified process when it is genuinely required.",
+  ];
+  let i = 0;
+  while (body.split(/\s+/).length < targetWords - 80) {
+    body += `\n\n### Practical action ${i + 1}\n\n${extras[i % extras.length]} Relate this step directly to ${safeKeyword} and record what you learn before continuing.`;
+    i++;
+  }
+  return {
+    title: safeTitle,
+    slug: slugify(safeTitle),
+    excerpt: `A practical, reliable guide to ${safeKeyword}, including research, preparation, applications and useful next steps.`,
+    seo_title: `${safeTitle} | Outreach Recruitment`,
+    meta_description: `Learn about ${safeKeyword} with practical preparation steps, application guidance and reliable resources from Outreach Recruitment.`,
+    body,
+    suggested_image_prompt: `Professional editorial photograph for “${safeTitle}”, Malta setting, people-focused, natural blue brand accents, clean composition, no text, 1200 × 630 pixels.`,
+    status: "generated",
+  };
+}
+
 function App() {
   const [session, setSession] = useState<Session | null>(null),
     [checking, setChecking] = useState(true);
@@ -786,12 +825,10 @@ function Topics() {
       ),
       notes: `Automatically imported from Google Search Console · ${r.volume || 0} impressions · position ${r.current_position || "—"}`,
     }));
-    const { error: saveError } = await sb
-      .from("seo_topics")
-      .upsert(rows, {
-        onConflict: "keyword,target_location",
-        ignoreDuplicates: true,
-      });
+    const { error: saveError } = await sb.from("seo_topics").upsert(rows, {
+      onConflict: "keyword,target_location",
+      ignoreDuplicates: true,
+    });
     setSyncing(false);
     if (saveError) alert(saveError.message);
     else {
@@ -807,32 +844,21 @@ function Topics() {
       return;
     }
     setGenerating(r.id);
-    const { data, error } = await sb.functions.invoke("generate-seo-content", {
-      body: {
-        action: "article",
-        title: r.suggested_title,
-        keyword: r.keyword,
-        tone: "professional",
-        language: "English",
-      },
+    const data = freeArticleDraft(
+      r.suggested_title || `A Practical Guide to ${r.keyword}`,
+      r.keyword,
+      1200,
+    );
+    const { error: insertError } = await sb.from("seo_articles").insert({
+      ...data,
+      focus_keyword: r.keyword,
+      topic_id: r.id,
+      service_id: r.service_id,
+      campaign_id: r.campaign_id,
+      status: "generated",
+      language: "English",
+      created_by: (await sb.auth.getUser()).data.user?.id,
     });
-    if (error) {
-      alert(error.message);
-      setGenerating(null);
-      return;
-    }
-    const { error: insertError } = await sb
-      .from("seo_articles")
-      .insert({
-        ...data,
-        focus_keyword: r.keyword,
-        topic_id: r.id,
-        service_id: r.service_id,
-        campaign_id: r.campaign_id,
-        status: "generated",
-        language: "English",
-        created_by: (await sb.auth.getUser()).data.user?.id,
-      });
     if (insertError) alert(insertError.message);
     else {
       await sb
@@ -1092,9 +1118,11 @@ function ArticleModal({
   const [v, setV] = useState(row),
     [busy, setBusy] = useState(false),
     [msg, setMsg] = useState(""),
-    [generating, setGenerating] = useState(false);
+    [generating, setGenerating] = useState(false),
+    [targetWords, setTargetWords] = useState(1200);
   const services = useRows("seo_services");
-  const set = (k: string, x: any) => setV({ ...v, [k]: x });
+  const set = (k: string, x: any) =>
+    setV((current: Row) => ({ ...current, [k]: x }));
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
@@ -1112,18 +1140,14 @@ function ArticleModal({
   async function generate() {
     setGenerating(true);
     setMsg("");
-    const { data, error } = await sb.functions.invoke("generate-seo-content", {
-      body: {
-        action: "article",
-        title: v.title,
-        keyword: v.focus_keyword,
-        tone: "professional",
-        language: v.language || "English",
-      },
-    });
+    if (!v.title?.trim() || !v.focus_keyword?.trim()) {
+      setMsg("Add an article title and focus keyword first.");
+      setGenerating(false);
+      return;
+    }
+    const data = freeArticleDraft(v.title, v.focus_keyword, targetWords);
+    setV((current: Row) => ({ ...current, ...data }));
     setGenerating(false);
-    if (error) setMsg("AI generation is not configured yet: " + error.message);
-    else setV({ ...v, ...data, status: "generated" });
   }
   const warnings = validateArticle(v);
   return (
@@ -1252,6 +1276,18 @@ function ArticleModal({
           value={v.canonical_url}
           onChange={(x) => set("canonical_url", x)}
         />
+        <label>
+          Target article length
+          <select
+            value={targetWords}
+            onChange={(e) => setTargetWords(Number(e.target.value))}
+          >
+            <option value="800">About 800 words</option>
+            <option value="1200">About 1,200 words</option>
+            <option value="1600">About 1,600 words</option>
+            <option value="2000">About 2,000 words</option>
+          </select>
+        </label>
         {warnings.length > 0 && (
           <div className="validation wide">
             <strong>Publishing checklist</strong>
@@ -1268,9 +1304,11 @@ function ArticleModal({
             disabled={generating}
           >
             {generating ? <Loader2 className="spin" /> : <Sparkles />} Generate
-            complete article with AI
+            free article
           </button>
-          <span>Human approval is always required before publishing.</span>
+          <span>
+            No API key or paid AI service required. Review before publishing.
+          </span>
         </div>
         {msg && <p className="error wide">{msg}</p>}
         <FormActions busy={busy} close={close} />
@@ -1619,12 +1657,19 @@ function SocialQueue() {
               <span className={`badge ${statusTone[post.status]}`}>
                 {post.platform}
               </span>
-              <h3>{post.status === "review" ? "Ready for review" : post.status}</h3>
+              <h3>
+                {post.status === "review" ? "Ready for review" : post.status}
+              </h3>
               <p>{post.content}</p>
             </div>
             <div className="toolbar-actions">
-              <button onClick={() => update(post.id, "rejected")}>Reject</button>
-              <button className="primary" onClick={() => update(post.id, "approved")}>
+              <button onClick={() => update(post.id, "rejected")}>
+                Reject
+              </button>
+              <button
+                className="primary"
+                onClick={() => update(post.id, "approved")}
+              >
                 <Check /> Approve copy
               </button>
             </div>
