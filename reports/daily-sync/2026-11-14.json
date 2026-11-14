@@ -84,7 +84,7 @@
   "salary_notes": [
     "Architect / Draughtsperson: no salary given on the careers page — page says 'Competitive salary'."
   ],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 131,
   "site_open_before": 125,
@@ -113,5 +113,114 @@
   "salary_coverage": {
     "open": 126,
     "with_salary": 30
+  },
+  "google": {
+    "sent": 1,
+    "ok": 1,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 126,
+    "expected": 126,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 9,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Workshop Manager",
+        "slug": "workshop-manager",
+        "url": "https://outreachrecruitment.net/jobs/workshop-manager/",
+        "age_days": 3,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Chef de Partie (Breakfast)",
+        "slug": "chef-de-partie-breakfast",
+        "url": "https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/",
+        "age_days": 5,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Workshop Team Leader",
+        "slug": "workshop-team-leader",
+        "url": "https://outreachrecruitment.net/jobs/workshop-team-leader/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Aftersales Administrator",
+        "slug": "aftersales-administrator",
+        "url": "https://outreachrecruitment.net/jobs/aftersales-administrator/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Senior Technician",
+        "slug": "senior-technician",
+        "url": "https://outreachrecruitment.net/jobs/senior-technician/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Accounts Clerk",
+        "slug": "accounts-clerk",
+        "url": "https://outreachrecruitment.net/jobs/accounts-clerk/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Sales Manager",
+        "slug": "sales-manager-gzira",
+        "url": "https://outreachrecruitment.net/jobs/sales-manager-gzira/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Senior Corporate Administrator",
+        "slug": "senior-corporate-administrator",
+        "url": "https://outreachrecruitment.net/jobs/senior-corporate-administrator/",
+        "age_days": 8,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "URL is unknown to Google",
+        "reason": "not indexed yet (URL is unknown to Google)"
+      },
+      {
+        "title": "Hotel General Manager",
+        "slug": "hotel-general-manager",
+        "url": "https://outreachrecruitment.net/jobs/hotel-general-manager/",
+        "age_days": 10,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      }
+    ],
+    "error": ""
   }
 }
