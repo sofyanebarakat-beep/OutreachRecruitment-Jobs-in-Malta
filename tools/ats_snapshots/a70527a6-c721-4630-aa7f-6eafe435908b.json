@@ -5,16 +5,26 @@
   "region": "",
   "country": "Malta",
   "employment_type": "Full-time",
-  "date_posted": "",
-  "salary": null,
-  "salary_note": "No salary given on the careers page — page must say 'Competitive salary'.",
+  "date_posted": "2026-11-13",
+  "salary": {
+    "min": 38000.0,
+    "max": 42000.0,
+    "currency": "EUR",
+    "unit": "YEAR",
+    "text": "",
+    "source": "ats_schema"
+  },
+  "salary_note": "",
   "work_mode": "On-site",
-  "languages": [],
-  "experience": "",
-  "description_text": "",
-  "description_html": "",
-  "description_hash": "e3b0c44298fc1c14",
+  "languages": [
+    "English",
+    "Maltese"
+  ],
+  "experience": "3 years of experience",
+  "description_text": "Our client is currently expanding their Audit team and is seeking a Senior Associate to join their existing group of auditors. This is an excellent opportunity for ACCA or University graduates, as well as experienced professionals, to take the next step in their audit career.\n Key Responsibilities: \n Lead client audit engagements, including planning, execution, direction, and completion of financial audits.\n Apply generally accepted accounting principles and reporting standards, ensuring accurate financial statement presentation.\n Develop a strong understanding of the clients business and operations.\n Proactively interact with key client management to gather information, resolve issues, and make recommendations for business and process improvements.\n Requirements: \n Fully ACCA qualified (or equivalent) with at least 3 years of experience within an Audit team.\n Proficient in Microsoft Office; advanced Excel skills are an asset.\n Strong communication skills in English and Maltese, both written and spoken.\n Personal Attributes: \n Ability to manage multiple priorities and meet deadlines.\n Adaptable to changing client and business dynamics.\n Efficient, detail-oriented, and risk-aware.\n High integrity when handling confidential information.\n Self-motivated, proactive, with a positive can-do attitude.\n Strong organizational skills and attention to detail.\n What's on Offer: \n Attractive salary package.\n Work-life balance in a supportive environment.\n Transparent career path with growth opportunities.\n Why Apply? \nIf you are looking for a role where you can grow professionally, work with a dynamic team, and make a real impact, this is the perfect opportunity for you. Don't miss the chance to advance your career in audit apply today!",
+  "description_html": "<p>Our client is currently expanding their Audit team and is seeking a <strong>Senior Associate</strong> to join their existing group of auditors. This is an excellent opportunity for ACCA or University graduates, as well as experienced professionals, to take the next step in their audit career.</p>\n<p><strong>Key Responsibilities:</strong></p>\n<ul>\n<li>\n<p>Lead client audit engagements, including planning, execution, direction, and completion of financial audits.</p>\n</li>\n<li>\n<p>Apply generally accepted accounting principles and reporting standards, ensuring accurate financial statement presentation.</p>\n</li>\n<li>\n<p>Develop a strong understanding of the clients business and operations.</p>\n</li>\n<li>\n<p>Proactively interact with key client management to gather information, resolve issues, and make recommendations for business and process improvements.</p>\n</li>\n</ul>\n<p><strong>Requirements:</strong></p>\n<ul>\n<li>\n<p>Fully ACCA qualified (or equivalent) with at least <strong>3 years of experience</strong> within an Audit team.</p>\n</li>\n<li>\n<p>Proficient in Microsoft Office; advanced Excel skills are an asset.</p>\n</li>\n<li>\n<p>Strong communication skills in English and Maltese, both written and spoken.</p>\n</li>\n</ul>\n<p><strong>Personal Attributes:</strong></p>\n<ul>\n<li>\n<p>Ability to manage multiple priorities and meet deadlines.</p>\n</li>\n<li>\n<p>Adaptable to changing client and business dynamics.</p>\n</li>\n<li>\n<p>Efficient, detail-oriented, and risk-aware.</p>\n</li>\n<li>\n<p>High integrity when handling confidential information.</p>\n</li>\n<li>\n<p>Self-motivated, proactive, with a positive can-do attitude.</p>\n</li>\n<li>\n<p>Strong organizational skills and attention to detail.</p>\n</li>\n</ul>\n<p><strong>What's on Offer:</strong></p>\n<ul>\n<li>\n<p>Attractive salary package.</p>\n</li>\n<li>\n<p>Work-life balance in a supportive environment.</p>\n</li>\n<li>\n<p>Transparent career path with growth opportunities.</p>\n</li>\n</ul>\n<p><strong>Why Apply?</strong><br>\nIf you are looking for a role where you can grow professionally, work with a dynamic team, and make a real impact, this is the perfect opportunity for you. Don't miss the chance to advance your career in audit  <strong>apply today!</strong></p>",
+  "description_hash": "fc56eed1b7ba16ae",
   "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a70527a6-c721-4630-aa7f-6eafe435908b",
   "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/a70527a6-c721-4630-aa7f-6eafe435908b/apply",
-  "fetched_at": "2026-10-12T09:04:33"
+  "fetched_at": "2026-11-14T07:15:12"
 }
