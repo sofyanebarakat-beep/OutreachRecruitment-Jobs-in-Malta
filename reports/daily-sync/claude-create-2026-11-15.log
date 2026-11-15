@@ -1,0 +1,24 @@
+I built and published all five pages locally, and all five pass `tools/verify_job_page.py`, including the headless Chrome render. Nothing is committed or pushed, and I didn't touch any other job.
+
+**What each job got:**
+- `jobs/<slug>/index.html` and `jobs/<slug>.html` (identical files).
+- A registry entry at the top of `tools/jobs_registry.json`: no status key, `valid_through` 2029-12-30, `apply_url` from the fact sheet, salary only where the fact sheet has one, and a real category.
+- A spec in `tools/job_specs/<slug>.json`.
+- The 12-section package in `reports/job-seo-<slug>-2026-11-15.md`.
+
+**Problem I found and fixed in the builder:** `tools/build_job_page.py` clones `jobs/hotel-general-manager`, and that page has changed since the builder was written. On the first build, all five pages still showed the hotel's "Hospitality" breadcrumb and category chip, its "€52,000–€55,000 per year" salary chip, "St Julian's" in the location chip and apply panel, and a WhatsApp share text naming "Hotel General Manager". The verifier didn't catch any of this. I fixed the builder so it regenerates those parts whatever the template contains, and so the build fails if any of those hotel values survive. I then rebuilt all five pages and found no leftovers. `tools/build_job_page.py` is modified in the worktree because of this.
+
+**Choices you may want to check:**
+- **Cache-busting version:** the pages use `?v=20261107` (and one `?v=20261111` stylesheet), not the `?v=20261106` the instructions name. These are the versions `jobs/hotel-general-manager` uses today, so I kept them.
+- **Billing Administrator:** I used the category Administration and linked the breadcrumb to Finance Jobs in Malta, because there is no Administration hub page. The word "gross" appears only because the source itself says "starting gross monthly salary of €1,700" and describes reviews to €1,800 and €1,900 gross per month. The header chip, sidebar and meta description show "€1,700 per month".
+- **Residential Finishing Projects Manager:** the fact sheet's `languages: [Maltese]` and `experience: "35 years…"` were misreads from "Maltese construction industry" and the company's 35 years. The job text states no language requirement, so the page lists English (the default) and uses the real experience requirement. Its meta title drops "| Outreach" to stay within 60 characters.
+- **Accountant:** the page targets "Residents in Gozo" (the source says only Gozo residents will be considered) and lists Maltese and English as essential, as the source states.
+- **Architect / Draughtsperson:** the page targets "Residents in Malta", because the source says only Malta residents will be considered. There's no salary, so the page says "Competitive salary" and the schema has no baseSalary.
+
+CREATED 847ec842-e0dd-4db4-970d-225628646d67 accountant
+CREATED 655ad714-0e66-49f3-8d53-55b3dd945448 billing-administrator
+CREATED de9aae83-8b74-422d-932b-dc4adbf5599e architect-draughtsperson
+CREATED 77e86c50-0de9-4dc1-af2b-719a6459139e residential-finishing-projects-manager
+CREATED 01fea69f-277d-4219-9a16-461436845495 sales-director
+
+--- stderr ---

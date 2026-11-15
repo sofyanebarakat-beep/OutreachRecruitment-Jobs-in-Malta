@@ -46,13 +46,13 @@
    "q": "How do I apply?",
    "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
    "url": "/jobs",
-   "pages": 40
+   "pages": 50
   },
   {
    "q": "Is a salary stated for this role?",
    "a": "The careers page does not give a figure; the role offers a competitive salary, health insurance and an employee loyalty card.",
    "url": "/jobs",
-   "pages": 24
+   "pages": 26
   },
   {
    "q": "Where is the job based?",
@@ -91,6 +91,12 @@
    "pages": 11
   },
   {
+   "q": "What experience do I need?",
+   "a": "Previous experience in billing, invoicing, accounts administration or a similar administrative role, good numerical skills and good knowledge of Microsoft Office, particularly Excel.",
+   "url": "/jobs",
+   "pages": 11
+  },
+  {
    "q": "Can I apply from abroad?",
    "a": "It depends on the job. Each listing includes a Target Location that tells you who can apply. If the job is marked Worldwide, you can apply directly from abroad. For all other Target Locations check the specific requirements before applying.",
    "url": "/faqs",
@@ -115,14 +121,14 @@
    "pages": 9
   },
   {
-   "q": "What experience do I need?",
-   "a": "A minimum of five years' experience in Spa Management, including at least two years in a senior or multi-site role, with previous experience as a Head of Spa, Spa Director, Senior Spa Manager or similar position.",
-   "url": "/jobs",
-   "pages": 9
-  },
-  {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
+   "url": "/jobs",
+   "pages": 8
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
    "url": "/jobs",
    "pages": 8
   },
@@ -184,6 +190,12 @@
    "q": "What documents do I need to work in Malta?",
    "a": "EU citizens need a valid ID or passport. Non-EU candidates typically need a valid passport, a signed job offer, and must apply for a work permit before starting. Our team will guide you through the exact requirements for your situation.",
    "url": "/hospitality-jobs-in-malta",
+   "pages": 5
+  },
+  {
+   "q": "What industry is this job in?",
+   "a": "Construction and engineering services — the company provides drilling, laboratory testing, surveying and engineering consultancy in Malta.",
+   "url": "/jobs",
    "pages": 5
   },
   {
@@ -325,12 +337,6 @@
    "pages": 4
   },
   {
-   "q": "What experience is required?",
-   "a": "Previous sales management experience, preferably within the automotive industry, together with diploma-level education and proficiency in Microsoft Office.",
-   "url": "/jobs",
-   "pages": 4
-  },
-  {
    "q": "Can international students study in Malta?",
    "a": "Yes. Malta welcomes international students from EU and non-EU countries. Non-EU students need a Type D student visa and a residence permit from Identita. All accredited programmes are taught in English and degrees are recognised across all 27 EU member states.",
    "url": "/study-in-malta-complete-guide",
@@ -352,6 +358,12 @@
    "q": "Is Malta safe for international students?",
    "a": "Malta consistently ranks among the top 20 safest countries in the world according to the Global Peace Index 2024. Violent crime is rare and the local community is welcoming to international students.",
    "url": "/study-in-malta-complete-guide",
+   "pages": 3
+  },
+  {
+   "q": "Which software do I need to know?",
+   "a": "Proficiency in AutoCAD is essential. Knowledge of Revit, SketchUp or other architectural design software is an advantage.",
+   "url": "/jobs",
    "pages": 3
   },
   {
@@ -1795,6 +1807,36 @@
    "pages": 2
   },
   {
+   "q": "What does the Accountant in Gozo do?",
+   "a": "You manage the accounting for a portfolio of corporate clients: overseeing bookkeeping, preparing and reviewing management accounts, annual financial statements and VAT and tax returns, and liaising with clients and external auditors.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need an accountancy warrant?",
+   "a": "Yes. A valid Accountancy Warrant (CPA or CPAA) is essential, together with a relevant degree or equivalent professional qualification in Accountancy.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is Corporate Service Provider experience required?",
+   "a": "Yes. Previous experience within a Corporate Service Provider (CSP) is essential, along with good knowledge of Maltese accounting, taxation and VAT requirements.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for this Accountant job?",
+   "a": "The salary is €37,000–€45,000 per year for this full-time, on-site role in Gozo.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Can I apply if I live in Malta but not in Gozo?",
+   "a": "No. Only candidates currently residing in Gozo will be considered, and fluency in both Maltese and English is essential.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Accounting Officer job pay?",
    "a": "The Accounting Officer job pays €25,000–€30,000 per year.",
    "url": "/jobs",
@@ -1845,6 +1887,24 @@
   {
    "q": "Do I need previous receptionist experience?",
    "a": "It is not essential. Previous experience in a receptionist, customer service or similar role is considered an advantage, and a minimum O-Level standard of education is required.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Architect / Draughtsperson do?",
+   "a": "You prepare architectural plans, elevations, sections and construction drawings, translate concepts and sketches into technical drawings, help with planning and permit documentation, and coordinate with architects, engineers and contractors.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need a degree in Architecture?",
+   "a": "A qualification in Architecture, Architectural Technology or a related field is an asset but not essential; previous experience in an architectural, technical drawing or draughtsperson role is required.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Can candidates from abroad apply?",
+   "a": "No. Only candidates currently residing in Malta will be considered for this full-time, on-site role in Mellieħa.",
    "url": "/jobs",
    "pages": 2
   },
@@ -1905,6 +1965,24 @@
   {
    "q": "Is this a full-time job?",
    "a": "Yes. This is a full-time position.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does a Billing Administrator do in this role?",
+   "a": "You prepare and issue customer invoices, verify billing details, process credit notes and adjustments, keep customer accounts up to date, answer billing queries and help follow up on outstanding invoices.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for the Billing Administrator job in Mosta?",
+   "a": "The starting gross monthly salary is €1,700, with a review after six months (possible increase to €1,800) and after one year (possible increase to €1,900), subject to performance and mutual agreement.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is this role full-time and on-site?",
+   "a": "Yes. It is a full-time, on-site position with the company in Mosta, Malta.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2161,6 +2239,30 @@
    "pages": 2
   },
   {
+   "q": "What does a Residential Finishing Projects Manager do?",
+   "a": "You oversee the finishing stages of multiple residential developments: supervising trades and subcontractors, inspecting workmanship, preparing BOQs and programmes of works, certifying completed works and managing snagging and handover with clients.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for this role?",
+   "a": "The salary is €50,000–€60,000 per year for this full-time role based in Kirkop, Malta.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Is this an office-based or site-based job?",
+   "a": "It is a hands-on, on-site role. The employer is looking for someone willing to spend most of the working time on site.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need knowledge of the Maltese construction industry?",
+   "a": "Yes. Strong knowledge of the Maltese construction industry and local building practices is required.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Retail Shop Supervisor job pay?",
    "a": "The Retail Shop Supervisor job pays €3,000 per month.",
    "url": "/jobs",
@@ -2169,6 +2271,24 @@
   {
    "q": "Will I need to work weekends?",
    "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Sales Director do in this role?",
+   "a": "You lead the group's sales performance across several wellness brands: setting targets and strategy, building and coaching remote and on-site sales teams, improving conversion and the customer journey, and reporting forecasts and KPIs to management.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for the Sales Director job in St. Julian's?",
+   "a": "The salary is €40,000–€50,000 per year for this full-time, on-site leadership role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Do I need experience in the wellness industry?",
+   "a": "It is an asset rather than a requirement. Experience in wellness, healthcare, aesthetics, beauty or other consumer-focused service industries is a plus.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2433,6 +2553,36 @@
  ],
  "jobs": [
   {
+   "q": "What does the Accountant in Gozo do?",
+   "a": "You manage the accounting for a portfolio of corporate clients: overseeing bookkeeping, preparing and reviewing management accounts, annual financial statements and VAT and tax returns, and liaising with clients and external auditors.",
+   "slug": "accountant",
+   "title": "Accountant"
+  },
+  {
+   "q": "Do I need an accountancy warrant?",
+   "a": "Yes. A valid Accountancy Warrant (CPA or CPAA) is essential, together with a relevant degree or equivalent professional qualification in Accountancy.",
+   "slug": "accountant",
+   "title": "Accountant"
+  },
+  {
+   "q": "Is Corporate Service Provider experience required?",
+   "a": "Yes. Previous experience within a Corporate Service Provider (CSP) is essential, along with good knowledge of Maltese accounting, taxation and VAT requirements.",
+   "slug": "accountant",
+   "title": "Accountant"
+  },
+  {
+   "q": "What is the salary for this Accountant job?",
+   "a": "The salary is €37,000–€45,000 per year for this full-time, on-site role in Gozo.",
+   "slug": "accountant",
+   "title": "Accountant"
+  },
+  {
+   "q": "Can I apply if I live in Malta but not in Gozo?",
+   "a": "No. Only candidates currently residing in Gozo will be considered, and fluency in both Maltese and English is essential.",
+   "slug": "accountant",
+   "title": "Accountant"
+  },
+  {
    "q": "What does the Accounting Officer job pay?",
    "a": "The Accounting Officer job pays €25,000–€30,000 per year.",
    "slug": "accounting-officer",
@@ -2575,6 +2725,30 @@
    "a": "No. Fluent spoken and written English is required; knowledge of Maltese or other languages is an advantage.",
    "slug": "application-developer-drupal",
    "title": "Application Developer (Drupal)"
+  },
+  {
+   "q": "What does the Architect / Draughtsperson do?",
+   "a": "You prepare architectural plans, elevations, sections and construction drawings, translate concepts and sketches into technical drawings, help with planning and permit documentation, and coordinate with architects, engineers and contractors.",
+   "slug": "architect-draughtsperson",
+   "title": "Architect / Draughtsperson"
+  },
+  {
+   "q": "Which software do I need to know?",
+   "a": "Proficiency in AutoCAD is essential. Knowledge of Revit, SketchUp or other architectural design software is an advantage.",
+   "slug": "architect-draughtsperson",
+   "title": "Architect / Draughtsperson"
+  },
+  {
+   "q": "Do I need a degree in Architecture?",
+   "a": "A qualification in Architecture, Architectural Technology or a related field is an asset but not essential; previous experience in an architectural, technical drawing or draughtsperson role is required.",
+   "slug": "architect-draughtsperson",
+   "title": "Architect / Draughtsperson"
+  },
+  {
+   "q": "Can candidates from abroad apply?",
+   "a": "No. Only candidates currently residing in Malta will be considered for this full-time, on-site role in Mellieħa.",
+   "slug": "architect-draughtsperson",
+   "title": "Architect / Draughtsperson"
   },
   {
    "q": "Is this a shift-based role?",
@@ -2731,6 +2905,36 @@
    "a": "The role is open to candidates living in Malta and to European candidates. A good command of English is required. Visa or relocation support is not mentioned in the listing.",
    "slug": "beauty-specialist-nail-technician",
    "title": "Beauty Specialist / Nail Technician"
+  },
+  {
+   "q": "What does a Billing Administrator do in this role?",
+   "a": "You prepare and issue customer invoices, verify billing details, process credit notes and adjustments, keep customer accounts up to date, answer billing queries and help follow up on outstanding invoices.",
+   "slug": "billing-administrator",
+   "title": "Billing Administrator"
+  },
+  {
+   "q": "What is the salary for the Billing Administrator job in Mosta?",
+   "a": "The starting gross monthly salary is €1,700, with a review after six months (possible increase to €1,800) and after one year (possible increase to €1,900), subject to performance and mutual agreement.",
+   "slug": "billing-administrator",
+   "title": "Billing Administrator"
+  },
+  {
+   "q": "What experience do I need?",
+   "a": "Previous experience in billing, invoicing, accounts administration or a similar administrative role, good numerical skills and good knowledge of Microsoft Office, particularly Excel.",
+   "slug": "billing-administrator",
+   "title": "Billing Administrator"
+  },
+  {
+   "q": "Is this role full-time and on-site?",
+   "a": "Yes. It is a full-time, on-site position with the company in Mosta, Malta.",
+   "slug": "billing-administrator",
+   "title": "Billing Administrator"
+  },
+  {
+   "q": "What industry is this job in?",
+   "a": "Construction and engineering services — the company provides drilling, laboratory testing, surveying and engineering consultancy in Malta.",
+   "slug": "billing-administrator",
+   "title": "Billing Administrator"
   },
   {
    "q": "What does the Business Development Manager HoReCa job pay?",
@@ -3435,6 +3639,36 @@
    "title": "Proposal Engineer – Energy Solutions"
   },
   {
+   "q": "What does a Residential Finishing Projects Manager do?",
+   "a": "You oversee the finishing stages of multiple residential developments: supervising trades and subcontractors, inspecting workmanship, preparing BOQs and programmes of works, certifying completed works and managing snagging and handover with clients.",
+   "slug": "residential-finishing-projects-manager",
+   "title": "Residential Finishing Projects Manager"
+  },
+  {
+   "q": "What is the salary for this role?",
+   "a": "The salary is €50,000–€60,000 per year for this full-time role based in Kirkop, Malta.",
+   "slug": "residential-finishing-projects-manager",
+   "title": "Residential Finishing Projects Manager"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
+   "slug": "residential-finishing-projects-manager",
+   "title": "Residential Finishing Projects Manager"
+  },
+  {
+   "q": "Is this an office-based or site-based job?",
+   "a": "It is a hands-on, on-site role. The employer is looking for someone willing to spend most of the working time on site.",
+   "slug": "residential-finishing-projects-manager",
+   "title": "Residential Finishing Projects Manager"
+  },
+  {
+   "q": "Do I need knowledge of the Maltese construction industry?",
+   "a": "Yes. Strong knowledge of the Maltese construction industry and local building practices is required.",
+   "slug": "residential-finishing-projects-manager",
+   "title": "Residential Finishing Projects Manager"
+  },
+  {
    "q": "What does the Restaurant Manager role pay?",
    "a": "The salary for this role starts from €2,500–€2,800 per month.",
    "slug": "restaurant-manager-italian-speaking",
@@ -3499,6 +3733,36 @@
    "a": "The role is full-time and on-site at the store in Birkirkara, Malta.",
    "slug": "retail-shop-supervisor",
    "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "What does the Sales Director do in this role?",
+   "a": "You lead the group's sales performance across several wellness brands: setting targets and strategy, building and coaching remote and on-site sales teams, improving conversion and the customer journey, and reporting forecasts and KPIs to management.",
+   "slug": "sales-director",
+   "title": "Sales Director"
+  },
+  {
+   "q": "What is the salary for the Sales Director job in St. Julian's?",
+   "a": "The salary is €40,000–€50,000 per year for this full-time, on-site leadership role.",
+   "slug": "sales-director",
+   "title": "Sales Director"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Proven experience in a senior sales leadership position such as Sales Director, Head of Sales or Senior Sales Manager, with a track record of exceeding targets and managing remote and on-site teams.",
+   "slug": "sales-director",
+   "title": "Sales Director"
+  },
+  {
+   "q": "Do I need experience in the wellness industry?",
+   "a": "It is an asset rather than a requirement. Experience in wellness, healthcare, aesthetics, beauty or other consumer-focused service industries is a plus.",
+   "slug": "sales-director",
+   "title": "Sales Director"
+  },
+  {
+   "q": "What industry is this job in?",
+   "a": "Wellness — the employer is a growing group with brands in slimming, aesthetics, spa and wellness.",
+   "slug": "sales-director",
+   "title": "Sales Director"
   },
   {
    "q": "What does this Sales Manager role involve?",

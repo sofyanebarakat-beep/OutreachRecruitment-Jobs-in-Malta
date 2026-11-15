@@ -48,6 +48,7 @@
       "missing versioned shared application asset /assets/job-eligibility-gate.js",
       "schema baseSalary (None, None) does not match the careers page (32000–38000)",
       "salary 32000 is not shown on the page"
-    ]
+    ],
+    "flagged": "2026-11-15"
   }
 }

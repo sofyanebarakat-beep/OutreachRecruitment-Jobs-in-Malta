@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-15",
+  "created": [
+    {
+      "uuid": "847ec842-e0dd-4db4-970d-225628646d67",
+      "title": "Accountant",
+      "city": "Gozo Region",
+      "slug": "accountant",
+      "salary_label": "€37,000–€45,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/847ec842-e0dd-4db4-970d-225628646d67",
+      "url": "https://outreachrecruitment.net/jobs/accountant/"
+    },
+    {
+      "uuid": "655ad714-0e66-49f3-8d53-55b3dd945448",
+      "title": "Billing Administrator",
+      "city": "Mosta",
+      "slug": "billing-administrator",
+      "salary_label": "€1,700 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/655ad714-0e66-49f3-8d53-55b3dd945448",
+      "url": "https://outreachrecruitment.net/jobs/billing-administrator/"
+    },
+    {
+      "uuid": "de9aae83-8b74-422d-932b-dc4adbf5599e",
+      "title": "Architect / Draughtsperson",
+      "city": "Mellieħa",
+      "slug": "architect-draughtsperson",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/de9aae83-8b74-422d-932b-dc4adbf5599e",
+      "url": "https://outreachrecruitment.net/jobs/architect-draughtsperson/"
+    },
+    {
+      "uuid": "77e86c50-0de9-4dc1-af2b-719a6459139e",
+      "title": "Residential Finishing Projects Manager",
+      "city": "Kirkop",
+      "slug": "residential-finishing-projects-manager",
+      "salary_label": "€50,000–€60,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/77e86c50-0de9-4dc1-af2b-719a6459139e",
+      "url": "https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/"
+    },
+    {
+      "uuid": "01fea69f-277d-4219-9a16-461436845495",
+      "title": "Sales Director",
+      "city": "St. Julian's",
+      "slug": "sales-director",
+      "salary_label": "€40,000–€50,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/01fea69f-277d-4219-9a16-461436845495",
+      "url": "https://outreachrecruitment.net/jobs/sales-director/"
+    }
+  ],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [
+    {
+      "title": "Client Accountant",
+      "url": "https://outreachrecruitment.net/jobs/client-accountant/",
+      "reason": "page check keeps failing after automatic repair attempts: missing versioned shared application asset /assets/job-eligibility-gate.css; missing versioned shared application asset /assets/job-alert-launcher.css; missing versioned shared application asset /assets/job-alert-focus.css"
+    }
+  ],
+  "notes": [],
+  "salary_notes": [
+    "Architect / Draughtsperson: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 131,
+  "site_open_before": 126,
+  "salary_synced": [
+    "Audit Senior Associate: none → €38,000–€42,000 per year"
+  ],
+  "page_check": {
+    "open_checked": 126,
+    "ok": 122,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 131,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 131,
+  "salary_coverage": {
+    "open": 131,
+    "with_salary": 34
+  }
+}
