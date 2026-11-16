@@ -585,7 +585,8 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
         s = re.sub(rf'<meta content="[^"]*" {attr}="{re.escape(name)}"/>', f'<meta content="{E(value)}" {attr}="{name}"/>', s)
     meta("name", "description", desc); meta("property", "og:description", desc); meta("name", "twitter:description", desc)
     meta("property", "og:title", title); meta("name", "twitter:title", title); meta("property", "og:url", url)
-    meta("property", "og:image", SITE + featured["img"]); meta("name", "twitter:image", SITE + featured["img"])
+    og_img = featured["img"] if featured["img"].startswith("http") else SITE + featured["img"]
+    meta("property", "og:image", og_img); meta("name", "twitter:image", og_img)
     meta("property", "og:type", "website")
     s = re.sub(r'(<link href=")[^"]*(" rel="canonical"/>)', rf"\g<1>{url}\g<2>", s, count=1)
     s = s.replace('<meta content="width=device-width, initial-scale=1" name="viewport"/>',

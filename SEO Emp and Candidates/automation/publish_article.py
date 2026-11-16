@@ -519,7 +519,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     author_name = fm.get("author_name") or "Outreach Recruitment"
     seo_title = html.escape(fm["seo_title"], quote=False)
     meta_desc = html.escape(fm["meta_description"], quote=False)
-    og_image_abs = f"https://outreachrecruitment.net{img_path}"
+    og_image_abs = img_path if img_path.startswith("http") else f"https://outreachrecruitment.net{img_path}"
 
     org_id = "https://outreachrecruitment.net/#organization"
     if is_root:
