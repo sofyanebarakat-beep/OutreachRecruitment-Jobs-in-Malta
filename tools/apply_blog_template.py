@@ -61,6 +61,22 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+STUDY_URL = "https://consultation.outreachstudy.eu/#apply"
+
+
+def study_banner():
+    """Sidebar banner for Study in Malta articles: same template as the jobs banner, study copy + CTA."""
+    return f'''<div class="od-side-block article-jobs-banner article-jobs-banner--sidebar article-jobs-banner--editorial">
+  <a class="article-jobs-banner-link" href="{STUDY_URL}" target="_blank" rel="noopener">
+    <span class="article-jobs-banner-brand">Outreach Recruitment</span>
+    <h2 class="article-jobs-banner-title">Study in <em>Malta</em> with expert guidance</h2>
+    <p class="article-jobs-banner-copy">Compare English, diploma, bachelor's and master's programmes and get step-by-step support.</p>
+    <span class="article-jobs-banner-count">Book a free consultation <span class="article-jobs-banner-arrow" aria-hidden="true">→</span></span>
+    <span class="article-jobs-banner-footer">From your first call to your first day!</span>
+  </a>
+</div>'''
+
+
 def jobs_banner(lang):
     labels = {
         "en": ("Find <em>jobs in Malta</em> and Europe", "Open Positions",
@@ -308,7 +324,7 @@ def render(meta, all_meta, lang):
           </div>
           <aside class="od-right">
             <details class="od-side-block od-toc" id="odToc" open><summary>{L["toc"]}</summary><ol></ol></details>
-            {jobs_banner(lang)}
+            {study_banner() if k == "stu" else jobs_banner(lang)}
           </aside>
         </div>
       </div>
