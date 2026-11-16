@@ -176,6 +176,21 @@ const slugify = (v: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+/** Real columns of public.seo_articles. Generators also return helper fields
+ * (entities, external_sources, social_posts…) that must never be sent to the table. */
+const ARTICLE_COLUMNS = new Set(
+  "id,title,slug,excerpt,focus_keyword,secondary_keywords,seo_title,meta_description,canonical_url,og_title,og_description,og_image_url,twitter_card,indexable,service_id,campaign_id,topic_id,language,body,featured_image_url,featured_image_alt,featured_image_width,featured_image_height,section_images,faqs,internal_links,schema_json,status,scheduled_at,published_at,published_url,rejection_reason,quality_score,quality_notes,created_by,approved_by,created_at,updated_at,suggested_image_prompt,social_copy,validation_results,auto_selected,author_name,template_style,category,related_jobs".split(","),
+);
+function articleRow(v: Row): Row {
+  const out: Row = {};
+  for (const [k, x] of Object.entries(v))
+    if (ARTICLE_COLUMNS.has(k) && x !== undefined) out[k] = x;
+  // AI generator returns social_posts; the table stores them as social_copy.
+  if (v.social_posts && !Object.keys(v.social_copy || {}).length)
+    out.social_copy = v.social_posts;
+  return out;
+}
+
 function freeArticleDraft(title: string, keyword: string, targetWords: number) {
   const safeTitle = title.trim() || `A Practical Guide to ${keyword}`;
   const safeKeyword = keyword.trim() || "jobs in Malta";
@@ -242,7 +257,7 @@ async function ensureWeeklyJobsDraft(campaign: Row, monday = mondayOf()) {
   if (lookupError) throw new Error(lookupError.message);
   if (existing) return { created: false, slug, newJobs: 0, totalOpen: 0 };
   const { detection, ...article } = await buildWeeklyJobsArticle(monday);
-  const { error } = await sb.from("seo_articles").insert({
+  const { error } = await sb.from("seo_articles").insert(articleRow({
     ...article,
     category: campaign.category || JOBS_CATEGORY,
     campaign_id: campaign.id,
@@ -252,7 +267,7 @@ async function ensureWeeklyJobsDraft(campaign: Row, monday = mondayOf()) {
     auto_selected: true,
     quality_notes: `Detected from Job Sync ${detection.start} → ${detection.end}: ${detection.newJobs} new opening(s), ${detection.totalOpen} open in total (${detection.syncDays} daily report(s) read). Add the featured image, then Publish now.`,
     created_by: (await sb.auth.getUser()).data.user?.id,
-  });
+  }));
   if (error) throw new Error(error.message);
   await sb.from("seo_automation_logs").insert({
     job_name: "Weekly Jobs in Malta draft",
@@ -1384,17 +1399,19 @@ function Topics() {
       r.keyword,
       1200,
     );
-    const { error: insertError } = await sb.from("seo_articles").insert({
-      ...data,
-      focus_keyword: r.keyword,
-      topic_id: r.id,
-      service_id: r.service_id,
-      campaign_id: r.campaign_id,
-      category: r.category,
-      status: "generated",
-      language: "English",
-      created_by: (await sb.auth.getUser()).data.user?.id,
-    });
+    const { error: insertError } = await sb.from("seo_articles").insert(
+      articleRow({
+        ...data,
+        focus_keyword: r.keyword,
+        topic_id: r.id,
+        service_id: r.service_id,
+        campaign_id: r.campaign_id,
+        category: r.category,
+        status: "generated",
+        language: "English",
+        created_by: (await sb.auth.getUser()).data.user?.id,
+      }),
+    );
     if (insertError) alert(insertError.message);
     else {
       await sb
@@ -1574,10 +1591,15 @@ function Articles({ review = false }: { review?: boolean }) {
       alert("Cannot publish:\n• " + validateArticle(r).join("\n• "));
       return;
     }
-    await sb
+    const { error } = await sb
       .from("seo_articles")
       .update({ status: s, updated_at: new Date().toISOString() })
       .eq("id", r.id);
+    if (error) alert(`Could not update the article: ${error.message}`);
+    else if (s === "approved")
+      alert(
+        "Approved. The website publisher runs every 15 minutes — the article will be live shortly.",
+      );
     state.load();
   }
   return (
@@ -1744,7 +1766,9 @@ function ArticleModal({
         v.scheduled_at && v.status !== "published" ? "scheduled" : v.status,
       updated_at: new Date().toISOString(),
     };
-    const { error } = await sb.from("seo_articles").upsert(payload);
+    const { error } = await sb
+      .from("seo_articles")
+      .upsert(articleRow(payload));
     setBusy(false);
     error ? setMsg(error.message) : saved();
   }

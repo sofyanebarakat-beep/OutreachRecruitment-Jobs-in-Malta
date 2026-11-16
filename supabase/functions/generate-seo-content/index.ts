@@ -133,7 +133,8 @@ async function scheduled(count: number, campaignId?: string) {
           language: "English",
           target_words: campaign?.target_words || 1200,
         }),
-        { social_posts, ...articleContent } = content,
+        // entities / external_sources are prompt helpers, not seo_articles columns.
+        { social_posts, entities: _entities, external_sources: _sources, ...articleContent } = content,
         { data: article, error: articleError } = await service
           .from("seo_articles")
           .insert({
@@ -143,6 +144,7 @@ async function scheduled(count: number, campaignId?: string) {
             topic_id: topic.id,
             service_id: topic.service_id,
             campaign_id: topic.campaign_id,
+            category: topic.category || campaign?.category || null,
             status: "generated",
             language: "English",
             author_name: campaign?.author_name || "Outreach Recruitment",
