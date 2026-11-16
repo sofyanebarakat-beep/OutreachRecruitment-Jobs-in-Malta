@@ -636,11 +636,6 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
                    f'aria-controls="nu-panel-{CAT_SLUG[c]}" data-cat="{CAT_SLUG[c]}">{E(c)}</button>' for i, c in enumerate(CATS))
     panels = "".join(f'<div class="nu-panel" id="nu-panel-{CAT_SLUG[c]}" role="tabpanel"{"" if i == 0 else " hidden"}>'
                      + "".join(card(a) for a in [x for x in all_arts if c in x["cats"]][:3]) + "</div>" for i, c in enumerate(CATS))
-    guide_html = "".join(f"""<a class="nu-guide" href="{E(g['url'])}">
-  <img src="{E(g['img'])}" alt="{E(g['title'])}" loading="lazy"><span class="nu-guide-icon">{BOOK_ICON}</span>
-  <div class="nu-guide-body"><div class="nu-meta">{badge(g)}<time datetime="{g['date']:%Y-%m-%d}">{fmt(g['date'])}</time></div>
-  <h3>{E(g['title'])}</h3><div class="nu-author"><span><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>by Outreach Recruitment</div></div>
-</a>""" for g in guides)
 
     content = f"""
 <div class="nu">
@@ -702,14 +697,6 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
       <div class="nu-center"><a class="nu-btn light" id="nu-pop-all" href="#latest" data-filter="study-in-malta" data-scroll>Browse all articles{ARROW}</a></div>
     </section>
   </div>
-  <section class="nu-guides" aria-labelledby="nu-guides-title">
-    <div class="nu-wrap">
-      <div class="nu-guides-head"><h2 id="nu-guides-title">Must-read guides</h2>
-        <p>Our most complete guides for studying in Malta and hiring the right people — start here.</p></div>
-      <div class="nu-guide-grid">{guide_html}</div>
-      <div class="nu-center"><a class="nu-btn accent" href="#latest" data-filter="all" data-scroll>Explore all articles{ARROW}</a></div>
-    </div>
-  </section>
   <div class="nu-wrap">{ad(ads.get("bottom", {}), "728 x 90 px", "nu-ad-wide").replace('nu-jobs-track"', 'nu-jobs-track rev"')}</div>
 </div>
 """
