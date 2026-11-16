@@ -1,0 +1,14 @@
+/* Sitewide: make every page's header look exactly like the homepage header
+   (floating rounded pill, 16px gap above it, transparent bar, no white strip,
+   homepage pill colour). Loaded LAST in <head> by tools/unify_header_with_home.py
+   so it beats per-page overrides (blog-article.css, job-page inline styles). */
+html body .navigation.w-nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding-top: 16px !important;
+  box-shadow: none !important;
+}
+
+html body .navigation.w-nav .navigation-content {
+  background-color: #f3f5ee !important;
+}
