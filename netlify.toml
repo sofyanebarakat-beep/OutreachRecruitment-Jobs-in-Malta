@@ -921,6 +921,22 @@
   from = "/jobs-in-malta-this-week-16-november-2026/"
   to = "/blog/jobs-in-malta-this-week-16-november-2026.html"
   status = 200
+[[redirects]]
+  from = "/study-in-malta-platform-step-by-step-guidance"
+  to = "/study-in-malta-platform-step-by-step-guidance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/study-in-malta-platform-step-by-step-guidance.html"
+  to = "/study-in-malta-platform-step-by-step-guidance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/study-in-malta-platform-step-by-step-guidance/"
+  to = "/blog/study-in-malta-platform-step-by-step-guidance.html"
+  status = 200
 # ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
   from = "/study-in-malta-complete-guide"
