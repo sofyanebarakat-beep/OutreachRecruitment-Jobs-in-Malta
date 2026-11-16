@@ -69,6 +69,35 @@ async function getJson(path: string) {
   return r.json();
 }
 
+/** Sector landing pages that exist on the site; other sectors use the filtered /jobs/ list. */
+const CATEGORY_PAGES: Record<string, string> = {
+  Hospitality: "/hospitality-jobs-in-malta",
+  "Engineering & Maintenance": "/engineering-jobs-in-malta",
+  "Finance & Accounting": "/finance-jobs-in-malta",
+  Construction: "/construction-jobs-in-malta",
+  "Customer Service": "/customer-service-jobs-in-malta",
+  "IT & Technology": "/it-jobs-in-malta",
+  "Marine & Shipping": "/marine-jobs-in-malta",
+  Sales: "/sales-jobs-in-malta",
+  Insurance: "/insurance-jobs-in-malta",
+  Retail: "/retail-jobs-in-malta",
+  Manufacturing: "/manufacturing-jobs-in-malta",
+};
+export const categoryUrl = (category: string) =>
+  SITE +
+  (CATEGORY_PAGES[category] ||
+    `/jobs/?category=${encodeURIComponent(category)}`);
+
+/** Job-seeker resources linked from every weekly article (all verified live pages). */
+const RESOURCES: [string, string, string][] = [
+  ["Malta salary calculator", "/salary-calculator-malta", "estimate your net monthly pay after tax and social security from any gross salary"],
+  ["CV writing tips for Malta", "/cv-writing-tips-how-to-get-hired-in-malta/", "what Malta employers look for in a CV"],
+  ["Tailor your CV for jobs in Malta", "/tailor-your-cv-for-jobs-in-malta/", "adapt one CV to each vacancy"],
+  ["Common interview questions in Malta", "/how-to-answer-common-interview-questions-in-malta/", "prepare strong answers before the interview"],
+  ["Documents you need to apply", "/what-documents-do-i-need-to-apply-for-a-job-in-malta/", "the paperwork to have ready"],
+  ["Best industries hiring in Malta", "/best-industries-hiring-in-malta-right-now/", "where demand is growing"],
+];
+
 const cityOf = (loc: string) =>
   String(loc || "Malta")
     .replace(/,\s*Malta$/i, "")
@@ -137,7 +166,12 @@ export async function detectWeeklyJobs(monday: Date, min = 5) {
     .sort((a, b) => String(b.date).localeCompare(String(a.date)))
     .slice(0, Math.max(0, min - fresh.length))
     .map((j) => toJob(j, j.date, false));
+  const byCategory = new Map<string, number>();
+  for (const j of open)
+    if (j.category)
+      byCategory.set(j.category, (byCategory.get(j.category) || 0) + 1);
   return {
+    byCategory,
     start,
     end,
     syncDays,
@@ -167,7 +201,13 @@ export async function buildWeeklyJobsArticle(monday = mondayOf()) {
   const count = n ? `${n} New Opening${n === 1 ? "" : "s"}` : `${total}+ Open Positions`;
   const title = `New Jobs in Malta This Week: ${count} | ${when}`;
   const line = (j: WeeklyJob) =>
-    `- **[${j.title}](${j.url})** — ${j.city}${j.salary ? ` · ${j.salary}` : ""}${j.category ? ` · ${j.category}` : ""}. [View the job and apply](${j.url})`;
+    `- **[${j.title}](${j.url})** — ${j.city}${j.salary ? ` · ${j.salary}` : ""}${j.category ? ` · [${j.category} jobs](${categoryUrl(j.category)})` : ""}. [View the job and apply](${j.url})`;
+  // This week's sectors first, then the rest by number of open jobs.
+  const catList = [...w.byCategory.entries()].sort(
+    (a, b) =>
+      Number(w.jobs.some((j) => j.category === b[0])) -
+        Number(w.jobs.some((j) => j.category === a[0])) || b[1] - a[1],
+  );
   const sectors = [...new Set(w.jobs.map((j) => j.category).filter(Boolean))];
   const towns = [...new Set(w.jobs.map((j) => j.city))];
   const examples = w.jobs.slice(0, 3).map((j) => j.title);
@@ -183,16 +223,29 @@ export async function buildWeeklyJobsArticle(monday = mondayOf()) {
       : !n
         ? w.jobs.map(line).join("\n")
         : "",
-    `Salaries are shown as published by the employer.`,
+    `Salaries are shown as published by the employer and are gross amounts. Use our [Malta salary calculator](${SITE}/salary-calculator-malta) to estimate what you would take home each month after tax and social security.`,
     `## Explore all ${total}+ open jobs in Malta`,
     `These ${w.jobs.length} roles are just a start.${sectors.length ? ` This week's openings cover ${sectors.slice(0, 6).join(", ").toLowerCase()}` : ""}${towns.length ? `${sectors.length ? "," : " Openings are"} based in ${towns.slice(0, 6).join(", ")}` : ""}. Browse the [full list of jobs in Malta](${SITE}/jobs/) and filter by sector to find the opportunity that matches your skills and experience. Every weekly round-up is also saved in our [Jobs in Malta news](${SITE}/news-updates/jobs-in-malta/).`,
+    `## Browse jobs in Malta by category`,
+    `Looking for a specific field? Open a category to see every vacancy in it:`,
+    catList
+      .map(
+        ([c, k]) =>
+          `- [${c} jobs in Malta](${categoryUrl(c)}) — ${k} open position${k === 1 ? "" : "s"}`,
+      )
+      .join("\n"),
     `## Who can apply`,
-    `For these vacancies, only candidates currently residing in Malta will be considered. Make sure your CV is up to date before you apply — our guide on how to [tailor your CV for jobs in Malta](${SITE}/tailor-your-cv-for-jobs-in-malta/) can help, and you can check [what documents you need to apply for a job in Malta](${SITE}/what-documents-do-i-need-to-apply-for-a-job-in-malta/).`,
+    `For these vacancies, only candidates currently residing in Malta will be considered. Make sure your CV is up to date before you apply and that you have your documents ready.`,
+    `## Useful resources for job seekers in Malta`,
+    RESOURCES.map(
+      ([t, u, d]) => `- **[${t}](${SITE}${u})** — ${d}.`,
+    ).join("\n"),
     `## Sources and further reading`,
     `- [Jobsplus — Malta's public employment service](https://jobsplus.gov.mt/)\n- [Identità — official residence and work-permit information](https://identita.gov.mt/)`,
     `## FAQs`,
     `### How often are new jobs in Malta added?\n\nOur vacancies are updated every day, and every Monday we publish a round-up of the jobs in Malta that opened during the previous week.`,
     `### Who can apply for these jobs in Malta?\n\nOnly candidates currently residing in Malta will be considered for these vacancies. Requirements for each role are listed on its job page.`,
+    `### How much will I take home from a salary in Malta?\n\nSalaries on our job pages are gross. Enter the amount in our [Malta salary calculator](${SITE}/salary-calculator-malta) to estimate your net monthly pay after income tax and social security contributions.`,
     `### How do I apply?\n\nOpen the job you are interested in, read the full description and use the apply button on the job page. You can also browse all ${total}+ open positions on our [jobs page](${SITE}/jobs/).`,
     `## Ready for your next career move?`,
     `Discover our latest [job openings in Malta](${SITE}/jobs/) and apply now. New roles are added every week.`,
@@ -215,7 +268,12 @@ export async function buildWeeklyJobsArticle(monday = mondayOf()) {
     excerpt: `${n ? `${n} new jobs in Malta opened this week` : `${total}+ jobs in Malta are open this week`}${examples.length ? `, including ${examples.join(", ")}` : ""}. See salaries and apply online.`,
     body,
     related_jobs: w.jobs,
-    internal_links: [`${SITE}/jobs/`, ...w.jobs.map((j) => j.url)],
+    internal_links: [
+      `${SITE}/jobs/`,
+      ...w.jobs.map((j) => j.url),
+      ...catList.map(([c]) => categoryUrl(c)),
+      ...RESOURCES.map(([, u]) => SITE + u),
+    ],
     suggested_image_prompt: `Professional editorial photograph for a "new jobs in Malta this week" article: diverse professionals in a bright Malta office or hotel, Mediterranean light, blue brand accents, no text, 1200 × 630 pixels.`,
     featured_image_alt: `New jobs in Malta this week — ${when}`,
     language: "English",
