@@ -38,6 +38,12 @@ Apply `supabase/migrations/20261113190000_seo_autopilot.sql` after the base cont
 
 Autopilot generates drafts daily. `review-published-seo-content.yml` runs weekly and completes due 7/30/60-day reviews using the Search Console page metrics already imported into Supabase, saving a concrete improvement recommendation for each article.
 
+### Jobs in Malta weekly campaign
+
+Apply `supabase/migrations/20261116120000_jobs_in_malta_weekly_campaign.sql` (SQL Editor) once. It adds a **Category** to campaigns, topics and articles (`Jobs in Malta`, `Candidates`, `Employers`, `Study in Malta`), the campaign type **Weekly new jobs round-up**, and seeds the campaign "Jobs in Malta — New openings every Monday" plus ten approved "jobs in Malta" keywords.
+
+Every Monday–Wednesday, the first admin visit to `/admin/seo/` builds that week's draft (`src/weeklyJobs.ts`): jobs that opened in the 7 days ending on Monday are read from the Job Sync reports (`/reports/daily-sync/<date>.json`, created + reopened) and kept only if still open in `/tools/jobs_registry.json`; each one is linked to `/jobs/<slug>/`. The slug is `jobs-in-malta-this-week-<d>-<month>-<yyyy>`. The draft lands in **Weekly Review**; upload the featured image and click **Publish now**. Campaigns and Articles also have a manual "this week's article" button. Publishing files `Jobs in Malta` articles under that tag, writes both `blog/<slug>.html` and `<slug>/index.html` (GitHub Pages), and rebuilds `/news-updates` and `/news-updates/jobs-in-malta/`.
+
 Private admin at `/admin/` (noindex, not linked from the site). Sidebar sections:
 
 - **Marketing › Job Sync** (opens first) — the daily careers-page ⇄ website sync report: the headline

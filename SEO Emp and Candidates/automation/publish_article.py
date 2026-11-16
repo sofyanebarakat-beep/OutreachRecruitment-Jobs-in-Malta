@@ -228,10 +228,31 @@ def parse_frontmatter(text: str) -> tuple[dict, str]:
 # from the model can never become live markup.
 # --------------------------------------------------------------------------------
 
+SITE_PREFIX = "https://outreachrecruitment.net"
+# [text](url) — only http(s) or site-relative URLs, never quotes/angle brackets/spaces.
+MD_LINK = re.compile(r"\[([^\]\n]+?)\]\(((?:https?://|/)[^\s()\"<>]+)\)")
+
+
+def _link(m: re.Match) -> str:
+    text, url = m.group(1), m.group(2)
+    if url.startswith(SITE_PREFIX):
+        url = url[len(SITE_PREFIX):] or "/"
+    if url.startswith("/"):
+        return f'<a href="{url}">{text}</a>'
+    return f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
+
+
 def inline_md(text: str) -> str:
     escaped = html.escape(text.strip(), quote=False)
+    # Links first, so the URL never passes through the bold/italic rules below.
+    links: list[str] = []
+    def keep(m: re.Match) -> str:
+        links.append(_link(m))
+        return f"\x00{len(links) - 1}\x00"
+    escaped = MD_LINK.sub(keep, escaped)
     escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
     escaped = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<em>\1</em>", escaped)
+    escaped = re.sub(r"\x00(\d+)\x00", lambda m: links[int(m.group(1))], escaped)
     return escaped
 
 
@@ -721,8 +742,9 @@ def update_news_updates(meta: dict, excerpt: str) -> bool:
     href = f"/{meta['slug']}/"
     if f'href="{href}"' in text:
         return False
-    category = "study-in-malta" if meta["pillar"] == "StudyInMalta" else ("employers" if meta["pillar"] in ("Employer", "Brand") else "candidates")
-    badge = "Study in Malta" if category == "study-in-malta" else category.title()
+    category = {"StudyInMalta": "study-in-malta", "JobsInMalta": "jobs-in-malta",
+                "Employer": "employers", "Brand": "employers"}.get(meta["pillar"], "candidates")
+    badge = {"study-in-malta": "Study in Malta", "jobs-in-malta": "Jobs in Malta"}.get(category, category.title())
     safe_title = html.escape(meta["title"], quote=True)
     safe_excerpt = html.escape(excerpt[:240].strip(), quote=False)
     searchable = html.escape(f"{meta['title']} {excerpt} {badge}".lower(), quote=True)
@@ -814,6 +836,12 @@ def publish_one(md_path: Path) -> dict:
         touched = [meta["dest_rel"]]
         if not meta["is_root"]:
             apply_blog_layout(dest)
+            # GitHub Pages serves /<slug>/ from <slug>/index.html (netlify.toml routes have no
+            # effect there), so write the same page at the canonical folder too.
+            folder = ROOT / meta["slug"] / "index.html"
+            folder.parent.mkdir(parents=True, exist_ok=True)
+            folder.write_text(dest.read_text())
+            touched.append(f"{meta['slug']}/index.html")
         if update_netlify_routes(meta):
             touched.append("netlify.toml")
         if update_blog_index(meta):

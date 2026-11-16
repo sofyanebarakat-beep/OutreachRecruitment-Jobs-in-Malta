@@ -26,7 +26,12 @@ def request(method: str, path: str, body=None):
 def yaml_value(value):
     return json.dumps(str(value or ""), ensure_ascii=False)
 
+CATEGORY_PILLAR = {"Jobs in Malta": "JobsInMalta", "Study in Malta": "StudyInMalta",
+                   "Employers": "Employer", "Candidates": "Candidate"}
+
 def pillar(article):
+    # The category chosen in the dashboard decides where the article is filed.
+    if article.get("category") in CATEGORY_PILLAR: return CATEGORY_PILLAR[article["category"]]
     text = f"{article.get('focus_keyword','')} {article.get('title','')}".lower()
     if "study" in text or "student" in text: return "StudyInMalta"
     if "employer" in text or "hiring" in text or "recruit" in text: return "Employer"
@@ -47,7 +52,18 @@ def markdown(article):
     }
     return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + article["body"].strip() + "\n"
 
+def rebuild_news_pages():
+    """Re-render /news-updates and the category pages (/news-updates/jobs-in-malta/) from blog/."""
+    import subprocess
+    run = subprocess.run([sys.executable, str(ROOT / "tools" / "build_news_page.py")], cwd=ROOT, capture_output=True, text=True)
+    if run.returncode:
+        print("warning: build_news_page.py failed: " + (run.stderr or run.stdout)[-500:], file=sys.stderr); return []
+    return ["news-updates.html"] + sorted(str(p.relative_to(ROOT)) for p in (ROOT / "news-updates").glob("*/index.html"))
+
 def main():
+    if not os.environ.get("SUPABASE_URL") or not os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
+        print("::warning::SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY repository secrets are not set; nothing to publish.", file=sys.stderr)
+        print(json.dumps({"published":0,"failed":0,"touched_paths":[]})); return 0
     now = quote(datetime.now(timezone.utc).isoformat())
     query = f"seo_articles?select=*&status=in.(approved,scheduled)&or=(scheduled_at.is.null,scheduled_at.lte.{now})&order=scheduled_at.asc.nullsfirst"
     articles = request("GET", query) or []
@@ -73,7 +89,9 @@ def main():
                 except Exception: pass
             else:
                 request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"failed","quality_notes":result["error"],"updated_at":datetime.now(timezone.utc).isoformat()})
-    summary={"published":sum(r["ok"] for r in results),"failed":sum(not r["ok"] for r in results),"touched_paths":sorted({p for r in results if r["ok"] for p in r["touched"]})}
+    touched={p for r in results if r["ok"] for p in r["touched"]}
+    if touched: touched.update(rebuild_news_pages())
+    summary={"published":sum(r["ok"] for r in results),"failed":sum(not r["ok"] for r in results),"touched_paths":sorted(touched)}
     print(json.dumps(summary));return 1 if summary["failed"] else 0
 
 if __name__ == "__main__": sys.exit(main())

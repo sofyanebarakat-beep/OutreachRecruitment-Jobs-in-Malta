@@ -28,6 +28,13 @@ import {
   X,
 } from "lucide-react";
 import "./styles.css";
+import {
+  CATEGORIES,
+  JOBS_CATEGORY,
+  buildWeeklyJobsArticle,
+  mondayOf,
+  weeklySlug,
+} from "./weeklyJobs";
 
 const SUPABASE_URL =
   import.meta.env.VITE_SUPABASE_URL ||
@@ -220,6 +227,74 @@ function freeArticleDraft(title: string, keyword: string, targetWords: number) {
   };
 }
 
+/**
+ * Create the Monday "new jobs in Malta" draft for a weekly campaign, unless this
+ * week's article already exists. The draft waits in Weekly Review for the
+ * featured image and a human "Publish now".
+ */
+async function ensureWeeklyJobsDraft(campaign: Row, monday = mondayOf()) {
+  const slug = weeklySlug(monday);
+  const { data: existing, error: lookupError } = await sb
+    .from("seo_articles")
+    .select("id,status")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (lookupError) throw new Error(lookupError.message);
+  if (existing) return { created: false, slug, newJobs: 0, totalOpen: 0 };
+  const { detection, ...article } = await buildWeeklyJobsArticle(monday);
+  const { error } = await sb.from("seo_articles").insert({
+    ...article,
+    category: campaign.category || JOBS_CATEGORY,
+    campaign_id: campaign.id,
+    service_id: campaign.service_id,
+    author_name: campaign.author_name || "Outreach Recruitment",
+    status: "review",
+    auto_selected: true,
+    quality_notes: `Detected from Job Sync ${detection.start} → ${detection.end}: ${detection.newJobs} new opening(s), ${detection.totalOpen} open in total (${detection.syncDays} daily report(s) read). Add the featured image, then Publish now.`,
+    created_by: (await sb.auth.getUser()).data.user?.id,
+  });
+  if (error) throw new Error(error.message);
+  await sb.from("seo_automation_logs").insert({
+    job_name: "Weekly Jobs in Malta draft",
+    status: "success",
+    message: `/${slug}/ · ${detection.newJobs} new jobs · ${detection.totalOpen} open`,
+    ended_at: new Date().toISOString(),
+  });
+  return {
+    created: true,
+    slug,
+    newJobs: detection.newJobs,
+    totalOpen: detection.totalOpen,
+  };
+}
+
+/** Runs once per admin visit: Monday–Wednesday, create any missing weekly drafts. */
+let weeklyCheckDone = false;
+async function autoWeeklyJobsDrafts() {
+  if (weeklyCheckDone) return [];
+  weeklyCheckDone = true;
+  const day = new Date().getDay(); // 1 = Monday
+  if (day < 1 || day > 3) return [];
+  const { data } = await sb
+    .from("seo_campaigns")
+    .select("*")
+    .eq("campaign_type", "weekly_new_jobs")
+    .eq("status", "active")
+    .eq("auto_generate", true);
+  const out = [];
+  for (const c of data || []) {
+    if (c.start_date && c.start_date > new Date().toISOString().slice(0, 10))
+      continue;
+    try {
+      const r = await ensureWeeklyJobsDraft(c);
+      if (r.created) out.push(r);
+    } catch (e) {
+      console.warn("Weekly jobs draft failed", e);
+    }
+  }
+  return out;
+}
+
 function App() {
   const [session, setSession] = useState<Session | null>(null),
     [checking, setChecking] = useState(true);
@@ -305,7 +380,21 @@ function Admin({ session }: { session: Session }) {
   const [route, setRoute] = useState(
       sections.some((s) => s.id === initial) ? initial : "dashboard",
     ),
-    [open, setOpen] = useState(false);
+    [open, setOpen] = useState(false),
+    [notice, setNotice] = useState("");
+  useEffect(() => {
+    autoWeeklyJobsDrafts().then((made) => {
+      if (made.length)
+        setNotice(
+          made
+            .map(
+              (r) =>
+                `New Jobs in Malta draft ready: /${r.slug}/ (${r.newJobs} new jobs this week). Open Weekly Review, add the featured image and publish.`,
+            )
+            .join(" "),
+        );
+    });
+  }, []);
   useEffect(() => {
     const fn = () => setRoute(location.hash.replace("#/", "") || "dashboard");
     addEventListener("hashchange", fn);
@@ -372,6 +461,14 @@ function Admin({ session }: { session: Session }) {
           </a>
         </header>
         <main>
+          {notice && (
+            <p className="notice" role="status">
+              <Sparkles /> {notice}{" "}
+              <a href="#/review" onClick={() => setNotice("")}>
+                Open Weekly Review
+              </a>
+            </p>
+          )}
           <Route section={current} />
         </main>
       </div>
@@ -783,9 +880,60 @@ function ServiceModal({
   );
 }
 
+const WEEKLY_JOBS_PRESET: Row = {
+  name: "Jobs in Malta — New openings every Monday",
+  category: JOBS_CATEGORY,
+  campaign_type: "weekly_new_jobs",
+  status: "active",
+  language: "English",
+  target_location: "Malta",
+  objective:
+    'Rank for "jobs in Malta" and "new jobs in Malta this week": every Monday publish a round-up of the jobs that opened in the past 7 days (detected from Job Sync), each linked to its job page.',
+  articles_per_month: 5,
+  publish_days: ["Monday"],
+  publish_time: "09:00",
+  auto_generate: true,
+  target_words: 800,
+  author_name: "Outreach Recruitment",
+};
+
 function Campaigns() {
   const state = useRows("seo_campaigns");
-  const [edit, setEdit] = useState<Row | null>(null);
+  const services = useRows("seo_services");
+  const [edit, setEdit] = useState<Row | null>(null),
+    [running, setRunning] = useState<string | null>(null),
+    [filter, setFilter] = useState("All categories");
+  const hasWeekly = state.rows.some(
+    (r) => r.campaign_type === "weekly_new_jobs",
+  );
+  const rows =
+    filter === "All categories"
+      ? state.rows
+      : state.rows.filter((r) => (r.category || "Candidates") === filter);
+  function weeklyPreset() {
+    const service = services.rows.find((s) =>
+      /jobs in malta/i.test(`${s.name} ${s.main_keyword}`),
+    );
+    setEdit({
+      ...WEEKLY_JOBS_PRESET,
+      service_id: service?.id,
+      start_date: new Date().toISOString().slice(0, 10),
+    });
+  }
+  async function runWeekly(r: Row) {
+    setRunning(r.id);
+    try {
+      const res = await ensureWeeklyJobsDraft(r);
+      alert(
+        res.created
+          ? `Draft created: /${res.slug}/\n${res.newJobs} new jobs this week · ${res.totalOpen} open in total.\n\nOpen Articles (or Weekly Review), add the featured image and publish.`
+          : `This week's article (/${res.slug}/) already exists — open it in Articles.`,
+      );
+    } catch (e: any) {
+      alert(`Could not create the weekly article: ${e.message}`);
+    }
+    setRunning(null);
+  }
   return (
     <>
       <ListHeader
@@ -793,6 +941,8 @@ function Campaigns() {
         action="Create automated campaign"
         onAction={() =>
           setEdit({
+            category: "Candidates",
+            campaign_type: "standard",
             status: "active",
             language: "English",
             target_location: "Malta and Europe",
@@ -805,19 +955,38 @@ function Campaigns() {
             start_date: new Date().toISOString().slice(0, 10),
           })
         }
-      />
+      >
+        <label className="inline-filter">
+          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            {["All categories", ...CATEGORIES].map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
+        </label>
+        {!hasWeekly && (
+          <button onClick={weeklyPreset}>
+            <BriefcaseBusiness /> Jobs in Malta weekly campaign
+          </button>
+        )}
+      </ListHeader>
       {state.loading ? (
         <TableLoader />
       ) : (
         <Cards
-          rows={state.rows}
+          rows={rows}
           empty="No campaigns yet."
           render={(r) => (
             <>
               <div>
                 <span className={`badge ${statusTone[r.status]}`}>
                   {r.status}
+                </span>{" "}
+                <span className="badge purple">
+                  {r.category || "Candidates"}
                 </span>
+                {r.campaign_type === "weekly_new_jobs" && (
+                  <span className="badge green">Weekly new jobs</span>
+                )}
                 <h3>{r.name}</h3>
                 <p>{r.objective}</p>
               </div>
@@ -837,6 +1006,16 @@ function Campaigns() {
                 </span>
               </div>
               <button onClick={() => setEdit(r)}>Edit automation</button>
+              {r.campaign_type === "weekly_new_jobs" && (
+                <button
+                  className="ai"
+                  disabled={running === r.id}
+                  onClick={() => runWeekly(r)}
+                >
+                  {running === r.id ? <Loader2 className="spin" /> : <Sparkles />}{" "}
+                  Create this week's article now
+                </button>
+              )}
             </>
           )}
         />
@@ -910,7 +1089,21 @@ function CampaignModal({
       setBusy(false);
       return;
     }
-    if (data.auto_generate && data.status === "active") {
+    if (
+      data.campaign_type === "weekly_new_jobs" &&
+      data.auto_generate &&
+      data.status === "active"
+    ) {
+      try {
+        await ensureWeeklyJobsDraft(data);
+      } catch (e: any) {
+        setMsg(
+          `Campaign saved. This week's draft could not be created yet: ${e.message}`,
+        );
+        setBusy(false);
+        return;
+      }
+    } else if (data.auto_generate && data.status === "active") {
       const service = services.rows.find((s) => s.id === data.service_id),
         base = service?.main_keyword || data.name;
       const ideas = [
@@ -930,6 +1123,7 @@ function CampaignModal({
       const { error: topicError } = await sb.from("seo_topics").upsert(
         ideas.map((keyword: string, i: number) => ({
           keyword,
+          category: data.category,
           target_location: data.target_location,
           intent: i < 2 ? "commercial" : "informational",
           priority: 90 - i * 3,
@@ -984,6 +1178,48 @@ function CampaignModal({
           value={v.name}
           onChange={(x) => set("name", x)}
         />
+        <Select
+          label="Category (where articles are saved)"
+          value={v.category || "Candidates"}
+          options={CATEGORIES}
+          onChange={(x) => set("category", x)}
+        />
+        <label>
+          Campaign type
+          <select
+            value={v.campaign_type || "standard"}
+            onChange={(e) => {
+              const weekly = e.target.value === "weekly_new_jobs";
+              setV((c: Row) => ({
+                ...c,
+                campaign_type: e.target.value,
+                ...(weekly
+                  ? {
+                      category: JOBS_CATEGORY,
+                      publish_days: ["Monday"],
+                      articles_per_month: 5,
+                      target_words: 800,
+                    }
+                  : {}),
+              }));
+            }}
+          >
+            <option value="standard">Keyword articles</option>
+            <option value="weekly_new_jobs">
+              Weekly new jobs round-up (from Job Sync)
+            </option>
+          </select>
+        </label>
+        {v.campaign_type === "weekly_new_jobs" && (
+          <p className="hint wide">
+            Every Monday a draft is built from the jobs that opened in the
+            past 7 days on <a href="/admin/#/jobsync">Job Sync</a>. Each job is
+            linked to its page on /jobs/, the slug starts with
+            “jobs-in-malta-this-week-…”, and the article is filed under{" "}
+            <strong>Jobs in Malta</strong> on /news-updates/jobs-in-malta/. You
+            only add the featured image and click Publish now.
+          </p>
+        )}
         <label>
           Related service
           <select
@@ -1069,7 +1305,9 @@ function CampaignModal({
             checked={v.auto_generate ?? true}
             onChange={(e) => set("auto_generate", e.target.checked)}
           />{" "}
-          Automatically create related keywords and article drafts
+          {v.campaign_type === "weekly_new_jobs"
+            ? "Automatically create the Monday draft from new Job Sync openings"
+            : "Automatically create related keywords and article drafts"}
         </label>
         <Area
           label="Notes"
@@ -1085,6 +1323,7 @@ function CampaignModal({
 }
 function Topics() {
   const state = useRows("seo_topics"),
+    [filter, setFilter] = useState("All categories"),
     [edit, setEdit] = useState<Row | null>(null),
     [syncing, setSyncing] = useState(false),
     [generating, setGenerating] = useState<string | null>(null);
@@ -1151,6 +1390,7 @@ function Topics() {
       topic_id: r.id,
       service_id: r.service_id,
       campaign_id: r.campaign_id,
+      category: r.category,
       status: "generated",
       language: "English",
       created_by: (await sb.auth.getUser()).data.user?.id,
@@ -1179,6 +1419,13 @@ function Topics() {
           </p>
         </div>
         <div className="toolbar-actions">
+          <label className="inline-filter">
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+              {["All categories", ...CATEGORIES].map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>
+          </label>
           <button onClick={syncGsc} disabled={syncing}>
             {syncing ? <Loader2 className="spin" /> : <Search />} Find ideas
             from Google
@@ -1186,7 +1433,13 @@ function Topics() {
           <button
             className="primary"
             onClick={() =>
-              setEdit({ status: "idea", intent: "informational", priority: 50 })
+              setEdit({
+                status: "idea",
+                intent: "informational",
+                priority: 50,
+                category:
+                  filter === "All categories" ? JOBS_CATEGORY : filter,
+              })
             }
           >
             + Add topic
@@ -1201,6 +1454,7 @@ function Topics() {
             <thead>
               <tr>
                 <th>Keyword</th>
+                <th>Category</th>
                 <th>Intent</th>
                 <th>Priority</th>
                 <th>Status</th>
@@ -1209,12 +1463,17 @@ function Topics() {
               </tr>
             </thead>
             <tbody>
-              {state.rows.map((r) => (
+              {state.rows
+                .filter(
+                  (r) => filter === "All categories" || r.category === filter,
+                )
+                .map((r) => (
                 <tr key={r.id}>
                   <td>
                     <strong>{r.keyword}</strong>
                     <small>{r.target_location || "Malta"}</small>
                   </td>
+                  <td>{r.category || "—"}</td>
                   <td>{r.intent}</td>
                   <td>{r.priority}/100</td>
                   <td>
@@ -1242,7 +1501,7 @@ function Topics() {
               ))}
               {!state.rows.length && (
                 <tr>
-                  <td colSpan={6}>
+                  <td colSpan={7}>
                     <Empty text="No content topics yet." />
                   </td>
                 </tr>
@@ -1257,6 +1516,7 @@ function Topics() {
           row={edit}
           fields={[
             "keyword",
+            "category",
             "suggested_title",
             "target_location",
             "priority",
@@ -1277,10 +1537,38 @@ function Topics() {
 
 function Articles({ review = false }: { review?: boolean }) {
   const state = useRows("seo_articles"),
-    [edit, setEdit] = useState<Row | null>(null);
-  const rows = review
-    ? state.rows.filter((r) => r.status === "review")
-    : state.rows;
+    [edit, setEdit] = useState<Row | null>(null),
+    [filter, setFilter] = useState("All categories"),
+    [weekly, setWeekly] = useState(false);
+  const rows = (
+    review ? state.rows.filter((r) => r.status === "review") : state.rows
+  ).filter((r) => filter === "All categories" || r.category === filter);
+  async function weeklyArticle() {
+    setWeekly(true);
+    const { data: camp } = await sb
+      .from("seo_campaigns")
+      .select("*")
+      .eq("campaign_type", "weekly_new_jobs")
+      .order("created_at")
+      .limit(1)
+      .maybeSingle();
+    if (!camp) {
+      alert(
+        "Create the Jobs in Malta weekly campaign first (Campaigns → Jobs in Malta weekly campaign).",
+      );
+      setWeekly(false);
+      return;
+    }
+    try {
+      const res = await ensureWeeklyJobsDraft(camp);
+      if (!res.created)
+        alert(`This week's article (/${res.slug}/) already exists.`);
+      await state.load();
+    } catch (e: any) {
+      alert(`Could not create the weekly article: ${e.message}`);
+    }
+    setWeekly(false);
+  }
   async function status(r: Row, s: string) {
     if (s === "approved" && validateArticle(r).length) {
       alert("Cannot publish:\n• " + validateArticle(r).join("\n• "));
@@ -1299,6 +1587,7 @@ function Articles({ review = false }: { review?: boolean }) {
         action={review ? undefined : "Create article"}
         onAction={() =>
           setEdit({
+            category: filter === "All categories" ? undefined : filter,
             status: "draft",
             language: "English",
             indexable: true,
@@ -1306,7 +1595,19 @@ function Articles({ review = false }: { review?: boolean }) {
             template_style: "editorial",
           })
         }
-      />
+      >
+        <label className="inline-filter">
+          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            {["All categories", ...CATEGORIES].map((c) => (
+              <option key={c}>{c}</option>
+            ))}
+          </select>
+        </label>
+        <button className="ai" onClick={weeklyArticle} disabled={weekly}>
+          {weekly ? <Loader2 className="spin" /> : <BriefcaseBusiness />} This
+          week's Jobs in Malta article
+        </button>
+      </ListHeader>
       {state.loading ? (
         <TableLoader />
       ) : (
@@ -1329,7 +1630,15 @@ function Articles({ review = false }: { review?: boolean }) {
                     <strong>{r.title || "Untitled"}</strong>
                     <small>/{r.slug || "no-slug"}</small>
                   </td>
-                  <td>{r.focus_keyword || "—"}</td>
+                  <td>
+                    {r.focus_keyword || "—"}
+                    <small>
+                      {r.category || "No category"}
+                      {(r.related_jobs || []).length
+                        ? ` · ${r.related_jobs.length} linked jobs`
+                        : ""}
+                    </small>
+                  </td>
                   <td>
                     <b className="score">{r.quality_score || 0}</b>
                   </td>
@@ -1535,6 +1844,32 @@ function ArticleModal({
           options={ARTICLE_AUTHORS}
           onChange={(x) => set("author_name", x)}
         />
+        <Select
+          label="Category (where it is saved on the website)"
+          value={v.category || "—"}
+          options={["—", ...CATEGORIES]}
+          onChange={(x) => set("category", x === "—" ? null : x)}
+        />
+        {(v.related_jobs || []).length > 0 && (
+          <div className="wide hint">
+            <strong>
+              Linked open jobs ({v.related_jobs.length}) — detected from Job
+              Sync
+            </strong>
+            <ul className="linked-jobs">
+              {v.related_jobs.map((j: Row) => (
+                <li key={j.slug}>
+                  <a href={j.url} target="_blank" rel="noopener">
+                    {j.title}
+                  </a>{" "}
+                  — {j.city}
+                  {j.salary ? ` · ${j.salary}` : ""}
+                  {j.isNew ? " · new this week" : " · still hiring"}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <Field
           label="SEO title"
           className="wide"
@@ -2211,7 +2546,15 @@ function GenericModal({
     <Modal title={row.id ? "Edit record" : "Create record"} close={close}>
       <form className="form-grid" onSubmit={save}>
         {fields.map((k) =>
-          k === "notes" || k === "objective" ? (
+          k === "category" ? (
+            <Select
+              key={k}
+              label="Category"
+              value={v.category || "—"}
+              options={["—", ...CATEGORIES]}
+              onChange={(x) => setV({ ...v, category: x === "—" ? null : x })}
+            />
+          ) : k === "notes" || k === "objective" ? (
             <Area
               key={k}
               label={label(k)}
@@ -2352,10 +2695,12 @@ function ListHeader({
   title,
   action,
   onAction,
+  children,
 }: {
   title: string;
   action?: string;
   onAction?: () => void;
+  children?: React.ReactNode;
 }) {
   return (
     <div className="toolbar">
@@ -2363,11 +2708,14 @@ function ListHeader({
         <h2>{title}</h2>
         <p>Securely stored in Supabase and restricted to administrators.</p>
       </div>
-      {action && (
-        <button className="primary" onClick={onAction}>
-          + {action}
-        </button>
-      )}
+      <div className="toolbar-actions">
+        {children}
+        {action && (
+          <button className="primary" onClick={onAction}>
+            + {action}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
