@@ -1,5 +1,5 @@
 {
-  "_help": "Settings for /news-updates. Rebuild with: python3 tools/build_news_page.py. 'featured', 'trending' and 'guides' take article URLs (e.g. \"/call-centre-salary-malta/\"); leave empty to use the newest articles automatically. Each ad slot shows the 'AD SPACE' placeholder until both 'image' and 'link' are set. Set 'ready' to true to let Google index the page. 'hide_on_or_before' (YYYY-MM-DD) hides older articles from the main /news-updates page only.",
+  "_help": "Settings for /news-updates. Rebuild with: python3 tools/build_news_page.py. 'featured', 'trending' and 'guides' take article URLs (e.g. \"/call-centre-salary-malta/\"); leave empty to use the newest articles automatically. Each ad slot shows the 'AD SPACE' placeholder until both 'image' and 'link' are set. Set 'ready' to true to let Google index the page. 'hide_on_or_before' (YYYY-MM-DD) hides older articles from the main /news-updates page only. 'hide_slugs' hides those articles from /news-updates and from every article's 'Browse more related articles' cards. 'related_hide_between' [from, to] (YYYY-MM-DD, inclusive) keeps articles in that date range out of the related cards.",
   "ready": true,
   "featured": [
     "/how-to-hire-hospitality-staff-malta/"
@@ -23,5 +23,12 @@
       "alt": ""
     }
   },
-  "hide_on_or_before": "2026-10-09"
+  "hide_on_or_before": "2026-10-09",
+  "hide_slugs": [
+    "new-jobs-in-malta-week-16-november-2026"
+  ],
+  "related_hide_between": [
+    "2026-06-04",
+    "2026-10-09"
+  ]
 }

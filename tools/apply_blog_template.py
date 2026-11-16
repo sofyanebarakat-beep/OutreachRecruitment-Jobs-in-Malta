@@ -200,7 +200,42 @@ def kind(tag):
     return "job"
 
 
+MONTHS = {n: i + 1 for i, names in enumerate([
+    ("january", "janvier", "gennaio"), ("february", "février", "febbraio"), ("march", "mars", "marzo"),
+    ("april", "avril", "aprile"), ("may", "mai", "maggio"), ("june", "juin", "giugno"),
+    ("july", "juillet", "luglio"), ("august", "août", "agosto"), ("september", "septembre", "settembre"),
+    ("october", "octobre", "ottobre"), ("november", "novembre", "novembre"), ("december", "décembre", "dicembre")])
+    for n in names}
+
+
+def iso_date(text):
+    """'November 16, 2026' / '9 octobre 2026' / '9 ottobre 2026' -> '2026-11-16' (or '' if unknown)."""
+    t = text.strip().lower().replace(",", "")
+    m = re.match(r"(\w+) (\d{1,2}) (\d{4})$", t)
+    if m and m.group(1) in MONTHS:
+        return f"{m.group(3)}-{MONTHS[m.group(1)]:02d}-{int(m.group(2)):02d}"
+    m = re.match(r"(\d{1,2}) (\S+) (\d{4})$", t)
+    if m and m.group(2) in MONTHS:
+        return f"{m.group(3)}-{MONTHS[m.group(2)]:02d}-{int(m.group(1)):02d}"
+    return ""
+
+
+def related_hidden(m):
+    """True if tools/news_page.json says this article must not appear in related-article cards."""
+    cfg = json.loads((ROOT / "tools" / "news_page.json").read_text(encoding="utf-8"))
+    if m["slug"] in {h.strip("/") for h in cfg.get("hide_slugs", [])}:
+        return True
+    lo, hi = (cfg.get("related_hide_between") or [None, None])[:2]
+    if lo and hi:
+        d = iso_date(m["date"])
+        if not d:
+            return False
+        return lo <= d <= hi
+    return False
+
+
 def pick_related(meta, all_meta):
+    all_meta = [m for m in all_meta if not related_hidden(m)]
     known = {m["slug"] for m in all_meta}
     out = []
     for h in meta["related"]:

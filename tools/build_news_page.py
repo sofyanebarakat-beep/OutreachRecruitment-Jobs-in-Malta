@@ -561,6 +561,8 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
     cutoff = settings.get("hide_on_or_before") if not cat else None
     if cutoff:
         all_arts = [a for a in all_arts if a["date"].strftime("%Y-%m-%d") > cutoff]
+    hidden = {h.strip("/") for h in settings.get("hide_slugs", [])}
+    all_arts = [a for a in all_arts if a["url"].strip("/") not in hidden and a["slug"] not in hidden]
     arts = [a for a in all_arts if cat in a["cats"]] if cat else all_arts
     url = f"{URL}/{CAT_SLUG[cat]}/" if cat else URL
     out = (ROOT / "news-updates" / CAT_SLUG[cat] / "index.html") if cat else OUT
