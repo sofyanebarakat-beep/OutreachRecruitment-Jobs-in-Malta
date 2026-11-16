@@ -557,6 +557,10 @@ def main() -> None:
 def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
     """Build /news-updates (cat=None) or a category landing page /news-updates/<slug>/."""
     cp = CAT_PAGES.get(cat) if cat else None
+    # Main page only: hide articles published on or before settings["hide_on_or_before"] (YYYY-MM-DD).
+    cutoff = settings.get("hide_on_or_before") if not cat else None
+    if cutoff:
+        all_arts = [a for a in all_arts if a["date"].strftime("%Y-%m-%d") > cutoff]
     arts = [a for a in all_arts if cat in a["cats"]] if cat else all_arts
     url = f"{URL}/{CAT_SLUG[cat]}/" if cat else URL
     out = (ROOT / "news-updates" / CAT_SLUG[cat] / "index.html") if cat else OUT
@@ -568,7 +572,6 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
 
     featured = arts[0] if cat else pick("featured", arts[:1])[0]
     trending = [a for a in arts if a is not featured][:2] if cat else pick("trending", [a for a in arts if a is not featured][:2])[:2]
-    guides = pick("guides", [next(a for a in all_arts if a["cats"][0] == c and a is not featured) for c in ("Study in Malta", "Employers")])[:2]
     ads = settings.get("ads", {})
     jobs = open_jobs()
     JOBS_BANNERS["nu-ad-wide"] = jobs_banner("wide", jobs)

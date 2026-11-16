@@ -1,5 +1,5 @@
 {
-  "_help": "Settings for /news-updates. Rebuild with: python3 tools/build_news_page.py. 'featured', 'trending' and 'guides' take article URLs (e.g. \"/call-centre-salary-malta/\"); leave empty to use the newest articles automatically. Each ad slot shows the 'AD SPACE' placeholder until both 'image' and 'link' are set. Set 'ready' to true to let Google index the page.",
+  "_help": "Settings for /news-updates. Rebuild with: python3 tools/build_news_page.py. 'featured', 'trending' and 'guides' take article URLs (e.g. \"/call-centre-salary-malta/\"); leave empty to use the newest articles automatically. Each ad slot shows the 'AD SPACE' placeholder until both 'image' and 'link' are set. Set 'ready' to true to let Google index the page. 'hide_on_or_before' (YYYY-MM-DD) hides older articles from the main /news-updates page only.",
   "ready": true,
   "featured": [
     "/how-to-hire-hospitality-staff-malta/"
@@ -22,5 +22,6 @@
       "link": "",
       "alt": ""
     }
-  }
+  },
+  "hide_on_or_before": "2026-10-09"
 }
