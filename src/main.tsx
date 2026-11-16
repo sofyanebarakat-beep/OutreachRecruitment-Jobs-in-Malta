@@ -179,7 +179,7 @@ const slugify = (v: string) =>
 /** Real columns of public.seo_articles. Generators also return helper fields
  * (entities, external_sources, social_posts…) that must never be sent to the table. */
 const ARTICLE_COLUMNS = new Set(
-  "id,title,slug,excerpt,focus_keyword,secondary_keywords,seo_title,meta_description,canonical_url,og_title,og_description,og_image_url,twitter_card,indexable,service_id,campaign_id,topic_id,language,body,featured_image_url,featured_image_alt,featured_image_width,featured_image_height,section_images,faqs,internal_links,schema_json,status,scheduled_at,published_at,published_url,rejection_reason,quality_score,quality_notes,created_by,approved_by,created_at,updated_at,suggested_image_prompt,social_copy,validation_results,auto_selected,author_name,template_style,category,related_jobs".split(","),
+  "id,title,slug,excerpt,focus_keyword,secondary_keywords,seo_title,meta_description,canonical_url,og_title,og_description,og_image_url,twitter_card,indexable,service_id,campaign_id,topic_id,language,body,featured_image_url,featured_image_alt,featured_image_width,featured_image_height,section_images,faqs,internal_links,schema_json,status,scheduled_at,published_at,published_url,rejection_reason,quality_score,quality_notes,created_by,approved_by,created_at,updated_at,suggested_image_prompt,social_copy,validation_results,auto_selected,author_name,template_style,category,related_jobs,entities,external_sources,social_posts".split(","),
 );
 function articleRow(v: Row): Row {
   const out: Row = {};
