@@ -37,7 +37,7 @@ import sync_job_listings as SJL  # noqa: E402
 SITE = "https://outreachrecruitment.net"
 ATS = "https://outreach-recruitment-agency.careers-page.com"
 TEMPLATE = ROOT / "jobs" / "hotel-general-manager" / "index.html"
-T_TITLE, T_SLUG, T_CITY, T_REF = "Hotel General Manager", "hotel-general-manager", "St. Julian's", "OR-HOGM-2026-001"
+T_TITLE, T_SLUG, T_CITY, T_REF = "Hotel General Manager", "hotel-general-manager", "St Julian's", "OR-HOGM-2026-001"
 E = html.escape
 
 
@@ -122,15 +122,20 @@ def build(spec: dict) -> str:
         s = s.replace(old, new, 1)
 
     # breadcrumb + header
-    s = s.replace('<a href="/construction-jobs-in-malta">Construction Jobs in Malta</a>', f'<a href="{sp["hub_url"]}">{E(sp["hub_name"])}</a>', 1)
+    # breadcrumb hub = 3rd link of the visible breadcrumb, whatever category the template currently has
+    b0 = s.index('class="job-breadcrumb"'); b1 = s.index("</nav>", b0)
+    bc = re.sub(r'(<a href="/jobs">[^<]*</a><span aria-hidden="true">›</span>)<a href="[^"]*">[^<]*</a>',
+                lambda m: m.group(1) + f'<a href="{sp["hub_url"]}">{E(sp["hub_name"])}</a>', s[b0:b1], count=1)
+    s = s[:b0] + bc + s[b1:]
     s = s.replace(f'<span aria-current="page">{T_TITLE}</span>', f'<span aria-current="page">{E(title)}</span>')
     if sp["job_type"] != "Direct Job":
         s = s.replace('<span class="job-badge job-badge-type">Direct Job</span>', f'<span class="job-badge job-badge-type">{E(sp["job_type"])}</span>', 1)
     s = re.sub(rf'(<h1 class="heading-h1 job-header-title">){T_TITLE}(</h1>)', rf"\g<1>{E(title)}\g<2>", s)
     hs = s.index('<div class="job-header-meta">'); he = s.index('<div class="job-header-actions">', hs)
-    hm = (s[hs:he].replace("</svg>Competitive salary</span>", f"</svg>{E(sal_label)}</span>")
-          .replace("</svg>Construction</span>", f"</svg>{E(sp['category'])}</span>")
-          .replace(f"</svg>{T_CITY}, Malta</span>", f"</svg>{E(city_full)}</span>"))
+    # header chips, in template order: category, salary, employment type, location
+    chips = iter([sp["category"], sal_label, sp["employment_label"], city_full])
+    hm = re.sub(r"(</svg>)[^<]*(</span>)", lambda m: m.group(1) + E(next(chips)) + m.group(2), s[hs:he])
+    assert next(chips, None) is None, "template header chips changed — update build_job_page.py"
     s = s[:hs] + hm + s[he:]
 
     def side(label, value):
@@ -182,8 +187,10 @@ def build(spec: dict) -> str:
 
     # leftovers outside structured parts
     s = s.replace(old_uuid, sp["uuid"]).replace(T_REF, sp["ref"])
-    s = s.replace("Crane%20Installer%20role%20in%20Mqabba%2C%20Malta", quote(f"{title} role in {city_full}"))
-    s = s.replace(T_SLUG, slug).replace(T_TITLE, title).replace(f"{T_CITY}, Malta", city_full).replace(T_CITY, city)
+    s = re.sub(r"(wa\.me/\?text=)[^\"]*?(%20-%20https)", lambda m: m.group(1) + quote(f"{title} role in {city_full}") + m.group(2), s)
+    s = s.replace(T_SLUG, slug).replace(T_TITLE, title)
+    for tc in (T_CITY, T_CITY.replace("'", "&#x27;")):
+        s = s.replace(f"{tc}, Malta", E(city_full) if "&#" in tc else city_full).replace(tc, E(city) if "&#" in tc else city)
 
     # similar jobs: open jobs of the same category
     reg = json.loads((ROOT / "tools" / "jobs_registry.json").read_text(encoding="utf-8"))
@@ -195,8 +202,10 @@ def build(spec: dict) -> str:
     s = re.sub(r"Similar Jobs in [^<]+<", f"Similar Jobs in {E(sp['category'])}<", s)
 
     core = s[s.index("<head"):s.index("<nav")] + s[s.index("<main"):s.index("</main>")]
-    leaks = [b for b in (T_TITLE, T_SLUG, T_CITY, "HOGM", old_uuid,
-                         "Construction Jobs in Malta") if b in core and b.lower() not in json.dumps(sp).lower()]
+    core = re.sub(r'<div[^>]*id="similar-jobs".*?(?=</section>)', " ", core, flags=re.S)
+    leaks = [b for b in (T_TITLE, T_SLUG, T_CITY, T_CITY.replace("'", "&#x27;"), "HOGM", old_uuid, "Hotel%20General",
+                         "52,000", "55,000", "Hospitality Jobs in Malta", "</svg>Hospitality<")
+             if b in core and b.lower() not in json.dumps(sp, ensure_ascii=False).lower()]
     if leaks:
         raise SystemExit(f"Template leftovers found: {leaks}")
     expected_apply_url = sp.get("apply_url", f"{ATS}/jobs/{sp['uuid']}/apply")
