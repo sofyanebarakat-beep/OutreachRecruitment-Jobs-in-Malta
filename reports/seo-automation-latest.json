@@ -1,20 +1,21 @@
 {
-  "generated_at": "2026-11-13T11:54:22.974755+01:00",
+  "generated_at": "2026-11-16T11:49:58.696432+01:00",
   "checks": {
     "gsc": {
       "ok": true,
-      "through": "2026-11-11",
-      "days": 149,
+      "through": "2026-11-14",
+      "days": 150,
       "queries": 1000,
-      "pages": 409
+      "pages": 422
     },
     "ga4": {
-      "ok": false,
-      "error": "The read operation timed out"
+      "ok": true,
+      "days": 150,
+      "property_id": "350506159"
     },
     "audit": {
       "ok": true,
-      "issues": 2424
+      "issues": 2484
     },
     "sectors": {
       "ok": true,
@@ -22,25 +23,23 @@
     },
     "opportunities": {
       "ok": true,
-      "rows": 129
+      "rows": 128
     },
     "experiments": {
-      "new": 0
+      "new": 6
     },
     "supabase": {
       "ok": true,
-      "alerts": 23
+      "alerts": 24
     }
   },
-  "warnings": [
-    "The read operation timed out"
-  ],
+  "warnings": [],
   "kpi_latest_28d": {
-    "start": "2026-10-15",
-    "end": "2026-11-11",
-    "clicks28": 1140,
-    "impressions28": 20651,
-    "ctr": 5.52,
+    "start": "2026-10-18",
+    "end": "2026-11-14",
+    "clicks28": 1212,
+    "impressions28": 21339,
+    "ctr": 5.68,
     "position": 10.8
   },
   "baseline": {
