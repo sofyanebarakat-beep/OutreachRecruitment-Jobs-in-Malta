@@ -27,8 +27,25 @@ SITE = "https://outreachrecruitment.net"
 URL = f"{SITE}/news-updates"
 OUT = ROOT / "news-updates.html"
 SETTINGS = ROOT / "tools" / "news_page.json"
-CATS = ["Study in Malta", "Employers", "Candidates"]
-CAT_SLUG = {"Study in Malta": "study-in-malta", "Employers": "employers", "Candidates": "candidates"}
+CATS = ["Jobs in Malta", "Study in Malta", "Employers", "Candidates"]
+CAT_SLUG = {"Jobs in Malta": "jobs-in-malta", "Study in Malta": "study-in-malta", "Employers": "employers", "Candidates": "candidates"}
+
+# Categories that also get their own indexable landing page at /news-updates/<slug>/ (SEO).
+CAT_PAGES = {
+    "Jobs in Malta": {
+        "title": "Jobs in Malta: News, Vacancies & Hiring Updates | Outreach Recruitment",
+        "desc": "Jobs in Malta news from Outreach Recruitment: new vacancies every week, salaries, in-demand roles "
+                "and job-market updates for candidates living in Malta.",
+        "h1": "Jobs in Malta",
+        "intro": 'Weekly vacancy round-ups, salary guides and job-market news from the Outreach Recruitment team. '
+                 'Find out which roles are hiring in Malta right now, what they pay and how to apply — then browse all '
+                 '<a href="/jobs/">open jobs in Malta</a>.',
+        "links": [("All jobs in Malta", "/jobs/"), ("Hospitality jobs", "/hospitality-jobs-in-malta"),
+                  ("Customer service jobs", "/customer-service-jobs-in-malta"), ("Construction jobs", "/construction-jobs-in-malta"),
+                  ("Finance jobs", "/finance-jobs-in-malta"), ("IT jobs", "/it-jobs-in-malta"),
+                  ("Engineering jobs", "/engineering-jobs-in-malta"), ("Retail jobs", "/retail-jobs-in-malta")],
+    },
+}
 PER_PAGE = 6
 E = lambda s: html.escape(str(s or ""), quote=True)
 
@@ -38,6 +55,8 @@ STUDY_PAGES = ["study-in-malta-complete-guide", "study-in-malta-from-india", "st
 
 def categories(tag: str) -> list[str]:
     t = tag.lower()
+    if "jobs in malta" in t or t == "hospitality":
+        return ["Jobs in Malta", "Candidates"]
     if "study" in t or "application guide" in t:
         return ["Study in Malta"]
     if t in ("employers", "culture", "decision making", "team structure"):
@@ -244,6 +263,12 @@ body { background: #fff; }
 .nu-intro { max-width: 760px; margin: 0 0 1.75rem; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
 .nu-intro a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(68,45,250,.4); text-underline-offset: 3px; }
 .nu-intro a:hover { color: var(--brand); }
+.nu-crumbs { display: flex; gap: .5rem; flex-wrap: wrap; font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+.nu-crumbs a { color: var(--brand); }
+.nu-crumbs b { color: var(--ink); font-weight: 600; }
+.nu-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: -.75rem 0 1.75rem; padding: 0; list-style: none; }
+.nu-links a { display: inline-flex; padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--line); font-size: .9rem; font-weight: 500; color: var(--ink); }
+.nu-links a:hover { border-color: var(--brand); color: var(--brand); }
 .nu-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin: 0 0 2.25rem; padding: 0; list-style: none; }
 .nu-chip { display: inline-flex; padding: .55rem 1.05rem; border-radius: 999px; background: var(--soft); font-weight: 600; font-size: .95rem;
   border: 0; cursor: pointer; font-family: inherit; color: var(--ink); transition: background .2s ease, color .2s ease; }
@@ -467,7 +492,7 @@ SCRIPT = """<script id="news-page-script">
   var t; search.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { q = search.value.trim().toLowerCase(); page = 1; render(false); }, 150); });
   search.form && search.form.addEventListener('submit', function (e) { e.preventDefault(); q = search.value.trim().toLowerCase(); page = 1; render(true); });
   var start = new URLSearchParams(location.search).get('category');
-  setCat(['study-in-malta', 'employers', 'candidates'].indexOf(start) > -1 ? start : 'all', false);
+  setCat(['jobs-in-malta', 'study-in-malta', 'employers', 'candidates'].indexOf(start) > -1 ? start : 'all', false);
   if (start) setTimeout(function () { document.getElementById('latest').scrollIntoView({ block: 'start' }); }, 300);
 
   // Popular by category tabs
@@ -524,46 +549,59 @@ def main() -> None:
     arts = blog_articles()
     arts += study_pages({a["title"] for a in arts})
     arts.sort(key=lambda a: a["date"], reverse=True)
-    by_url = {a["url"].strip("/"): a for a in arts}
+    build(settings, arts, None)
+    for c in CAT_PAGES:
+        build(settings, arts, c)
+
+
+def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
+    """Build /news-updates (cat=None) or a category landing page /news-updates/<slug>/."""
+    cp = CAT_PAGES.get(cat) if cat else None
+    arts = [a for a in all_arts if cat in a["cats"]] if cat else all_arts
+    url = f"{URL}/{CAT_SLUG[cat]}/" if cat else URL
+    out = (ROOT / "news-updates" / CAT_SLUG[cat] / "index.html") if cat else OUT
+    by_url = {a["url"].strip("/"): a for a in all_arts}
 
     def pick(key, default):
         chosen = [by_url[s.strip("/")] for s in settings.get(key, []) if s.strip("/") in by_url]
         return chosen or default
 
-    featured = pick("featured", arts[:1])[0]
-    trending = pick("trending", [a for a in arts if a is not featured][:2])[:2]
-    guides = pick("guides", [next(a for a in arts if a["cats"][0] == c and a is not featured) for c in ("Study in Malta", "Employers")])[:2]
+    featured = arts[0] if cat else pick("featured", arts[:1])[0]
+    trending = [a for a in arts if a is not featured][:2] if cat else pick("trending", [a for a in arts if a is not featured][:2])[:2]
+    guides = pick("guides", [next(a for a in all_arts if a["cats"][0] == c and a is not featured) for c in ("Study in Malta", "Employers")])[:2]
     ads = settings.get("ads", {})
     jobs = open_jobs()
     JOBS_BANNERS["nu-ad-wide"] = jobs_banner("wide", jobs)
     JOBS_BANNERS["nu-ad-box"] = jobs_banner("box", jobs, reverse=True)
 
     s = (ROOT / "about.html").read_text(encoding="utf-8")
-    title = "News & Updates: Jobs, Hiring & Study in Malta | Outreach Recruitment"
-    desc = ("Malta news and guides from Outreach Recruitment: job-search tips for candidates, hiring advice for employers "
-            "and Study in Malta updates.")
+    title = cp["title"] if cp else "News & Updates: Jobs, Hiring & Study in Malta | Outreach Recruitment"
+    desc = cp["desc"] if cp else ("Malta news and guides from Outreach Recruitment: job-search tips for candidates, hiring advice for employers "
+                                  "and Study in Malta updates.")
     s = re.sub(r"<title>.*?</title>", f"<title>{E(title)}</title>", s, count=1, flags=re.S)
 
     def meta(attr, name, value):
         nonlocal s
         s = re.sub(rf'<meta content="[^"]*" {attr}="{re.escape(name)}"/>', f'<meta content="{E(value)}" {attr}="{name}"/>', s)
     meta("name", "description", desc); meta("property", "og:description", desc); meta("name", "twitter:description", desc)
-    meta("property", "og:title", title); meta("name", "twitter:title", title); meta("property", "og:url", URL)
+    meta("property", "og:title", title); meta("name", "twitter:title", title); meta("property", "og:url", url)
     meta("property", "og:image", SITE + featured["img"]); meta("name", "twitter:image", SITE + featured["img"])
     meta("property", "og:type", "website")
-    s = re.sub(r'(<link href=")[^"]*(" rel="canonical"/>)', rf"\g<1>{URL}\g<2>", s, count=1)
+    s = re.sub(r'(<link href=")[^"]*(" rel="canonical"/>)', rf"\g<1>{url}\g<2>", s, count=1)
     s = s.replace('<meta content="width=device-width, initial-scale=1" name="viewport"/>',
                   '<meta content="width=device-width, initial-scale=1" name="viewport"/>'
                   + ("" if settings.get("ready") else '\n<meta content="noindex, follow" name="robots"/>'), 1)
     ld = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
-              {"@type": "ListItem", "position": 2, "name": "News & Updates", "item": URL}]},
-          {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Updates", "url": URL, "description": desc,
+              {"@type": "ListItem", "position": 2, "name": "News & Updates", "item": URL}]
+              + ([{"@type": "ListItem", "position": 3, "name": cat, "item": url}] if cat else [])},
+          {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{cat} — News & Updates" if cat else "News & Updates",
+           "url": url, "description": desc,
            "inLanguage": "en", "dateModified": arts[0]["date"].strftime("%Y-%m-%d"),
            "isPartOf": {"@type": "WebSite", "name": "Outreach Recruitment", "url": f"{SITE}/"},
            "publisher": {"@type": "Organization", "name": "Outreach Recruitment Ltd", "url": f"{SITE}/",
                          "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/outreach-recruitment-logo.svg"}},
-           "about": [{"@type": "Thing", "name": n} for n in ("Jobs in Malta", "Recruitment in Malta", "Study in Malta")],
+           "about": [{"@type": "Thing", "name": n} for n in ([cat] if cat else ("Jobs in Malta", "Recruitment in Malta", "Study in Malta"))],
            "mainEntity": {"@type": "ItemList", "itemListElement": [
                {"@type": "ListItem", "position": i + 1, "url": SITE + a["url"], "name": a["title"]} for i, a in enumerate(arts)]}}]
     s = re.sub(r'<script type="application/ld\+json">.*?"AboutPage".*?</script>',
@@ -578,12 +616,26 @@ def main() -> None:
 </article>""" for a in trending)
     follow = "".join(f'<li><a href="{u}" target="_blank" rel="noopener" aria-label="Outreach Recruitment on {n}"><svg viewBox="0 0 24 24" aria-hidden="true">{p}</svg></a></li>'
                      for n, (u, p) in ICONS.items())
-    chips = '<li><button class="nu-chip" type="button" data-filter="all" data-scroll>All articles</button></li>' + "".join(
-        f'<li><button class="nu-chip" type="button" data-filter="{CAT_SLUG[c]}" data-scroll>{E(c)}</button></li>' for c in CATS)
+    def chip(c):
+        if c in CAT_PAGES:
+            return f'<li><a class="nu-chip{" is-active" if c == cat else ""}" href="/news-updates/{CAT_SLUG[c]}/">{E(c)}</a></li>'
+        if cat:
+            return f'<li><a class="nu-chip" href="/news-updates?category={CAT_SLUG[c]}">{E(c)}</a></li>'
+        return f'<li><button class="nu-chip" type="button" data-filter="{CAT_SLUG[c]}" data-scroll>{E(c)}</button></li>'
+    chips = ('<li><a class="nu-chip" href="/news-updates">All articles</a></li>' if cat else
+             '<li><button class="nu-chip" type="button" data-filter="all" data-scroll>All articles</button></li>') + "".join(chip(c) for c in CATS)
+    if cp:
+        intro = (f'<p class="nu-intro">{cp["intro"]}</p><ul class="nu-links" role="list">'
+                 + "".join(f'<li><a href="{E(h)}">{E(t)}</a></li>' for t, h in cp["links"]) + "</ul>")
+    else:
+        intro = """<p class="nu-intro">The latest news, guides and practical advice from the Outreach Recruitment team in Malta —
+      job-search and CV tips for <a href="/jobs/">candidates looking for jobs in Malta</a>, hiring advice for
+      <a href="/employers">employers recruiting in Malta</a>, and everything you need to
+      <a href="/study-in-malta-complete-guide">study in Malta</a> as an international student.</p>"""
     tabs = "".join(f'<button class="nu-chip nu-tab{" is-active" if i == 0 else ""}" type="button" role="tab" aria-selected="{str(i == 0).lower()}" '
                    f'aria-controls="nu-panel-{CAT_SLUG[c]}" data-cat="{CAT_SLUG[c]}">{E(c)}</button>' for i, c in enumerate(CATS))
     panels = "".join(f'<div class="nu-panel" id="nu-panel-{CAT_SLUG[c]}" role="tabpanel"{"" if i == 0 else " hidden"}>'
-                     + "".join(card(a) for a in [x for x in arts if c in x["cats"]][:3]) + "</div>" for i, c in enumerate(CATS))
+                     + "".join(card(a) for a in [x for x in all_arts if c in x["cats"]][:3]) + "</div>" for i, c in enumerate(CATS))
     guide_html = "".join(f"""<a class="nu-guide" href="{E(g['url'])}">
   <img src="{E(g['img'])}" alt="{E(g['title'])}" loading="lazy"><span class="nu-guide-icon">{BOOK_ICON}</span>
   <div class="nu-guide-body"><div class="nu-meta">{badge(g)}<time datetime="{g['date']:%Y-%m-%d}">{fmt(g['date'])}</time></div>
@@ -593,12 +645,10 @@ def main() -> None:
     content = f"""
 <div class="nu">
   <div class="nu-wrap">
-    <div class="nu-head"><h1>News &amp; Updates</h1>
+    {'<nav class="nu-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/news-updates">News &amp; Updates</a><span>/</span><b>' + E(cat) + '</b></nav>' if cat else ''}
+    <div class="nu-head"><h1>{E(cp["h1"]) if cp else "News &amp; Updates"}</h1>
       <div class="nu-head-btns"><a class="nu-btn accent" href="#newsletter">Subscribe{ARROW}</a><a class="nu-btn light" href="#latest" data-filter="all" data-scroll>Browse all articles{ARROW}</a></div></div>
-    <p class="nu-intro">The latest news, guides and practical advice from the Outreach Recruitment team in Malta —
-      job-search and CV tips for <a href="/jobs/">candidates looking for jobs in Malta</a>, hiring advice for
-      <a href="/employers">employers recruiting in Malta</a>, and everything you need to
-      <a href="/study-in-malta-complete-guide">study in Malta</a> as an international student.</p>
+    {intro}
     <ul class="nu-chips" role="list">{chips}</ul>
     <a class="nu-featured" href="{E(featured['url'])}">
       <img src="{E(featured['img'])}" alt="{E(featured['alt'] or featured['title'])}" width="1240" height="460">
@@ -619,7 +669,7 @@ def main() -> None:
         <div class="nu-side-ad">{ad(ads.get("sidebar", {}), "300 x 300 px", "nu-ad-box")}</div>
       </div></aside>
       <section class="nu-latest" id="latest" aria-labelledby="nu-latest-title" style="scroll-margin-top:120px">
-        <div class="nu-latest-head"><h2 id="nu-latest-title">Latest articles</h2>
+        <div class="nu-latest-head"><h2 id="nu-latest-title">{"Latest " + E(cat) + " articles" if cat else "Latest articles"}</h2>
           <a class="nu-btn light" href="#latest" data-filter="all">Browse all articles{ARROW}</a></div>
         <div class="nu-grid" id="nu-grid">{"".join(card(a) for a in arts)}</div>
         <p class="nu-empty" id="nu-empty" hidden>No articles match your search yet — try another word or category.</p>
@@ -672,9 +722,10 @@ def main() -> None:
     codes = re.search(r'countryCodes="([^"]+)"', (ROOT / "assets" / "footer-job-alerts.js").read_text(encoding="utf-8")).group(1)
     script = SCRIPT % {"per": PER_PAGE, "codes": json.dumps(codes), "check": json.dumps(CHECK_ICON)}
     s = s.replace("</body>", script + "\n</body>", 1)
-    OUT.write_text(s, encoding="utf-8")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(s, encoding="utf-8")
     counts = {c: sum(c in x["cats"] for x in arts) for c in CATS}
-    print(f"news-updates.html written: {len(arts)} articles {counts}; featured = {featured['title'][:50]}; "
+    print(f"{out.relative_to(ROOT)} written: {len(arts)} articles {counts}; featured = {featured['title'][:50]}; "
           f"{'indexable' if settings.get('ready') else 'noindex'}")
 
 
