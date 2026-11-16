@@ -937,6 +937,22 @@
   from = "/study-in-malta-platform-step-by-step-guidance/"
   to = "/blog/study-in-malta-platform-step-by-step-guidance.html"
   status = 200
+[[redirects]]
+  from = "/your-official-study-parent-in-malta"
+  to = "/your-official-study-parent-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/your-official-study-parent-in-malta.html"
+  to = "/your-official-study-parent-in-malta/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/your-official-study-parent-in-malta/"
+  to = "/blog/your-official-study-parent-in-malta.html"
+  status = 200
 # ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
   from = "/study-in-malta-complete-guide"
