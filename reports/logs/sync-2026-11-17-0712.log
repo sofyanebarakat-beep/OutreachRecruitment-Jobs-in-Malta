@@ -1,0 +1,53 @@
+=== Job Sync Agent ===
+Started: Tue Nov 17 07:12:44 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-17 07:12  ===
+
+[1] Scraping careers page …
+  pass 1: 131 / 131 advertised
+  careers page: 131 collected / 131 advertised · website open: 131
+
+[2] 0 website job(s) not in the careers-page listing — checking each …
+
+[3] Reading 131 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/a5cdd055-a18e-4aad-b319-7d66d6e85ed9)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7b67c4dc-4b3c-4f92-a3e1-ca528eabee8c)
+  20/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/8c67dbc9-77fb-46aa-9176-b7c41c7a650a)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/373103d8-ea25-4de5-adcf-245224df8cd1)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/72332dfa-e0b8-4827-8fba-5d967d87151d)
+  40/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/e894469d-8078-4539-86fb-e4d8e8d215b4)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/57ce944b-f716-4b66-8e62-322c9c3dbf32)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/84a61f1f-70d9-400c-84af-34aaed87cd7d)
+  60/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/8321197a-8a56-4045-8178-8500e12b701c)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/ebda8d08-2e22-4c2a-9c69-85802cc2947b)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/1c894811-e5c4-4b98-be1f-9bb155171de7)
+  80/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/bd6cb514-3575-4cb1-93d0-10084e232125)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/63c68ced-996e-4730-a903-0889575d9e63)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7dac46c7-8c5c-4fa0-afca-ca5051aacf01)
+  100/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/a70527a6-c721-4630-aa7f-6eafe435908b)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/5e0cf172-d172-48a2-9ee6-534716d0303d)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/d071e3f7-0e29-472e-bbb7-298393069639)
+  120/131
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/63b9f6fb-c395-437c-85ee-ba838e73edce)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/66b69bef-df65-448d-90bd-527eb88a4ebd)
+  131 fact sheets read
+  0 new, 0 to reopen, 0 changed
+  page check: 127 ok, 0 to fix (0 today)
+Updating listings (2026-11-17) — 131 open, 143 closed, 74 expired/hidden
+  index.html — 131 total, showing 10 on homepage
+  jobs/index.html — 131 job(s), 56 featured, 17 categories
+  sitemaps/sitemap-jobs.xml — 132 URL(s)
+  sitemap_index.xml — jobs sitemap lastmod refreshed
+  sitemap.xml — compatibility lastmod refreshed
+  construction-jobs-in-malta.html — 12 construction job(s), 6 with published salary
+
+Done. Run: git add -A && git commit -m 'Update job listings' && git push origin main
+faq-posts.json: 433 general question(s), 265 question(s) from open job pages
+
+[7] Checking the live site …
+  waiting 10 min for GitHub Pages to deploy …
