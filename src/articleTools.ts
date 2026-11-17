@@ -193,7 +193,7 @@ function keyTakeaways(body: string) {
  * meta description 50–160 characters with the keyword, named author, 600+ words).
  */
 export function completeArticle(input: Row, services: Row[] = []): Row {
-  let v: Row = { ...input };
+  let v: Row = { ...input, body: cleanBody(input.body) };
   const kw = String(v.focus_keyword || "").trim();
   const apply = (warning: string) => {
     const c = fixFor(warning, v, services);
@@ -237,3 +237,15 @@ export function completeArticle(input: Row, services: Row[] = []): Row {
 }
 
 const insertBeforeFaqsExport = (body: string, block: string) => insertBeforeFaqs(body, block);
+
+/**
+ * Bodies from the AI generator sometimes arrive with escaped line breaks ("\n" as two characters),
+ * which shows the whole article as one paragraph full of \n and ##. Turn them into real line breaks.
+ */
+export function cleanBody(body: unknown): string {
+  let s = String(body ?? "");
+  if (/\\n/.test(s) && (s.match(/\\n/g) || []).length >= (s.match(/\n/g) || []).length) {
+    s = s.replace(/\\r\\n|\\n/g, "\n").replace(/\\t/g, "  ").replace(/\\"/g, '"');
+  }
+  return s.replace(/\r\n?/g, "\n").replace(/^\s*"|"\s*$/g, (m) => (/^\s*"[\s\S]*"\s*$/.test(s) ? "" : m)).trim();
+}

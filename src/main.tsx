@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { openArticlePreview, buildPreviewHtml } from "./articlePreview";
-import { articleScore, scoreTone, fixFor, duplicateOf, completeArticle, TIP_PLACEHOLDER } from "./articleTools";
+import { articleScore, scoreTone, fixFor, duplicateOf, completeArticle, TIP_PLACEHOLDER, cleanBody } from "./articleTools";
 import {
   CATEGORIES,
   JOBS_CATEGORY,
@@ -1961,7 +1961,7 @@ function ArticleModal({
   close: () => void;
   saved: () => void;
 }) {
-  const [v, setV] = useState(row),
+  const [v, setV] = useState<Row>(() => (row.body ? { ...row, body: cleanBody(row.body) } : row)),
     [busy, setBusy] = useState(false),
     [msg, setMsg] = useState(""),
     [generating, setGenerating] = useState(false),

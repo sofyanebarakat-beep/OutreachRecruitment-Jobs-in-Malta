@@ -54,7 +54,11 @@ def markdown(article):
         "reviewed_at": next((r.get("at","") for r in (article.get("validation_results") or []) if isinstance(r, dict) and r.get("type")=="human_review"), ""),
         "section_images_b64": base64.urlsafe_b64encode(json.dumps(article.get("section_images") or []).encode()).decode(),
     }
-    return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + article["body"].strip() + "\n"
+    body = article["body"]
+    # AI-generated bodies sometimes store line breaks as the two characters "\n".
+    if "\\n" in body and body.count("\\n") >= body.count("\n"):
+        body = body.replace("\\r\\n", "\n").replace("\\n", "\n").replace('\\"', '"')
+    return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + body.strip() + "\n"
 
 def rebuild_news_pages():
     """Re-render /news-updates and the category pages (/news-updates/jobs-in-malta/) from blog/."""

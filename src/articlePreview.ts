@@ -1,3 +1,5 @@
+import { cleanBody } from "./articleTools";
+
 // Article preview: renders a dashboard article (Markdown body) the way the website publisher
 // (SEO Emp and Candidates/automation/publish_article.py) builds it, inside the live blog layout
 // (/assets/blog-article.css), so editors can check it before publishing.
@@ -136,7 +138,7 @@ const sectionClass = (h: string) => SECTION_CLASS.find(([re]) => re.test(h.trim(
 
 export function renderArticleBody(v: Row) {
   const problems: string[] = [];
-  const body = String(v.body || "").replace(/\r\n?/g, "\n");
+  const body = cleanBody(v.body);
   const lines = body.split("\n");
   let i = 0;
   while (i < lines.length && !lines[i].trim()) i++;
