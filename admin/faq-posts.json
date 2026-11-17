@@ -2,9 +2,9 @@
  "general": [
   {
    "q": "Can I work while studying in Malta?",
-   "a": "Yes. International students on a valid student residence permit can work up to 20 hours per week during term time and full-time during official academic holidays.",
+   "a": "Students can work up to 20 hours a week after obtaining a part-time licence from Jobsplus, once they have their residence card.",
    "url": "/study-in-malta-complete-guide",
-   "pages": 313
+   "pages": 315
   },
   {
    "q": "Looking for a job in Malta or Europe?",
@@ -44,9 +44,9 @@
   },
   {
    "q": "How do I apply?",
-   "a": "Apply online through the form on this page. Outreach Recruitment aims to respond to all applications within 3–5 business days.",
-   "url": "/jobs",
-   "pages": 50
+   "a": "Open the job you are interested in, read the full description and use the apply button on the job page. You can also browse all 131+ open positions on our jobs page.",
+   "url": "/blog/jobs-in-malta-this-week-16-november-2026",
+   "pages": 52
   },
   {
    "q": "Is a salary stated for this role?",
@@ -1099,6 +1099,24 @@
    "pages": 2
   },
   {
+   "q": "How often are new jobs in Malta added?",
+   "a": "Our vacancies are updated every day, and every Monday we publish a round-up of the jobs in Malta that opened during the previous week.",
+   "url": "/blog/jobs-in-malta-this-week-16-november-2026",
+   "pages": 2
+  },
+  {
+   "q": "Who can apply for these jobs in Malta?",
+   "a": "Only candidates currently residing in Malta will be considered for these vacancies. Requirements for each role are listed on its job page.",
+   "url": "/blog/jobs-in-malta-this-week-16-november-2026",
+   "pages": 2
+  },
+  {
+   "q": "How much will I take home from a salary in Malta?",
+   "a": "Salaries on our job pages are gross. Enter the amount in our Malta salary calculator to estimate your net monthly pay after income tax and social security contributions.",
+   "url": "/blog/jobs-in-malta-this-week-16-november-2026",
+   "pages": 2
+  },
+  {
    "q": "Do I need English for customer service jobs in Malta?",
    "a": "Yes. Fluent English is required for every customer service and call centre role we recruit for in Malta.",
    "url": "/blog/language-requirements-customer-service-jobs-malta",
@@ -1465,6 +1483,18 @@
    "pages": 2
   },
   {
+   "q": "Is the consultation call free?",
+   "a": "Yes. The 20-minute call with an Outreach adviser is free. You book it directly from your personal dashboard.",
+   "url": "/blog/study-in-malta-platform-step-by-step-guidance",
+   "pages": 2
+  },
+  {
+   "q": "Which programmes can I compare?",
+   "a": "English language courses, diplomas, bachelor's and master's programmes from partner schools and MFHEA-licensed institutions in Malta.",
+   "url": "/blog/study-in-malta-platform-step-by-step-guidance",
+   "pages": 2
+  },
+  {
    "q": "How long should a CV for jobs in Malta be?",
    "a": "A CV should ideally be one to two pages long, focusing on relevant experience for the role. Maltese employers prefer clear, concise CVs without excessive detail.",
    "url": "/blog/tailor-your-cv-for-jobs-in-malta",
@@ -1648,6 +1678,24 @@
    "q": "What industries in Malta commonly use temporary recruitment?",
    "a": "Hospitality, retail, tourism, events, healthcare, and administration sectors frequently rely on temporary recruitment to manage fluctuating workloads.",
    "url": "/blog/when-to-use-temporary-recruitment-support-malta",
+   "pages": 2
+  },
+  {
+   "q": "Why is Outreach Recruitment helping students?",
+   "a": "We already connect talent with employers in Malta. Helping students find the right programme is a natural next step, and we can support them with part-time job searches during their studies too.",
+   "url": "/study-in-malta-complete-guide",
+   "pages": 2
+  },
+  {
+   "q": "Which schools does Outreach work with?",
+   "a": "Our partners include eie European Business School, GBS Malta, London School of Commerce Malta, School of Business & Management Malta, English Path Malta and Kensington English.",
+   "url": "/study-in-malta-complete-guide",
+   "pages": 2
+  },
+  {
+   "q": "How do I get started?",
+   "a": "Visit the Outreach Study in Malta platform, choose your course and book a free consultation call.",
+   "url": "/blog/your-official-study-parent-in-malta",
    "pages": 2
   },
   {
