@@ -551,6 +551,18 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
             for q, a in faq_pairs
         ]},
     ]
+    # Job round-ups (the weekly "jobs in Malta this week" article): list the linked job pages as an
+    # ItemList so Google reads the article as a collection of current vacancies.
+    job_links = []
+    for href, label in re.findall(r'<a href="(?:https://outreachrecruitment\.net)?(/jobs/[a-z0-9-]+/?)"[^>]*>(.*?)</a>', body_html):
+        name = html.unescape(re.sub(r"<[^>]+>", "", label)).strip()
+        url = "https://outreachrecruitment.net" + href.rstrip("/") + "/"
+        if name and not name.lower().startswith("view") and url not in [u for u, _ in job_links]:
+            job_links.append((url, name))
+    if len(job_links) >= 3:
+        graph.append({"@type": "ItemList", "name": f"Jobs featured in: {fm['title']}", "numberOfItems": len(job_links),
+                      "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": u, "name": n}
+                                          for i, (u, n) in enumerate(job_links)]})
     # Escape "</" so a stray "</script" anywhere in model-derived text (e.g. a title
     # or FAQ answer) can never break out of the surrounding HTML <script> element.
     schema = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)

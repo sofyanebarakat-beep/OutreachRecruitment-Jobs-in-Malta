@@ -45,6 +45,13 @@ echo "" | tee -a "$LOG_FILE"
 echo "=== SEO / GSC analysis (job_sync_agent.py, no email) ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/job_sync_agent.py" --no-email 2>&1 | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
+echo "=== Articles: Sources + By the numbers ===" | tee -a "$LOG_FILE"
+# Daily: new articles get their Sources list and facts box. Mondays: refresh every article's numbers.
+python3 "$SCRIPT_DIR/article_sources_facts.py" --missing --commit 2>&1 | tail -n 3 | tee -a "$LOG_FILE"
+if [ "$(date +%u)" = "1" ]; then
+  python3 "$SCRIPT_DIR/article_sources_facts.py" --facts --commit 2>&1 | tail -n 3 | tee -a "$LOG_FILE"
+fi
+echo "" | tee -a "$LOG_FILE"
 echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/apply_analytics_tracking.py" 2>&1 | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/build_seo_service_catalog.py" 2>&1 | tee -a "$LOG_FILE"

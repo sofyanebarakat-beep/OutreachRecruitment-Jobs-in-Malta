@@ -129,3 +129,13 @@ html,body,.main{background:#fff!important}
 .od-rich .faq-item-top h3{font-size:20px!important;margin:0!important}
 .od-rich .cta-box h2{color:#fff!important}
 @media(max-width:767px){.od-rich h2,.od-rich h5{font-size:24px!important}.od-rich h3,.od-rich h4{font-size:20px!important}}
+/* "By the numbers" (own job data) and "Sources" (official references) — tools/article_sources_facts.py */
+.od-rich .or-facts{margin:0 0 2rem;padding:1.25rem 1.4rem;border-radius:12px;background:#f4f2ff;border:1px solid rgba(68,45,250,.18)}
+.od-rich .or-facts strong{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#442dfa;margin-bottom:.5rem}
+.od-rich .or-facts ul{margin:0;padding-left:1.1rem}
+.od-rich .or-facts li{margin:.35rem 0;color:#1c2623}
+.od-rich .or-facts small{display:block;margin-top:.6rem;font-size:12px;color:#6b6b6b}
+.od-rich .or-sources{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #ececec}
+.od-rich .or-sources h2{font-size:22px!important;margin:0 0 .75rem!important}
+.od-rich .or-sources ul{padding-left:1.1rem}
+.od-rich .or-sources li{font-size:15px;color:#4c4c4c;margin:.4rem 0}
