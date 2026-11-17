@@ -27,10 +27,15 @@ import {
   Tags,
   Trash2,
   Eye,
+  EyeOff,
+  Copy,
+  Wand2,
+  PanelRight,
   X,
 } from "lucide-react";
 import "./styles.css";
-import { openArticlePreview } from "./articlePreview";
+import { openArticlePreview, buildPreviewHtml } from "./articlePreview";
+import { articleScore, scoreTone, fixFor, duplicateOf } from "./articleTools";
 import {
   CATEGORIES,
   JOBS_CATEGORY,
@@ -1560,7 +1565,7 @@ async function deleteArticle(v: Row): Promise<boolean> {
   const ok = confirm(
     `Delete “${v.title || "this article"}”?\n\n` +
       (live
-        ? `This removes it from the dashboard only. The page is already published, so it stays live at /${v.slug}/ until it is taken down from the website.`
+        ? `This removes it from the dashboard only. The page is already published, so it stays live at /${v.slug}/. To remove the page from the website, use “Take offline” first.`
         : "The article and its images in this dashboard will be removed. This cannot be undone."),
   );
   if (!ok) return false;
@@ -1583,14 +1588,78 @@ function previewArticle(v: Row) {
   openArticlePreview(win, v, validateArticle(v));
 }
 
+/** Status shown in the list, including the website-only states. */
+function articleState(r: Row): { label: string; tone: string } {
+  if (r.status === "rejected" && r.published_url) return { label: "going offline", tone: "amber" };
+  if (r.status === "rejected" && String(r.quality_notes || "").startsWith("Taken offline")) return { label: "offline", tone: "red" };
+  return { label: r.status, tone: statusTone[r.status] };
+}
+
+function OfflineDialog({ article, others, close, done }: { article: Row; others: Row[]; close: () => void; done: () => void }) {
+  const [target, setTarget] = useState(others[0]?.published_url || "https://outreachrecruitment.net/news-updates");
+  const [busy, setBusy] = useState(false);
+  async function go() {
+    setBusy(true);
+    const { error } = await sb
+      .from("seo_articles")
+      .update({ status: "rejected", canonical_url: target, updated_at: new Date().toISOString() })
+      .eq("id", article.id);
+    setBusy(false);
+    if (error) alert(`Could not take the article offline: ${error.message}`);
+    else {
+      alert("Done. Within 15 minutes the page is removed from the website and its address redirects to the page you chose.");
+      done();
+    }
+  }
+  return (
+    <Modal title="Take article offline" close={close}>
+      <div className="form-grid">
+        <p className="wide">
+          <strong>{article.title}</strong> will be removed from the website, the blog page, the sitemap and News &amp; Updates.
+          Anyone who opens <code>/{article.slug}/</code> is sent to the page below, so no link breaks.
+        </p>
+        <label className="wide">
+          Redirect visitors to
+          <select value={target} onChange={(e) => setTarget(e.target.value)}>
+            {others.map((o) => (
+              <option key={o.id} value={o.published_url}>
+                {o.title}
+              </option>
+            ))}
+            <option value="https://outreachrecruitment.net/news-updates">News &amp; Updates page</option>
+            <option value="https://outreachrecruitment.net/jobs/">Jobs in Malta page</option>
+          </select>
+        </label>
+        <div className="form-actions wide">
+          <button type="button" onClick={close}>Cancel</button>
+          <button type="button" className="danger" onClick={go} disabled={busy}>
+            {busy ? <Loader2 className="spin" /> : <Globe2 />} Take offline
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 function Articles({ review = false }: { review?: boolean }) {
   const state = useRows("seo_articles"),
     [edit, setEdit] = useState<Row | null>(null),
+    [offline, setOffline] = useState<Row | null>(null),
     [filter, setFilter] = useState("All categories"),
-    [weekly, setWeekly] = useState(false);
+    [weekly, setWeekly] = useState(false),
+    [selected, setSelected] = useState<Set<string>>(new Set()),
+    [bulkWhen, setBulkWhen] = useState(""),
+    [busy, setBusy] = useState(false);
   const rows = (
     review ? state.rows.filter((r) => r.status === "review") : state.rows
   ).filter((r) => filter === "All categories" || r.category === filter);
+  const chosen = rows.filter((r) => selected.has(r.id));
+  const toggle = (id: string) =>
+    setSelected((cur) => {
+      const n = new Set(cur);
+      n.has(id) ? n.delete(id) : n.add(id);
+      return n;
+    });
   async function weeklyArticle() {
     setWeekly(true);
     const { data: camp } = await sb
@@ -1619,7 +1688,7 @@ function Articles({ review = false }: { review?: boolean }) {
   }
   async function status(r: Row, s: string) {
     if (s === "approved" && validateArticle(r).length) {
-      alert("Cannot publish:\n• " + validateArticle(r).join("\n• "));
+      alert("Cannot publish yet. Open the article and fix:\n• " + validateArticle(r).join("\n• "));
       return;
     }
     const { error } = await sb
@@ -1629,10 +1698,52 @@ function Articles({ review = false }: { review?: boolean }) {
     if (error) alert(`Could not update the article: ${error.message}`);
     else if (s === "approved")
       alert(
-        "Approved. The website publisher runs every 15 minutes — the article will be live shortly.",
+        r.status === "published"
+          ? "Republishing. Within 15 minutes the live page is updated and shows today as “Updated”."
+          : "Approved. The website publisher runs every 15 minutes — the article will be live shortly.",
       );
     state.load();
   }
+  async function duplicate(r: Row) {
+    const { error } = await sb.from("seo_articles").insert(articleRow(duplicateOf(r)));
+    if (error) alert(`Could not duplicate the article: ${error.message}`);
+    state.load();
+  }
+  async function bulk(kind: "publish" | "schedule" | "category" | "delete", value?: string) {
+    if (!chosen.length) return;
+    const ids = chosen.map((r) => r.id);
+    let error: any = null,
+      note = "";
+    setBusy(true);
+    if (kind === "publish") {
+      const ready = chosen.filter((r) => !validateArticle(r).length);
+      const skipped = chosen.length - ready.length;
+      if (ready.length)
+        ({ error } = await sb.from("seo_articles").update({ status: "approved", updated_at: new Date().toISOString() }).in("id", ready.map((r) => r.id)));
+      note = `${ready.length} article(s) will be published within 15 minutes.` + (skipped ? ` ${skipped} skipped — they still have items to fix.` : "");
+    } else if (kind === "schedule") {
+      if (!value) { setBusy(false); return alert("Choose a date and time first."); }
+      ({ error } = await sb.from("seo_articles").update({ status: "scheduled", scheduled_at: new Date(value).toISOString(), updated_at: new Date().toISOString() }).in("id", ids));
+      note = `${ids.length} article(s) scheduled for ${new Date(value).toLocaleString()}.`;
+    } else if (kind === "category") {
+      ({ error } = await sb.from("seo_articles").update({ category: value || null, updated_at: new Date().toISOString() }).in("id", ids));
+      note = `Category changed for ${ids.length} article(s).`;
+    } else {
+      const live = chosen.filter((r) => r.status === "published").length;
+      if (!confirm(`Delete ${ids.length} article(s) from the dashboard?` + (live ? `\n\n${live} of them are published and stay live on the website — use “Take offline” to remove a page.` : "") + "\n\nThis cannot be undone.")) {
+        setBusy(false);
+        return;
+      }
+      ({ error } = await sb.from("seo_articles").delete().in("id", ids));
+      note = `${ids.length} article(s) deleted.`;
+    }
+    setBusy(false);
+    if (error) alert(`Could not update the articles: ${error.message}`);
+    else alert(note);
+    setSelected(new Set());
+    state.load();
+  }
+  const published = state.rows.filter((r) => r.status === "published" && r.published_url);
   return (
     <>
       <ListHeader
@@ -1661,6 +1772,30 @@ function Articles({ review = false }: { review?: boolean }) {
           week's Jobs in Malta article
         </button>
       </ListHeader>
+      {chosen.length > 0 && (
+        <div className="bulk-bar">
+          <strong>{chosen.length} selected</strong>
+          <button className="primary" disabled={busy} onClick={() => bulk("publish")}>
+            <Globe2 /> Publish
+          </button>
+          <span className="bulk-group">
+            <input type="datetime-local" value={bulkWhen} onChange={(e) => setBulkWhen(e.target.value)} aria-label="Schedule date and time" />
+            <button disabled={busy} onClick={() => bulk("schedule", bulkWhen)}>
+              <CalendarDays /> Schedule
+            </button>
+          </span>
+          <select defaultValue="" disabled={busy} onChange={(e) => { if (e.target.value) bulk("category", e.target.value === "—" ? "" : e.target.value); e.target.value = ""; }} aria-label="Change category">
+            <option value="" disabled>Change category…</option>
+            {[...CATEGORIES, "—"].map((c) => (
+              <option key={c} value={c}>{c === "—" ? "No category" : c}</option>
+            ))}
+          </select>
+          <button className="danger" disabled={busy} onClick={() => bulk("delete")}>
+            <Trash2 /> Delete
+          </button>
+          <button className="link" onClick={() => setSelected(new Set())}>Clear selection</button>
+        </div>
+      )}
       {state.loading ? (
         <TableLoader />
       ) : (
@@ -1668,93 +1803,115 @@ function Articles({ review = false }: { review?: boolean }) {
           <table>
             <thead>
               <tr>
+                <th className="check-col">
+                  <input
+                    type="checkbox"
+                    aria-label="Select all articles"
+                    checked={rows.length > 0 && chosen.length === rows.length}
+                    onChange={(e) => setSelected(e.target.checked ? new Set(rows.map((r) => r.id)) : new Set())}
+                  />
+                </th>
                 <th>Article</th>
                 <th>Service / keyword</th>
-                <th>Quality</th>
+                <th>SEO / GEO score</th>
                 <th>Status</th>
                 <th>Schedule</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => (
-                <tr key={r.id}>
-                  <td>
-                    <strong>{r.title || "Untitled"}</strong>
-                    <small>/{r.slug || "no-slug"}</small>
-                  </td>
-                  <td>
-                    {r.focus_keyword || "—"}
-                    <small>
-                      {r.category || "No category"}
-                      {(r.related_jobs || []).length
-                        ? ` · ${r.related_jobs.length} linked jobs`
-                        : ""}
-                    </small>
-                  </td>
-                  <td>
-                    <b className="score">{r.quality_score || 0}</b>
-                  </td>
-                  <td>
-                    <span className={`badge ${statusTone[r.status]}`}>
-                      {r.status}
-                    </span>
-                  </td>
-                  <td>{date(r.scheduled_at)}</td>
-                  <td className="actions">
-                    <button onClick={() => setEdit(r)}>
-                      Edit text / image
-                    </button>
-                    <button onClick={() => previewArticle(r)}>
-                      <Eye /> Preview
-                    </button>
-                    <button
-                      className="danger icon-action"
-                      title="Delete article"
-                      aria-label={`Delete article: ${r.title || "Untitled"}`}
-                      onClick={async () => {
-                        if (await deleteArticle(r)) state.load();
-                      }}
-                    >
-                      <Trash2 />
-                    </button>
-                    {review ? (
-                      <>
-                        <button onClick={() => status(r, "approved")}>
-                          <Check /> Publish now
-                        </button>
-                        <button
-                          className="danger"
-                          onClick={() => status(r, "rejected")}
-                        >
-                          Reject
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        {["generated", "draft", "review"].includes(
-                          r.status,
-                        ) && (
-                          <button
-                            className="primary"
-                            onClick={() => status(r, "approved")}
-                          >
-                            <Globe2 /> Publish now
+              {rows.map((r) => {
+                const sc = articleScore(r);
+                const st = articleState(r);
+                return (
+                  <tr key={r.id} className={selected.has(r.id) ? "selected" : ""}>
+                    <td className="check-col">
+                      <input type="checkbox" aria-label={`Select ${r.title || "article"}`} checked={selected.has(r.id)} onChange={() => toggle(r.id)} />
+                    </td>
+                    <td>
+                      <strong>{r.title || "Untitled"}</strong>
+                      <small>/{r.slug || "no-slug"}</small>
+                    </td>
+                    <td>
+                      {r.focus_keyword || "—"}
+                      <small>
+                        {r.category || "No category"}
+                        {(r.related_jobs || []).length
+                          ? ` · ${r.related_jobs.length} linked jobs`
+                          : ""}
+                      </small>
+                    </td>
+                    <td className="score-cell">
+                      <b className={`score-pill ${scoreTone(sc.score)}`}>{sc.score}</b>
+                      {sc.missing.length > 0 && (
+                        <details className="score-missing">
+                          <summary>{sc.missing.length} to improve</summary>
+                          <ul>{sc.missing.map((m) => <li key={m}>{m}</li>)}</ul>
+                        </details>
+                      )}
+                    </td>
+                    <td>
+                      <span className={`badge ${st.tone}`}>{st.label}</span>
+                    </td>
+                    <td>{date(r.scheduled_at)}</td>
+                    <td className="actions">
+                      <button onClick={() => setEdit(r)}>Edit</button>
+                      <button onClick={() => previewArticle(r)}>
+                        <Eye /> Preview
+                      </button>
+                      <button onClick={() => duplicate(r)} title="Make a copy as a new draft">
+                        <Copy /> Duplicate
+                      </button>
+                      {review ? (
+                        <>
+                          <button onClick={() => status(r, "approved")}>
+                            <Check /> Publish now
                           </button>
-                        )}
-                        {r.status === "scheduled" && (
-                          <span className="badge purple">
-                            Auto-publishes {date(r.scheduled_at)}
-                          </span>
-                        )}
-                      </>
-                    )}
-                  </td>
-                </tr>
-              ))}
+                          <button className="danger" onClick={() => status(r, "rejected")}>
+                            Reject
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {["generated", "draft", "review"].includes(r.status) && (
+                            <button className="primary" onClick={() => status(r, "approved")}>
+                              <Globe2 /> Publish now
+                            </button>
+                          )}
+                          {r.status === "published" && (
+                            <>
+                              <button className="primary" onClick={() => status(r, "approved")} title="Update the live page with the latest saved changes">
+                                <RefreshCw /> Republish
+                              </button>
+                              <button onClick={() => setOffline(r)} title="Remove the page from the website and redirect its address">
+                                <EyeOff /> Take offline
+                              </button>
+                            </>
+                          )}
+                          {r.status === "scheduled" && (
+                            <span className="badge purple">
+                              Auto-publishes {date(r.scheduled_at)}
+                            </span>
+                          )}
+                        </>
+                      )}
+                      <button
+                        className="danger icon-action"
+                        title="Delete article"
+                        aria-label={`Delete article: ${r.title || "Untitled"}`}
+                        onClick={async () => {
+                          if (await deleteArticle(r)) state.load();
+                        }}
+                      >
+                        <Trash2 />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
               {!rows.length && (
                 <tr>
-                  <td colSpan={6}>
+                  <td colSpan={7}>
                     <Empty
                       text={
                         review
@@ -1779,6 +1936,17 @@ function Articles({ review = false }: { review?: boolean }) {
           }}
         />
       )}
+      {offline && (
+        <OfflineDialog
+          article={offline}
+          others={published.filter((o) => o.id !== offline.id)}
+          close={() => setOffline(null)}
+          done={() => {
+            setOffline(null);
+            state.load();
+          }}
+        />
+      )}
     </>
   );
 }
@@ -1796,25 +1964,59 @@ function ArticleModal({
     [busy, setBusy] = useState(false),
     [msg, setMsg] = useState(""),
     [generating, setGenerating] = useState(false),
-    [targetWords, setTargetWords] = useState(1200);
+    [targetWords, setTargetWords] = useState(1200),
+    [live, setLive] = useState(window.innerWidth >= 1200),
+    [previewHtml, setPreviewHtml] = useState("");
   const services = useRows("seo_services");
+  const frame = React.useRef<HTMLIFrameElement>(null);
+  // Live preview: rebuild the website-template preview shortly after typing stops.
+  useEffect(() => {
+    if (!live) return;
+    const t = setTimeout(async () => {
+      const html = await buildPreviewHtml(v, validateArticle(v), false);
+      const y = frame.current?.contentWindow?.scrollY || 0;
+      setPreviewHtml(html.replace("</body>", `<script>addEventListener("load",()=>scrollTo(0,${Math.round(y)}))</script></body>`));
+    }, 700);
+    return () => clearTimeout(t);
+  }, [v, live]);
   const set = (k: string, x: any) =>
     setV((current: Row) => ({ ...current, [k]: x }));
-  async function save(e: React.FormEvent) {
+  async function save(e: React.FormEvent, republish = false) {
     e.preventDefault();
+    if (republish && validateArticle(v).length) {
+      setMsg("Fix the items in the publishing checklist before republishing.");
+      return;
+    }
     setBusy(true);
     const payload = {
       ...v,
       slug: v.slug || slugify(v.title),
-      status:
-        v.scheduled_at && v.status !== "published" ? "scheduled" : v.status,
+      status: republish
+        ? "approved"
+        : v.scheduled_at && v.status !== "published"
+          ? "scheduled"
+          : v.status,
       updated_at: new Date().toISOString(),
     };
     const { error } = await sb
       .from("seo_articles")
       .upsert(articleRow(payload));
     setBusy(false);
-    error ? setMsg(error.message) : saved();
+    if (error) return setMsg(error.message);
+    if (republish) alert("Saved. Within 15 minutes the live page is updated and shows today as “Updated”.");
+    saved();
+  }
+  function fix(w: string) {
+    const changes = fixFor(w, v, services.rows);
+    if (changes) setV((cur: Row) => ({ ...cur, ...changes }));
+  }
+  function fixAll() {
+    let cur = v;
+    for (const w of validateArticle(cur)) {
+      const changes = fixFor(w, cur, services.rows);
+      if (changes) cur = { ...cur, ...changes };
+    }
+    setV(cur);
   }
   async function remove() {
     setBusy(true);
@@ -1873,7 +2075,9 @@ function ArticleModal({
       title={row.id ? "Edit article" : "Create article"}
       close={close}
       large
+      wide={live}
     >
+      <div className={live ? "editor-split" : ""}>
       <form className="form-grid" onSubmit={save}>
         <Field
           label="Article title"
@@ -2099,10 +2303,30 @@ function ArticleModal({
         </label>
         {warnings.length > 0 && (
           <div className="validation wide">
-            <strong>Publishing checklist</strong>
-            {warnings.map((w) => (
-              <p key={w}>• {w}</p>
-            ))}
+            <div className="validation-head">
+              <strong>Publishing checklist ({warnings.length})</strong>
+              {warnings.some((w) => fixFor(w, v, services.rows)) && (
+                <button type="button" className="ai" onClick={fixAll}>
+                  <Wand2 /> Fix everything I can
+                </button>
+              )}
+            </div>
+            {warnings.map((w) => {
+              const can = !!fixFor(w, v, services.rows);
+              return (
+                <p key={w} className="check-item">
+                  <span>• {w}</span>
+                  {can ? (
+                    <button type="button" className="link" onClick={() => fix(w)}>
+                      <Wand2 /> Fix it for me
+                    </button>
+                  ) : (
+                    <em>needs you</em>
+                  )}
+                </p>
+              );
+            })}
+            <small>Automatic fixes are a starting point — read them and adjust the wording before publishing.</small>
           </div>
         )}
         <div className="wide ai-row">
@@ -2138,14 +2362,36 @@ function ArticleModal({
           <button type="button" onClick={close}>
             Cancel
           </button>
-          <button type="button" onClick={() => previewArticle(v)}>
-            <Eye /> Preview article
+          <button type="button" onClick={() => setLive(!live)} title="Show the website preview beside the editor">
+            <PanelRight /> {live ? "Hide live preview" : "Live preview"}
           </button>
-          <button className="primary" disabled={busy}>
+          <button type="button" onClick={() => previewArticle(v)}>
+            <Eye /> Open in new tab
+          </button>
+          <button className={row.status === "published" ? "" : "primary"} disabled={busy}>
             {busy ? <Loader2 className="spin" /> : <Check />} Save changes
           </button>
+          {row.status === "published" && (
+            <button type="button" className="primary" disabled={busy} onClick={(e) => save(e as any, true)}>
+              <RefreshCw /> Save &amp; republish
+            </button>
+          )}
         </div>
       </form>
+      {live && (
+        <aside className="live-preview" aria-label="Live website preview">
+          <div className="live-preview-bar">
+            <span>Live preview — updates as you type</span>
+            <small>outreachrecruitment.net/{v.slug || "your-article"}/</small>
+          </div>
+          {previewHtml ? (
+            <iframe ref={frame} title="Article preview" srcDoc={previewHtml} />
+          ) : (
+            <div className="live-preview-loading"><Loader2 className="spin" /> Loading the website template…</div>
+          )}
+        </aside>
+      )}
+      </div>
     </Modal>
   );
 }
@@ -2834,11 +3080,13 @@ function Modal({
   title,
   close,
   large = false,
+  wide = false,
   children,
 }: {
   title: string;
   close: () => void;
   large?: boolean;
+  wide?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -2848,7 +3096,7 @@ function Modal({
         if (e.target === e.currentTarget) close();
       }}
     >
-      <section className={large ? "modal large" : "modal"}>
+      <section className={wide ? "modal large wide" : large ? "modal large" : "modal"}>
         <header>
           <h2>{title}</h2>
           <button className="icon" onClick={close}>

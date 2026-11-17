@@ -542,7 +542,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
         {"@type": "BlogPosting", "@id": f"{canonical}#article", "headline": fm["title"],
          "description": fm["meta_description"], "url": canonical,
          "image": {"@type": "ImageObject", "url": og_image_abs, "width": 1200, "height": 630},
-         "datePublished": f"{fm['date']}T00:00:00Z", "dateModified": f"{fm['date']}T00:00:00Z",
+         "datePublished": f"{fm['date']}T00:00:00Z", "dateModified": f"{fm.get('updated') or fm['date']}T00:00:00Z",
          "author": {"@id": f"https://outreachrecruitment.net/our-team#{re.sub(r'[^a-z0-9]+', '-', author_name.lower()).strip('-')}"}, "publisher": {"@id": org_id}, "inLanguage": "en",
          "keywords": fm["primary_keyword"], "mainEntityOfPage": {"@type": "WebPage", "@id": canonical}},
         {"@type": "BreadcrumbList", "itemListElement": breadcrumb},
@@ -568,6 +568,8 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
     schema = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
     schema = schema.replace("</", "<\\/")
 
+    modified_meta = (f'\n  <meta property="article:modified_time" content="{fm["updated"]}T00:00:00Z"/>'
+                     if fm.get("updated") and fm.get("updated") != fm["date"] else "")
     style_block, nav_block, footer_block = extract_boilerplate()
     related = related_cards(pillar, f"/{slug}/")
 
@@ -589,6 +591,7 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
   <meta property="og:url" content="{canonical}"/>
   <meta property="og:site_name" content="Outreach Recruitment Agency"/>
   <meta property="article:author" content="{html.escape(author_name, quote=True)}"/>
+  <meta property="article:published_time" content="{fm['date']}T00:00:00Z"/>{modified_meta}
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{title}"/>
   <meta name="twitter:description" content="{meta_desc}"/>

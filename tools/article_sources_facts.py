@@ -215,7 +215,9 @@ def process(path: Path, st: dict, facts_only: bool) -> bool:
     if not facts_only:
         keys = pick(RULES, key, DEFAULT)
         body = re.sub(r'<section class="or-sources" data-or-sources(?:="")?>.*?</section>', "", body, flags=re.S)
-        body = body.rstrip() + sources_html(keys, lang)
+        # Articles written with their own "Sources" section (admin "Fix it for me") keep that one.
+        if not re.search(r"<h2[^>]*>\s*(?:Sources|Fonti)\b", body):
+            body = body.rstrip() + sources_html(keys, lang)
     s = s[:a] + body + s[b:]
     if not facts_only:
         s = add_citations(s, pick(RULES, key, DEFAULT), touch=True)

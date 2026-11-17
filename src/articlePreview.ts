@@ -143,24 +143,43 @@ export function renderArticleBody(v: Row) {
 // Live article pages used as the preview shell (same header, footer, styles and scripts as the website).
 const SHELLS = ["/moving-to-malta-for-work/", "/how-to-hire-hospitality-staff-malta/", "/call-centre-salary-malta/"];
 
-export async function openArticlePreview(win: Window, v: Row, checklist: string[]) {
-  const origin = location.origin.includes("outreachrecruitment.net") || location.hostname === "localhost" ? location.origin : "https://outreachrecruitment.net";
-  let shell = "";
-  for (const path of SHELLS) {
+const ORIGIN = location.origin.includes("outreachrecruitment.net") || location.hostname === "localhost" ? location.origin : "https://outreachrecruitment.net";
+let cache: Promise<{ shell: string; team: Row[] }> | null = null;
+
+function loadShell() {
+  cache ??= (async () => {
+    let shell = "";
+    for (const path of SHELLS) {
+      try {
+        const r = await fetch(ORIGIN + path, { cache: "no-store" });
+        if (r.ok) { shell = await r.text(); break; }
+      } catch { /* try the next one */ }
+    }
+    let team: Row[] = [];
     try {
-      const r = await fetch(origin + path, { cache: "no-store" });
-      if (r.ok) { shell = await r.text(); break; }
-    } catch { /* try the next one */ }
-  }
-  let team: Row[] = [];
-  try {
-    const d = await (await fetch(origin + "/tools/team_data.json", { cache: "no-store" })).json();
-    team = [d.ceo, ...d.members];
-  } catch { /* the byline falls back to the plain name */ }
-  if (!shell) {
+      const d = await (await fetch(ORIGIN + "/tools/team_data.json", { cache: "no-store" })).json();
+      team = [d.ceo, ...d.members];
+    } catch { /* the byline falls back to the plain name */ }
+    if (!shell) cache = null;
+    return { shell, team };
+  })();
+  return cache;
+}
+
+export async function openArticlePreview(win: Window, v: Row, checklist: string[]) {
+  const html = await buildPreviewHtml(v, checklist, true);
+  if (!html) {
     win.document.body.innerHTML = "<p style='font:15px Arial;padding:24px'>Could not load the website template for the preview. Check your connection and try again.</p>";
     return;
   }
+  win.location.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+}
+
+/** Full preview page (live website template + the draft). `panel` adds the floating preview panel. */
+export async function buildPreviewHtml(v: Row, checklist: string[], panel: boolean): Promise<string> {
+  const { shell, team } = await loadShell();
+  if (!shell) return "";
+  const origin = ORIGIN;
 
   const who = team.find((p) => p?.name?.toLowerCase() === String(v.author_name || "").toLowerCase());
   const { html: body, problems } = renderArticleBody(v);
@@ -219,10 +238,9 @@ export async function openArticlePreview(win: Window, v: Row, checklist: string[
 #or-cookie-banner{display:none!important}
 @media(max-width:600px){.pv-top span{display:none}}
 </style>`);
-  doc.body.insertAdjacentHTML("beforeend", `<div class="pv-panel" id="pvPanel"><div class="pv-top"><b>Preview</b><span>Not published — visitors cannot see this page.</span>
+  if (panel) doc.body.insertAdjacentHTML("beforeend", `<div class="pv-panel" id="pvPanel"><div class="pv-top"><b>Preview</b><span>Not published — visitors cannot see this page.</span>
 <button type="button" onclick="document.getElementById('pvPanel').classList.toggle('min')">Hide / show</button><button type="button" onclick="window.close()">Close</button></div>
 <div class="pv-google"><small>outreachrecruitment.net › ${esc(v.slug || "")}</small><strong>${esc(v.seo_title || v.title || "Add an SEO title")}</strong><span>${esc(v.meta_description || "Add a meta description — Google shows it under the title.")}</span></div>${fix}</div><script>if (matchMedia("(max-width: 600px)").matches) document.getElementById("pvPanel").classList.add("min");</script>`);
 
-  const html = "<!doctype html>\n" + doc.documentElement.outerHTML;
-  win.location.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+  return "<!doctype html>\n" + doc.documentElement.outerHTML;
 }

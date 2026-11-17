@@ -40,11 +40,13 @@ def pillar(article):
 
 def markdown(article):
     today = datetime.now(timezone.utc).date().isoformat()
+    # Republishing an already-published article keeps its original date and records today as "updated".
+    first = (article.get("published_at") or "")[:10] or today
     fields = {
         "title": article["title"], "slug": article["slug"], "pillar": pillar(article),
         "audience": "Outreach Recruitment readers", "primary_keyword": article["focus_keyword"],
         "seo_title": article["seo_title"], "meta_description": article["meta_description"],
-        "date": today, "excerpt": article.get("excerpt") or "",
+        "date": first, "updated": today, "excerpt": article.get("excerpt") or "",
         "featured_image_url": article.get("featured_image_url") or "",
         "featured_image_alt": article.get("featured_image_alt") or "",
         "author_name": article.get("author_name") or "Outreach Recruitment",
@@ -59,6 +61,46 @@ def rebuild_news_pages():
     if run.returncode:
         print("warning: build_news_page.py failed: " + (run.stderr or run.stdout)[-500:], file=sys.stderr); return []
     return ["news-updates.html"] + sorted(str(p.relative_to(ROOT)) for p in (ROOT / "news-updates").glob("*/index.html"))
+
+def take_offline():
+    """Articles the admin marked "Take offline" (status=rejected while still having a published_url):
+    replace the page with a redirect to the chosen related article and remove it from the blog page,
+    sitemap and News & Updates. Returns the touched paths."""
+    import re
+    rows = request("GET", "seo_articles?select=id,slug,canonical_url,title&status=eq.rejected&published_url=not.is.null") or []
+    touched = set()
+    for a in rows:
+        slug = a.get("slug") or ""
+        if not re.fullmatch(r"[a-z0-9-]+", slug):
+            continue
+        target = (a.get("canonical_url") or "").replace("https://outreachrecruitment.net", "") or "/news-updates"
+        if not target.startswith("/") or target.strip("/") == slug:
+            target = "/news-updates"
+        stub = (f'<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8"/>\n<title>Redirecting… | Outreach Recruitment</title>\n'
+                f'<link rel="canonical" href="https://outreachrecruitment.net{target}"/>\n<meta http-equiv="refresh" content="0; url={target}"/>\n'
+                f'<meta name="robots" content="noindex,follow"/>\n</head>\n<body>\n<p>This article has moved. If you are not redirected automatically, '
+                f'<a href="{target}">continue here</a>.</p>\n</body>\n</html>\n')
+        for rel in (f"blog/{slug}.html",):
+            if (ROOT / rel).exists():
+                (ROOT / rel).unlink(); touched.add(rel)
+        for rel in (f"{slug}/index.html", f"{slug}.html"):
+            if (ROOT / rel).exists() or rel.endswith("/index.html"):
+                (ROOT / rel).parent.mkdir(parents=True, exist_ok=True)
+                (ROOT / rel).write_text(stub); touched.add(rel)
+        idx = ROOT / "blog" / "index.html"
+        t = idx.read_text()
+        t2 = re.sub(rf'<article class="article-card[^"]*"[^>]*>(?:(?!</article>).)*?href="/{re.escape(slug)}/".*?</article>', "", t, flags=re.S)
+        if t2 != t:
+            idx.write_text(t2); touched.add("blog/index.html")
+        for sm in ("sitemaps/sitemap-blog.xml", "sitemaps/sitemap-pages.xml"):
+            x = (ROOT / sm).read_text()
+            x2 = re.sub(rf"\s*<url>\s*<loc>https://outreachrecruitment\.net/{re.escape(slug)}/?</loc>.*?</url>", "", x, flags=re.S)
+            if x2 != x:
+                (ROOT / sm).write_text(x2); touched.add(sm)
+        now = datetime.now(timezone.utc)
+        request("PATCH", f"seo_articles?id=eq.{a['id']}", {"published_url": None, "updated_at": now.isoformat(),
+                "quality_notes": f"Taken offline on {now.date().isoformat()}; /{slug}/ redirects to {target}"})
+    return sorted(touched)
 
 def main():
     if not os.environ.get("SUPABASE_URL") or not os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
@@ -81,7 +123,7 @@ def main():
             result=publisher.publish_one(draft);result["id"]=article["id"];results.append(result)
             if result["ok"]:
                 published_at=datetime.now(timezone.utc)
-                request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"published","published_at":published_at.isoformat(),"published_url":result["canonical"],"updated_at":published_at.isoformat()})
+                request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"published","published_at":article.get("published_at") or published_at.isoformat(),"published_url":result["canonical"],"updated_at":published_at.isoformat()})
                 for days,period in ((7,"7d"),(30,"30d"),(60,"60d")):
                     try: request("POST","seo_content_reviews?on_conflict=article_id,review_period",{"article_id":article["id"],"review_period":period,"due_at":(published_at+timedelta(days=days)).isoformat(),"status":"pending"})
                     except Exception: pass
@@ -90,6 +132,8 @@ def main():
             else:
                 request("PATCH",f"seo_articles?id=eq.{article['id']}",{"status":"failed","quality_notes":result["error"],"updated_at":datetime.now(timezone.utc).isoformat()})
     touched={p for r in results if r["ok"] for p in r["touched"]}
+    try: touched.update(take_offline())
+    except Exception as exc: print(f"warning: take-offline step failed: {exc}", file=sys.stderr)
     if touched: touched.update(rebuild_news_pages())
     summary={"published":sum(r["ok"] for r in results),"failed":sum(not r["ok"] for r in results),"touched_paths":sorted(touched)}
     print(json.dumps(summary));return 1 if summary["failed"] else 0

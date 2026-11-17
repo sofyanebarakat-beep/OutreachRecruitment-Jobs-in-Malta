@@ -160,6 +160,9 @@ def extract(path):
         body = "".join(str(c) for c in container.contents)
     m = re.search(r'<meta name="author" content="([^"]+)"', raw[:a])
     meta["author"] = html.unescape(m.group(1)) if m else ""
+    # Republished from the admin: show "Updated <date>" next to the original date.
+    m = re.search(r'<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})', raw[:a])
+    meta["updated"] = datetime.strptime(m.group(1), "%Y-%m-%d").strftime("%B %-d, %Y") if m else ""
     meta["img_src"] = img["src"] if img else ""
     meta["img_alt"] = img.get("alt", "") if img else ""
     words = len(re.sub(r"<[^>]+>", " ", body).split())
@@ -313,7 +316,7 @@ def render(meta, all_meta, lang):
           <div class="od-left">
             <nav class="od-crumbs" aria-label="Breadcrumb"><a href="/blog/">&larr; {L["back"]}</a><span>/</span><a href="/">{L["home"]}</a><span>/</span><b>{esc(meta["tag"])}</b></nav>
             <div class="od-tag">{esc(meta["tag"])}</div>
-            <div class="od-meta">{byline}<i></i><span>{esc(meta["date"])}</span><i></i><span>{meta["mins"]} {L["min"]}</span></div>
+            <div class="od-meta">{byline}<i></i><span>{esc(meta["date"])}</span><i></i><span>{meta["mins"]} {L["min"]}</span>{f'<i></i><span class="od-updated">Updated {esc(meta["updated"])}</span>' if meta.get("updated") and meta["updated"] != meta["date"] else ""}</div>
             <h1 class="od-title">{esc(meta["title"])}</h1>
             <div class="od-image{' od-image-full' if meta['slug'] in FULL_HERO else ''}"><img src="{esc(meta["img_src"])}" alt="{esc(meta["img_alt"])}" width="1200" height="630" fetchpriority="high" decoding="async"/></div>
             <article class="cms-article od-rich" id="odBody">{meta["body"]}</article>
