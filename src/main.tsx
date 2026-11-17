@@ -25,9 +25,12 @@ import {
   ShieldCheck,
   Sparkles,
   Tags,
+  Trash2,
+  Eye,
   X,
 } from "lucide-react";
 import "./styles.css";
+import { openArticlePreview } from "./articlePreview";
 import {
   CATEGORIES,
   JOBS_CATEGORY,
@@ -1552,6 +1555,17 @@ function Topics() {
   );
 }
 
+function previewArticle(v: Row) {
+  // Open the tab synchronously (popup blockers), then fill it.
+  const win = window.open("", "_blank");
+  if (!win) {
+    alert("Your browser blocked the preview window. Allow pop-ups for this site and try again.");
+    return;
+  }
+  win.document.write("<p style='font:15px Arial;padding:24px'>Preparing the preview…</p>");
+  openArticlePreview(win, v, validateArticle(v));
+}
+
 function Articles({ review = false }: { review?: boolean }) {
   const state = useRows("seo_articles"),
     [edit, setEdit] = useState<Row | null>(null),
@@ -1674,6 +1688,9 @@ function Articles({ review = false }: { review?: boolean }) {
                     <button onClick={() => setEdit(r)}>
                       Edit text / image
                     </button>
+                    <button onClick={() => previewArticle(r)}>
+                      <Eye /> Preview
+                    </button>
                     {review ? (
                       <>
                         <button onClick={() => status(r, "approved")}>
@@ -1771,6 +1788,20 @@ function ArticleModal({
       .upsert(articleRow(payload));
     setBusy(false);
     error ? setMsg(error.message) : saved();
+  }
+  async function remove() {
+    const live = v.status === "published";
+    const ok = confirm(
+      `Delete “${v.title || "this article"}”?\n\n` +
+        (live
+          ? `This removes it from the dashboard only. The page is already published, so it stays live at /${v.slug}/ until it is taken down from the website.`
+          : "The article and its images in this dashboard will be removed. This cannot be undone."),
+    );
+    if (!ok) return;
+    setBusy(true);
+    const { error } = await sb.from("seo_articles").delete().eq("id", row.id);
+    setBusy(false);
+    error ? setMsg(`Could not delete the article: ${error.message}`) : saved();
   }
   async function generate() {
     setGenerating(true);
@@ -2078,7 +2109,23 @@ function ArticleModal({
           </span>
         </div>
         {msg && <p className="error wide">{msg}</p>}
-        <FormActions busy={busy} close={close} />
+        <div className="form-actions wide article-actions">
+          {row.id && (
+            <button type="button" className="danger" onClick={remove} disabled={busy}>
+              <Trash2 /> Delete article
+            </button>
+          )}
+          <span className="spacer" />
+          <button type="button" onClick={close}>
+            Cancel
+          </button>
+          <button type="button" onClick={() => previewArticle(v)}>
+            <Eye /> Preview article
+          </button>
+          <button className="primary" disabled={busy}>
+            {busy ? <Loader2 className="spin" /> : <Check />} Save changes
+          </button>
+        </div>
       </form>
     </Modal>
   );

@@ -1068,3 +1068,8 @@ td small {
 .record .badge + .badge {
   margin-left: 6px;
 }
+
+/* Article editor footer: delete on the left, preview + save on the right */
+.article-actions { align-items: center; flex-wrap: wrap; }
+.article-actions .spacer { flex: 1; }
+.article-actions button svg, .actions button svg { width: 16px; height: 16px; vertical-align: -3px; }
