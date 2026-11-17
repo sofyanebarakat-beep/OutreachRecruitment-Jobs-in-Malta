@@ -140,56 +140,89 @@ export function renderArticleBody(v: Row) {
   return { html: `<article class="cms-article od-rich" id="odBody"><div class="w-richtext">${parts.join("\n")}</div></article>`, problems, headings };
 }
 
+// Live article pages used as the preview shell (same header, footer, styles and scripts as the website).
+const SHELLS = ["/moving-to-malta-for-work/", "/how-to-hire-hospitality-staff-malta/", "/call-centre-salary-malta/"];
+
 export async function openArticlePreview(win: Window, v: Row, checklist: string[]) {
+  const origin = location.origin.includes("outreachrecruitment.net") || location.hostname === "localhost" ? location.origin : "https://outreachrecruitment.net";
+  let shell = "";
+  for (const path of SHELLS) {
+    try {
+      const r = await fetch(origin + path, { cache: "no-store" });
+      if (r.ok) { shell = await r.text(); break; }
+    } catch { /* try the next one */ }
+  }
   let team: Row[] = [];
   try {
-    const d = await (await fetch("/tools/team_data.json", { cache: "no-store" })).json();
+    const d = await (await fetch(origin + "/tools/team_data.json", { cache: "no-store" })).json();
     team = [d.ceo, ...d.members];
-  } catch { /* preview still works without author photos */ }
-  const who = team.find((p) => p.name?.toLowerCase() === String(v.author_name || "").toLowerCase());
-  const { html: body, problems, headings } = renderArticleBody(v);
+  } catch { /* the byline falls back to the plain name */ }
+  if (!shell) {
+    win.document.body.innerHTML = "<p style='font:15px Arial;padding:24px'>Could not load the website template for the preview. Check your connection and try again.</p>";
+    return;
+  }
+
+  const who = team.find((p) => p?.name?.toLowerCase() === String(v.author_name || "").toLowerCase());
+  const { html: body, problems } = renderArticleBody(v);
   const words = String(v.body || "").replace(/[#>*|[\]()-]/g, " ").split(/\s+/).filter(Boolean).length;
   const mins = Math.max(1, Math.ceil(words / 200));
-  const when = new Date(v.scheduled_at || v.published_at || Date.now()).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const when = new Date(v.scheduled_at || v.published_at || Date.now()).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const cat = v.category || "Blog";
+  const avatar = who ? who.avatar || who.photo : "";
   const byline = who
-    ? `<span class="pv-by"><img src="${esc(who.avatar || who.photo)}" alt=""/><span><b>${esc(who.name)}</b><small>${esc(who.role)}</small></span></span>`
+    ? `<span><a class="od-byline" href="/our-team"><img src="${esc(avatar)}" alt="${esc(who.name)}" width="36" height="36"/><span class="od-byline-text"><b>${esc(who.name)}</b><small>${esc(who.role)}</small></span></a></span>`
     : `<span>${esc(v.author_name || "Outreach Recruitment")}</span>`;
+  const authorBox = who
+    ? `<div class="od-author"><img src="${esc(avatar)}" alt="${esc(who.name)}" width="56" height="56"/><div><strong>Written by ${esc(who.name)}</strong><span class="od-author-role">${esc(who.role)} · Outreach Recruitment</span><p>${esc(who.bio || "")}</p></div></div>`
+    : `<div class="od-author"><img src="/assets/job-card-logo.jpg" alt="Outreach Recruitment" width="56" height="56"/><div><strong>Written by Outreach Recruitment</strong><p>Recruitment specialists in Malta helping employers hire and candidates find work.</p></div></div>`;
   const notes = [...problems, ...checklist.filter((c) => !problems.some((p) => p.toLowerCase().includes(c.toLowerCase().slice(0, 12))))];
-  const url = `https://outreachrecruitment.net/${esc(v.slug || "your-article")}/`;
-  const doc = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>Preview: ${esc(v.seo_title || v.title || "Untitled article")}</title>
-<link rel="stylesheet" href="https://cdn.prod.website-files.com/6996b31b0e199fa8510adf4f/css/people-work-webflow-108-template.webflow.shared.6c8c6beff.css">
-<link rel="stylesheet" href="/assets/brand-overrides.css"><link rel="stylesheet" href="/assets/blog-article.css">
-<style>
-body{margin:0;background:#fff}
-html{font-kerning:normal;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%} body{margin:0;background:#ffffff;color:#2c2d2d;-webkit-font-smoothing:antialiased} .cms-article .w-richtext > section{margin:0 0 3rem;scroll-margin-top:120px} .cms-article .w-richtext h2{margin:0 0 1rem;line-height:1.15} .cms-article .w-richtext h3{margin:1.75rem 0 .75rem;line-height:1.25} .cms-article .w-richtext p{margin:0 0 1.15rem;line-height:1.75} .cms-article .w-richtext ul{margin-top:.85rem;margin-bottom:1.35rem} .cms-article .w-richtext li{margin-bottom:.7rem;line-height:1.65} .answer-box,.note-box,.source-list{border:1px solid rgba(68,45,250,.16);border-radius:12px;background:#fff;padding:1.45rem;margin-bottom:2rem} .note-box{background:#f8f7ff;border-left:4px solid #442dfa} .cta-box{border-radius:12px;background:#2c2d2d;color:#fff;padding:1.6rem;margin:2.2rem 0} .cta-box h2,.cta-box p{color:#fff} .cta-box a{display:inline-flex;margin-top:.35rem;background:#fff;color:#2c2d2d;border-radius:999px;padding:.75rem 1.1rem;font-weight:700;text-decoration:none} .article-table-wrap{overflow-x:auto;margin-top:1.25rem;border:1px solid rgba(44,45,45,.14);border-radius:12px;background:#fff} .check-table{width:100%;border-collapse:collapse;min-width:720px;margin:0} .check-table th,.check-table td{padding:1rem 1.1rem;text-align:left;vertical-align:top;border-bottom:1px solid rgba(44,45,45,.12)} .check-table th{background:#2c2d2d;color:#fff;font-weight:700} .check-table tbody tr:nth-child(even){background:#f7f5ef} .check-table tbody tr:last-child td{border-bottom:0} .article-faq-section .faq-list{display:grid;gap:12px;margin-top:1.25rem} .article-faq-section .faq-item{border:1px solid rgba(44,45,45,.14);border-radius:12px;background:#fff;overflow:hidden} .article-faq-section .faq-item-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.25rem;cursor:pointer} .article-faq-section .faq-item-bottom{display:grid;grid-template-rows:0fr;transition:grid-template-rows 240ms ease} .article-faq-section .faq-item.or-open .faq-item-bottom{grid-template-rows:1fr} .article-faq-section .faq-item-text-wrapper{overflow:hidden;padding:0 1.25rem} .article-faq-section .faq-item-text-wrapper p{padding-bottom:1.15rem;margin-bottom:0} .article-faq-section .minus{display:none} .article-faq-section .faq-item.or-open .plus{display:none} .article-faq-section .faq-item.or-open .minus{display:block} .related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.25rem} .related-grid .article-card{background:#fff;border:1px solid rgba(44,45,45,.12);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit} .related-grid img{width:100%;aspect-ratio:400/210;object-fit:cover;display:block} .related-grid .article-card-content{padding:1rem} @media(max-width:767px){.related-grid{grid-template-columns:1fr}}
-.od-rich .faq-item{margin:0}.article-faq-section .faq-list{margin-left:0}
-.pv-bar{position:sticky;top:0;z-index:50;background:#1c2623;color:#fff;font:14px/1.45 "BDO Grotesk",Arial,sans-serif;padding:12px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.pv-bar b{background:#442DFA;border-radius:999px;padding:4px 10px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-.pv-bar button{margin-left:auto;background:#fff;color:#1c2623;border:0;border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer}
-.pv-google{max-width:640px;margin:28px auto 0;padding:16px 20px;border:1px solid #e6e6e6;border-radius:12px;font-family:Arial,sans-serif}
-.pv-google small{color:#4d5156;font-size:12px}.pv-google h3{color:#1a0dab;font-size:19px;font-weight:400;margin:4px 0}.pv-google p{color:#4d5156;font-size:14px;line-height:1.5;margin:0}
-.pv-notes{max-width:1200px;margin:20px auto 0;padding:14px 18px;border-radius:12px;background:#fff7e6;border:1px solid #f5d38b;font:14px/1.5 "BDO Grotesk",Arial,sans-serif;color:#5c3d00}
-.pv-notes strong{display:block;margin-bottom:4px}
-.pv-by{display:inline-flex;align-items:center;gap:10px}.pv-by img{width:36px;height:36px;border-radius:50%;object-fit:cover}
-.pv-by span{display:flex;flex-direction:column;line-height:1.2}.pv-by b{color:#0c0407;font-size:14px}.pv-by small{color:#442dfa;font-size:12px}
-.od-image-empty{display:grid;place-items:center;aspect-ratio:1200/630;background:#f1f0fb;color:#6b6493;font:600 15px "BDO Grotesk",Arial,sans-serif;border:2px dashed #cfc9f5;border-radius:12px}
-.od-rich .faq-item-bottom{grid-template-rows:1fr}.od-rich .faq-item-text-wrapper{overflow:visible}
-</style></head><body>
-<div class="pv-bar"><b>Preview</b><span>This is how the article will look on the website. It is not published and visitors cannot see it.</span><button onclick="window.close()">Close preview</button></div>
-<div class="pv-google"><small>outreachrecruitment.net › ${esc(v.slug || "")}</small><h3>${esc(v.seo_title || v.title || "Add an SEO title")}</h3><p>${esc(v.meta_description || "Add a meta description — this is the text Google shows under the title.")}</p></div>
-${notes.length ? `<div class="pv-notes"><strong>Before you publish (${notes.length})</strong>${notes.map((p) => `• ${esc(p)}`).join("<br>")}</div>` : ""}
-<main class="main"><section class="od-section"><div class="od-container"><div class="od-layout"><div class="od-left">
-<nav class="od-crumbs"><a href="/blog/">&larr; Back to Blog</a><span>/</span><a href="/">Home</a><span>/</span><b>${esc(v.category || "Blog")}</b></nav>
-<div class="od-tag">${esc(v.category || "Blog")}</div>
-<div class="od-meta">${byline}<i></i><span>${esc(when)}</span><i></i><span>${mins} min read</span></div>
-<h1 class="od-title">${esc(v.title || "Untitled article")}</h1>
-<div class="od-image">${v.featured_image_url ? `<img src="${esc(v.featured_image_url)}" alt="${esc(v.featured_image_alt)}" style="height:auto"/>` : '<div class="od-image-empty">No featured image yet — upload one before publishing</div>'}</div>
-${body}
-</div><aside class="od-right"><details class="od-side-block od-toc" open><summary>On this page</summary><ol>${headings.map((h) => `<li><a>${inline(h)}</a></li>`).join("")}</ol></details></aside></div></div></section></main>
-<p style="text-align:center;color:#888;font:13px Arial,sans-serif;margin:40px 0">Will be published at ${url}</p>
-</body></html>`;
-  win.document.open();
-  win.document.write(doc);
-  win.document.close();
+
+  const doc = new DOMParser().parseFromString(shell, "text/html");
+  const $ = (sel: string) => doc.querySelector(sel);
+  const base = doc.createElement("base");
+  base.href = origin + "/";
+  doc.head.prepend(base);
+  doc.title = `Preview: ${v.seo_title || v.title || "Untitled article"}`;
+  doc.head.insertAdjacentHTML("beforeend", '<meta name="robots" content="noindex">');
+  if ($(".od-crumbs b")) $(".od-crumbs b")!.textContent = cat;
+  if ($(".od-tag")) $(".od-tag")!.textContent = cat;
+  const meta = $(".od-section .od-meta");
+  if (meta) meta.innerHTML = `${byline}<i></i><span>${esc(when)}</span><i></i><span>${mins} min read</span>`;
+  if ($(".od-title")) $(".od-title")!.textContent = v.title || "Untitled article";
+  const img = $(".od-image");
+  if (img) {
+    img.className = "od-image";
+    img.innerHTML = v.featured_image_url
+      ? `<img src="${esc(v.featured_image_url)}" alt="${esc(v.featured_image_alt)}" width="1200" height="630"/>`
+      : '<div style="display:grid;place-items:center;aspect-ratio:1200/630;background:#f1f0fb;color:#6b6493;font-weight:600;border:2px dashed #cfc9f5;border-radius:12px">No featured image yet — upload one before publishing</div>';
+  }
+  const odBody = $("#odBody");
+  if (odBody) odBody.outerHTML = body;
+  const author = $(".od-end .od-author");
+  if (author) author.outerHTML = authorBox;
+  // The draft is not published yet: share buttons would share the shell article, so hide them.
+  doc.querySelectorAll(".od-share").forEach((n) => n.remove());
+
+  const fix = notes.length
+    ? `<details class="pv-fix"><summary>${notes.length} thing${notes.length > 1 ? "s" : ""} to fix before publishing</summary><ul>${notes.map((p) => `<li>${esc(p)}</li>`).join("")}</ul></details>`
+    : '<span class="pv-ok">✓ Ready to publish</span>';
+  doc.head.insertAdjacentHTML("beforeend", `<style id="pv-style">
+.pv-panel{position:fixed;left:16px;right:16px;bottom:16px;z-index:100000;max-width:760px;margin:0 auto;background:#1c2623;color:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);font:14px/1.45 "BDO Grotesk",Arial,sans-serif;padding:14px 16px}
+.pv-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pv-top b{background:#442DFA;border-radius:999px;padding:4px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.pv-top button{margin-left:auto;background:#fff;color:#1c2623;border:0;border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer}
+.pv-google{margin-top:10px;background:#fff;border-radius:10px;padding:10px 12px;font-family:Arial,sans-serif}
+.pv-google small{color:#4d5156;font-size:12px}.pv-google strong{display:block;color:#1a0dab;font-size:17px;font-weight:400;margin:2px 0}.pv-google span{color:#4d5156;font-size:13px}
+.pv-fix{margin-top:10px}.pv-fix summary{cursor:pointer;color:#ffd27a;font-weight:600}.pv-fix ul{margin:6px 0 0;padding-left:18px;color:#f3e3c3}
+.pv-ok{display:inline-block;margin-top:10px;color:#9ff0b5;font-weight:600}
+.pv-panel.min .pv-google,.pv-panel.min .pv-fix,.pv-panel.min .pv-ok{display:none}
+#or-cookie-banner{display:none!important}
+@media(max-width:600px){.pv-top span{display:none}}
+</style>`);
+  doc.body.insertAdjacentHTML("beforeend", `<div class="pv-panel" id="pvPanel"><div class="pv-top"><b>Preview</b><span>Not published — visitors cannot see this page.</span>
+<button type="button" onclick="document.getElementById('pvPanel').classList.toggle('min')">Hide / show</button><button type="button" onclick="window.close()">Close</button></div>
+<div class="pv-google"><small>outreachrecruitment.net › ${esc(v.slug || "")}</small><strong>${esc(v.seo_title || v.title || "Add an SEO title")}</strong><span>${esc(v.meta_description || "Add a meta description — Google shows it under the title.")}</span></div>${fix}</div><script>if (matchMedia("(max-width: 600px)").matches) document.getElementById("pvPanel").classList.add("min");</script>`);
+
+  const html = "<!doctype html>\n" + doc.documentElement.outerHTML;
+  win.location.href = URL.createObjectURL(new Blob([html], { type: "text/html" }));
 }
