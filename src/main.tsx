@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { openArticlePreview, buildPreviewHtml } from "./articlePreview";
-import { articleScore, scoreTone, fixFor, duplicateOf } from "./articleTools";
+import { articleScore, scoreTone, fixFor, duplicateOf, completeArticle } from "./articleTools";
 import {
   CATEGORIES,
   JOBS_CATEGORY,
@@ -265,7 +265,7 @@ async function ensureWeeklyJobsDraft(campaign: Row, monday = mondayOf()) {
   if (lookupError) throw new Error(lookupError.message);
   if (existing) return { created: false, slug, newJobs: 0, totalOpen: 0 };
   const { detection, ...article } = await buildWeeklyJobsArticle(monday);
-  const { error } = await sb.from("seo_articles").insert(articleRow({
+  const { error } = await sb.from("seo_articles").insert(articleRow(completeArticle({
     ...article,
     category: campaign.category || JOBS_CATEGORY,
     campaign_id: campaign.id,
@@ -275,7 +275,7 @@ async function ensureWeeklyJobsDraft(campaign: Row, monday = mondayOf()) {
     auto_selected: true,
     quality_notes: `Detected from Job Sync ${detection.start} → ${detection.end}: ${detection.newJobs} new opening(s), ${detection.totalOpen} open in total (${detection.syncDays} daily report(s) read). Add the featured image, then Publish now.`,
     created_by: (await sb.auth.getUser()).data.user?.id,
-  }));
+  })));
   if (error) throw new Error(error.message);
   await sb.from("seo_automation_logs").insert({
     job_name: "Weekly Jobs in Malta draft",
@@ -1408,7 +1408,7 @@ function Topics() {
       1200,
     );
     const { error: insertError } = await sb.from("seo_articles").insert(
-      articleRow({
+      articleRow(completeArticle({
         ...data,
         focus_keyword: r.keyword,
         topic_id: r.id,
@@ -1418,7 +1418,7 @@ function Topics() {
         status: "generated",
         language: "English",
         created_by: (await sb.auth.getUser()).data.user?.id,
-      }),
+      })),
     );
     if (insertError) alert(insertError.message);
     else {
@@ -2033,7 +2033,7 @@ function ArticleModal({
       return;
     }
     const data = freeArticleDraft(v.title, v.focus_keyword, targetWords);
-    setV((current: Row) => ({ ...current, ...data }));
+    setV((current: Row) => completeArticle({ ...current, ...data }, services.rows));
     setGenerating(false);
   }
   async function generateConnected() {
@@ -2059,11 +2059,9 @@ function ArticleModal({
         `Connected AI unavailable: ${error.message}. You can still use Generate free article.`,
       );
     else
-      setV((current: Row) => ({
-        ...current,
-        ...data,
-        status: "generated",
-      }));
+      setV((current: Row) =>
+        completeArticle({ ...current, ...data, status: "generated" }, services.rows),
+      );
   }
   const warnings = validateArticle(v);
   const articleHeadings = Array.from(

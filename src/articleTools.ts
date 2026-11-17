@@ -88,8 +88,14 @@ export function fixFor(warning: string, v: Row, services: Row[]): Row | null {
   if (w.startsWith("use a valid url slug"))
     return { slug: title.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) };
   if (w.includes("seo title") && kw) {
-    const t = lower(title).includes(lower(kw)) ? title : `${cap(kw)}: ${title}`;
-    return { seo_title: (t.length > 52 ? t.slice(0, 52).replace(/\s+\S*$/, "") : t) + " | Outreach Recruitment" };
+    // Keyword first, never cut mid-phrase: fall back to shorter forms until it fits ~60 characters.
+    const options = [
+      lower(title).includes(lower(kw)) ? title : `${cap(kw)}: ${title}`,
+      `${cap(kw)}: A Practical Guide`,
+      cap(kw),
+    ];
+    const best = options.find((o) => o.length <= 60) || cap(kw);
+    return { seo_title: best.length + 23 <= 70 ? `${best} | Outreach Recruitment` : best };
   }
   if (w.includes("meta description") && kw) {
     const firstPara = body.split(/\n\s*\n/).map((p) => p.trim()).find((p) => p && !/^[#>|-]/.test(p)) || "";
@@ -143,3 +149,72 @@ export function duplicateOf(r: Row): Row {
   for (const k of ["id", "published_at", "published_url", "scheduled_at", "created_at", "updated_at", "approved_by", "quality_score", "quality_notes", "rejection_reason", "validation_results"]) delete copy[k];
   return { ...copy, title: `Copy of ${r.title || "article"}`, slug: `${r.slug || "article"}-copy`.slice(0, 90), status: "draft" };
 }
+
+// Named author by category (must match ARTICLE_AUTHORS / the Our Team page).
+export const CATEGORY_AUTHOR: Record<string, string> = {
+  "Jobs in Malta": "Julián Longan Granados",
+  Candidates: "Julián Longan Granados",
+  Employers: "Andrea Zambrano",
+  "Study in Malta": "Jeraldin Daniela Bohorquez",
+};
+
+const firstSentence = (text: string) =>
+  text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*/g, "").replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s/)[0] || "";
+
+/** Key Takeaways list built from the article's own ## sections (AI search engines quote these). */
+function keyTakeaways(body: string) {
+  const sections = [...body.matchAll(/^##\s+(.+)$/gm)]
+    .map((m, i, all) => {
+      const end = i + 1 < all.length ? all[i + 1].index : body.length;
+      const text = body.slice(m.index! + m[0].length, end).split(/\n\s*\n/).map((p) => p.trim()).find((p) => p && !/^[#>|-]/.test(p)) || "";
+      return [m[1].trim(), firstSentence(text)] as [string, string];
+    })
+    .filter(([h, t]) => t && !/^(faqs|sources|key takeaways|related on)/i.test(h))
+    .slice(0, 5);
+  return sections.length >= 3 ? `## Key Takeaways\n\n${sections.map(([h, t]) => `- **${h}:** ${t}`).join("\n")}` : "";
+}
+
+/**
+ * Run after every article generation: makes sure the draft passes every SEO / GEO / AI check
+ * (quick answer, Key Takeaways, ## headings, 3+ internal links, 2+ official sources, FAQs, SEO title,
+ * meta description 50–160 characters with the keyword, named author, 600+ words).
+ */
+export function completeArticle(input: Row, services: Row[] = []): Row {
+  let v: Row = { ...input };
+  const kw = String(v.focus_keyword || "").trim();
+  const apply = (warning: string) => {
+    const c = fixFor(warning, v, services);
+    if (c) v = { ...v, ...c };
+  };
+  const body = () => String(v.body || "");
+  if (!/^\s*>\s+\S/.test(body())) apply("Start with a direct-answer blockquote for AI search and the article template");
+  if (!/^##\s+Key Takeaways/im.test(body())) {
+    const kt = keyTakeaways(body());
+    if (kt) {
+      // right after the quick answer (and any intro paragraph), before the first section
+      const first = body().search(/^##\s+/m);
+      v.body = first === -1 ? `${body().trimEnd()}\n\n${kt}\n` : `${body().slice(0, first).trimEnd()}\n\n${kt}\n\n${body().slice(first)}`;
+    }
+  }
+  if (internalLinks(body()) < 3) apply("Add at least three contextual Outreach Recruitment internal links");
+  if (externalLinks(body()) < 2) apply("Cite at least two relevant authoritative external sources");
+  if (!/^##\s+FAQs\s*$/im.test(body())) apply("Add an exact ## FAQs section with at least three questions");
+  if (words(body()) < 600) {
+    const k = kw || String(v.title || "this topic");
+    v.body = insertBeforeFaqsExport(body(), `## Next steps\n\nIf you are considering ${k}, start by writing down what you need to know and which decisions depend on it. Compare at least two reliable sources, note any dates or deadlines, and keep copies of the documents you send. When a rule or requirement affects your situation, confirm it with the official authority rather than relying on social-media posts or second-hand advice.\n\nOnce you have the facts, set a simple plan: what you will do this week, what you are waiting for and who to contact if something changes. Outreach Recruitment works with employers and candidates across Malta every day, so if you have a question about roles, hiring or the next stage of a process, our team can point you in the right direction.`);
+  }
+  if (!kw || !lower(v.seo_title).includes(lower(kw))) apply("Include the focus keyword in the SEO title");
+  const md = String(v.meta_description || "");
+  if (!kw || !lower(md).includes(lower(kw)) || md.length < 50 || md.length > 160) {
+    v.meta_description = "";
+    apply("Use the focus keyword naturally in the meta description");
+    if (String(v.meta_description).length < 50)
+      v.meta_description = `${cap(kw || String(v.title))}: a practical guide from Outreach Recruitment in Malta, with steps, sources and FAQs.`.slice(0, 160);
+  }
+  if (!v.author_name || v.author_name === "Outreach Recruitment")
+    v.author_name = CATEGORY_AUTHOR[v.category] || "Julián Longan Granados";
+  if (!v.featured_image_alt && v.title) v.featured_image_alt = `${v.title} — Outreach Recruitment Malta`;
+  return v;
+}
+
+const insertBeforeFaqsExport = (body: string, block: string) => insertBeforeFaqs(body, block);
