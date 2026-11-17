@@ -50,6 +50,8 @@ def markdown(article):
         "featured_image_url": article.get("featured_image_url") or "",
         "featured_image_alt": article.get("featured_image_alt") or "",
         "author_name": article.get("author_name") or "Outreach Recruitment",
+        "reviewed_by": next((r.get("by","") for r in (article.get("validation_results") or []) if isinstance(r, dict) and r.get("type")=="human_review"), ""),
+        "reviewed_at": next((r.get("at","") for r in (article.get("validation_results") or []) if isinstance(r, dict) and r.get("type")=="human_review"), ""),
         "section_images_b64": base64.urlsafe_b64encode(json.dumps(article.get("section_images") or []).encode()).decode(),
     }
     return "---\n" + "\n".join(f"{k}: {yaml_value(v)}" for k,v in fields.items()) + "\n---\n\n" + article["body"].strip() + "\n"

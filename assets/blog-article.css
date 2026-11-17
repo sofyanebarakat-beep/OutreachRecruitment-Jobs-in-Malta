@@ -139,3 +139,26 @@ html,body,.main{background:#fff!important}
 .od-rich .or-sources h2{font-size:22px!important;margin:0 0 .75rem!important}
 .od-rich .or-sources ul{padding-left:1.1rem}
 .od-rich .or-sources li{font-size:15px;color:#4c4c4c;margin:.4rem 0}
+/* Article blocks from the SEO admin (preview + publisher): audience line, key takeaways, author tip,
+   related links, sources, review line */
+.od-rich .or-audience{display:inline-block;margin:0 0 1.75rem;padding:.55rem 1rem;border-radius:999px;background:#f4f2ff;color:#2c2550;font-size:15px}
+.od-rich .or-audience strong{color:#442dfa}
+.od-rich .or-takeaways{margin:0 0 2.5rem;padding:1.4rem 1.6rem;border-radius:14px;background:#1c2623;color:#fff}
+.od-rich .or-takeaways h2{color:#fff!important;font-size:22px!important;margin:0 0 .8rem!important}
+.od-rich .or-takeaways ul{margin:0;padding-left:1.1rem}
+.od-rich .or-takeaways li{color:rgba(255,255,255,.9)!important;margin:.45rem 0;line-height:1.55}
+.od-rich .or-takeaways li strong{color:#fff}
+.od-rich .or-tip{display:flex;gap:16px;align-items:flex-start;margin:2rem 0;padding:1.25rem 1.4rem;border-radius:14px;background:#fff;border:1px solid rgba(68,45,250,.18);box-shadow:0 10px 30px rgba(68,45,250,.08)}
+.od-rich .or-tip img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;margin:0!important;box-shadow:0 0 0 3px #f4f2ff}
+.od-rich .or-tip strong{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#442dfa;margin-bottom:.25rem}
+.od-rich .or-tip p{margin:0!important;font-size:17px;line-height:1.55;color:#1c2623!important;font-style:italic}
+.od-rich .or-related ul{list-style:none;padding:0;display:grid;gap:.6rem}
+.od-rich .or-related li{margin:0!important}
+.od-rich .or-related a{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.1rem;border:1px solid #ececec;border-radius:12px;text-decoration:none;color:#1c2623;font-weight:600;transition:border-color .2s,color .2s}
+.od-rich .or-related a::after{content:"→";color:#442dfa}
+.od-rich .or-related a:hover{border-color:#442dfa;color:#442dfa}
+.od-rich section.or-sources ul{padding-left:1.1rem}
+.od-rich section.or-sources li{font-size:15px;color:#4c4c4c}
+.od-rich .note-box{border-left:4px solid #442dfa;background:#f8f7ff;border-radius:10px;padding:1rem 1.2rem;margin:1.5rem 0}
+.od-reviewed{margin:.4rem 0 0;font-size:13px;color:#15803d;font-weight:600}
+@media(max-width:767px){.od-rich .or-tip{flex-direction:column}.od-rich .or-takeaways{padding:1.1rem 1.2rem}}

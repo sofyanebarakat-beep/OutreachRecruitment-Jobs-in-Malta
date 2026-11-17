@@ -1103,3 +1103,17 @@ tr.selected td { background: #f4f2ff; }
 .live-preview iframe { flex: 1; width: 100%; border: 0; }
 .live-preview-loading { flex: 1; display: grid; place-items: center; color: #777; }
 @media (max-width: 1100px) { .editor-split { grid-template-columns: minmax(0, 1fr); } .live-preview { position: static; height: 80vh; } }
+.review-panel { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; border: 1px solid #d9d4ff; background: #f7f6ff; }
+.review-panel.done { border-color: #bbe5c8; background: #f0fbf3; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px; }
+.review-panel.done strong { color: #15803d; }
+.review-panel > span, .review-panel small { color: #555; font-size: 13px; }
+.review-check { display: flex !important; flex-direction: row !important; gap: 8px; align-items: flex-start; font-weight: 500; }
+.review-check input { width: auto !important; margin-top: 3px; }
+.review-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.review-panel button.link { background: none; border: 0; color: #442dfa; cursor: pointer; text-decoration: underline; }
+.checkup { margin: 0 0 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.checkup > summary { cursor: pointer; padding: 12px 14px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.checkup > summary svg { width: 16px; height: 16px; }
+.checkup > summary small { font-weight: 400; color: #777; }
+.checkup .table-wrap { margin: 0 12px 12px; }
+.checkup td.advice { max-width: 340px; font-size: 13px; color: #444; }

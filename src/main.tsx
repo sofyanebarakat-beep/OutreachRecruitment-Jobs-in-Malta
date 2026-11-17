@@ -35,7 +35,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { openArticlePreview, buildPreviewHtml } from "./articlePreview";
-import { articleScore, scoreTone, fixFor, duplicateOf, completeArticle } from "./articleTools";
+import { articleScore, scoreTone, fixFor, duplicateOf, completeArticle, TIP_PLACEHOLDER } from "./articleTools";
 import {
   CATEGORIES,
   JOBS_CATEGORY,
@@ -216,16 +216,16 @@ function freeArticleDraft(title: string, keyword: string, targetWords: number) {
     `## Conclusion\n\nA successful search for **${safeKeyword}** starts with careful research, an honest and relevant application, and realistic expectations. Verify important requirements, then review [current Outreach Recruitment opportunities](https://outreachrecruitment.net/jobs/) when you are ready to take the next step.`,
   ];
   let body = sections.join("\n\n");
-  const extras = [
-    "Create a simple tracker containing the opportunity, closing date, documents submitted and next follow-up date. This prevents duplicate applications and helps you respond promptly.",
-    "Prepare examples that explain what you did, how you approached a problem and what result you achieved. Specific examples are more useful than broad claims.",
-    "Review your public professional profile and make sure its dates and experience are consistent with your CV. Remove outdated or misleading information.",
-    "Before an interview, reread the description and prepare questions about the work itself. Avoid focusing only on information that has not yet been confirmed.",
-    "Keep personal documents secure. Submit sensitive information only through an official, verified process when it is genuinely required.",
+  const extras: [string, string][] = [
+    ["Keep a simple tracker", "Note each opportunity, its closing date, the documents you sent and the date to follow up. It stops duplicate applications and helps you reply quickly when someone gets in touch."],
+    ["Prepare real examples", "Have two or three short examples ready: what the situation was, what you did and the result. Specific examples are far more convincing than general claims."],
+    ["Check your online profile", "Make sure your LinkedIn profile matches your CV — the same job titles, dates and skills. Employers in Malta often look at both before they call."],
+    ["Get ready for the conversation", "Read the description again before any call or interview and prepare two questions about the work itself, the team and the next steps."],
+    ["Protect your personal documents", "Only share ID, passport or bank details through an official, verified process, and only when they are genuinely needed."],
   ];
   let i = 0;
-  while (body.split(/\s+/).length < targetWords - 80) {
-    body += `\n\n### Practical action ${i + 1}\n\n${extras[i % extras.length]} Relate this step directly to ${safeKeyword} and record what you learn before continuing.`;
+  while (body.split(/\s+/).length < targetWords - 80 && i < extras.length) {
+    body = body.replace(/\n## FAQs/, `\n## ${extras[i][0]}\n\n${extras[i][1]}\n\n## FAQs`);
     i++;
   }
   return {
@@ -1796,6 +1796,7 @@ function Articles({ review = false }: { review?: boolean }) {
           <button className="link" onClick={() => setSelected(new Set())}>Clear selection</button>
         </div>
       )}
+      {!review && <CheckupPanel rows={state.rows} onEdit={setEdit} />}
       {state.loading ? (
         <TableLoader />
       ) : (
@@ -2349,6 +2350,7 @@ function ArticleModal({
             remains available.
           </span>
         </div>
+        <ReviewPanel v={v} setV={setV} />
         {msg && <p className="error wide">{msg}</p>}
         <div className="form-actions wide article-actions">
           {row.id && (
@@ -2394,6 +2396,94 @@ function ArticleModal({
   );
 }
 
+function humanReview(v: Row): Row | null {
+  const r = (Array.isArray(v.validation_results) ? v.validation_results : []).find((x: any) => x?.type === "human_review");
+  return r && r.checks?.facts && r.checks?.faqs && r.checks?.author ? r : null;
+}
+
+function ReviewPanel({ v, setV }: { v: Row; setV: (f: (cur: Row) => Row) => void }) {
+  const done = humanReview(v);
+  const [checks, setChecks] = useState({ facts: false, faqs: false, author: false });
+  const [by, setBy] = useState(ARTICLE_AUTHORS.find((a) => a !== "Outreach Recruitment") || "");
+  const others = (Array.isArray(v.validation_results) ? v.validation_results : []).filter((x: any) => x?.type !== "human_review");
+  if (done)
+    return (
+      <div className="review-panel wide done">
+        <strong>✓ Reviewed by {done.by} on {new Date(done.at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</strong>
+        <span>Facts, FAQs and author checked. The live article shows this review to readers and Google.</span>
+        <button type="button" className="link" onClick={() => setV((cur) => ({ ...cur, validation_results: others }))}>Review again</button>
+      </div>
+    );
+  const all = checks.facts && checks.faqs && checks.author;
+  const box = (k: keyof typeof checks, label: string) => (
+    <label className="review-check">
+      <input type="checkbox" checked={checks[k]} onChange={(e) => setChecks({ ...checks, [k]: e.target.checked })} /> {label}
+    </label>
+  );
+  return (
+    <div className="review-panel wide">
+      <strong>Before you publish</strong>
+      <span>A person must check the article before it goes live. The review is recorded and shown on the article.</span>
+      {box("facts", "I checked the facts, figures, salaries and rules against the sources")}
+      {box("faqs", "I read the FAQs and the quick answer — they are correct and well written")}
+      {box("author", "The author is right, and the author tip is in their own words")}
+      <div className="review-row">
+        <label>
+          Reviewed by
+          <select value={by} onChange={(e) => setBy(e.target.value)}>
+            {ARTICLE_AUTHORS.filter((a) => a !== "Outreach Recruitment").map((a) => <option key={a}>{a}</option>)}
+          </select>
+        </label>
+        <button type="button" className="primary" disabled={!all || !by}
+          onClick={() => setV((cur) => ({ ...cur, validation_results: [...others, { type: "human_review", by, at: new Date().toISOString(), checks }] }))}>
+          <ShieldCheck /> Mark as reviewed
+        </button>
+      </div>
+      <small>Remember to click “Save changes” after marking it as reviewed.</small>
+    </div>
+  );
+}
+
+function CheckupPanel({ rows, onEdit }: { rows: Row[]; onEdit: (r: Row) => void }) {
+  const [data, setData] = useState<Row | null>(null);
+  useEffect(() => {
+    fetch(`/reports/article-checkup.json?t=${Date.now()}`).then((r) => (r.ok ? r.json() : null)).then(setData).catch(() => setData(null));
+  }, []);
+  if (!data) return null;
+  const flagged = (data.articles || []).filter((a: Row) => a.flags?.length);
+  const label: Record<string, string> = { "low-ctr": "Few clicks", "page-two": "Page 2", "not-found": "Barely shown" };
+  return (
+    <details className="checkup">
+      <summary>
+        <Gauge /> 30-day check-up — {flagged.length} article{flagged.length === 1 ? "" : "s"} need attention
+        <small>Google Search Console, {data.period} · updated every Monday</small>
+      </summary>
+      <div className="table-wrap">
+        <table>
+          <thead><tr><th>Article</th><th>Top search</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Position</th><th>What to do</th><th></th></tr></thead>
+          <tbody>
+            {flagged.map((a: Row) => {
+              const row = rows.find((r) => r.slug === a.slug);
+              return (
+                <tr key={a.slug}>
+                  <td><strong>{a.title}</strong><small>{a.flags.map((f: string) => label[f] || f).join(" · ")} · live {a.days_live} days</small></td>
+                  <td>{a.top_query || "—"}</td>
+                  <td>{a.impressions}</td>
+                  <td>{a.clicks}</td>
+                  <td>{a.ctr}%</td>
+                  <td>{a.position || "—"}</td>
+                  <td className="advice">{a.advice.join(" ")}</td>
+                  <td>{row ? <button onClick={() => onEdit(row)}>Edit</button> : <a href={a.url} target="_blank" rel="noopener">Open page</a>}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  );
+}
+
 function validateArticle(v: Row) {
   const w = [];
   if (!v.title) w.push("Add a title");
@@ -2429,6 +2519,12 @@ function validateArticle(v: Row) {
   );
   if (new Set(authorityLinks || []).size < 2)
     w.push("Cite at least two relevant authoritative external sources");
+  if (!/\*\*Who this is for:?\*\*/i.test(v.body || ""))
+    w.push("Add a “Who this is for” line");
+  if (String(v.body || "").includes(TIP_PLACEHOLDER))
+    w.push("Write the author tip — replace the placeholder with the author's own words");
+  if (!humanReview(v))
+    w.push("Complete the “Before you publish” review (facts, FAQs, author)");
   return w;
 }
 

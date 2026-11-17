@@ -276,8 +276,27 @@ def render_table(lines: list[str]) -> str:
     )
 
 
+def _team_photos() -> dict:
+    try:
+        d = json.loads((ROOT / "tools" / "team_data.json").read_text())
+        return {p["name"]: p.get("avatar") or p.get("photo") for p in [d["ceo"], *d["members"]] if p.get("name")}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def quote_block(text: str) -> str:
+    """'**Tip from Andrea:** …' becomes the author tip box (with photo); other quotes a highlighted note."""
+    m = re.match(r"^\*\*Tip from ([^:*]+):?\*\*:?\s*(.*)$", text, re.I)
+    if not m:
+        return f'<div class="note-box">{inline_md(text)}</div>'
+    name = m.group(1).strip()
+    photo = next((u for n, u in _team_photos().items() if n.split()[0].lower() == name.split()[0].lower()), None)
+    img = f'<img src="{html.escape(photo, quote=True)}" alt="{html.escape(name, quote=True)}"/>' if photo else ""
+    return f'<aside class="or-tip">{img}<div><strong>Tip from {html.escape(name, quote=False)}</strong><p>{inline_md(m.group(2))}</p></div></aside>'
+
+
 def render_blocks(md: str) -> str:
-    """Render a chunk of Markdown (no headings) into paragraphs/lists/tables."""
+    """Render a chunk of Markdown into paragraphs/lists/tables/quotes."""
     out = []
     lines = md.split("\n")
     i = 0
@@ -286,6 +305,13 @@ def render_blocks(md: str) -> str:
         stripped = line.strip()
         if not stripped:
             i += 1
+            continue
+        if stripped.startswith(">"):
+            quote = []
+            while i < len(lines) and lines[i].strip().startswith(">"):
+                quote.append(re.sub(r"^>\s?", "", lines[i].strip()))
+                i += 1
+            out.append(quote_block(" ".join(quote)))
             continue
         if stripped.startswith("|"):
             block = []
@@ -310,10 +336,12 @@ def render_blocks(md: str) -> str:
             continue
         # paragraph: collect until blank line or start of a list/table
         para = []
-        while i < len(lines) and lines[i].strip() and not re.match(r"^([-*]\s+|\d+\.\s+|\|)", lines[i].strip()):
+        while i < len(lines) and lines[i].strip() and not re.match(r"^([-*]\s+|\d+\.\s+|\||>)", lines[i].strip()):
             para.append(lines[i].strip())
             i += 1
-        out.append(f"<p>{inline_md(' '.join(para))}</p>")
+        text = " ".join(para)
+        cls = ' class="or-audience"' if re.match(r"^\*\*Who this is for:?\*\*", text, re.I) else ""
+        out.append(f"<p{cls}>{inline_md(text)}</p>")
     return "\n".join(out)
 
 
@@ -423,8 +451,10 @@ def render_body(fm: dict, body: str) -> tuple[str, list[tuple[str, str]]]:
         if heading.strip().lower() == "faqs":
             faq_html, faq_pairs = render_faqs(content)
             continue
-        if heading.strip().lower() == "key takeaways":
-            parts.append(f"<section><h2>{inline_md(heading)}</h2>{render_blocks(content)}</section>")
+        special = {"key takeaways": "or-takeaways", "related on outreach recruitment": "or-related",
+                   "sources": "or-sources", "sources and further reading": "or-sources"}.get(heading.strip().lower())
+        if special:
+            parts.append(f'<section class="{special}"><h2>{inline_md(heading)}</h2>{render_blocks(content)}</section>')
             continue
 
         body_h2_count += 1
@@ -575,6 +605,14 @@ def build_page(fm: dict, body_html: str, faq_pairs: list[tuple[str, str]]) -> tu
 
     modified_meta = (f'\n  <meta property="article:modified_time" content="{fm["updated"]}T00:00:00Z"/>'
                      if fm.get("updated") and fm.get("updated") != fm["date"] else "")
+    if fm.get("reviewed_by") and fm.get("reviewed_at"):
+        # Human review before publishing (admin "Before you publish" check) — shown in the author box.
+        modified_meta += f'\n  <meta name="reviewed-by" content="{html.escape(fm["reviewed_by"], quote=True)}|{fm["reviewed_at"][:10]}"/>'
+        for node in graph:
+            if node.get("@type") == "BlogPosting":
+                node["mainEntityOfPage"] = {"@type": "WebPage", "@id": canonical, "lastReviewed": fm["reviewed_at"][:10],
+                                            "reviewedBy": {"@type": "Person", "name": fm["reviewed_by"]}}
+        schema = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
     style_block, nav_block, footer_block = extract_boilerplate()
     related = related_cards(pillar, f"/{slug}/")
 

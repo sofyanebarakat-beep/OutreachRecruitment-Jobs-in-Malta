@@ -50,6 +50,8 @@ echo "=== Articles: Sources + By the numbers ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/article_sources_facts.py" --missing --commit 2>&1 | tail -n 3 | tee -a "$LOG_FILE"
 if [ "$(date +%u)" = "1" ]; then
   python3 "$SCRIPT_DIR/article_sources_facts.py" --facts --commit 2>&1 | tail -n 3 | tee -a "$LOG_FILE"
+  # 30-day check-up from Search Console -> reports/article-checkup.json (shown in /admin/seo → Articles)
+  python3 "$SCRIPT_DIR/article_checkup.py" --commit 2>&1 | grep -v Warning | tail -n 2 | tee -a "$LOG_FILE"
 fi
 echo "" | tee -a "$LOG_FILE"
 echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"

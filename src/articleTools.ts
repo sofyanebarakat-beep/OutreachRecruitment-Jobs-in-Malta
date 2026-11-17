@@ -122,6 +122,11 @@ export function fixFor(warning: string, v: Row, services: Row[]): Row | null {
     }
     return { body: `> ${cap(kw || title)}: write a two-sentence answer to the reader's main question here.\n\n${body.trimStart()}` };
   }
+  if (w.includes("who this is for")) {
+    const line = `**Who this is for:** ${AUDIENCE[cat || ""] || AUDIENCE.Candidates}`;
+    const m = body.match(/^\s*>.*(?:\n>.*)*\n?/);
+    return { body: m ? `${m[0].trimEnd()}\n\n${line}\n\n${body.slice(m[0].length).trimStart()}` : `${line}\n\n${body.trimStart()}` };
+  }
   if (w.includes("faqs")) {
     const k = kw || title;
     return { body: `${body.trimEnd()}\n\n## FAQs\n\n### What is the first step with ${k}?\n\nStart with the official requirements and a clear plan, then compare your options before you apply or decide.\n\n### Where can I find current opportunities in Malta?\n\nSee the current vacancies on the [Outreach Recruitment jobs page](${SITE}/jobs/) and check each description for its requirements.\n\n### Should I confirm legal or permit details?\n\nYes. Rules can change and depend on your situation, so confirm work-permit, visa and legal questions with the official authority.\n` };
@@ -149,6 +154,14 @@ export function duplicateOf(r: Row): Row {
   for (const k of ["id", "published_at", "published_url", "scheduled_at", "created_at", "updated_at", "approved_by", "quality_score", "quality_notes", "rejection_reason", "validation_results"]) delete copy[k];
   return { ...copy, title: `Copy of ${r.title || "article"}`, slug: `${r.slug || "article"}-copy`.slice(0, 90), status: "draft" };
 }
+
+export const AUDIENCE: Record<string, string> = {
+  "Jobs in Malta": "job seekers looking for work in Malta, including candidates already living here.",
+  Candidates: "job seekers and professionals planning their next career step in Malta.",
+  Employers: "employers, managers and HR teams hiring staff in Malta.",
+  "Study in Malta": "international students planning to study — and later work — in Malta.",
+};
+export const TIP_PLACEHOLDER = "Write one practical tip here, in the author's own words.";
 
 // Named author by category (must match ARTICLE_AUTHORS / the Our Team page).
 export const CATEGORY_AUTHOR: Record<string, string> = {
@@ -188,6 +201,7 @@ export function completeArticle(input: Row, services: Row[] = []): Row {
   };
   const body = () => String(v.body || "");
   if (!/^\s*>\s+\S/.test(body())) apply("Start with a direct-answer blockquote for AI search and the article template");
+  if (!/\*\*Who this is for:?\*\*/i.test(body())) apply("Add a “Who this is for” line");
   if (!/^##\s+Key Takeaways/im.test(body())) {
     const kt = keyTakeaways(body());
     if (kt) {
@@ -196,8 +210,6 @@ export function completeArticle(input: Row, services: Row[] = []): Row {
       v.body = first === -1 ? `${body().trimEnd()}\n\n${kt}\n` : `${body().slice(0, first).trimEnd()}\n\n${kt}\n\n${body().slice(first)}`;
     }
   }
-  if (internalLinks(body()) < 3) apply("Add at least three contextual Outreach Recruitment internal links");
-  if (externalLinks(body()) < 2) apply("Cite at least two relevant authoritative external sources");
   if (!/^##\s+FAQs\s*$/im.test(body())) apply("Add an exact ## FAQs section with at least three questions");
   if (words(body()) < 600) {
     const k = kw || String(v.title || "this topic");
@@ -213,6 +225,13 @@ export function completeArticle(input: Row, services: Row[] = []): Row {
   }
   if (!v.author_name || v.author_name === "Outreach Recruitment")
     v.author_name = CATEGORY_AUTHOR[v.category] || "Julián Longan Granados";
+  if (!/\*\*Tip from /i.test(body())) {
+    const first = String(v.author_name).split(/\s+/)[0];
+    v.body = insertBeforeFaqsExport(body(), `> **Tip from ${first}:** ${TIP_PLACEHOLDER}`);
+  }
+  // Reference blocks last, just before the FAQs: related links, then sources.
+  if (internalLinks(body()) < 3) apply("Add at least three contextual Outreach Recruitment internal links");
+  if (externalLinks(body()) < 2) apply("Cite at least two relevant authoritative external sources");
   if (!v.featured_image_alt && v.title) v.featured_image_alt = `${v.title} — Outreach Recruitment Malta`;
   return v;
 }

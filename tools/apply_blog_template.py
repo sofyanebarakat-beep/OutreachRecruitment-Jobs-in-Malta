@@ -163,6 +163,8 @@ def extract(path):
     # Republished from the admin: show "Updated <date>" next to the original date.
     m = re.search(r'<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})', raw[:a])
     meta["updated"] = datetime.strptime(m.group(1), "%Y-%m-%d").strftime("%B %-d, %Y") if m else ""
+    m = re.search(r'<meta name="reviewed-by" content="([^"|]+)\|(\d{4}-\d{2}-\d{2})"', raw[:a])
+    meta["reviewed"] = (html.unescape(m.group(1)), datetime.strptime(m.group(2), "%Y-%m-%d").strftime("%B %-d, %Y")) if m else None
     meta["img_src"] = img["src"] if img else ""
     meta["img_alt"] = img.get("alt", "") if img else ""
     words = len(re.sub(r"<[^>]+>", " ", body).split())
@@ -308,6 +310,9 @@ def render(meta, all_meta, lang):
         byline = f'<span>{L["brand"]}</span>'
         author_box = (f'<div class="od-author"><img src="/assets/job-card-logo.jpg" alt="Outreach Recruitment" width="56" height="56" loading="lazy"/>'
                       f'<div><strong>{L["by"]}</strong><p>{L["about"]}</p></div></div>')
+    if meta.get("reviewed"):
+        rv = f'<p class="od-reviewed">✓ Reviewed by {esc(meta["reviewed"][0])} on {esc(meta["reviewed"][1])}</p>'
+        author_box = author_box.replace("</p></div></div>", "</p>" + rv + "</div></div>", 1) if "</p></div></div>" in author_box else author_box + rv
     return f'''<main class="main">
     <div class="od-progress" id="odProgress"></div>
     <section class="od-section">

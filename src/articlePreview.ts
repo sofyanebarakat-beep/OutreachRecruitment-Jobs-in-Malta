@@ -77,7 +77,7 @@ function blocks(md: string) {
     if (t.startsWith(">")) {
       const q: string[] = [];
       while (i < lines.length && lines[i].trim().startsWith(">")) q.push(lines[i++].trim().replace(/^>\s?/, ""));
-      out.push(`<div class="note-box">${inline(q.join(" "))}</div>`);
+      out.push(quoteBlock(q.join(" ")));
       continue;
     }
     if (/^<(p|div|ul|ol|table|h[1-6]|section|figure|img|blockquote)\b/i.test(t)) {
@@ -101,7 +101,10 @@ function blocks(md: string) {
     }
     const para: string[] = [];
     while (i < lines.length && lines[i].trim() && !/^([-*]\s+|\d+\.\s+|\||#{1,6}\s|>)/.test(lines[i].trim())) para.push(lines[i++].trim());
-    if (para.length) out.push(`<p>${inline(para.join(" "))}</p>`);
+    if (para.length) {
+      const text = para.join(" ");
+      out.push(/^\*\*Who this is for:?\*\*/i.test(text) ? `<p class="or-audience">${inline(text)}</p>` : `<p>${inline(text)}</p>`);
+    }
   }
   return out.join("\n");
 }
@@ -111,6 +114,25 @@ function split(body: string, marker: string) {
   const m = [...body.matchAll(re)];
   return m.map((x, i) => [x[1].trim(), body.slice(x.index! + x[0].length, i + 1 < m.length ? m[i + 1].index : body.length)] as [string, string]);
 }
+
+// Author photos for "Tip from <name>" boxes (set by buildPreviewHtml from tools/team_data.json).
+let TEAM_PHOTOS: Record<string, string> = {};
+
+/** A quote line: "**Tip from Andrea:** …" becomes the author tip box, anything else a highlighted note. */
+function quoteBlock(text: string) {
+  const m = text.match(/^\*\*Tip from ([^:*]+):?\*\*:?\s*(.*)$/i);
+  if (!m) return `<div class="note-box">${inline(text)}</div>`;
+  const first = m[1].trim().split(/\s+/)[0].toLowerCase();
+  const photo = Object.entries(TEAM_PHOTOS).find(([n]) => n.split(/\s+/)[0].toLowerCase() === first)?.[1];
+  return `<aside class="or-tip">${photo ? `<img src="${esc(photo)}" alt="${esc(m[1])}"/>` : ""}<div><strong>Tip from ${esc(m[1].trim())}</strong><p>${inline(m[2])}</p></div></aside>`;
+}
+
+const SECTION_CLASS: [RegExp, string][] = [
+  [/^key takeaways$/i, "or-takeaways"],
+  [/^related on outreach recruitment$/i, "or-related"],
+  [/^sources( and further reading)?$/i, "or-sources"],
+];
+const sectionClass = (h: string) => SECTION_CLASS.find(([re]) => re.test(h.trim()))?.[1] || "";
 
 export function renderArticleBody(v: Row) {
   const problems: string[] = [];
@@ -146,7 +168,8 @@ export function renderArticleBody(v: Row) {
         "</div></section>";
       continue;
     }
-    if (key === "key takeaways") { parts.push(`<section><h2>${inline(h)}</h2>${blocks(content)}</section>`); continue; }
+    const cls = sectionClass(h);
+    if (cls) { parts.push(`<section class="${cls}"><h2>${inline(h)}</h2>${blocks(content)}</section>`); continue; }
     n++;
     const subs = split(content, "###");
     const pre = content.includes("###") ? content.slice(0, content.indexOf("###")) : content;
@@ -205,6 +228,7 @@ export async function buildPreviewHtml(v: Row, checklist: string[], panel: boole
   if (!shell) return "";
   const origin = ORIGIN;
 
+  TEAM_PHOTOS = Object.fromEntries(team.filter((p) => p?.name).map((p) => [p.name, p.avatar || p.photo]));
   const who = team.find((p) => p?.name?.toLowerCase() === String(v.author_name || "").toLowerCase());
   const { html: body, problems } = renderArticleBody(v);
   const words = String(v.body || "").replace(/[#>*|[\]()-]/g, " ").split(/\s+/).filter(Boolean).length;
