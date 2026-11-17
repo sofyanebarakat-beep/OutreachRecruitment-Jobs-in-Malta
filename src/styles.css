@@ -1073,3 +1073,5 @@ td small {
 .article-actions { align-items: center; flex-wrap: wrap; }
 .article-actions .spacer { flex: 1; }
 .article-actions button svg, .actions button svg { width: 16px; height: 16px; vertical-align: -3px; }
+.actions .icon-action { padding: 6px 9px; }
+.actions .icon-action svg { margin: 0; }

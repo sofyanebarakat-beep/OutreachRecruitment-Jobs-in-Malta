@@ -1555,6 +1555,23 @@ function Topics() {
   );
 }
 
+async function deleteArticle(v: Row): Promise<boolean> {
+  const live = v.status === "published";
+  const ok = confirm(
+    `Delete “${v.title || "this article"}”?\n\n` +
+      (live
+        ? `This removes it from the dashboard only. The page is already published, so it stays live at /${v.slug}/ until it is taken down from the website.`
+        : "The article and its images in this dashboard will be removed. This cannot be undone."),
+  );
+  if (!ok) return false;
+  const { error } = await sb.from("seo_articles").delete().eq("id", v.id);
+  if (error) {
+    alert(`Could not delete the article: ${error.message}`);
+    return false;
+  }
+  return true;
+}
+
 function previewArticle(v: Row) {
   // Open the tab synchronously (popup blockers), then fill it.
   const win = window.open("", "_blank");
@@ -1691,6 +1708,16 @@ function Articles({ review = false }: { review?: boolean }) {
                     <button onClick={() => previewArticle(r)}>
                       <Eye /> Preview
                     </button>
+                    <button
+                      className="danger icon-action"
+                      title="Delete article"
+                      aria-label={`Delete article: ${r.title || "Untitled"}`}
+                      onClick={async () => {
+                        if (await deleteArticle(r)) state.load();
+                      }}
+                    >
+                      <Trash2 />
+                    </button>
                     {review ? (
                       <>
                         <button onClick={() => status(r, "approved")}>
@@ -1790,18 +1817,10 @@ function ArticleModal({
     error ? setMsg(error.message) : saved();
   }
   async function remove() {
-    const live = v.status === "published";
-    const ok = confirm(
-      `Delete “${v.title || "this article"}”?\n\n` +
-        (live
-          ? `This removes it from the dashboard only. The page is already published, so it stays live at /${v.slug}/ until it is taken down from the website.`
-          : "The article and its images in this dashboard will be removed. This cannot be undone."),
-    );
-    if (!ok) return;
     setBusy(true);
-    const { error } = await sb.from("seo_articles").delete().eq("id", row.id);
+    const done = await deleteArticle({ ...v, id: row.id });
     setBusy(false);
-    error ? setMsg(`Could not delete the article: ${error.message}`) : saved();
+    if (done) saved();
   }
   async function generate() {
     setGenerating(true);
