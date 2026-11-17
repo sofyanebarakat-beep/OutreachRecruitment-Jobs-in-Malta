@@ -61,11 +61,31 @@ function table(lines: string[]) {
 
 function blocks(md: string) {
   const out: string[] = [];
-  const lines = md.split("\n");
+  const lines = md.replace(/\r\n?/g, "\n").split("\n");
   let i = 0;
   while (i < lines.length) {
     const t = lines[i].trim();
     if (!t) { i++; continue; }
+    const h = t.match(/^(#{1,6})\s+(.+)$/);
+    if (h) {
+      const lvl = Math.min(4, Math.max(3, h[1].length));
+      out.push(`<h${lvl}>${inline(h[2])}</h${lvl}>`);
+      i++;
+      continue;
+    }
+    if (/^(-{3,}|\*{3,})$/.test(t)) { i++; continue; }
+    if (t.startsWith(">")) {
+      const q: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) q.push(lines[i++].trim().replace(/^>\s?/, ""));
+      out.push(`<div class="note-box">${inline(q.join(" "))}</div>`);
+      continue;
+    }
+    if (/^<(p|div|ul|ol|table|h[1-6]|section|figure|img|blockquote)\b/i.test(t)) {
+      const raw: string[] = [];
+      while (i < lines.length && lines[i].trim()) raw.push(lines[i++]);
+      out.push(raw.join("\n"));
+      continue;
+    }
     if (t.startsWith("|")) {
       const b: string[] = [];
       while (i < lines.length && lines[i].trim().startsWith("|")) b.push(lines[i++]);
@@ -80,7 +100,7 @@ function blocks(md: string) {
       continue;
     }
     const para: string[] = [];
-    while (i < lines.length && lines[i].trim() && !/^([-*]\s+|\d+\.\s+|\|)/.test(lines[i].trim())) para.push(lines[i++].trim());
+    while (i < lines.length && lines[i].trim() && !/^([-*]\s+|\d+\.\s+|\||#{1,6}\s|>)/.test(lines[i].trim())) para.push(lines[i++].trim());
     if (para.length) out.push(`<p>${inline(para.join(" "))}</p>`);
   }
   return out.join("\n");
@@ -94,7 +114,7 @@ function split(body: string, marker: string) {
 
 export function renderArticleBody(v: Row) {
   const problems: string[] = [];
-  const body = String(v.body || "");
+  const body = String(v.body || "").replace(/\r\n?/g, "\n");
   const lines = body.split("\n");
   let i = 0;
   while (i < lines.length && !lines[i].trim()) i++;
@@ -109,7 +129,11 @@ export function renderArticleBody(v: Row) {
   for (const im of v.section_images || []) if (im?.url) images.set(String(im.heading || "").trim().toLowerCase(), im);
   const ctas = CTAS[pillar(v.category)];
   const sections = split(rest, "##");
-  if (!sections.length) problems.push("Add at least one section heading (## Heading).");
+  // Text before the first ## heading (intro paragraphs) — or the whole article if it has no ## headings.
+  const firstH2 = rest.search(/^##\s+/m);
+  const intro = firstH2 === -1 ? rest : rest.slice(0, firstH2);
+  if (intro.trim()) parts.push(`<section>${blocks(intro)}</section>`);
+  if (!sections.length) problems.push("Add section headings (## Heading) so the article gets a table of contents.");
   let n = 0, faq = "";
   for (const [h, content] of sections) {
     const key = h.toLowerCase();
@@ -226,7 +250,7 @@ export async function buildPreviewHtml(v: Row, checklist: string[], panel: boole
     ? `<details class="pv-fix"><summary>${notes.length} thing${notes.length > 1 ? "s" : ""} to fix before publishing</summary><ul>${notes.map((p) => `<li>${esc(p)}</li>`).join("")}</ul></details>`
     : '<span class="pv-ok">✓ Ready to publish</span>';
   doc.head.insertAdjacentHTML("beforeend", `<style id="pv-style">
-.pv-panel{position:fixed;left:16px;right:16px;bottom:16px;z-index:100000;max-width:760px;margin:0 auto;background:#1c2623;color:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);font:14px/1.45 "BDO Grotesk",Arial,sans-serif;padding:14px 16px}
+.pv-panel{position:fixed;left:16px;right:16px;bottom:12px;z-index:100000;max-width:760px;margin:0 auto;background:#1c2623;color:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);font:14px/1.45 "BDO Grotesk",Arial,sans-serif;padding:14px 16px}
 .pv-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .pv-top b{background:#442DFA;border-radius:999px;padding:4px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
 .pv-top button{margin-left:auto;background:#fff;color:#1c2623;border:0;border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer}
@@ -238,9 +262,9 @@ export async function buildPreviewHtml(v: Row, checklist: string[], panel: boole
 #or-cookie-banner{display:none!important}
 @media(max-width:600px){.pv-top span{display:none}}
 </style>`);
-  if (panel) doc.body.insertAdjacentHTML("beforeend", `<div class="pv-panel" id="pvPanel"><div class="pv-top"><b>Preview</b><span>Not published — visitors cannot see this page.</span>
-<button type="button" onclick="document.getElementById('pvPanel').classList.toggle('min')">Hide / show</button><button type="button" onclick="window.close()">Close</button></div>
-<div class="pv-google"><small>outreachrecruitment.net › ${esc(v.slug || "")}</small><strong>${esc(v.seo_title || v.title || "Add an SEO title")}</strong><span>${esc(v.meta_description || "Add a meta description — Google shows it under the title.")}</span></div>${fix}</div><script>if (matchMedia("(max-width: 600px)").matches) document.getElementById("pvPanel").classList.add("min");</script>`);
+  if (panel) doc.body.insertAdjacentHTML("beforeend", `<div class="pv-panel min" id="pvPanel"><div class="pv-top"><b>Preview</b><span>Not published — visitors cannot see this page.${notes.length ? ` <em style="color:#ffd27a;font-style:normal">${notes.length} to fix</em>` : ` <em style="color:#9ff0b5;font-style:normal">ready to publish</em>`}</span>
+<button type="button" onclick="document.getElementById('pvPanel').classList.toggle('min')">Google preview &amp; checklist</button><button type="button" onclick="window.close()">Close</button></div>
+<div class="pv-google"><small>outreachrecruitment.net › ${esc(v.slug || "")}</small><strong>${esc(v.seo_title || v.title || "Add an SEO title")}</strong><span>${esc(v.meta_description || "Add a meta description — Google shows it under the title.")}</span></div>${fix}</div>`);
 
   return "<!doctype html>\n" + doc.documentElement.outerHTML;
 }

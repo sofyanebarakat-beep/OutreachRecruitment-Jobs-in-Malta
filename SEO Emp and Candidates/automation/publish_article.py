@@ -410,6 +410,11 @@ def render_body(fm: dict, body: str) -> tuple[str, list[tuple[str, str]]]:
         section_images = []
     images_by_heading = {str(item.get("heading", "")).strip().lower(): item for item in section_images if item.get("url") and item.get("alt")}
     parts = [f'<section><div class="answer-box"><strong>Quick answer:</strong> {answer}</div></section>']
+    # Intro paragraphs between the quick answer and the first ## heading used to be dropped.
+    first_h2 = re.search(r"^##\s+", rest, re.M)
+    intro = rest[: first_h2.start()] if first_h2 else ""
+    if intro.strip():
+        parts.append(f"<section>{render_blocks(intro)}</section>")
 
     faq_html = None
     faq_pairs: list[tuple[str, str]] = []
