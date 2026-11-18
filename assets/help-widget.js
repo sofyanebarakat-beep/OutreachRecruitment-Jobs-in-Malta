@@ -49,6 +49,13 @@
     ".orh-check{display:flex!important;flex-direction:row!important;align-items:flex-start;gap:9px;font-weight:400!important;font-size:13px!important;line-height:1.45;color:#444}.orh-check input{width:18px;height:18px;flex:none;margin:1px 0 0;accent-color:#442DFA}.orh-check a{color:#442DFA}" +
     ".orh-jobs{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:#f4f2ff}.orh-jobs[hidden]{display:none}.orh-jobs p{margin:0 0 2px;font-size:13px;font-weight:600;color:#442DFA}" +
     ".orh-job{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;background:#fff;color:#1c2623;text-decoration:none;font-size:14px}.orh-job b{display:block;font-weight:600}.orh-job small{color:#666}.orh-job span{flex:none;padding:6px 11px;border-radius:999px;background:#442DFA;color:#fff;font-size:12px;font-weight:600}" +
+    ".orh-typing{display:inline-flex;align-self:flex-start;gap:5px;padding:14px 16px;border-radius:14px;background:#f3f3f3}" +
+    ".orh-typing i{width:7px;height:7px;border-radius:50%;background:#8b8b8b;animation:orh-dot 1.1s infinite ease-in-out}.orh-typing i:nth-child(2){animation-delay:.15s}.orh-typing i:nth-child(3){animation-delay:.3s}" +
+    "@keyframes orh-dot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-5px);opacity:1}}" +
+    ".orh-wait{opacity:0;transform:translateY(8px);pointer-events:none}.orh-show{opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease}" +
+    ".orh-caret::after{content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#442DFA;animation:orh-blink .8s steps(1) infinite}" +
+    "@keyframes orh-blink{50%{opacity:0}}" +
+    "@media(prefers-reduced-motion:reduce){.orh-wait{opacity:1;transform:none}.orh-typing i{animation:none}}" +
     ".orh-foot{padding:10px 16px 14px;text-align:center;font-size:12px;color:#777;border-top:1px solid #eee}" +
     "@media(max-width:767px){body:has(.job-mobile-apply-cta:not(.is-hidden)) .orh-bubble,body:has(.od-cta-bar) .orh-bubble{bottom:92px}body:has(.opening-mobile-filter) .orh-bubble{bottom:82px}}" +
     "@media(max-width:560px){.orh-panel,.orh-panel.big{inset:0;width:100%;height:100%;height:100dvh;border-radius:0;bottom:0;right:0}.orh-row{grid-template-columns:minmax(0,1fr)}" +
@@ -109,6 +116,43 @@
     draw(); panel.appendChild(box); setTimeout(function () { q.focus(); }, 30);
   }
 
+  /* ---------- "someone is typing" reveal ---------- */
+  var run = 0;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function reveal(fast) {
+    var token = ++run, kids = [].slice.call(body.children);
+    if (reduce) return;
+    kids.forEach(function (k) { k.classList.add("orh-wait"); });
+    var msgs = kids.filter(function (k) { return k.classList.contains("orh-msg") || k.classList.contains("orh-ok"); });
+    var firstMsg = kids.indexOf(msgs[0]);
+    var i = 0;
+    function next() {
+      if (token !== run) return;
+      if (i >= kids.length) return;
+      var k = kids[i++];
+      if (k.classList.contains("orh-msg")) {
+        // typing dots, then the message types itself word by word
+        var dots = document.createElement("div"); dots.className = "orh-typing"; dots.innerHTML = "<i></i><i></i><i></i>";
+        body.insertBefore(dots, k);
+        setTimeout(function () {
+          if (token !== run) return;
+          dots.remove();
+          var html = k.innerHTML, words = k.textContent.split(/(\s+)/), n = 0;
+          k.textContent = ""; k.classList.add("orh-show", "orh-caret"); k.classList.remove("orh-wait");
+          (function type() {
+            if (token !== run) return;
+            if (n < words.length) { k.textContent += words[n++] + (words[n] && /\s/.test(words[n]) ? words[n++] : ""); setTimeout(type, 38); }
+            else { k.innerHTML = html; k.classList.remove("orh-caret"); setTimeout(next, 120); }
+          })();
+        }, fast ? 450 : 900);
+      } else {
+        k.classList.remove("orh-wait"); k.classList.add("orh-show");
+        setTimeout(next, i <= firstMsg ? 40 : 110);
+      }
+    }
+    next();
+  }
+
   /* ---------- screens ---------- */
   function home() {
     body.innerHTML = '<p class="orh-msg">Hi! 👋 Welcome to the Outreach Recruitment Help Center. How can we help you today?</p>' +
@@ -116,6 +160,7 @@
       '<button type="button" class="orh-opt" data-go="Hire"><div>Hire staff in Malta<small>Tell us who you need — we will contact you</small></div><span aria-hidden="true">›</span></button>' +
       '<button type="button" class="orh-opt" data-go="Study in Malta"><div>Study in Malta<small>Courses, visas and free guidance</small></div><span aria-hidden="true">›</span></button>' +
       '<button type="button" class="orh-opt" data-go="General"><div>Ask another question<small>Our team will reply by email</small></div><span aria-hidden="true">›</span></button>';
+    reveal();
   }
   var back = '<button type="button" class="orh-back" data-a="home">← Back</button>';
   var F = {
@@ -146,7 +191,9 @@
         '<button type="button" class="orh-opt" data-form="Study in Malta"><div>Get free guidance<small>A study advisor will contact you</small></div><span aria-hidden="true">›</span></button>';
     } else {
       form("General");
+      return;
     }
+    reveal(true);
   }
   function form(topic) {
     var backTo = topic === "General" ? back : '<button type="button" class="orh-back" data-go="' + topic + '">← Back</button>';
@@ -171,6 +218,7 @@
           '<label>Your question<textarea class="orh-in" name="message" rows="4" maxlength="4000" required></textarea></label>' + F.alerts, "Send question");
     }
     var f = body.querySelector("form"); if (f) wire(f, topic);
+    reveal(true);
   }
 
   /* ---------- matching open jobs while typing a job title ---------- */
@@ -202,7 +250,7 @@
 
   function wire(f, topic) {
     var err = f.querySelector(".orh-err"), btn = f.querySelector(".orh-send"), label = btn.textContent;
-    var first = f.querySelector("input.orh-in"); if (first && window.innerWidth > 560) first.focus();
+    var first = f.querySelector("input.orh-in"); if (first && window.innerWidth > 560) setTimeout(function () { first.focus({ preventScroll: true }); }, reduce ? 0 : 700);
     var started = Date.now();
     suggestJobs(f);
     f.addEventListener("submit", function (e) {
@@ -248,15 +296,16 @@
               p_source_type: "footer_signup", p_source_job: "Help Center", p_source_url: location.href.split("#")[0], p_job_category: val("job_title") || (details.study_level ? "Study in Malta" : null) }) }).catch(function () {});
         }
         var thanks = topic === "Hire" ? "Thank you — our team will contact you shortly" : topic === "Study in Malta" ? "Thank you — a study advisor will contact you" : "Thank you — your question was sent";
-        body.innerHTML = '<div class="orh-ok">' + I.ok + '<b>' + thanks + '</b><p>We will reply to ' + esc(val("email")) + '.</p></div>' +
+        body.innerHTML = '<div class="orh-ok">' + I.ok + '<b>' + thanks + '</b></div><p class="orh-msg">We will reply to ' + esc(val("email")) + '. Is there anything else we can help you with?</p>' +
           '<button type="button" class="orh-opt" data-a="home">Back to the start<span aria-hidden="true">›</span></button>';
+        reveal(true);
       }).catch(function (x) { btn.disabled = false; btn.textContent = label; err.textContent = x.message; });
     });
   }
 
   function toggle(open) {
     panel.classList.toggle("open", open); bubble.setAttribute("aria-expanded", open);
-    if (open && !body.innerHTML) home();
+    if (open && (!body.innerHTML || body.querySelector(".orh-typing"))) home();
     document.documentElement.style.overflow = open && window.innerWidth <= 560 ? "hidden" : "";
   }
   bubble.addEventListener("click", function () { toggle(!panel.classList.contains("open")); });

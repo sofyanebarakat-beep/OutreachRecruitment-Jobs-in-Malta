@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "3"
+VERSION = "4"
 TAG = f'<script defer src="/assets/help-widget.js?v={VERSION}"></script>'
 SKIP = {"admin", "node_modules", "reports", "tools", "tmp", "tests", "docs", "supabase", "src", "scripts", "components",
         "Jobs Skills", "SEO Emp and Candidates", "STUDY IN MALTA SKILLS", ".git", ".github"}

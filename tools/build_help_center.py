@@ -261,7 +261,7 @@ def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, 
     s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
     s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
     if "/assets/help-widget.js" not in s:  # the shell may already carry it (tools/add_help_widget_sitewide.py)
-        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=3"></script>\n</body>', 1)
+        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=4"></script>\n</body>', 1)
     return s
 
 
