@@ -78,7 +78,7 @@
     '<button type="button" data-a="home" aria-label="Start again" title="Start again">' + I.restart + '</button>' +
     '<button type="button" data-a="big" aria-label="Expand" title="Expand">' + I.expand + '</button>' +
     '<button type="button" data-a="close" aria-label="Close">' + I.x + '</button></div>' +
-    '<div class="orh-body" aria-live="polite"></div><div class="orh-foot">Our team replies by email, usually within one working day.</div>';
+    '<div class="orh-body" aria-live="polite"></div><div class="orh-foot">Our team will get back to you by email as soon as possible.</div>';
   document.body.appendChild(panel); document.body.appendChild(bubble);
   var body = panel.querySelector(".orh-body");
 

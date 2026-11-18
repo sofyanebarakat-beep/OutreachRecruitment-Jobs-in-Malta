@@ -261,7 +261,7 @@ def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, 
     s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
     s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
     if "/assets/help-widget.js" not in s:  # the shell may already carry it (tools/add_help_widget_sitewide.py)
-        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=4"></script>\n</body>', 1)
+        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=5"></script>\n</body>', 1)
     return s
 
 
@@ -288,7 +288,7 @@ def main() -> None:
             QUESTIONS.extend(x for x in PLACEHOLDERS if x[1] == c)
     counts = {c: sum(1 for q in QUESTIONS if q[1] == c) for c, _ in CATEGORIES}
     cards = "".join(f'<a class="hc-card" href="/help-center/{c}/"><span class="hc-icon">{ICONS[c]}</span><h2>{E(n)}</h2>'
-                    f'<p>{LOREM}</p><span class="hc-count">{counts[c]} articles</span></a>' for c, n in CATEGORIES)
+                    f'<p>{LOREM}</p><span class="hc-count">{counts[c]} article{"" if counts[c] == 1 else "s"}</span></a>' for c, n in CATEGORIES)
     home = f"""<section class="hc-hero"><div class="hc-wrap"><h1>Help Center</h1><p>Have questions? Search through our Help Center.</p>
   <div class="hc-search-box"><form class="hc-search" role="search" action="/help-center/" id="hc-form"><label for="hc-q" style="position:absolute;left:-9999px">Search</label>
     {SEARCH_ICON}<input id="hc-q" type="search" placeholder="Search for questions or topics…" autocomplete="off" aria-controls="hc-results" aria-expanded="false"><button type="submit">Search</button></form>
