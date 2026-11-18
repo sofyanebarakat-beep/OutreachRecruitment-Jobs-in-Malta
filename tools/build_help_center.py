@@ -193,14 +193,43 @@ def search_index() -> list[dict]:
     """Help Center questions + website articles, searched live on /help-center/."""
     items = [{"t": t, "u": f"/help-center/question/{s}/", "c": "Help Center · " + dict(CATEGORIES)[c],
               "k": excerpt(REAL[s]["answer"], 300) if s in REAL else ""} for s, c, t in QUESTIONS]
-    try:
+    seen = {i["u"] for i in items}
+    def add(title, url, cat, desc=""):
+        u = url.replace(SITE, "") or "/"
+        key = u.rstrip("/") or "/"
+        if key in seen or key.rstrip("/") + "/" in seen or not title:
+            return
+        seen.add(key); seen.add(key + "/")
+        items.append({"t": title, "u": u, "c": cat, "k": desc})
+    try:  # every article on /news-updates (blog articles + Study in Malta guides)
         import sys
         sys.path.insert(0, str(ROOT / "tools"))
-        from build_news_page import blog_articles
-        for a in blog_articles():
-            items.append({"t": a["title"], "u": a["url"], "c": "Article · " + a["cats"][0], "k": a["desc"]})
+        from build_news_page import blog_articles, study_pages
+        arts = blog_articles()
+        arts += study_pages({x["title"] for x in arts})
+        for x in arts:
+            add(x["title"], x["url"], "News & Updates · " + x["cats"][0], x["desc"])
     except Exception as exc:  # noqa: BLE001 - search still works with the Help Center questions
         print(f"warning: articles not added to search: {exc}")
+    # main website pages from the sitemap (title + description of the local file)
+    try:
+        locs = re.findall(r"<loc>([^<]+)</loc>", (ROOT / "sitemaps" / "sitemap-pages.xml").read_text(encoding="utf-8"))
+        for loc in locs:
+            path = loc.replace(SITE, "").strip("/")
+            if not path or path.startswith(("help-center", "admin")):
+                continue
+            f = next((c for c in (ROOT / f"{path}.html", ROOT / path / "index.html") if c.is_file()), None)
+            if not f:
+                continue
+            h = f.read_text(encoding="utf-8", errors="ignore")[:20000]
+            if re.search(r'name="robots"[^>]*noindex|noindex[^>]*name="robots"|http-equiv="refresh"', h):
+                continue
+            t = re.search(r"<title>(.*?)</title>", h, re.S)
+            d = re.search(r'<meta (?:name="description" content="([^"]*)"|content="([^"]*)" name="description")', h)
+            title = html.unescape(re.split(r"\s+[|—–]\s+", re.sub(r"\s+", " ", t.group(1)).strip())[0]) if t else ""
+            add(title, "/" + path, "Page", html.unescape((d.group(1) or d.group(2)) if d else ""))
+    except Exception as exc:  # noqa: BLE001
+        print(f"warning: pages not added to search: {exc}")
     return items
 
 
