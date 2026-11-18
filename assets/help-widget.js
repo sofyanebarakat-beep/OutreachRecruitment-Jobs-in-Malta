@@ -46,7 +46,11 @@
     ".orh-back{align-self:flex-start;background:none;border:0;color:#442DFA;cursor:pointer;font:inherit;font-size:14px;padding:0}" +
     ".orh-send{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:0;border-radius:999px;background:#442DFA;color:#fff;font:inherit;font-weight:600;font-size:16px;cursor:pointer}.orh-send:disabled{opacity:.6;cursor:wait}" +
     ".orh-err{color:#b91c1c;font-size:14px;margin:0}.orh-ok{text-align:center;padding:24px 10px}.orh-ok b{display:block;font-size:20px;margin:10px 0 6px}.orh-ok svg{width:54px;height:54px;color:#16a34a}" +
+    ".orh-check{display:flex!important;flex-direction:row!important;align-items:flex-start;gap:9px;font-weight:400!important;font-size:13px!important;line-height:1.45;color:#444}.orh-check input{width:18px;height:18px;flex:none;margin:1px 0 0;accent-color:#442DFA}.orh-check a{color:#442DFA}" +
+    ".orh-jobs{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:#f4f2ff}.orh-jobs[hidden]{display:none}.orh-jobs p{margin:0 0 2px;font-size:13px;font-weight:600;color:#442DFA}" +
+    ".orh-job{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;background:#fff;color:#1c2623;text-decoration:none;font-size:14px}.orh-job b{display:block;font-weight:600}.orh-job small{color:#666}.orh-job span{flex:none;padding:6px 11px;border-radius:999px;background:#442DFA;color:#fff;font-size:12px;font-weight:600}" +
     ".orh-foot{padding:10px 16px 14px;text-align:center;font-size:12px;color:#777;border-top:1px solid #eee}" +
+    "@media(max-width:767px){body:has(.job-mobile-apply-cta:not(.is-hidden)) .orh-bubble,body:has(.od-cta-bar) .orh-bubble{bottom:92px}body:has(.opening-mobile-filter) .orh-bubble{bottom:82px}}" +
     "@media(max-width:560px){.orh-panel,.orh-panel.big{inset:0;width:100%;height:100%;height:100dvh;border-radius:0;bottom:0;right:0}.orh-row{grid-template-columns:minmax(0,1fr)}" +
     ".orh-bubble{right:14px;bottom:14px}.orh-panel.open~.orh-bubble{display:none}.orh-head [data-a=big]{display:none}}";
   var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
@@ -81,6 +85,7 @@
     var v = btn.querySelector(".v"); v.classList.remove("ph");
     v.textContent = btn.hasAttribute("data-phone") ? "+" + c.dial : c.name;
     btn.nextElementSibling.value = btn.hasAttribute("data-phone") ? c.code : c.name;
+    btn.setAttribute("data-code", c.code);
   }
   function openList(btn) {
     var phone = btn.hasAttribute("data-phone");
@@ -117,44 +122,89 @@
     name: '<label>Full name<input class="orh-in" name="full_name" autocomplete="name" maxlength="120" required></label>',
     email: '<label>Email address<input class="orh-in" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required></label>',
     phone: '<label>Phone number<div class="orh-phone">' + picker("phone_cc", "Country code", true) + '<input class="orh-in" name="phone_num" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="16" placeholder="Phone number" required></div></label>',
-    loc: '<div class="orh-row"><label>Current location' + picker("current_location", "Current location") + '</label><label>Nationality' + picker("nationality", "Nationality") + '</label></div>'
+    loc: '<div class="orh-row"><label>Current location' + picker("current_location", "Current location") + '</label><label>Nationality' + picker("nationality", "Nationality") + '</label></div>',
+    job: function (ph) { return '<label>Your job<input class="orh-in" name="job_title" maxlength="120" placeholder="' + ph + '" autocomplete="organization-title" required></label><div class="orh-jobs" hidden aria-live="polite"></div>'; },
+    alerts: '<label class="orh-check"><input type="checkbox" name="job_alerts"><span>Also email me jobs that match my profile</span></label>',
+    consent: '<label class="orh-check"><input type="checkbox" name="consent" required><span>I agree that Outreach Recruitment stores my details to answer my request, as described in the <a href="/legal" target="_blank" rel="noopener">privacy policy</a>. Requests are deleted after 12 months.</span></label>'
   };
   function formHtml(fields, sendLabel) {
-    return '<form class="orh-form" novalidate>' + fields + '<input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">' +
+    return '<form class="orh-form" novalidate>' + fields + F.consent + '<input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">' +
       '<p class="orh-err" role="alert"></p><button class="orh-send" type="submit">' + sendLabel + '</button></form>';
   }
   function screen(topic) {
     if (topic === "Jobs in Malta") {
       body.innerHTML = back + '<span class="orh-topic">Jobs in Malta</span><p class="orh-msg">You can see every open job and apply online in a few minutes.</p>' +
         '<a class="orh-link" href="/jobs/"><div>Browse jobs &amp; apply<small>All open positions in Malta</small></div><span aria-hidden="true">→</span></a>' +
-        '<div class="orh-or">or ask us a question</div>' +
-        formHtml(F.name + F.email + F.loc + '<label>Your job<input class="orh-in" name="job_title" maxlength="120" placeholder="e.g. Chef, Accountant, Driver" required></label>' +
-          '<label>Your question<textarea class="orh-in" name="message" rows="3" maxlength="4000" required></textarea></label>', "Send question");
+        '<button type="button" class="orh-opt" data-form="Jobs in Malta"><div>Ask us a question<small>About a job, your application or working in Malta</small></div><span aria-hidden="true">›</span></button>';
     } else if (topic === "Hire") {
-      body.innerHTML = back + '<span class="orh-topic">Hire staff</span>' +
+      body.innerHTML = back + '<span class="orh-topic">Hire staff</span><p class="orh-msg">We help employers in Malta find and hire the right people.</p>' +
         '<a class="orh-link" href="/employers"><div>Our recruitment services<small>How we help employers in Malta hire</small></div><span aria-hidden="true">→</span></a>' +
-        '<p class="orh-msg">Or fill in your details here and our team will contact you.</p>' +
+        '<button type="button" class="orh-opt" data-form="Hire"><div>Fill in your details<small>Our team will contact you</small></div><span aria-hidden="true">›</span></button>';
+    } else if (topic === "Study in Malta") {
+      body.innerHTML = back + '<span class="orh-topic">Study in Malta</span><p class="orh-msg">Courses, visas, costs and how to apply — all in one guide.</p>' +
+        '<a class="orh-link" href="/study-in-malta"><div>Study in Malta guide<small>Courses, visas, costs and how to apply</small></div><span aria-hidden="true">→</span></a>' +
+        '<button type="button" class="orh-opt" data-form="Study in Malta"><div>Get free guidance<small>A study advisor will contact you</small></div><span aria-hidden="true">›</span></button>';
+    } else {
+      form("General");
+    }
+  }
+  function form(topic) {
+    var backTo = topic === "General" ? back : '<button type="button" class="orh-back" data-go="' + topic + '">← Back</button>';
+    if (topic === "Jobs in Malta") {
+      body.innerHTML = backTo + '<span class="orh-topic">Jobs in Malta · Question</span>' +
+        formHtml(F.name + F.email + F.loc + F.job("e.g. Chef, Accountant, Driver") +
+          '<label>Your question<textarea class="orh-in" name="message" rows="3" maxlength="4000" required></textarea></label>' + F.alerts, "Send question");
+    } else if (topic === "Hire") {
+      body.innerHTML = backTo + '<span class="orh-topic">Hire staff</span><p class="orh-msg">Fill in your details and our team will contact you.</p>' +
         formHtml(F.name + F.email + F.phone + '<label>Company<input class="orh-in" name="company" autocomplete="organization" maxlength="120" required></label>' +
           '<label>Which roles do you need? <span style="font-weight:400;color:#777">(optional)</span><textarea class="orh-in" name="message" rows="2" maxlength="4000"></textarea></label>', "Contact me");
     } else if (topic === "Study in Malta") {
-      body.innerHTML = back + '<span class="orh-topic">Study in Malta</span>' +
-        '<a class="orh-link" href="/study-in-malta"><div>Study in Malta guide<small>Courses, visas, costs and how to apply</small></div><span aria-hidden="true">→</span></a>' +
-        '<p class="orh-msg">Want free guidance? Leave your details and a study advisor will contact you.</p>' +
+      body.innerHTML = backTo + '<span class="orh-topic">Study in Malta</span><p class="orh-msg">Leave your details and a study advisor will contact you.</p>' +
         formHtml(F.name + F.email + F.phone + F.loc +
           '<label>What do you want to study?<select class="orh-in" name="study_level" required><option value="">Choose one</option><option>English language course</option><option>Diploma / vocational course</option><option>Bachelor’s degree</option><option>Master’s degree</option><option>Not sure yet</option></select></label>' +
           '<label>When do you want to start?<select class="orh-in" name="start_when"><option value="">Choose one</option><option>As soon as possible</option><option>In 3–6 months</option><option>In 6–12 months</option><option>Next year or later</option></select></label>' +
-          '<label>Anything else? <span style="font-weight:400;color:#777">(optional)</span><textarea class="orh-in" name="message" rows="2" maxlength="4000"></textarea></label>', "Get free guidance");
+          '<label>Anything else? <span style="font-weight:400;color:#777">(optional)</span><textarea class="orh-in" name="message" rows="2" maxlength="4000"></textarea></label>' + F.alerts, "Get free guidance");
     } else {
       topic = "General";
-      body.innerHTML = back + '<span class="orh-topic">Question</span>' +
-        formHtml(F.name + F.email + F.loc + '<label>Your job<input class="orh-in" name="job_title" maxlength="120" placeholder="e.g. Chef, Student, HR Manager" required></label>' +
-          '<label>Your question<textarea class="orh-in" name="message" rows="4" maxlength="4000" required></textarea></label>', "Send question");
+      body.innerHTML = backTo + '<span class="orh-topic">Question</span>' +
+        formHtml(F.name + F.email + F.loc + F.job("e.g. Chef, Student, HR Manager") +
+          '<label>Your question<textarea class="orh-in" name="message" rows="4" maxlength="4000" required></textarea></label>' + F.alerts, "Send question");
     }
     var f = body.querySelector("form"); if (f) wire(f, topic);
   }
+
+  /* ---------- matching open jobs while typing a job title ---------- */
+  var jobsCache = null;
+  function loadJobs() { return jobsCache || (jobsCache = fetch("/assets/open-jobs.json", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })); }
+  function suggestJobs(f) {
+    var input = f.elements.job_title, box = f.querySelector(".orh-jobs"); if (!input || !box) return;
+    var t;
+    input.addEventListener("input", function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var words = input.value.toLowerCase().split(/[^a-z0-9à-ž]+/).filter(function (w) { return w.length > 2; });
+        if (!words.length) { box.hidden = true; return; }
+        loadJobs().then(function (jobs) {
+          var hits = jobs.map(function (j) {
+            var title = j.t.toLowerCase(), hay = title + " " + j.c.toLowerCase() + " " + j.k.toLowerCase(), score = 0;
+            words.forEach(function (w) { if (title.indexOf(w) > -1) score += 3; else if (hay.indexOf(w) > -1) score += 1; });
+            return { j: j, s: score };
+          }).filter(function (h) { return h.s >= 3; }).sort(function (a, b) { return b.s - a.s; }).slice(0, 3);
+          if (!hits.length) { box.hidden = true; return; }
+          box.innerHTML = '<p>Open jobs that match — apply directly:</p>' + hits.map(function (h) {
+            return '<a class="orh-job" href="/jobs/' + encodeURIComponent(h.j.s) + '/"><div><b>' + esc(h.j.t) + '</b><small>' + esc(h.j.l) + (h.j.p ? " · " + esc(h.j.p) : "") + '</small></div><span>Apply</span></a>';
+          }).join("");
+          box.hidden = false;
+        });
+      }, 250);
+    });
+  }
+
   function wire(f, topic) {
     var err = f.querySelector(".orh-err"), btn = f.querySelector(".orh-send"), label = btn.textContent;
     var first = f.querySelector("input.orh-in"); if (first && window.innerWidth > 560) first.focus();
+    var started = Date.now();
+    suggestJobs(f);
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       if (f.elements.website.value) return;
@@ -165,6 +215,7 @@
       var missing = need.filter(function (n) { return !val(n); });
       if (missing.length) { err.textContent = "Please fill in every required field."; return; }
       if (!f.elements.email.checkValidity()) { err.textContent = "Please enter a valid email address."; return; }
+      if (!f.elements.consent.checked) { err.textContent = "Please accept the privacy notice to send your request."; return; }
       var phone = "";
       if (f.elements.phone_cc) {
         var digits = val("phone_num").replace(/[^0-9]/g, "").replace(/^0+/, "");
@@ -179,7 +230,8 @@
         headers: { "Content-Type": "application/json", apikey: KEY, Authorization: "Bearer " + KEY },
         body: JSON.stringify({ p: { topic: topic, full_name: val("full_name"), email: val("email"), phone: phone, company: val("company"),
           current_location: val("current_location"), nationality: val("nationality"), job_title: val("job_title"),
-          message: val("message") || (details.study_level ? "Study in Malta: " + details.study_level : ""), page_url: location.href.split("#")[0], details: details } })
+          message: val("message") || (details.study_level ? "Study in Malta: " + details.study_level : ""), page_url: location.href.split("#")[0], details: details,
+          consent: "true", elapsed_ms: Date.now() - started } })
       }).then(function (r) {
         if (r.ok) return r.json();
         return r.json().catch(function () { return {}; }).then(function (b) {
@@ -188,6 +240,13 @@
           throw new Error(m || "We couldn't send your request. Please try again.");
         });
       }).then(function () {
+        // Optional job-alert sign-up (same list as the footer form, shown in the admin under Job Alert Subscribers)
+        var loc = f.querySelector('[data-pick="current_location"]');
+        if (f.elements.job_alerts && f.elements.job_alerts.checked && loc && loc.getAttribute("data-code")) {
+          fetch(API + "/rest/v1/rpc/subscribe_job_alert_v2", { method: "POST", headers: { "Content-Type": "application/json", apikey: KEY, Authorization: "Bearer " + KEY },
+            body: JSON.stringify({ p_email: val("email"), p_full_name: val("full_name"), p_country_code: loc.getAttribute("data-code"), p_country_name: val("current_location"),
+              p_source_type: "footer_signup", p_source_job: "Help Center", p_source_url: location.href.split("#")[0], p_job_category: val("job_title") || (details.study_level ? "Study in Malta" : null) }) }).catch(function () {});
+        }
         var thanks = topic === "Hire" ? "Thank you — our team will contact you shortly" : topic === "Study in Malta" ? "Thank you — a study advisor will contact you" : "Thank you — your question was sent";
         body.innerHTML = '<div class="orh-ok">' + I.ok + '<b>' + thanks + '</b><p>We will reply to ' + esc(val("email")) + '.</p></div>' +
           '<button type="button" class="orh-opt" data-a="home">Back to the start<span aria-hidden="true">›</span></button>';
@@ -202,7 +261,8 @@
   }
   bubble.addEventListener("click", function () { toggle(!panel.classList.contains("open")); });
   panel.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-a],[data-go],[data-pick]"); if (!t) return;
+    var t = e.target.closest("[data-a],[data-go],[data-pick],[data-form]"); if (!t) return;
+    if (t.hasAttribute("data-form")) { form(t.getAttribute("data-form")); return; }
     if (t.hasAttribute("data-pick")) { openList(t); return; }
     var a = t.getAttribute("data-a");
     if (a === "close") toggle(false); else if (a === "big") panel.classList.toggle("big"); else if (a === "home") home();
@@ -212,9 +272,12 @@
     if (e.key !== "Escape" || !panel.classList.contains("open")) return;
     var list = panel.querySelector(".orh-list"); if (list) list.remove(); else toggle(false);
   });
-  window.OutreachHelp = { open: function (topic) { toggle(true); if (topic) screen(topic); else home(); } };
+  window.OutreachHelp = {
+    open: function (topic) { toggle(true); if (topic) screen(topic); else home(); },
+    ask: function (topic) { toggle(true); form(topic || "General"); }
+  };
   document.addEventListener("click", function (e) {
     var l = e.target.closest('a[href="#help-chat"]'); if (!l) return;
-    e.preventDefault(); window.OutreachHelp.open(l.getAttribute("data-topic") || "");
+    e.preventDefault(); window.OutreachHelp.ask(l.getAttribute("data-topic") || "General");
   });
 })();

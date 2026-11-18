@@ -1,0 +1,31 @@
+name: Rebuild Help Center
+# Questions published in /admin → Help Center → "Help Center questions" (Supabase help_faqs, public read)
+# are built into /help-center by tools/build_help_center.py. No secrets needed.
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: help-center-rebuild
+  cancel-in-progress: false
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependency
+        run: python3 -m pip install --quiet --break-system-packages beautifulsoup4 || python3 -m pip install --quiet beautifulsoup4
+      - name: Build Help Center
+        run: python3 tools/build_help_center.py
+      - name: Commit changes
+        run: |
+          git add -A help-center
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git config user.name "outreach-help-center[bot]"
+          git config user.email "outreach-help-center[bot]@users.noreply.github.com"
+          git commit -m "Help Center: update published questions"
+          git fetch origin main
+          git merge --no-edit origin/main
+          git push origin HEAD:main

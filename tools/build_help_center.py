@@ -34,8 +34,54 @@ CATEGORIES = [
     ("hire", "Hire"),
     ("study-in-malta", "Study in Malta"),
 ]
-# Placeholder questions: (slug, category slug, title). Replace with real questions later.
-QUESTIONS = [(f"{c}-question-{i}", c, f"{name} question title {i}?") for c, name in CATEGORIES for i in range(1, 5)]
+# Placeholder questions, used for a category until real questions are published from the admin
+# (Help Center Inbox → "Turn into Help Center article", stored in the Supabase table help_faqs).
+PLACEHOLDERS = [(f"{c}-question-{i}", c, f"{name} question title {i}?") for c, name in CATEGORIES for i in range(1, 5)]
+QUESTIONS: list[tuple[str, str, str]] = []
+REAL: dict[str, dict] = {}
+
+
+def load_faqs() -> list[dict]:
+    """Published Help Center questions from Supabase (public read). Empty if the table does not exist yet."""
+    import urllib.request
+    try:
+        url = "https://atcitaqyraeqngcsaeun.supabase.co/rest/v1/help_faqs?select=*&status=eq.published&order=created_at.asc"
+        key = "sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY"
+        req = urllib.request.Request(url, headers={"apikey": key, "Authorization": f"Bearer {key}"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read() or b"[]")
+    except Exception as exc:  # noqa: BLE001
+        print(f"note: no published Help Center questions loaded ({exc})")
+        return []
+
+
+def md(text: str) -> str:
+    """Small Markdown → HTML for answers: paragraphs, - lists, ## / ### headings, **bold**, [links](url)."""
+    def inline(t: str) -> str:
+        t = E(t)
+        t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+        return re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+|/[^)\s]*)\)", r'<a href="\2">\1</a>', t)
+    out = []
+    for block in re.split(r"\n\s*\n", str(text or "").replace("\r", "").strip()):
+        lines = [l.strip() for l in block.split("\n") if l.strip()]
+        if not lines:
+            continue
+        if all(re.match(r"^[-*]\s+", l) for l in lines):
+            items = [inline(re.sub(r"^[-*]\s+", "", l)) for l in lines]
+            out.append("<ul>" + "".join("<li>" + i + "</li>" for i in items) + "</ul>")
+        elif lines[0].startswith("### "):
+            out.append(f"<h3>{inline(lines[0][4:])}</h3>" + (f"<p>{inline(' '.join(lines[1:]))}</p>" if lines[1:] else ""))
+        elif lines[0].startswith("## "):
+            out.append(f"<h2>{inline(lines[0][3:])}</h2>" + (f"<p>{inline(' '.join(lines[1:]))}</p>" if lines[1:] else ""))
+        else:
+            out.append(f"<p>{inline(' '.join(lines))}</p>")
+    return "\n".join(out)
+
+
+def excerpt(text: str, n: int = 170) -> str:
+    t = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", re.sub(r"[#*>]|^-\s", "", str(text or ""), flags=re.M))
+    t = re.sub(r"\s+", " ", t).strip()
+    return t if len(t) <= n else t[: n - 1].rsplit(" ", 1)[0] + "…"
 
 CSS = """<style id="help-center-style">
 .navigation.w-nav { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 1000; transform: none !important;
@@ -133,7 +179,8 @@ SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 
 def search_index() -> list[dict]:
     """Help Center questions + website articles, searched live on /help-center/."""
-    items = [{"t": t, "u": f"/help-center/question/{s}/", "c": "Help Center · " + dict(CATEGORIES)[c], "k": ""} for s, c, t in QUESTIONS]
+    items = [{"t": t, "u": f"/help-center/question/{s}/", "c": "Help Center · " + dict(CATEGORIES)[c],
+              "k": excerpt(REAL[s]["answer"], 300) if s in REAL else ""} for s, c, t in QUESTIONS]
     try:
         import sys
         sys.path.insert(0, str(ROOT / "tools"))
@@ -163,20 +210,34 @@ SEARCH_SCRIPT = """<script>
     }).filter(Boolean).sort(function (a, b) { return b.s - a.s; }).slice(0, 8);
     ul.innerHTML = hits.length ? hits.map(function (h) { return '<li><a href="' + h.x.u + '"><b>' + mark(h.x.t, words) + '</b><small>' + esc(h.x.c) + '</small></a></li>'; }).join("")
       : '<li class="hc-none">No results for “' + esc(q.value.trim()) + '”.</li>';
+    clearTimeout(missT);
+    if (!hits.length) missT = setTimeout(function () { logMiss(q.value.trim()); }, 1500);
     box.hidden = false; q.setAttribute("aria-expanded", "true"); hero.classList.add("searching");
+  }
+  var missT, logged = {};
+  function logMiss(term) {
+    var k = norm(term); if (k.length < 3 || logged[k]) return; logged[k] = 1;
+    fetch("https://atcitaqyraeqngcsaeun.supabase.co/rest/v1/rpc/log_help_search_miss", { method: "POST",
+      headers: { "Content-Type": "application/json", apikey: "sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY", Authorization: "Bearer sb_publishable_cpLonCcSvdifHfBvdtlDWQ_cblbcgKY" },
+      body: JSON.stringify({ q: term }) }).catch(function () {});
   }
   q.addEventListener("input", search); q.addEventListener("focus", search);
   document.getElementById("hc-form").addEventListener("submit", function (e) { e.preventDefault(); search(); var a = ul.querySelector("a"); if (a && !box.hidden) a.focus(); });
   document.addEventListener("click", function (e) { if (!e.target.closest(".hc-search-box")) box.hidden = true; });
   q.addEventListener("keydown", function (e) { if (e.key === "Escape") box.hidden = true; if (e.key === "ArrowDown") { var a = ul.querySelector("a"); if (a) { e.preventDefault(); a.focus(); } } });
-  document.querySelectorAll("[data-ask]").forEach(function (b) { b.addEventListener("click", function () { box.hidden = true; if (window.OutreachHelp) window.OutreachHelp.open("General"); }); });
+  document.querySelectorAll("[data-ask]").forEach(function (b) { b.addEventListener("click", function () { box.hidden = true; if (window.OutreachHelp) window.OutreachHelp.ask("General"); }); });
 })();
 </script>"""
 
 
-def by() -> str:
+def by(q: dict | None = None) -> str:
+    if not q:
+        return ('<div class="hc-by"><span class="av"><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>'
+                '<div><b>Outreach Recruitment</b><small>Author name · Date</small></div></div>')
+    from datetime import datetime
+    d = datetime.fromisoformat(str(q.get("updated_at") or q.get("created_at"))[:19]).strftime("%-d %B %Y")
     return ('<div class="hc-by"><span class="av"><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>'
-            '<div><b>Outreach Recruitment</b><small>Author name · Date</small></div></div>')
+            f'<div><b>{E(q.get("author_name") or "Outreach Recruitment")}</b><small>Updated {d}</small></div></div>')
 
 
 def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, str]]) -> str:
@@ -199,7 +260,8 @@ def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, 
     b = s.index("</main>")
     s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
     s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
-    s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=2"></script>\n</body>', 1)
+    if "/assets/help-widget.js" not in s:  # the shell may already carry it (tools/add_help_widget_sitewide.py)
+        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=3"></script>\n</body>', 1)
     return s
 
 
@@ -215,6 +277,15 @@ def write(rel: str, text: str) -> None:
 
 
 def main() -> None:
+    faqs = load_faqs()
+    for c, _ in CATEGORIES:
+        real = [q for q in faqs if q.get("category") == c]
+        if real:
+            for q in real:
+                REAL[q["slug"]] = q
+                QUESTIONS.append((q["slug"], c, q["question"]))
+        else:
+            QUESTIONS.extend(x for x in PLACEHOLDERS if x[1] == c)
     counts = {c: sum(1 for q in QUESTIONS if q[1] == c) for c, _ in CATEGORIES}
     cards = "".join(f'<a class="hc-card" href="/help-center/{c}/"><span class="hc-icon">{ICONS[c]}</span><h2>{E(n)}</h2>'
                     f'<p>{LOREM}</p><span class="hc-count">{counts[c]} articles</span></a>' for c, n in CATEGORIES)
@@ -229,7 +300,8 @@ def main() -> None:
     write("help-center/index.html", page("Help Center", "Answers to common questions about jobs in Malta, hiring staff and studying in Malta.",
                                         f"{SITE}/help-center/", home, [("Home", "/"), ("Help Center", "/help-center/")]))
     for c, name in CATEGORIES:
-        qs = "".join(f'<a class="hc-q" href="/help-center/question/{s}/"><h2>{E(t)}</h2><p>{LOREM2}</p>{by()}</a>' for s, cc, t in QUESTIONS if cc == c)
+        qs = "".join(f'<a class="hc-q" href="/help-center/question/{s}/"><h2>{E(t)}</h2><p>{E(excerpt(REAL[s]["answer"])) if s in REAL else LOREM2}</p>{by(REAL.get(s))}</a>'
+                     for s, cc, t in QUESTIONS if cc == c)
         trail = [("Home", "/"), ("Help Center", "/help-center/"), (name, f"/help-center/{c}/")]
         content = f"""<div class="hc-page"><div class="hc-narrow">{crumbs_html(trail)}
   <div class="hc-cat-head"><span class="hc-icon">{ICONS[c]}</span><div><h1>{E(name)}</h1><p>{LOREM}</p></div></div>{qs}
@@ -238,6 +310,13 @@ def main() -> None:
     for s, c, t in QUESTIONS:
         name = dict(CATEGORIES)[c]
         trail = [("Home", "/"), ("Help Center", "/help-center/"), (name, f"/help-center/{c}/"), (t, f"/help-center/question/{s}/")]
+        if s in REAL:
+            q = REAL[s]
+            body = (md(q["answer"]) + f'<div class="hc-help"><strong>Still need help?</strong><a class="hc-btn" href="#help-chat" data-topic="{E(name)}">Ask our team</a></div>')
+            content = f"""<section class="hc-hero hc-qhero"><div class="hc-wrap"><h1>{E(t)}</h1><p>{E(excerpt(q["answer"], 200))}</p>{by(q)}</div></section>
+<div class="hc-narrow"><article class="hc-article">{crumbs_html(trail)}{body}</article></div>"""
+            write(f"help-center/question/{s}/index.html", page(t, excerpt(q["answer"], 155), f"{SITE}/help-center/question/{s}/", content, trail))
+            continue
         body = f"""<h2>Section heading</h2><p>{LOREM2} <a href="/jobs/">Example link</a>, neque. Viverra purus pretium elementum tincidunt mollis.</p>
 <p>{LOREM2}</p><figure class="hc-figure"><div>Image</div><figcaption>Image caption.</figcaption></figure>
 <h2>Section heading</h2><p>{LOREM2}</p><h3>Sub heading</h3><p>{LOREM2}</p>
@@ -248,7 +327,14 @@ def main() -> None:
         content = f"""<section class="hc-hero hc-qhero"><div class="hc-wrap"><h1>{E(t)}</h1><p>{LOREM2}</p>{by()}</div></section>
 <div class="hc-narrow"><article class="hc-article">{crumbs_html(trail)}{body}</article></div>"""
         write(f"help-center/question/{s}/index.html", page(t, LOREM2, f"{SITE}/help-center/question/{s}/", content, trail))
-    print(f"help center: 1 home, {len(CATEGORIES)} categories, {len(QUESTIONS)} questions ({'indexable' if READY else 'noindex'})")
+    # Remove pages of questions that no longer exist (placeholders replaced by real questions, or unpublished).
+    import shutil
+    keep = {s for s, _, _ in QUESTIONS}
+    for d in (ROOT / "help-center" / "question").iterdir():
+        if d.is_dir() and d.name not in keep:
+            shutil.rmtree(d)
+    print(f"help center: 1 home, {len(CATEGORIES)} categories, {len(QUESTIONS)} questions ({len(REAL)} published, "
+          f"{'indexable' if READY else 'noindex'})")
 
 
 if __name__ == "__main__":

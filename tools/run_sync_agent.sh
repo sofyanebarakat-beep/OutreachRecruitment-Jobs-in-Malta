@@ -9,6 +9,11 @@ LOG_FILE="$LOG_DIR/sync-$(date +%Y-%m-%d-%H%M).log"
 TODAY="$(date +%Y-%m-%d)"
 LOCK="$PROJECT_DIR/tools/.run_sync_agent.pid"
 
+# Every run (hourly 07:00–20:00): email the team about new Help Center requests.
+if [ "$(date +%H)" -ge 7 ]; then
+  python3 "$SCRIPT_DIR/help_request_alerts.py" >> "$PROJECT_DIR/reports/logs/help-alerts.log" 2>&1
+fi
+
 # launchd starts this every hour 07:00–20:00 and at login, so a day missed because the Mac was
 # off or asleep at 07:00 is caught up as soon as it is on. Run at most once a day (--force overrides).
 if [ "$1" != "--force" ]; then
@@ -53,6 +58,10 @@ if [ "$(date +%u)" = "1" ]; then
   # 30-day check-up from Search Console -> reports/article-checkup.json (shown in /admin/seo → Articles)
   python3 "$SCRIPT_DIR/article_checkup.py" --commit 2>&1 | grep -v Warning | tail -n 2 | tee -a "$LOG_FILE"
 fi
+echo "" | tee -a "$LOG_FILE"
+echo "=== Help Center: open-jobs list + bubble on every page ===" | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/build_open_jobs_json.py" 2>&1 | tee -a "$LOG_FILE"
+python3 "$SCRIPT_DIR/add_help_widget_sitewide.py" --commit 2>&1 | tail -n 2 | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "=== SEO Course Automation ===" | tee -a "$LOG_FILE"
 python3 "$SCRIPT_DIR/apply_analytics_tracking.py" 2>&1 | tee -a "$LOG_FILE"
