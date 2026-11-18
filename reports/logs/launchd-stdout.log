@@ -24310,3 +24310,20 @@ Built 11 service records
   }
 }
 Finished: Wed Nov 18 10:04:16 CET 2026 | Exit: 0
+=== Job Sync Agent ===
+Started: Wed Nov 18 11:00:04 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-18 11:00  ===
+
+[1] Scraping careers page …
+  pass 1: 132 / 132 advertised
+  careers page: 132 collected / 132 advertised · website open: 131
+
+[2] 0 website job(s) not in the careers-page listing — checking each …
+
+[3] Reading 132 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/8c5047d4-7c1b-4ab9-b581-273104d90c58)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/09692c92-ffc9-4ef7-864b-3b71329f209b)
+  20/132
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/2178667e-b89b-4b1e-9b6b-b845cea58eb9)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/a80eda89-20ac-432b-8ce9-48512b5ff8ef)
