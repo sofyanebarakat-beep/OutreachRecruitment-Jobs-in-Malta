@@ -49,7 +49,7 @@ body { background: #fff; }
 .hc-wrap { width: min(1180px, 100% - 32px); margin: 0 auto; }
 .hc-narrow { width: min(760px, 100% - 32px); margin: 0 auto; }
 /* hero */
-.hc-hero { position: relative; overflow: hidden; background: var(--brand); color: #fff; text-align: center; padding: 11rem 0 9.5rem; isolation: isolate; }
+.hc-hero { position: relative; overflow: visible; background: var(--brand); color: #fff; text-align: center; padding: 11rem 0 9.5rem; isolation: isolate; }
 .hc-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16;
   background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
   background-size: 56px 56px; mask-image: linear-gradient(180deg, transparent, #000 40%, #000); -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%, #000); }
@@ -59,6 +59,24 @@ body { background: #fff; }
 .hc-search svg { width: 20px; height: 20px; color: #777; flex: none; }
 .hc-search input { flex: 1; min-width: 0; border: 0; outline: none; font: inherit; font-size: 1rem; padding: .8rem .2rem; color: var(--ink); background: transparent; }
 .hc-search button { border: 0; border-radius: 999px; padding: .9rem 1.8rem; background: var(--brand); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+/* live search */
+.hc-search-box { position: relative; max-width: 720px; margin: 2.25rem auto 0; text-align: left; }
+.hc-search-box .hc-search { margin: 0; }
+.hc-results { position: absolute; left: 0; right: 0; top: calc(100% + 10px); z-index: 20; background: #fff; color: var(--ink); border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(16,16,30,.25); overflow: hidden; max-height: min(460px, 60vh); display: flex; flex-direction: column; }
+.hc-results[hidden] { display: none; }
+.hc-hero.searching { z-index: 5; }
+.hc-results ul { list-style: none; margin: 0; padding: 8px; overflow-y: auto; }
+.hc-results li a { display: flex; flex-direction: column; gap: 3px; padding: 11px 14px; border-radius: 12px; color: var(--ink); }
+.hc-results li a:hover, .hc-results li a.on { background: var(--soft); }
+.hc-results li b { font-weight: 600; font-size: 1rem; } .hc-results li b mark { background: #e6e1ff; color: inherit; border-radius: 3px; padding: 0 2px; }
+.hc-results li small { color: var(--muted); font-size: .82rem; }
+.hc-results .hc-none { padding: 18px 18px 6px; color: var(--muted); }
+.hc-ask { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-top: 1px solid var(--line); background: #fafafa; }
+.hc-ask span { font-size: .95rem; color: var(--muted); }
+.hc-ask button { border: 0; border-radius: 999px; padding: .7rem 1.2rem; background: var(--brand); color: #fff; font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.hc-ask-cta { margin-top: 1.25rem; color: rgba(255,255,255,.9); font-size: .98rem; }
+.hc-ask-cta button { background: none; border: 0; color: #fff; font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
 /* category cards */
 .hc-cards { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: -6rem; padding-bottom: 5rem; }
 .hc-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .9rem; padding: 2.75rem 2rem 2.5rem; border-radius: 22px; background: #fff;
@@ -107,10 +125,53 @@ body { background: #fff; }
 .hc-help strong { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
 .hc-btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.5rem; border-radius: 999px; background: var(--brand); color: #fff !important; font-weight: 600; text-decoration: none !important; }
 @media (max-width: 900px) { .hc-cards { grid-template-columns: minmax(0, 1fr); margin-top: -5rem; } .hc-hero { padding: 9rem 0 8rem; } }
-@media (max-width: 600px) { .hc-cat-head { flex-direction: column; gap: 1rem; } .hc-q { padding: 1.5rem; } .hc-search button { padding: .9rem 1.2rem; } .hc-search { padding-left: 14px; } }
+@media (max-width: 600px) { .hc-ask { flex-direction: column; align-items: stretch; } .hc-ask button { width: 100%; } .hc-cat-head { flex-direction: column; gap: 1rem; } .hc-q { padding: 1.5rem; } .hc-search button { padding: .9rem 1.2rem; } .hc-search { padding-left: 14px; } }
 </style>"""
 
 SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+
+
+def search_index() -> list[dict]:
+    """Help Center questions + website articles, searched live on /help-center/."""
+    items = [{"t": t, "u": f"/help-center/question/{s}/", "c": "Help Center · " + dict(CATEGORIES)[c], "k": ""} for s, c, t in QUESTIONS]
+    try:
+        import sys
+        sys.path.insert(0, str(ROOT / "tools"))
+        from build_news_page import blog_articles
+        for a in blog_articles():
+            items.append({"t": a["title"], "u": a["url"], "c": "Article · " + a["cats"][0], "k": a["desc"]})
+    except Exception as exc:  # noqa: BLE001 - search still works with the Help Center questions
+        print(f"warning: articles not added to search: {exc}")
+    return items
+
+
+SEARCH_SCRIPT = """<script>
+(function () {
+  var IDX = %s;
+  var q = document.getElementById("hc-q"), box = document.getElementById("hc-results"), ul = box.querySelector("ul"), hero = document.querySelector(".hc-hero");
+  new MutationObserver(function () { if (box.hidden) hero.classList.remove("searching"); }).observe(box, { attributes: true, attributeFilter: ["hidden"] });
+  var norm = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, ""); };
+  var esc = function (s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; };
+  function mark(t, words) { var h = esc(t); words.forEach(function (w) { if (w.length > 1) h = h.replace(new RegExp("(" + w.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&") + ")", "ig"), "<mark>$1</mark>"); }); return h; }
+  function search() {
+    var words = norm(q.value).split(/\\s+/).filter(Boolean);
+    if (!words.length) { box.hidden = true; q.setAttribute("aria-expanded", "false"); return; }
+    var hits = IDX.map(function (x) {
+      var hay = norm(x.t + " " + x.k + " " + x.c), title = norm(x.t), score = 0;
+      for (var i = 0; i < words.length; i++) { if (hay.indexOf(words[i]) < 0) return null; score += title.indexOf(words[i]) > -1 ? 3 : 1; }
+      return { x: x, s: score };
+    }).filter(Boolean).sort(function (a, b) { return b.s - a.s; }).slice(0, 8);
+    ul.innerHTML = hits.length ? hits.map(function (h) { return '<li><a href="' + h.x.u + '"><b>' + mark(h.x.t, words) + '</b><small>' + esc(h.x.c) + '</small></a></li>'; }).join("")
+      : '<li class="hc-none">No results for “' + esc(q.value.trim()) + '”.</li>';
+    box.hidden = false; q.setAttribute("aria-expanded", "true"); hero.classList.add("searching");
+  }
+  q.addEventListener("input", search); q.addEventListener("focus", search);
+  document.getElementById("hc-form").addEventListener("submit", function (e) { e.preventDefault(); search(); var a = ul.querySelector("a"); if (a && !box.hidden) a.focus(); });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".hc-search-box")) box.hidden = true; });
+  q.addEventListener("keydown", function (e) { if (e.key === "Escape") box.hidden = true; if (e.key === "ArrowDown") { var a = ul.querySelector("a"); if (a) { e.preventDefault(); a.focus(); } } });
+  document.querySelectorAll("[data-ask]").forEach(function (b) { b.addEventListener("click", function () { box.hidden = true; if (window.OutreachHelp) window.OutreachHelp.open("General"); }); });
+})();
+</script>"""
 
 
 def by() -> str:
@@ -138,7 +199,7 @@ def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, 
     b = s.index("</main>")
     s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
     s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
-    s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=1"></script>\n</body>', 1)
+    s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=2"></script>\n</body>', 1)
     return s
 
 
@@ -158,9 +219,13 @@ def main() -> None:
     cards = "".join(f'<a class="hc-card" href="/help-center/{c}/"><span class="hc-icon">{ICONS[c]}</span><h2>{E(n)}</h2>'
                     f'<p>{LOREM}</p><span class="hc-count">{counts[c]} articles</span></a>' for c, n in CATEGORIES)
     home = f"""<section class="hc-hero"><div class="hc-wrap"><h1>Help Center</h1><p>Have questions? Search through our Help Center.</p>
-  <form class="hc-search" role="search" action="/help-center/" onsubmit="return false"><label for="hc-q" style="position:absolute;left:-9999px">Search</label>
-    {SEARCH_ICON}<input id="hc-q" type="search" placeholder="Search for questions or topics…" autocomplete="off"><button type="submit">Search</button></form></div></section>
+  <div class="hc-search-box"><form class="hc-search" role="search" action="/help-center/" id="hc-form"><label for="hc-q" style="position:absolute;left:-9999px">Search</label>
+    {SEARCH_ICON}<input id="hc-q" type="search" placeholder="Search for questions or topics…" autocomplete="off" aria-controls="hc-results" aria-expanded="false"><button type="submit">Search</button></form>
+    <div class="hc-results" id="hc-results" hidden><ul role="listbox"></ul>
+      <div class="hc-ask"><span>Can't find your question?</span><button type="button" data-ask>Ask our team</button></div></div></div>
+  <p class="hc-ask-cta">Didn't find what you need? <button type="button" data-ask>Ask our team</button></p></div></section>
 <div class="hc-wrap"><div class="hc-cards">{cards}</div></div>"""
+    home += SEARCH_SCRIPT % json.dumps(search_index(), ensure_ascii=False)
     write("help-center/index.html", page("Help Center", "Answers to common questions about jobs in Malta, hiring staff and studying in Malta.",
                                         f"{SITE}/help-center/", home, [("Home", "/"), ("Help Center", "/help-center/")]))
     for c, name in CATEGORIES:

@@ -18,7 +18,7 @@
     const { data, error } = await store.sb.from("help_requests").select("*").order("created_at", { ascending: false }).limit(1000);
     if (error) {
       view.lastElementChild.innerHTML = `<h2>Help Center inbox not set up yet</h2><p class="msg error">${esc(error.message)}</p>
-        <p>Run <code>supabase/migrations/20261118120000_help_center_requests.sql</code> once in the Supabase SQL Editor, then reload this page.</p>`;
+        <p>Run <code>supabase/migrations/20261118150000_help_center_requests_v2.sql</code> once in the Supabase SQL Editor, then reload this page.</p>`;
       return;
     }
     rows = data || [];
@@ -36,7 +36,7 @@
     function filtered() {
       const s = q.value.trim().toLowerCase();
       return rows.filter((r) => (!st.value || r.status === st.value) && (!tp.value || r.topic === tp.value) &&
-        (!s || [r.full_name, r.email, r.message, r.job_title, r.nationality, r.current_location].join(" ").toLowerCase().includes(s)));
+        (!s || [r.full_name, r.email, r.phone, r.company, r.message, r.job_title, r.nationality, r.current_location].join(" ").toLowerCase().includes(s)));
     }
     function draw() {
       const items = filtered();
@@ -44,10 +44,13 @@
         <header><div><strong>${esc(r.full_name)}</strong> <span class="hd-topic">${esc(r.topic)}</span><br>
           <a href="mailto:${esc(r.email)}?subject=${encodeURIComponent("Your question to Outreach Recruitment")}">${esc(r.email)}</a></div>
           <div class="hd-meta">${when(r.created_at)}</div></header>
-        <dl><div><dt>Current location</dt><dd>${esc(r.current_location)}</dd></div><div><dt>Nationality</dt><dd>${esc(r.nationality)}</dd></div><div><dt>Job</dt><dd>${esc(r.job_title)}</dd></div></dl>
-        <p class="hd-msg">${esc(r.message)}</p>
+        <dl>${[["Phone", r.phone ? `<a href="tel:${esc(String(r.phone).replace(/\s/g, ""))}">${esc(r.phone)}</a>` : ""], ["Company", esc(r.company)],
+          ["Current location", esc(r.current_location)], ["Nationality", esc(r.nationality)], ["Job", esc(r.job_title)],
+          ["Wants to study", esc((r.details || {}).study_level)], ["Start", esc((r.details || {}).start_when)]]
+          .filter(([, v]) => v).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+        ${r.message ? `<p class="hd-msg">${esc(r.message)}</p>` : ""}
         <footer><select data-id="${r.id}" class="hd-set">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${r.status === k ? "selected" : ""}>${v}</option>`).join("")}</select>
-          <a class="btn primary" href="mailto:${esc(r.email)}?subject=${encodeURIComponent("Your question to Outreach Recruitment")}&body=${encodeURIComponent(`Hi ${r.full_name.split(" ")[0]},\n\nThank you for your question:\n> ${r.message}\n\n`)}">Reply by email</a>
+          <a class="btn primary" href="mailto:${esc(r.email)}?subject=${encodeURIComponent("Your question to Outreach Recruitment")}&body=${encodeURIComponent(`Hi ${r.full_name.split(" ")[0]},\n\nThank you for contacting Outreach Recruitment${r.message ? `:\n> ${r.message}` : "."}\n\n`)}">Reply by email</a>
           ${r.page_url ? `<span class="muted small">Sent from ${esc(r.page_url.replace("https://outreachrecruitment.net", ""))}</span>` : ""}</footer></article>`).join("")
         : `<div class="empty">No questions match these filters.</div>`;
     }
@@ -59,8 +62,8 @@
       const r = rows.find((x) => x.id === sel.dataset.id); if (r) r.status = sel.value; draw();
     });
     view.querySelector("#hd-csv").addEventListener("click", () => {
-      const f = ["created_at", "full_name", "email", "current_location", "nationality", "job_title", "topic", "message", "status", "page_url"];
-      const csv = [f.join(","), ...filtered().map((r) => f.map((k) => csvCell(r[k])).join(","))].join("\n");
+      const f = ["created_at", "topic", "full_name", "email", "phone", "company", "current_location", "nationality", "job_title", "study_level", "start_when", "message", "status", "page_url"];
+      const csv = [f.join(","), ...filtered().map((r) => f.map((k) => csvCell(r[k] ?? (r.details || {})[k])).join(","))].join("\n");
       const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
       a.download = `help-center-questions-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
     });
