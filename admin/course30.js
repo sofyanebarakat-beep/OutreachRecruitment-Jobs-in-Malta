@@ -797,6 +797,7 @@
     else if (r === "subscribers") window.renderSubscribers($("#view"));
     else if (r === "marketing") window.renderMarketing($("#view"));
     else if (r === "social") window.renderSocial($("#view"));
+    else if (r === "helpdesk") window.renderHelpdesk($("#view"));
     else if (r === "kpi") renderKPI();
     else if (r === "notes") renderNotes(param);
     else renderCourse();

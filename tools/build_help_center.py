@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""
+build_help_center.py — the /help-center pages (template layout, placeholder text for now).
+
+  /help-center/                         home: hero + search + category cards
+  /help-center/<category>/              category: header + question cards   (jobs-in-malta, hire, study-in-malta)
+  /help-center/question/<slug>/         question: hero + article card
+
+Uses about.html as the shell (site header + footer), adds the support bubble (assets/help-widget.js).
+Edit CATEGORIES / QUESTIONS below and re-run:  python3 tools/build_help_center.py
+Pages are noindex while READY is False (placeholder text).
+"""
+from __future__ import annotations
+
+import html
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SITE = "https://outreachrecruitment.net"
+READY = False
+E = lambda s: html.escape(str(s), quote=True)
+LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac pellentesque diam felis."
+LOREM2 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tellus rutrum rhoncus ipsum maecenas tellus. Consequat odio viverra convallis."
+
+ICONS = {
+    "jobs-in-malta": '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="15" width="34" height="24" rx="5" fill="#442DFA"/><path d="M18 15v-3a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" fill="none" stroke="#1c2623" stroke-width="3"/><path d="M7 25h34" stroke="#1c2623" stroke-width="3"/><rect x="21" y="22" width="6" height="6" rx="1.5" fill="#fff"/></svg>',
+    "hire": '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="17" r="7" fill="#442DFA"/><path d="M5 38c1.5-7 6.5-11 13-11s11.5 4 13 11" fill="#442DFA"/><circle cx="33" cy="15" r="5" fill="#1c2623"/><path d="M28 26c6 0 11 3 13 10" fill="none" stroke="#1c2623" stroke-width="3" stroke-linecap="round"/></svg>',
+    "study-in-malta": '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 18 24 9l20 9-20 9z" fill="#442DFA"/><path d="M12 23v9c0 3 5 6 12 6s12-3 12-6v-9" fill="none" stroke="#1c2623" stroke-width="3"/><path d="M44 18v11" stroke="#1c2623" stroke-width="3" stroke-linecap="round"/></svg>',
+}
+CATEGORIES = [
+    ("jobs-in-malta", "Jobs in Malta"),
+    ("hire", "Hire"),
+    ("study-in-malta", "Study in Malta"),
+]
+# Placeholder questions: (slug, category slug, title). Replace with real questions later.
+QUESTIONS = [(f"{c}-question-{i}", c, f"{name} question title {i}?") for c, name in CATEGORIES for i in range(1, 5)]
+
+CSS = """<style id="help-center-style">
+.navigation.w-nav { position: fixed !important; top: 0 !important; left: 0; right: 0; z-index: 1000; transform: none !important;
+  translate: none !important; opacity: 1 !important; background: #fff !important; padding-top: 0 !important; box-shadow: 0 1px 0 #ececec; }
+body { background: #fff; }
+.hc { --ink: #1c2623; --muted: rgba(28,38,35,.64); --brand: #442DFA; --soft: #f4f2ff; --line: #ececec;
+  --serif: var(--_🅰-typography---font-family--heading, "Libre Caslon Condensed", "Times New Roman", serif);
+  font-family: var(--_🅰-typography---font-family--body, "BDO Grotesk", Arial, sans-serif); color: var(--ink); }
+.hc h1, .hc h2, .hc h3 { font-family: var(--serif); font-weight: 400 !important; letter-spacing: -.5px; margin: 0; color: inherit; }
+.hc a { text-decoration: none; }
+.hc-wrap { width: min(1180px, 100% - 32px); margin: 0 auto; }
+.hc-narrow { width: min(760px, 100% - 32px); margin: 0 auto; }
+/* hero */
+.hc-hero { position: relative; overflow: hidden; background: var(--brand); color: #fff; text-align: center; padding: 11rem 0 9.5rem; isolation: isolate; }
+.hc-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16;
+  background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+  background-size: 56px 56px; mask-image: linear-gradient(180deg, transparent, #000 40%, #000); -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%, #000); }
+.hc-hero h1 { font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 1.05; color: #fff; }
+.hc-hero p { margin: 1rem auto 0; max-width: 620px; font-size: 1.15rem; color: rgba(255,255,255,.9); }
+.hc-search { display: flex; align-items: center; gap: .5rem; max-width: 720px; margin: 2.25rem auto 0; padding: 6px 6px 6px 20px; border-radius: 999px; background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.35); }
+.hc-search svg { width: 20px; height: 20px; color: #777; flex: none; }
+.hc-search input { flex: 1; min-width: 0; border: 0; outline: none; font: inherit; font-size: 1rem; padding: .8rem .2rem; color: var(--ink); background: transparent; }
+.hc-search button { border: 0; border-radius: 999px; padding: .9rem 1.8rem; background: var(--brand); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+/* category cards */
+.hc-cards { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: -6rem; padding-bottom: 5rem; }
+.hc-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .9rem; padding: 2.75rem 2rem 2.5rem; border-radius: 22px; background: #fff;
+  border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(16,16,30,.08); color: var(--ink); transition: transform .25s ease, box-shadow .25s ease; }
+.hc-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(68,45,250,.16); }
+.hc-icon { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--soft); }
+.hc-icon svg { width: 46px; height: 46px; }
+.hc-card h2 { font-size: 1.9rem; color: var(--brand); }
+.hc-card p { margin: 0; color: var(--muted); line-height: 1.65; }
+.hc-count { font-size: .85rem; font-weight: 600; color: var(--brand); }
+/* category page */
+.hc-page { padding: 10rem 0 5rem; }
+.hc-cat-head { display: flex; gap: 1.75rem; align-items: flex-start; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2.5rem; }
+.hc-cat-head .hc-icon { width: 76px; height: 76px; flex: none; }
+.hc-cat-head h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+.hc-cat-head p { margin: .6rem 0 0; color: var(--muted); font-size: 1.15rem; line-height: 1.6; }
+.hc-crumbs { display: flex; gap: .5rem; flex-wrap: wrap; font-size: .9rem; color: var(--muted); margin-bottom: 1.75rem; }
+.hc-crumbs a { color: var(--brand); }
+.hc-q { display: block; padding: 2rem 2.25rem; margin-bottom: 1.25rem; border: 1px solid var(--line); border-radius: 18px; background: #fff; color: var(--ink);
+  box-shadow: 0 6px 18px rgba(16,16,30,.04); transition: border-color .2s ease, box-shadow .2s ease; }
+.hc-q:hover { border-color: var(--brand); box-shadow: 0 14px 34px rgba(68,45,250,.12); }
+.hc-q h2 { font-size: 1.6rem; color: var(--brand); margin-bottom: .6rem; }
+.hc-q p { margin: 0 0 1.25rem; color: var(--muted); line-height: 1.6; }
+.hc-by { display: flex; align-items: center; gap: .8rem; }
+.hc-by span.av { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--soft); flex: none; }
+.hc-by span.av img { width: 30px; height: auto; }
+.hc-by b { display: block; font-size: .98rem; color: var(--ink); }
+.hc-by small { color: var(--muted); font-size: .88rem; }
+/* question page */
+.hc-qhero { padding-bottom: 12rem; }
+.hc-qhero h1 { max-width: 880px; margin: 0 auto; font-size: clamp(2.2rem, 4.2vw, 3.4rem); }
+.hc-qhero .hc-by { justify-content: center; margin-top: 2rem; text-align: left; }
+.hc-qhero .hc-by b { color: #fff; } .hc-qhero .hc-by small { color: rgba(255,255,255,.8); }
+.hc-qhero .hc-by span.av { background: #fff; }
+.hc-article { position: relative; z-index: 2; margin: -9rem auto 5rem; padding: clamp(2rem, 5vw, 4rem); border-radius: 24px; background: #fff;
+  border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(16,16,30,.08); }
+.hc-article h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 0 0 1rem; }
+.hc-article h3 { font-family: inherit !important; font-weight: 700 !important; font-size: 1.2rem; letter-spacing: 0; margin: 2.25rem 0 .8rem; }
+.hc-article p { margin: 0 0 1.1rem; line-height: 1.75; color: #333; }
+.hc-article a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.hc-article ul { padding-left: 1.2rem; margin: 0 0 1.25rem; } .hc-article li { margin: .4rem 0; color: #333; }
+.hc-figure { margin: 2rem 0 2.5rem; }
+.hc-figure div { display: grid; place-items: center; aspect-ratio: 16 / 8.5; border-radius: 16px; background: var(--brand); color: rgba(255,255,255,.75); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; }
+.hc-figure figcaption { margin-top: .7rem; font-size: .9rem; color: var(--muted); }
+.hc-help { margin-top: 3rem; padding: 1.75rem 2rem; border-radius: 18px; background: var(--soft); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.hc-help strong { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
+.hc-btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.5rem; border-radius: 999px; background: var(--brand); color: #fff !important; font-weight: 600; text-decoration: none !important; }
+@media (max-width: 900px) { .hc-cards { grid-template-columns: minmax(0, 1fr); margin-top: -5rem; } .hc-hero { padding: 9rem 0 8rem; } }
+@media (max-width: 600px) { .hc-cat-head { flex-direction: column; gap: 1rem; } .hc-q { padding: 1.5rem; } .hc-search button { padding: .9rem 1.2rem; } .hc-search { padding-left: 14px; } }
+</style>"""
+
+SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+
+
+def by() -> str:
+    return ('<div class="hc-by"><span class="av"><img src="/assets/outreach-recruitment-logo.svg" alt=""></span>'
+            '<div><b>Outreach Recruitment</b><small>Author name · Date</small></div></div>')
+
+
+def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, str]]) -> str:
+    s = (ROOT / "about.html").read_text(encoding="utf-8")
+    full = f"{title} | Help Center | Outreach Recruitment"
+    s = re.sub(r"<title>.*?</title>", f"<title>{E(full)}</title>", s, count=1, flags=re.S)
+    for attr, name, value in [("name", "description", desc), ("property", "og:description", desc), ("name", "twitter:description", desc),
+                              ("property", "og:title", full), ("name", "twitter:title", full), ("property", "og:url", url)]:
+        s = re.sub(rf'<meta content="[^"]*" {attr}="{re.escape(name)}"/>', f'<meta content="{E(value)}" {attr}="{name}"/>', s)
+    s = re.sub(r'(<link href=")[^"]*(" rel="canonical"/>)', rf"\g<1>{url}\g<2>", s, count=1)
+    if not READY:
+        s = s.replace('<meta content="width=device-width, initial-scale=1" name="viewport"/>',
+                      '<meta content="width=device-width, initial-scale=1" name="viewport"/>\n<meta content="noindex, follow" name="robots"/>', 1)
+    ld = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + h} for i, (n, h) in enumerate(crumbs)]}
+    s = re.sub(r'<script type="application/ld\+json">.*?"AboutPage".*?</script>',
+               f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>', s, count=1, flags=re.S)
+    s = s.replace("</head>", CSS + "\n</head>", 1)
+    a = s.index('<main class="main">') + len('<main class="main">')
+    b = s.index("</main>")
+    s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
+    s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
+    s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=1"></script>\n</body>', 1)
+    return s
+
+
+def crumbs_html(items: list[tuple[str, str]]) -> str:
+    parts = [f'<a href="{h}">{E(n)}</a>' for n, h in items[:-1]] + [f"<span>{E(items[-1][0])}</span>"]
+    return '<nav class="hc-crumbs" aria-label="Breadcrumb">' + "<span>/</span>".join(parts) + "</nav>"
+
+
+def write(rel: str, text: str) -> None:
+    p = ROOT / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(text, encoding="utf-8")
+
+
+def main() -> None:
+    counts = {c: sum(1 for q in QUESTIONS if q[1] == c) for c, _ in CATEGORIES}
+    cards = "".join(f'<a class="hc-card" href="/help-center/{c}/"><span class="hc-icon">{ICONS[c]}</span><h2>{E(n)}</h2>'
+                    f'<p>{LOREM}</p><span class="hc-count">{counts[c]} articles</span></a>' for c, n in CATEGORIES)
+    home = f"""<section class="hc-hero"><div class="hc-wrap"><h1>Help Center</h1><p>Have questions? Search through our Help Center.</p>
+  <form class="hc-search" role="search" action="/help-center/" onsubmit="return false"><label for="hc-q" style="position:absolute;left:-9999px">Search</label>
+    {SEARCH_ICON}<input id="hc-q" type="search" placeholder="Search for questions or topics…" autocomplete="off"><button type="submit">Search</button></form></div></section>
+<div class="hc-wrap"><div class="hc-cards">{cards}</div></div>"""
+    write("help-center/index.html", page("Help Center", "Answers to common questions about jobs in Malta, hiring staff and studying in Malta.",
+                                        f"{SITE}/help-center/", home, [("Home", "/"), ("Help Center", "/help-center/")]))
+    for c, name in CATEGORIES:
+        qs = "".join(f'<a class="hc-q" href="/help-center/question/{s}/"><h2>{E(t)}</h2><p>{LOREM2}</p>{by()}</a>' for s, cc, t in QUESTIONS if cc == c)
+        trail = [("Home", "/"), ("Help Center", "/help-center/"), (name, f"/help-center/{c}/")]
+        content = f"""<div class="hc-page"><div class="hc-narrow">{crumbs_html(trail)}
+  <div class="hc-cat-head"><span class="hc-icon">{ICONS[c]}</span><div><h1>{E(name)}</h1><p>{LOREM}</p></div></div>{qs}
+  <div class="hc-help"><strong>Can't find your answer?</strong><a class="hc-btn" href="#help-chat" data-topic="{E(name)}">Ask our team</a></div></div></div>"""
+        write(f"help-center/{c}/index.html", page(name, f"{name} — questions and answers from Outreach Recruitment.", f"{SITE}/help-center/{c}/", content, trail))
+    for s, c, t in QUESTIONS:
+        name = dict(CATEGORIES)[c]
+        trail = [("Home", "/"), ("Help Center", "/help-center/"), (name, f"/help-center/{c}/"), (t, f"/help-center/question/{s}/")]
+        body = f"""<h2>Section heading</h2><p>{LOREM2} <a href="/jobs/">Example link</a>, neque. Viverra purus pretium elementum tincidunt mollis.</p>
+<p>{LOREM2}</p><figure class="hc-figure"><div>Image</div><figcaption>Image caption.</figcaption></figure>
+<h2>Section heading</h2><p>{LOREM2}</p><h3>Sub heading</h3><p>{LOREM2}</p>
+<ul><li>List item</li><li>List item</li><li>List item</li><li>List item</li></ul>
+<h3>Sub heading</h3><p>{LOREM2}</p><figure class="hc-figure"><div>Image</div><figcaption>Image caption.</figcaption></figure>
+<h2>Section heading</h2><p>{LOREM2}</p>
+<div class="hc-help"><strong>Still need help?</strong><a class="hc-btn" href="#help-chat" data-topic="{E(name)}">Ask our team</a></div>"""
+        content = f"""<section class="hc-hero hc-qhero"><div class="hc-wrap"><h1>{E(t)}</h1><p>{LOREM2}</p>{by()}</div></section>
+<div class="hc-narrow"><article class="hc-article">{crumbs_html(trail)}{body}</article></div>"""
+        write(f"help-center/question/{s}/index.html", page(t, LOREM2, f"{SITE}/help-center/question/{s}/", content, trail))
+    print(f"help center: 1 home, {len(CATEGORIES)} categories, {len(QUESTIONS)} questions ({'indexable' if READY else 'noindex'})")
+
+
+if __name__ == "__main__":
+    main()

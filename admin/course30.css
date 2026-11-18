@@ -368,3 +368,14 @@ label.btn { font-weight: 600; }
   .notes-index #notes-list { grid-template-columns: 1fr; }
   .note-toolbar button, .note-toolbar label { font-size: .75rem; padding: 5px 7px; }
 }
+/* Help Center Inbox */
+.hd-item { border:1px solid var(--line, #e5e5e5); border-radius:14px; padding:16px 18px; margin:12px 0; background:#fff; }
+.hd-item.new { border-left:4px solid #442DFA; }
+.hd-item header { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.hd-topic { display:inline-block; margin-left:6px; padding:2px 9px; border-radius:999px; background:#eeebff; color:#442DFA; font-size:.75rem; font-weight:700; }
+.hd-meta { color:var(--muted, #777); font-size:.85rem; }
+.hd-item dl { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:12px 0; }
+.hd-item dt { font-size:.75rem; color:var(--muted, #777); font-weight:650; } .hd-item dd { margin:0; font-weight:600; }
+.hd-msg { white-space:pre-wrap; background:var(--soft, #f6f6f6); border-radius:10px; padding:12px 14px; margin:0 0 12px; }
+.hd-item footer { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+@media(max-width:760px){ .hd-item dl { grid-template-columns:1fr; } }
