@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T10:03:56.757433+01:00",
+  "generated_at": "2026-11-18T11:53:01.449563+01:00",
   "checks": {
     "gsc": {
       "ok": true,
@@ -15,7 +15,7 @@
     },
     "audit": {
       "ok": true,
-      "issues": 2498
+      "issues": 2539
     },
     "sectors": {
       "ok": true,
@@ -26,11 +26,11 @@
       "rows": 125
     },
     "experiments": {
-      "new": 6
+      "new": 500
     },
     "supabase": {
       "ok": true,
-      "alerts": 27
+      "alerts": 21
     }
   },
   "warnings": [],

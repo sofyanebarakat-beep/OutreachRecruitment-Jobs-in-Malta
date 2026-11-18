@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-11-18
 
-Generated: 2026-11-18T09:47:27
+Generated: 2026-11-18T11:36:16
 
 ## Summary
 
@@ -142,7 +142,7 @@ Generated: 2026-11-18T09:47:27
 
 ## Google Search Console Action Plan
 
-1. Fix 46 job URL(s) not indexed or not passing URL Inspection
+1. Fix 47 job URL(s) not indexed or not passing URL Inspection
 2. Fix 46 job URL(s) with zero Search Console impressions
 3. Fix 3 job URL(s) ranking worse than average position 20
 4. Fix 26 job URL(s) missing target keyword visibility in top queries
@@ -238,7 +238,7 @@ Generated: 2026-11-18T09:47:27
 - **[Client Accountant](https://outreachrecruitment.net/jobs/client-accountant-2)**: target `Client Accountant jobs in Malta`, top query `accounting recruitment malta`
 - **[Application Developer (Drupal)](https://outreachrecruitment.net/jobs/application-developer-drupal)**: target `Application Developer (Drupal) jobs in Malta`, top query `drupal malta`
 - **[Customer Contact Agent](https://outreachrecruitment.net/jobs/customer-contact-agent)**: target `Customer Contact Agent jobs in Malta`, top query `call agent jobs`
-- **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)**: target `HR Administration Officer jobs in Malta`, top query `hr administrator`
+- **[HR Administration Officer](https://outreachrecruitment.net/jobs/hr-administration-officer)**: target `HR Administration Officer jobs in Malta`, top query `hr admin jobs`
 - **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper)**: target `Housekeeper jobs in Malta`, top query `site:outreachrecruitment.net`
 - **[Structural Engineer](https://outreachrecruitment.net/jobs/structural-engineer)**: target `Structural Engineer jobs in Malta`, top query `structural engineer`
 - **[Sales Representative in Renewables](https://outreachrecruitment.net/jobs/sales-representative-in-renewables)**: target `Sales Representative in Renewables jobs in Malta`, top query `i want to sell solar panels`

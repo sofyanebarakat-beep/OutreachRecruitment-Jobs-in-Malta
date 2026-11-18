@@ -252,4 +252,286 @@ Git: pushed to GitHub (main)
   [109/131] motor-vehicle-mechanictechnician … OK
   [110/131] automotive-parts-personnel … OK
   [111/131] corporate-insurance-associate … OK
-  [112/131] wood-painting-finishing-specialist … 
+  [112/131] wood-painting-finishing-specialist … OK
+  [113/131] delivery-driver-malta-c-license … OK
+  [114/131] health-claims-associate … OK
+  [115/131] delivery-drivers-c1-malta-license … OK
+  [116/131] auditor … OK
+  [117/131] cnc-machine-operator … OK
+  [118/131] room-attendents … OK
+  [119/131] skilled-carpenters … OK
+  [120/131] delivery-person-with-driving-licence-c1 … OK
+  [121/131] commercial-insurance-associate … OK
+  [122/131] aluminum-install-and-fabrication-foreman … OK
+  [123/131] audit-senior … OK
+  [124/131] volvo-penta-mechanic … OK
+  [125/131] sign-assembler-installer … OK
+  [126/131] hotel-porter … OK
+  [127/131] boat-maintenance … OK
+  [128/131] semi-senior-accountant … OK
+  [129/131] housekeeper-2 … OK
+  [130/131] it-support-executive-2 … OK
+  [131/131] accounts-senior-2 … OK
+
+[4/5] Checking sitemap …
+  Found 131 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 94.6%
+============================================================
+  Careers page: 132 advertised, 132 scraped
+  Website:      131 jobs
+  Missing jobs: 6
+    + Restoration Worker
+    + Mini Bus Drivers License D
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    + Heavy equipment mech
+  Extra jobs:   3
+    - Mini Bus Driver – Licence D
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+  Title diffs:  3
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   32
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 26
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Project Manager' ≈ 'HVAC Project Manager' (86%)
+    'Leasing Administration Officer' ≈ 'HR Administration Officer' (84%)
+    'Customer Care Agent' ≈ 'Customer Contact Agent' (83%)
+    'Heavy Machine Operator' ≈ 'CNC Machine Operator' (81%)
+
+  [Auto-Close DISABLED] 3 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+    - Mini Bus Driver – Licence D
+  State saved — tracking 3 extra job(s)
+
+  Fetching details for 6 missing job(s) …
+    Restoration Worker … OK
+    Mini Bus Drivers License D … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … /Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+OK
+
+[GSC] Checking 131 job URL(s) with Search Console …
+  [1/131] accountant … 1 issue(s)
+  [2/131] billing-administrator … 1 issue(s)
+  [3/131] architect-draughtsperson … 1 issue(s)
+  [4/131] residential-finishing-projects-manager … 1 issue(s)
+  [5/131] sales-director … 1 issue(s)
+  [6/131] workshop-manager … 1 issue(s)
+  [7/131] chef-de-partie-breakfast … 1 issue(s)
+  [8/131] workshop-team-leader … 1 issue(s)
+  [9/131] aftersales-administrator … 1 issue(s)
+  [10/131] senior-technician … 1 issue(s)
+  [11/131] accounts-clerk … 1 issue(s)
+  [12/131] sales-manager-gzira … 1 issue(s)
+  [13/131] senior-corporate-administrator … 1 issue(s)
+  [14/131] hotel-general-manager … 1 issue(s)
+  [15/131] workshop-assistant-manager … 1 issue(s)
+  [16/131] aftersales-receptionist … 1 issue(s)
+  [17/131] warranty-administrator … 1 issue(s)
+  [18/131] back-office-administrator … 1 issue(s)
+  [19/131] leasing-administration-officer … 1 issue(s)
+  [20/131] sushi-chef … 2 issue(s)
+  [21/131] senior-clerk … 1 issue(s)
+  [22/131] business-development-manager-horeca … 1 issue(s)
+  [23/131] customer-experience-assistant … 1 issue(s)
+  [24/131] pdi-leading-hand … 1 issue(s)
+  [25/131] facilities-maintenance-and-health-and-safety-manager … 1 issue(s)
+  [26/131] maintenance-person … 1 issue(s)
+  [27/131] retail-shop-supervisor … 1 issue(s)
+  [28/131] accounting-officer … 1 issue(s)
+  [29/131] host-receptionist … 1 issue(s)
+  [30/131] cleaner-marsa … 1 issue(s)
+  [31/131] truck-trailer-driver … 1 issue(s)
+  [32/131] hotel-maintenance-assistant … 1 issue(s)
+  [33/131] housekeeper-rabat … 1 issue(s)
+  [34/131] front-office-executive … OK
+  [35/131] beauty-specialist-nail-technician … 1 issue(s)
+  [36/131] marine-mechanical-engineer … OK
+  [37/131] maintenance-manager-mellieha … 1 issue(s)
+  [38/131] restaurant-manager-italian-speaking … 1 issue(s)
+  [39/131] gypsum-installers … 1 issue(s)
+  [40/131] mini-bus-driver-licence-d … OK
+  [41/131] proposal-engineer-energy-solutions … 1 issue(s)
+  [42/131] storekeeper-zebbug … OK
+  [43/131] driver-license-b … 1 issue(s)
+  [44/131] forklift-operator … OK
+  [45/131] front-office-agent … 1 issue(s)
+  [46/131] banqueting-fb-supervisor … 1 issue(s)
+  [47/131] assistance-operations-coordinator … OK
+  [48/131] procurement-officer … OK
+  [49/131] heavy-equipment-mechanic-2 … 1 issue(s)
+  [50/131] learning-development-executive-hybrid … OK
+  [51/131] auto-electrician-heavy-vehicles … 1 issue(s)
+  [52/131] heavy-equipment-mechanic … 1 issue(s)
+  [53/131] steel-shutter-installer … 1 issue(s)
+  [54/131] public-area-cleaner … OK
+  [55/131] head-chef-steakhouse … 1 issue(s)
+  [56/131] senior-waiter-sommelier … 1 issue(s)
+  [57/131] deli-counter-assistant-salumeria-specialist … OK
+  [58/131] chef-de-partie-4 … 1 issue(s)
+  [59/131] ship-chandler … 1 issue(s)
+  [60/131] fleet-mechanical-superintendent … 1 issue(s)
+  [61/131] customer-care-agent … 1 issue(s)
+  [62/131] hvac-technician … 1 issue(s)
+  [63/131] delivery-man … 1 issue(s)
+  [64/131] head-of-hvac-technicians … 1 issue(s)
+  [65/131] tank-cleaner … 1 issue(s)
+  [66/131] welder-burner-pipe-fitter … 1 issue(s)
+  [67/131] shipyard-sprayer-painter … 1 issue(s)
+  [68/131] marine-carpenter … 1 issue(s)
+  [69/131] electronic-technician … 1 issue(s)
+  [70/131] commercial-divers … 1 issue(s)
+  [71/131] marine-mechanical-foreman … 1 issue(s)
+  [72/131] administration-specialist … 1 issue(s)
+  [73/131] marine-turner-malta … 1 issue(s)
+  [74/131] plate-shop-foreman-malta … 1 issue(s)
+  [75/131] quality-engineer-marine-malta … 1 issue(s)
+  [76/131] client-accountant-2 … 2 issue(s)
+  [77/131] application-developer-drupal … 2 issue(s)
+  [78/131] fleet-tools-facility-manager … 1 issue(s)
+  [79/131] sales-office-coordinator … 1 issue(s)
+  [80/131] customer-contact-agent … 1 issue(s)
+  [81/131] hr-administration-officer … 1 issue(s)
+  [82/131] project-manager … 1 issue(s)
+  [83/131] estimator … 1 issue(s)
+  [84/131] hsse-coordinator … 1 issue(s)
+  [85/131] housekeeper … 1 issue(s)
+  [86/131] driver-runner-washer … 1 issue(s)
+  [87/131] supervisor … 1 issue(s)
+  [88/131] structural-engineer … 2 issue(s)
+  [89/131] senior-quantity-estimator-me … 1 issue(s)
+  [90/131] sales-representative-in-renewables … 1 issue(s)
+  [91/131] hvac-project-manager … OK
+  [92/131] hvac-sales-representative … 1 issue(s)
+  [93/131] maintenance-technician-electrical-licence-a-or-b … 1 issue(s)
+  [94/131] general-maintenance-technician … 1 issue(s)
+  [95/131] counter-assistant … 1 issue(s)
+  [96/131] kitchen-assistant … 1 issue(s)
+  [97/131] heavy-machine-operator … 1 issue(s)
+  [98/131] client-accountant … 1 issue(s)
+  [99/131] housekeeping-attendant … 1 issue(s)
+  [100/131] tax-manager … 1 issue(s)
+  [101/131] automotive-service-advisor … OK
+  [102/131] high-voltage-motor-vehicle-technician … 1 issue(s)
+  [103/131] audit-senior-associate … 1 issue(s)
+  [104/131] customer-contact-centre-representative … 1 issue(s)
+  [105/131] builders-and-shutterers … 1 issue(s)
+  [106/131] draughtsperson … 1 issue(s)
+  [107/131] sales-executive-luxury-retail … 1 issue(s)
+  [108/131] bottling-operator … 1 issue(s)
+  [109/131] motor-vehicle-mechanictechnician … 1 issue(s)
+  [110/131] automotive-parts-personnel … 1 issue(s)
+  [111/131] corporate-insurance-associate … 2 issue(s)
+  [112/131] wood-painting-finishing-specialist … 1 issue(s)
+  [113/131] delivery-driver-malta-c-license … 1 issue(s)
+  [114/131] health-claims-associate … 1 issue(s)
+  [115/131] delivery-drivers-c1-malta-license … 1 issue(s)
+  [116/131] auditor … 1 issue(s)
+  [117/131] cnc-machine-operator … OK
+  [118/131] room-attendents … 1 issue(s)
+  [119/131] skilled-carpenters … 1 issue(s)
+  [120/131] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [121/131] commercial-insurance-associate … 2 issue(s)
+  [122/131] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [123/131] audit-senior … 1 issue(s)
+  [124/131] volvo-penta-mechanic … 1 issue(s)
+  [125/131] sign-assembler-installer … 1 issue(s)
+  [126/131] hotel-porter … OK
+  [127/131] boat-maintenance … OK
+  [128/131] semi-senior-accountant … OK
+  [129/131] housekeeper-2 … 1 issue(s)
+  [130/131] it-support-executive-2 … 2 issue(s)
+  [131/131] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-18.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-18.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-18.html
+
+  Email skipped. To send manually, remove --no-email / --dry-run flag.
+
+=== Articles: Sources + By the numbers ===
+0/0 articles updated (sources + facts); 132 open jobs, top: Engineering & Maintenance
+
+=== Help Center: open-jobs list + bubble on every page ===
+open-jobs.json: 132 jobs, 25 KB
+help widget: 2 page(s) updated
+pushed
+
+=== SEO Course Automation ===
+GA4 added to 0 content pages; conversion events added to 0 pages.
+Built 11 service records
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-11-18T11:53:01.449563+01:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-11-16",
+      "days": 150,
+      "queries": 1000,
+      "pages": 430
+    },
+    "ga4": {
+      "ok": true,
+      "days": 150,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 2539
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 17
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 125
+    },
+    "experiments": {
+      "new": 500
+    },
+    "supabase": {
+      "ok": true,
+      "alerts": 21
+    }
+  },
+  "warnings": [],
+  "kpi_latest_28d": {
+    "start": "2026-10-20",
+    "end": "2026-11-16",
+    "clicks28": 1221,
+    "impressions28": 21722,
+    "ctr": 5.62,
+    "position": 10.9
+  },
+  "baseline": {
+    "date": "2026-10-13",
+    "clicks28": 2017,
+    "impressions28": 24004,
+    "ctr": 8.4,
+    "position": 9.4,
+    "verified": true,
+    "auto": true,
+    "note": "Verified automatically from the Search Console API: 2026-09-16 to 2026-10-13 (final data, web search)."
+  }
+}
+Finished: Wed Nov 18 11:53:20 CET 2026 | Exit: 0
