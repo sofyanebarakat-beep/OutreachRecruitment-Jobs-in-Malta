@@ -1,13 +1,13 @@
 title,url,problem
-Accountant,https://outreachrecruitment.net/jobs/accountant,URL is unknown to Google
-Billing Administrator,https://outreachrecruitment.net/jobs/billing-administrator,URL is unknown to Google
-Architect / Draughtsperson,https://outreachrecruitment.net/jobs/architect-draughtsperson,URL is unknown to Google
-Residential Finishing Projects Manager,https://outreachrecruitment.net/jobs/residential-finishing-projects-manager,URL is unknown to Google
-Sales Director,https://outreachrecruitment.net/jobs/sales-director,URL is unknown to Google
-Workshop Manager,https://outreachrecruitment.net/jobs/workshop-manager,URL is unknown to Google
+Accountant,https://outreachrecruitment.net/jobs/accountant,Alternate page with proper canonical tag
+Billing Administrator,https://outreachrecruitment.net/jobs/billing-administrator,Alternate page with proper canonical tag
+Architect / Draughtsperson,https://outreachrecruitment.net/jobs/architect-draughtsperson,Alternate page with proper canonical tag
+Residential Finishing Projects Manager,https://outreachrecruitment.net/jobs/residential-finishing-projects-manager,Alternate page with proper canonical tag
+Sales Director,https://outreachrecruitment.net/jobs/sales-director,Alternate page with proper canonical tag
+Workshop Manager,https://outreachrecruitment.net/jobs/workshop-manager,Alternate page with proper canonical tag
 Chef de Partie (Breakfast),https://outreachrecruitment.net/jobs/chef-de-partie-breakfast,Alternate page with proper canonical tag
 Workshop Team Leader,https://outreachrecruitment.net/jobs/workshop-team-leader,URL is unknown to Google
-Aftersales Administrator,https://outreachrecruitment.net/jobs/aftersales-administrator,URL is unknown to Google
+Aftersales Administrator,https://outreachrecruitment.net/jobs/aftersales-administrator,Indexed page has zero impressions in selected GSC window
 Senior Technician,https://outreachrecruitment.net/jobs/senior-technician,URL is unknown to Google
 Accounts Clerk,https://outreachrecruitment.net/jobs/accounts-clerk,URL is unknown to Google
 Sales Manager,https://outreachrecruitment.net/jobs/sales-manager-gzira,URL is unknown to Google
@@ -52,7 +52,7 @@ Ship Chandler,https://outreachrecruitment.net/jobs/ship-chandler,Indexed page ha
 Fleet Mechanical Superintendent,https://outreachrecruitment.net/jobs/fleet-mechanical-superintendent,Target keyword not visible in top Search Console queries
 Customer Care Agent,https://outreachrecruitment.net/jobs/customer-care-agent,Target keyword not visible in top Search Console queries
 HVAC Technician,https://outreachrecruitment.net/jobs/hvac-technician,Alternate page with proper canonical tag
-Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,Page with redirect
+Delivery Man,https://outreachrecruitment.net/jobs/delivery-man,Indexed page has zero impressions in selected GSC window
 Head of HVAC Technicians,https://outreachrecruitment.net/jobs/head-of-hvac-technicians,Page with redirect
 Tank Cleaner,https://outreachrecruitment.net/jobs/tank-cleaner,Alternate page with proper canonical tag
 Welder / Burner / Pipe Fitter,https://outreachrecruitment.net/jobs/welder-burner-pipe-fitter,Alternate page with proper canonical tag
@@ -63,10 +63,11 @@ Commercial Divers,https://outreachrecruitment.net/jobs/commercial-divers,Alterna
 Marine Mechanical Foreman,https://outreachrecruitment.net/jobs/marine-mechanical-foreman,Alternate page with proper canonical tag
 Administration Specialist,https://outreachrecruitment.net/jobs/administration-specialist,Alternate page with proper canonical tag
 Marine Turner,https://outreachrecruitment.net/jobs/marine-turner-malta,Indexed page has zero impressions in selected GSC window
-Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman-malta,Indexed page has zero impressions in selected GSC window
+Plate Shop Foreman,https://outreachrecruitment.net/jobs/plate-shop-foreman-malta,Alternate page with proper canonical tag
 Quality Engineer,https://outreachrecruitment.net/jobs/quality-engineer-marine-malta,Indexed page has zero impressions in selected GSC window
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,Average position worse than 20 (28.7)
 Client Accountant,https://outreachrecruitment.net/jobs/client-accountant-2,Target keyword not visible in top Search Console queries
+Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,Alternate page with proper canonical tag
 Application Developer (Drupal),https://outreachrecruitment.net/jobs/application-developer-drupal,Target keyword not visible in top Search Console queries
 "Fleet, Tools and Facility Manager",https://outreachrecruitment.net/jobs/fleet-tools-facility-manager,Indexed page has zero impressions in selected GSC window
 Sales Office Coordinator,https://outreachrecruitment.net/jobs/sales-office-coordinator,Alternate page with proper canonical tag
@@ -76,7 +77,7 @@ Project Manager,https://outreachrecruitment.net/jobs/project-manager,Indexed pag
 Estimator,https://outreachrecruitment.net/jobs/estimator,Indexed page has zero impressions in selected GSC window
 HSSE Coordinator,https://outreachrecruitment.net/jobs/hsse-coordinator,Indexed page has zero impressions in selected GSC window
 Housekeeper,https://outreachrecruitment.net/jobs/housekeeper,Target keyword not visible in top Search Console queries
-Driver / Runner / Washer,https://outreachrecruitment.net/jobs/driver-runner-washer,Indexed page has zero impressions in selected GSC window
+Driver / Runner / Washer,https://outreachrecruitment.net/jobs/driver-runner-washer,Alternate page with proper canonical tag
 Supervisor,https://outreachrecruitment.net/jobs/supervisor,Indexed page has zero impressions in selected GSC window
 Structural Engineer,https://outreachrecruitment.net/jobs/structural-engineer,Target keyword not visible in top Search Console queries
 Senior Quantity Estimator (M&E),https://outreachrecruitment.net/jobs/senior-quantity-estimator-me,Indexed page has zero impressions in selected GSC window

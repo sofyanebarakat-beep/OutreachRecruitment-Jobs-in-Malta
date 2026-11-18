@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-18",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "e18a7288-1323-4e0f-90c0-48d487a1fcbb",
+      "title": "Restoration Worker",
+      "city": "Mosta",
+      "slug": "restoration-worker",
+      "salary_label": "€1,700 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e18a7288-1323-4e0f-90c0-48d487a1fcbb",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 132,
+  "site_open_before": 131,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 131,
+    "ok": 127,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "site_open_after": 132,
+  "salary_coverage": {
+    "open": 131,
+    "with_salary": 34
+  }
+}
