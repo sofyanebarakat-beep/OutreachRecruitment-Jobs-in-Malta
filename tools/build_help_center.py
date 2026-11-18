@@ -29,6 +29,11 @@ ICONS = {
     "hire": '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="17" r="7" fill="#442DFA"/><path d="M5 38c1.5-7 6.5-11 13-11s11.5 4 13 11" fill="#442DFA"/><circle cx="33" cy="15" r="5" fill="#1c2623"/><path d="M28 26c6 0 11 3 13 10" fill="none" stroke="#1c2623" stroke-width="3" stroke-linecap="round"/></svg>',
     "study-in-malta": '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 18 24 9l20 9-20 9z" fill="#442DFA"/><path d="M12 23v9c0 3 5 6 12 6s12-3 12-6v-9" fill="none" stroke="#1c2623" stroke-width="3"/><path d="M44 18v11" stroke="#1c2623" stroke-width="3" stroke-linecap="round"/></svg>',
 }
+DESCRIPTIONS = {
+    "jobs-in-malta": "Applying for jobs, documents and job alerts.",
+    "hire": "How we help employers in Malta find the right people.",
+    "study-in-malta": "Courses, visas and studying in Malta.",
+}
 CATEGORIES = [
     ("jobs-in-malta", "Jobs in Malta"),
     ("hire", "Hire"),
@@ -171,7 +176,7 @@ body { background: #fff; }
 .hc-help strong { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
 .hc-btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.5rem; border-radius: 999px; background: var(--brand); color: #fff !important; font-weight: 600; text-decoration: none !important; }
 @media (max-width: 900px) { .hc-cards { grid-template-columns: minmax(0, 1fr); margin-top: -5rem; } .hc-hero { padding: 9rem 0 8rem; } }
-@media (max-width: 600px) { .hc-ask { flex-direction: column; align-items: stretch; } .hc-ask button { width: 100%; } .hc-cat-head { flex-direction: column; gap: 1rem; } .hc-q { padding: 1.5rem; } .hc-search button { padding: .9rem 1.2rem; } .hc-search { padding-left: 14px; } }
+@media (max-width: 600px) { .hc-qhero { padding-bottom: 7rem; } .hc-article { margin-top: -4.5rem; } .hc-ask { flex-direction: column; align-items: stretch; } .hc-ask button { width: 100%; } .hc-cat-head { flex-direction: column; gap: 1rem; } .hc-q { padding: 1.5rem; } .hc-search button { padding: .9rem 1.2rem; } .hc-search { padding-left: 14px; } }
 </style>"""
 
 SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
@@ -288,7 +293,7 @@ def main() -> None:
             QUESTIONS.extend(x for x in PLACEHOLDERS if x[1] == c)
     counts = {c: sum(1 for q in QUESTIONS if q[1] == c) for c, _ in CATEGORIES}
     cards = "".join(f'<a class="hc-card" href="/help-center/{c}/"><span class="hc-icon">{ICONS[c]}</span><h2>{E(n)}</h2>'
-                    f'<p>{LOREM}</p><span class="hc-count">{counts[c]} article{"" if counts[c] == 1 else "s"}</span></a>' for c, n in CATEGORIES)
+                    f'<p>{DESCRIPTIONS[c]}</p><span class="hc-count">{counts[c]} article{"" if counts[c] == 1 else "s"}</span></a>' for c, n in CATEGORIES)
     home = f"""<section class="hc-hero"><div class="hc-wrap"><h1>Help Center</h1><p>Have questions? Search through our Help Center.</p>
   <div class="hc-search-box"><form class="hc-search" role="search" action="/help-center/" id="hc-form"><label for="hc-q" style="position:absolute;left:-9999px">Search</label>
     {SEARCH_ICON}<input id="hc-q" type="search" placeholder="Search for questions or topics…" autocomplete="off" aria-controls="hc-results" aria-expanded="false"><button type="submit">Search</button></form>
@@ -304,7 +309,7 @@ def main() -> None:
                      for s, cc, t in QUESTIONS if cc == c)
         trail = [("Home", "/"), ("Help Center", "/help-center/"), (name, f"/help-center/{c}/")]
         content = f"""<div class="hc-page"><div class="hc-narrow">{crumbs_html(trail)}
-  <div class="hc-cat-head"><span class="hc-icon">{ICONS[c]}</span><div><h1>{E(name)}</h1><p>{LOREM}</p></div></div>{qs}
+  <div class="hc-cat-head"><span class="hc-icon">{ICONS[c]}</span><div><h1>{E(name)}</h1><p>{DESCRIPTIONS[c]}</p></div></div>{qs}
   <div class="hc-help"><strong>Can't find your answer?</strong><a class="hc-btn" href="#help-chat" data-topic="{E(name)}">Ask our team</a></div></div></div>"""
         write(f"help-center/{c}/index.html", page(name, f"{name} — questions and answers from Outreach Recruitment.", f"{SITE}/help-center/{c}/", content, trail))
     for s, c, t in QUESTIONS:
@@ -313,7 +318,7 @@ def main() -> None:
         if s in REAL:
             q = REAL[s]
             body = (md(q["answer"]) + f'<div class="hc-help"><strong>Still need help?</strong><a class="hc-btn" href="#help-chat" data-topic="{E(name)}">Ask our team</a></div>')
-            content = f"""<section class="hc-hero hc-qhero"><div class="hc-wrap"><h1>{E(t)}</h1><p>{E(excerpt(q["answer"], 200))}</p>{by(q)}</div></section>
+            content = f"""<section class="hc-hero hc-qhero"><div class="hc-wrap"><h1>{E(t)}</h1>{by(q)}</div></section>
 <div class="hc-narrow"><article class="hc-article">{crumbs_html(trail)}{body}</article></div>"""
             write(f"help-center/question/{s}/index.html", page(t, excerpt(q["answer"], 155), f"{SITE}/help-center/question/{s}/", content, trail))
             continue
