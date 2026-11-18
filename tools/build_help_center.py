@@ -66,20 +66,27 @@ def md(text: str) -> str:
         t = E(t)
         t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
         return re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+|/[^)\s]*)\)", r'<a href="\2">\1</a>', t)
-    out = []
-    for block in re.split(r"\n\s*\n", str(text or "").replace("\r", "").strip()):
-        lines = [l.strip() for l in block.split("\n") if l.strip()]
-        if not lines:
-            continue
-        if all(re.match(r"^[-*]\s+", l) for l in lines):
-            items = [inline(re.sub(r"^[-*]\s+", "", l)) for l in lines]
-            out.append("<ul>" + "".join("<li>" + i + "</li>" for i in items) + "</ul>")
-        elif lines[0].startswith("### "):
-            out.append(f"<h3>{inline(lines[0][4:])}</h3>" + (f"<p>{inline(' '.join(lines[1:]))}</p>" if lines[1:] else ""))
-        elif lines[0].startswith("## "):
-            out.append(f"<h2>{inline(lines[0][3:])}</h2>" + (f"<p>{inline(' '.join(lines[1:]))}</p>" if lines[1:] else ""))
-        else:
-            out.append(f"<p>{inline(' '.join(lines))}</p>")
+    out, para, items = [], [], []
+    def flush():
+        if para:
+            out.append(f"<p>{inline(' '.join(para))}</p>"); para.clear()
+        if items:
+            out.append("<ul>" + "".join("<li>" + i + "</li>" for i in items) + "</ul>"); items.clear()
+    for raw in str(text or "").replace("\r", "").split("\n"):
+        l = raw.strip()
+        if not l:
+            flush(); continue
+        if l.startswith("### ") or l.startswith("## "):
+            flush(); lvl = 3 if l.startswith("### ") else 2
+            out.append(f"<h{lvl}>{inline(l[lvl + 1:])}</h{lvl}>"); continue
+        if re.match(r"^[-*]\s+", l):
+            if para:
+                out.append(f"<p>{inline(' '.join(para))}</p>"); para.clear()
+            items.append(inline(re.sub(r"^[-*]\s+", "", l))); continue
+        if items:
+            flush()
+        para.append(l)
+    flush()
     return "\n".join(out)
 
 
