@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-18",
+  "created": [],
+  "reopened": [],
+  "closed": [],
+  "updated": [],
+  "failed": [
+    {
+      "uuid": "e18a7288-1323-4e0f-90c0-48d487a1fcbb",
+      "title": "Restoration Worker",
+      "city": "Mosta",
+      "slug": "restoration-worker",
+      "salary_label": "€1,700 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e18a7288-1323-4e0f-90c0-48d487a1fcbb",
+      "reason": "the page was not built (not added to the registry)"
+    }
+  ],
+  "held": [],
+  "notes": [
+    "Website shows 131 open jobs vs 132 on the careers page — see 'Needs your attention'."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 132,
+  "site_open_before": 131,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 131,
+    "ok": 127,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 131,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 131,
+  "salary_coverage": {
+    "open": 131,
+    "with_salary": 34
+  }
+}
