@@ -401,3 +401,4 @@ label.btn { font-weight: 600; }
 .hd-modal label { display:flex; flex-direction:column; gap:5px; font-weight:650; font-size:.88rem; flex:1; }
 .hd-modal input, .hd-modal textarea, .hd-modal select { font:inherit; font-weight:400; padding:9px 11px; border:1px solid var(--line, #ddd); border-radius:10px; }
 @media(max-width:760px){ .hd-two { grid-template-columns:1fr; } .hd-tpl { grid-template-columns:1fr; } }
+.hd-topic.hd-fraud { background:#fef3f2; color:#b42318; }

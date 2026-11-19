@@ -56,6 +56,16 @@
     ".orh-caret::after{content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#442DFA;animation:orh-blink .8s steps(1) infinite}" +
     "@keyframes orh-blink{50%{opacity:0}}" +
     "@media(prefers-reduced-motion:reduce){.orh-wait{opacity:1;transform:none}.orh-typing i{animation:none}}" +
+    ".orh-note{display:flex;gap:8px;align-items:flex-start;margin:0;padding:10px 12px;border-radius:12px;background:#fef3f2;color:#7a271a;font-size:13px;line-height:1.45}.orh-note a{color:#b42318;font-weight:600}" +
+    ".orh-opt.warn{border-color:#f4c7c3;background:#fff8f7}.orh-opt.warn span{color:#b42318}" +
+    ".orfb{position:fixed;top:0;left:0;right:0;z-index:100001;display:flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:6px 44px 6px 14px;background:#b42318;color:#fff;font:600 14px/1.35 'BDO Grotesk',Arial,sans-serif;text-align:center;box-sizing:border-box}" +
+    ".orfb a{color:#fff;text-decoration:underline;text-underline-offset:3px}.orfb button{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:18px;line-height:1;cursor:pointer}" +
+    ".orfb button:hover{background:rgba(255,255,255,.3)}html.orfb-on body{padding-top:var(--orfb-h,40px)!important}html.orfb-on.orfb-navfix .navigation.w-nav{top:var(--orfb-h,40px)!important}" +
+    "@media(max-width:600px){.orfb{font-size:13px;justify-content:flex-start;text-align:left}}" +
+    ".orfb.in-nav{box-sizing:border-box;max-width:100%;position:relative;top:auto;left:auto;right:auto;z-index:2;min-height:34px;padding:6px 44px 6px 18px;border-radius:20px 20px 0 0;font-size:13.5px}" +
+    ".orfb.in-nav button{width:26px;height:26px;font-size:16px}" +
+    "html.orfb-attached .navigation-content{border-top-left-radius:0!important;border-top-right-radius:0!important}" +
+    "@media(max-width:600px){.orfb.in-nav{border-radius:16px 16px 0 0;padding:6px 40px 6px 14px;font-size:12.5px}}" +
     ".orh-foot{padding:10px 16px 14px;text-align:center;font-size:12px;color:#777;border-top:1px solid #eee}" +
     "@media(max-width:767px){body:has(.job-mobile-apply-cta:not(.is-hidden)) .orh-bubble,body:has(.od-cta-bar) .orh-bubble{bottom:92px}body:has(.opening-mobile-filter) .orh-bubble{bottom:82px}}" +
     "@media(max-width:560px){.orh-panel,.orh-panel.big{inset:0;width:100%;height:100%;height:100dvh;border-radius:0;bottom:0;right:0}.orh-row{grid-template-columns:minmax(0,1fr)}" +
@@ -69,6 +79,36 @@
     restart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
     ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg>'
   };
+
+  /* ---------- fraud warning bar (dismissible for 7 days) ---------- */
+  (function () {
+    var KEYB = "or_fraud_bar_hidden_until", until = 0;
+    try { until = +localStorage.getItem(KEYB) || 0; } catch (e) {}
+    if (Date.now() < until || /^\/fraud-notice/.test(location.pathname)) return;
+    var bar = document.createElement("div");
+    bar.className = "orfb"; bar.setAttribute("role", "status");
+    bar.innerHTML = '<span>⚠️ Beware of fake job offers using our name. <a href="/fraud-notice/">Read our notice</a></span><button type="button" aria-label="Hide this notice">×</button>';
+    var root = document.documentElement;
+    var nav = document.querySelector(".navigation.w-nav"), pill = nav && nav.querySelector(".navigation-content");
+    function size() { root.style.setProperty("--orfb-h", bar.offsetHeight + "px"); }
+    if (pill && pill.parentNode) {
+      // Attach the notice to the top of the header so they read as one block (no white gap).
+      bar.classList.add("in-nav");
+      pill.parentNode.insertBefore(bar, pill);
+      root.classList.add("orfb-attached");
+      var fit = function () { bar.style.width = pill.offsetWidth + "px"; bar.style.marginLeft = bar.style.marginRight = "auto"; };
+      fit(); window.addEventListener("resize", fit);
+      // A pinned header grows by the strip's height: push the page down by the same amount.
+      if (/fixed|absolute/.test(getComputedStyle(nav).position)) { root.classList.add("orfb-on"); size(); window.addEventListener("resize", size); }
+    } else {
+      document.body.insertBefore(bar, document.body.firstChild);
+      root.classList.add("orfb-on", "orfb-navfix"); size(); window.addEventListener("resize", size);
+    }
+    bar.querySelector("button").addEventListener("click", function () {
+      bar.remove(); root.classList.remove("orfb-on", "orfb-navfix", "orfb-attached");
+      try { localStorage.setItem(KEYB, String(Date.now() + 7 * 864e5)); } catch (e) {}
+    });
+  })();
 
   var bubble = document.createElement("button");
   bubble.className = "orh-bubble"; bubble.type = "button"; bubble.setAttribute("aria-label", "Open Help Center chat"); bubble.innerHTML = I.chat;
@@ -156,10 +196,12 @@
   /* ---------- screens ---------- */
   function home() {
     body.innerHTML = '<p class="orh-msg">Hi! 👋 Welcome to the Outreach Recruitment Help Center. How can we help you today?</p>' +
+      '<p class="orh-note"><span aria-hidden="true">⚠️</span><span>We only post jobs on outreachrecruitment.net and only email from @outreachrecruitment.net. <a href="/fraud-notice/">Beware of fake offers</a>.</span></p>' +
       '<button type="button" class="orh-opt" data-go="Jobs in Malta"><div>Find a job in Malta<small>See open jobs and apply online</small></div><span aria-hidden="true">›</span></button>' +
       '<button type="button" class="orh-opt" data-go="Hire"><div>Hire staff in Malta<small>Tell us who you need — we will contact you</small></div><span aria-hidden="true">›</span></button>' +
       '<button type="button" class="orh-opt" data-go="Study in Malta"><div>Study in Malta<small>Courses, visas and free guidance</small></div><span aria-hidden="true">›</span></button>' +
-      '<button type="button" class="orh-opt" data-go="General"><div>Ask another question<small>Our team will reply by email</small></div><span aria-hidden="true">›</span></button>';
+      '<button type="button" class="orh-opt" data-go="General"><div>Ask another question<small>Our team will reply by email</small></div><span aria-hidden="true">›</span></button>' +
+      '<button type="button" class="orh-opt warn" data-form="Report"><div>Report a suspicious offer<small>Someone using our name contacted you</small></div><span aria-hidden="true">›</span></button>';
     reveal();
   }
   var back = '<button type="button" class="orh-back" data-a="home">← Back</button>';
@@ -211,6 +253,13 @@
           '<label>What do you want to study?<select class="orh-in" name="study_level" required><option value="">Choose one</option><option>English language course</option><option>Diploma / vocational course</option><option>Bachelor’s degree</option><option>Master’s degree</option><option>Not sure yet</option></select></label>' +
           '<label>When do you want to start?<select class="orh-in" name="start_when"><option value="">Choose one</option><option>As soon as possible</option><option>In 3–6 months</option><option>In 6–12 months</option><option>Next year or later</option></select></label>' +
           '<label>Anything else? <span style="font-weight:400;color:#777">(optional)</span><textarea class="orh-in" name="message" rows="2" maxlength="4000"></textarea></label>' + F.alerts, "Get free guidance");
+    } else if (topic === "Report") {
+      body.innerHTML = back + '<span class="orh-topic" style="background:#b42318">Report a suspicious offer</span>' +
+        '<p class="orh-msg">Thank you for reporting it. Please do not send money, bank details or documents to anyone offering a job in our name.</p>' +
+        formHtml(F.name + F.email +
+          '<label>How were you contacted?<select class="orh-in" name="channel" required><option value="">Choose one</option><option>WhatsApp</option><option>Telegram</option><option>Email</option><option>Facebook / Instagram</option><option>LinkedIn</option><option>Phone call / SMS</option><option>Other</option></select></label>' +
+          '<label>Name, number or email they used <span style="font-weight:400;color:#777">(optional)</span><input class="orh-in" name="sender" maxlength="200"></label>' +
+          '<label>What happened?<textarea class="orh-in" name="message" rows="4" maxlength="4000" required placeholder="What did they offer or ask for?"></textarea></label>', "Send report");
     } else {
       topic = "General";
       body.innerHTML = backTo + '<span class="orh-topic">Question</span>' +
@@ -272,12 +321,19 @@
       }
       var details = {};
       ["study_level", "start_when"].forEach(function (n) { if (val(n)) details[n] = val(n); });
+      var sendTopic = topic;
+      if (topic === "Report") {
+        // Stored as a General request flagged as a fraud report (shown with a red label in the admin inbox).
+        details = { type: "fraud_report", channel: val("channel"), sender: val("sender") };
+        sendTopic = "General";
+      }
       btn.disabled = true; btn.textContent = "Sending…"; err.textContent = "";
       fetch(API + "/rest/v1/rpc/submit_help_request_v2", {
         method: "POST",
         headers: { "Content-Type": "application/json", apikey: KEY, Authorization: "Bearer " + KEY },
-        body: JSON.stringify({ p: { topic: topic, full_name: val("full_name"), email: val("email"), phone: phone, company: val("company"),
-          current_location: val("current_location"), nationality: val("nationality"), job_title: val("job_title"),
+        body: JSON.stringify({ p: { topic: sendTopic, full_name: val("full_name"), email: val("email"), phone: phone, company: val("company"),
+          current_location: val("current_location") || (topic === "Report" ? "Not given" : ""), nationality: val("nationality") || (topic === "Report" ? "Not given" : ""),
+          job_title: val("job_title") || (topic === "Report" ? "Fraud report" : ""),
           message: val("message") || (details.study_level ? "Study in Malta: " + details.study_level : ""), page_url: location.href.split("#")[0], details: details,
           consent: "true", elapsed_ms: Date.now() - started } })
       }).then(function (r) {
@@ -295,7 +351,7 @@
             body: JSON.stringify({ p_email: val("email"), p_full_name: val("full_name"), p_country_code: loc.getAttribute("data-code"), p_country_name: val("current_location"),
               p_source_type: "footer_signup", p_source_job: "Help Center", p_source_url: location.href.split("#")[0], p_job_category: val("job_title") || (details.study_level ? "Study in Malta" : null) }) }).catch(function () {});
         }
-        var thanks = topic === "Hire" ? "Thank you — our team will contact you shortly" : topic === "Study in Malta" ? "Thank you — a study advisor will contact you" : "Thank you — your question was sent";
+        var thanks = topic === "Report" ? "Thank you — your report was sent to our team" : topic === "Hire" ? "Thank you — our team will contact you shortly" : topic === "Study in Malta" ? "Thank you — a study advisor will contact you" : "Thank you — your question was sent";
         body.innerHTML = '<div class="orh-ok">' + I.ok + '<b>' + thanks + '</b></div><p class="orh-msg">We will reply to ' + esc(val("email")) + '. Is there anything else we can help you with?</p>' +
           '<button type="button" class="orh-opt" data-a="home">Back to the start<span aria-hidden="true">›</span></button>';
         reveal(true);
@@ -323,7 +379,8 @@
   });
   window.OutreachHelp = {
     open: function (topic) { toggle(true); if (topic) screen(topic); else home(); },
-    ask: function (topic) { toggle(true); form(topic || "General"); }
+    ask: function (topic) { toggle(true); form(topic || "General"); },
+    report: function () { toggle(true); form("Report"); }
   };
   document.addEventListener("click", function (e) {
     var l = e.target.closest('a[href="#help-chat"]'); if (!l) return;

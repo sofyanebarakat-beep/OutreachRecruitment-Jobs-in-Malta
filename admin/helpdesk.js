@@ -64,12 +64,12 @@
       <section class="card"><div class="subscriber-toolbar">
         <input type="search" id="hd-q" placeholder="Search name, email, phone, company, question…">
         <select id="hd-status"><option value="">All statuses</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}</select>
-        <select id="hd-topic"><option value="">All topics</option><option>Jobs in Malta</option><option>Hire</option><option>Study in Malta</option><option>General</option></select>
+        <select id="hd-topic"><option value="">All topics</option><option>Jobs in Malta</option><option>Hire</option><option>Study in Malta</option><option>General</option><option value="fraud">Fraud reports</option></select>
         <button class="btn" type="button" id="hd-csv">Download CSV</button></div><div id="hd-list"></div></section>`;
     const list = panel.querySelector("#hd-list"), q = panel.querySelector("#hd-q"), st = panel.querySelector("#hd-status"), tp = panel.querySelector("#hd-topic");
     const filtered = () => {
       const s = q.value.trim().toLowerCase();
-      return rows.filter((r) => (!st.value || r.status === st.value) && (!tp.value || r.topic === tp.value) &&
+      return rows.filter((r) => (!st.value || r.status === st.value) && (!tp.value || (tp.value === "fraud" ? (r.details || {}).type === "fraud_report" : r.topic === tp.value)) &&
         (!s || [r.full_name, r.email, r.phone, r.company, r.message, r.job_title, r.nationality, r.current_location, r.admin_notes].join(" ").toLowerCase().includes(s)));
     };
     const overdue = (r) => r.status === "new" && Date.now() - new Date(r.created_at) > 24 * 3600e3;
@@ -79,9 +79,10 @@
         const d = r.details || {};
         const facts = [["Phone", r.phone ? `<a href="tel:${esc(String(r.phone).replace(/\s/g, ""))}">${esc(r.phone)}</a>` : ""], ["Company", esc(r.company)],
           ["Current location", esc(r.current_location)], ["Nationality", esc(r.nationality)], ["Job", esc(r.job_title)],
-          ["Wants to study", esc(d.study_level)], ["Start", esc(d.start_when)]].filter(([, v]) => v);
+          ["Wants to study", esc(d.study_level)], ["Start", esc(d.start_when)], ["Contacted via", esc(d.channel)], ["Name / number used", esc(d.sender)]]
+          .filter(([k, v]) => v && !(d.type === "fraud_report" && ["Current location", "Nationality", "Job"].includes(k)));
         return `<article class="hd-item ${r.status}${overdue(r) ? " overdue" : ""}" data-id="${r.id}">
-        <header><div><strong>${esc(r.full_name)}</strong> <span class="hd-topic">${esc(r.topic)}</span>${overdue(r) ? ' <span class="hd-late">Waiting over 24 h</span>' : ""}${r.converted ? ' <span class="hd-client">Client</span>' : ""}<br>
+        <header><div><strong>${esc(r.full_name)}</strong> ${(r.details || {}).type === "fraud_report" ? '<span class="hd-topic hd-fraud">⚠️ Fraud report</span>' : `<span class="hd-topic">${esc(r.topic)}</span>`}${overdue(r) ? ' <span class="hd-late">Waiting over 24 h</span>' : ""}${r.converted ? ' <span class="hd-client">Client</span>' : ""}<br>
           <a href="${mailto(r, "")}">${esc(r.email)}</a></div><div class="hd-meta">${when(r.created_at)}${r.answered_at ? `<br>Answered ${when(r.answered_at)}` : ""}</div></header>
         <dl>${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
         ${r.message ? `<p class="hd-msg">${esc(r.message)}</p>` : ""}

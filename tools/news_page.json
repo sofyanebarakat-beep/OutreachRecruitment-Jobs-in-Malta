@@ -30,5 +30,11 @@
   "related_hide_between": [
     "2026-06-04",
     "2026-10-09"
-  ]
+  ],
+  "pinned": {
+    "label": "Public notice",
+    "title": "Fraudulent job offers using our company name",
+    "text": "Individuals are fraudulently using the Outreach Recruitment name to offer remote jobs in Malta. They are not affiliated with us. Our jobs are only on outreachrecruitment.net.",
+    "url": "/fraud-notice/"
+  }
 }
