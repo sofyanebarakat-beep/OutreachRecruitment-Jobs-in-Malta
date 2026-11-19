@@ -1,21 +1,21 @@
 # Job Sync Report — 2026-11-19
 
-Generated: 2026-11-19T09:39:48
+Generated: 2026-11-19T10:39:04
 
 ## Summary
 
 | Metric | Value |
 |---|---|
-| Careers Page Jobs | 132 |
-| Careers Jobs Scraped | 132 |
-| Website Jobs | 132 |
-| **Sync Score** | **94.4% — Needs Attention** |
-| Missing from Website | 6 |
-| Extra on Website | 4 |
+| Careers Page Jobs | 133 |
+| Careers Jobs Scraped | 133 |
+| Website Jobs | 133 |
+| **Sync Score** | **95.0% — Needs Attention** |
+| Missing from Website | 5 |
+| Extra on Website | 3 |
 | Title Mismatches | 3 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
-| SEO Issues | 32 |
+| SEO Issues | 33 |
 | Sitemap Missing | 0 |
 | Possible Duplicates | 26 |
 | Schema Issues | 0 |
@@ -24,12 +24,11 @@ Generated: 2026-11-19T09:39:48
 | Google Indexing Failed | 0 |
 | Average Ranking Readiness | 84.5/100 |
 | High-Priority Ranking Jobs | 14 |
-| GSC URLs Checked | 132 |
-| GSC Problem Groups | 117 |
+| GSC URLs Checked | 133 |
+| GSC Problem Groups | 118 |
 
 ## Jobs to Add (Missing from Website)
 
-- Restoration/Construction Worker
 - Mini Bus Drivers License D
 - Deli Counter Assistant / Salumeria Specialis
 - Chefs de Partie
@@ -38,7 +37,6 @@ Generated: 2026-11-19T09:39:48
 
 ## Jobs to Remove (Extra on Website)
 
-- Restoration Worker
 - Mini Bus Driver – Licence D
 - Deli Counter Assistant / Salumeria Specialist
 - Application Developer (Drupal)
@@ -61,6 +59,7 @@ Generated: 2026-11-19T09:39:48
 
 ## SEO Issues
 
+- **Restoration/Construction Worker** (`https://outreachrecruitment.net/jobs/restoration-worker`): Meta title too long (74 chars); Meta description too long (163 chars)
 - **Sales Director** (`https://outreachrecruitment.net/jobs/sales-director`): Meta description too long (162 chars)
 - **Customer Experience Assistant** (`https://outreachrecruitment.net/jobs/customer-experience-assistant`): Meta title too long (72 chars); Meta description too long (165 chars)
 - **Hotel Maintenance Assistant** (`https://outreachrecruitment.net/jobs/hotel-maintenance-assistant`): Meta title too long (78 chars); Meta description too short (55 chars)
@@ -136,21 +135,22 @@ Generated: 2026-11-19T09:39:48
 ## Ranking Action Plan
 
 1. Fix 14 high-priority job page(s) below 70/100
-2. Fix 115 job page(s) with keyword targeting gaps
-3. Fix 45 job page(s) missing category-page internal links
-4. Fix 114 job page(s) needing deeper content
+2. Fix 116 job page(s) with keyword targeting gaps
+3. Fix 46 job page(s) missing category-page internal links
+4. Fix 115 job page(s) needing deeper content
 5. Fix 26 possible duplicate/cannibalization pair(s) to review
 
 ## Google Search Console Action Plan
 
-1. Fix 51 job URL(s) not indexed or not passing URL Inspection
+1. Fix 52 job URL(s) not indexed or not passing URL Inspection
 2. Fix 44 job URL(s) with zero Search Console impressions
 3. Fix 3 job URL(s) ranking worse than average position 20
 4. Fix 27 job URL(s) missing target keyword visibility in top queries
 
 ## Jobs Not Indexed by Google
 
-- **[Restoration Worker](https://outreachrecruitment.net/jobs/restoration-worker)**: URL is unknown to Google
+- **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)**: URL is unknown to Google
+- **[Restoration/Construction Worker](https://outreachrecruitment.net/jobs/restoration-worker)**: URL is unknown to Google
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)**: Alternate page with proper canonical tag
 - **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)**: Alternate page with proper canonical tag
 - **[Architect / Draughtsperson](https://outreachrecruitment.net/jobs/architect-draughtsperson)**: Alternate page with proper canonical tag
@@ -179,7 +179,6 @@ Generated: 2026-11-19T09:39:48
 - **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)**: URL is unknown to Google
 - **[Host / Receptionist](https://outreachrecruitment.net/jobs/host-receptionist)**: URL is unknown to Google
 - **[Truck / Trailer Driver](https://outreachrecruitment.net/jobs/truck-trailer-driver)**: Alternate page with proper canonical tag
-- **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)**: URL is unknown to Google
 
 ## Canonical Conflicts
 
@@ -283,8 +282,8 @@ Generated: 2026-11-19T09:39:48
 | Retail | 1 | 81.0/100 | 1 |
 | Engineering & Maintenance | 29 | 81.7/100 | 15 |
 | Management | 1 | 83.0/100 | 1 |
+| Sales | 7 | 83.1/100 | 3 |
 | Administration | 13 | 83.8/100 | 8 |
-| Sales | 6 | 83.8/100 | 2 |
 | Logistics | 11 | 84.1/100 | 5 |
 | Finance & Accounting | 10 | 84.4/100 | 6 |
 | Insurance | 4 | 86.2/100 | 1 |
@@ -298,7 +297,8 @@ Generated: 2026-11-19T09:39:48
 
 ## Keyword Target Gaps
 
-- **[Restoration Worker](https://outreachrecruitment.net/jobs/restoration-worker)** — target `Restoration Worker jobs in Malta`: Target phrase missing: Restoration Worker jobs in Malta
+- **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)** — target `Sales Consultant jobs in Malta`: Target phrase missing: Sales Consultant jobs in Malta
+- **[Restoration/Construction Worker](https://outreachrecruitment.net/jobs/restoration-worker)** — target `Restoration/Construction Worker jobs in Malta`: Target phrase missing: Restoration/Construction Worker jobs in Malta
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)** — target `Accountant jobs in Malta`: Target phrase missing: Accountant jobs in Malta
 - **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)** — target `Billing Administrator jobs in Malta`: Target phrase missing: Billing Administrator jobs in Malta
 - **[Architect / Draughtsperson](https://outreachrecruitment.net/jobs/architect-draughtsperson)** — target `Architect / Draughtsperson jobs in Malta`: Target phrase missing: Architect / Draughtsperson jobs in Malta
@@ -327,10 +327,10 @@ Generated: 2026-11-19T09:39:48
 - **[Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person)** — target `Maintenance Person jobs in Malta`: Target phrase missing: Maintenance Person jobs in Malta
 - **[Retail Shop Supervisor](https://outreachrecruitment.net/jobs/retail-shop-supervisor)** — target `Retail Shop Supervisor jobs in Malta`: Target phrase missing: Retail Shop Supervisor jobs in Malta
 - **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — target `Accounting Officer jobs in Malta`: Target phrase missing: Accounting Officer jobs in Malta
-- **[Host / Receptionist](https://outreachrecruitment.net/jobs/host-receptionist)** — target `Host / Receptionist jobs in Malta`: Target phrase missing: Host / Receptionist jobs in Malta
 
 ## Internal Link Coverage
 
+- **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)**: Not linked from a category jobs page
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)**: Not linked from a category jobs page
 - **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)**: Not linked from a category jobs page
 - **[Sales Director](https://outreachrecruitment.net/jobs/sales-director)**: Not linked from a category jobs page
@@ -360,10 +360,10 @@ Generated: 2026-11-19T09:39:48
 - **[Shipyard Sprayer / Painter](https://outreachrecruitment.net/jobs/shipyard-sprayer-painter)**: Not linked from a category jobs page
 - **[Marine Carpenter](https://outreachrecruitment.net/jobs/marine-carpenter)**: Not linked from a category jobs page
 - **[Electronic Technician](https://outreachrecruitment.net/jobs/electronic-technician)**: Not linked from a category jobs page
-- **[Commercial Divers](https://outreachrecruitment.net/jobs/commercial-divers)**: Not linked from a category jobs page
 
 ## Content Quality Checks
 
+- **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)** — 5290 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)** — 5519 words: Missing offer/benefits section
 - **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)** — 5565 words: Missing offer/benefits section
 - **[Architect / Draughtsperson](https://outreachrecruitment.net/jobs/architect-draughtsperson)** — 5379 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
@@ -393,7 +393,6 @@ Generated: 2026-11-19T09:39:48
 - **[Retail Shop Supervisor](https://outreachrecruitment.net/jobs/retail-shop-supervisor)** — 5427 words: Missing offer/benefits section
 - **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — 5284 words: Missing offer/benefits section
 - **[Host / Receptionist](https://outreachrecruitment.net/jobs/host-receptionist)** — 5029 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
-- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner-marsa)** — 5019 words: Salary/baseSalary missing or not specific
 
 ## JobPosting Rich Results Eligibility
 
@@ -401,9 +400,9 @@ Generated: 2026-11-19T09:39:48
 
 ## Actions Required
 
-1. Add 6 missing job(s) to website
-2. Remove 4 closed job(s) from website
+1. Add 5 missing job(s) to website
+2. Remove 3 closed job(s) from website
 3. Review 3 possible title mismatch(es)
-4. Fix 32 SEO issue(s)
+4. Fix 33 SEO issue(s)
 5. Review 26 possible duplicate job(s)
 6. Improve 14 high-priority ranking page(s) below 70/100

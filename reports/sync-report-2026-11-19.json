@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-11-19T09:39:48",
-  "careers_count_advertised": 132,
-  "careers_count_scraped": 132,
-  "website_count": 132,
-  "sync_score": 94.4,
+  "generated_at": "2026-11-19T10:39:04",
+  "careers_count_advertised": 133,
+  "careers_count_scraped": 133,
+  "website_count": 133,
+  "sync_score": 95.0,
   "missing_jobs": [
-    "Restoration/Construction Worker",
     "Mini Bus Drivers License D",
     "Deli Counter Assistant / Salumeria Specialis",
     "Chefs de Partie",
@@ -13,7 +12,6 @@
     "Heavy equipment mech"
   ],
   "extra_jobs": [
-    "Restoration Worker",
     "Mini Bus Driver – Licence D",
     "Deli Counter Assistant / Salumeria Specialist",
     "Application Developer (Drupal)"
@@ -41,6 +39,14 @@
   "location_mismatches": [],
   "broken_links": [],
   "seo_issues": [
+    {
+      "title": "Restoration/Construction Worker",
+      "url": "https://outreachrecruitment.net/jobs/restoration-worker",
+      "issues": [
+        "Meta title too long (74 chars)",
+        "Meta description too long (163 chars)"
+      ]
+    },
     {
       "title": "Sales Director",
       "url": "https://outreachrecruitment.net/jobs/sales-director",
@@ -552,7 +558,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accounts Clerk jobs in Malta",
@@ -662,7 +668,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Sales Manager jobs in Malta",
@@ -684,7 +690,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Senior Technician jobs in Malta",
@@ -750,7 +756,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Workshop Manager jobs in Malta",
@@ -772,7 +778,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Workshop Team Leader jobs in Malta",
@@ -794,7 +800,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accountant jobs in Malta",
@@ -1089,7 +1095,7 @@
       "category_sources": "construction-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Architect / Draughtsperson jobs in Malta",
@@ -1155,6 +1161,27 @@
       "last_indexing_date": "2026-11-06T10:32:46",
       "issues": [
         "Target phrase missing: PDI Leading Hand jobs in Malta",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
+    {
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "category": "Sales",
+      "score": 79,
+      "priority": "Medium",
+      "target_keyword": "Sales Consultant jobs in Malta",
+      "word_count": 5290,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-11-19T10:23:27",
+      "issues": [
+        "Target phrase missing: Sales Consultant jobs in Malta",
         "Not linked from a category jobs page",
         "Missing offer/benefits section",
         "Salary/baseSalary missing or not specific"
@@ -1236,7 +1263,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Target phrase missing: Billing Administrator jobs in Malta",
         "Not linked from a category jobs page",
@@ -1256,7 +1283,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Target phrase missing: Chef de Partie (Breakfast) jobs in Malta",
         "Not linked from a category jobs page",
@@ -1296,7 +1323,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Target phrase missing: Sales Director jobs in Malta",
         "Not linked from a category jobs page",
@@ -1336,7 +1363,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Target phrase missing: Senior Corporate Administrator jobs in Malta",
         "Not linked from a category jobs page",
@@ -2499,7 +2526,7 @@
       "category_sources": "construction-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Target phrase missing: Residential Finishing Projects Manager jobs in Malta",
         "Missing offer/benefits section"
@@ -2938,21 +2965,21 @@
       ]
     },
     {
-      "title": "Restoration Worker",
+      "title": "Restoration/Construction Worker",
       "slug": "restoration-worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "category": "Construction",
       "score": 95,
       "priority": "Low",
-      "target_keyword": "Restoration Worker jobs in Malta",
-      "word_count": 4970,
+      "target_keyword": "Restoration/Construction Worker jobs in Malta",
+      "word_count": 4981,
       "category_links": 1,
       "category_sources": "construction-jobs-in-malta.html",
       "schema_eligible": true,
-      "last_indexing_status": "Not recorded",
-      "last_indexing_date": "",
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
-        "Target phrase missing: Restoration Worker jobs in Malta"
+        "Target phrase missing: Restoration/Construction Worker jobs in Malta"
       ]
     },
     {
@@ -3180,7 +3207,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accounts Clerk jobs in Malta",
@@ -3290,7 +3317,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Sales Manager jobs in Malta",
@@ -3312,7 +3339,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Senior Technician jobs in Malta",
@@ -3378,7 +3405,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Workshop Manager jobs in Malta",
@@ -3400,7 +3427,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Workshop Team Leader jobs in Malta",
@@ -3422,7 +3449,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-18T11:32:14",
+      "last_indexing_date": "2026-11-19T10:34:57",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accountant jobs in Malta",
@@ -3433,11 +3460,19 @@
   ],
   "keyword_issues": [
     {
-      "title": "Restoration Worker",
-      "url": "https://outreachrecruitment.net/jobs/restoration-worker",
-      "target_keyword": "Restoration Worker jobs in Malta",
+      "title": "Sales Consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "target_keyword": "Sales Consultant jobs in Malta",
       "issues": [
-        "Target phrase missing: Restoration Worker jobs in Malta"
+        "Target phrase missing: Sales Consultant jobs in Malta"
+      ]
+    },
+    {
+      "title": "Restoration/Construction Worker",
+      "url": "https://outreachrecruitment.net/jobs/restoration-worker",
+      "target_keyword": "Restoration/Construction Worker jobs in Malta",
+      "issues": [
+        "Target phrase missing: Restoration/Construction Worker jobs in Malta"
       ]
     },
     {
@@ -4387,6 +4422,13 @@
   ],
   "internal_link_issues": [
     {
+      "title": "Sales Consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
       "title": "Accountant",
       "url": "https://outreachrecruitment.net/jobs/accountant",
       "issues": [
@@ -4703,6 +4745,15 @@
     }
   ],
   "content_quality_issues": [
+    {
+      "title": "Sales Consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "word_count": 5290,
+      "issues": [
+        "Missing offer/benefits section",
+        "Salary/baseSalary missing or not specific"
+      ]
+    },
     {
       "title": "Accountant",
       "url": "https://outreachrecruitment.net/jobs/accountant",
@@ -5679,16 +5730,16 @@
       "weak_jobs": 1
     },
     {
+      "category": "Sales",
+      "jobs": 7,
+      "average_score": 83.1,
+      "weak_jobs": 3
+    },
+    {
       "category": "Administration",
       "jobs": 13,
       "average_score": 83.8,
       "weak_jobs": 8
-    },
-    {
-      "category": "Sales",
-      "jobs": 6,
-      "average_score": 83.8,
-      "weak_jobs": 2
     },
     {
       "category": "Logistics",
@@ -5753,7 +5804,13 @@
   ],
   "schema_eligibility": [
     {
-      "title": "Restoration Worker",
+      "title": "Sales Consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "Restoration/Construction Worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "eligible": true,
       "issues": []
@@ -6547,14 +6604,35 @@
   ],
   "ranking_action_plan": [
     "Fix 14 high-priority job page(s) below 70/100",
-    "Fix 115 job page(s) with keyword targeting gaps",
-    "Fix 45 job page(s) missing category-page internal links",
-    "Fix 114 job page(s) needing deeper content",
+    "Fix 116 job page(s) with keyword targeting gaps",
+    "Fix 46 job page(s) missing category-page internal links",
+    "Fix 115 job page(s) needing deeper content",
     "Fix 26 possible duplicate/cannibalization pair(s) to review"
   ],
   "gsc_url_inspection": [
     {
-      "title": "Restoration Worker",
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "status": 200,
+      "ok": true,
+      "indexed": false,
+      "verdict": "NEUTRAL",
+      "coverage_state": "URL is unknown to Google",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+      "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+      "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "last_crawl_time": "",
+      "user_canonical": "",
+      "google_canonical": "",
+      "canonical_match": false,
+      "sitemap": "",
+      "rich_results_verdict": "",
+      "rich_result_types": "",
+      "error": ""
+    },
+    {
+      "title": "Restoration/Construction Worker",
       "slug": "restoration-worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "status": 200,
@@ -7699,7 +7777,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-18T23:54:53Z",
+      "last_crawl_time": "2026-11-19T09:42:41Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/public-area-cleaner",
       "google_canonical": "https://outreachrecruitment.net/jobs/public-area-cleaner/",
       "canonical_match": true,
@@ -9001,7 +9079,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-18T15:15:53Z",
+      "last_crawl_time": "2026-11-19T09:48:51Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/auditor",
       "google_canonical": "https://outreachrecruitment.net/jobs/auditor/",
       "canonical_match": true,
@@ -9274,7 +9352,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-16T10:31:16Z",
+      "last_crawl_time": "2026-11-19T09:19:18Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/housekeeper-2",
       "google_canonical": "https://outreachrecruitment.net/jobs/housekeeper-2/",
       "canonical_match": true,
@@ -9328,7 +9406,23 @@
   ],
   "gsc_search_performance": [
     {
-      "title": "Restoration Worker",
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "status": 200,
+      "ok": true,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0,
+      "top_query": "",
+      "target_keyword": "Sales Consultant jobs in Malta",
+      "target_query_visible": false,
+      "queries": "",
+      "error": ""
+    },
+    {
+      "title": "Restoration/Construction Worker",
       "slug": "restoration-worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "status": 200,
@@ -9338,7 +9432,7 @@
       "ctr": 0,
       "position": 0,
       "top_query": "",
-      "target_keyword": "Restoration Worker jobs in Malta",
+      "target_keyword": "Restoration/Construction Worker jobs in Malta",
       "target_query_visible": false,
       "queries": "",
       "error": ""
@@ -11442,7 +11536,14 @@
   ],
   "gsc_indexing_problems": [
     {
-      "title": "Restoration Worker",
+      "title": "Sales Consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "problems": [
+        "URL is unknown to Google"
+      ]
+    },
+    {
+      "title": "Restoration/Construction Worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "problems": [
         "URL is unknown to Google"
@@ -12272,7 +12373,28 @@
   "gsc_canonical_conflicts": [],
   "gsc_not_indexed_jobs": [
     {
-      "title": "Restoration Worker",
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant",
+      "status": 200,
+      "ok": true,
+      "indexed": false,
+      "verdict": "NEUTRAL",
+      "coverage_state": "URL is unknown to Google",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+      "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+      "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "last_crawl_time": "",
+      "user_canonical": "",
+      "google_canonical": "",
+      "canonical_match": false,
+      "sitemap": "",
+      "rich_results_verdict": "",
+      "rich_result_types": "",
+      "error": ""
+    },
+    {
+      "title": "Restoration/Construction Worker",
       "slug": "restoration-worker",
       "url": "https://outreachrecruitment.net/jobs/restoration-worker",
       "status": 200,
@@ -14535,7 +14657,7 @@
   ],
   "gsc_rich_result_issues": [],
   "gsc_action_plan": [
-    "Fix 51 job URL(s) not indexed or not passing URL Inspection",
+    "Fix 52 job URL(s) not indexed or not passing URL Inspection",
     "Fix 44 job URL(s) with zero Search Console impressions",
     "Fix 3 job URL(s) ranking worse than average position 20",
     "Fix 27 job URL(s) missing target keyword visibility in top queries"
