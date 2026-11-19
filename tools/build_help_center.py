@@ -208,7 +208,7 @@ def search_index() -> list[dict]:
         arts = blog_articles()
         arts += study_pages({x["title"] for x in arts})
         for x in arts:
-            add(x["title"], x["url"], "News & Updates · " + x["cats"][0], x["desc"])
+            add(x["title"], x["url"], "News & Updates · " + (x["cats"][0] if x["cats"] else "News"), x["desc"])
     except Exception as exc:  # noqa: BLE001 - search still works with the Help Center questions
         print(f"warning: articles not added to search: {exc}")
     # main website pages from the sitemap (title + description of the local file)

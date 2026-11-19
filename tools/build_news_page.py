@@ -55,6 +55,8 @@ STUDY_PAGES = ["study-in-malta-complete-guide", "study-in-malta-from-india", "st
 
 def categories(tag: str) -> list[str]:
     t = tag.lower()
+    if t == "news":  # general news: no category, listed under "All articles" only
+        return []
     if "jobs in malta" in t or t == "hospitality":
         return ["Jobs in Malta", "Candidates"]
     if "study" in t or "application guide" in t:
@@ -173,7 +175,7 @@ def pinned_html(p: dict | None) -> str:
 
 
 def badge(a: dict) -> str:
-    return f'<span class="nu-badge">{E(a["cats"][0])}</span>'
+    return f'<span class="nu-badge">{E(a["cats"][0] if a["cats"] else "News")}</span>'
 
 
 def card(a: dict, extra: str = "") -> str:
