@@ -82,7 +82,7 @@
 
   /* ---------- fraud warning bar (dismissible for 7 days) ---------- */
   (function () {
-    var KEYB = "or_fraud_bar_hidden_until", until = 0;
+    var KEYB = "or_fraud_bar_hidden_until_v2", until = 0;
     try { until = +localStorage.getItem(KEYB) || 0; } catch (e) {}
     if (Date.now() < until || /^\/fraud-notice/.test(location.pathname)) return;
     var bar = document.createElement("div");

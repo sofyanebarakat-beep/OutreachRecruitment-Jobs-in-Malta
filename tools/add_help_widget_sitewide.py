@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "6"
+VERSION = "7"
 TAG = f'<script defer src="/assets/help-widget.js?v={VERSION}"></script>'
 SKIP = {"admin", "node_modules", "reports", "tools", "tmp", "tests", "docs", "supabase", "src", "scripts", "components",
         "Jobs Skills", "SEO Emp and Candidates", "STUDY IN MALTA SKILLS", ".git", ".github"}
@@ -34,7 +34,7 @@ def main(argv: list[str]) -> int:
     changed = []
     for p in pages():
         s = p.read_text(encoding="utf-8", errors="ignore")
-        if 'class="footer"' not in s or "</body>" not in s or 'http-equiv="refresh"' in s:
+        if ('class="footer"' not in s and 'class="navigation' not in s) or "</body>" not in s or 'http-equiv="refresh"' in s:
             continue
         new = re.sub(r'<script defer src="/assets/help-widget\.js(\?v=[^"]*)?"></script>', TAG, s)
         if TAG not in new:
