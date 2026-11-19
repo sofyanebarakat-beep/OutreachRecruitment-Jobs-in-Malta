@@ -26,6 +26,21 @@ body { background: #fff; }
   font-family: var(--_🅰-typography---font-family--body, "BDO Grotesk", Arial, sans-serif); color: var(--ink); padding: 9.5rem 0 5rem; }
 .fn-wrap { width: min(820px, 100% - 32px); margin: 0 auto; }
 .fn h1, .fn h2 { font-family: var(--serif); font-weight: 400 !important; letter-spacing: -.5px; margin: 0; color: var(--ink); }
+.fn-notice { border-radius: 24px; overflow: hidden; background: #fff; border: 1px solid #f1d2cf; box-shadow: 0 24px 60px rgba(180,35,24,.10); }
+.fn-notice-head { display: flex; align-items: center; gap: .6rem; padding: .9rem 1.6rem; background: var(--warn); color: #fff; font-weight: 700;
+  font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; }
+.fn-icon { font-size: 1.1rem; letter-spacing: 0; }
+.fn-notice-date { margin-left: auto; font-weight: 500; letter-spacing: .02em; text-transform: none; opacity: .9; }
+.fn-notice-body { padding: clamp(1.6rem, 5vw, 3rem); background: linear-gradient(180deg, #fff8f7 0%, #fff 40%); }
+.fn .fn-notice h1 { font-family: inherit !important; font-weight: 800 !important; font-size: clamp(1.45rem, 3.2vw, 2.05rem); line-height: 1.25;
+  letter-spacing: .01em; color: var(--warn); margin: 0 0 1.5rem; padding-bottom: 1.25rem; border-bottom: 2px solid #f4c7c3; }
+.fn-notice p { margin: 0 0 1.1rem; font-size: 1.1rem; line-height: 1.75; color: #2a2a2a; }
+.fn-notice .fn-key { padding: 1rem 1.2rem; border-left: 4px solid var(--warn); background: var(--warn-bg); border-radius: 0 12px 12px 0; font-weight: 600; color: #7a271a; }
+.fn-notice .fn-site a { font-weight: 700; }
+.fn-notice-sign { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid #f1e4e2; }
+.fn-notice-sign img { height: 30px; width: auto; }
+.fn-notice-sign span { font-weight: 800; font-size: 1.1rem; letter-spacing: .02em; }
+.fn h2 { font-family: var(--serif); font-weight: 400 !important; letter-spacing: -.5px; margin: 0; color: var(--ink); }
 .fn-badge { display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .9rem; border-radius: 999px; background: var(--warn-bg); color: var(--warn);
   font-weight: 700; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
 .fn h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.08; margin: 1rem 0 .75rem; }
@@ -70,17 +85,18 @@ def main() -> None:
                "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld), s, count=1, flags=re.S)
     s = s.replace("</head>", CSS + "\n</head>", 1)
     content = f"""<div class="fn"><div class="fn-wrap">
-  <span class="fn-badge">⚠️ Public notice</span>
-  <h1>Fraudulent activities using our company name</h1>
-  <p class="fn-date">Published 19 November 2026 · Outreach Recruitment Management</p>
-  <div class="fn-card">
-    <p>We wish to alert our valued candidates, partners and the general public that individuals are <strong>fraudulently using our company name, Outreach Recruitment, and offering remote jobs in Malta</strong>.</p>
-    <p>Please be advised that these individuals are <strong>not affiliated with, authorised by, or representatives of our company</strong>.</p>
-    <p>We sincerely regret any inconvenience or losses that may have resulted from these fraudulent activities.</p>
-    <p>Our jobs can be found on our website: <a href="/jobs/">www.outreachrecruitment.net</a></p>
-    <p>Your safety and trust are important to us. Thank you for your understanding and continued support.</p>
-    <p class="fn-sign">Management</p>
-  </div>
+  <article class="fn-notice" aria-labelledby="fn-title">
+    <header class="fn-notice-head"><span class="fn-icon" aria-hidden="true">⚠️</span><span>Public notice</span><span class="fn-notice-date">19 November 2026</span></header>
+    <div class="fn-notice-body">
+      <h1 id="fn-title">PUBLIC NOTICE: FRAUDULENT ACTIVITIES USING OUR COMPANY NAME</h1>
+      <p>We wish to alert our valued candidates, partners, and the general public that individuals are fraudulently using our company name, Outreach Recruitment and offering remote jobs in Malta.</p>
+      <p class="fn-key">Please be advised that these individuals are NOT affiliated with, authorized by, or representatives of our company.</p>
+      <p>We sincerely regret any inconvenience or losses that may have resulted from these fraudulent activities.</p>
+      <p class="fn-site">Our jobs can be found on our website - <a href="/jobs/">www.outreachrecruitment.net</a></p>
+      <p>Your safety and trust are important to us. Thank you for your understanding and continued support.</p>
+      <footer class="fn-notice-sign"><img src="/assets/outreach-recruitment-logo.svg" alt="Outreach Recruitment" width="150" height="34"><span>Management</span></footer>
+    </div>
+  </article>
   <h2>How to check an offer is real</h2>
   <div class="fn-grid">
     <div class="fn-tile"><h3>Our jobs are on our website</h3><p>Every job we recruit for is listed on <a href="/jobs/">outreachrecruitment.net/jobs</a>. If you can't find the job there, treat the offer with caution.</p></div>
