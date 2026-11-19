@@ -1,0 +1,12 @@
+I changed the job's title from "Restoration Worker" to "Restoration/Construction Worker" on its page and in the registry. `tools/verify_job_page.py restoration-worker` passes with the full set of checks. Nothing was committed or pushed.
+
+- **Page** (`jobs/restoration-worker/index.html` and `jobs/restoration-worker.html`, kept identical): every place the title appears now uses the new title (19 in total). That covers the browser title, meta and social tags, the job, breadcrumb and FAQ schema, the main headings, the FAQ question (visible and in the schema, so they still match), the apply iframe title, the application-panel heading, the success message and the mobile Apply button. `dateModified` is now 2026-11-19. The slug, URL, apply link, salary (€1,700 per month), city (Mosta), On-site setting and private reference/deadline are unchanged.
+- **Registry** (`tools/jobs_registry.json`): updated the title, added "construction worker" to the keywords, and set `lastmod` to 2026-11-19.
+
+The fact sheet `tools/ats_snapshots/e18a7288-….json`, read on 2026-11-18, still has the old title. The new title comes from today's careers-page listing, which is in the 2026-11-19 sync log. The fact sheet's description already asks for "Construction Workers", and nothing else in it changed.
+
+The page's alert and eligibility assets load with `?v=20261107` (one stylesheet uses `20261111`), not the `?v=20261106` your instructions mention. These are the same versions the reference page `jobs/hotel-general-manager/` uses now, so I left them as they are.
+
+UPDATED e18a7288-1323-4e0f-90c0-48d487a1fcbb restoration-worker
+
+--- stderr ---

@@ -1,5 +1,20 @@
 [
   {
+    "slug": "sales-consultant",
+    "title": "Sales Consultant",
+    "category": "Sales",
+    "location": "Marsa, Malta",
+    "location_slug": "marsa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-11-19",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e8ac9c55-4226-414a-9a57-ec214f1d3948/apply",
+    "keywords": "sales consultant showroom sales powersports jet ski sea-doo can-am seabob luxury water toys marine sales commission marsa malta",
+    "featured": true,
+    "lastmod": "2026-11-19"
+  },
+  {
     "slug": "accountant",
     "title": "Accountant",
     "category": "Finance & Accounting",
@@ -5485,7 +5500,7 @@
   },
   {
     "slug": "restoration-worker",
-    "title": "Restoration Worker",
+    "title": "Restoration/Construction Worker",
     "category": "Construction",
     "location": "Mosta, Malta",
     "location_slug": "mosta, malta",
@@ -5494,9 +5509,9 @@
     "date": "2026-11-17",
     "valid_through": "2029-12-30",
     "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e18a7288-1323-4e0f-90c0-48d487a1fcbb/apply",
-    "keywords": "restoration worker construction repair renovation masonry plastering rendering bricklaying Mosta Malta",
+    "keywords": "restoration worker construction worker repair renovation masonry plastering rendering bricklaying Mosta Malta",
     "featured": false,
-    "lastmod": "2026-11-18",
+    "lastmod": "2026-11-19",
     "salary": "€1,700 per month"
   }
 ]

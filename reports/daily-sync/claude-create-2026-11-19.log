@@ -1,0 +1,22 @@
+I built the Sales Consultant page and it passes `tools/verify_job_page.py`, including the headless Chrome render. Nothing was committed or pushed, and no other job was changed.
+
+**How it was built:** I wrote a spec from the fact sheet (`tools/job_specs/sales-consultant.json`) and ran the repo's `tools/build_job_page.py`. That script clones `jobs/hotel-general-manager/index.html`, not head-chef-in-gozo or client-accountant as you suggested. I used it because the hotel-general-manager page is the one that has the inline application experience you asked for.
+
+**Files:**
+- `jobs/sales-consultant/index.html` and `jobs/sales-consultant.html` are identical.
+- `tools/jobs_registry.json` has a new entry at the top: Sales, Marsa, Malta, Full-Time, On-Site, valid_through 2029-12-30, apply_url from the fact sheet. It has no salary and no status key.
+- The 12-section package is at `reports/job-seo-sales-consultant-2026-11-19.md`.
+
+**Page details:**
+- **Salary:** the careers page gives none, so the page says "Competitive salary" and the schema has no baseSalary. The source's wording "Competitive base salary plus commission" appears in the offer list, and "gross" appears nowhere.
+- **Location and type:** Marsa, Full-Time, On-Site. The languages are Maltese and English, both fluent, as the source requires.
+- **Who can apply:** the source says "Residing in Malta", so the page targets "Residents in Malta" and the schema limits applicants to Malta. This is narrower than the usual default ("Residents in Malta & Europeans").
+- **Private data:** the reference (OR-SACO-2026-001) is only in an HTML comment, and the 2029-12-30 deadline is only in the schema and registry.
+- **FAQ:** six questions, closed by default, and the schema questions match the visible ones.
+- **Links:** the only careers-page link is this job's own apply URL. The similar-jobs cards show four open Sales jobs.
+
+**Decision for you:** the shared application files use `?v=20261107`, not the `?v=20261106` you specified. That is the version on the hotel-general-manager page and on all 332 job pages, so `20261106` looks out of date. If you really want `20261106`, it's a find-and-replace in the two page files.
+
+CREATED e8ac9c55-4226-414a-9a57-ec214f1d3948 sales-consultant
+
+--- stderr ---

@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-19",
+  "created": [
+    {
+      "uuid": "e8ac9c55-4226-414a-9a57-ec214f1d3948",
+      "title": "Sales Consultant",
+      "city": "Marsa",
+      "slug": "sales-consultant",
+      "salary_label": "Competitive salary",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e8ac9c55-4226-414a-9a57-ec214f1d3948",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant/"
+    }
+  ],
+  "reopened": [],
+  "closed": [],
+  "updated": [
+    {
+      "uuid": "e18a7288-1323-4e0f-90c0-48d487a1fcbb",
+      "title": "Restoration/Construction Worker",
+      "slug": "restoration-worker",
+      "city": "Mosta",
+      "changes": [
+        "title: 'Restoration Worker' → 'Restoration/Construction Worker'"
+      ],
+      "owner_salary": "",
+      "url": "https://outreachrecruitment.net/jobs/restoration-worker/"
+    }
+  ],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [
+    "Sales Consultant: no salary given on the careers page — page says 'Competitive salary'."
+  ],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 133,
+  "site_open_before": 132,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 131,
+    "ok": 127,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {},
+    "hubs_now_empty": [],
+    "carousel_swaps": 0,
+    "itemlist_items": 133,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 6
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 0,
+    "pages_reopened": 0
+  },
+  "site_open_after": 133,
+  "salary_coverage": {
+    "open": 133,
+    "with_salary": 35
+  }
+}

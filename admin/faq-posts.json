@@ -46,7 +46,7 @@
    "q": "How do I apply?",
    "a": "Open the job you are interested in, read the full description and use the apply button on the job page. You can also browse all 131+ open positions on our jobs page.",
    "url": "/blog/jobs-in-malta-this-week-16-november-2026",
-   "pages": 52
+   "pages": 56
   },
   {
    "q": "Is a salary stated for this role?",
@@ -58,7 +58,7 @@
    "q": "Where is the job based?",
    "a": "On-site in Floriana, Malta, just outside Valletta's city walls and well connected by bus routes into the capital.",
    "url": "/jobs",
-   "pages": 20
+   "pages": 22
   },
   {
    "q": "How much experience do I need?",
@@ -85,6 +85,12 @@
    "pages": 16
   },
   {
+   "q": "What experience is required?",
+   "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
+   "url": "/jobs",
+   "pages": 12
+  },
+  {
    "q": "Do I need to be living in Malta to apply?",
    "a": "Yes. This role is open to candidates already residing in Malta.",
    "url": "/jobs",
@@ -93,6 +99,12 @@
   {
    "q": "What experience do I need?",
    "a": "Previous experience in billing, invoicing, accounts administration or a similar administrative role, good numerical skills and good knowledge of Microsoft Office, particularly Excel.",
+   "url": "/jobs",
+   "pages": 11
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
    "url": "/jobs",
    "pages": 11
   },
@@ -115,20 +127,8 @@
    "pages": 9
   },
   {
-   "q": "Which languages do I need?",
-   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
-   "url": "/jobs",
-   "pages": 9
-  },
-  {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
-   "url": "/jobs",
-   "pages": 8
-  },
-  {
-   "q": "What experience is required?",
-   "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
    "url": "/jobs",
    "pages": 8
   },
@@ -333,6 +333,12 @@
   {
    "q": "Who can apply for this job?",
    "a": "Candidates must be residing in Malta or be EU citizens.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "What is the salary for this role?",
+   "a": "The salary is €50,000–€60,000 per year for this full-time role based in Kirkop, Malta.",
    "url": "/jobs",
    "pages": 4
   },
@@ -2293,12 +2299,6 @@
    "pages": 2
   },
   {
-   "q": "What is the salary for this role?",
-   "a": "The salary is €50,000–€60,000 per year for this full-time role based in Kirkop, Malta.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
    "q": "Is this an office-based or site-based job?",
    "a": "It is a hands-on, on-site role. The employer is looking for someone willing to spend most of the working time on site.",
    "url": "/jobs",
@@ -2311,6 +2311,18 @@
    "pages": 2
   },
   {
+   "q": "What does a Restoration/Construction Worker do?",
+   "a": "The role involves restoration and general construction work, including the repair, renovation, and maintenance of buildings and structures.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What construction skills are useful?",
+   "a": "Masonry, plastering, rendering, bricklaying, and stonework are useful, depending on experience.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Retail Shop Supervisor job pay?",
    "a": "The Retail Shop Supervisor job pays €3,000 per month.",
    "url": "/jobs",
@@ -2319,6 +2331,24 @@
   {
    "q": "Will I need to work weekends?",
    "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does the Sales Consultant do in this role?",
+   "a": "You welcome showroom customers, recommend and sell premium powersports products such as jet skis, electric surfboards and superyacht water toys, support product demonstrations, follow up enquiries and work towards individual sales targets.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for the Sales Consultant job in Marsa?",
+   "a": "The role offers a competitive base salary plus commission. No fixed salary figure has been published for this vacancy.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Can candidates from outside Malta apply?",
+   "a": "This vacancy is for candidates residing in Malta.",
    "url": "/jobs",
    "pages": 2
   },
@@ -3753,6 +3783,30 @@
    "title": "Restaurant Manager - Italian Speaking"
   },
   {
+   "q": "What does a Restoration/Construction Worker do?",
+   "a": "The role involves restoration and general construction work, including the repair, renovation, and maintenance of buildings and structures.",
+   "slug": "restoration-worker",
+   "title": "Restoration/Construction Worker"
+  },
+  {
+   "q": "What is the salary for this role?",
+   "a": "The advertised salary is €1,700 per month for this full-time position.",
+   "slug": "restoration-worker",
+   "title": "Restoration/Construction Worker"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous construction experience is required. Restoration or renovation experience is preferred; general construction experience will also be considered.",
+   "slug": "restoration-worker",
+   "title": "Restoration/Construction Worker"
+  },
+  {
+   "q": "What construction skills are useful?",
+   "a": "Masonry, plastering, rendering, bricklaying, and stonework are useful, depending on experience.",
+   "slug": "restoration-worker",
+   "title": "Restoration/Construction Worker"
+  },
+  {
    "q": "What does the Retail Shop Supervisor job pay?",
    "a": "The Retail Shop Supervisor job pays €3,000 per month.",
    "slug": "retail-shop-supervisor",
@@ -3781,6 +3835,36 @@
    "a": "The role is full-time and on-site at the store in Birkirkara, Malta.",
    "slug": "retail-shop-supervisor",
    "title": "Retail Shop Supervisor"
+  },
+  {
+   "q": "What does the Sales Consultant do in this role?",
+   "a": "You welcome showroom customers, recommend and sell premium powersports products such as jet skis, electric surfboards and superyacht water toys, support product demonstrations, follow up enquiries and work towards individual sales targets.",
+   "slug": "sales-consultant",
+   "title": "Sales Consultant"
+  },
+  {
+   "q": "What is the salary for the Sales Consultant job in Marsa?",
+   "a": "The role offers a competitive base salary plus commission. No fixed salary figure has been published for this vacancy.",
+   "slug": "sales-consultant",
+   "title": "Sales Consultant"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous experience in sales is essential, together with strong communication, interpersonal and negotiation skills and the confidence to engage with high-end clientele.",
+   "slug": "sales-consultant",
+   "title": "Sales Consultant"
+  },
+  {
+   "q": "Which languages do I need?",
+   "a": "You must be fluent in both Maltese and English.",
+   "slug": "sales-consultant",
+   "title": "Sales Consultant"
+  },
+  {
+   "q": "Can candidates from outside Malta apply?",
+   "a": "This vacancy is for candidates residing in Malta.",
+   "slug": "sales-consultant",
+   "title": "Sales Consultant"
   },
   {
    "q": "What does the Sales Director do in this role?",
