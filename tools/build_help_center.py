@@ -302,7 +302,7 @@ def page(title: str, desc: str, url: str, content: str, crumbs: list[tuple[str, 
     s = s[:a] + f'<div class="hc">{content}</div>' + s[b:]
     s = re.sub(r'<section class="section cta">.*?</section>', "", s, count=1, flags=re.S)
     if "/assets/help-widget.js" not in s:  # the shell may already carry it (tools/add_help_widget_sitewide.py)
-        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=5"></script>\n</body>', 1)
+        s = s.replace("</body>", '<script defer src="/assets/help-widget.js?v=6"></script>\n</body>', 1)
     return s
 
 
@@ -319,6 +319,11 @@ def write(rel: str, text: str) -> None:
 
 def main() -> None:
     faqs = load_faqs()
+    # --extra file.json: questions not yet saved in the database (local preview only)
+    import sys
+    if "--extra" in sys.argv:
+        extra = json.loads(Path(sys.argv[sys.argv.index("--extra") + 1]).read_text(encoding="utf-8"))
+        faqs = [f for f in faqs if f["slug"] not in {e["slug"] for e in extra}] + extra
     for c, _ in CATEGORIES:
         real = [q for q in faqs if q.get("category") == c]
         if real:

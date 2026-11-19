@@ -163,6 +163,15 @@ def by(a: dict) -> str:
             f'style="object-position:{E(pos)}">{E(p["name"])}</span>')
 
 
+def pinned_html(p: dict | None) -> str:
+    """Pinned announcement shown above the featured article on /news-updates and its category pages."""
+    if not p or not p.get("title"):
+        return ""
+    return (f'<a class="nu-pinned" href="{E(p.get("url", "#"))}"><span class="nu-pinned-tag">📌 {E(p.get("label", "Announcement"))}</span>'
+            f'<strong>{E(p["title"])}</strong><span class="nu-pinned-text">{E(p.get("text", ""))}</span>'
+            f'<span class="nu-pinned-more">Read the notice →</span></a>')
+
+
 def badge(a: dict) -> str:
     return f'<span class="nu-badge">{E(a["cats"][0])}</span>'
 
@@ -274,6 +283,14 @@ body { background: #fff; }
   border: 0; cursor: pointer; font-family: inherit; color: var(--ink); transition: background .2s ease, color .2s ease; }
 .nu-chip:hover { background: #e6e6e6; }
 .nu-chip.is-active { background: var(--brand); color: #fff; }
+/* Pinned announcement */
+.nu-pinned { display: grid; gap: .4rem; margin: 0 0 1.75rem; padding: 1.25rem 1.5rem; border-radius: 18px; border: 1px solid #f4c7c3;
+  background: #fef3f2; color: #1c2623 !important; text-decoration: none !important; transition: box-shadow .2s ease; }
+.nu-pinned:hover { box-shadow: 0 12px 30px rgba(180,35,24,.12); }
+.nu-pinned-tag { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #b42318; }
+.nu .nu-pinned strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.15; }
+.nu-pinned-text { color: rgba(28,38,35,.75); line-height: 1.55; }
+.nu-pinned-more { font-weight: 600; color: #b42318; }
 /* Featured */
 .nu-featured { position: relative; display: flex; align-items: center; min-height: 460px; overflow: hidden; background: #222; isolation: isolate; }
 .nu-featured img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s ease; }
@@ -651,6 +668,7 @@ def build(settings: dict, all_arts: list[dict], cat: str | None) -> None:
       <div class="nu-head-btns"><a class="nu-btn accent" href="#newsletter">Subscribe{ARROW}</a><a class="nu-btn light" href="#latest" data-filter="all" data-scroll>Browse all articles{ARROW}</a></div></div>
     {intro}
     <ul class="nu-chips" role="list">{chips}</ul>
+    {pinned_html(settings.get("pinned"))}
     <a class="nu-featured" href="{E(featured['url'])}">
       <img src="{E(featured['img'])}" alt="{E(featured['alt'] or featured['title'])}" width="1240" height="460">
       <div class="nu-featured-body"><div class="nu-meta">{badge(featured)}<time datetime="{featured['date']:%Y-%m-%d}">{fmt(featured['date'])}</time></div>
