@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-11-20
 
-Generated: 2026-11-20T09:41:34
+Generated: 2026-11-20T11:36:01
 
 ## Summary
 
@@ -25,7 +25,7 @@ Generated: 2026-11-20T09:41:34
 | Average Ranking Readiness | 84.5/100 |
 | High-Priority Ranking Jobs | 14 |
 | GSC URLs Checked | 133 |
-| GSC Problem Groups | 121 |
+| GSC Problem Groups | 122 |
 
 ## Jobs to Add (Missing from Website)
 
@@ -142,8 +142,8 @@ Generated: 2026-11-20T09:41:34
 
 ## Google Search Console Action Plan
 
-1. Fix 45 job URL(s) not indexed or not passing URL Inspection
-2. Fix 42 job URL(s) with zero Search Console impressions
+1. Fix 46 job URL(s) not indexed or not passing URL Inspection
+2. Fix 40 job URL(s) with zero Search Console impressions
 3. Fix 3 job URL(s) ranking worse than average position 20
 4. Fix 29 job URL(s) missing target keyword visibility in top queries
 
@@ -151,11 +151,12 @@ Generated: 2026-11-20T09:41:34
 
 - **[Restoration/Construction Worker](https://outreachrecruitment.net/jobs/restoration-worker)**: URL is unknown to Google
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)**: Alternate page with proper canonical tag
+- **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)**: Alternate page with proper canonical tag
 - **[Architect / Draughtsperson](https://outreachrecruitment.net/jobs/architect-draughtsperson)**: Alternate page with proper canonical tag
-- **[Residential Finishing Projects Manager](https://outreachrecruitment.net/jobs/residential-finishing-projects-manager)**: Alternate page with proper canonical tag
 - **[Sales Director](https://outreachrecruitment.net/jobs/sales-director)**: Alternate page with proper canonical tag
 - **[Workshop Manager](https://outreachrecruitment.net/jobs/workshop-manager)**: Alternate page with proper canonical tag
 - **[Chef de Partie (Breakfast)](https://outreachrecruitment.net/jobs/chef-de-partie-breakfast)**: Alternate page with proper canonical tag
+- **[Workshop Team Leader](https://outreachrecruitment.net/jobs/workshop-team-leader)**: URL is unknown to Google
 - **[Senior Technician](https://outreachrecruitment.net/jobs/senior-technician)**: URL is unknown to Google
 - **[Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk)**: URL is unknown to Google
 - **[Sales Manager](https://outreachrecruitment.net/jobs/sales-manager-gzira)**: URL is unknown to Google
@@ -167,15 +168,14 @@ Generated: 2026-11-20T09:41:34
 - **[Leasing Administration Officer](https://outreachrecruitment.net/jobs/leasing-administration-officer)**: URL is unknown to Google
 - **[Sushi Chef](https://outreachrecruitment.net/jobs/sushi-chef)**: Alternate page with proper canonical tag
 - **[Senior Clerk](https://outreachrecruitment.net/jobs/senior-clerk)**: URL is unknown to Google
-- **[Business Development Manager HoReCa](https://outreachrecruitment.net/jobs/business-development-manager-horeca)**: Alternate page with proper canonical tag
 - **[Customer Experience Assistant](https://outreachrecruitment.net/jobs/customer-experience-assistant)**: URL is unknown to Google
 - **[PDI Leading Hand](https://outreachrecruitment.net/jobs/pdi-leading-hand)**: URL is unknown to Google
 - **[Facilities, Maintenance and Health & Safety Manager](https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager)**: URL is unknown to Google
 - **[Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person)**: URL is unknown to Google
-- **[Retail Shop Supervisor](https://outreachrecruitment.net/jobs/retail-shop-supervisor)**: Alternate page with proper canonical tag
 - **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)**: URL is unknown to Google
 - **[Host / Receptionist](https://outreachrecruitment.net/jobs/host-receptionist)**: URL is unknown to Google
 - **[Truck / Trailer Driver](https://outreachrecruitment.net/jobs/truck-trailer-driver)**: Alternate page with proper canonical tag
+- **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)**: URL is unknown to Google
 - **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper-rabat)**: Alternate page with proper canonical tag
 - **[Driver License B](https://outreachrecruitment.net/jobs/driver-license-b)**: Alternate page with proper canonical tag
 - **[Learning & Development Executive - Hybrid](https://outreachrecruitment.net/jobs/learning-development-executive-hybrid)**: Alternate page with proper canonical tag
@@ -194,9 +194,7 @@ Generated: 2026-11-20T09:41:34
 - **[Restaurant Manager - Italian Speaking](https://outreachrecruitment.net/jobs/restaurant-manager-italian-speaking)**: target `Restaurant Manager - Italian Speaking jobs in Malta`
 - **[Heavy Equipment Mechanic](https://outreachrecruitment.net/jobs/heavy-equipment-mechanic-2)**: target `Heavy Equipment Mechanic jobs in Malta`
 - **[Auto Electrician (Heavy Vehicles)](https://outreachrecruitment.net/jobs/auto-electrician-heavy-vehicles)**: target `Auto Electrician (Heavy Vehicles) jobs in Malta`
-- **[Steel Shutter Installer](https://outreachrecruitment.net/jobs/steel-shutter-installer)**: target `Steel Shutter Installer jobs in Malta`
 - **[Head Chef](https://outreachrecruitment.net/jobs/head-chef-steakhouse)**: target `Head Chef jobs in Malta`
-- **[Delivery Man](https://outreachrecruitment.net/jobs/delivery-man)**: target `Delivery Man jobs in Malta`
 - **[Marine Turner](https://outreachrecruitment.net/jobs/marine-turner-malta)**: target `Marine Turner jobs in Malta`
 - **[Quality Engineer](https://outreachrecruitment.net/jobs/quality-engineer-marine-malta)**: target `Quality Engineer jobs in Malta`
 - **[Fleet, Tools and Facility Manager](https://outreachrecruitment.net/jobs/fleet-tools-facility-manager)**: target `Fleet, Tools and Facility Manager jobs in Malta`
@@ -205,7 +203,6 @@ Generated: 2026-11-20T09:41:34
 - **[HSSE Coordinator](https://outreachrecruitment.net/jobs/hsse-coordinator)**: target `HSSE Coordinator jobs in Malta`
 - **[Supervisor](https://outreachrecruitment.net/jobs/supervisor)**: target `Supervisor jobs in Malta`
 - **[Senior Quantity Estimator (M&E)](https://outreachrecruitment.net/jobs/senior-quantity-estimator-me)**: target `Senior Quantity Estimator (M&E) jobs in Malta`
-- **[Maintenance Technician - Electrical Licence A or B)](https://outreachrecruitment.net/jobs/maintenance-technician-electrical-licence-a-or-b)**: target `Maintenance Technician - Electrical Licence A or B) jobs in Malta`
 - **[General Maintenance Technician](https://outreachrecruitment.net/jobs/general-maintenance-technician)**: target `General Maintenance Technician jobs in Malta`
 - **[Counter assistant](https://outreachrecruitment.net/jobs/counter-assistant)**: target `Counter assistant jobs in Malta`
 - **[Kitchen Assistant](https://outreachrecruitment.net/jobs/kitchen-assistant)**: target `Kitchen Assistant jobs in Malta`
@@ -216,6 +213,9 @@ Generated: 2026-11-20T09:41:34
 - **[Audit Senior Associate](https://outreachrecruitment.net/jobs/audit-senior-associate)**: target `Audit Senior Associate jobs in Malta`
 - **[Customer Contact Centre Representative](https://outreachrecruitment.net/jobs/customer-contact-centre-representative)**: target `Customer Contact Centre Representative jobs in Malta`
 - **[Draughtsperson](https://outreachrecruitment.net/jobs/draughtsperson)**: target `Draughtsperson jobs in Malta`
+- **[Sales Executive - Luxury Retail](https://outreachrecruitment.net/jobs/sales-executive-luxury-retail)**: target `Sales Executive - Luxury Retail jobs in Malta`
+- **[Motor Vehicle Mechanic/Technician](https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician)**: target `Motor Vehicle Mechanic/Technician jobs in Malta`
+- **[Automotive Parts Personnel](https://outreachrecruitment.net/jobs/automotive-parts-personnel)**: target `Automotive Parts Personnel jobs in Malta`
 
 ## Ranking Opportunities from GSC
 
