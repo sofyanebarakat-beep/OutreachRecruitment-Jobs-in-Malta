@@ -1,0 +1,20 @@
+=== Job Sync Agent ===
+Started: Fri Nov 20 11:00:08 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-20 11:00  ===
+
+[1] Scraping careers page …
+  pass 1: 133 / 133 advertised
+  careers page: 133 collected / 133 advertised · website open: 133
+
+[2] 0 website job(s) not in the careers-page listing — checking each …
+
+[3] Reading 133 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/01fea69f-277d-4219-9a16-461436845495)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c9d68a7c-031e-43de-9abb-1ace8fb4fe24)
+  20/133
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/8c67dbc9-77fb-46aa-9176-b7c41c7a650a)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/373103d8-ea25-4de5-adcf-245224df8cd1)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/fa126d1f-f139-4c10-9b55-e99519b69edb)
+  40/133
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/f87c28af-69fe-4b05-8aed-a7f289ea20fb)
