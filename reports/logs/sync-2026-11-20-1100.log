@@ -20,3 +20,30 @@ Started: Fri Nov 20 11:00:08 CET 2026
     retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/f87c28af-69fe-4b05-8aed-a7f289ea20fb)
   60/133
     retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/5f1e9804-85bc-4b5f-a4ef-32c85219612e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/10070d19-7087-4905-a4fc-88dc95840c58)
+  80/133
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/6ef09a6e-669c-4b31-816f-fffaaebdede3)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/76fb6e10-9cff-48df-b669-297f8a4de1a4)
+  100/133
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0721d174-292f-4fee-a1cd-05af92d5ca8c)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/65c6fe4b-2b76-475a-b20b-b412f571301e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/33091bf8-0a27-492b-ab28-ca6de155d00d)
+  120/133
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/d3d955be-60c4-44d1-9723-6e941b3598f1)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/1c5b7a74-e94c-4294-a35a-3ef4bc5275be)
+  133 fact sheets read
+  0 new, 0 to reopen, 0 changed
+  page check: 129 ok, 0 to fix (0 today)
+Updating listings (2026-11-20) — 133 open, 143 closed, 74 expired/hidden
+  index.html — 133 total, showing 10 on homepage
+  jobs/index.html — 133 job(s), 57 featured, 17 categories
+  sitemaps/sitemap-jobs.xml — 134 URL(s)
+  sitemap_index.xml — jobs sitemap lastmod refreshed
+  sitemap.xml — compatibility lastmod refreshed
+  construction-jobs-in-malta.html — 13 construction job(s), 7 with published salary
+
+Done. Run: git add -A && git commit -m 'Update job listings' && git push origin main
+faq-posts.json: 438 general question(s), 274 question(s) from open job pages
+
+[7] Checking the live site …
+  waiting 10 min for GitHub Pages to deploy …
