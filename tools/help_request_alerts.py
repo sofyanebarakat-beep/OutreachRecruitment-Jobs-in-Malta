@@ -11,6 +11,7 @@ Usage: python3 tools/help_request_alerts.py [--dry-run]
 from __future__ import annotations
 
 import html
+import fcntl
 import json
 import re
 import smtplib
@@ -115,4 +116,11 @@ def main(argv: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    lock_path = ROOT / "tools" / ".help_request_alerts.lock"
+    with lock_path.open("w") as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print("help alerts: another run is already active")
+            sys.exit(0)
+        sys.exit(main(sys.argv[1:]))
