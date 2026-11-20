@@ -369,6 +369,9 @@ label.btn { font-weight: 600; }
   .note-toolbar button, .note-toolbar label { font-size: .75rem; padding: 5px 7px; }
 }
 /* Help Center Inbox */
+.nav-subitem { min-height:34px!important; margin-top:-4px; padding:7px 10px 7px 38px!important; font-size:.82rem!important; color:var(--muted)!important; }
+.nav-subitem.active { color:var(--brand)!important; background:var(--brand-soft, #eeebff)!important; }
+.nav-count { display:inline-grid; place-items:center; min-width:22px; height:22px; margin-left:auto; padding:0 6px; border-radius:999px; background:#442DFA; color:#fff; font-size:.72rem; font-weight:800; }
 .hd-item { border:1px solid var(--line, #e5e5e5); border-radius:14px; padding:16px 18px; margin:12px 0; background:#fff; }
 .hd-item.new { border-left:4px solid #442DFA; }
 .hd-item header { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }

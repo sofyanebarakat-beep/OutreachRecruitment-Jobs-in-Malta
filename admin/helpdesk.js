@@ -30,7 +30,19 @@
   }
   const mailto = (r, text) => `mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent("Your request to Outreach Recruitment")}&body=${encodeURIComponent(`Hi ${String(r.full_name).split(" ")[0]},\n\n${text}\n\nKind regards,\n${r.assigned_to || "Outreach Recruitment"}\nOutreach Recruitment`)}`;
 
-  window.renderHelpdesk = async function (view) {
+  window.refreshHireInboxCount = async function () {
+    const store = window.AdminStore;
+    const badge = document.querySelector("#hire-inbox-count");
+    if (!badge || !store || store.mode !== "supabase" || !store.sb) return;
+    const { count, error } = await store.sb.from("help_requests").select("id", { count: "exact", head: true }).eq("topic", "Hire").eq("status", "new");
+    if (error) return;
+    const total = count || 0;
+    badge.textContent = String(total);
+    badge.setAttribute("aria-label", `${total} new Hire ${total === 1 ? "enquiry" : "enquiries"}`);
+  };
+
+  window.renderHelpdesk = async function (view, topicFilter = "") {
+    if (topicFilter) tab = "inbox";
     view.innerHTML = `<section class="card hero"><div class="kicker">Support · Help Center</div><h1>Help Center</h1><p>Loading…</p></section>`;
     const store = window.AdminStore;
     if (!store || store.mode !== "supabase" || !store.sb) {
@@ -44,6 +56,12 @@
       return;
     }
     rows = data || [];
+    const hireCount = rows.filter((r) => r.topic === "Hire" && r.status === "new").length;
+    const hireBadge = document.querySelector("#hire-inbox-count");
+    if (hireBadge) {
+      hireBadge.textContent = String(hireCount);
+      hireBadge.setAttribute("aria-label", `${hireCount} new Hire ${hireCount === 1 ? "enquiry" : "enquiries"}`);
+    }
     await loadTemplates();
     const newCount = rows.filter((r) => r.status === "new").length;
     view.innerHTML = `<section class="card hero"><div class="kicker">Support · Help Center</div><h1>Help Center</h1>
@@ -53,11 +71,11 @@
       <section id="hd-panel"></section>`;
     view.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => { tab = b.dataset.tab; window.renderHelpdesk(view); }));
     const panel = view.querySelector("#hd-panel");
-    ({ inbox: inbox, insights: insights, faqs: faqsTab, misses: missesTab, templates: templatesTab })[tab](panel, view);
+    ({ inbox: inbox, insights: insights, faqs: faqsTab, misses: missesTab, templates: templatesTab })[tab](panel, view, topicFilter);
   };
 
   /* ---------------- Inbox ---------------- */
-  function inbox(panel, view) {
+  function inbox(panel, view, topicFilter = "") {
     const count = (s) => rows.filter((r) => r.status === s).length;
     panel.innerHTML = `<section class="subscriber-stats"><div class="card"><span>New</span><strong>${count("new")}</strong></div><div class="card"><span>In progress</span><strong>${count("in_progress")}</strong></div>
         <div class="card"><span>Answered</span><strong>${count("answered")}</strong></div><div class="card"><span>Total</span><strong>${rows.length}</strong></div></section>
@@ -67,6 +85,7 @@
         <select id="hd-topic"><option value="">All topics</option><option>Jobs in Malta</option><option>Hire</option><option>Study in Malta</option><option>General</option><option value="fraud">Fraud reports</option></select>
         <button class="btn" type="button" id="hd-csv">Download CSV</button></div><div id="hd-list"></div></section>`;
     const list = panel.querySelector("#hd-list"), q = panel.querySelector("#hd-q"), st = panel.querySelector("#hd-status"), tp = panel.querySelector("#hd-topic");
+    if (topicFilter) tp.value = topicFilter;
     const filtered = () => {
       const s = q.value.trim().toLowerCase();
       return rows.filter((r) => (!st.value || r.status === st.value) && (!tp.value || (tp.value === "fraud" ? (r.details || {}).type === "fraud_report" : r.topic === tp.value)) &&
@@ -101,7 +120,9 @@
     async function update(id, patch) {
       const { error } = await sb.from("help_requests").update(patch).eq("id", id);
       if (error) { alert(`Could not update: ${error.message}`); return false; }
-      Object.assign(rows.find((x) => x.id === id) || {}, patch); return true;
+      Object.assign(rows.find((x) => x.id === id) || {}, patch);
+      window.refreshHireInboxCount();
+      return true;
     }
     [q, st, tp].forEach((el) => el.addEventListener("input", draw));
     list.addEventListener("change", async (e) => {

@@ -790,14 +790,14 @@
     const h = location.hash;
     if (h && !h.startsWith("#/")) return; // auth tokens in the hash — leave them to Supabase
     const [r, param] = (h.slice(2) || "jobsync").split("?")[0].split("/");
-    $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === r));
+    $$("#nav a").forEach((a) => a.classList.toggle("active", a.dataset.route === r && (!a.dataset.topic || a.dataset.topic === param)));
     if (r === "jobsync") window.renderJobSync($("#view"), param);
     else if (r === "featured-jobs") window.renderFeaturedJobs($("#view"));
     else if (r === "footer-job-alerts") window.renderSubscribers($("#view"), "footer_signup");
     else if (r === "subscribers") window.renderSubscribers($("#view"));
     else if (r === "marketing") window.renderMarketing($("#view"));
     else if (r === "social") window.renderSocial($("#view"));
-    else if (r === "helpdesk") window.renderHelpdesk($("#view"));
+    else if (r === "helpdesk") window.renderHelpdesk($("#view"), param === "hire" ? "Hire" : "");
     else if (r === "kpi") renderKPI();
     else if (r === "notes") renderNotes(param);
     else renderCourse();
@@ -813,6 +813,7 @@
     $("#sign-out").hidden = Store.mode !== "supabase";
     try { await Store.load(); }
     catch (e) { $("#view").innerHTML = `<div class="card"><h2>Could not load your data</h2><p>${esc(e.message || e)}</p></div>`; return; }
+    if (window.refreshHireInboxCount) window.refreshHireInboxCount();
     if (!location.hash.startsWith("#/")) history.replaceState(null, "", "#/jobsync");
     route();
   }
