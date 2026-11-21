@@ -953,6 +953,22 @@
   from = "/your-official-study-parent-in-malta/"
   to = "/blog/your-official-study-parent-in-malta.html"
   status = 200
+[[redirects]]
+  from = "/best-ways-to-find-job-opportunities"
+  to = "/best-ways-to-find-job-opportunities/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/best-ways-to-find-job-opportunities.html"
+  to = "/best-ways-to-find-job-opportunities/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/best-ways-to-find-job-opportunities/"
+  to = "/blog/best-ways-to-find-job-opportunities.html"
+  status = 200
 # ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
   from = "/study-in-malta-complete-guide"
