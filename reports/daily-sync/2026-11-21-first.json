@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-21",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Host / Receptionist",
+      "slug": "host-receptionist",
+      "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+      "city": "St. Julian's, Malta"
+    },
+    {
+      "title": "Hotel Porter",
+      "slug": "hotel-porter",
+      "url": "https://outreachrecruitment.net/jobs/hotel-porter/",
+      "city": "San Ġiljan, Malta"
+    },
+    {
+      "title": "Housekeeper",
+      "slug": "housekeeper-2",
+      "url": "https://outreachrecruitment.net/jobs/housekeeper-2/",
+      "city": "St. Julian, Malta"
+    },
+    {
+      "title": "Public Area Cleaner",
+      "slug": "public-area-cleaner",
+      "url": "https://outreachrecruitment.net/jobs/public-area-cleaner/",
+      "city": "Sliema, Malta"
+    },
+    {
+      "title": "Steel Shutter Installer",
+      "slug": "steel-shutter-installer",
+      "url": "https://outreachrecruitment.net/jobs/steel-shutter-installer/",
+      "city": "Santa Venera, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 128,
+  "site_open_before": 133,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 128,
+    "ok": 124,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 2,
+        "removed": 2
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 19,
+    "itemlist_items": 128,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 4
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 5,
+    "pages_reopened": 0
+  },
+  "site_open_after": 128,
+  "salary_coverage": {
+    "open": 128,
+    "with_salary": 35
+  }
+}

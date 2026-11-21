@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-21",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Host / Receptionist",
+      "slug": "host-receptionist",
+      "url": "https://outreachrecruitment.net/jobs/host-receptionist/",
+      "city": "St. Julian's, Malta"
+    },
+    {
+      "title": "Hotel Porter",
+      "slug": "hotel-porter",
+      "url": "https://outreachrecruitment.net/jobs/hotel-porter/",
+      "city": "San Ġiljan, Malta"
+    },
+    {
+      "title": "Housekeeper",
+      "slug": "housekeeper-2",
+      "url": "https://outreachrecruitment.net/jobs/housekeeper-2/",
+      "city": "St. Julian, Malta"
+    },
+    {
+      "title": "Public Area Cleaner",
+      "slug": "public-area-cleaner",
+      "url": "https://outreachrecruitment.net/jobs/public-area-cleaner/",
+      "city": "Sliema, Malta"
+    },
+    {
+      "title": "Steel Shutter Installer",
+      "slug": "steel-shutter-installer",
+      "url": "https://outreachrecruitment.net/jobs/steel-shutter-installer/",
+      "city": "Santa Venera, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 128,
+  "site_open_before": 133,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 128,
+    "ok": 124,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "site_open_after": 128,
+  "salary_coverage": {
+    "open": 133,
+    "with_salary": 35
+  }
+}
