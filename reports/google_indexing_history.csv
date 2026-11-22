@@ -5832,3 +5832,75 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-11-21T11:20:34,Host / Receptionist,host-receptionist,https://outreachrecruitment.net/jobs/host-receptionist/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/host-receptionist/""
+  }
+}
+"
+2026-11-21T11:20:34,Hotel Porter,hotel-porter,https://outreachrecruitment.net/jobs/hotel-porter/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/hotel-porter/""
+  }
+}
+"
+2026-11-21T11:20:34,Housekeeper,housekeeper-2,https://outreachrecruitment.net/jobs/housekeeper-2/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/housekeeper-2/""
+  }
+}
+"
+2026-11-21T11:20:34,Public Area Cleaner,public-area-cleaner,https://outreachrecruitment.net/jobs/public-area-cleaner/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/public-area-cleaner/""
+  }
+}
+"
+2026-11-21T11:20:34,Steel Shutter Installer,steel-shutter-installer,https://outreachrecruitment.net/jobs/steel-shutter-installer/,URL_UPDATED,daily_sync_closed,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/steel-shutter-installer/""
+  }
+}
+"
+2026-11-21T11:31:40,Accountant,accountant,https://outreachrecruitment.net/jobs/accountant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accountant/""
+  }
+}
+"
+2026-11-21T11:31:40,Billing Administrator,billing-administrator,https://outreachrecruitment.net/jobs/billing-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/billing-administrator/""
+  }
+}
+"
+2026-11-21T11:31:40,Architect / Draughtsperson,architect-draughtsperson,https://outreachrecruitment.net/jobs/architect-draughtsperson/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/architect-draughtsperson/""
+  }
+}
+"
+2026-11-21T11:31:40,Residential Finishing Projects Manager,residential-finishing-projects-manager,https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/""
+  }
+}
+"
+2026-11-21T11:31:40,Sales Director,sales-director,https://outreachrecruitment.net/jobs/sales-director/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/sales-director/""
+  }
+}
+"
+2026-11-21T11:31:40,Workshop Manager,workshop-manager,https://outreachrecruitment.net/jobs/workshop-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/workshop-manager/""
+  }
+}
+"
+2026-11-21T11:31:40,Chef de Partie (Breakfast),chef-de-partie-breakfast,https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/chef-de-partie-breakfast/""
+  }
+}
+"
