@@ -8,7 +8,7 @@
   "held": [],
   "notes": [],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 128,
   "site_open_before": 128,
@@ -37,5 +37,82 @@
   "salary_coverage": {
     "open": 128,
     "with_salary": 35
+  },
+  "google": {
+    "sent": 0,
+    "ok": 0
+  },
+  "live": {
+    "count": 128,
+    "expected": 128,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 6,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Accountant",
+        "slug": "accountant",
+        "url": "https://outreachrecruitment.net/jobs/accountant/",
+        "age_days": 10,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Billing Administrator",
+        "slug": "billing-administrator",
+        "url": "https://outreachrecruitment.net/jobs/billing-administrator/",
+        "age_days": 10,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Architect / Draughtsperson",
+        "slug": "architect-draughtsperson",
+        "url": "https://outreachrecruitment.net/jobs/architect-draughtsperson/",
+        "age_days": 10,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Residential Finishing Projects Manager",
+        "slug": "residential-finishing-projects-manager",
+        "url": "https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/",
+        "age_days": 11,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Sales Director",
+        "slug": "sales-director",
+        "url": "https://outreachrecruitment.net/jobs/sales-director/",
+        "age_days": 11,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Workshop Manager",
+        "slug": "workshop-manager",
+        "url": "https://outreachrecruitment.net/jobs/workshop-manager/",
+        "age_days": 12,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      }
+    ],
+    "error": ""
   }
 }
