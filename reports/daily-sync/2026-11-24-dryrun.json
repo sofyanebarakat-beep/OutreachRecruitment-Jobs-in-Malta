@@ -18,14 +18,24 @@
   ],
   "updated": [],
   "failed": [],
-  "held": [],
+  "held": [
+    {
+      "uuid": "3d08a452-b7f3-48d9-8851-02d99ff3ac75",
+      "title": "Showroom Sales & Administration Assistant",
+      "city": "Msida",
+      "slug": "showroom-sales-and-administration-assistant",
+      "salary_label": "€2,000–€2,300 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3d08a452-b7f3-48d9-8851-02d99ff3ac75",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
   "notes": [
     "Did not change anything: git pull --ff-only failed: From https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta\n * branch                main       -> FETCH_HEAD\nhint: Diverging branches can't be fast-forwarded, you need to either:\nhi."
   ],
   "salary_notes": [],
   "git": "no changes",
   "dry_run": true,
-  "ats_advertised": 126,
+  "ats_advertised": 127,
   "site_open_before": 128,
   "salary_synced": [],
   "page_check": {
@@ -35,7 +45,7 @@
     "fixing_today": 0,
     "queued": 0
   },
-  "site_open_after": 126,
+  "site_open_after": 127,
   "salary_coverage": {
     "open": 128,
     "with_salary": 35

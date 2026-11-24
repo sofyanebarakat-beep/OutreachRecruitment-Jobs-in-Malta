@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-11-24T09:03:52",
+  "generated_at": "2026-11-24T12:22:19",
   "careers_count_advertised": 127,
   "careers_count_scraped": 127,
   "website_count": 128,
-  "sync_score": 94.6,
+  "sync_score": 94.0,
   "missing_jobs": [
+    "Showroom Sales & Administration Assistant",
     "Mini Bus Drivers License D",
     "Deli Counter Assistant / Salumeria Specialis",
     "Chefs de Partie",
@@ -12,6 +13,7 @@
     "Heavy equipment mech"
   ],
   "extra_jobs": [
+    "Retail Shop Supervisor",
     "Front Office Executive",
     "Mini Bus Driver – Licence D",
     "Deli Counter Assistant / Salumeria Specialist",
@@ -8230,7 +8232,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-23T20:38:08Z",
+      "last_crawl_time": "2026-11-24T09:47:04Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/sales-representative-in-renewables",
       "google_canonical": "https://outreachrecruitment.net/jobs/sales-representative-in-renewables/",
       "canonical_match": true,
@@ -8545,7 +8547,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-21T15:56:08Z",
+      "last_crawl_time": "2026-11-24T09:23:38Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/builders-and-shutterers",
       "google_canonical": "https://outreachrecruitment.net/jobs/builders-and-shutterers/",
       "canonical_match": true,

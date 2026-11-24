@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-11-24
 
-Generated: 2026-11-24T09:03:52
+Generated: 2026-11-24T12:22:19
 
 ## Summary
 
@@ -9,9 +9,9 @@ Generated: 2026-11-24T09:03:52
 | Careers Page Jobs | 127 |
 | Careers Jobs Scraped | 127 |
 | Website Jobs | 128 |
-| **Sync Score** | **94.6% — Needs Attention** |
-| Missing from Website | 5 |
-| Extra on Website | 4 |
+| **Sync Score** | **94.0% — Needs Attention** |
+| Missing from Website | 6 |
+| Extra on Website | 5 |
 | Title Mismatches | 3 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
@@ -29,6 +29,7 @@ Generated: 2026-11-24T09:03:52
 
 ## Jobs to Add (Missing from Website)
 
+- Showroom Sales & Administration Assistant
 - Mini Bus Drivers License D
 - Deli Counter Assistant / Salumeria Specialis
 - Chefs de Partie
@@ -37,6 +38,7 @@ Generated: 2026-11-24T09:03:52
 
 ## Jobs to Remove (Extra on Website)
 
+- Retail Shop Supervisor
 - Front Office Executive
 - Mini Bus Driver – Licence D
 - Deli Counter Assistant / Salumeria Specialist
@@ -403,8 +405,8 @@ Generated: 2026-11-24T09:03:52
 
 ## Actions Required
 
-1. Add 5 missing job(s) to website
-2. Remove 4 closed job(s) from website
+1. Add 6 missing job(s) to website
+2. Remove 5 closed job(s) from website
 3. Review 3 possible title mismatch(es)
 4. Fix 32 SEO issue(s)
 5. Review 25 possible duplicate job(s)
