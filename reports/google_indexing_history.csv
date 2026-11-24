@@ -5946,3 +5946,39 @@ date,title,slug,url,type,source,status,ok,response
   }
 }
 "
+2026-11-23T14:33:11,Accountant,accountant,https://outreachrecruitment.net/jobs/accountant/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/accountant/""
+  }
+}
+"
+2026-11-23T14:33:11,Billing Administrator,billing-administrator,https://outreachrecruitment.net/jobs/billing-administrator/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/billing-administrator/""
+  }
+}
+"
+2026-11-23T14:33:11,Architect / Draughtsperson,architect-draughtsperson,https://outreachrecruitment.net/jobs/architect-draughtsperson/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/architect-draughtsperson/""
+  }
+}
+"
+2026-11-23T14:33:11,Residential Finishing Projects Manager,residential-finishing-projects-manager,https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/""
+  }
+}
+"
+2026-11-23T14:33:11,Sales Director,sales-director,https://outreachrecruitment.net/jobs/sales-director/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/sales-director/""
+  }
+}
+"
+2026-11-23T14:33:11,Workshop Manager,workshop-manager,https://outreachrecruitment.net/jobs/workshop-manager/,URL_UPDATED,indexing_followup,200,True,"{
+  ""urlNotificationMetadata"": {
+    ""url"": ""https://outreachrecruitment.net/jobs/workshop-manager/""
+  }
+}
+"
