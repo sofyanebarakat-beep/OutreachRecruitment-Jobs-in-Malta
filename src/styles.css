@@ -1117,3 +1117,5 @@ tr.selected td { background: #f4f2ff; }
 .checkup > summary small { font-weight: 400; color: #777; }
 .checkup .table-wrap { margin: 0 12px 12px; }
 .checkup td.advice { max-width: 340px; font-size: 13px; color: #444; }
+.review-panel.flash { animation: review-flash 1.6s ease-out; }
+@keyframes review-flash { 0%, 40% { box-shadow: 0 0 0 4px #442dfa55; border-color: #442dfa; } 100% { box-shadow: 0 0 0 0 transparent; } }

@@ -2011,6 +2011,16 @@ function ArticleModal({
     const changes = fixFor(w, v, services.rows);
     if (changes) setV((cur: Row) => ({ ...cur, ...changes }));
   }
+  // The human review can't be automated: take the user to the review panel and highlight it.
+  function openReview() {
+    const el = document.getElementById("article-review");
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.remove("flash");
+    void el.offsetWidth;
+    el.classList.add("flash");
+    (el.querySelector("input[type=checkbox]:not(:checked)") as HTMLInputElement | null)?.focus({ preventScroll: true });
+  }
   function fixAll() {
     let cur = v;
     for (const w of validateArticle(cur)) {
@@ -2319,6 +2329,10 @@ function ArticleModal({
                     <button type="button" className="link" onClick={() => fix(w)}>
                       <Wand2 /> Fix it for me
                     </button>
+                  ) : w.includes("Before you publish") ? (
+                    <button type="button" className="link" onClick={openReview}>
+                      <ShieldCheck /> Review now
+                    </button>
                   ) : (
                     <em>needs you</em>
                   )}
@@ -2328,6 +2342,7 @@ function ArticleModal({
             <small>Automatic fixes are a starting point — read them and adjust the wording before publishing.</small>
           </div>
         )}
+        <ReviewPanel v={v} setV={setV} />
         <div className="wide ai-row">
           <button
             type="button"
@@ -2350,7 +2365,6 @@ function ArticleModal({
             remains available.
           </span>
         </div>
-        <ReviewPanel v={v} setV={setV} />
         {msg && <p className="error wide">{msg}</p>}
         <div className="form-actions wide article-actions">
           {row.id && (
@@ -2408,7 +2422,7 @@ function ReviewPanel({ v, setV }: { v: Row; setV: (f: (cur: Row) => Row) => void
   const others = (Array.isArray(v.validation_results) ? v.validation_results : []).filter((x: any) => x?.type !== "human_review");
   if (done)
     return (
-      <div className="review-panel wide done">
+      <div className="review-panel wide done" id="article-review">
         <strong>✓ Reviewed by {done.by} on {new Date(done.at).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</strong>
         <span>Facts, FAQs and author checked. The live article shows this review to readers and Google.</span>
         <button type="button" className="link" onClick={() => setV((cur) => ({ ...cur, validation_results: others }))}>Review again</button>
@@ -2421,7 +2435,7 @@ function ReviewPanel({ v, setV }: { v: Row; setV: (f: (cur: Row) => Row) => void
     </label>
   );
   return (
-    <div className="review-panel wide">
+    <div className="review-panel wide" id="article-review">
       <strong>Before you publish</strong>
       <span>A person must check the article before it goes live. The review is recorded and shown on the article.</span>
       {box("facts", "I checked the facts, figures, salaries and rules against the sources")}
@@ -2434,12 +2448,17 @@ function ReviewPanel({ v, setV }: { v: Row; setV: (f: (cur: Row) => Row) => void
             {ARTICLE_AUTHORS.filter((a) => a !== "Outreach Recruitment").map((a) => <option key={a}>{a}</option>)}
           </select>
         </label>
-        <button type="button" className="primary" disabled={!all || !by}
+        {!all && (
+          <button type="button" onClick={() => setChecks({ facts: true, faqs: true, author: true })}>
+            I checked all three
+          </button>
+        )}
+        <button type="button" className="primary" disabled={!all || !by} title={all ? "" : "Tick the three checks above first"}
           onClick={() => setV((cur) => ({ ...cur, validation_results: [...others, { type: "human_review", by, at: new Date().toISOString(), checks }] }))}>
           <ShieldCheck /> Mark as reviewed
         </button>
       </div>
-      <small>Remember to click “Save changes” after marking it as reviewed.</small>
+      <small>{all ? "Now click “Mark as reviewed”, then “Save changes” (or “Save & republish”)." : "Tick the three checks, click “Mark as reviewed”, then “Save changes”."}</small>
     </div>
   );
 }
