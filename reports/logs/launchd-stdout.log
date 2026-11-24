@@ -29505,3 +29505,293 @@ Built 11 service records
   }
 }
 Finished: Tue Nov 24 09:20:51 CET 2026 | Exit: 0
+=== Job Sync Agent ===
+Started: Tue Nov 24 10:00:05 CET 2026
+=== Daily Job Sync (open/close) ===
+=== Daily job sync 2026-11-24 10:00  ===
+  PREFLIGHT: git pull --ff-only failed: From https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta
+ * branch                main       -> FETCH_HEAD
+hint: Diverging branches can't be fast-forwarded, you need to either:
+hi — running report-only
+
+[1] Scraping careers page …
+  pass 1: 126 / 126 advertised
+  careers page: 126 collected / 126 advertised · website open: 128
+
+[2] 2 website job(s) not in the careers-page listing — checking each …
+  Retail Shop Supervisor (2178667e) → CLOSED
+  Front Office Executive (9f872fcf) → CLOSED
+
+[3] Reading 126 job pages for fact sheets …
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/de9aae83-8b74-422d-932b-dc4adbf5599e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/a5cdd055-a18e-4aad-b319-7d66d6e85ed9)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/c9d68a7c-031e-43de-9abb-1ace8fb4fe24)
+  20/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/d1373a6c-8983-4702-9d43-e9cd592b6265)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0094a7ce-72a7-44e6-8cd1-0ba1321bb783)
+  40/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/7f491566-3151-46f1-8751-e0dcdc91058e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0ac3ab67-cc73-49dc-beec-5c8847af4091)
+  60/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/e23b6a72-1104-41c7-9d7e-4b96886a79f0)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/18146647-f162-4eae-a1e3-0d5a5852fd6e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/37f933db-ef0e-48bb-a2ed-0c1a37b4ccad)
+  80/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/af7af24d-e41f-48aa-b566-3d1ec6672dfc)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/76fb6e10-9cff-48df-b669-297f8a4de1a4)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/0721d174-292f-4fee-a1cd-05af92d5ca8c)
+  100/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/65c6fe4b-2b76-475a-b20b-b412f571301e)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/33091bf8-0a27-492b-ab28-ca6de155d00d)
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/44fbce48-2f7f-4916-918a-92e5f2ef5a7e)
+  120/126
+    retry 1/5 in 30s (https://outreach-recruitment-agency.careers-page.com/jobs/1c5b7a74-e94c-4294-a35a-3ef4bc5275be)
+  126 fact sheets read
+  0 new, 0 to reopen, 0 changed
+  page check: 122 ok, 0 to fix (0 today)
+
+# Daily Job Sync — 2026-11-24
+
+**✅ In sync (report only — nothing was changed; lists show what WOULD happen)** — careers page 126, website 128 → 126
+
+## New jobs published (0)
+- none
+
+## Reopened (0)
+- none
+
+## Closed (2)
+- Retail Shop Supervisor — https://outreachrecruitment.net/jobs/retail-shop-supervisor/
+- Front Office Executive — https://outreachrecruitment.net/jobs/front-office-executive/
+
+## Updated (0)
+- none
+
+## Failed (0)
+- none
+
+## Held back (0)
+- none
+
+## Notes
+- Did not change anything: git pull --ff-only failed: From https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta
+ * branch                main       -> FETCH_HEAD
+hint: Diverging branches can't be fast-forwarded, you need to either:
+hi.
+
+## Site housekeeping
+- Daily page check: 122 of 126 open job pages pass every check
+- Salary shown on 35 of 128 open jobs (27%) — all salaries come from the careers page
+
+Git: no changes
+
+  email sent to sbarakat@outreachrecruitment.net
+
+=== SEO / GSC analysis (job_sync_agent.py, no email) ===
+============================================================
+  Outreach Recruitment — Job Sync Agent
+  2026-11-24 10:19:50
+============================================================
+
+  State loaded — tracking 4 job(s) for auto-close
+
+[1/5] Scraping careers page …
+  [Careers] page 1 — https://outreach-recruitment-agency.careers-page.com/
+  [Careers] page 2 — https://outreach-recruitment-agency.careers-page.com/?page=2
+  [Careers] page 3 — https://outreach-recruitment-agency.careers-page.com/?page=3
+  [Careers] page 4 — https://outreach-recruitment-agency.careers-page.com/?page=4
+  [Careers] page 5 — https://outreach-recruitment-agency.careers-page.com/?page=5
+  [Careers] page 6 — https://outreach-recruitment-agency.careers-page.com/?page=6
+  [Careers] page 7 — https://outreach-recruitment-agency.careers-page.com/?page=7
+  [Careers] page 8 — https://outreach-recruitment-agency.careers-page.com/?page=8
+  [Careers] page 9 — https://outreach-recruitment-agency.careers-page.com/?page=9
+  [Careers] page 10 — https://outreach-recruitment-agency.careers-page.com/?page=10
+  [Careers] page 11 — https://outreach-recruitment-agency.careers-page.com/?page=11
+  [Careers] page 12 — https://outreach-recruitment-agency.careers-page.com/?page=12
+  [Careers] page 13 — https://outreach-recruitment-agency.careers-page.com/?page=13
+  [Careers] page 14 — https://outreach-recruitment-agency.careers-page.com/?page=14
+  Collected 126 jobs (advertised: 126)
+
+[2/5] Scraping public website …
+  [Website] Fetching https://outreachrecruitment.net/jobs/
+  Found 128 job cards
+
+[SEO] Checking 128 job pages …
+  [1/128] sales-consultant … OK
+  [2/128] restoration-worker … OK
+  [3/128] accountant … OK
+  [4/128] billing-administrator … OK
+  [5/128] architect-draughtsperson … OK
+  [6/128] residential-finishing-projects-manager … OK
+  [7/128] sales-director … OK
+  [8/128] workshop-manager … OK
+  [9/128] chef-de-partie-breakfast … OK
+  [10/128] workshop-team-leader … OK
+  [11/128] aftersales-administrator … OK
+  [12/128] senior-technician … OK
+  [13/128] accounts-clerk … OK
+  [14/128] sales-manager-gzira … OK
+  [15/128] senior-corporate-administrator … OK
+  [16/128] hotel-general-manager … OK
+  [17/128] workshop-assistant-manager … OK
+  [18/128] aftersales-receptionist … OK
+  [19/128] warranty-administrator … OK
+  [20/128] back-office-administrator … OK
+  [21/128] leasing-administration-officer … OK
+  [22/128] sushi-chef … OK
+  [23/128] senior-clerk … OK
+  [24/128] business-development-manager-horeca … OK
+  [25/128] customer-experience-assistant … OK
+  [26/128] pdi-leading-hand … OK
+  [27/128] facilities-maintenance-and-health-and-safety-manager … OK
+  [28/128] maintenance-person … OK
+  [29/128] retail-shop-supervisor … OK
+  [30/128] accounting-officer … OK
+  [31/128] cleaner-marsa … OK
+  [32/128] truck-trailer-driver … OK
+  [33/128] hotel-maintenance-assistant … OK
+  [34/128] housekeeper-rabat … OK
+  [35/128] front-office-executive … OK
+  [36/128] beauty-specialist-nail-technician … OK
+  [37/128] marine-mechanical-engineer … OK
+  [38/128] maintenance-manager-mellieha … OK
+  [39/128] restaurant-manager-italian-speaking … OK
+  [40/128] gypsum-installers … OK
+  [41/128] mini-bus-driver-licence-d … OK
+  [42/128] proposal-engineer-energy-solutions … OK
+  [43/128] storekeeper-zebbug … OK
+  [44/128] driver-license-b … OK
+  [45/128] forklift-operator … OK
+  [46/128] front-office-agent … OK
+  [47/128] banqueting-fb-supervisor … OK
+  [48/128] assistance-operations-coordinator … OK
+  [49/128] procurement-officer … OK
+  [50/128] heavy-equipment-mechanic-2 … OK
+  [51/128] learning-development-executive-hybrid … OK
+  [52/128] auto-electrician-heavy-vehicles … OK
+  [53/128] heavy-equipment-mechanic … OK
+  [54/128] head-chef-steakhouse … OK
+  [55/128] senior-waiter-sommelier … OK
+  [56/128] deli-counter-assistant-salumeria-specialist … OK
+  [57/128] chef-de-partie-4 … OK
+  [58/128] ship-chandler … OK
+  [59/128] fleet-mechanical-superintendent … OK
+  [60/128] customer-care-agent … OK
+  [61/128] hvac-technician … OK
+  [62/128] delivery-man … OK
+  [63/128] head-of-hvac-technicians … OK
+  [64/128] tank-cleaner … OK
+  [65/128] welder-burner-pipe-fitter … OK
+  [66/128] shipyard-sprayer-painter … OK
+  [67/128] marine-carpenter … OK
+  [68/128] electronic-technician … OK
+  [69/128] commercial-divers … OK
+  [70/128] marine-mechanical-foreman … OK
+  [71/128] administration-specialist … OK
+  [72/128] marine-turner-malta … OK
+  [73/128] plate-shop-foreman-malta … OK
+  [74/128] quality-engineer-marine-malta … OK
+  [75/128] client-accountant-2 … OK
+  [76/128] application-developer-drupal … OK
+  [77/128] fleet-tools-facility-manager … OK
+  [78/128] sales-office-coordinator … OK
+  [79/128] customer-contact-agent … OK
+  [80/128] hr-administration-officer … OK
+  [81/128] project-manager … OK
+  [82/128] estimator … OK
+  [83/128] hsse-coordinator … OK
+  [84/128] housekeeper … OK
+  [85/128] driver-runner-washer … OK
+  [86/128] supervisor … OK
+  [87/128] structural-engineer … OK
+  [88/128] senior-quantity-estimator-me … OK
+  [89/128] sales-representative-in-renewables … OK
+  [90/128] hvac-project-manager … OK
+  [91/128] hvac-sales-representative … OK
+  [92/128] maintenance-technician-electrical-licence-a-or-b … OK
+  [93/128] general-maintenance-technician … OK
+  [94/128] counter-assistant … OK
+  [95/128] kitchen-assistant … OK
+  [96/128] heavy-machine-operator … OK
+  [97/128] client-accountant … OK
+  [98/128] housekeeping-attendant … OK
+  [99/128] tax-manager … OK
+  [100/128] automotive-service-advisor … OK
+  [101/128] high-voltage-motor-vehicle-technician … OK
+  [102/128] audit-senior-associate … OK
+  [103/128] customer-contact-centre-representative … OK
+  [104/128] builders-and-shutterers … OK
+  [105/128] draughtsperson … OK
+  [106/128] sales-executive-luxury-retail … OK
+  [107/128] bottling-operator … OK
+  [108/128] motor-vehicle-mechanictechnician … OK
+  [109/128] automotive-parts-personnel … OK
+  [110/128] corporate-insurance-associate … OK
+  [111/128] wood-painting-finishing-specialist … OK
+  [112/128] delivery-driver-malta-c-license … OK
+  [113/128] health-claims-associate … OK
+  [114/128] delivery-drivers-c1-malta-license … OK
+  [115/128] auditor … OK
+  [116/128] cnc-machine-operator … OK
+  [117/128] room-attendents … OK
+  [118/128] skilled-carpenters … OK
+  [119/128] delivery-person-with-driving-licence-c1 … OK
+  [120/128] commercial-insurance-associate … OK
+  [121/128] aluminum-install-and-fabrication-foreman … OK
+  [122/128] audit-senior … OK
+  [123/128] volvo-penta-mechanic … OK
+  [124/128] sign-assembler-installer … OK
+  [125/128] boat-maintenance … OK
+  [126/128] semi-senior-accountant … OK
+  [127/128] it-support-executive-2 … OK
+  [128/128] accounts-senior-2 … OK
+
+[4/5] Checking sitemap …
+  Found 128 job URLs in sitemap
+
+[5/5] Building report …
+
+============================================================
+  SYNC SCORE: 94.4%
+============================================================
+  Careers page: 126 advertised, 126 scraped
+  Website:      128 jobs
+  Missing jobs: 5
+    + Mini Bus Drivers License D
+    + Deli Counter Assistant / Salumeria Specialis
+    + Chefs de Partie
+    + Application Developer (Drupal) - Hybrid
+    + Heavy equipment mech
+  Extra jobs:   5
+    - Retail Shop Supervisor
+    - Front Office Executive
+    - Mini Bus Driver – Licence D
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+  Title diffs:  3
+  Location diffs: 0
+  Broken links: 0
+  SEO issues:   32
+  Sitemap missing: 0
+============================================================
+
+  Duplicate suspects: 25
+    'Delivery Driver - Malta C License' ≈ 'Delivery Drivers - C1 Malta License' (91%)
+    'Project Manager' ≈ 'HVAC Project Manager' (86%)
+    'Leasing Administration Officer' ≈ 'HR Administration Officer' (84%)
+    'Customer Care Agent' ≈ 'Customer Contact Agent' (83%)
+    'Heavy Machine Operator' ≈ 'CNC Machine Operator' (81%)
+
+  [Auto-Close DISABLED] 4 job(s) have been 'extra' for 3+ runs — review and close manually if genuinely filled:
+    - Deli Counter Assistant / Salumeria Specialist
+    - Application Developer (Drupal)
+    - Mini Bus Driver – Licence D
+    - Front Office Executive
+  State saved — tracking 5 extra job(s)
+
+  Fetching details for 5 missing job(s) …
+    Mini Bus Drivers License D … OK
+    Deli Counter Assistant / Salumeria Specialis … OK
+    Chefs de Partie … OK
+    Application Developer (Drupal) - Hybrid … OK
+    Heavy equipment mech … 
