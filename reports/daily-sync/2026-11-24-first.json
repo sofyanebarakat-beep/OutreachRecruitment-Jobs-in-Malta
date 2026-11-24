@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-24",
+  "created": [
+    {
+      "uuid": "3d08a452-b7f3-48d9-8851-02d99ff3ac75",
+      "title": "Showroom Sales & Administration Assistant",
+      "city": "Msida",
+      "slug": "showroom-sales-and-administration-assistant",
+      "salary_label": "€2,000–€2,300 per month",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/3d08a452-b7f3-48d9-8851-02d99ff3ac75",
+      "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant/"
+    }
+  ],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Retail Shop Supervisor",
+      "slug": "retail-shop-supervisor",
+      "url": "https://outreachrecruitment.net/jobs/retail-shop-supervisor/",
+      "city": "Birkirkara, Malta"
+    },
+    {
+      "title": "Front Office Executive",
+      "slug": "front-office-executive",
+      "url": "https://outreachrecruitment.net/jobs/front-office-executive/",
+      "city": "Valletta, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 127,
+  "site_open_before": 128,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 126,
+    "ok": 122,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "hospitality-jobs-in-malta.html": {
+        "replaced": 0,
+        "removed": 1
+      },
+      "index.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "retail-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "salary-calculator-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 55,
+    "itemlist_items": 127,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 4
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 2,
+    "pages_reopened": 0
+  },
+  "site_open_after": 127,
+  "salary_coverage": {
+    "open": 127,
+    "with_salary": 34
+  }
+}

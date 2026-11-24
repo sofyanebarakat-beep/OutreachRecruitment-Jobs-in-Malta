@@ -1,0 +1,16 @@
+I built and verified the page for the Showroom Sales & Administration Assistant job. `tools/verify_job_page.py` passed all its checks, including the headless Chrome render. Nothing was committed or pushed, and no other job was touched; the other registry changes were already there from the sync run.
+
+**What was created:**
+- **Page:** `jobs/showroom-sales-and-administration-assistant/index.html` and `jobs/showroom-sales-and-administration-assistant.html`, which are identical. I built it with the repo's `tools/build_job_page.py`. That script copies `jobs/hotel-general-manager/index.html`, which already has the inline application panel, so the panel is the same as on other job pages. The spec I wrote for it is saved in `tools/job_specs/`.
+- **Registry:** a new entry at the top of `tools/jobs_registry.json`. It uses the category Sales, location Msida, valid_through 2029-12-30, the apply_url from the fact sheet and the salary "€2,000–€2,300 per month", with no status key.
+- **Report:** the 12-section package is in `reports/job-seo-showroom-sales-and-administration-assistant-2026-11-24.md`.
+- **Content:** the job is On-site and Full-Time, with the default target "Residents in Malta & Europeans". The salary appears as €2,000–€2,300 per month in the header chip, sidebar, offer list, FAQ and meta description, and the schema has baseSalary 2000–2300 per month. The word "gross" appears nowhere. The reference number is only in an HTML comment, and the 2029 deadline is only in the schema. The FAQ has 6 questions, closed by default, and matches the schema. The 4 similar jobs are all open Sales jobs.
+
+**Three things you should know:**
+- **Two different salaries in the source:** the structured salary on the careers page is €2,000–€2,300 per month, but the description text says "€1,500 – €1,800 net per month". As instructed, the page shows only €2,000–€2,300. It may be worth fixing the careers-page listing so the two figures agree.
+- **Asset version:** you asked for `?v=20261106`, but the template and all 138 job pages already use `?v=20261107`, so I kept 20261107.
+- **Shortened browser title:** the full title plus "| Outreach Recruitment" is longer than 60 characters. The tab and search title is "Showroom Sales & Admin Assistant Job in Msida, Malta". The heading on the page and the schema keep the full job title.
+
+CREATED 3d08a452-b7f3-48d9-8851-02d99ff3ac75 showroom-sales-and-administration-assistant
+
+--- stderr ---

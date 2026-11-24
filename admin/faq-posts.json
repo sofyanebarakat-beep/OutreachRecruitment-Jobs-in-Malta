@@ -46,7 +46,7 @@
    "q": "How do I apply?",
    "a": "Open the job you are interested in, read the full description and use the apply button on the job page. You can also browse all 131+ open positions on our jobs page.",
    "url": "/blog/jobs-in-malta-this-week-16-november-2026",
-   "pages": 56
+   "pages": 58
   },
   {
    "q": "Is a salary stated for this role?",
@@ -61,16 +61,16 @@
    "pages": 22
   },
   {
+   "q": "What are the working hours?",
+   "a": "Drivers work early morning, late evening and weekend shifts on a roster. The roster is published four weeks in advance, so you can plan ahead.",
+   "url": "/blog/bus-driver-jobs-in-malta",
+   "pages": 21
+  },
+  {
    "q": "How much experience do I need?",
    "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
    "url": "/jobs",
    "pages": 19
-  },
-  {
-   "q": "What are the working hours?",
-   "a": "Shifts are flexible, including long or split shifts, based on the banqueting and events schedule.",
-   "url": "/jobs",
-   "pages": 17
   },
   {
    "q": "Is this role remote or on-site?",
@@ -88,7 +88,7 @@
    "q": "What experience is required?",
    "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
    "url": "/jobs",
-   "pages": 12
+   "pages": 14
   },
   {
    "q": "Do I need to be living in Malta to apply?",
@@ -136,6 +136,12 @@
    "q": "Need more information?",
    "a": "Our team is happy to help. Reach out to us directly:Email: hr@outreachrecruitment.net",
    "url": "/customer-service-jobs-in-malta",
+   "pages": 7
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
+   "url": "/jobs",
    "pages": 7
   },
   {
@@ -195,12 +201,6 @@
   {
    "q": "What industry is this job in?",
    "a": "Construction and engineering services — the company provides drilling, laboratory testing, surveying and engineering consultancy in Malta.",
-   "url": "/jobs",
-   "pages": 5
-  },
-  {
-   "q": "Do I need a driving licence?",
-   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
    "url": "/jobs",
    "pages": 5
   },
@@ -469,6 +469,18 @@
    "pages": 2
   },
   {
+   "q": "Do I need a CPC to apply for a bus driver job in Malta?",
+   "a": "No. You need a valid Category D licence. If you do not have a Certificate of Professional Competence (CPC), our client will provide the training you need to get it.",
+   "url": "/blog/bus-driver-jobs-in-malta",
+   "pages": 2
+  },
+  {
+   "q": "Can I apply with a Category D licence from my home country?",
+   "a": "Yes. A Category D licence from your country of origin, or an international Category D licence, is accepted. You will also take a driving assessment in Malta.",
+   "url": "/blog/bus-driver-jobs-in-malta",
+   "pages": 2
+  },
+  {
    "q": "What questions are asked in a call centre interview?",
    "a": "Expect questions about handling difficult customers, multitasking, what good service means, explaining procedures clearly, and your availability for shifts. Multilingual roles usually include a language check.",
    "url": "/blog/call-centre-interview-questions-malta",
@@ -706,6 +718,24 @@
    "q": "Où trouver les offres en centre d'appels à Malte ?",
    "a": "Toutes nos offres sont sur la page emplois service client à Malte d'Outreach Recruitment, avec le salaire lorsqu'il est publié.",
    "url": "/blog/emploi-centre-appels-malte-francophones",
+   "pages": 2
+  },
+  {
+   "q": "What is the first step with factory jobs in malta for foreigners?",
+   "a": "Start with the official requirements and a clear plan, then compare your options before you apply or decide.",
+   "url": "/blog/factory-jobs-malta-foreigners",
+   "pages": 2
+  },
+  {
+   "q": "Where can I find current opportunities in Malta?",
+   "a": "See the current vacancies on the Outreach Recruitment jobs page and check each description for its requirements.",
+   "url": "/blog/factory-jobs-malta-foreigners",
+   "pages": 2
+  },
+  {
+   "q": "Should I confirm legal or permit details?",
+   "a": "Yes. Rules can change and depend on your situation, so confirm work-permit, visa and legal questions with the official authority.",
+   "url": "/blog/factory-jobs-malta-foreigners",
    "pages": 2
   },
   {
@@ -2479,6 +2509,18 @@
    "pages": 2
   },
   {
+   "q": "What does a Showroom Sales & Administration Assistant do?",
+   "a": "You welcome showroom customers and advise them on furniture, fabrics, wallpapers, lighting and home accessories, then handle the administration behind each sale: quotations, invoices, order processing, delivery coordination and follow-up with suppliers and customers.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for this job in Msida?",
+   "a": "The role pays €2,000–€2,300 per month depending on experience, plus percentage-based commission on sales. A company laptop and mobile phone and 28 days of annual leave are also included.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
    "q": "What does the Sushi Chef job in St. Julian's pay?",
    "a": "The position pays €1,900 per month, full-time.",
    "url": "/jobs",
@@ -2961,12 +3003,6 @@
    "title": "Banqueting F&B Supervisor"
   },
   {
-   "q": "What are the working hours?",
-   "a": "Shifts are flexible, including long or split shifts, based on the banqueting and events schedule.",
-   "slug": "banqueting-fb-supervisor",
-   "title": "Banqueting F&B Supervisor"
-  },
-  {
    "q": "Do I need to be living in Malta to apply?",
    "a": "Yes. This role is open to candidates already residing in Malta.",
    "slug": "banqueting-fb-supervisor",
@@ -3053,12 +3089,6 @@
   {
    "q": "Do I need a driving licence?",
    "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
-  },
-  {
-   "q": "What are the working hours?",
-   "a": "Full-time, Monday to Friday, with occasional promotional events and industry activities outside normal working hours.",
    "slug": "business-development-manager-horeca",
    "title": "Business Development Manager HoReCa"
   },
@@ -3183,12 +3213,6 @@
    "title": "Driver License B"
   },
   {
-   "q": "What are the working hours?",
-   "a": "This is a full-time, on-site role supporting a construction and civil works company's daily site and delivery schedule.",
-   "slug": "driver-license-b",
-   "title": "Driver License B"
-  },
-  {
    "q": "Do I need to be living in Malta to apply?",
    "a": "Applications are open to candidates already residing in Malta and to European candidates. Check the Target Location on this page for full eligibility.",
    "slug": "driver-license-b",
@@ -3267,12 +3291,6 @@
    "title": "Front Office Agent"
   },
   {
-   "q": "What are the working hours?",
-   "a": "This is a full-time role with flexibility required for shifts including evenings, weekends and public holidays.",
-   "slug": "front-office-agent",
-   "title": "Front Office Agent"
-  },
-  {
    "q": "Do I need to speak languages other than English?",
    "a": "Fluent English is required. Additional languages are an advantage but not essential.",
    "slug": "front-office-agent",
@@ -3283,36 +3301,6 @@
    "a": "Yes. Candidates must currently be residing in Malta.",
    "slug": "front-office-agent",
    "title": "Front Office Agent"
-  },
-  {
-   "q": "What does the Front Office Executive job pay?",
-   "a": "The salary is €19,600 per year.",
-   "slug": "front-office-executive",
-   "title": "Front Office Executive"
-  },
-  {
-   "q": "Do I need front office experience?",
-   "a": "Previous experience in a Front Office, Reception, Guest Relations or similar hospitality role is preferred, but not strictly required.",
-   "slug": "front-office-executive",
-   "title": "Front Office Executive"
-  },
-  {
-   "q": "Which languages do I need?",
-   "a": "Excellent written and spoken English is required. Additional languages are considered an advantage.",
-   "slug": "front-office-executive",
-   "title": "Front Office Executive"
-  },
-  {
-   "q": "What are the working hours?",
-   "a": "This is a full-time role working shifts, including evenings, weekends and public holidays.",
-   "slug": "front-office-executive",
-   "title": "Front Office Executive"
-  },
-  {
-   "q": "Can I apply from abroad?",
-   "a": "No. Candidates must currently be residing in Malta.",
-   "slug": "front-office-executive",
-   "title": "Front Office Executive"
   },
   {
    "q": "How much does the Gypsum Installer job pay?",
@@ -3603,12 +3591,6 @@
    "title": "Mini Bus Driver – Licence D"
   },
   {
-   "q": "What are the working hours?",
-   "a": "This is a full-time position with different shifts, including weekends when required.",
-   "slug": "mini-bus-driver-licence-d",
-   "title": "Mini Bus Driver – Licence D"
-  },
-  {
    "q": "What does a PDI Leading Hand do?",
    "a": "PDI stands for pre-delivery inspection. You inspect, prepare and valet new vehicles before they are handed to customers, keep used vehicles presentable, report any damage and coordinate vehicle movements with the Service and Sales Managers.",
    "slug": "pdi-leading-hand",
@@ -3681,12 +3663,6 @@
    "title": "Proposal Engineer – Energy Solutions"
   },
   {
-   "q": "What are the working hours?",
-   "a": "This is a full-time role with a Monday to Friday schedule and a 40-hour working week.",
-   "slug": "proposal-engineer-energy-solutions",
-   "title": "Proposal Engineer – Energy Solutions"
-  },
-  {
    "q": "Do I need power generation experience?",
    "a": "Experience with power generation, generator sets, engines, energy systems or industrial equipment is considered an advantage, not a requirement.",
    "slug": "proposal-engineer-energy-solutions",
@@ -3753,12 +3729,6 @@
    "title": "Restaurant Manager - Italian Speaking"
   },
   {
-   "q": "What are the working hours?",
-   "a": "This is a full-time role working shifts, including evenings, weekends and public holidays. Specific shift times are not listed.",
-   "slug": "restaurant-manager-italian-speaking",
-   "title": "Restaurant Manager - Italian Speaking"
-  },
-  {
    "q": "Who can apply for this job?",
    "a": "The role is open to candidates living in Malta and to European candidates. Visa or relocation support is not mentioned in the listing.",
    "slug": "restaurant-manager-italian-speaking",
@@ -3787,36 +3757,6 @@
    "a": "Masonry, plastering, rendering, bricklaying, and stonework are useful, depending on experience.",
    "slug": "restoration-worker",
    "title": "Restoration/Construction Worker"
-  },
-  {
-   "q": "What does the Retail Shop Supervisor job pay?",
-   "a": "The Retail Shop Supervisor job pays €3,000 per month.",
-   "slug": "retail-shop-supervisor",
-   "title": "Retail Shop Supervisor"
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "Previous experience in a retail supervisory or team leadership role is required. Experience in home improvement, DIY or household goods retail is an advantage.",
-   "slug": "retail-shop-supervisor",
-   "title": "Retail Shop Supervisor"
-  },
-  {
-   "q": "Will I need to work weekends?",
-   "a": "Yes. Flexibility to work shifts, weekends and public holidays when required is part of the role.",
-   "slug": "retail-shop-supervisor",
-   "title": "Retail Shop Supervisor"
-  },
-  {
-   "q": "What does the role involve day to day?",
-   "a": "Running daily store operations, supervising and scheduling the retail team, handling customer enquiries and complaints, and looking after merchandising, pricing and stock levels.",
-   "slug": "retail-shop-supervisor",
-   "title": "Retail Shop Supervisor"
-  },
-  {
-   "q": "Is this role remote or on-site?",
-   "a": "The role is full-time and on-site at the store in Birkirkara, Malta.",
-   "slug": "retail-shop-supervisor",
-   "title": "Retail Shop Supervisor"
   },
   {
    "q": "What does the Sales Consultant do in this role?",
@@ -3909,12 +3849,6 @@
    "title": "Senior Clerk"
   },
   {
-   "q": "What are the working hours?",
-   "a": "Full-time, Monday to Friday, from 8:00 am to 4:30 pm. The role is on-site at the depot in Floriana.",
-   "slug": "senior-clerk",
-   "title": "Senior Clerk"
-  },
-  {
    "q": "What qualifications do I need?",
    "a": "A minimum O-Level standard of education, the European Computer Driving Licence (ECDL) and good knowledge of Microsoft Office, particularly Excel and Word.",
    "slug": "senior-clerk",
@@ -3991,6 +3925,30 @@
    "a": "Yes. The role includes specialised training opportunities locally and abroad, and you will keep up to date with new models and manufacturer standards.",
    "slug": "senior-technician",
    "title": "Senior Technician"
+  },
+  {
+   "q": "What does a Showroom Sales & Administration Assistant do?",
+   "a": "You welcome showroom customers and advise them on furniture, fabrics, wallpapers, lighting and home accessories, then handle the administration behind each sale: quotations, invoices, order processing, delivery coordination and follow-up with suppliers and customers.",
+   "slug": "showroom-sales-and-administration-assistant",
+   "title": "Showroom Sales & Administration Assistant"
+  },
+  {
+   "q": "What is the salary for this job in Msida?",
+   "a": "The role pays €2,000–€2,300 per month depending on experience, plus percentage-based commission on sales. A company laptop and mobile phone and 28 days of annual leave are also included.",
+   "slug": "showroom-sales-and-administration-assistant",
+   "title": "Showroom Sales & Administration Assistant"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous sales experience is required, preferably within interiors, furniture, furnishings or a related industry, along with strong administrative skills and confidence in preparing quotations, invoices and managing orders.",
+   "slug": "showroom-sales-and-administration-assistant",
+   "title": "Showroom Sales & Administration Assistant"
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid driving licence is one of the requirements for this role.",
+   "slug": "showroom-sales-and-administration-assistant",
+   "title": "Showroom Sales & Administration Assistant"
   },
   {
    "q": "How much does the Skilled Carpenter job pay?",
@@ -4085,12 +4043,6 @@
   {
    "q": "What dishes will I prepare?",
    "a": "Sushi, sashimi, nigiri, maki rolls and other Japanese specialities, plus support with menu development, seasonal specials and creative sushi presentations.",
-   "slug": "sushi-chef",
-   "title": "Sushi Chef"
-  },
-  {
-   "q": "What are the working hours?",
-   "a": "It is a full-time role, and you need flexibility to work evenings, weekends and public holidays.",
    "slug": "sushi-chef",
    "title": "Sushi Chef"
   },
