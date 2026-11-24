@@ -4,7 +4,8 @@ help_request_alerts.py — email the team about new Help Center requests.
 
 Reads help_requests where alerted_at is null (Supabase service key from tools/private/seo_automation.env),
 sends an internal alert and, for Hire enquiries, a branded confirmation to the employer, then marks
-them alerted. A dedicated launch agent checks every minute while the Mac is on.
+them alerted. "Jobs in Malta" requests are routed by current location: Malta -> team as usual; Europe -> hr@;
+outside Europe -> no team alert, a polite automatic reply from noreply@ two hours after the request. A dedicated launch agent checks every minute while the Mac is on.
 
 Usage: python3 tools/help_request_alerts.py [--dry-run]
 """
@@ -27,6 +28,53 @@ DEFAULT_TO = ["sbarakat@outreachrecruitment.net"]
 HIRE_TO = ["sbarakat@outreachrecruitment.net", "hr@outreachrecruitment.net", "azambrano@outreachrecruitment.net"]
 OWNER = {"Hire": "Andrea Zambrano", "Study in Malta": "Jeraldin Daniela Bohorquez", "Jobs in Malta": "Julián Longan Granados", "General": "Katherin"}
 LOGO = "https://outreachrecruitment.net/assets/job-card-logo.jpg"
+EUROPE_TO = ["hr@outreachrecruitment.net"]
+NOREPLY = "noreply@outreachrecruitment.net"
+ABROAD_DELAY_HOURS = 2
+# Current-location names exactly as the Help Center country picker writes them (Intl English names), Malta excluded.
+EUROPE = {
+    "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia & Herzegovina", "Bosnia and Herzegovina", "Bulgaria",
+    "Croatia", "Cyprus", "Czechia", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece",
+    "Hungary", "Iceland", "Ireland", "Italy", "Kosovo", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Moldova",
+    "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia",
+    "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine", "United Kingdom",
+    "Vatican City", "Gibraltar", "Faroe Islands", "Isle of Man", "Jersey", "Guernsey", "Åland Islands",
+}
+
+
+def region(location: str | None) -> str:
+    """'malta' (or unknown), 'europe' or 'abroad' for a Help Center current location."""
+    loc = (location or "").strip()
+    if not loc or loc.lower() in ("malta", "gozo", "not given"):
+        return "malta"
+    return "europe" if loc in EUROPE else "abroad"
+
+
+def abroad_reply_html(full_name: str) -> str:
+    """Automatic reply for job seekers located outside Europe (sent from noreply@)."""
+    first = html.escape((full_name or "").split()[0] if (full_name or "").split() else "there")
+    site = "https://outreachrecruitment.net"
+    p = 'style="margin:0 0 14px;font-size:16px;line-height:1.6"'
+    return f"""<div style="margin:0;background:#f4f3ee;padding:32px 16px;font-family:Arial,sans-serif;color:#1c2623">
+  <div style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #e5e3dc;border-radius:18px;overflow:hidden">
+    <div style="padding:22px 28px;border-bottom:1px solid #eceae4"><a href="{site}/"><img src="{site}/assets/email/outreach-logo.png" width="150" alt="Outreach Recruitment" style="display:block;width:150px;height:auto;border:0"></a></div>
+    <div style="padding:28px">
+      <h1 style="margin:0 0 16px;font-size:24px;line-height:1.25">Dear {first},</h1>
+      <p {p}>Thank you for contacting Outreach Recruitment and for your interest in working in Malta.</p>
+      <p {p}>However, at the moment, we are only reviewing candidates currently located in Malta for our open roles.</p>
+      <p style="margin:0 0 22px;font-size:16px;line-height:1.6">We appreciate your interest in Outreach Recruitment and wish you all the best with your job search.</p>
+      <p style="margin:0;font-size:16px;line-height:1.6">Kind regards,<br><b>The Outreach Recruitment Team</b></p>
+    </div>
+    <div style="margin:0 28px 24px;padding:14px 16px;background:#fff4f2;border:1px solid #f5d2cc;border-radius:12px;font-size:13px;line-height:1.55;color:#7a2a20">&#9888;&#65039; We never ask candidates for money, and our jobs are only published on <a href="{site}/jobs/" style="color:#b3261e">outreachrecruitment.net</a>. <a href="{site}/fraud-notice/" style="color:#b3261e">Read our notice on fake job offers</a>.</div>
+    <div style="background:#262626;color:#fff;padding:28px;text-align:center">
+      <a href="{site}/"><img src="{site}/assets/email/outreach-logo-white.png" width="140" alt="Outreach Recruitment" style="display:inline-block;width:140px;height:auto;border:0"></a>
+      <p style="margin:14px 0 18px;font-size:14px;line-height:1.6;color:#e8e8e8">We have saved your details. If a suitable opportunity becomes available, our team will contact you.</p>
+      <div style="font-size:13px;margin-bottom:12px"><a href="{site}/" style="color:#fff;text-decoration:none;margin:0 8px">outreachrecruitment.net</a>&middot;<a href="{site}/jobs/" style="color:#fff;text-decoration:none;margin:0 8px">Jobs</a>&middot;<a href="{site}/help-center/" style="color:#fff;text-decoration:none;margin:0 8px">Help Center</a></div>
+      <div style="font-size:13px;margin-bottom:18px"><a href="https://www.linkedin.com/company/outreach-recruitment-agency/" style="color:#b9b1ff;margin:0 6px">LinkedIn</a><a href="https://www.facebook.com/outreachrecruit/" style="color:#b9b1ff;margin:0 6px">Facebook</a><a href="https://www.instagram.com/outreachrecruitment_agency" style="color:#b9b1ff;margin:0 6px">Instagram</a><a href="https://www.tiktok.com/@outreachrecruitment" style="color:#b9b1ff;margin:0 6px">TikTok</a></div>
+      <div style="font-size:11px;line-height:1.5;color:#a3a3a3">This is an automated message sent from a no-reply address, so replies are not read.<br>You received it because you sent a request through the Outreach Recruitment Help Center.</div>
+    </div>
+  </div>
+</div>"""
 
 
 def env() -> dict:
@@ -66,8 +114,28 @@ def main(argv: list[str]) -> int:
         return 0
     cfg = json.loads((ROOT / "tools" / "sync_config.json").read_text())
     sent = 0
+    now = datetime.now(timezone.utc)
     for r in rows:
         d = r.get("details") or {}
+        where = region(r.get("current_location")) if r["topic"] == "Jobs in Malta" and d.get("type") != "fraud_report" else "malta"
+        if where == "abroad":
+            created = datetime.fromisoformat(re.sub(r"\.(\d+)(?=[+-])", lambda m: "." + m.group(1)[:6].ljust(6, "0"), r["created_at"].replace("Z", "+00:00")))
+            if (now - created).total_seconds() < ABROAD_DELAY_HOURS * 3600:
+                continue  # reply a little later, not instantly
+            reply = MIMEText(abroad_reply_html(r["full_name"]), "html", "utf-8")
+            reply["Subject"] = "Your enquiry to Outreach Recruitment"
+            reply["From"], reply["To"], reply["Reply-To"] = f"Outreach Recruitment <{cfg.get('noreply_from', NOREPLY)}>", r["email"], cfg.get("noreply_from", NOREPLY)
+            if "--dry-run" in argv:
+                print("would send abroad auto-reply to", r["email"], "·", r.get("current_location"))
+                continue
+            with smtplib.SMTP(cfg["smtp_host"], int(cfg["smtp_port"]), timeout=60) as s:
+                s.starttls(context=ssl.create_default_context())
+                s.login(cfg["smtp_user"], cfg["smtp_pass"])
+                s.sendmail(cfg["smtp_user"], [r["email"]], reply.as_string())
+            api("PATCH", f"help_requests?id=eq.{r['id']}", {"alerted_at": now.isoformat(), "status": "answered",
+                "details": {**d, "auto_reply": "abroad", "auto_reply_at": now.isoformat()}})
+            sent += 1
+            continue
         facts = [("Topic", r["topic"]), ("Name", r["full_name"]), ("Email", r["email"]), ("Phone", r.get("phone")), ("Company", r.get("company")),
                  ("Current location", r.get("current_location")), ("Nationality", r.get("nationality")), ("Job", r.get("job_title")),
                  ("Wants to study", d.get("study_level")), ("Start", d.get("start_when")), ("Suggested owner", OWNER.get(r["topic"])),
@@ -79,7 +147,7 @@ def main(argv: list[str]) -> int:
                 + "<p><a href='https://outreachrecruitment.net/admin/#/helpdesk'>Open the Help Center inbox</a> — reply to this email to answer the person directly.</p></div>")
         msg = MIMEText(body, "html", "utf-8")
         msg["Subject"] = f"🆕 Help Center · {r['topic']} · {r['full_name']}"
-        recipients = HIRE_TO if r["topic"] == "Hire" else DEFAULT_TO
+        recipients = HIRE_TO if r["topic"] == "Hire" else EUROPE_TO if where == "europe" else DEFAULT_TO
         msg["From"], msg["To"], msg["Reply-To"] = cfg["smtp_user"], ", ".join(recipients), r["email"]
         confirmation = None
         if r["topic"] == "Hire":

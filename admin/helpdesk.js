@@ -101,7 +101,7 @@
           ["Wants to study", esc(d.study_level)], ["Start", esc(d.start_when)], ["Contacted via", esc(d.channel)], ["Name / number used", esc(d.sender)]]
           .filter(([k, v]) => v && !(d.type === "fraud_report" && ["Current location", "Nationality", "Job"].includes(k)));
         return `<article class="hd-item ${r.status}${overdue(r) ? " overdue" : ""}" data-id="${r.id}">
-        <header><div><strong>${esc(r.full_name)}</strong> ${(r.details || {}).type === "fraud_report" ? '<span class="hd-topic hd-fraud">⚠️ Fraud report</span>' : `<span class="hd-topic">${esc(r.topic)}</span>`}${overdue(r) ? ' <span class="hd-late">Waiting over 24 h</span>' : ""}${r.converted ? ' <span class="hd-client">Client</span>' : ""}<br>
+        <header><div><strong>${esc(r.full_name)}</strong> ${(r.details || {}).type === "fraud_report" ? '<span class="hd-topic hd-fraud">⚠️ Fraud report</span>' : `<span class="hd-topic">${esc(r.topic)}</span>`}${overdue(r) ? ' <span class="hd-late">Waiting over 24 h</span>' : ""}${r.converted ? ' <span class="hd-client">Client</span>' : ""}${(r.details || {}).auto_reply === "abroad" ? ' <span class="hd-late" style="background:#eef0f5;color:#475069">Auto-replied – abroad</span>' : ""}<br>
           <a href="${mailto(r, "")}">${esc(r.email)}</a></div><div class="hd-meta">${when(r.created_at)}${r.answered_at ? `<br>Answered ${when(r.answered_at)}` : ""}</div></header>
         <dl>${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
         ${r.message ? `<p class="hd-msg">${esc(r.message)}</p>` : ""}
