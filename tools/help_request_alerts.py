@@ -62,6 +62,7 @@ def abroad_reply_html(full_name: str) -> str:
       <h1 style="margin:0 0 16px;font-size:24px;line-height:1.25">Dear {first},</h1>
       <p {p}>Thank you for contacting Outreach Recruitment and for your interest in working in Malta.</p>
       <p {p}>However, at the moment, we are only reviewing candidates currently located in Malta for our open roles.</p>
+      <p {p}>If you would like to come to Malta as a student, our Study team can help. <a href="https://consultation.outreachstudy.eu/" style="color:#442DFA;font-weight:bold">Book a consultation with our Study team</a>.</p>
       <p style="margin:0 0 22px;font-size:16px;line-height:1.6">We appreciate your interest in Outreach Recruitment and wish you all the best with your job search.</p>
       <p style="margin:0;font-size:16px;line-height:1.6">Kind regards,<br><b>The Outreach Recruitment Team</b></p>
     </div>
@@ -127,7 +128,7 @@ def main(argv: list[str]) -> int:
             if (now - created).total_seconds() < ABROAD_DELAY_HOURS * 3600:
                 continue  # reply a little later, not instantly
             reply = MIMEText(abroad_reply_html(r["full_name"]), "html", "utf-8")
-            reply["Subject"] = "Your enquiry to Outreach Recruitment"
+            reply["Subject"] = "Thank you for contacting Outreach Recruitment"
             reply["From"], reply["To"], reply["Reply-To"] = f"Outreach Recruitment <{cfg.get('noreply_from', NOREPLY)}>", r["email"], cfg.get("noreply_from", NOREPLY)
             if "--dry-run" in argv:
                 print("would send abroad auto-reply to", r["email"], "·", r.get("current_location"))
