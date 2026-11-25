@@ -46,7 +46,7 @@
    "q": "How do I apply?",
    "a": "Open the job you are interested in, read the full description and use the apply button on the job page. You can also browse all 131+ open positions on our jobs page.",
    "url": "/blog/jobs-in-malta-this-week-16-november-2026",
-   "pages": 58
+   "pages": 62
   },
   {
    "q": "Is a salary stated for this role?",
@@ -70,7 +70,7 @@
    "q": "How much experience do I need?",
    "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
    "url": "/jobs",
-   "pages": 19
+   "pages": 21
   },
   {
    "q": "Is this role remote or on-site?",
@@ -86,9 +86,9 @@
   },
   {
    "q": "What experience is required?",
-   "a": "Proven experience managing residential construction projects, especially finishing works and turnkey developments, as a Finishing Manager, Site Manager, Construction Projects Manager or similar.",
+   "a": "Previous experience in external sales, business development or a similar commercial role, with a proven ability to generate new business. Existing contacts in the hospitality, construction or commercial sectors are a strong advantage.",
    "url": "/jobs",
-   "pages": 14
+   "pages": 16
   },
   {
    "q": "Do I need to be living in Malta to apply?",
@@ -127,6 +127,12 @@
    "pages": 9
   },
   {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
+   "url": "/jobs",
+   "pages": 9
+  },
+  {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
    "url": "/jobs",
@@ -136,12 +142,6 @@
    "q": "Need more information?",
    "a": "Our team is happy to help. Reach out to us directly:Email: hr@outreachrecruitment.net",
    "url": "/customer-service-jobs-in-malta",
-   "pages": 7
-  },
-  {
-   "q": "Do I need a driving licence?",
-   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
-   "url": "/jobs",
    "pages": 7
   },
   {
@@ -291,6 +291,18 @@
   {
    "q": "What benefits are offered with this role?",
    "a": "The employer offers career advancement opportunities, professional development programmes, staff discounts, flexible working hours, staff meals, and a mobile plan.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "What does an Accounts Clerk do in this role?",
+   "a": "You post sales, purchase and nominal ledger invoices, process local and international payments, carry out bank reconciliations, post vehicle registration payments and support month-end and year-end closing.",
+   "url": "/jobs",
+   "pages": 4
+  },
+  {
+   "q": "Which language is required?",
+   "a": "Maltese is required for this role.",
    "url": "/jobs",
    "pages": 4
   },
@@ -1957,14 +1969,20 @@
    "pages": 2
   },
   {
-   "q": "What does an Accounts Clerk do in this role?",
-   "a": "You post sales, purchase and nominal ledger invoices, process local and international payments, carry out bank reconciliations, post vehicle registration payments and support month-end and year-end closing.",
+   "q": "Do I need accounting experience?",
+   "a": "Previous experience in a similar accounting or finance role is an asset but not essential.",
    "url": "/jobs",
    "pages": 2
   },
   {
-   "q": "Do I need accounting experience?",
-   "a": "Previous experience in a similar accounting or finance role is an asset but not essential.",
+   "q": "What is the salary for this Accounts Clerk job in Luqa?",
+   "a": "The role pays €1,500–€1,600 per month for a full-time, on-site position in Luqa.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Which accounting software is used?",
+   "a": "Experience with accounting software is required, preferably Sage or Microsoft Dynamics 365 Business Central, along with a good working knowledge of Microsoft Office 365, particularly Excel.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2145,6 +2163,24 @@
   {
    "q": "Do I need previous driving experience?",
    "a": "Previous driving or logistics experience is preferred but not mandatory — operational training is provided on the job.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What does an External Sales Executive do in this role?",
+   "a": "You find and win new business in the field: approaching potential clients, arranging face-to-face visits, presenting products, preparing quotations, negotiating terms and managing each sale through to closing, while keeping in regular contact with existing customers.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "What is the salary for this sales job in Luqa?",
+   "a": "The role pays €2,000 per month, with a guaranteed minimum income during the first three months and an attractive commission structure thereafter based on sales performance.",
+   "url": "/jobs",
+   "pages": 2
+  },
+  {
+   "q": "Which clients and products will I work with?",
+   "a": "You will sell to hotels, restaurants, care homes, contractors, architects and other commercial clients, covering hotel and restaurant furniture, hotel supplies, internal and hotel doors, glass and aluminium products, pergolas and balcony railings.",
    "url": "/jobs",
    "pages": 2
   },
@@ -2539,12 +2575,6 @@
    "pages": 2
   },
   {
-   "q": "Which language is required?",
-   "a": "A good command of English is required.",
-   "url": "/jobs",
-   "pages": 2
-  },
-  {
    "q": "What does the Truck / Trailer Driver role involve?",
    "a": "You will transport goods, materials or equipment to designated locations in and around Marsa, Malta, inspect the vehicle, secure loads safely, and follow delivery schedules and road traffic regulations.",
    "url": "/jobs",
@@ -2733,12 +2763,6 @@
    "title": "Accounting Officer"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 2–3 years of experience in accounting or a similar role, with a solid understanding of accounting principles and tax regulations.",
-   "slug": "accounting-officer",
-   "title": "Accounting Officer"
-  },
-  {
    "q": "What qualifications are required?",
    "a": "A diploma in Accounting, a degree in Economics or a related qualification.",
    "slug": "accounting-officer",
@@ -2778,6 +2802,30 @@
    "q": "Is this role remote or on-site?",
    "a": "It is a full-time, on-site role in the Finance Department in Gżira, Malta.",
    "slug": "accounts-clerk",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "What does an Accounts Clerk do in this role?",
+   "a": "You support the day-to-day accounting operations: posting accounting entries, issuing invoices and receipts, monitoring payments and bank deposits, carrying out bank reconciliations, managing petty cash and following up overdue invoices with customers.",
+   "slug": "accounts-clerk-luqa",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "What is the salary for this Accounts Clerk job in Luqa?",
+   "a": "The role pays €1,500–€1,600 per month for a full-time, on-site position in Luqa.",
+   "slug": "accounts-clerk-luqa",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "Which accounting software is used?",
+   "a": "Experience with accounting software is required, preferably Sage or Microsoft Dynamics 365 Business Central, along with a good working knowledge of Microsoft Office 365, particularly Excel.",
+   "slug": "accounts-clerk-luqa",
+   "title": "Accounts Clerk"
+  },
+  {
+   "q": "Which language is required?",
+   "a": "Maltese is required for this role.",
+   "slug": "accounts-clerk-luqa",
    "title": "Accounts Clerk"
   },
   {
@@ -2997,12 +3045,6 @@
    "title": "Banqueting F&B Supervisor"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of two years in a similar supervisory role, ideally within a hotel or banqueting environment.",
-   "slug": "banqueting-fb-supervisor",
-   "title": "Banqueting F&B Supervisor"
-  },
-  {
    "q": "Do I need to be living in Malta to apply?",
    "a": "Yes. This role is open to candidates already residing in Malta.",
    "slug": "banqueting-fb-supervisor",
@@ -3081,12 +3123,6 @@
    "title": "Business Development Manager HoReCa"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of three years of proven experience in sales, business development or field marketing, with hands-on sales and marketing experience.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
-  },
-  {
    "q": "Do I need a driving licence?",
    "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
    "slug": "business-development-manager-horeca",
@@ -3107,12 +3143,6 @@
   {
    "q": "What hours does the breakfast Chef de Partie work?",
    "a": "It is a full-time breakfast role, so shifts start early in the morning. You must be able to work early mornings, weekends and public holidays.",
-   "slug": "chef-de-partie-breakfast",
-   "title": "Chef de Partie (Breakfast)"
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "At least 2 years of experience in a similar role is required, preferably in hotel breakfast service.",
    "slug": "chef-de-partie-breakfast",
    "title": "Chef de Partie (Breakfast)"
   },
@@ -3219,14 +3249,38 @@
    "title": "Driver License B"
   },
   {
-   "q": "What does the Facilities, Maintenance and Health & Safety Manager job pay?",
-   "a": "The salary is competitive and is discussed with shortlisted candidates.",
-   "slug": "facilities-maintenance-and-health-and-safety-manager",
-   "title": "Facilities, Maintenance and Health & Safety Manager"
+   "q": "What does an External Sales Executive do in this role?",
+   "a": "You find and win new business in the field: approaching potential clients, arranging face-to-face visits, presenting products, preparing quotations, negotiating terms and managing each sale through to closing, while keeping in regular contact with existing customers.",
+   "slug": "external-sales-executive",
+   "title": "External Sales Executive"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of three years of proven experience in a similar managerial role, with an A-Level standard of education.",
+   "q": "What is the salary for this sales job in Luqa?",
+   "a": "The role pays €2,000 per month, with a guaranteed minimum income during the first three months and an attractive commission structure thereafter based on sales performance.",
+   "slug": "external-sales-executive",
+   "title": "External Sales Executive"
+  },
+  {
+   "q": "Which clients and products will I work with?",
+   "a": "You will sell to hotels, restaurants, care homes, contractors, architects and other commercial clients, covering hotel and restaurant furniture, hotel supplies, internal and hotel doors, glass and aluminium products, pergolas and balcony railings.",
+   "slug": "external-sales-executive",
+   "title": "External Sales Executive"
+  },
+  {
+   "q": "What experience is required?",
+   "a": "Previous experience in external sales, business development or a similar commercial role, with a proven ability to generate new business. Existing contacts in the hospitality, construction or commercial sectors are a strong advantage.",
+   "slug": "external-sales-executive",
+   "title": "External Sales Executive"
+  },
+  {
+   "q": "Do I need a driving licence?",
+   "a": "Yes. A valid driving licence and willingness to travel for client visits are required.",
+   "slug": "external-sales-executive",
+   "title": "External Sales Executive"
+  },
+  {
+   "q": "What does the Facilities, Maintenance and Health & Safety Manager job pay?",
+   "a": "The salary is competitive and is discussed with shortlisted candidates.",
    "slug": "facilities-maintenance-and-health-and-safety-manager",
    "title": "Facilities, Maintenance and Health & Safety Manager"
   },
@@ -4035,12 +4089,6 @@
    "title": "Sushi Chef"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "You need previous experience as a Sushi Chef in a reputable restaurant or high-end dining establishment, with strong knowledge of Japanese cuisine, sushi techniques and seafood handling.",
-   "slug": "sushi-chef",
-   "title": "Sushi Chef"
-  },
-  {
    "q": "What dishes will I prepare?",
    "a": "Sushi, sashimi, nigiri, maki rolls and other Japanese specialities, plus support with menu development, seasonal specials and creative sushi presentations.",
    "slug": "sushi-chef",
@@ -4119,12 +4167,6 @@
    "title": "Wood Painting & Finishing Specialist"
   },
   {
-   "q": "How much experience do I need?",
-   "a": "A minimum of 3 years of experience in wood painting and finishing is required.",
-   "slug": "wood-painting-finishing-specialist",
-   "title": "Wood Painting & Finishing Specialist"
-  },
-  {
    "q": "Do I need spray gun experience?",
    "a": "Yes. You should be proficient in spray gun application, with HVLP experience preferred, as well as manual finishing methods.",
    "slug": "wood-painting-finishing-specialist",
@@ -4139,12 +4181,6 @@
   {
    "q": "What does a Workshop Assistant Manager do?",
    "a": "You support the Workshop Manager in running the automotive workshop: supervising technicians, planning schedules, checking repair quality and times, coordinating parts and warranty work, and keeping customers updated on their vehicles.",
-   "slug": "workshop-assistant-manager",
-   "title": "Workshop Assistant Manager"
-  },
-  {
-   "q": "How much experience do I need?",
-   "a": "You need previous experience in a similar workshop management or supervisory role within the automotive industry, with a good technical understanding of repairs, servicing and workshop operations.",
    "slug": "workshop-assistant-manager",
    "title": "Workshop Assistant Manager"
   },

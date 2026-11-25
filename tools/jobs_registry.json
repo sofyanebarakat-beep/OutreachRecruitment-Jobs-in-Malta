@@ -1,5 +1,37 @@
 [
   {
+    "slug": "accounts-clerk-luqa",
+    "title": "Accounts Clerk",
+    "category": "Finance & Accounting",
+    "location": "Luqa, Malta",
+    "location_slug": "luqa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-11-24",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/05da7046-48e0-44a9-93e6-8c4b5234856f/apply",
+    "keywords": "accounts clerk bookkeeping bank reconciliations maltese vat sage business central accounts payable receivable finance clerk luqa malta",
+    "featured": true,
+    "lastmod": "2026-11-25",
+    "salary": "€1,500–€1,600 per month"
+  },
+  {
+    "slug": "external-sales-executive",
+    "title": "External Sales Executive",
+    "category": "Sales",
+    "location": "Luqa, Malta",
+    "location_slug": "luqa, malta",
+    "employment_type": "Full-Time",
+    "work_mode": "On-Site",
+    "date": "2026-11-24",
+    "valid_through": "2029-12-30",
+    "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/e7c32420-3f49-4b7d-8523-6bd9f53bc431/apply",
+    "keywords": "external sales executive business development representative field sales b2b hospitality furniture hotel supplies doors aluminium pergolas commission luqa malta",
+    "featured": true,
+    "lastmod": "2026-11-25",
+    "salary": "€2,000 per month"
+  },
+  {
     "slug": "showroom-sales-and-administration-assistant",
     "title": "Showroom Sales & Administration Assistant",
     "category": "Sales",

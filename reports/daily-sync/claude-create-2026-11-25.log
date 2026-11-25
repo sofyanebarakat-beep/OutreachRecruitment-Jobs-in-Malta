@@ -1,0 +1,30 @@
+I built both job pages, and both pass `tools/verify_job_page.py`, including the headless Chrome render check. Nothing is committed or pushed, and no other job was changed.
+
+I used the repo's own builder, `tools/build_job_page.py`. It copies `jobs/hotel-general-manager/index.html`, which already has the inline application system, and regenerates every job-specific part. I saved one input file per job in `tools/job_specs/` and added registry entries at the top of `tools/jobs_registry.json`, each without a status and with valid_through 2029-12-30. The registry entries were added with the builder's ATS re-fetch switched off, so the fact sheets you gave me were not changed.
+
+**Accounts Clerk** (`accounts-clerk-luqa`)
+- Luqa, Full-time, On-site, Finance & Accounting.
+- Shows €1,500–€1,600 per month, and the schema has a base salary of 1500–1600 per month.
+- Language is Maltese, as the fact sheet says.
+- The page `accounts-clerk` is a different open Accounts Clerk job in Gżira with its own ATS ID. The new page uses the slug you gave, so they don't clash, but the two share the same title.
+
+**External Sales Executive** (`external-sales-executive`)
+- Luqa, Full-time, On-site, Sales.
+- Shows €2,000 per month, and the schema has a base salary of 2000 per month.
+- Language is English (the default, since the fact sheet lists none). A driving licence is required.
+- The careers page also describes the pay as a "guaranteed minimum income during the first three months" followed by commission. The page shows €2,000 per month and repeats those two statements, without claiming more. If €2,000 is only the guaranteed minimum for the first three months, the ATS listing should say so.
+
+On both pages:
+- The apply link is the fact sheet's apply_url, and no other careers-page link appears.
+- The iframe title and application panel heading name the job.
+- The FAQ is closed by default, and its schema questions match the visible ones.
+- The reference number appears only in an HTML comment, and the deadline only in the schema and registry.
+- The word "gross" doesn't appear, nothing from the template page is left, and `jobs/<slug>/index.html` and `jobs/<slug>.html` are identical.
+- The 12-section packages are in `reports/job-seo-<slug>-2026-11-25.md`.
+
+**Cache version:** the shared application files load with `?v=20261107`, not the `?v=20261106` in the brief. That's what the hotel-general-manager page and every other job page use now; no page uses 20261106. That wording comes from `tools/daily_job_sync.py` line 306 and could be updated there.
+
+CREATED 05da7046-48e0-44a9-93e6-8c4b5234856f accounts-clerk-luqa
+CREATED e7c32420-3f49-4b7d-8523-6bd9f53bc431 external-sales-executive
+
+--- stderr ---
