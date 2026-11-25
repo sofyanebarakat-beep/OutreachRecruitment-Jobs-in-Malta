@@ -985,6 +985,22 @@
   from = "/factory-jobs-malta-foreigners/"
   to = "/blog/factory-jobs-malta-foreigners.html"
   status = 200
+[[redirects]]
+  from = "/jobs-in-malta-this-week-23-november-2026"
+  to = "/jobs-in-malta-this-week-23-november-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jobs-in-malta-this-week-23-november-2026.html"
+  to = "/jobs-in-malta-this-week-23-november-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/jobs-in-malta-this-week-23-november-2026/"
+  to = "/blog/jobs-in-malta-this-week-23-november-2026.html"
+  status = 200
 # ── Study in Malta Complete Guide — canonical trailing-slash URL ───────────
 [[redirects]]
   from = "/study-in-malta-complete-guide"
