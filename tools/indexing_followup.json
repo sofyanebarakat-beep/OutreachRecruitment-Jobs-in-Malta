@@ -320,15 +320,15 @@
     "status": "gave_up"
   },
   "workshop-manager": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-11",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "accountant": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -336,7 +336,7 @@
     "status": "pending"
   },
   "billing-administrator": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -344,7 +344,7 @@
     "status": "pending"
   },
   "architect-draughtsperson": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -352,7 +352,7 @@
     "status": "pending"
   },
   "residential-finishing-projects-manager": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-12",
     "indexed": false,
     "job_posting": false,
@@ -360,7 +360,7 @@
     "status": "pending"
   },
   "sales-director": {
-    "checked": "2026-11-24",
+    "checked": "2026-11-25",
     "published": "2026-11-12",
     "indexed": false,
     "job_posting": false,
