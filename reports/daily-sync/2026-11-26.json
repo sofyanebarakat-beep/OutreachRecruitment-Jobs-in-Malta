@@ -15,7 +15,7 @@
   "held": [],
   "notes": [],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 128,
   "site_open_before": 129,
@@ -57,5 +57,102 @@
   "salary_coverage": {
     "open": 128,
     "with_salary": 35
+  },
+  "google": {
+    "sent": 1,
+    "ok": 1,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 128,
+    "expected": 128,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 8,
+    "ok": [
+      {
+        "title": "Accounts Clerk",
+        "slug": "accounts-clerk-luqa",
+        "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa/",
+        "age_days": 2,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "External Sales Executive",
+        "slug": "external-sales-executive",
+        "url": "https://outreachrecruitment.net/jobs/external-sales-executive/",
+        "age_days": 2,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "title": "Showroom Sales & Administration Assistant",
+        "slug": "showroom-sales-and-administration-assistant",
+        "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant/",
+        "age_days": 2,
+        "indexed": true,
+        "job_posting": true,
+        "coverage": "Submitted and indexed"
+      }
+    ],
+    "flagged": [
+      {
+        "title": "Accountant",
+        "slug": "accountant",
+        "url": "https://outreachrecruitment.net/jobs/accountant/",
+        "age_days": 13,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Billing Administrator",
+        "slug": "billing-administrator",
+        "url": "https://outreachrecruitment.net/jobs/billing-administrator/",
+        "age_days": 13,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Architect / Draughtsperson",
+        "slug": "architect-draughtsperson",
+        "url": "https://outreachrecruitment.net/jobs/architect-draughtsperson/",
+        "age_days": 13,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag)"
+      },
+      {
+        "title": "Residential Finishing Projects Manager",
+        "slug": "residential-finishing-projects-manager",
+        "url": "https://outreachrecruitment.net/jobs/residential-finishing-projects-manager/",
+        "age_days": 14,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag) — still missing after 14 days, needs a manual look"
+      },
+      {
+        "title": "Sales Director",
+        "slug": "sales-director",
+        "url": "https://outreachrecruitment.net/jobs/sales-director/",
+        "age_days": 14,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag) — still missing after 14 days, needs a manual look"
+      }
+    ],
+    "error": ""
   }
 }

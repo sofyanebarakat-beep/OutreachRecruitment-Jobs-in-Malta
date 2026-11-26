@@ -328,7 +328,7 @@
     "status": "gave_up"
   },
   "accountant": {
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -336,7 +336,7 @@
     "status": "pending"
   },
   "billing-administrator": {
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -344,7 +344,7 @@
     "status": "pending"
   },
   "architect-draughtsperson": {
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
@@ -352,20 +352,20 @@
     "status": "pending"
   },
   "residential-finishing-projects-manager": {
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "published": "2026-11-12",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "sales-director": {
-    "checked": "2026-11-25",
+    "checked": "2026-11-26",
     "published": "2026-11-12",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "restoration-worker": {
     "checked": "2026-11-21",
@@ -378,6 +378,30 @@
   "sales-consultant": {
     "checked": "2026-11-21",
     "published": "2026-11-19",
+    "indexed": true,
+    "job_posting": true,
+    "coverage": "Submitted and indexed",
+    "status": "ok"
+  },
+  "accounts-clerk-luqa": {
+    "checked": "2026-11-26",
+    "published": "2026-11-24",
+    "indexed": true,
+    "job_posting": true,
+    "coverage": "Submitted and indexed",
+    "status": "ok"
+  },
+  "external-sales-executive": {
+    "checked": "2026-11-26",
+    "published": "2026-11-24",
+    "indexed": true,
+    "job_posting": true,
+    "coverage": "Submitted and indexed",
+    "status": "ok"
+  },
+  "showroom-sales-and-administration-assistant": {
+    "checked": "2026-11-26",
+    "published": "2026-11-24",
     "indexed": true,
     "job_posting": true,
     "coverage": "Submitted and indexed",
