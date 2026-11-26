@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-26",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Administration Specialist",
+      "slug": "administration-specialist",
+      "url": "https://outreachrecruitment.net/jobs/administration-specialist/",
+      "city": "Floriana, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [],
+  "held": [],
+  "notes": [],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 128,
+  "site_open_before": 129,
+  "salary_synced": [],
+  "page_check": {
+    "open_checked": 128,
+    "ok": 124,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "customer-service-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "insurance-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      },
+      "jobs-in-malta-top-15-opening-jobs.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 17,
+    "itemlist_items": 128,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 4
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 128,
+  "salary_coverage": {
+    "open": 128,
+    "with_salary": 35
+  }
+}
