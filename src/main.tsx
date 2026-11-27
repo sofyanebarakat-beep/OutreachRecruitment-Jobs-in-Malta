@@ -96,6 +96,13 @@ const sections: Section[] = [
     description: "Create, review, schedule and publish content",
   },
   {
+    id: "published",
+    label: "Published",
+    icon: Globe2,
+    table: "seo_articles",
+    description: "Live articles: republish, check performance or take offline",
+  },
+  {
     id: "calendar",
     label: "Content Calendar",
     icon: CalendarDays,
@@ -505,6 +512,7 @@ function Route({ section }: { section: Section }) {
   if (section.id === "calendar") return <Calendar />;
   if (section.id === "review") return <Articles review />;
   if (section.id === "articles") return <Articles />;
+  if (section.id === "published") return <Articles live />;
   if (section.id === "services") return <Services />;
   if (section.id === "campaigns") return <Campaigns />;
   if (section.id === "keywords") return <Topics />;
@@ -573,7 +581,7 @@ function Dashboard() {
     ["Awaiting review", count("review"), "review"],
     ["Approved", count("approved"), "review"],
     ["Scheduled", count("scheduled"), "calendar"],
-    ["Published", count("published"), "articles"],
+    ["Published", count("published"), "published"],
     [
       "Failed jobs",
       (data.seo_automation_logs || []).filter((x) => x.status === "failed")
@@ -1641,7 +1649,7 @@ function OfflineDialog({ article, others, close, done }: { article: Row; others:
   );
 }
 
-function Articles({ review = false }: { review?: boolean }) {
+function Articles({ review = false, live = false }: { review?: boolean; live?: boolean }) {
   const state = useRows("seo_articles"),
     [edit, setEdit] = useState<Row | null>(null),
     [offline, setOffline] = useState<Row | null>(null),
@@ -1651,7 +1659,11 @@ function Articles({ review = false }: { review?: boolean }) {
     [bulkWhen, setBulkWhen] = useState(""),
     [busy, setBusy] = useState(false);
   const rows = (
-    review ? state.rows.filter((r) => r.status === "review") : state.rows
+    review
+      ? state.rows.filter((r) => r.status === "review")
+      : live
+        ? state.rows.filter((r) => r.status === "published")
+        : state.rows.filter((r) => r.status !== "published")
   ).filter((r) => filter === "All categories" || r.category === filter);
   const chosen = rows.filter((r) => selected.has(r.id));
   const toggle = (id: string) =>
@@ -1747,8 +1759,8 @@ function Articles({ review = false }: { review?: boolean }) {
   return (
     <>
       <ListHeader
-        title={review ? "Articles awaiting review" : "Article library"}
-        action={review ? undefined : "Create article"}
+        title={review ? "Articles awaiting review" : live ? `Published articles (${rows.length})` : "Article library"}
+        action={review || live ? undefined : "Create article"}
         onAction={() =>
           setEdit({
             category: filter === "All categories" ? undefined : filter,
@@ -1767,16 +1779,18 @@ function Articles({ review = false }: { review?: boolean }) {
             ))}
           </select>
         </label>
-        <button className="ai" onClick={weeklyArticle} disabled={weekly}>
-          {weekly ? <Loader2 className="spin" /> : <BriefcaseBusiness />} This
-          week's Jobs in Malta article
-        </button>
+        {!live && (
+          <button className="ai" onClick={weeklyArticle} disabled={weekly}>
+            {weekly ? <Loader2 className="spin" /> : <BriefcaseBusiness />} This
+            week's Jobs in Malta article
+          </button>
+        )}
       </ListHeader>
       {chosen.length > 0 && (
         <div className="bulk-bar">
           <strong>{chosen.length} selected</strong>
           <button className="primary" disabled={busy} onClick={() => bulk("publish")}>
-            <Globe2 /> Publish
+            {live ? <><RefreshCw /> Republish</> : <><Globe2 /> Publish</>}
           </button>
           <span className="bulk-group">
             <input type="datetime-local" value={bulkWhen} onChange={(e) => setBulkWhen(e.target.value)} aria-label="Schedule date and time" />
@@ -1796,7 +1810,7 @@ function Articles({ review = false }: { review?: boolean }) {
           <button className="link" onClick={() => setSelected(new Set())}>Clear selection</button>
         </div>
       )}
-      {!review && <CheckupPanel rows={state.rows} onEdit={setEdit} />}
+      {live && <CheckupPanel rows={state.rows} onEdit={setEdit} />}
       {state.loading ? (
         <TableLoader />
       ) : (
@@ -1816,7 +1830,7 @@ function Articles({ review = false }: { review?: boolean }) {
                 <th>Service / keyword</th>
                 <th>SEO / GEO score</th>
                 <th>Status</th>
-                <th>Schedule</th>
+                <th>{live ? "Published" : "Schedule"}</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -1854,7 +1868,7 @@ function Articles({ review = false }: { review?: boolean }) {
                     <td>
                       <span className={`badge ${st.tone}`}>{st.label}</span>
                     </td>
-                    <td>{date(r.scheduled_at)}</td>
+                    <td>{live ? date(r.published_at || r.updated_at) : date(r.scheduled_at)}</td>
                     <td className="actions">
                       <button onClick={() => setEdit(r)}>Edit</button>
                       <button onClick={() => previewArticle(r)}>
@@ -1917,7 +1931,9 @@ function Articles({ review = false }: { review?: boolean }) {
                       text={
                         review
                           ? "Nothing is waiting for review."
-                          : "No articles yet."
+                          : live
+                            ? "No published articles yet."
+                            : "No unpublished articles. Published ones are in the Published tab."
                       }
                     />
                   </td>
