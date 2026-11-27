@@ -38,7 +38,7 @@
     "Website shows 127 open jobs vs 128 on the careers page — see 'Needs your attention'."
   ],
   "salary_notes": [],
-  "git": "no changes",
+  "git": "pushed to GitHub (main)",
   "dry_run": false,
   "ats_advertised": 128,
   "site_open_before": 128,
@@ -74,5 +74,54 @@
   "salary_coverage": {
     "open": 127,
     "with_salary": 35
+  },
+  "google": {
+    "sent": 1,
+    "ok": 1,
+    "error": "",
+    "sitemap": "submitted"
+  },
+  "live": {
+    "count": 127,
+    "expected": 127,
+    "ok": true,
+    "problems": []
+  },
+  "google_check": {
+    "checked": 3,
+    "ok": [],
+    "flagged": [
+      {
+        "title": "Accountant",
+        "slug": "accountant",
+        "url": "https://outreachrecruitment.net/jobs/accountant/",
+        "age_days": 14,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag) — still missing after 14 days, needs a manual look"
+      },
+      {
+        "title": "Billing Administrator",
+        "slug": "billing-administrator",
+        "url": "https://outreachrecruitment.net/jobs/billing-administrator/",
+        "age_days": 14,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag) — still missing after 14 days, needs a manual look"
+      },
+      {
+        "title": "Architect / Draughtsperson",
+        "slug": "architect-draughtsperson",
+        "url": "https://outreachrecruitment.net/jobs/architect-draughtsperson/",
+        "age_days": 14,
+        "indexed": false,
+        "job_posting": false,
+        "coverage": "Alternate page with proper canonical tag",
+        "reason": "not indexed yet (Alternate page with proper canonical tag) — still missing after 14 days, needs a manual look"
+      }
+    ],
+    "error": ""
   }
 }

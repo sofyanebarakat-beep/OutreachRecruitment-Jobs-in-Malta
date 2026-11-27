@@ -328,28 +328,28 @@
     "status": "gave_up"
   },
   "accountant": {
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "billing-administrator": {
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "architect-draughtsperson": {
-    "checked": "2026-11-26",
+    "checked": "2026-11-27",
     "published": "2026-11-13",
     "indexed": false,
     "job_posting": false,
     "coverage": "Alternate page with proper canonical tag",
-    "status": "pending"
+    "status": "gave_up"
   },
   "residential-finishing-projects-manager": {
     "checked": "2026-11-26",
