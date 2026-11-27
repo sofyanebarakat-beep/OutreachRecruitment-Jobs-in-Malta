@@ -33482,4 +33482,94 @@ OK
   [115/128] auditor … 1 issue(s)
   [116/128] cnc-machine-operator … OK
   [117/128] room-attendents … 1 issue(s)
-  [118/128] skilled-carpenters … 
+  [118/128] skilled-carpenters … 1 issue(s)
+  [119/128] delivery-person-with-driving-licence-c1 … 1 issue(s)
+  [120/128] commercial-insurance-associate … 2 issue(s)
+  [121/128] aluminum-install-and-fabrication-foreman … 1 issue(s)
+  [122/128] audit-senior … 1 issue(s)
+  [123/128] volvo-penta-mechanic … 1 issue(s)
+  [124/128] sign-assembler-installer … 1 issue(s)
+  [125/128] boat-maintenance … 1 issue(s)
+  [126/128] semi-senior-accountant … 1 issue(s)
+  [127/128] it-support-executive-2 … 2 issue(s)
+  [128/128] accounts-senior-2 … 1 issue(s)
+
+[Google Indexing] No changed job URLs to submit.
+
+  Markdown report: /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-27.md
+  JSON report:     /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-27.json
+  CSVs saved to:   /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/
+  HTML preview:    /Users/sof/Documents/Projects/OutreachRecruitmentwebsite/OutreachRecruitment-Jobs-in-Malta/reports/sync-report-2026-11-27.html
+
+  Email skipped. To send manually, remove --no-email / --dry-run flag.
+
+=== Articles: Sources + By the numbers ===
+ok   blog/is-malta-a-good-country-for-international-students.html
+ok   blog/jobs-in-malta-this-week-23-november-2026.html
+pushed
+
+=== Help Center: open-jobs list + bubble on every page ===
+open-jobs.json: 128 jobs, 25 KB
+help widget: 0 page(s) updated
+
+=== SEO Course Automation ===
+GA4 added to 2 content pages; conversion events added to 0 pages.
+Built 11 service records
+/Users/sof/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+{
+  "generated_at": "2026-11-27T10:14:54.437026+01:00",
+  "checks": {
+    "gsc": {
+      "ok": true,
+      "through": "2026-11-25",
+      "days": 150,
+      "queries": 1000,
+      "pages": 459
+    },
+    "ga4": {
+      "ok": true,
+      "days": 150,
+      "property_id": "350506159"
+    },
+    "audit": {
+      "ok": true,
+      "issues": 2617
+    },
+    "sectors": {
+      "ok": true,
+      "rows": 16
+    },
+    "opportunities": {
+      "ok": true,
+      "rows": 130
+    },
+    "experiments": {
+      "new": 4
+    },
+    "supabase": {
+      "ok": true,
+      "alerts": 22
+    }
+  },
+  "warnings": [],
+  "kpi_latest_28d": {
+    "start": "2026-10-29",
+    "end": "2026-11-25",
+    "clicks28": 1478,
+    "impressions28": 23122,
+    "ctr": 6.39,
+    "position": 10.4
+  },
+  "baseline": {
+    "date": "2026-10-13",
+    "clicks28": 2017,
+    "impressions28": 24004,
+    "ctr": 8.4,
+    "position": 9.4,
+    "verified": true,
+    "auto": true,
+    "note": "Verified automatically from the Search Console API: 2026-09-16 to 2026-10-13 (final data, web search)."
+  }
+}
+Finished: Fri Nov 27 10:15:15 CET 2026 | Exit: 0
