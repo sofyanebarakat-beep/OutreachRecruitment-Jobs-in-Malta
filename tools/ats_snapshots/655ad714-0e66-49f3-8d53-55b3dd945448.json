@@ -11,8 +11,8 @@
     "max": 1700.0,
     "currency": "EUR",
     "unit": "MONTH",
-    "text": "rting gross monthly salary of €1,700 . Following six months of con",
-    "source": "description"
+    "text": "",
+    "source": "ats_schema"
   },
   "salary_note": "",
   "work_mode": "On-site",
@@ -23,5 +23,5 @@
   "description_hash": "e685df2d2c84908c",
   "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/655ad714-0e66-49f3-8d53-55b3dd945448",
   "apply_url": "https://outreach-recruitment-agency.careers-page.com/jobs/655ad714-0e66-49f3-8d53-55b3dd945448/apply",
-  "fetched_at": "2026-11-14T07:01:44"
+  "fetched_at": "2026-11-27T11:02:38"
 }

@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-27",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Business Development Manager HoReCa",
+      "slug": "business-development-manager-horeca",
+      "url": "https://outreachrecruitment.net/jobs/business-development-manager-horeca/",
+      "city": "Paola, Malta"
+    }
+  ],
+  "updated": [],
+  "failed": [
+    {
+      "uuid": "0b1eea2d-e3f4-460b-8abb-b7d467fe0576",
+      "title": "Installation Technician - Glass, Aluminium & Architectural Products",
+      "city": "Luqa",
+      "slug": "installation-technician-glass-aluminium-and-architectural-products",
+      "salary_label": "€30,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0b1eea2d-e3f4-460b-8abb-b7d467fe0576",
+      "reason": "the page was not built (not added to the registry)"
+    },
+    {
+      "uuid": "e8ac9c55-4226-414a-9a57-ec214f1d3948",
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "city": "Marsa",
+      "changes": [
+        "salary: Competitive salary → €23,000–€30,000 per year"
+      ],
+      "owner_salary": "",
+      "reason": "update failed the pre-publish check, page left as it was: schema baseSalary (None, None) does not match the careers page (23000–30000); salary 23000 is not shown on the page; sales-consultant.html: schema baseSalary (None, None) does not match the careers page (23000–30000); sales-consultant.html: salary 23000 is not shown on the page"
+    }
+  ],
+  "held": [],
+  "notes": [
+    "Website shows 127 open jobs vs 128 on the careers page — see 'Needs your attention'."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": false,
+  "ats_advertised": 128,
+  "site_open_before": 128,
+  "salary_synced": [
+    "Sales Consultant: none → €23,000–€30,000 per year"
+  ],
+  "page_check": {
+    "open_checked": 126,
+    "ok": 122,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "listings": {
+    "hub_cards": {
+      "sales-jobs-in-malta.html": {
+        "replaced": 1,
+        "removed": 0
+      }
+    },
+    "hubs_now_empty": [],
+    "carousel_swaps": 18,
+    "itemlist_items": 127,
+    "flag_pages": {
+      "subcontracting-jobs-in-malta.html": 4
+    },
+    "categorised": [],
+    "merged": [],
+    "pages_marked_closed": 1,
+    "pages_reopened": 0
+  },
+  "site_open_after": 127,
+  "salary_coverage": {
+    "open": 127,
+    "with_salary": 35
+  }
+}

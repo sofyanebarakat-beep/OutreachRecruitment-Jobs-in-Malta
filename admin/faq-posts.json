@@ -145,6 +145,18 @@
    "pages": 7
   },
   {
+   "q": "Where can I find current opportunities in Malta?",
+   "a": "See the current vacancies on the Outreach Recruitment jobs page and check each description for its requirements.",
+   "url": "/blog/factory-jobs-malta-foreigners",
+   "pages": 6
+  },
+  {
+   "q": "Should I confirm legal or permit details?",
+   "a": "Yes. Rules can change and depend on your situation, so confirm work-permit, visa and legal questions with the official authority.",
+   "url": "/blog/factory-jobs-malta-foreigners",
+   "pages": 6
+  },
+  {
    "q": "Is this role on-site?",
    "a": "Yes, this is a full-time, on-site Accounts Billing Officer position based in Mellieħa.",
    "url": "/jobs",
@@ -233,18 +245,6 @@
    "a": "You'll need to be currently enrolled in a Law degree programme (minimum first year completed), with strong legal research, analytical, and legal writing skills, plus office administration knowledge.",
    "url": "/jobs",
    "pages": 5
-  },
-  {
-   "q": "Where can I find current opportunities in Malta?",
-   "a": "See the current vacancies on the Outreach Recruitment jobs page and check each description for its requirements.",
-   "url": "/blog/factory-jobs-malta-foreigners",
-   "pages": 4
-  },
-  {
-   "q": "Should I confirm legal or permit details?",
-   "a": "Yes. Rules can change and depend on your situation, so confirm work-permit, visa and legal questions with the official authority.",
-   "url": "/blog/factory-jobs-malta-foreigners",
-   "pages": 4
   },
   {
    "q": "What types of hospitality jobs are available in Malta?",
@@ -1132,6 +1132,12 @@
    "q": "Is temporary recruitment handled differently from permanent hiring?",
    "a": "Yes, temporary recruitment follows a tailored process that focuses on quick matching and flexibility, while permanent hiring often involves more detailed assessment and cultural fit considerations.",
    "url": "/employers",
+   "pages": 2
+  },
+  {
+   "q": "What is the first step with is malta a good country for international students?",
+   "a": "Start with the official requirements and a clear plan, then compare your options before you apply or decide.",
+   "url": "/study-in-malta-complete-guide",
    "pages": 2
   },
   {
@@ -3115,30 +3121,6 @@
    "a": "Construction and engineering services — the company provides drilling, laboratory testing, surveying and engineering consultancy in Malta.",
    "slug": "billing-administrator",
    "title": "Billing Administrator"
-  },
-  {
-   "q": "What does the Business Development Manager HoReCa job pay?",
-   "a": "The role pays €30,000–€35,000 per year plus performance-related bonuses, a company car, fuel allowance, company mobile phone and health insurance.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
-  },
-  {
-   "q": "What does HoReCa mean?",
-   "a": "HoReCa stands for hotels, restaurants and cafés/catering — the hospitality businesses you will sell to and look after in this role.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
-  },
-  {
-   "q": "Do I need a driving licence?",
-   "a": "Yes. A valid and clean driving licence is required, as the role involves regular client visits. A company car and fuel allowance are provided.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
-  },
-  {
-   "q": "Is wine industry knowledge required?",
-   "a": "It is not required, but knowledge of the local HoReCa sector and the wine industry is considered an advantage.",
-   "slug": "business-development-manager-horeca",
-   "title": "Business Development Manager HoReCa"
   },
   {
    "q": "What does the Chef de Partie (Breakfast) job pay?",
