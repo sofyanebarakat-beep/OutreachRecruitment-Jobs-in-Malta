@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-11-25T10:33:30",
+  "generated_at": "2026-11-25T11:38:14",
   "careers_count_advertised": 129,
   "careers_count_scraped": 129,
-  "website_count": 127,
-  "sync_score": 94.5,
+  "website_count": 129,
+  "sync_score": 94.9,
   "missing_jobs": [
-    "External Sales Executive",
     "Mini Bus Drivers License D",
     "Deli Counter Assistant / Salumeria Specialis",
     "Chefs de Partie",
@@ -336,6 +335,13 @@
       "title_b": "Head of HVAC Technicians",
       "url_b": "https://outreachrecruitment.net/jobs/head-of-hvac-technicians",
       "similarity": 0.77
+    },
+    {
+      "title_a": "Accounts Clerk",
+      "url_a": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "title_b": "Accounts Senior",
+      "url_b": "https://outreachrecruitment.net/jobs/accounts-senior-2",
+      "similarity": 0.76
     },
     {
       "title_a": "Workshop Manager",
@@ -758,10 +764,31 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accountant jobs in Malta",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "Accounts Clerk",
+      "slug": "accounts-clerk-luqa",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "category": "Finance & Accounting",
+      "score": 71,
+      "priority": "Medium",
+      "target_keyword": "Accounts Clerk jobs in Malta",
+      "word_count": 5447,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-11-25T11:23:57",
+      "issues": [
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Accounts Clerk jobs in Malta",
         "Not linked from a category jobs page",
         "Missing offer/benefits section"
       ]
@@ -1054,7 +1081,7 @@
       "category_sources": "construction-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Architect / Draughtsperson jobs in Malta",
@@ -1222,7 +1249,7 @@
       "category_sources": "hospitality-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Workshop Manager jobs in Malta",
@@ -1243,9 +1270,29 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Target phrase missing: Billing Administrator jobs in Malta",
+        "Not linked from a category jobs page",
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "External Sales Executive",
+      "slug": "external-sales-executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "category": "Sales",
+      "score": 81,
+      "priority": "Medium",
+      "target_keyword": "External Sales Executive jobs in Malta",
+      "word_count": 5675,
+      "category_links": 0,
+      "category_sources": "",
+      "schema_eligible": true,
+      "last_indexing_status": "200",
+      "last_indexing_date": "2026-11-25T11:23:57",
+      "issues": [
+        "Target phrase missing: External Sales Executive jobs in Malta",
         "Not linked from a category jobs page",
         "Missing offer/benefits section"
       ]
@@ -1263,7 +1310,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Target phrase missing: Sales Director jobs in Malta",
         "Not linked from a category jobs page",
@@ -2426,7 +2473,7 @@
       "category_sources": "construction-jobs-in-malta.html",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Target phrase missing: Residential Finishing Projects Manager jobs in Malta",
         "Missing offer/benefits section"
@@ -3289,7 +3336,7 @@
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:31:58",
+      "last_indexing_date": "2026-11-25T11:34:41",
       "issues": [
         "Possible duplicate/cannibalization risk",
         "Target phrase missing: Accountant jobs in Malta",
@@ -3298,29 +3345,44 @@
       ]
     },
     {
-      "title": "Showroom Sales & Administration Assistant",
-      "slug": "showroom-sales-and-administration-assistant",
-      "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
-      "category": "Sales",
+      "title": "Accounts Clerk",
+      "slug": "accounts-clerk-luqa",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "category": "Finance & Accounting",
       "score": 71,
       "priority": "Medium",
-      "target_keyword": "Showroom Sales & Administration Assistant jobs in Malta",
-      "word_count": 5572,
+      "target_keyword": "Accounts Clerk jobs in Malta",
+      "word_count": 5447,
       "category_links": 0,
       "category_sources": "",
       "schema_eligible": true,
       "last_indexing_status": "200",
-      "last_indexing_date": "2026-11-24T13:21:06",
+      "last_indexing_date": "2026-11-25T11:23:57",
       "issues": [
-        "Meta title does not include exact job title",
-        "Meta description does not include exact job title",
-        "Target phrase missing: Showroom Sales & Administration Assistant jobs in Malta",
+        "Possible duplicate/cannibalization risk",
+        "Target phrase missing: Accounts Clerk jobs in Malta",
         "Not linked from a category jobs page",
         "Missing offer/benefits section"
       ]
     }
   ],
   "keyword_issues": [
+    {
+      "title": "Accounts Clerk",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "target_keyword": "Accounts Clerk jobs in Malta",
+      "issues": [
+        "Target phrase missing: Accounts Clerk jobs in Malta"
+      ]
+    },
+    {
+      "title": "External Sales Executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "target_keyword": "External Sales Executive jobs in Malta",
+      "issues": [
+        "Target phrase missing: External Sales Executive jobs in Malta"
+      ]
+    },
     {
       "title": "Showroom Sales & Administration Assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
@@ -4238,6 +4300,20 @@
   ],
   "internal_link_issues": [
     {
+      "title": "Accounts Clerk",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
+      "title": "External Sales Executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "issues": [
+        "Not linked from a category jobs page"
+      ]
+    },
+    {
       "title": "Showroom Sales & Administration Assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
       "issues": [
@@ -4547,6 +4623,22 @@
     }
   ],
   "content_quality_issues": [
+    {
+      "title": "Accounts Clerk",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "word_count": 5447,
+      "issues": [
+        "Missing offer/benefits section"
+      ]
+    },
+    {
+      "title": "External Sales Executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "word_count": 5675,
+      "issues": [
+        "Missing offer/benefits section"
+      ]
+    },
     {
       "title": "Showroom Sales & Administration Assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
@@ -5479,15 +5571,21 @@
     },
     {
       "category": "Sales",
-      "jobs": 8,
+      "jobs": 9,
       "average_score": 81.6,
-      "weak_jobs": 4
+      "weak_jobs": 5
     },
     {
       "category": "Management",
       "jobs": 1,
       "average_score": 83.0,
       "weak_jobs": 1
+    },
+    {
+      "category": "Finance & Accounting",
+      "jobs": 11,
+      "average_score": 83.2,
+      "weak_jobs": 7
     },
     {
       "category": "Administration",
@@ -5500,12 +5598,6 @@
       "jobs": 11,
       "average_score": 84.1,
       "weak_jobs": 5
-    },
-    {
-      "category": "Finance & Accounting",
-      "jobs": 10,
-      "average_score": 84.4,
-      "weak_jobs": 6
     },
     {
       "category": "Insurance",
@@ -5557,6 +5649,18 @@
     }
   ],
   "schema_eligibility": [
+    {
+      "title": "Accounts Clerk",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "eligible": true,
+      "issues": []
+    },
+    {
+      "title": "External Sales Executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "eligible": true,
+      "issues": []
+    },
     {
       "title": "Showroom Sales & Administration Assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
@@ -6322,12 +6426,54 @@
   ],
   "ranking_action_plan": [
     "Fix 13 high-priority job page(s) below 70/100",
-    "Fix 110 job page(s) with keyword targeting gaps",
-    "Fix 44 job page(s) missing category-page internal links",
-    "Fix 110 job page(s) needing deeper content",
-    "Fix 24 possible duplicate/cannibalization pair(s) to review"
+    "Fix 112 job page(s) with keyword targeting gaps",
+    "Fix 46 job page(s) missing category-page internal links",
+    "Fix 112 job page(s) needing deeper content",
+    "Fix 25 possible duplicate/cannibalization pair(s) to review"
   ],
   "gsc_url_inspection": [
+    {
+      "title": "Accounts Clerk",
+      "slug": "accounts-clerk-luqa",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "status": 200,
+      "ok": true,
+      "indexed": true,
+      "verdict": "PASS",
+      "coverage_state": "Submitted and indexed",
+      "indexing_state": "INDEXING_ALLOWED",
+      "page_fetch_state": "SUCCESSFUL",
+      "robots_txt_state": "ALLOWED",
+      "last_crawl_time": "2026-11-25T10:29:14Z",
+      "user_canonical": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "google_canonical": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa/",
+      "canonical_match": true,
+      "sitemap": "",
+      "rich_results_verdict": "PASS",
+      "rich_result_types": "Breadcrumbs, Job Postings",
+      "error": ""
+    },
+    {
+      "title": "External Sales Executive",
+      "slug": "external-sales-executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "status": 200,
+      "ok": true,
+      "indexed": false,
+      "verdict": "NEUTRAL",
+      "coverage_state": "URL is unknown to Google",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+      "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+      "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "last_crawl_time": "",
+      "user_canonical": "",
+      "google_canonical": "",
+      "canonical_match": false,
+      "sitemap": "",
+      "rich_results_verdict": "",
+      "rich_result_types": "",
+      "error": ""
+    },
     {
       "title": "Showroom Sales & Administration Assistant",
       "slug": "showroom-sales-and-administration-assistant",
@@ -6403,7 +6549,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-17T10:32:13Z",
+      "last_crawl_time": "2026-11-25T10:32:05Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/accountant",
       "google_canonical": "https://outreachrecruitment.net/jobs/accountant",
       "canonical_match": true,
@@ -8998,6 +9144,38 @@
   ],
   "gsc_search_performance": [
     {
+      "title": "Accounts Clerk",
+      "slug": "accounts-clerk-luqa",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "status": 200,
+      "ok": true,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0,
+      "top_query": "",
+      "target_keyword": "Accounts Clerk jobs in Malta",
+      "target_query_visible": false,
+      "queries": "",
+      "error": ""
+    },
+    {
+      "title": "External Sales Executive",
+      "slug": "external-sales-executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "status": 200,
+      "ok": true,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0,
+      "top_query": "",
+      "target_keyword": "External Sales Executive jobs in Malta",
+      "target_query_visible": false,
+      "queries": "",
+      "error": ""
+    },
+    {
       "title": "Showroom Sales & Administration Assistant",
       "slug": "showroom-sales-and-administration-assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
@@ -11032,6 +11210,20 @@
   ],
   "gsc_indexing_problems": [
     {
+      "title": "Accounts Clerk",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "problems": [
+        "Indexed page has zero impressions in selected GSC window"
+      ]
+    },
+    {
+      "title": "External Sales Executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "problems": [
+        "URL is unknown to Google"
+      ]
+    },
+    {
       "title": "Showroom Sales & Administration Assistant",
       "url": "https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant",
       "problems": [
@@ -11863,6 +12055,27 @@
   "gsc_canonical_conflicts": [],
   "gsc_not_indexed_jobs": [
     {
+      "title": "External Sales Executive",
+      "slug": "external-sales-executive",
+      "url": "https://outreachrecruitment.net/jobs/external-sales-executive",
+      "status": 200,
+      "ok": true,
+      "indexed": false,
+      "verdict": "NEUTRAL",
+      "coverage_state": "URL is unknown to Google",
+      "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+      "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+      "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "last_crawl_time": "",
+      "user_canonical": "",
+      "google_canonical": "",
+      "canonical_match": false,
+      "sitemap": "",
+      "rich_results_verdict": "",
+      "rich_result_types": "",
+      "error": ""
+    },
+    {
       "title": "Accountant",
       "slug": "accountant",
       "url": "https://outreachrecruitment.net/jobs/accountant",
@@ -11874,7 +12087,7 @@
       "indexing_state": "INDEXING_ALLOWED",
       "page_fetch_state": "SUCCESSFUL",
       "robots_txt_state": "ALLOWED",
-      "last_crawl_time": "2026-11-17T10:32:13Z",
+      "last_crawl_time": "2026-11-25T10:32:05Z",
       "user_canonical": "https://outreachrecruitment.net/jobs/accountant",
       "google_canonical": "https://outreachrecruitment.net/jobs/accountant",
       "canonical_match": true,
@@ -12956,6 +13169,22 @@
     }
   ],
   "gsc_zero_impression_jobs": [
+    {
+      "title": "Accounts Clerk",
+      "slug": "accounts-clerk-luqa",
+      "url": "https://outreachrecruitment.net/jobs/accounts-clerk-luqa",
+      "status": 200,
+      "ok": true,
+      "clicks": 0,
+      "impressions": 0,
+      "ctr": 0,
+      "position": 0,
+      "top_query": "",
+      "target_keyword": "Accounts Clerk jobs in Malta",
+      "target_query_visible": false,
+      "queries": "",
+      "error": ""
+    },
     {
       "title": "Showroom Sales & Administration Assistant",
       "slug": "showroom-sales-and-administration-assistant",
@@ -14147,8 +14376,8 @@
   ],
   "gsc_rich_result_issues": [],
   "gsc_action_plan": [
-    "Fix 52 job URL(s) not indexed or not passing URL Inspection",
-    "Fix 37 job URL(s) with zero Search Console impressions",
+    "Fix 53 job URL(s) not indexed or not passing URL Inspection",
+    "Fix 38 job URL(s) with zero Search Console impressions",
     "Fix 4 job URL(s) ranking worse than average position 20",
     "Fix 33 job URL(s) missing target keyword visibility in top queries"
   ]

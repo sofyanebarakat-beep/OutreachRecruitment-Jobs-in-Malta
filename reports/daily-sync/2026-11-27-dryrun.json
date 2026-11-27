@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-27",
+  "created": [],
+  "reopened": [],
+  "closed": [
+    {
+      "title": "Business Development Manager HoReCa",
+      "slug": "business-development-manager-horeca",
+      "url": "https://outreachrecruitment.net/jobs/business-development-manager-horeca/",
+      "city": "Paola, Malta"
+    }
+  ],
+  "updated": [
+    {
+      "uuid": "e8ac9c55-4226-414a-9a57-ec214f1d3948",
+      "title": "Sales Consultant",
+      "slug": "sales-consultant",
+      "city": "Marsa",
+      "changes": [
+        "salary: Competitive salary → €23,000–€30,000 per year"
+      ],
+      "owner_salary": "",
+      "url": "https://outreachrecruitment.net/jobs/sales-consultant/"
+    }
+  ],
+  "failed": [],
+  "held": [
+    {
+      "uuid": "0b1eea2d-e3f4-460b-8abb-b7d467fe0576",
+      "title": "Installation Technician - Glass, Aluminium & Architectural Products",
+      "city": "Luqa",
+      "slug": "installation-technician-glass-aluminium-and-architectural-products",
+      "salary_label": "€30,000 per year",
+      "ats_url": "https://outreach-recruitment-agency.careers-page.com/jobs/0b1eea2d-e3f4-460b-8abb-b7d467fe0576",
+      "reason": "new job — not created (report-only run)"
+    }
+  ],
+  "notes": [
+    "Did not change anything: git pull --ff-only failed: fatal: unable to access 'https://github.com/sofyanebarakat-beep/OutreachRecruitment-Jobs-in-Malta.git/': Could not resolve host: github.com."
+  ],
+  "salary_notes": [],
+  "git": "no changes",
+  "dry_run": true,
+  "ats_advertised": 128,
+  "site_open_before": 128,
+  "salary_synced": [
+    "Sales Consultant: none → €23,000–€30,000 per year"
+  ],
+  "page_check": {
+    "open_checked": 126,
+    "ok": 122,
+    "to_fix": 0,
+    "fixing_today": 0,
+    "queued": 0
+  },
+  "site_open_after": 128,
+  "salary_coverage": {
+    "open": 128,
+    "with_salary": 36
+  }
+}

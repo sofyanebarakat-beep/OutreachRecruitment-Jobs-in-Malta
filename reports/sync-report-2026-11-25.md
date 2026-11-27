@@ -1,6 +1,6 @@
 # Job Sync Report — 2026-11-25
 
-Generated: 2026-11-25T10:33:30
+Generated: 2026-11-25T11:38:14
 
 ## Summary
 
@@ -8,28 +8,27 @@ Generated: 2026-11-25T10:33:30
 |---|---|
 | Careers Page Jobs | 129 |
 | Careers Jobs Scraped | 129 |
-| Website Jobs | 127 |
-| **Sync Score** | **94.5% — Needs Attention** |
-| Missing from Website | 6 |
+| Website Jobs | 129 |
+| **Sync Score** | **94.9% — Needs Attention** |
+| Missing from Website | 5 |
 | Extra on Website | 3 |
 | Title Mismatches | 3 |
 | Location Mismatches | 0 |
 | Broken Links | 0 |
 | SEO Issues | 32 |
 | Sitemap Missing | 0 |
-| Possible Duplicates | 24 |
+| Possible Duplicates | 25 |
 | Schema Issues | 0 |
 | Google Indexing Submitted | 0 |
 | Google Indexing Successful | 0 |
 | Google Indexing Failed | 0 |
-| Average Ranking Readiness | 84.4/100 |
+| Average Ranking Readiness | 84.3/100 |
 | High-Priority Ranking Jobs | 13 |
-| GSC URLs Checked | 127 |
-| GSC Problem Groups | 117 |
+| GSC URLs Checked | 129 |
+| GSC Problem Groups | 119 |
 
 ## Jobs to Add (Missing from Website)
 
-- External Sales Executive
 - Mini Bus Drivers License D
 - Deli Counter Assistant / Salumeria Specialis
 - Chefs de Partie
@@ -109,6 +108,7 @@ Generated: 2026-11-25T10:33:30
 | [Corporate Insurance Associate](https://outreachrecruitment.net/jobs/corporate-insurance-associate) | [Commercial Insurance Associate](https://outreachrecruitment.net/jobs/commercial-insurance-associate) | 0.81 |
 | [Marine Mechanical Engineer](https://outreachrecruitment.net/jobs/marine-mechanical-engineer) | [Marine Mechanical Foreman](https://outreachrecruitment.net/jobs/marine-mechanical-foreman) | 0.78 |
 | [HVAC Technician](https://outreachrecruitment.net/jobs/hvac-technician) | [Head of HVAC Technicians](https://outreachrecruitment.net/jobs/head-of-hvac-technicians) | 0.77 |
+| [Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa) | [Accounts Senior](https://outreachrecruitment.net/jobs/accounts-senior-2) | 0.76 |
 | [Workshop Manager](https://outreachrecruitment.net/jobs/workshop-manager) | [Workshop Assistant Manager](https://outreachrecruitment.net/jobs/workshop-assistant-manager) | 0.76 |
 | [Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk) | [Accounts Senior](https://outreachrecruitment.net/jobs/accounts-senior-2) | 0.76 |
 | [Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person) | [Maintenance Manager](https://outreachrecruitment.net/jobs/maintenance-manager-mellieha) | 0.76 |
@@ -133,20 +133,21 @@ Generated: 2026-11-25T10:33:30
 ## Ranking Action Plan
 
 1. Fix 13 high-priority job page(s) below 70/100
-2. Fix 110 job page(s) with keyword targeting gaps
-3. Fix 44 job page(s) missing category-page internal links
-4. Fix 110 job page(s) needing deeper content
-5. Fix 24 possible duplicate/cannibalization pair(s) to review
+2. Fix 112 job page(s) with keyword targeting gaps
+3. Fix 46 job page(s) missing category-page internal links
+4. Fix 112 job page(s) needing deeper content
+5. Fix 25 possible duplicate/cannibalization pair(s) to review
 
 ## Google Search Console Action Plan
 
-1. Fix 52 job URL(s) not indexed or not passing URL Inspection
-2. Fix 37 job URL(s) with zero Search Console impressions
+1. Fix 53 job URL(s) not indexed or not passing URL Inspection
+2. Fix 38 job URL(s) with zero Search Console impressions
 3. Fix 4 job URL(s) ranking worse than average position 20
 4. Fix 33 job URL(s) missing target keyword visibility in top queries
 
 ## Jobs Not Indexed by Google
 
+- **[External Sales Executive](https://outreachrecruitment.net/jobs/external-sales-executive)**: URL is unknown to Google
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)**: Alternate page with proper canonical tag
 - **[Billing Administrator](https://outreachrecruitment.net/jobs/billing-administrator)**: Alternate page with proper canonical tag
 - **[Architect / Draughtsperson](https://outreachrecruitment.net/jobs/architect-draughtsperson)**: Alternate page with proper canonical tag
@@ -176,7 +177,6 @@ Generated: 2026-11-25T10:33:30
 - **[Hotel Maintenance Assistant](https://outreachrecruitment.net/jobs/hotel-maintenance-assistant)**: URL is unknown to Google
 - **[Housekeeper](https://outreachrecruitment.net/jobs/housekeeper-rabat)**: Alternate page with proper canonical tag
 - **[Driver License B](https://outreachrecruitment.net/jobs/driver-license-b)**: Alternate page with proper canonical tag
-- **[Heavy Equipment Mechanic](https://outreachrecruitment.net/jobs/heavy-equipment-mechanic-2)**: Alternate page with proper canonical tag
 
 ## Canonical Conflicts
 
@@ -184,6 +184,7 @@ Generated: 2026-11-25T10:33:30
 
 ## Indexed but Zero Impressions
 
+- **[Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa)**: target `Accounts Clerk jobs in Malta`
 - **[Showroom Sales & Administration Assistant](https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant)**: target `Showroom Sales & Administration Assistant jobs in Malta`
 - **[Restoration/Construction Worker](https://outreachrecruitment.net/jobs/restoration-worker)**: target `Restoration/Construction Worker jobs in Malta`
 - **[Workshop Assistant Manager](https://outreachrecruitment.net/jobs/workshop-assistant-manager)**: target `Workshop Assistant Manager jobs in Malta`
@@ -213,7 +214,6 @@ Generated: 2026-11-25T10:33:30
 - **[Motor Vehicle Mechanic/Technician](https://outreachrecruitment.net/jobs/motor-vehicle-mechanictechnician)**: target `Motor Vehicle Mechanic/Technician jobs in Malta`
 - **[Automotive Parts Personnel](https://outreachrecruitment.net/jobs/automotive-parts-personnel)**: target `Automotive Parts Personnel jobs in Malta`
 - **[Wood Painting & Finishing Specialist](https://outreachrecruitment.net/jobs/wood-painting-finishing-specialist)**: target `Wood Painting & Finishing Specialist jobs in Malta`
-- **[Delivery Driver - Malta C License](https://outreachrecruitment.net/jobs/delivery-driver-malta-c-license)**: target `Delivery Driver - Malta C License jobs in Malta`
 
 ## Ranking Opportunities from GSC
 
@@ -273,7 +273,7 @@ Generated: 2026-11-25T10:33:30
 | [Workshop Assistant Manager](https://outreachrecruitment.net/jobs/workshop-assistant-manager) | Engineering & Maintenance | 69/100 | Workshop Assistant Manager jobs in Malta | Possible duplicate/cannibalization risk; Target phrase missing: Workshop Assistant Manager jobs in Malta; Not linked from a category jobs page |
 | [Workshop Team Leader](https://outreachrecruitment.net/jobs/workshop-team-leader) | Engineering & Maintenance | 69/100 | Workshop Team Leader jobs in Malta | Possible duplicate/cannibalization risk; Target phrase missing: Workshop Team Leader jobs in Malta; Not linked from a category jobs page |
 | [Accountant](https://outreachrecruitment.net/jobs/accountant) | Finance & Accounting | 71/100 | Accountant jobs in Malta | Possible duplicate/cannibalization risk; Target phrase missing: Accountant jobs in Malta; Not linked from a category jobs page |
-| [Showroom Sales & Administration Assistant](https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant) | Sales | 71/100 | Showroom Sales & Administration Assistant jobs in Malta | Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Showroom Sales & Administration Assistant jobs in Malta |
+| [Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa) | Finance & Accounting | 71/100 | Accounts Clerk jobs in Malta | Possible duplicate/cannibalization risk; Target phrase missing: Accounts Clerk jobs in Malta; Not linked from a category jobs page |
 
 ## Category Ranking Report
 
@@ -282,11 +282,11 @@ Generated: 2026-11-25T10:33:30
 | Marine & Shipping | 13 | 77.8/100 | 12 |
 | HR & Recruitment | 2 | 81.0/100 | 1 |
 | Engineering & Maintenance | 28 | 81.6/100 | 15 |
-| Sales | 8 | 81.6/100 | 4 |
+| Sales | 9 | 81.6/100 | 5 |
 | Management | 1 | 83.0/100 | 1 |
+| Finance & Accounting | 11 | 83.2/100 | 7 |
 | Administration | 13 | 83.8/100 | 8 |
 | Logistics | 11 | 84.1/100 | 5 |
-| Finance & Accounting | 10 | 84.4/100 | 6 |
 | Insurance | 4 | 86.2/100 | 1 |
 | Customer Service | 3 | 87.7/100 | 1 |
 | Hospitality | 15 | 89.3/100 | 2 |
@@ -298,6 +298,8 @@ Generated: 2026-11-25T10:33:30
 
 ## Keyword Target Gaps
 
+- **[Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa)** — target `Accounts Clerk jobs in Malta`: Target phrase missing: Accounts Clerk jobs in Malta
+- **[External Sales Executive](https://outreachrecruitment.net/jobs/external-sales-executive)** — target `External Sales Executive jobs in Malta`: Target phrase missing: External Sales Executive jobs in Malta
 - **[Showroom Sales & Administration Assistant](https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant)** — target `Showroom Sales & Administration Assistant jobs in Malta`: Meta title does not include exact job title; Meta description does not include exact job title; Target phrase missing: Showroom Sales & Administration Assistant jobs in Malta
 - **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)** — target `Sales Consultant jobs in Malta`: Target phrase missing: Sales Consultant jobs in Malta
 - **[Restoration/Construction Worker](https://outreachrecruitment.net/jobs/restoration-worker)** — target `Restoration/Construction Worker jobs in Malta`: Target phrase missing: Restoration/Construction Worker jobs in Malta
@@ -326,11 +328,11 @@ Generated: 2026-11-25T10:33:30
 - **[Customer Experience Assistant](https://outreachrecruitment.net/jobs/customer-experience-assistant)** — target `Customer Experience Assistant jobs in Malta`: Target phrase missing: Customer Experience Assistant jobs in Malta
 - **[PDI Leading Hand](https://outreachrecruitment.net/jobs/pdi-leading-hand)** — target `PDI Leading Hand jobs in Malta`: Target phrase missing: PDI Leading Hand jobs in Malta
 - **[Facilities, Maintenance and Health & Safety Manager](https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager)** — target `Facilities, Maintenance and Health & Safety Manager jobs in Malta`: Meta title does not include exact job title; Meta title missing Malta; Meta description does not include exact job title; Target phrase missing: Facilities, Maintenance and Health & Safety Manager jobs in Malta
-- **[Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person)** — target `Maintenance Person jobs in Malta`: Target phrase missing: Maintenance Person jobs in Malta
-- **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — target `Accounting Officer jobs in Malta`: Target phrase missing: Accounting Officer jobs in Malta
 
 ## Internal Link Coverage
 
+- **[Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa)**: Not linked from a category jobs page
+- **[External Sales Executive](https://outreachrecruitment.net/jobs/external-sales-executive)**: Not linked from a category jobs page
 - **[Showroom Sales & Administration Assistant](https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant)**: Not linked from a category jobs page
 - **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)**: Not linked from a category jobs page
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)**: Not linked from a category jobs page
@@ -359,11 +361,11 @@ Generated: 2026-11-25T10:33:30
 - **[Shipyard Sprayer / Painter](https://outreachrecruitment.net/jobs/shipyard-sprayer-painter)**: Not linked from a category jobs page
 - **[Marine Carpenter](https://outreachrecruitment.net/jobs/marine-carpenter)**: Not linked from a category jobs page
 - **[Electronic Technician](https://outreachrecruitment.net/jobs/electronic-technician)**: Not linked from a category jobs page
-- **[Commercial Divers](https://outreachrecruitment.net/jobs/commercial-divers)**: Not linked from a category jobs page
-- **[Marine Mechanical Foreman](https://outreachrecruitment.net/jobs/marine-mechanical-foreman)**: Not linked from a category jobs page
 
 ## Content Quality Checks
 
+- **[Accounts Clerk](https://outreachrecruitment.net/jobs/accounts-clerk-luqa)** — 5447 words: Missing offer/benefits section
+- **[External Sales Executive](https://outreachrecruitment.net/jobs/external-sales-executive)** — 5675 words: Missing offer/benefits section
 - **[Showroom Sales & Administration Assistant](https://outreachrecruitment.net/jobs/showroom-sales-and-administration-assistant)** — 5572 words: Missing offer/benefits section
 - **[Sales Consultant](https://outreachrecruitment.net/jobs/sales-consultant)** — 5290 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Accountant](https://outreachrecruitment.net/jobs/accountant)** — 5519 words: Missing offer/benefits section
@@ -392,8 +394,6 @@ Generated: 2026-11-25T10:33:30
 - **[PDI Leading Hand](https://outreachrecruitment.net/jobs/pdi-leading-hand)** — 5356 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Facilities, Maintenance and Health & Safety Manager](https://outreachrecruitment.net/jobs/facilities-maintenance-and-health-and-safety-manager)** — 5612 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
 - **[Maintenance Person](https://outreachrecruitment.net/jobs/maintenance-person)** — 5093 words: Missing offer/benefits section; Salary/baseSalary missing or not specific
-- **[Accounting Officer](https://outreachrecruitment.net/jobs/accounting-officer)** — 5284 words: Missing offer/benefits section
-- **[Cleaner](https://outreachrecruitment.net/jobs/cleaner-marsa)** — 5018 words: Salary/baseSalary missing or not specific
 
 ## JobPosting Rich Results Eligibility
 
@@ -401,9 +401,9 @@ Generated: 2026-11-25T10:33:30
 
 ## Actions Required
 
-1. Add 6 missing job(s) to website
+1. Add 5 missing job(s) to website
 2. Remove 3 closed job(s) from website
 3. Review 3 possible title mismatch(es)
 4. Fix 32 SEO issue(s)
-5. Review 24 possible duplicate job(s)
+5. Review 25 possible duplicate job(s)
 6. Improve 13 high-priority ranking page(s) below 70/100
